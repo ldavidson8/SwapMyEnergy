@@ -29,7 +29,6 @@ Route::group([ 'prefix' => 'account' ], function()
         
     });
 
-
     Route::get('sign-up', function()
     {
         return view('account.sign-up');
@@ -49,4 +48,19 @@ Route::group([ 'prefix' => 'account' ], function()
     {
         return view('account.my-account');
     }) -> name('My Account');
-});
+    });
+
+    Route::get('about', function()
+    {
+        return view('other.about');
+    }) -> name('About');
+
+    Route::get('privacy-policy', function()
+    {
+        return view('other.privacy');
+    }) -> name('Privacy Policy');
+
+    Route::get('terms-and-conditions', function()
+    {
+        return view('other.t&c');
+    }) -> name('T&C');
