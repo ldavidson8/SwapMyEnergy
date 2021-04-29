@@ -37,11 +37,7 @@
         </div>
     </main>
 
-    <footer>
-        <div class="container">
-            <p><address>This is the footer.</address></p>
-        </div>
-    </footer>
+    @include('partials.foooter')
 
 </body>
 </html>

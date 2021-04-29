@@ -77,9 +77,15 @@ main.container
     text-align: left;
 }
 
+
 footer
 {
-    background-color: #00c2cb;
+    background-color: #f3f2f1;
+}
+
+.footer-link
+{
+    color: #202020;
 }
 
 
