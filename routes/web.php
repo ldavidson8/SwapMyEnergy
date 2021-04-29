@@ -16,3 +16,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::prefix('accounts')->group(function () {
+    Route::get('login', function()
+    {
+        return view('accounts.login');
+    });
+
+    Route::post('login', function()
+    {
+        
+    });
+    
+
+    Route::get('sign-up', function()
+    {
+        return view('accounts.sign-up');
+    });
+
+    Route::post('sign-up', function()
+    {
+        return view('accounts.sign-up');
+    });
+});
