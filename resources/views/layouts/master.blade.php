@@ -26,9 +26,9 @@
 
 </head>
 <body>
-    <header style="position: relative;">
+    <header>
         <img class="logo" src="{{ asset('img/logo.png') }}" width="auto" height="100px" />
-        @include('partials.navbar')
+        @include('partials.navbar-logged-in')
     </header>
 
     <main class="col-md-12">

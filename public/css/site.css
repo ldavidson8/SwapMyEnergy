@@ -5,7 +5,7 @@
 
 body
 {
-    background-color: #f3f2f1;
+    background-color: white;
     margin: 0px;
     padding: 0px;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -14,18 +14,14 @@ body
 }
 
 
-
 .logo
 {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
+    float: left;
 }
 
 header
 {
-    background-color: #00c2cb;
+    background-color: #f3f2f1;
     height: 100px;
 }
 
@@ -34,6 +30,42 @@ nav
     padding: 10px;
     height: 100%;
 }
+
+nav .navigation-link
+{
+    margin: 12px 5px;
+    vertical-align: middle;
+}
+
+nav .navigation-link:link,
+nav .navigation-link:visited
+{
+    color: #202020;
+    text-decoration: none;
+    background-color: #00d2db;
+    padding: 5px 7px;
+    border-radius: 7px;
+    border: 2px solid transparent;
+}
+
+nav .navigation-link:hover,
+nav .navigation-link:active
+{
+    color: #202020;
+    text-decoration: none !important;
+}
+
+
+.navigation-link
+{
+    width: 70px;
+}
+
+.navigation-link-big
+{
+    width: 90px;
+}
+
 
 main
 {
@@ -51,57 +83,6 @@ footer
 }
 
 
-a:hover,
-a:active
-{
-    text-decoration: underline !important;
-}
-
-
-.float-right
-{
-    float: right;
-}
-
-
-nav a
-{
-    margin: 12px 5px;
-}
-
-nav a:link,
-nav a:visited
-{
-    color: #202020;
-    text-decoration: none;
-    background-color: #00d2db;
-    padding: 5px 7px;
-    border-radius: 5px;
-    border: 2px solid transparent;
-}
-
-nav a:hover,
-nav a:active
-{
-    color: #202020;
-    text-decoration: none !important;
-    border-radius: 7px;
-    border: 2px solid #f3f2f1;
-}
-
-
-.navigation-link
-{
-    width: 70px;
-}
-
-.navigation-link-big
-{
-    width: 90px;
-}
-
-
-
 h1, h2, h4
 {
     font-family: 'Inter', sans-serif;
@@ -113,3 +94,4 @@ h3, h5, h6
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
+
