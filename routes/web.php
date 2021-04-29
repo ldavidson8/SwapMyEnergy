@@ -39,4 +39,9 @@ Route::group([ 'prefix' => 'account' ], function()
     {
         return view('account.sign-up');
     });
+    
+    Route::get('my-account', function()
+    {
+        return view('accounts.my-account');
+    });
 });
