@@ -5,27 +5,30 @@
 
 body
 {
+    background-color: #f3f2f1;
     margin: 0px;
     padding: 0px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: center;
+    color: #202020;
 }
 
 
-
-header, main, footer
-{
-    padding: 10px;
-}
 
 header
 {
-    background-color: #ffffcc;
+    background-color: #00c2cb;
+}
+
+nav
+{
+    background-color: #00c2cb;
+    padding: 10px;
 }
 
 main
 {
-    background-color: #ffffcc;
+    padding: 10px;
 }
 
 main.container
@@ -35,5 +38,34 @@ main.container
 
 footer
 {
-    background-color: #ffffcc;
+    background-color: #00c2cb;
+}
+
+
+a:hover,
+a:active
+{
+    text-decoration: underline !important;
+}
+
+
+nav a.nav-item
+{
+    margin: auto 5px;
+}
+
+nav a.nav-item:link,
+nav a.nav-item:visited
+{
+    color: #202020;
+    text-decoration: none;
+    border: 1px solid transparent;
+}
+
+nav a.nav-item:hover,
+nav a.nav-item:active
+{
+    color: #202020;
+    text-decoration: underline;
+    border-radius: 7px;
 }
