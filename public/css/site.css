@@ -25,6 +25,11 @@ header
     height: 100px;
 }
 
+nav, .navbar-outer
+{
+    height: 100px;
+}
+
 nav
 {
     padding: 10px;
@@ -55,7 +60,6 @@ nav .navigation-link:active
     text-decoration: none !important;
 }
 
-
 .navigation-link
 {
     width: 70px;
@@ -70,6 +74,7 @@ nav .navigation-link:active
 main
 {
     padding: 10px;
+    text-align: left;
 }
 
 main.container
@@ -88,6 +93,11 @@ footer
     color: #202020;
 }
 
+
+h1
+{
+    text-align: center;
+}
 
 h1, h2, h4
 {

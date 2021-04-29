@@ -17,7 +17,8 @@ Route::get('/', function () {
     return view('index');
 }) -> name('Home');
 
-Route::group([ 'prefix' => 'account' ], function()
+
+Route::group(['prefix' => 'account'], function()
 {
     Route::get('login', function()
     {
@@ -48,34 +49,35 @@ Route::group([ 'prefix' => 'account' ], function()
     {
         return view('account.my-account');
     }) -> name('My Account');
-    });
+});
 
-    Route::get('about', function()
-    {
-        return view('other.about');
-    }) -> name('About');
 
-    Route::get('privacy-policy', function()
-    {
-        return view('other.privacy');
-    }) -> name('Privacy Policy');
+Route::get('about', function()
+{
+    return view('other.about');
+}) -> name('About');
 
-    Route::get('terms-and-conditions', function()
-    {
-        return view('other.t&c');
-    }) -> name('T&C');
+Route::get('privacy-policy', function()
+{
+    return view('other.privacy');
+}) -> name('Privacy Policy');
 
-    Route::get('contact-us', function()
-    {
-        return view('other.contact-us');
-    }) -> name('Contact Us');
+Route::get('terms-and-conditions', function()
+{
+    return view('other.t&c');
+}) -> name('T&C');
 
-    Route::get('support', function()
-    {
-        return view('other.support');
-    }) -> name('Support');
-    
-    Route::get('Partners-And-Affiliates', function()
-    {
-        return view('other.partners-and-affiliates');
-    }) -> name('Partners and Affiliates');
+Route::get('contact-us', function()
+{
+    return view('other.contact-us');
+}) -> name('Contact Us');
+
+Route::get('support', function()
+{
+    return view('other.support');
+}) -> name('Support');
+
+Route::get('Partners-And-Affiliates', function()
+{
+    return view('other.partners-and-affiliates');
+}) -> name('Partners and Affiliates');
