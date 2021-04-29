@@ -22,7 +22,7 @@
 <body>
 
     <header>
-        <div class="contianer">
+        <div class="container">
             <h1>Swap My Energy</h1>
         </div>
     </header>
