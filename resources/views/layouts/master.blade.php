@@ -20,21 +20,9 @@
 
 </head>
 <body>
-    <header>
-        <div class="col-md-12">
-            <div class="container">
-                <nav class="navbar navbar-expand-md navbar-light">
-                    <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <a class="nav-item nav-link active" href="{{ route('login') }}">Home <span class="sr-only"></span></a>
-                        <a class="nav-item nav-link active" href="{{ route('login') }}">Login</a>
-                    </div>
-                </nav>
-            </div>
-        </div>
+    <header style="position: relative;">
+        <img class="logo" src="{{ asset('img/logo.png') }}" width="auto" height="100px" />
+        @include('partials.navbar')
     </header>
 
     <main class="col-md-12">

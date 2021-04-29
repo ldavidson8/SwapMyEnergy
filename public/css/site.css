@@ -15,15 +15,24 @@ body
 
 
 
+.logo
+{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+}
+
 header
 {
     background-color: #00c2cb;
+    height: 100px;
 }
 
 nav
 {
-    background-color: #00c2cb;
     padding: 10px;
+    height: 100%;
 }
 
 main
@@ -49,23 +58,44 @@ a:active
 }
 
 
-nav a.nav-item
+.float-right
 {
-    margin: auto 5px;
+    float: right;
 }
 
-nav a.nav-item:link,
-nav a.nav-item:visited
+
+nav a
+{
+    margin: 12px 5px;
+}
+
+nav a:link,
+nav a:visited
 {
     color: #202020;
     text-decoration: none;
-    border: 1px solid transparent;
+    background-color: #00d2db;
+    padding: 5px 7px;
+    border-radius: 5px;
+    border: 2px solid transparent;
 }
 
-nav a.nav-item:hover,
-nav a.nav-item:active
+nav a:hover,
+nav a:active
 {
     color: #202020;
-    text-decoration: underline;
+    text-decoration: none !important;
     border-radius: 7px;
+    border: 2px solid #f3f2f1;
+}
+
+
+.navigation-link
+{
+    width: 70px;
+}
+
+.navigation-link-big
+{
+    width: 90px;
 }
