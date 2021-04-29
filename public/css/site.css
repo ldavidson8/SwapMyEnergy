@@ -1,0 +1,39 @@
+*
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    margin: 0px;
+    padding: 0px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+
+
+header, main, footer
+{
+    padding: 10px;
+}
+
+header
+{
+    background-color: #ffffcc;
+}
+
+main
+{
+    background-color: #ffffcc;
+}
+
+main.container
+{
+    text-align: left;
+}
+
+footer
+{
+    background-color: #ffffcc;
+}
