@@ -64,3 +64,18 @@ Route::group([ 'prefix' => 'account' ], function()
     {
         return view('other.t&c');
     }) -> name('T&C');
+
+    Route::get('contact-us', function()
+    {
+        return view('other.contact-us');
+    }) -> name('Contact Us');
+
+    Route::get('support', function()
+    {
+        return view('other.support');
+    }) -> name('Support');
+    
+    Route::get('Partners-And-Affiliates', function()
+    {
+        return view('other.partners-and-affiliates');
+    }) -> name('Partners and Affiliates');
