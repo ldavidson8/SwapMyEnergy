@@ -42,6 +42,6 @@ Route::group([ 'prefix' => 'account' ], function()
     
     Route::get('my-account', function()
     {
-        return view('accounts.my-account');
+        return view('account.my-account');
     });
 });
