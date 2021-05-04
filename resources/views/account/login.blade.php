@@ -23,7 +23,7 @@
                     {{ csrf_field() }}
 
                     <div class="form-group {{ $errors->has('login-email') ? ' has-error' : '' }}">
-                        <input  type="text" class="form-control" placeholder="E-mail Address" name="login-email" value="{{ old('email') }}">
+                        <input  type="email" class="form-control" placeholder="E-mail Address" name="login-email" value="{{ old('email') }}" required />
                         @if ($errors->has('login-email'))
                             <span class="help-block">
                                 {{ $errors->first('login-email') }}
@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="form-group {{ $errors->has('login-password') ? ' has-error' : '' }}">
-                        <input type="password" class="form-control" name="login-password" placeholder="Password">
+                        <input type="password" class="form-control" name="login-password" placeholder="Password" required />
                         @if ($errors->has('login-password'))
                             <span class="help-block">
                                 {{ $errors->first('login-password') }}
@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="remember"> Remember Me
+                                <input type="checkbox" name="remember" /> Remember Me
                             </label>
                         </div>
                     </div>
@@ -82,23 +82,38 @@
 
                     
                     <div class="form-group">
-                        <input id="email" type="email" class="form-control" placeholder="E-Mail Address" name="email" value="{{ old('email') }}">
+                        <input id="email" type="email" class="form-control" placeholder="E-Mail Address" name="email" value="{{ old('email') }}" required />
                     </div>
 
                     <div class="form-group">
-                        <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                        <input id="register_password" type="password" class="form-control" name="password" placeholder="Password" oninput="check_pass();" required />
                     </div>
 
                     <div class="form-group">
-                        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
+                        <input id="register_password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" oninput="check_pass();" required />
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-block btn-success btn-lg"><i class="fa fa-user-plus"></i> Register</button>
+                        <button id="register_submit" type="submit" class="btn btn-block btn-success btn-lg"><i class="fa fa-user-plus"></i> Register</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+@endsection()
+
+@section('script')
+<script>
+    var registerPassword = document.getElementById('register_password');
+    var registerConfirmPassword = document.getElementById('register_password_confirmation');
+    var registerSubmit = document.getElementById('register_submit');
+    function check_pass() {
+        if (registerPassword.value == registerConfirmPassword.value) {
+            registerSubmit.disabled = false;
+        } else {
+            registerSubmit.disabled = true;
+        }
+    }
+</script>
 @endsection()

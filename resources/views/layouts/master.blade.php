@@ -38,6 +38,7 @@
     </main>
 
     @include('partials.foooter')
+    @yield('script')
 
 </body>
 </html>
