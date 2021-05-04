@@ -1,5 +1,6 @@
 <ul class="navbar-nav mr-auto">
     @auth
+        {{-- TODO: move to my account page
         <li class="nav-item">
             <a class="nav-link navigation-link">
                 <?php $current_hour = date('H'); ?>
@@ -11,12 +12,12 @@
                     Good&nbsp;Evening
                 @endif
             </a>
-        </li>
+        </li> --}}
         <li class="nav-item">
             <a class="nav-link navigation-link" href="{{ route('logout') }}">Logout</a>
         </li>
     @endauth
     @guest
-        <li class="nav-item"><a class="navigation-link {{ ($navbar_page == "login") ? 'navigation-link-current-page' : '' }}" href="{{ route('login') }}">Login</a></li>
+        <li class="nav-item"><a class="navigation-link {{ ($navbar_page == "login") ? 'navigation-link-current-page' : '' }}" href="{{ route('login') }}">Login/Register</a></li>
     @endguest
 </ul>

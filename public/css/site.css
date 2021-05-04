@@ -5,7 +5,7 @@
 
 body
 {
-    background-color: white;
+    background-color: #eeeeff;
     margin: 0px;
     padding: 0px;
     font-family: 'Inter', sans-serif;
@@ -28,10 +28,23 @@ header, nav, .navbar-outer
     float: left;
 }
 
-.switch
+.switch,
+.switch-text
 {
     height: 100px;
     float: right;
+    font-size: 17px;
+}
+
+.center-text
+{
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    padding-right: 15px;
+    text-align: right;
+    color: white;
 }
 
 
@@ -51,7 +64,6 @@ nav .navigation-link
 nav .navigation-link:link,
 nav .navigation-link:visited
 {
-    text-decoration: none;
     padding: 5px 7px;
     border-radius: 7px;
     border: 2px solid transparent;
@@ -60,7 +72,7 @@ nav .navigation-link:visited
 nav .navigation-link:hover,
 nav .navigation-link:active
 {
-    text-decoration: none !important;
+    text-decoration: underline !important;
 }
 
 
@@ -112,12 +124,20 @@ table#footer-links td
 .full-size
 {
     min-height: 100vh;
+    padding: 0px;
+}
+
+.left-column-content
+{
+    background-color: white;
+    padding: 100px 30px;
 }
 
 
 h1
 {
-    text-align: center;
+    text-align: left;
+    margin-top: 30px;
 }
 
 h1, h2, h4
@@ -130,6 +150,13 @@ h3, h5, h6
 {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
+}
+
+hr
+{
+    border: 3px solid black;
+    width: 100vw;
+    margin: 0px;
 }
 
 input
@@ -217,5 +244,18 @@ body.business .navigation-link:hover,
 body.business .navigation-link:active
 {
     color: #202020;
-    background-color: #f3f2f1;
+}
+
+
+@media (max-width: 767px)
+{
+    .switch-text
+    {
+        display: none;
+    }
+
+    .left-column-content
+    {
+        padding: 0px 20px 20px;
+    }
 }

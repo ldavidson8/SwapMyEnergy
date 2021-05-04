@@ -1,7 +1,7 @@
 <?php
     if (!isset($navbar_page)) $navbar_page = "";
 ?>
-<nav class="navbar navbar-expand-md navbar-light navbar-outer">
+<nav class="navbar navbar-expand-lg navbar-light navbar-outer">
     <div class="container-fluid">
         <a class="navbar-brand navigation-link {{ ($navbar_page == "home") ? 'navigation-link-current-page' : '' }}" href="{{ route('home') }}">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,14 +28,14 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
                 </li> --}}
-                <div class="d-xs-block d-md-none">
+                <div class="d-xs-block d-lg-none">
                     @include('partials.navbar-account')
                 </div>
             </ul>
         </div>
     </div>
-
-    <div class="collapse navbar-collapse d-xs-none d-md-block">
+    
+    <div class="collapse navbar-collapse d-xs-none d-lg-block">
         @include('partials.navbar-account')
     </div>
 </nav>
