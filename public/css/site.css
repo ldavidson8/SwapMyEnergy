@@ -19,21 +19,15 @@ body
     float: left;
 }
 
-header
+header, nav, .navbar-outer
 {
-    background-color: #f3f2f1;
-    height: 100px;
-}
-
-nav, .navbar-outer
-{
-    height: 100px;
+    min-height: 100px;
 }
 
 nav
 {
     padding: 10px;
-    height: 100%;
+    z-index: 10;
 }
 
 nav .navigation-link
@@ -47,7 +41,7 @@ nav .navigation-link:visited
 {
     color: #202020;
     text-decoration: none;
-    background-color: #00d2db;
+    /* background-color: #00d2db; */
     padding: 5px 7px;
     border-radius: 7px;
     border: 2px solid transparent;
@@ -57,17 +51,8 @@ nav .navigation-link:hover,
 nav .navigation-link:active
 {
     color: #202020;
+    background-color: #f3f2f1;
     text-decoration: none !important;
-}
-
-.navigation-link
-{
-    width: 70px;
-}
-
-.navigation-link-big
-{
-    width: 90px;
 }
 
 
@@ -85,7 +70,7 @@ main.container
 
 footer
 {
-    background-color: #f3f2f1;
+    padding: 5px;
 }
 
 .footer-link
@@ -109,4 +94,37 @@ h3, h5, h6
 {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
+}
+
+input
+{
+    color: #202020 !important;
+}
+
+
+
+/* ------------------------- */
+/* -----  Residential  ----- */
+/* ------------------------- */
+
+body.residential header,
+body.residential nav,
+body.residential #navbarSupportedContent,
+body.residential footer
+{
+    background-color: #f3f2f1;
+}
+
+
+
+/* -------------------------- */
+/* -------  Business  ------- */
+/* -------------------------- */
+
+body.business header,
+body.business nav,
+body.business #navbarSupportedContent,
+body.business footer
+{
+    background-color: #00c2cb;
 }

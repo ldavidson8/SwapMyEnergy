@@ -25,10 +25,10 @@
     <script src="{{ asset('js/site.js') }}"></script>
 
 </head>
-<body>
+<body class="{{ $request -> session() -> get('mode', 'business') }}">
     <header>
         <img class="logo" src="{{ asset('img/logo.png') }}" width="auto" height="100px" />
-        @include('partials.navbar-logged-in')
+        @include('partials.navbar')
     </header>
 
     <main class="col-md-12">

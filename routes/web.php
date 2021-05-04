@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,71 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-}) -> name('Home');
-
+Route::get('/', [ HomeController::class, 'index' ]) -> name('Home');
+Route::get('about', [ HomeController::class, 'about' ]) -> name('About');
+Route::get('privacy-policy', [ HomeController::class, 'privacyPolicy' ]) -> name('Privacy Policy');
+Route::get('terms-and-conditions', [ HomeController::class, 'termsAndConditions' ]) -> name('T&C');
+Route::get('contact-us', [ HomeController::class, 'contactUs' ]) -> name('Contact Us');
+Route::get('support', [ HomeController::class, 'support' ]) -> name('Support');
+Route::get('Partners-And-Affiliates', [ HomeController::class, 'partnersAndAffiliates' ]) -> name('Partners and Affiliates');
 
 Route::group(['prefix' => 'account'], function()
 {
-    Route::get('login', function()
-    {
-        return view('account.login');
-    }) -> name('Login');
-
-    Route::post('login', function()
-    {
-        
-    });
-
-    Route::get('sign-up', function()
-    {
-        return view('account.sign-up');
-    }) -> name('Sign Up');
-
-    Route::post('sign-up', function()
-    {
-        return view('account.sign-up');
-    });
-
-    Route::get('logout', function()
-    {
-        return view('account.logout');
-    }) -> name('Logout');
+    Route::get('login', [ AccountController::class, 'login' ]) -> name('Login');
+    Route::post('login', [ AccountController::class, 'loginPost' ]) -> name('Login');
+    Route::get('sign-up', [ AccountController::class, 'signUp' ]) -> name('Sign Up');
+    Route::post('sign-up', [ AccountController::class, 'signUpPost' ]) -> name('Sign Up');
+    Route::get('logout', [ AccountController::class, 'logout' ]) -> name('Logout');
     
-    Route::get('my-account', function()
-    {
-        return view('account.my-account');
-    }) -> name('My Account');
+    Route::get('my-account', [ AccountController::class, 'myAccount' ]) -> name('My Account');
 });
-
-
-Route::get('about', function()
-{
-    return view('other.about');
-}) -> name('About');
-
-Route::get('privacy-policy', function()
-{
-    return view('other.privacy');
-}) -> name('Privacy Policy');
-
-Route::get('terms-and-conditions', function()
-{
-    return view('other.t&c');
-}) -> name('T&C');
-
-Route::get('contact-us', function()
-{
-    return view('other.contact-us');
-}) -> name('Contact Us');
-
-Route::get('support', function()
-{
-    return view('other.support');
-}) -> name('Support');
-
-Route::get('Partners-And-Affiliates', function()
-{
-    return view('other.partners-and-affiliates');
-}) -> name('Partners and Affiliates');
