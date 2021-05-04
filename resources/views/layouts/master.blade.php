@@ -28,6 +28,8 @@
 
 </head>
 <body class="{{ $request -> session() -> get('mode', 'business') }}">
+    @yield('before-header')
+
     <header>
         <img class="logo" src="{{ asset('img/logo.png') }}" width="auto" />
         <img class="switch float-right" src="{{ asset('img/switch.png') }}" with="auto" />
