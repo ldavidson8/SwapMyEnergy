@@ -3,14 +3,14 @@
 @section('main-content')
     <main class="col-md-12">
         <div class="container">
-            <h1>Login</h1>
+            <h1>Login or Register</h1>
 
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-box">
                         <div class="form-top">
                             <div class="form-top-left">
-                                <h3>Login to our site</h3>
+                                <h2>Login to our site</h2>
                                 <p>Enter email and password to log on:</p>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                     <div class="form-box">
                         <div class="form-top">
                             <div class="form-top-left">
-                                <h3>Sign up now</h3>
+                                <h2>Sign up now</h2>
                                 <p>Fill in the form below to get instant access:</p>
                             </div>
                         </div>
