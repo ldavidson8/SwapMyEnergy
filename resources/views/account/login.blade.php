@@ -19,7 +19,7 @@
                         {{ Session::get('message-login') }}
                     </div>
                 @endif
-                <form role="form" method="POST" action="{{ url('/login') }}">
+                <form role="form" method="POST" action="{{ route('login') }}">
                     {{ csrf_field() }}
 
                     <div class="form-group {{ $errors->has('login-email') ? ' has-error' : '' }}">
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-block btn-primary btn-lg"><i class="fa fa-sign-in"></i> Sign in!</button>
+                        <button type="submit" class="btn btn-block btn-lg">Sign in</button>
                         <br/>
                         <a class="pull-right" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
                     </div>

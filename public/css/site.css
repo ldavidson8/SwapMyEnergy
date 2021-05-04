@@ -9,20 +9,30 @@ body
     margin: 0px;
     padding: 0px;
     font-family: 'Inter', sans-serif;
+    font-weight: 400;
     text-align: center;
     color: #202020;
 }
 
 
-.logo
-{
-    float: left;
-}
-
 header, nav, .navbar-outer
 {
     min-height: 100px;
 }
+
+
+.logo
+{
+    height: 100px;
+    float: left;
+}
+
+.switch
+{
+    height: 100px;
+    float: right;
+}
+
 
 nav
 {
@@ -67,12 +77,34 @@ main.container
 
 footer
 {
-    padding: 5px;
+    padding: 15px;
+    font-weight: 100;
+    font-size: 22px;
 }
 
 .footer-link
 {
     color: #202020;
+}
+
+table#footer-links
+{
+    width: 100%;
+}
+
+table#footer-links td:first-child
+{
+    text-align: right;
+}
+
+table#footer-links td:nth-child(2)
+{
+    text-align: left;
+}
+
+table#footer-links td
+{
+    padding: 0px 15px;
 }
 
 
@@ -95,6 +127,13 @@ h3, h5, h6
 
 input
 {
+    color: #202020 !important;
+}
+
+button, input[type=submit], input[type=button], input[type=reset]
+{
+    background-color: #00d2db !important;
+    border: none !important;
     color: #202020 !important;
 }
 
@@ -139,11 +178,22 @@ body.residential .navigation-link:active
 
 body.business header,
 body.business nav,
-body.business #navbarSupportedContent,
-body.business footer
+body.business #navbarSupportedContent
 {
     background-color: #00c2cb;
 }
+
+body.business footer
+{
+    background-color: #202020;
+    color: #f3f2f1;
+}
+
+body.business footer a
+{
+    color: #f3f2f1;
+}
+
 
 body.business .navigation-link-current-page
 {

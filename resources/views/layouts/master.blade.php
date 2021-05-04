@@ -9,9 +9,11 @@
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
 
     <!-- Bootstrap Stylesheet -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
@@ -27,7 +29,8 @@
 </head>
 <body class="{{ $request -> session() -> get('mode', 'business') }}">
     <header>
-        <img class="logo" src="{{ asset('img/logo.png') }}" width="auto" height="100px" />
+        <img class="logo" src="{{ asset('img/logo.png') }}" width="auto" />
+        <img class="switch float-right" src="{{ asset('img/switch.png') }}" with="auto" />
         @include('partials.navbar')
     </header>
 

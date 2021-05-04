@@ -15,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ HomeController::class, 'index' ]) -> name('Home');
-Route::get('about', [ HomeController::class, 'about' ]) -> name('About');
-Route::get('privacy-policy', [ HomeController::class, 'privacyPolicy' ]) -> name('Privacy Policy');
-Route::get('terms-and-conditions', [ HomeController::class, 'termsAndConditions' ]) -> name('T&C');
-Route::get('contact-us', [ HomeController::class, 'contactUs' ]) -> name('Contact Us');
-Route::get('support', [ HomeController::class, 'support' ]) -> name('Support');
-Route::get('Partners-And-Affiliates', [ HomeController::class, 'partnersAndAffiliates' ]) -> name('Partners and Affiliates');
+Route::get('/', [ HomeController::class, 'index' ]) -> name('home');
+Route::get('about', [ HomeController::class, 'about' ]) -> name('about');
+Route::get('privacy-policy', [ HomeController::class, 'privacyPolicy' ]) -> name('privacy policy');
+Route::get('terms-and-conditions', [ HomeController::class, 'termsAndConditions' ]) -> name('t&c');
+Route::get('contact-us', [ HomeController::class, 'contactUs' ]) -> name('contact us');
+Route::get('support', [ HomeController::class, 'support' ]) -> name('support');
+Route::get('Partners-And-Affiliates', [ HomeController::class, 'partnersAndAffiliates' ]) -> name('partners and affiliates');
 
 Route::group(['prefix' => 'account'], function()
 {
@@ -30,5 +30,5 @@ Route::group(['prefix' => 'account'], function()
     Route::post('register', [ AccountController::class, 'registerPost' ]) -> name('register');
     Route::get('logout', [ AccountController::class, 'logout' ]) -> name('logout');
 
-    Route::get('my-account', [ AccountController::class, 'myAccount' ]) -> name('My Account') -> middleware('auth');
+    Route::get('my-account', [ AccountController::class, 'myAccount' ]) -> name('my account') -> middleware('auth');
 });
