@@ -4,7 +4,7 @@
     <h1>Login</h1>
 
     <div class="row">
-    <div class="col-sm-6">
+    <div class="col-md-6">
         <div class="form-box">
             <div class="form-top">
                 <div class="form-top-left">
@@ -58,7 +58,7 @@
         </div>
     </div>
     
-    <div class="col-sm-6">
+    <div class="col-md-6">
         <div class="form-box">
             <div class="form-top">
                 <div class="form-top-left">

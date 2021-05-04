@@ -9,7 +9,7 @@ class AccountController extends Controller
 {
     public function login(Request $request)
     {
-        return view('account.login', [ 'request' => $request ]);
+        return view('account.login', [ 'request' => $request, 'navbar_page' => 'login' ]);
     }
     
     public function loginPost(Request $request)
@@ -31,7 +31,6 @@ class AccountController extends Controller
 
     public function myAccount(Request $request)
     {
-        $mode = HandleSessions::GetMode($request);
-        return view('account.my-account', [ 'request' => $request ]);
+        return view('account.my-account', [ 'request' => $request, 'navbar_page' => 'my account' ]);
     }
 }

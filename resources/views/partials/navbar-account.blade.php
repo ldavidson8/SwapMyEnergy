@@ -17,6 +17,6 @@
         </li>
     @endauth
     @guest
-        <li class="nav-item"><a class="navigation-link" href="{{ route('login') }}">Login</a></li>
+        <li class="nav-item"><a class="navigation-link {{ ($navbar_page == "login") ? 'navigation-link-current-page' : '' }}" href="{{ route('login') }}">Login</a></li>
     @endguest
 </ul>
