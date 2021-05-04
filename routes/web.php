@@ -25,11 +25,10 @@ Route::get('Partners-And-Affiliates', [ HomeController::class, 'partnersAndAffil
 
 Route::group(['prefix' => 'account'], function()
 {
-    Route::get('login', [ AccountController::class, 'login' ]) -> name('Login');
-    Route::post('login', [ AccountController::class, 'loginPost' ]) -> name('Login');
-    Route::get('sign-up', [ AccountController::class, 'signUp' ]) -> name('Sign Up');
-    Route::post('sign-up', [ AccountController::class, 'signUpPost' ]) -> name('Sign Up');
-    Route::get('logout', [ AccountController::class, 'logout' ]) -> name('Logout');
-    
-    Route::get('my-account', [ AccountController::class, 'myAccount' ]) -> name('My Account');
+    Route::get('login', [ AccountController::class, 'login' ]) -> name('login');
+    Route::post('login', [ AccountController::class, 'loginPost' ]) -> name('login');
+    Route::post('register', [ AccountController::class, 'registerPost' ]) -> name('register');
+    Route::get('logout', [ AccountController::class, 'logout' ]) -> name('logout');
+
+    Route::get('my-account', [ AccountController::class, 'myAccount' ]) -> name('My Account') -> middleware('auth');
 });

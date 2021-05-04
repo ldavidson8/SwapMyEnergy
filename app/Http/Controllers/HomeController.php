@@ -9,12 +9,12 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        return view('index', [ 'request' => $request ]);
+        return view('index', [ 'request' => $request, 'navbar_page' => "home" ]);
     }
     
     public function about(Request $request)
     {
-        return view('other.about', [ 'request' => $request ]);
+        return view('other.about', [ 'request' => $request, 'navbar_page' => "about" ]);
     }
     
     public function privacyPolicy(Request $request)

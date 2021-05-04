@@ -19,16 +19,11 @@ class AccountController extends Controller
 
     public function logout()
     {
-
-    }
-
-
-    public function signUp(Request $request)
-    {
-        return view('account.sign-up', [ 'request' => $request ]);
-    }
         
-    public function signUpPost()
+    }
+
+
+    public function registerPost(Request $request)
     {
         
     }

@@ -39,9 +39,7 @@ nav .navigation-link
 nav .navigation-link:link,
 nav .navigation-link:visited
 {
-    color: #202020;
     text-decoration: none;
-    /* background-color: #00d2db; */
     padding: 5px 7px;
     border-radius: 7px;
     border: 2px solid transparent;
@@ -50,8 +48,6 @@ nav .navigation-link:visited
 nav .navigation-link:hover,
 nav .navigation-link:active
 {
-    color: #202020;
-    background-color: #f3f2f1;
     text-decoration: none !important;
 }
 
@@ -115,6 +111,30 @@ body.residential footer
     background-color: #f3f2f1;
 }
 
+body.residential .navigation-link-current-page
+{
+    color: #00c2cb;
+}
+
+nav .navigation-link:link,
+nav .navigation-link:visited
+{
+    color: #202020;
+    text-decoration: none;
+    /* background-color: #00d2db; */
+    padding: 5px 7px;
+    border-radius: 7px;
+    border: 2px solid transparent;
+}
+
+nav .navigation-link:hover,
+nav .navigation-link:active
+{
+    color: #202020;
+    background-color: #f3f2f1;
+    text-decoration: none !important;
+}
+
 
 
 /* -------------------------- */
@@ -127,4 +147,9 @@ body.business #navbarSupportedContent,
 body.business footer
 {
     background-color: #00c2cb;
+}
+
+body.business .navigation-link-current-page
+{
+    color: #f3f2f1 !important;
 }
