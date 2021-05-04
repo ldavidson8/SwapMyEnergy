@@ -8,7 +8,7 @@ body
     background-color: white;
     margin: 0px;
     padding: 0px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Inter', sans-serif;
     text-align: center;
     color: #202020;
 }
@@ -110,4 +110,3 @@ h3, h5, h6
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
-
