@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
 @section('main-content')
-<h1> Support </h1>
+    <main class="col-md-12">
+        <div class="container">
+            <h1> Support </h1>
+        </div>
+    </main>
 @endsection()

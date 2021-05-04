@@ -34,11 +34,7 @@
         @include('partials.navbar')
     </header>
 
-    <main class="col-md-12">
-        <div class="container">
-            @yield('main-content')
-        </div>
-    </main>
+    @yield('main-content')
 
     @include('partials.foooter')
     @yield('script')
