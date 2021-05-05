@@ -44,6 +44,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use Illuminate\Support\Facades\Hash;
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
                 ->middleware('guest')
@@ -97,3 +98,11 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
 Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->middleware('auth')
                 ->name('logout');
+
+
+use Illuminate\Support\Str;
+
+Route::get('/create-me-a-user-please', function()
+{
+    return response() -> json([ 'hash' => Hash::make('password'), 'api_token' => Str::random(60) ], 200, []);
+});
