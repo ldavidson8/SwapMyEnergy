@@ -24,20 +24,20 @@
                             <form role="form" method="POST" action="{{ route('login') }}">
                                 {{ csrf_field() }}
 
-                                <div class="form-group {{ $errors->has('login-email') ? ' has-error' : '' }}">
-                                    <input  type="email" class="form-control" placeholder="E-mail Address" name="login-email" value="{{ old('email') }}" required />
-                                    @if ($errors->has('login-email'))
+                                <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                                    <input type="email" class="form-control" placeholder="Email Address" name="email" value="{{ old('email') }}" required />
+                                    @if ($errors->has('email'))
                                         <span class="help-block">
-                                            {{ $errors->first('login-email') }}
+                                            {{ $errors->first('email') }}
                                         </span>
                                     @endif
                                 </div>
 
-                                <div class="form-group {{ $errors->has('login-password') ? ' has-error' : '' }}">
-                                    <input type="password" class="form-control" name="login-password" placeholder="Password" required />
-                                    @if ($errors->has('login-password'))
+                                <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
+                                    <input type="password" class="form-control" name="password" placeholder="Password" required />
+                                    @if ($errors->has('password'))
                                         <span class="help-block">
-                                            {{ $errors->first('login-password') }}
+                                            {{ $errors->first('password') }}
                                         </span>
                                     @endif
                                 </div>
