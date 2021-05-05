@@ -32,9 +32,9 @@
     @yield('before-header')
 
     <header>
-        <img class="logo" src="{{ asset('img/logo.png') }}" width="auto" />
-        <img class="switch float-right" src="{{ asset('img/switch.png') }}" width="auto" />
-        <div class="switch-text float-right center-text">Switch to<br />Business<br />Mode</div>
+        <img class="mode-switch logo" src="{{ asset('img/logo.png') }}" width="auto" />
+        <img class="mode-switch switch float-right" src="{{ asset('img/switch.png') }}" width="auto" />
+        <div class="mode-switch switch-text float-right center-text">Switch to<br />Business<br />Mode</div>
         @include('partials.navbar')
     </header>
 
@@ -43,6 +43,13 @@
     @include('partials.foooter')
     
     @yield('script')
+
+    <script>
+        $(window.onload(function()
+        {
+            $(".mode-switch")
+        }));
+    </script>
 
 </body>
 </html>

@@ -22,18 +22,29 @@ header, nav, .navbar-outer
 }
 
 
+.mode-switch
+{
+    cursor: pointer;
+}
+
 .logo
 {
     height: 100px;
     float: left;
 }
 
-.switch,
+.switch
+{
+    height: 100px;
+    float: right;
+}
+
 .switch-text
 {
     height: 100px;
     float: right;
     font-size: 17px;
+    padding-left: 1rem;
 }
 
 .center-text
@@ -50,7 +61,7 @@ header, nav, .navbar-outer
 
 nav
 {
-    padding: 10px;
+    padding-right: 0px !important;
     z-index: 10;
 }
 
