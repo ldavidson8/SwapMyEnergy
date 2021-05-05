@@ -182,9 +182,36 @@ hr
     margin: 0px;
 }
 
+
 input
 {
     color: #202020 !important;
+}
+
+input:not([type=submit], [type=button], [type=reset])
+{
+    background-color: #202020 !important;
+    color: #f3f2f1 !important;
+}
+
+input:not([type=submit], [type=button], [type=reset])::placeholder,
+input:not([type=submit], [type=button], [type=reset])::-moz-placeholder,
+input:not([type=submit], [type=button], [type=reset])::-webkit-input-placeholder
+{
+    color: white;
+}
+
+input:-webkit-autofill
+{
+    -webkit-box-shadow: 0 0 0 50px #202020 inset;
+    -webkit-text-fill-color: #f3f2f1;
+}
+
+input:-webkit-autofill:focus
+{
+    -webkit-box-shadow: 0 0 0 50px #202020 inset;
+    -webkit-text-fill-color: #f3f2f1;
+    
 }
 
 button, input[type=submit], input[type=button], input[type=reset]
@@ -194,7 +221,8 @@ button, input[type=submit], input[type=button], input[type=reset]
     color: #202020 !important;
 }
 
-.big-blue-button
+
+.bigbluebutton
 {
     background-color: #00d2db !important;
     border: none !important;
