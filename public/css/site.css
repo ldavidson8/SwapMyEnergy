@@ -144,6 +144,12 @@ table#footer-links td
     padding: 0px;
 }
 
+.fullsize-50
+{
+    min-height: 50vh;
+    padding: 0px;
+}
+
 .left-column-content
 {
     background-color: white;
