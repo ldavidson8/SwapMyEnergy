@@ -25,6 +25,5 @@ class CreateAPIToken extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_a_p_i__token');
     }
 }
