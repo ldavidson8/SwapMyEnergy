@@ -42,7 +42,7 @@
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-block btn-lg">Sign in</button>
                                     <br/>
-                                    <a class="pull-right" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                                    <a class="pull-right" href="{{ route('password.request') }}">Forgot Your Password?</a>
                                 </div>
                             </form>
                         </div>
@@ -75,7 +75,7 @@
                                     <input id="register_name" type="text" class="form-control" placeholder="Name" name="name" value="{{ old('name') }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <input id="register_email" type="email" class="form-control" placeholder="E-Mail Address" name="email" value="{{ old('email') }}" required />
+                                    <input id="register_email" type="email" class="form-control" placeholder="Email Address" name="email" value="{{ old('email') }}" required />
                                 </div>
                                 <div class="form-group">
                                     <input id="register_password" type="password" class="form-control" name="password" placeholder="Password" oninput="check_pass();" required />
