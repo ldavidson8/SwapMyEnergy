@@ -7,21 +7,12 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create(Request $request)
-    {
-        return view('auth.register', [ 'request' => $request ]);
-    }
-
     /**
      * Handle an incoming registration request.
      *
@@ -32,16 +23,19 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request -> password_confirmation != $request -> password) return redirect() -> back() -> withErrors([ 'password' => 'Both passwords must match' ]);
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',
+            'password' => 'required|string|confirmed|min:8'
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'api_token' => Str::random(60)
         ]);
 
         event(new Registered($user));
