@@ -17,5 +17,28 @@
     </div>
     <hr/>
     <body>
-   <hr/>
+    <div class="full-size-50 container-fluid d-flex flex-column">
+        <main class="row flex-grow-1" style="padding: 0px;">
+            <div class="col-lg-6 col-12 row">
+                <div class="col row">
+                    <div class="col-lg-6 col-12">
+                        <h2> Your Benefits </h2>
+                        <p>Other energy brokers promise false savings based on their estimates, which can fall short of your
+                        actual usage, which can result in steep final bills and hassle that you just don't need. Our savings are calculated based on the unit price, which means that a lower unit price plan will result in savings for you or some room for more brews or a new TV to binge-watch Netflix on. </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="full-size-50 container-fluid d-flex flex-column">
+        <main class="row flex-grow-1" style="padding: 0px;">
+            <div class="col-lg-6 col-12 row">
+                <div class="col row">
+                    <div class="col-lg-6 col-12">
+                        <p>Geoff "saved" £100 on his energy bill with another energy broker only to find out he hadhidden fees to pay at the end of the year.Sound familiar?</p>
+                    </div>
+                </div>
+            </div>
+    </div>
+
 @endsection
