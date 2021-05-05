@@ -127,6 +127,12 @@ table#footer-links td
     padding: 0px;
 }
 
+.full-size-80
+{
+    min-height: 80vh;
+    padding: 0px;
+}
+
 .left-column-content
 {
     background-color: white;
@@ -171,7 +177,7 @@ button, input[type=submit], input[type=button], input[type=reset]
     color: #202020 !important;
 }
 
-.bigbluebutton
+.big-blue-button
 {
     background-color: #00d2db !important;
     border: none !important;
