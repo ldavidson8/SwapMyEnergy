@@ -1,12 +1,97 @@
 @extends('layouts.master')
 
+@section('stylesheets')
+    <style>
+        #section01
+        {
+            position: relative;
+        }
+
+        #scroll-down-link
+        {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            z-index: 2;
+            display: inline-block;
+            -webkit-transform: translateX(0, -50%);
+            transform: translateX(-50%);
+            color: #202020;
+            font: normal 400 20px/1 'Josefin Sans', sans-serif;
+            letter-spacing: .1em;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        #scroll-down-link:hover
+        {
+            opacity: 0.5;
+        }
+        #section01 #scroll-down-link
+        {
+            padding-top: 70px;
+        }
+        #section01 #scroll-down-link span
+        {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            width: 24px;
+            height: 24px;
+            margin-left: -12px;
+            border-left: 1px solid #202020;
+            border-bottom: 1px solid #202020;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            -webkit-animation: sdb05 3s infinite;
+            animation: sdb05 3s infinite;
+            box-sizing: border-box;
+        }
+
+        @-webkit-keyframes sdb05
+        {
+            0%
+            {
+                -webkit-transform: rotate(-45deg) translate(0, 0);
+                opacity: 0;
+            }
+            50%
+            {
+                opacity: 1;
+            }
+            100%
+            {
+                -webkit-transform: rotate(-45deg) translate(-20px, 20px);
+                opacity: 0;
+            }
+        }
+        @keyframes sdb05
+        {
+            0%
+            {
+                transform: rotate(-45deg) translate(0, 0);
+                opacity: 0;
+            }
+            50%
+            {
+                opacity: 1;
+            }
+            100%
+            {
+                transform: rotate(-45deg) translate(-20px, 20px);
+                opacity: 0;
+            }
+        }
+    </style>
+@endsection
+
 @section('before-header')
-    <div class="full-size container-fluid d-flex h-100 flex-column">
+    <div id="section01" class="full-size container-fluid d-flex h-100 flex-column">
 @endsection
 
 @section('main-content')
         <hr/>
-        <div class="row flex-grow-1" style="padding: 0px;">
+        <div class="row flex-grow-1 no-padding">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content">
                 <h1>Empower your business to overcome rising energy prices</h1>
@@ -14,12 +99,13 @@
             </div>
             <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block"></div>
         </div>
+        <a id="scroll-down-link" class="d-md-inline d-none" href="#section02"><span></span>How It Works</a>
     </div>
     <hr/>
-    <div class="full-size-50 container-fluid d-flex flex-column">
-        <div class="row flex-grow-1" style="padding: 0px;">
+    <div id="section02" class="full-size-50 container-fluid d-flex flex-column">
+        <div class="row flex-grow-1 no-padding" style="background-color: white;">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center" style="text-align: left;">
+            <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left;">
                 <div>
                     <h2> How it works </h2>
                     <p style="padding-top: 15px">Other energy brokers promise false savings based on their estimates, which can fall short of your actual usage, which can result in steep final bills and hassle that you just don't need. Our savings are calculated based on the unit price, which means that a lower unit price plan will result in savings for you or some room for more brews or a new TV to binge-watch Netflix on. </p>
@@ -27,25 +113,24 @@
             </div>
             <div class="col-2 d-lg-none d-block"></div>
             <div class="col-2 d-lg-none d-block"></div>
-            <div class="col-xl-6 col-lg-5 col-md-8" style="align-items: center; justify-content: center; margin: auto; padding: 0px;">
+            <div class="col-xl-6 col-lg-5 col-md-8 no-padding" style="align-items: center; justify-content: center; margin: auto;">
                 <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="100%" height="200" />
             </div>
             <div class="col-2 col-lg-1 d-block"></div>
         </div>
     </div>
-        <div class="full-size-50 container-fluid d-flex flex-column" style="background-color: darkslategrey;">
-            <div class="row flex-grow-1" style="padding: 20px;">
-                <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%;">
-                    <p style="color: white;">Geoff "saved" £100 on his energy bill with another energy broker only to find out he had hidden fees to pay at the end of the year.</p>
-                    <p style="font-weight: bold; font-size: 35px; color: white;">Sound familiar?</p>
-                </div>
+    <div class="full-size-50 container-fluid d-flex flex-column" style="background-color: darkslategrey;">
+        <div class="row flex-grow-1 padding-20px">
+            <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%;">
+                <p style="color: white;">Geoff "saved" £100 on his energy bill with another energy broker only to find out he had hidden fees to pay at the end of the year.</p>
+                <p style="font-weight: bold; font-size: 35px; color: white;">Sound familiar?</p>
             </div>
         </div>
     </div>
     <div class="container-fluid d-flex flex-column">
-        <div class="row flex-grow-1" style="padding: 0px;">
+        <div class="row flex-grow-1 no-padding">
             <div class="col-12 left-column-content-no-padding align-items-center" style="text-align: left;">
-                <div class="faq" style="padding: 20px;">
+                <div class="faq padding-20px">
                     <h2>Frequently Asked Questions</h2>
                     <button class="faq-accordion">How is the service free?</button>
                     <div class="faq-panel">
@@ -68,11 +153,11 @@
             </div>
         </div>
     </div>
-    <div class="d-flex flex-column" style="background-color: darkslategrey;">
-        <div class="row flex-grow-1" style="padding: 20px;">
+    <div class="d-flex flex-column" style="background-color: darkslategrey; height: 30vw; min-height: 300px;">
+        <div class="row flex-grow-1" sytle="align-content: center;">
             <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%;">
-            <p style="font-weight: bold; font-size: 30px; color: white;"> Still need Help?</p>
-            <button type="button" class="big-blue-button btn-lg">Contact Us</button>                
+                <p style="font-weight: bold; font-size: 30px; color: white;"> Still need Help?</p>
+                <a href="{{ route('contact us') }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
             </div>
         </div>
     </div>
