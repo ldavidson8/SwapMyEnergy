@@ -253,11 +253,21 @@ input:-webkit-autofill:focus
     font-weight: bold;
 }
 
-
 .row
 {
     max-width: 100%;
     margin: 0px !important;
+}
+
+
+.no-padding
+{
+    padding: 0px !important;
+}
+
+.padding-20px
+{
+    padding: 20px;
 }
 
 
@@ -275,7 +285,6 @@ input:-webkit-autofill:focus
     align-content: center;
     display: flex;
 }
-
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .faq-active, .faq-accordion:hover
 {
@@ -291,12 +300,10 @@ input:-webkit-autofill:focus
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
-
 .faq-active + .faq-panel
 {
     padding-top: 18px;
 }
-
 
 .faq-accordion:before
 {
@@ -306,10 +313,10 @@ input:-webkit-autofill:focus
     float: left;
     margin-right: 15px;
 }
-  
-  .faq-active:before {
+.faq-active:before
+{
     content: "\2212"; /* Unicode character for "minus" sign (-) */
-  }
+}
 
 /* ------------------------- */
 /* -----  Residential  ----- */
@@ -371,5 +378,10 @@ body.business .switch-text
     .left-column-content
     {
         padding: 0px 20px 20px;
+    }
+
+    .mobile-only-padding-30
+    {
+        padding: 30px;
     }
 }
