@@ -24,7 +24,7 @@
                             <input type="password" class="form-control" placeholder="Password" name="password" required />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-lg">Confirm</button>
+                            <input type="submit" class="btn btn-lg" value="Confirm" />
                         </div>
                     </form>
                 </div>

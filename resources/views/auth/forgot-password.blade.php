@@ -25,7 +25,7 @@
                             <input type="email" class="form-control" placeholder="Email Address" name="email" required />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-lg">Send</button>
+                            <input type="submit" class="btn btn-lg" value"Send" />
                         </div>
                     </form>
                 </div>

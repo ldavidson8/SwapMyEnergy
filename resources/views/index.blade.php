@@ -42,4 +42,63 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid d-flex flex-column">
+        <div class="row flex-grow-1" style="padding: 0px;">
+            <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
+            <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content-no-padding align-items-center" style="text-align: left;">
+                <div class="faq" style="padding: 20px;">
+                    <h2>Frequently Asked Questions</h2>
+                    <button class="faq-accordion">How is the service free?</button>
+                    <div class="faq-panel">
+                        <p>Lorem ipsum...</p>
+                    </div>
+                    <button class="faq-accordion">Will you always get me a better deal?</button>
+                    <div class="faq-panel">
+                        <p>Lorem ipsum...</p>
+                    </div>
+
+                    <button class="faq-accordion">How will I know when you've switched me?</button>
+                    <div class="faq-panel">
+                        <p>Lorem ipsum...</p>
+                    </div>
+                    <button class="faq-accordion">Can i opt-out at any time?</button>
+                    <div class="faq-panel">
+                        <p>Lorem ipsum...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid d-flex flex-column" style="background-color: darkslategrey;">
+            <div class="row flex-grow-1" style="padding: 20px;">
+                <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%;">
+                <p style="font-weight: bold; font-size: 30px; color: white;"> Still need Help?</p>
+                <button type="button" class="big-blue-button btn-lg">Contact Us</button>                
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+<script>
+    var faqAccordian = document.getElementsByClassName("faq-accordion");
+    var i;
+
+    for (i = 0; i < faqAccordian.length; i++)
+    {
+        faqAccordian[i].addEventListener("click", function()
+        {
+            this.classList.toggle("faq-active");
+            var faqPanel = this.nextElementSibling;
+            if (faqPanel.style.maxHeight)
+            {
+                faqPanel.style.maxHeight = null;
+            }
+            else
+            {
+                faqPanel.style.maxHeight = faqPanel.scrollHeight + "px";
+            }
+        });
+    }
+</script>
 @endsection

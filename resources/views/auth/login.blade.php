@@ -40,7 +40,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-block btn-lg">Sign in</button>
+                                    <input type="submit" class="btn btn-block btn-lg" value="Sign in" />
                                     {{-- TODO: uncomment when email system works <br/>
                                     <a class="pull-right" href="{{ route('password.request') }}">Forgot Your Password?</a> --}}
                                 </div>
@@ -86,7 +86,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button id="register_submit" type="submit" class="btn btn-block btn-success btn-lg"><i class="fa fa-user-plus"></i> Register</button>
+                                    <input id="register_submit" type="submit" class="btn btn-block btn-success btn-lg" value="Register" />
                                 </div>
                             </form>
                         </div>
