@@ -301,13 +301,14 @@ input:-webkit-autofill:focus
 .faq-accordion:before
 {
     content: '\0002B'; /* Unicode character for "plus" sign (+) */
+    font-size: 20px;
     color: #777;
     float: left;
     margin-right: 15px;
 }
   
   .faq-active:before {
-    content: "\2796"; /* Unicode character for "minus" sign (-) */
+    content: "\2212"; /* Unicode character for "minus" sign (-) */
   }
 
 /* ------------------------- */

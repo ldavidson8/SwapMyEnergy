@@ -34,16 +34,16 @@
 
 @section('main-content')
     <div class="container-fluid" style="text-align: center;">
-        <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="300" height="150" />
-        <img class="gallery-logo" src="{{ asset('img/redsquare.png') }}" width="300" height="150" />
-        <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="300" height="150" />
-        <img class="gallery-logo" src="{{ asset('img/redsquare.png') }}" width="300" height="150" />
-        <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="300" height="150" />
-        <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="300" height="150" />
-        <img class="gallery-logo" src="{{ asset('img/redsquare.png') }}" width="300" height="150" />
-        <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="300" height="150" />
-        <img class="gallery-logo" src="{{ asset('img/redsquare.png') }}" width="300" height="150" />
-        <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="300" height="150" />
+        <img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="300" height="150" />
+        <img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="300" height="150" />
+        <img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="300" height="150" />
+        <img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="300" height="150" />
+        <img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="300" height="150" />
+        <img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="300" height="150" />
+        <img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="300" height="150" />
+        <img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="300" height="150" />
+        <img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="300" height="150" />
+        <img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="300" height="150" />
     </div>
     <hr />
 
