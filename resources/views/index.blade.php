@@ -67,12 +67,12 @@
                 </div>  
             </div>
         </div>
-        <div class="container-fluid d-flex flex-column" style="background-color: darkslategrey;">
-            <div class="row flex-grow-1" style="padding: 20px;">
-                <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%;">
-                <p style="font-weight: bold; font-size: 30px; color: white;"> Still need Help?</p>
-                <button type="button" class="big-blue-button btn-lg">Contact Us</button>                
-                </div>
+    </div>
+    <div class="d-flex flex-column" style="background-color: darkslategrey;">
+        <div class="row flex-grow-1" style="padding: 20px;">
+            <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%;">
+            <p style="font-weight: bold; font-size: 30px; color: white;"> Still need Help?</p>
+            <button type="button" class="big-blue-button btn-lg">Contact Us</button>                
             </div>
         </div>
     </div>

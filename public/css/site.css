@@ -272,6 +272,8 @@ input:-webkit-autofill:focus
     transition: 0.4s;
     border-width: 0;
     border-bottom: 4px solid black;
+    align-content: center;
+    display: flex;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
@@ -296,15 +298,15 @@ input:-webkit-autofill:focus
 }
 
 
-.faq-accordion:after {
-    content: '\02795'; /* Unicode character for "plus" sign (+) */
-    font-size: 13px;
+.faq-accordion:before
+{
+    content: '\0002B'; /* Unicode character for "plus" sign (+) */
     color: #777;
     float: left;
     margin-right: 15px;
-  }
+}
   
-  .faq-active:after {
+  .faq-active:before {
     content: "\2796"; /* Unicode character for "minus" sign (-) */
   }
 
