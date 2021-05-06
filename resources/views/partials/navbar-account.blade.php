@@ -1,18 +1,5 @@
 <ul class="navbar-nav mr-auto">
     @auth
-        {{-- TODO: move to my account page
-        <li class="nav-item">
-            <a class="nav-link navigation-link">
-                <?php $current_hour = date('H'); ?>
-                @if ($current_hour < 12)
-                    Good&nbsp;Morning
-                @elseif ($current_hour < 17)
-                    Good&nbsp;Afternoon
-                @else
-                    Good&nbsp;Evening
-                @endif
-            </a>
-        </li> --}}
         <li class="nav-item">
             <a class="nav-link navigation-link" href="{{ route('logout') }}">Logout</a>
         </li>

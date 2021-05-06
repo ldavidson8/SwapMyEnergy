@@ -24,9 +24,11 @@ Route::get('contact-us', [ HomeController::class, 'contactUs' ]) -> name('contac
 Route::get('support', [ HomeController::class, 'support' ]) -> name('support');
 Route::get('partners-and-affiliates', [ HomeController::class, 'partnersAndAffiliates' ]) -> name('partners and affiliates');
 
-Route::group(['prefix' => 'account'], function()
+Route::group(['prefix' => 'my-account'], function()
 {
-    Route::get('my-account', [ AccountController::class, 'myAccount' ]) -> name('my account') -> middleware('password.confirm');
+    Route::get('', [ AccountController::class, 'myAccount' ]) -> name('my account') -> middleware('password.confirm');
+    Route::get('details', [ AccountController::class, 'yourDetails' ]) -> name('my account.details') -> middleware('password.confirm');
+    Route::post('details', [ AccountController::class, 'yourDetailsPost' ]) -> name('my account.details') -> middleware('password.confirm');
 });
 
 

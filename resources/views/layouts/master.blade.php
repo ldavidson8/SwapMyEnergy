@@ -6,6 +6,9 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    @if (isset($description))
+        <meta name="description" content="{{ $description }}" />
+    @endif
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
