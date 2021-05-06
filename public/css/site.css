@@ -132,28 +132,40 @@ table#footer-links td
 }
 
 
+.full-size, .full-size-80, .full-size-50, .full-size-40
+{
+    padding: 0px;
+}
+
 .full-size
 {
     min-height: 100vh;
-    padding: 0px;
 }
 
 .full-size-80
 {
     min-height: 80vh;
-    padding: 0px;
 }
 
 .full-size-50
 {
     min-height: 50vh;
-    padding: 0px;
+}
+
+.full-size-40
+{
+    min-height: 40vh;
 }
 
 .left-column-content
 {
     background-color: white;
     padding: 100px 30px;
+}
+
+.left-column-content-no-padding
+{
+    padding: 0px !important;
 }
 
 
