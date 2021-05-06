@@ -104,14 +104,24 @@ main.container
 footer
 {
     padding: 15px;
+    background-color: #202020;
+    color: #f3f2f1;
     font-weight: 100;
     font-size: 22px;
 }
 
 .footer-link
 {
-    color: #202020;
+    color: #f3f2f1;
 }
+
+.navigation-link-footer-current-page
+{
+    color: #00c2cb;
+    font-weight: 700;
+}
+
+
 
 table#footer-links
 {
@@ -262,20 +272,19 @@ button, input[type=submit], input[type=button], input[type=reset]
 
 body.residential header,
 body.residential nav,
-body.residential #navbarSupportedContent,
-body.residential footer
+body.residential #navbarSupportedContent
 {
     background-color: #f3f2f1;
-}
-
-body.residential .navigation-link-current-page
-{
-    color: #00c2cb !important;
 }
 
 body.residential .switch-text
 {
     color: #202020;
+}
+
+body.residential .navigation-link-current-page
+{
+    color: #00c2cb !important;
 }
 
 
@@ -289,17 +298,6 @@ body.business nav,
 body.business #navbarSupportedContent
 {
     background-color: #00c2cb;
-}
-
-body.business footer
-{
-    background-color: #202020;
-    color: #f3f2f1;
-}
-
-body.business footer a
-{
-    color: #f3f2f1;
 }
 
 
