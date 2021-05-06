@@ -41,8 +41,8 @@
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-block btn-lg">Sign in</button>
-                                    <br/>
-                                    <a class="pull-right" href="{{ route('password.request') }}">Forgot Your Password?</a>
+                                    {{-- TODO: uncomment when email system works <br/>
+                                    <a class="pull-right" href="{{ route('password.request') }}">Forgot Your Password?</a> --}}
                                 </div>
                             </form>
                         </div>

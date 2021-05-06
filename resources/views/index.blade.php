@@ -30,7 +30,7 @@
             <div class="col-xl-6 col-lg-5 col-md-8" style="align-items: center; justify-content: center; margin: auto; padding: 0px;">
                 <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="100%" height="200" />
             </div>
-            {{--<div class="col-2 col-lg-1 d-block"></div>--}}
+            <div class="col-2 col-lg-1 d-block"></div>
         </div>
     </div>
         <div class="full-size-50 container-fluid d-flex flex-column" style="background-color: darkslategrey;">

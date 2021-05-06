@@ -22,7 +22,7 @@ Route::get('privacy-policy', [ HomeController::class, 'privacyPolicy' ]) -> name
 Route::get('terms-and-conditions', [ HomeController::class, 'termsAndConditions' ]) -> name('t&c');
 Route::get('contact-us', [ HomeController::class, 'contactUs' ]) -> name('contact us');
 Route::get('support', [ HomeController::class, 'support' ]) -> name('support');
-Route::get('Partners-And-Affiliates', [ HomeController::class, 'partnersAndAffiliates' ]) -> name('partners and affiliates');
+Route::get('partners-and-affiliates', [ HomeController::class, 'partnersAndAffiliates' ]) -> name('partners and affiliates');
 
 Route::group(['prefix' => 'account'], function()
 {
@@ -56,13 +56,14 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
                 ->middleware('guest');
 
-// forgot password page
+// forgot password get
 Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
                 ->middleware('guest')
                 ->name('password.request');
-// forgot password page post
+// forgot password post
 // TODO: test
 // TODO: install xampp mailchimp
+// TODO: setup mail system
 Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
                 ->middleware('guest')
                 ->name('password.email');

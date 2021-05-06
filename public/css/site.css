@@ -55,7 +55,6 @@ header, nav, .navbar-outer
     justify-content: center;
     padding-right: 15px;
     text-align: right;
-    color: white;
 }
 
 
@@ -70,11 +69,13 @@ nav .navigation-link
     margin: 12px 5px;
     vertical-align: middle;
     font-size: 23px;
+    font-weight: 700;
 }
 
 nav .navigation-link:link,
 nav .navigation-link:visited
 {
+    color: #202020 !important;
     padding: 5px 7px;
     border-radius: 7px;
     border: 2px solid transparent;
@@ -83,6 +84,7 @@ nav .navigation-link:visited
 nav .navigation-link:hover,
 nav .navigation-link:active
 {
+    color: #202020 !important;
     text-decoration: underline !important;
 }
 
@@ -246,6 +248,13 @@ button, input[type=submit], input[type=button], input[type=reset]
 }
 
 
+.row
+{
+    max-width: 100%;
+    margin: 0px !important;
+}
+
+
 
 /* ------------------------- */
 /* -----  Residential  ----- */
@@ -261,21 +270,12 @@ body.residential footer
 
 body.residential .navigation-link-current-page
 {
-    color: #00c2cb;
+    color: #00c2cb !important;
 }
 
-body.residential .navigation-link:link,
-body.residential .navigation-link:visited
+body.residential .switch-text
 {
     color: #202020;
-    background-color: #00d2db;
-}
-
-body.residential .navigation-link:hover,
-body.residential .navigation-link:active
-{
-    color: #202020;
-    background-color: #f3f2f1;
 }
 
 
@@ -303,21 +303,10 @@ body.business footer a
 }
 
 
-body.business .navigation-link-current-page
+body.business .navigation-link-current-page,
+body.business .switch-text
 {
     color: #f3f2f1 !important;
-}
-
-body.business .navigation-link:link,
-body.business .navigation-link:visited
-{
-    color: #202020;
-}
-
-body.business .navigation-link:hover,
-body.business .navigation-link:active
-{
-    color: #202020;
 }
 
 

@@ -45,10 +45,14 @@
     @yield('script')
 
     <script>
-        $(window.onload(function()
+        $(document).ready(function()
         {
-            $(".mode-switch")
-        }));
+            var modeSwitchTags = $(".mode-switch");
+            modeSwitchTags.click(function()
+            {
+                $("body").toggleClass("residential business");
+            });
+        });
     </script>
 
 </body>
