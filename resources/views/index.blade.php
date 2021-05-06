@@ -44,8 +44,7 @@
     </div>
     <div class="container-fluid d-flex flex-column">
         <div class="row flex-grow-1" style="padding: 0px;">
-            <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content-no-padding align-items-center" style="text-align: left;">
+            <div class="col-12 left-column-content-no-padding align-items-center" style="text-align: left;">
                 <div class="faq" style="padding: 20px;">
                     <h2>Frequently Asked Questions</h2>
                     <button class="faq-accordion">How is the service free?</button>
@@ -65,7 +64,7 @@
                     <div class="faq-panel">
                         <p>Lorem ipsum...</p>
                     </div>
-                </div>
+                </div>  
             </div>
         </div>
         <div class="container-fluid d-flex flex-column" style="background-color: darkslategrey;">
