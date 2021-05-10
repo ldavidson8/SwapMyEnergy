@@ -20,8 +20,9 @@
                     <form role="form" method="POST" action="{{ route('password.confirm') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                            <input type="password" class="form-control" placeholder="Password" name="password" required />
+                        <div class="form-group {{ $errors->has('confirm_password') ? ' has-error' : '' }}">
+                            <label for="password">Confirm Password</label>
+                            <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" required />
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-lg" value="Confirm" />

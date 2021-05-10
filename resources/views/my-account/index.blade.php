@@ -2,11 +2,17 @@
     $user_name = "";
     $user_email = "";
     $user_phoneNumber = "";
+    $user_addressLine1 = "";
+    $user_addressLine2 = "";
+    $user_addressLine3 = "";
     if (isset($user_name))
     {
         if (isset($user["name"])) $user_name = $user["name"];
         if (isset($user["email"])) $user_email = $user["email"];
         if (isset($user["phoneNumber"])) $user_phoneNumber = $user["phoneNumber"];
+        if (isset($user["addressLine1"])) $user_addressLine1 = $user["addressLine1"];
+        if (isset($user["addressLine2"])) $user_addressLine2 = $user["addressLine2"];
+        if (isset($user["addressLine3"])) $user_addressLine3 = $user["addressLine3"];
     }
 ?>
 
@@ -79,6 +85,22 @@
         {
             padding: 0px !important;
         }
+
+
+
+        #my-account-your-details form
+        {
+            column-width: 500px;
+            column-count: 3;
+            /* overflow-y: scroll; */
+            height: 100%;
+        }
+
+        #my-account-your-details form .form-group
+        {
+            display: inline-block;
+            width: 100%;
+        }
     </style>
 @endsection
 
@@ -115,7 +137,7 @@
                     {{ $user_name }}
                 </h2>
                 
-                <div id="my-account-insert-section-1">
+                <div id="my-account-your-details">
                     <p><b>Your Details</b></p>
                     <form method="post" action="{{ route('my account.details') }}">
                         {{-- TODO: implement columns --}}
@@ -129,7 +151,17 @@
                         </div>
                         <div class="form-group">
                             <label for="phoneNumber">Phone Number</label>
-                            <input id="user_phoneNumber" class="form-control" type="text" name="phoneNumber" value="{{ $user_phoneNumber }}" />
+                            <input id="form_phoneNumber" class="form-control" type="text" name="phoneNumber" value="{{ $user_phoneNumber }}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="addressLine1 addressLine2 addressLine3">Address</label>
+                            <input id="form_addressLine1" class="form-control" type="text" name="addressLine1" value="{{ $user_addressLine1 }}" />
+                            <input id="form_addressLine2" class="form-control" type="text" name="addressLine2" value="{{ $user_addressLine2 }}" />
+                            <input id="form_addressLine3" class="form-control" type="text" name="addressLine3" value="{{ $user_addressLine3 }}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Text</label>
+                            <input id="password" class="form-control" type="text" name="">
                         </div>
                     </form>
                 </div>
@@ -148,10 +180,10 @@
             {
                 thisButton = $(this);
                 var selected = thisButton.hasClass("my-account-blue-button-selected");
-
+                
+                myAccountBlueButtons.removeClass("my-account-blue-button-selected");
                 thisButton.addClass("my-account-blue-button-selected");
             });
         });
-        //"my-account-blue-button"
     </script>
 @endsection
