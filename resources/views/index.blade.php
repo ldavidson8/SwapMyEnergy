@@ -121,7 +121,7 @@
     </div>
     <div class="full-size-50 container-fluid d-flex flex-column" style="background-color: darkslategrey;">
         <div class="row flex-grow-1 padding-20px">
-            <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%;">
+            <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%; text-align: center;">
                 <p style="color: white;">Geoff "saved" £100 on his energy bill with another energy broker only to find out he had hidden fees to pay at the end of the year.</p>
                 <p style="font-weight: bold; font-size: 35px; color: white;">Sound familiar?</p>
             </div>
