@@ -53,12 +53,34 @@
             padding-right: 0px !important;
         }
 
-        
+        .section-border-left
+        {
+            border-left: 3px solid black;
+        }
+
+        .bottom-right 
+        {
+            bottom: 0;
+            right: 0;
+        }
+
+        .bootstrap-select.btn-group .dropdown-menu>li>a:hover:not(:focus) {
+  color: black;
+        }
+
         @media (max-width: 1200px)
         {
             .gallery-logo-outer
             {
                 width: 24%;
+            }
+        }
+
+        @media (min-width: 992px)
+        {
+            .section-border-left-lg
+            {
+                border-left: 3px solid black;
             }
         }
         
@@ -97,6 +119,7 @@
 @endsection
 
 @section('main-content')
+    <hr />
     <div class="container-fluid" style="text-align: center;">
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
@@ -109,7 +132,9 @@
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
     </div>
+
     <hr />
+
     <div class="container-fluid no-padding-left-right section-padding" style="background-color: white;">
         <div class="container no-padding-left-right">
             <div class="row">
@@ -131,6 +156,7 @@
             </div>
         </div>
     </div>
+
     <hr />
 
     <div class="full-size-80 container-fluid d-flex flex-column no-padding">
@@ -152,7 +178,86 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 d-none d-xl-block" style="background-color: white; min-height: 300px;"></div>
+            <div class="col-xl-6 d-none d-xl-block section-border-left" style="background-color: white; min-height: 300px;"></div>
         </main>
     </div>
+
+    <hr />
+    <div class="full-size-60 container-fluid d-flex flex-column no-padding" style="font-size: 22px;">
+        <main class="row flex-grow-1 no-padding">
+            <div class="col-lg-6 col-12 row no-padding">
+                <div class="col" style="column-count: 2; column-width: 300px; column-fill: auto; padding: 20px;">
+                    <h2 style="column-span: all;">Apply to be a partner</h2>
+                    <form id="formPartnerApply">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="example@domain.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
+                            <input type="text" class="form-control" id="phoneNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="companyAddress">Company Address</label>
+                            <input type="text" name="addressLine1" class="form-control" placeholder="Address Line 1" required />
+                            <input type="text" name="addressLine2" class="form-control" placeholder="Address Line 2" required />
+                            <input type="text" name="addressLine3" class="form-control" placeholder="Address Line 3" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="kindOfCompany">Kind of company</label>
+                            <select id="kindOfCompany" class="custom-select form-control" required>
+                                <option value="" disabled selected hidden></option>
+                                <option value="Lorem">Lorem</option>
+                                <option value="Ipsum">Ipsum</option>
+                                <option value="Dolor">Dolor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="webLink">Link (If applicable)</label>
+                            <input type="url" class="form-control" id="webLink">
+                        </div>
+                        <div class="form-group">
+                            <div class="text-center position-relative">
+                            <button type="submit" class="btn big-blue-button btn-lg">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-sm-6 col-12"></div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 section-border-left-lg"></div>
+            
+        </main>
+    </div>
+    </div>
 @endsection()
+
+@section('script')
+    <script>
+        $(function()
+        {
+            var phoneNumberError = document.getElementById("phoneNumberError");
+            document.getElementById("formPartnerApply").onsubmit = function (e)
+            {
+                var phoneNumber = document.getElementById("phoneNumber").value;
+
+                if (phoneNumber.replace(/[^0-9]/g, "").length < 7)
+                {
+                    e.preventDefault();
+                    phoneNumberError.innerHTML = "Please enter a valid phone number with at least 7 digits.";
+                }
+                else
+                {
+                    phoneNumberError.innerHTML = "";
+                }
+            }
+        });
+    </script>
+
+    <script src="https://kit.fontawesome.com/6e2d0444fe.js" crossorigin="anonymous"></script>
+@endsection
