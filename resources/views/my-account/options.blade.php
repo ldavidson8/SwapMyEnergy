@@ -40,17 +40,7 @@
                 </div>
             </div>
             <div id="my-account-column-right" class="col-xl-7 col-lg-6 col-12 flex-grow-1" style="background-color: white;">
-                <h2>
-                    <?php $current_hour = date('H'); ?>
-                    @if ($current_hour < 12)
-                        Morning
-                    @elseif ($current_hour < 17)
-                        Afternoon
-                    @else
-                        Evening
-                    @endif
-                    {{ $user_name }}
-                </h2>
+                @include('my-account.partials.greeting')
                 <p><b>Your Details</b></p>
                 <form method="post" aciton="{{ route('my account.options') }}">
                     <div class="form-group">

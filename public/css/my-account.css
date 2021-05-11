@@ -59,6 +59,7 @@
     border-radius: 10px;
     font-weight: 700;
     background-color: #00d2db;
+    border: none;
 }
 .my-account-blue-button:hover
 {

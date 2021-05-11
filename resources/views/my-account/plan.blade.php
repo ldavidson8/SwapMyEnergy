@@ -42,7 +42,16 @@
         }
 
 
-        @media ((max-width: 1300px) and (min-width: 992px)) or (max-width: 750px)
+        @media(max-width: 1300px)
+        {
+            #my-account-your-plan-bottom-left
+            {
+                position: static;
+                padding-top: 30px;
+            }
+        }
+
+        @media (max-width: 1300px) and (min-width: 992px)
         {
             #my-account-your-plan-graph
             {
@@ -54,19 +63,38 @@
                 display: block;
                 padding-top: 30px;
             }
-        }
-        
-        @media(max-width: 1300px)
-        {
+
             #my-account-your-plan-bottom-left
             {
-                position: static;
-                padding-top: 30px;
+                text-align: center;
+            }
+
+            #my-account-your-plan-bottom-left p
+            {
+                clear: both;
+                padding-top: 20px;
+                text-align: left;
+            }
+
+            #my-account-your-plan-button
+            {
+                float: none;
             }
         }
 
-        @media ((max-width: 1300px) and (min-width: 992px)) or (max-width: 750px)
+        @media (max-width: 750px)
         {
+            #my-account-your-plan-graph
+            {
+                width: 100%;
+            }
+            #my-account-your-plan-expected-saving
+            {
+                width: 100%;
+                display: block;
+                padding-top: 30px;
+            }
+
             #my-account-your-plan-bottom-left
             {
                 text-align: center;
@@ -115,17 +143,7 @@
                 </div>
             </div>
             <div id="my-account-column-right" class="col-xl-7 col-lg-6 col-12 flex-grow-1" style="background-color: white;">
-                <h2>
-                    <?php $current_hour = date('H'); ?>
-                    @if ($current_hour < 12)
-                        Morning
-                    @elseif ($current_hour < 17)
-                        Afternoon
-                    @else
-                        Evening
-                    @endif
-                    {{ $user_name }}
-                </h2>
+                @include('my-account.partials.greeting')
                 <form method="post" action="{{ route('my account.plan') }}">
                     <img id="my-account-your-plan-graph" src="{{ asset('img/my-account/my-account_your-plan_graph.png') }}" />
                     <div id="my-account-your-plan-expected-saving" style="vertical-align: middle; text-align: center;">

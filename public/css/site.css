@@ -133,7 +133,7 @@ table#footer-links td
 }
 
 
-.full-size, .full-size-80, full-size-60, .full-size-50, .full-size-40
+.full-size, .full-size-80, .full-size-60, .full-size-50, .full-size-40
 {
     padding: 0px;
 }
@@ -395,3 +395,6 @@ body.business .switch-text
         padding: 30px;
     }
 }
+
+
+/* TODO: Set all colours to the colour scheme provided */
