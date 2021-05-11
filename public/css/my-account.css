@@ -1,0 +1,84 @@
+.my-account-align-content-center
+{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.my-account-blue-box-outer
+{
+    width: 500px;
+    max-width: 100%;
+    margin: auto;
+}
+.my-account-blue-box
+{
+    padding: 30px 30px;
+    background-color: rgba(0, 194, 203, 0.5);
+}
+
+.my-account-big-bold-text
+{
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 0px;
+}
+.my-account-big-text
+{
+    font-size: 28px;
+    margin-bottom: 0px;
+}
+.my-account-small-text
+{
+    font-size: 15px;
+    margin: 0px;
+    padding: 0px 0px 8px;
+}
+.my-account-tea-text
+{
+    width: 200px;
+    max-width: 100%;
+    margin: auto;
+}
+
+.my-account-blue-button-outer
+{
+    display: inline-block;
+    min-width: 40%;
+    margin: 25px auto 5px;
+}
+.my-account-blue-button-outer:first-of-type
+{
+    margin-right: 18%;
+}
+
+.my-account-blue-button
+{
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+    font-weight: 700;
+    background-color: #00d2db;
+}
+.my-account-blue-button:hover
+{
+    background-color: #00e6ee;
+}
+.my-account-blue-button-selected,
+.my-account-blue-button-selected:hover
+{
+    background-color: white !important;
+}
+
+#my-account-column-right
+{
+    padding: 20px;
+}
+
+@media (max-width: 991px)
+{
+    #my-account-column-left
+    {
+        padding: 20px;
+    }
+}

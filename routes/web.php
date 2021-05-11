@@ -27,8 +27,12 @@ Route::get('partners-and-affiliates', [ HomeController::class, 'partnersAndAffil
 Route::group(['prefix' => 'my-account'], function()
 {
     Route::get('', [ AccountController::class, 'myAccount' ]) -> name('my account') -> middleware('password.confirm');
+    Route::get('plan', [ AccountController::class, 'yourPlan' ]) -> name('my account.plan') -> middleware('password.confirm');
+    Route::post('plan', [ AccountController::class, 'yourPlanPost' ]) -> name('my account.plan') -> middleware('password.confirm');
     Route::get('details', [ AccountController::class, 'yourDetails' ]) -> name('my account.details') -> middleware('password.confirm');
     Route::post('details', [ AccountController::class, 'yourDetailsPost' ]) -> name('my account.details') -> middleware('password.confirm');
+    Route::get('options', [ AccountController::class, 'yourOptions' ]) -> name('my account.options') -> middleware('password.confirm');
+    Route::post('options', [ AccountController::class, 'yourOptionsPost' ]) -> name('my account.options') -> middleware('password.confirm');
 });
 
 
