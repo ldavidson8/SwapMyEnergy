@@ -34,32 +34,3 @@
         </div>
     </div>
 @endsection()
-
-@section('script')
-    {{-- <script>
-        $(function()
-        {
-            var myAccountBlueButtons = $(".my-account-blue-button");
-            var btnYourPlan = $("#btnYourPlan");
-            var btnYourDetails = $("#btnYourDetails");
-            var btnYourOptions = $("#btnYourOptions");
-
-            btnYourPlan.click(function()
-            {
-                
-            });
-
-            myAccountBlueButtons.click(function()
-            {
-                thisButton = $(this);
-                var selected = thisButton.hasClass("my-account-blue-button-selected");
-                
-                myAccountBlueButtons.removeClass("my-account-blue-button-selected");
-                thisButton.addClass("my-account-blue-button-selected");
-            });
-
-            document.getElementById("form_password").value = "";
-            document.getElementById("form_old_password").value = "";
-        });
-    </script> --}}
-@endsection
