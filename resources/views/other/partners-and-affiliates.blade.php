@@ -212,7 +212,7 @@
                         <div class="form-group">
                             <label for="inputAddress">Email Address</label>
                             <input type="email" class="form-control" id="email" placeholder="example@domain.com" required />
-                        </div>
+                        </div>  
                         <div class="form-group">
                             <label for="phoneNumber">Phone Number</label>
                             <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
