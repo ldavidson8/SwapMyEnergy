@@ -58,14 +58,20 @@
             border-left: 3px solid black;
         }
 
-        .bottom-right 
+        .bootstrap-select.btn-group .dropdown-menu>li>a:hover:not(:focus)
         {
-            bottom: 0;
-            right: 0;
+            color: black;
         }
 
-        .bootstrap-select.btn-group .dropdown-menu>li>a:hover:not(:focus) {
-  color: black;
+        @media (min-width: 1364px)
+        {
+            .bottom-right
+            {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 50%;
+            }
         }
 
         @media (max-width: 1200px)
@@ -90,6 +96,11 @@
             {
                 width: 32%;
                 padding: 10px;
+            }
+            
+            .border-bottom-lg
+            {
+                border-bottom: 3px solid black;
             }
         }
         
@@ -185,56 +196,96 @@
     <hr />
     <div class="full-size-60 container-fluid d-flex flex-column no-padding" style="font-size: 22px;">
         <main class="row flex-grow-1 no-padding">
-            <div class="col-lg-6 col-12 row no-padding">
-                <div class="col" style="column-count: 2; column-width: 300px; column-fill: auto; padding: 20px;">
+            <div class="col-lg-6 col-12 row no-padding border-bottom-lg">
+                <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px; position: relative;">
                     <h2 style="column-span: all;">Apply to be a partner</h2>
                     <form id="formPartnerApply">
                         <div class="form-group">
                             <label for="fullName">Full Name</label>
-                            <input type="text" class="form-control" id="fullName" placeholder="Full Name" required>
+                            <input type="text" class="form-control" id="fullName" required />
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Email Address</label>
-                            <input type="email" class="form-control" id="email" placeholder="example@domain.com" required>
+                            <input type="email" class="form-control" id="email" placeholder="example@domain.com" required />
                         </div>
                         <div class="form-group">
                             <label for="phoneNumber">Phone Number</label>
                             <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
-                            <input type="text" class="form-control" id="phoneNumber" required>
+                            <input type="text" class="form-control" id="phoneNumber" required />
                         </div>
                         <div class="form-group">
                             <label for="companyAddress">Company Address</label>
-                            <input type="text" name="addressLine1" class="form-control" placeholder="Address Line 1" required />
-                            <input type="text" name="addressLine2" class="form-control" placeholder="Address Line 2" required />
-                            <input type="text" name="addressLine3" class="form-control" placeholder="Address Line 3" required />
+                            <textarea name="companyAddress" class="form-control" required rows="4"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="kindOfCompany">Kind of company</label>
-                            <select id="kindOfCompany" class="custom-select form-control" required>
+                            <label for="kindOfCompany">Nature of company</label>
+                            <select id="kindOfCompany" class="custom-select form-control" required />
                                 <option value="" disabled selected hidden></option>
-                                <option value="Lorem">Lorem</option>
-                                <option value="Ipsum">Ipsum</option>
-                                <option value="Dolor">Dolor</option>
+                                <option value="energy-broker">Energy Broker</option>
+                                <option value="lorem">Lorem</option>
+                                <option value="ipsum">Ipsum</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="webLink">Link (If applicable)</label>
                             <input type="url" class="form-control" id="webLink">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group bottom-right">
                             <div class="text-center position-relative">
-                            <button type="submit" class="btn big-blue-button btn-lg">Submit</button>
+                                <button type="submit" class="btn big-blue-button btn-lg">Submit</button>
                             </div>
                         </div>
                     </form>
                     <div class="col-sm-6 col-12"></div>
                 </div>
             </div>
-            <div class="col-lg-6 col-12 section-border-left-lg"></div>
-            
+            <div class="col-lg-6 col-12 row no-padding section-border-left-lg">
+                <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px; position: relative;">
+                    <h2 style="column-span: all;">Apply to be an affiliate</h2>
+                    <form id="formPartnerApply">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="example@domain.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Phone Number</label>
+                            <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
+                            <input type="text" class="form-control" id="phoneNumber" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="companyAddress">Company Address</label>
+                            <textarea name="companyAddress" class="form-control" required rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="kindOfAffiliate">Nature of affiliate</label>
+                            <select id="kindOfAffiliate" class="custom-select form-control" required>
+                                <option value="" disabled selected hidden></option>
+                                <option value="YouTuber">YouTuber</option>
+                                <option value="lorem">Lorem</option>
+                                <option value="ipsum">Ipsum</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="webLink">Link (If applicable)</label>
+                            <input type="url" class="form-control" id="webLink" />
+                        </div>
+                        <div class="form-group bottom-right">
+                            <div class="text-center position-relative">
+                                <button type="submit" class="btn big-blue-button btn-lg">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-sm-6 col-12"></div>
+                </div>
+            </div>
+    </div>
+          
         </main>
-    </div>
-    </div>
+    
 @endsection()
 
 @section('script')

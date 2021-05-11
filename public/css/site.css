@@ -202,22 +202,29 @@ hr
 }
 
 
-input, select
+.form-group
+{
+    display: inline-block;
+    width: 100%;
+}
+
+
+input, select, textarea
 {
     color: #202020 !important;
 }
 
-input:not([type=submit], [type=button], [type=reset]), select
+input:not([type=submit], [type=button], [type=reset]), select, textarea
 {
     background-color: #202020 !important;
     color: #f3f2f1 !important;
 }
 
-input:not([type=submit], [type=button], [type=reset])::placeholder,
-input:not([type=submit], [type=button], [type=reset])::-moz-placeholder,
-input:not([type=submit], [type=button], [type=reset])::-webkit-input-placeholder
+input:not([type=submit], [type=button], [type=reset])::placeholder, textarea::placeholder,
+input:not([type=submit], [type=button], [type=reset])::-moz-placeholder, textarea::-moz-placeholder,
+input:not([type=submit], [type=button], [type=reset])::-webkit-input-placeholder, textarea::-webkit-input-placeholder
 {
-    color: white;
+    color: white !important;
 }
 
 input:-webkit-autofill
