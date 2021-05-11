@@ -95,7 +95,7 @@
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content">
                 <h1>Empower your business to overcome rising energy prices</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac lectus mi. Etiam vel neque eleifend, maximus est a, pellentesque orci. Sed egestas tortor id lorem vulputate aliquam. Praesent ornare massa vitae velit interdum, eu iaculis magna condimentum. Nam tincidunt diam nisi. Sed in lacus ullamcorper, luctus urna sit amet, accumsan justo. Aliquam pellentesque, nunc et congue ullamcorper, leo odio elementum metus, vitae consequat quam ligula ut lorem. Pellentesque ex nulla, vehicula id quam sed, ultricies elementum diam. Morbi faucibus augue eget purus consequat laoreet. Aliquam erat volutpat. Pellentesque et cursus magna.</p>
+                <p>Too many energy brokers promise savings that don’t stick. These promises are made on estimates, which aren’t always respective of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you deserve when it comes to your bills.</p>
             </div>
             <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block"></div>
         </div>
