@@ -6,7 +6,7 @@
 
 @section('main-content')
         <hr />
-        <main class="row flex-grow-1" style="padding: 0px;">
+        <div class="row flex-grow-1 no-padding">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content">
                 <h1>What We Do</h1>
@@ -17,6 +17,43 @@
                 You may end up paying more but that will only happen because you used more, not because the cost of usage is higher.</p>    
             </div>
             <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block"></div>
-        </main>
+        </div>
+    </div>
+    <hr/>
+    <div id="section02" class="full-size-50 container-fluid d-flex flex-column">
+        <div class="row flex-grow-1 no-padding" style="background-color: white;">
+            <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
+            <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left;">
+                <div>
+                    <h2> Our home </h2>
+                    <p style="padding-top: 15px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                </div>
+            </div>
+            <div class="col-2 d-lg-none d-block"></div>
+            <div class="col-2 d-lg-none d-block"></div>
+            <div class="col-xl-6 col-lg-5 col-md-8 no-padding" style="align-items: center; justify-content: center; margin: auto;">
+                <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="100%" height="200" />
+            </div>
+            <div class="col-2 col-lg-1 d-block"></div>
+        </div>
+    </div>
+    <div class="d-flex flex-column" style="background-color: darkslategrey; height: 30vw; min-height: 300px;">
+        <div class="row flex-grow-1" sytle="align-content: center;">
+            <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%; text-align: center">
+                <p style="font-weight: bold; font-size: 30px; color: white;">Need Help?</p>
+                <a href="{{ route('contact us') }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
+            </div>
+        </div>
+    </div>
+    <div id="section02" class="full-size-50 container-fluid d-flex flex-column">
+        <div class="row flex-grow-1 no-padding" style="background-color: white;">
+            <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
+            <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left;">
+                <div>
+                    <h2> Our team </h2>
+                    <p style="padding-top: 15px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
