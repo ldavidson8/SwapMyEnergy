@@ -46,13 +46,6 @@
             font-weight: bold;
             border: none;
         }
-        white-dashed
-        {
-            border: 3px dashed #f3f2f1;
-            width: 100vw;
-            margin: 0px;
-        }
-
     </style>
 @endsection
 @section('before-header')
@@ -67,10 +60,12 @@
                     <h2 style="display: inline-block"> Call Us </h2>
                     @include('media.dashed-white-line')
                     <div style="text-align: center;">
-                        <p> 01772 000000 </p>
+                        <p style="font-size:30px; padding-top: 25px; padding-bottom:40px;"> 01772 000000 </p>
                         <h3 style="text-decoration: underline; font-size: 24px;"> Opening Hours </h3>
-                        <p> 10am - 4:30pm </p>
-                        <p> Monday to Thursday </p>
+                        <p>
+                            10am - 4:30pm <br>
+                            Monday to Thursday 
+                        </p>
                     </div>
                 </div>
             </div>
@@ -115,7 +110,7 @@
         <div class="row flex-grow-1 no-padding">
             <div class="col-12 col-lg-4 col-md-6" style="align-items: center; justify-content: center; margin: auto;"></div>
             <div class="col-12 col-lg-4 col-md-6" style="align-items: center; justify-content: center; margin: auto;">
-                <div class="contact-us-blue-box-inner"> 
+                <div class="contact-us-blue-box-inner" style='content: ""; clear: both; display: table;'>
                     <h2> Raise Support Issue</h2>
                     @include('media.dashed-white-line')
                     <form id="formPartnerApply">
@@ -136,7 +131,7 @@
                             <label for="supportIssue">Issue</label>
                             <textarea id="supportIssue" class="form-control" name="supportIssue" rows="3"></textarea>
                         </div>
-                        <div style="text-align: right;"><button type="button" class="small-white-button"> Submit </button></div>
+                        <button type="button" class="small-white-button" style='float: right;'> Submit </button>
                     </form>
                 </div>
             </div>
