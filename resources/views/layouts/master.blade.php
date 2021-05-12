@@ -31,7 +31,7 @@
     <script src="{{ asset('js/site.js') }}"></script>
 
 </head>
-<body class="{{ $request -> session() -> get('mode', 'business') }}">
+<body class="{{ (isset($request)) ? $request -> session() -> get('mode', 'business') : '' }}">
     @yield('before-header')
 
     <header>
