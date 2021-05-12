@@ -27,11 +27,6 @@ class HomeController extends Controller
         return view('other.t&c', [ 'request' => $request, 'navbar_page' => 'terms and conditions' ]);
     }
     
-    public function contactUs(Request $request)
-    {
-        return view('other.contact-us', [ 'request' => $request, 'navbar_page' => "contact us" ]);
-    }
-    
     public function support(Request $request)
     {
         return view('other.support', [ 'request' => $request, 'navbar_page' => "support" ]);
