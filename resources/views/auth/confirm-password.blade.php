@@ -17,7 +17,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form role="form" method="POST" action="{{ route('password.confirm') }}">
+                    <form role="form" method="POST" action="{{ route('password.confirm') }}" class="form-black">
                         {{ csrf_field() }}
 
                         <div class="form-group {{ $errors->has('confirm_password') ? ' has-error' : '' }}">

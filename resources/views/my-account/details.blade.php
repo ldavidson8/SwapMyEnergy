@@ -81,7 +81,7 @@
                         </ul>
                     </div>
                 @endif
-                <form method="post" action="{{ route('my account.details') }}">
+                <form method="post" action="{{ route('my account.details') }}" class="form-black">
                     @csrf
                     <div class="form-group">
                         <label for="full_name">Full Name</label>

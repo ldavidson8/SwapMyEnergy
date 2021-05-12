@@ -18,7 +18,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form role="form" method="POST" action="{{ route('password.email') }}">
+                    <form role="form" method="POST" action="{{ route('password.email') }}" class="form-black">
                         {{ csrf_field() }}
 
                         <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">

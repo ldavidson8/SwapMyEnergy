@@ -204,7 +204,7 @@
             <div id="PartnerApply" class="col-lg-6 col-12 row no-padding border-bottom-lg">
                 <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px; position: relative;">
                     <h2 style="column-span: all;">Apply to be a partner</h2>
-                    <form id="formPartnerApply">
+                    <form id="formPartnerApply" class="form-black">
                         <div class="form-group">
                             <label for="fullName">Full Name</label>
                             <input type="text" class="form-control" id="fullName" required />
@@ -247,7 +247,7 @@
             <div id="AffiliateApply" class="col-lg-6 col-12 row no-padding section-border-left-lg">
                 <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px; position: relative;">
                     <h2 style="column-span: all;">Apply to be an affiliate</h2>
-                    <form id="formPartnerApply">
+                    <form id="formPartnerApply" class="form-black">
                         <div class="form-group">
                             <label for="fullName">Full Name</label>
                             <input type="text" class="form-control" id="fullName" required />

@@ -42,7 +42,7 @@
             <div id="my-account-column-right" class="col-xl-7 col-lg-6 col-12 flex-grow-1" style="background-color: white;">
                 @include('my-account.partials.greeting')
                 <p><b>Your Details</b></p>
-                <form method="post" aciton="{{ route('my account.options') }}">
+                <form method="post" aciton="{{ route('my account.options') }}" class="form-black">
                     @csrf
                     <div class="form-group">
                         <label for="change_plan">Change Plan?</label>
