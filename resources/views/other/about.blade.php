@@ -20,7 +20,7 @@
         </div>
     </div>
     <hr/>
-    <div id="section02" class="full-size-50 container-fluid d-flex flex-column">
+    <div class="full-size-50 container-fluid d-flex flex-column">
         <div class="row flex-grow-1 no-padding" style="background-color: white;">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left;">
@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div id="section02" class="full-size-50 container-fluid d-flex flex-column">
+    <div class="full-size-50 container-fluid d-flex flex-column">
         <div class="row flex-grow-1 no-padding" style="background-color: white;">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left;">

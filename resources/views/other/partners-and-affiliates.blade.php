@@ -151,7 +151,7 @@
 
     <hr />
 
-    <div id="section01" class="container-fluid no-padding-left-right section-padding" style="background-color: white;">
+    <div id="PartnerProgramme" class="container-fluid no-padding-left-right section-padding" style="background-color: white;">
         <div class="container no-padding-left-right">
             <div class="row">
                 <div class="col-sm-6 col-12 border-right-sm border-bottom-sm section-padding" style="text-align: right;">
@@ -167,7 +167,7 @@
                 </div>
                 <div class="col-sm-6 col-12 join-our-family section-padding">
                     <h2 style="font-size: 45px;"> Join Our Family</h2>
-                    <a href="#section03"><button type="button" class="big-blue-button btn-lg" href="#section03">Join Us</button></a>
+                    <a href="#PartnerApply"><button type="button" class="big-blue-button btn-lg" href="#section03">Join Us</button></a>
                 </div>
             </div>
         </div>
@@ -175,7 +175,7 @@
 
     <hr />
 
-    <div id="section02" class="full-size-80 container-fluid d-flex flex-column no-padding">
+    <div id="AffiliatesProgramme" class="full-size-80 container-fluid d-flex flex-column no-padding">
         <main class="row flex-grow-1 no-padding">
             <div class="col-xl-6 col-12 row no-padding align-items-center">
                 <div class="col row no-padding">
@@ -190,7 +190,7 @@
                     </div>
                     <div class="col-sm-6 col-12 join-our-family section-padding">
                         <h2 style="font-size: 45px;">Our affiliates programme</h2>
-                        <a href="#section03"><button class="big-blue-button btn-lg">Join Now</button></a>
+                        <a href="#AffiliateApply"><button class="big-blue-button btn-lg">Join Now</button></a>
                     </div>
                 </div>
             </div>
@@ -199,9 +199,9 @@
     </div>
 
     <hr />
-    <div id="section03" class="full-size-60 container-fluid d-flex flex-column no-padding" style="font-size: 22px;">
+    <div class="full-size-60 container-fluid d-flex flex-column no-padding" style="font-size: 22px;">
         <main class="row flex-grow-1 no-padding">
-            <div class="col-lg-6 col-12 row no-padding border-bottom-lg">
+            <div id="PartnerApply" class="col-lg-6 col-12 row no-padding border-bottom-lg">
                 <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px; position: relative;">
                     <h2 style="column-span: all;">Apply to be a partner</h2>
                     <form id="formPartnerApply">
@@ -244,7 +244,7 @@
                     <div class="col-sm-6 col-12"></div>
                 </div>
             </div>
-            <div class="col-lg-6 col-12 row no-padding section-border-left-lg">
+            <div id="AffiliateApply" class="col-lg-6 col-12 row no-padding section-border-left-lg">
                 <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px; position: relative;">
                     <h2 style="column-span: all;">Apply to be an affiliate</h2>
                     <form id="formPartnerApply">
