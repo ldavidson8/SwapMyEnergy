@@ -14,8 +14,8 @@
                     <td><a class="footer-link {{ ($navbar_page == "my account") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route('my account') }}">My Account</a></td>
                 </tr>
                 <tr>
-                    <td><a class="footer-link {{ ($navbar_page == "contact us") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route('contact us') }}">Contact Us</a></td>
-                    <td><a class="footer-link {{ ($navbar_page == "support") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route('support') }}">Support</a></td>
+                    <td><a class="footer-link {{ ($navbar_page == "support") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route('support') }}#contact">Contact Us</a></td>
+                    <td><a class="footer-link {{ ($navbar_page == "support") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route('support') }}#support">Support</a></td>
                 </tr>
             </tbody>
         </table>

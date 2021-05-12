@@ -158,7 +158,7 @@
         <div class="row flex-grow-1" style="align-content: center;">
             <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%; text-align: center">
                 <p style="font-weight: bold; font-size: 30px; color: white;"> Still need Help?</p>
-                <a href="{{ route('contact us') }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
+                <a href="{{ route('support') }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
             </div>
         </div>
     </div>
