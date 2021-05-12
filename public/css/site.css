@@ -210,31 +210,35 @@ hr
 }
 
 
-input, select, textarea
+.form-black input, .form-black select, .form-black textarea
 {
     color: #202020 !important;
 }
 
-input:not([type=submit], [type=button], [type=reset]), select, textarea
+.form-black input:not([type=submit], [type=button], [type=reset]), .form-black select, .form-black textarea
 {
     background-color: #202020 !important;
     color: #f3f2f1 !important;
 }
 
-input:not([type=submit], [type=button], [type=reset])::placeholder, textarea::placeholder,
-input:not([type=submit], [type=button], [type=reset])::-moz-placeholder, textarea::-moz-placeholder,
-input:not([type=submit], [type=button], [type=reset])::-webkit-input-placeholder, textarea::-webkit-input-placeholder
+.form-black input:not([type=submit], [type=button], [type=reset])::placeholder, .form-black textarea::placeholder,
+.form-black input:not([type=submit], [type=button], [type=reset])::-moz-placeholder, .form-black textarea::-moz-placeholder,
+.form-black input:not([type=submit], [type=button], [type=reset])::-webkit-input-placeholder, .form-black textarea::-webkit-input-placeholder
 {
     color: white !important;
 }
 
-input:-webkit-autofill
+.form-black input:-webkit-autofill,
+.form-black select:-webkit-autofill,
+.form-black textarea:-webkit-autofill
 {
     -webkit-box-shadow: 0 0 0 50px #202020 inset;
     -webkit-text-fill-color: #f3f2f1;
 }
 
-input:-webkit-autofill:focus
+.form-black input:-webkit-autofill:focus,
+.form-black select:-webkit-autofill:focus,
+.form-black textarea:-webkit-autofill:focus
 {
     -webkit-box-shadow: 0 0 0 50px #202020 inset;
     -webkit-text-fill-color: #f3f2f1;
