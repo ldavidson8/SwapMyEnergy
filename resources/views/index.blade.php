@@ -97,9 +97,10 @@
                 <h1>Empower your business to overcome rising energy prices</h1>
                 <p>Too many energy brokers promise savings that don’t stick. These promises are made on estimates, which aren’t always respective of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you deserve when it comes to your bills.</p>
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block"></div>
+            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block">
+                <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
+            </div>
         </div>
-        <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
     </div>
     <hr/>
     <div id="HowItWorks" class="full-size-50 container-fluid d-flex flex-column">
@@ -154,7 +155,7 @@
         </div>
     </div>
     <div class="d-flex flex-column" style="background-color: darkslategrey; min-height: 250px; padding-bottom: 10px;">
-        <div class="row flex-grow-1" sytle="align-content: center;">
+        <div class="row flex-grow-1" style="align-content: center;">
             <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%; text-align: center">
                 <p style="font-weight: bold; font-size: 30px; color: white;"> Still need Help?</p>
                 <a href="{{ route('contact us') }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
