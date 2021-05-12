@@ -104,7 +104,7 @@
                         <input id="form_new_password" class="form-control" type="password" name="new_password" />
                     </div>
                     <div class="form-group">
-                        <label for="password">Enter your old password to save</label>
+                        <label for="password">Enter your existing password to save</label>
                         <input id="form_password" class="form-control" type="password" name="password" required />
                     </div>
                     <div class="form-group" style="text-align: right;">

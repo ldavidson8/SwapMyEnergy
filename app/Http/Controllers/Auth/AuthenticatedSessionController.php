@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(Request $request)
     {
-        return view('auth.login', [ 'request' => $request, 'navbar_page' => 'login' ]);
+        return view('auth.login', [ 'request' => $request, 'navbar_page' => 'login', 'page_title' => 'Login/Register' ]);
     }
 
     /**

@@ -17,7 +17,7 @@ class ConfirmablePasswordController extends Controller
      */
     public function show(Request $request)
     {
-        return view('auth.confirm-password', [ 'request' => $request ]);
+        return view('auth.confirm-password', [ 'request' => $request, 'page_title' => 'Confirm Password' ]);
     }
 
     /**
