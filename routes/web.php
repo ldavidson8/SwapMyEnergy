@@ -20,7 +20,6 @@ Route::get('/', [ HomeController::class, 'index' ]) -> name('home');
 Route::get('about', [ HomeController::class, 'about' ]) -> name('about');
 Route::get('privacy-policy', [ HomeController::class, 'privacyPolicy' ]) -> name('privacy policy');
 Route::get('terms-and-conditions', [ HomeController::class, 'termsAndConditions' ]) -> name('t&c');
-Route::get('contact-us', [ HomeController::class, 'contactUs' ]) -> name('contact us');
 Route::get('support', [ HomeController::class, 'support' ]) -> name('support');
 Route::get('partners-and-affiliates', [ HomeController::class, 'partnersAndAffiliates' ]) -> name('partners and affiliates');
 
