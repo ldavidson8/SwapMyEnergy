@@ -10,10 +10,17 @@ body
     padding: 0px;
     font-family: 'Inter', sans-serif;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 700;
     text-align: left;
     color: #202020;
     overflow-x: hidden;
+}
+
+
+hr
+{
+    border: 3px solid #202020;
+    margin: 0px;
 }
 
 
@@ -235,7 +242,6 @@ h3, h5, h6
 {
     -webkit-box-shadow: 0 0 0 50px #202020 inset;
     -webkit-text-fill-color: #f3f2f1;
-    
 }
 
 .big-blue-button, .square-blue-button, input[type=submit], input[type=button], input[type=reset]

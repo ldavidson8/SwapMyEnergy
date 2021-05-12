@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('before-header')
-    <div id="section01" class="full-size container-fluid d-flex h-100 flex-column">
+    <div class="full-size container-fluid d-flex h-100 flex-column">
 @endsection
 
 @section('main-content')
@@ -13,9 +13,6 @@
                 @if ($exception -> getMessage() != '')
                     <h2>{{ $exception -> getMessage() }}</h2>
                 @endif
-            </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block">
-                <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
             </div>
         </div>
     </div>
