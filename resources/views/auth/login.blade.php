@@ -24,7 +24,7 @@
                                     {{ Session::get('message-login') }}
                                 </div>
                             @endif
-                            <form role="form" method="POST" action="{{ route('login') }}">
+                            <form role="form" method="POST" action="{{ route('login') }}" class="form-black">
                                 {{ csrf_field() }}
 
                                 <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
@@ -68,7 +68,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form role="form" method="POST" action="{{ url('/register') }}">
+                            <form role="form" method="POST" action="{{ url('/register') }}" class="form-black">
                                 {{ csrf_field() }}
                                 
                                 <div class="form-group">
