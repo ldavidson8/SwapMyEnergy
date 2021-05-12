@@ -22,7 +22,7 @@
 
                         <div class="form-group {{ $errors->has('confirm_password') ? ' has-error' : '' }}">
                             <label for="password">Confirm Password</label>
-                            <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" required />
+                            <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" required autofocus />
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-lg" value="Confirm" />

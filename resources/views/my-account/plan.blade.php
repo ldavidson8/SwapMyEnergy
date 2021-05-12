@@ -145,6 +145,7 @@
             <div id="my-account-column-right" class="col-xl-7 col-lg-6 col-12 flex-grow-1" style="background-color: white;">
                 @include('my-account.partials.greeting')
                 <form method="post" action="{{ route('my account.plan') }}">
+                    @csrf
                     <img id="my-account-your-plan-graph" src="{{ asset('img/my-account/my-account_your-plan_graph.png') }}" />
                     <div id="my-account-your-plan-expected-saving" style="vertical-align: middle; text-align: center;">
                         <p class="my-account-big-bold-text" style="font-size: 27px;">Expected Saving</p>

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\HandleSessions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
@@ -22,6 +23,8 @@ class AccountController extends Controller
     public function yourPlanPost(Request $request)
     {
         // TODO: handle form post
+
+        return redirect() -> route('my account');
     }
 
 
@@ -32,7 +35,31 @@ class AccountController extends Controller
     
     public function yourDetailsPost(Request $request)
     {
-        // TODO: handle form post
+        $validatedData = $request -> validate([
+            'full_name' => 'required',
+            'email' => 'required|email',
+            'address' => 'required',
+            'phone_number' => 'required',
+            'new_password' => '',
+            'password' => 'required'
+        ]);
+        
+        $email = Auth::user() -> email;
+        $password = $request -> input('password');
+        if (!Auth::validate([ 'email' => $email, 'password' => $password ]))
+        {
+            return redirect() -> back() -> withErrors([ 'password' => 'Invalid Password.' ]);
+        }
+        
+        $data = [];
+        if ($request -> input('name') != '') $data['name'] = $request -> input('full_name');
+        if ($request -> input('email') != '') $data['email'] = $request -> input('email');
+        if ($request -> input('address') != '') $data['address'] = $request -> input('address');
+        if ($request -> input('phone_number') != '') $data['phone_number'] = $request -> input('phone_number');
+        if ($request -> input('new_password') != '') $data['Password'] = Hash::make($request -> input('new_password'));
+        DB::table('users') -> where('email', $email) -> update($data);
+
+        return redirect() -> route('my account');
     }
 
 
@@ -44,5 +71,7 @@ class AccountController extends Controller
     public function yourOptionsPost(Request $request)
     {
         // TODO: handle form post
+
+        return redirect() -> route('my account');
     }
 }

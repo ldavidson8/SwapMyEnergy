@@ -1,15 +1,19 @@
 <?php
     $user_name = "";
     $user_email = "";
-    $user_phoneNumber = "";
+    $user_phone_number = "";
     $user_address = "";
     if (isset($user_name))
     {
         if (isset($user["name"])) $user_name = $user["name"];
         if (isset($user["email"])) $user_email = $user["email"];
-        if (isset($user["phoneNumber"])) $user_phoneNumber = $user["phoneNumber"];
+        if (isset($user["phone_number"])) $user_phone_number = $user["phone_number"];
         if (isset($user["address"])) $user_address = $user["address"];
     }
+    if (null !== $request -> old('name')) $user_name = $request -> old('name');
+    if (null !== $request -> old('email')) $user_email = $request -> old('email');
+    if (null !== $request -> old('phone_number')) $user_phone_number = $request -> old('phone_number');
+    if (null !== $request -> old('address')) $user_address = $request -> old('address');
 ?>
 
 @extends('layouts.master')
@@ -68,30 +72,40 @@
             <div id="my-account-column-right" class="col-xl-7 col-lg-6 col-12 flex-grow-1" style="background-color: white;">
                 @include('my-account.partials.greeting')
                 <p><b>Your Details</b></p>
+                @if ($errors -> count() > 0)
+                    <div class="alert alert-danger">
+                        <ul style="margin-bottom: 0px;">
+                            @foreach ($errors -> all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form method="post" action="{{ route('my account.details') }}">
+                    @csrf
                     <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <input id="form_fullName" class="form-control" type="text" name="fullName" value="{{ $user_name }}" />
+                        <label for="full_name">Full Name</label>
+                        <input id="form_full_name" class="form-control" type="text" name="full_name" value="{{ $user_name }}" required />
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input id="form_email" class="form-control" type="email" name="email" value="{{ $user_email }}" />
+                        <input id="form_email" class="form-control" type="email" name="email" value="{{ $user_email }}" required />
                     </div>
                     <div class="form-group">
                         <label for="addressLine1 addressLine2 addressLine3">Address</label>
-                        <textarea id="form_address" class="form-control" name="address" rows="3">{{ $user_address }}</textarea>
+                        <textarea id="form_address" class="form-control" name="address" rows="3" required>{{ $user_address }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="phoneNumber">Phone Number</label>
-                        <input id="form_phoneNumber" class="form-control" type="text" name="phoneNumber" value="{{ $user_phoneNumber }}" />
+                        <label for="phone_number">Phone Number</label>
+                        <input id="form_phone_number" class="form-control" type="text" name="phone_number" value="{{ $user_phone_number }}" required />
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input id="form_password" class="form-control" type="password" name="password" />
+                        <label for="new_password">Change Your Password?</label>
+                        <input id="form_new_password" class="form-control" type="password" name="new_password" />
                     </div>
                     <div class="form-group">
-                        <label for="old_password">Enter your old password to save</label>
-                        <input id="form_old_password" class="form-control" type="password" name="old_password" />
+                        <label for="password">Enter your old password to save</label>
+                        <input id="form_password" class="form-control" type="password" name="password" required />
                     </div>
                     <div class="form-group" style="text-align: right;">
                         <input type="submit" class="square-blue-button" value="Save Details" />

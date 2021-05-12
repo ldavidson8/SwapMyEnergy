@@ -43,6 +43,7 @@
                 @include('my-account.partials.greeting')
                 <p><b>Your Details</b></p>
                 <form method="post" aciton="{{ route('my account.options') }}">
+                    @csrf
                     <div class="form-group">
                         <label for="change_plan">Change Plan?</label>
                         <select id="options_change_plan" class="form-control" name="change_plan">

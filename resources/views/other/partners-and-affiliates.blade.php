@@ -287,10 +287,8 @@
                     <div class="col-sm-6 col-12"></div>
                 </div>
             </div>
-    </div>
-          
         </main>
-    
+    </div>
 @endsection()
 
 @section('script')
