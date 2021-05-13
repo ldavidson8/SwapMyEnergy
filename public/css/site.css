@@ -5,7 +5,7 @@
 
 body
 {
-    background-color: #eeeeff;
+    background-color: white;
     margin: 0px;
     padding: 0px;
     font-family: 'Inter', sans-serif;
@@ -225,7 +225,7 @@ h3, h5, h6
 .form-black input:not([type=submit], [type=button], [type=reset])::-moz-placeholder, .form-black textarea::-moz-placeholder,
 .form-black input:not([type=submit], [type=button], [type=reset])::-webkit-input-placeholder, .form-black textarea::-webkit-input-placeholder
 {
-    color: white !important;
+    color: #f3f2f1 !important;
 }
 
 .form-black input:-webkit-autofill,
@@ -294,7 +294,7 @@ h3, h5, h6
     text-align: left;
     transition: 0.4s;
     border-width: 0;
-    border-bottom: 4px solid black;
+    border-bottom: 4px solid #202020;
     align-content: center;
     display: flex;
 }

@@ -33,7 +33,7 @@
         
         .border-right-sm
         {
-            border-right: 3px solid black;
+            border-right: 3px solid #202020;
         }
 
         .join-our-family
@@ -55,12 +55,12 @@
 
         .section-border-left
         {
-            border-left: 3px solid black;
+            border-left: 3px solid #202020;
         }
 
         .bootstrap-select.btn-group .dropdown-menu > li > a:hover:not(:focus)
         {
-            color: black;
+            color: #202020;
         }
 
         .custom-select
@@ -91,7 +91,7 @@
         {
             .section-border-left-lg
             {
-                border-left: 3px solid black;
+                border-left: 3px solid #202020;
             }
         }
         
@@ -105,7 +105,7 @@
             
             .border-bottom-lg
             {
-                border-bottom: 3px solid black;
+                border-bottom: 3px solid #202020;
             }
         }
         
@@ -151,7 +151,7 @@
 
     <hr />
 
-    <div id="PartnerProgramme" class="container-fluid no-padding-left-right section-padding" style="background-color: white;">
+    <div id="PartnerProgramme" class="container-fluid no-padding-left-right section-padding" style="background-color: #f3f2f1;">
         <div class="container no-padding-left-right">
             <div class="row">
                 <div class="col-sm-6 col-12 border-right-sm border-bottom-sm section-padding" style="text-align: right;">
@@ -194,7 +194,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 d-none d-xl-block section-border-left" style="background-color: white; min-height: 300px;"></div>
+            <div class="col-xl-6 d-none d-xl-block section-border-left" style="background-color: #f3f2f1; min-height: 300px;"></div>
         </main>
     </div>
 

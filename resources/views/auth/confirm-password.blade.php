@@ -20,8 +20,8 @@
                     <form role="form" method="POST" action="{{ route('password.confirm') }}" class="form-black">
                         {{ csrf_field() }}
 
-                        <div class="form-group {{ $errors->has('confirm_password') ? ' has-error' : '' }}">
-                            <label for="password">Confirm Password</label>
+                        <div class="form-group {{ $errors -> has('confirm_password') ? ' has-error' : '' }}">
+                            <label for="password">To access this area of the website, please confirm your password.</label>
                             <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" required autofocus />
                         </div>
                         <div class="form-group">

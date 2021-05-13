@@ -39,7 +39,7 @@
                     </a>
                 </div>
             </div>
-            <div id="my-account-column-right" class="col-xl-7 col-lg-6 col-12 flex-grow-1" style="background-color: white;">
+            <div id="my-account-column-right" class="col-xl-7 col-lg-6 col-12 flex-grow-1" style="background-color: #f3f2f1;">
                 @include('my-account.partials.greeting')
                 <p><b>Your Details</b></p>
                 <form method="post" aciton="{{ route('my account.options') }}" class="form-black">

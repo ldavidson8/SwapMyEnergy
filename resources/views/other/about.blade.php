@@ -21,7 +21,7 @@
     </div>
     <hr/>
     <div class="full-size-50 container-fluid d-flex flex-column">
-        <div class="row flex-grow-1 no-padding" style="background-color: white;">
+        <div class="row flex-grow-1 no-padding" style="background-color: wh#f3f2f1ite;">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left;">
                 <div>
@@ -40,13 +40,13 @@
     <div class="d-flex flex-column" style="background-color: darkslategrey; height: 30vw; min-height: 300px;">
         <div class="row flex-grow-1" sytle="align-content: center;">
             <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%; text-align: center">
-                <p style="font-weight: bold; font-size: 30px; color: white;">Need Help?</p>
+                <p style="font-weight: bold; font-size: 30px; color: #f3f2f1;">Need Help?</p>
                 <a href="{{ route('support') }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
             </div>
         </div>
     </div>
     <div class="full-size-50 container-fluid d-flex flex-column">
-        <div class="row flex-grow-1 no-padding" style="background-color: white;">
+        <div class="row flex-grow-1 no-padding" style="background-color: #f3f2f1;">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left;">
                 <div>

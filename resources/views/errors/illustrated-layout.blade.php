@@ -228,7 +228,7 @@
             }
 
             .bg-white {
-                background-color: #fff;
+                background-color: #f3f2f1;
             }
 
             .bg-teal-light {
@@ -368,15 +368,15 @@
             }
 
             .text-black {
-                color: #22292f;
+                color: #202020;
             }
 
             .text-grey-darkest {
-                color: #3d4852;
+                color: #202020;
             }
 
             .text-grey-darker {
-                color: #606f7b;
+                color: #202020;
             }
 
             .text-2xl {
