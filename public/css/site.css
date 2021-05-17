@@ -40,11 +40,13 @@ body
 
 .background-image-docks::before { background-image: url('/img/background/docks_full.jpg'); }
 .background-image-market::before { background-image: url('/img/background/market_full.jpg'); }
-.background-image-preston::before { background-image: url('/img/background/preston_full.jpg'); background-position: center bottom; }
+.background-image-preston::before { background-image: url('/img/background/preston_full.jpg'); }
 .background-image-train::before { background-image: url('/img/background/train_full.jpg'); }
 
 .background-image-preston-behind { background-color: #202020 }
 .background-image-preston { z-index: 2; }
+
+.background-image-bottom::before { background-position: center bottom !important; }
 
 @media (max-width: 1000px)
 {

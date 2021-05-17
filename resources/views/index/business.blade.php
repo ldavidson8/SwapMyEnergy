@@ -120,9 +120,9 @@
             <div class="col-2 col-lg-1 d-block"></div>
         </div>
     </div>
-    <div class="full-size-50 container-fluid d-flex flex-column" style="background-color: darkslategrey;">
-        <div class="row flex-grow-1 padding-20px">
-            <div class="center-content" style="width: 600px; max-width: 100%; text-align: center;">
+    <div class="full-size-50 container-fluid d-flex flex-column background-image-preston-behind">
+        <div class="row flex-grow-1 padding-20px background-image-preston background-image-bottom center-content">
+            <div class="align-items-center" style="width: 600px; max-width: 100%; text-align: center;">
                 <p style="color: #f3f2f1;">Geoff "saved" £100 on his energy bill with another energy broker only to find out he had hidden fees to pay at the end of the year.</p>
                 <p style="font-weight: bold; font-size: 35px; color: #f3f2f1;">Sound familiar?</p>
             </div>
