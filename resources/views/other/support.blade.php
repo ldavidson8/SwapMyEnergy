@@ -46,6 +46,13 @@
             font-weight: bold;
             border: none;
         }
+        .bottom-aligner 
+        {
+            display: inline-block;
+            height: 100%;
+            vertical-align: bottom;
+            width: 0px;
+        }
     </style>
 @endsection
 @section('before-header')
@@ -82,7 +89,8 @@
                         @include('media.dashed-white-line')
                         <div style="text-align: center;">
                             <p> Email us and we will aim to get back to you within 24 hours </p>
-                            <p> placeholder@swapmyenergy.co.uk </p>
+                            <p style="overflow-wrap: break-word;"> placeholder@swapmyenergy.co.uk </p>
+                            <div class="bottom-aligner"></div>
                             <p> 
                                 Technical Issues? <br> 
                                 View our support page 
