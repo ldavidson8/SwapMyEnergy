@@ -1,5 +1,19 @@
 @extends('layouts.master')
 
+@section('stylesheets')
+    <style>
+        .form-group i 
+        {
+            cursor: pointer;
+            color: #f3f2f1;
+        }
+        .input-group-append
+        {
+            background-color: #202020;
+        }
+    </style>
+@endsection
+
 @section('main-content')
     <main class="col-md-12">
         <div class="container">
@@ -28,11 +42,13 @@
                                 {{ csrf_field() }}
 
                                 <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <input type="email" class="form-control" placeholder="Email Address" name="email" value="{{ old('email') }}" required />
+                                    <input type="email" class="form-control" placeholder="Email Address" name="email" value="{{ old('email') }}" autofocus required />
                                 </div>
                                 <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <input type="password" class="form-control" name="password" placeholder="Password" required />
+                                    <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="current-password" required />
+                                    {{-- <i class="far fa-eye" id="togglePassword"></i> --}}
                                 </div>
+                                {{-- <button id="toggle-password" type="button" aria-label="Show password as plain text. Warning: this will display your password on the screen.">Show password</button> --}}
                                 <div class="form-group">
                                     <div class="checkbox">
                                         <input type="checkbox" name="remember" /> 
@@ -83,6 +99,9 @@
 
                                 <div class="form-group">
                                     <input id="register_password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" oninput="check_pass();" required />
+                                    {{-- <div class="input-group-addon">
+                                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                    </div> --}}
                                 </div>
 
                                 <div class="form-group">
@@ -98,6 +117,7 @@
 @endsection()
 
 @section('script')
+@yield('script')
 <script>
     var registerPassword = document.getElementById('register_password');
     var registerConfirmPassword = document.getElementById('register_password_confirmation');
@@ -110,4 +130,5 @@
         }
     }
 </script>
+{{-- <script src="bootstrap-show-password.js"></script> --}}
 @endsection()
