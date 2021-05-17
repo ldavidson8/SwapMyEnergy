@@ -36,12 +36,7 @@
             bottom: 20px;
         }
 
-        #my-account-your-plan-button
-        {
-            float: right;
-        }
-
-
+        
         @media(max-width: 1300px)
         {
             #my-account-your-plan-bottom-left
@@ -155,7 +150,6 @@
                     </div>
                     
                     <div id="my-account-your-plan-bottom-left">
-                        <input id="my-account-your-plan-button" type="Submit" class="square-blue-button" value="Save Details" />
                         <p style="margin-bottom: 0px;">
                             *expected usage based on proceeding months and past years data.<br />
                             This may change based on your usage.<br />

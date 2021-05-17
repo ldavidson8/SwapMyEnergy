@@ -87,10 +87,67 @@ header, nav, .navbar-outer
     cursor: pointer;
 }
 
+
+.header-switch-animation-item { transition: all 1s; }
+
+body.business .header-switch-switch { fill: #ffaa00; }
+body.business .header-switch-switch.animate { fill: white; animation: whiteToBlue 1s; animation-fill-mode: forwards; }
+
+body.residential .header-switch-switch { fill: #00c2cb; }
+body.residential .header-switch-switch.animate { fill: #ffaa00; animation: whiteToBlue 1s; animation-fill-mode: forwards; }
+
+
+body.residential .header-switch-1-slider { position: absolute; left: 8px; top: 33px; width: 22px; }
+body.residential .header-switch-1-slider.animate { left: 31px; }
+
+body.residential .header-switch-1-shadow-left { position: absolute; left: 9px; top: 34px; height: 20px; opacity: 0; }
+body.residential .header-switch-1-shadow-left.animate { left: 28px; opacity: 1; }
+
+body.residential .header-switch-1-shadow-right { position: absolute; left: 23px; top: 34px; height: 20px; opacity: 1; }
+body.residential .header-switch-1-shadow-right.animate { left: 42px; opacity: 0; }
+
+body.business .header-switch-1-slider { position: absolute; left: 31px; top: 33px; width: 22px; }
+body.business .header-switch-1-slider.animate { left: 8px; }
+
+body.business .header-switch-1-shadow-left { position: absolute; left: 28px; top: 34px; height: 20px; opacity: 1; }
+body.business .header-switch-1-shadow-left.animate { left: 9px; opacity: 0; }
+
+body.business .header-switch-1-shadow-right { position: absolute; left: 42px; top: 34px; height: 20px; opacity: 0; }
+body.business .header-switch-1-shadow-right.animate { left: 23px; opacity: 1; }
+
+
+body.residential .header-switch-2-slider { position: absolute; left: 9px; top: 37px; width: 27px; }
+body.residential .header-switch-2-slider.animate { left: 38px; }
+
+body.residential .header-switch-2-shadow-left { position: absolute; left: 13px; top: 38px; height: 25px; opacity: 0; }
+body.residential .header-switch-2-shadow-left.animate { left: 34px; opacity: 1; }
+
+body.residential .header-switch-2-shadow-right { position: absolute; left: 27px; top: 38px; height: 25px; opacity: 1; }
+body.residential .header-switch-2-shadow-right.animate { left: 50px; opacity: 0; }
+
+body.business .header-switch-2-slider { position: absolute; left: 38px; top: 37px; width: 27px; }
+body.business .header-switch-2-slider.animate { left: 9px; }
+
+body.business .header-switch-2-shadow-left { position: absolute; left: 34px; top: 38px; height: 25px; opacity: 1; }
+body.business .header-switch-2-shadow-left.animate { left: 13px; opacity: 0; }
+
+body.business .header-switch-2-shadow-right { position: absolute; left: 50px; top: 38px; height: 25px; opacity: 0; }
+body.business .header-switch-2-shadow-right.animate { left: 27px; opacity: 1; }
+
+
+
 .logo
 {
     height: 100px;
     float: left;
+}
+
+.logo-svg
+{
+    height: 80px;
+    float: left;
+    margin: 10px;
+    width: 90px;
 }
 
 .switch
@@ -458,6 +515,3 @@ body.business .switch-text
         padding: 30px;
     }
 }
-
-
-/* TODO: Set all colours to the colour scheme provided */
