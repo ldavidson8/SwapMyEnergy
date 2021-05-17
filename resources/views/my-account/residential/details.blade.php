@@ -93,11 +93,11 @@
                     </div>
                     <div class="form-group">
                         <label for="addressLine1 addressLine2 addressLine3">Address</label>
-                        <textarea id="form_address" class="form-control" name="address" rows="3" required>{{ $user_address }}</textarea>
+                        <textarea id="form_address" class="form-control" name="address" rows="3">{{ $user_address }} </textarea>
                     </div>
                     <div class="form-group">
                         <label for="phone_number">Phone Number</label>
-                        <input id="form_phone_number" class="form-control" type="text" name="phone_number" value="{{ $user_phone_number }}" required />
+                        <input id="form_phone_number" class="form-control" type="text" name="phone_number" value="{{ $user_phone_number }}" />
                     </div>
                     <div class="form-group">
                         <label for="new_password">Change Your Password?</label>
