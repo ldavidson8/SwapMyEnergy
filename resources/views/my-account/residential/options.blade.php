@@ -27,22 +27,22 @@
                         <p>A saving of many pounds</p>
                         <p class="my-account-big-text">Ends: 01 Dec 2020</p>
                     </div>
-
-                    <a href="{{ route('my account.plan') }}" class="my-account-blue-button-outer">
+                    
+                    <a href="{{ route("residential.my account.plan") }}" class="my-account-blue-button-outer">
                         <button class="my-account-blue-button">Your Plan</button>
                     </a>
-                    <a href="{{ route('my account.details') }}" class="my-account-blue-button-outer">
+                    <a href="{{ route("residential.my account.details") }}" class="my-account-blue-button-outer">
                         <button class="my-account-blue-button">Your Details</button>
                     </a>
-                    <a href="{{ route('my account.options') }}" class="my-account-blue-button-outer">
-                        <button class="my-account-blue-button my-account-blue-button-selected">Your Options</button>
+                    <a href="{{ route("residential.my account.options") }}" class="my-account-blue-button-outer">
+                        <button class="my-account-blue-button">Your Options</button>
                     </a>
                 </div>
             </div>
             <div id="my-account-column-right" class="col-xl-7 col-lg-6 col-12 flex-grow-1" style="background-color: #f3f2f1;">
-                @include('my-account.partials.greeting')
+                @include('my-account.residential.partials.greeting')
                 <p><b>Your Details</b></p>
-                <form method="post" aciton="{{ route('my account.options') }}" class="form-black">
+                <form method="post" aciton="{{ route("$mode.my account.options") }}" class="form-black">
                     @csrf
                     <div class="form-group">
                         <label for="change_plan">Change Plan?</label>

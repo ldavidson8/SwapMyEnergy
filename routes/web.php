@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -16,22 +16,53 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ HomeController::class, 'index' ]) -> name('home');
-Route::get('about', [ HomeController::class, 'about' ]) -> name('about');
-Route::get('privacy-policy', [ HomeController::class, 'privacyPolicy' ]) -> name('privacy policy');
-Route::get('terms-and-conditions', [ HomeController::class, 'termsAndConditions' ]) -> name('t&c');
-Route::get('support', [ HomeController::class, 'support' ]) -> name('support');
-Route::get('partners-and-affiliates', [ HomeController::class, 'partnersAndAffiliates' ]) -> name('partners and affiliates');
-
-Route::group(['prefix' => 'my-account'], function()
+Route::get('/', function(Request $request)
 {
-    Route::get('', [ AccountController::class, 'myAccount' ]) -> name('my account') -> middleware('password.confirm');
-    Route::get('plan', [ AccountController::class, 'yourPlan' ]) -> name('my account.plan') -> middleware('password.confirm');
-    Route::post('plan', [ AccountController::class, 'yourPlanPost' ]) -> name('my account.plan') -> middleware('password.confirm');
-    Route::get('details', [ AccountController::class, 'yourDetails' ]) -> name('my account.details') -> middleware('password.confirm');
-    Route::post('details', [ AccountController::class, 'yourDetailsPost' ]) -> name('my account.details') -> middleware('password.confirm');
-    Route::get('options', [ AccountController::class, 'yourOptions' ]) -> name('my account.options') -> middleware('password.confirm');
-    Route::post('options', [ AccountController::class, 'yourOptionsPost' ]) -> name('my account.options') -> middleware('password.confirm');
+    if ($request -> session() -> get('mode') == 'business')
+    {
+        return redirect() -> route('business.home');
+    }
+    else
+    {
+        return redirect() -> route('residential.home');
+    }
+}) -> name('home');
+
+Route::group([ 'prefix' => 'business' ], function()
+{
+    Route::get('/', [ BusinessHomeController::class, 'index' ]) -> name('business.home');
+    Route::get('about', [ BusinessHomeController::class, 'about' ]) -> name('business.about');
+    Route::get('privacy-policy', [ BusinessHomeController::class, 'privacyPolicy' ]) -> name('business.privacy policy');
+    Route::get('terms-and-conditions', [ BusinessHomeController::class, 'termsAndConditions' ]) -> name('business.t&c');
+    Route::get('support', [ BusinessHomeController::class, 'support' ]) -> name('business.support');
+    Route::get('partners-and-affiliates', [ BusinessHomeController::class, 'partnersAndAffiliates' ]) -> name('business.partners and affiliates');
+
+    Route::group([ 'prefix' => 'my-account', 'middleware' => 'business' ], function()
+    {
+        Route::get('/', [ BusinessAccountController::class, 'myAccount' ]) -> name('business.my account') -> middleware('password.confirm');
+    });
+});
+
+
+Route::group([ 'prefix' => 'residential' ], function()
+{
+    Route::get('/', [ ResidentialHomeController::class, 'index' ]) -> name('residential.home');
+    Route::get('about', [ ResidentialHomeController::class, 'about' ]) -> name('residential.about');
+    Route::get('privacy-policy', [ ResidentialHomeController::class, 'privacyPolicy' ]) -> name('residential.privacy policy');
+    Route::get('terms-and-conditions', [ ResidentialHomeController::class, 'termsAndConditions' ]) -> name('residential.t&c');
+    Route::get('support', [ ResidentialHomeController::class, 'support' ]) -> name('residential.support');
+    Route::get('partners-and-affiliates', [ ResidentialHomeController::class, 'partnersAndAffiliates' ]) -> name('residential.partners and affiliates');
+    
+    Route::group([ 'prefix' => 'my-account', 'middleware' => 'residential' ], function()
+    {
+        Route::get('/', [ ResidentialAccountController::class, 'myAccount' ]) -> name('residential.my account') -> middleware('password.confirm');
+        Route::get('plan', [ ResidentialAccountController::class, 'yourPlan' ]) -> name('residential.my account.plan') -> middleware('password.confirm');
+        Route::post('plan', [ ResidentialAccountController::class, 'yourPlanPost' ]) -> name('residential.my account.plan') -> middleware('password.confirm');
+        Route::get('details', [ ResidentialAccountController::class, 'yourDetails' ]) -> name('residential.my account.details') -> middleware('password.confirm');
+        Route::post('details', [ ResidentialAccountController::class, 'yourDetailsPost' ]) -> name('residential.my account.details') -> middleware('password.confirm');
+        Route::get('options', [ ResidentialAccountController::class, 'yourOptions' ]) -> name('residential.my account.options') -> middleware('password.confirm');
+        Route::post('options', [ ResidentialAccountController::class, 'yourOptionsPost' ]) -> name('residential.my account.options') -> middleware('password.confirm');
+    });
 });
 
 

@@ -10,15 +10,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto" style="display: flex; align-items: center; font-size: 22px; font-">
                 <li class="nav-item">
-                    <a class="nav-link navigation-link {{ ($navbar_page == "home") ? 'navigation-link-current-page' : '' }}" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link navigation-link {{ ($navbar_page == "home") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.home") }}">Home</a>
                 </li>
                 <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>
                 <li class="nav-item">
-                    <a class="nav-link navigation-link {{ ($navbar_page == "about") ? 'navigation-link-current-page' : '' }}" href="{{ route('about') }}">About</a>
+                    <a class="nav-link navigation-link {{ ($navbar_page == "about") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.about") }}">About</a>
                 </li>
                 <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>
                 <li class="nav-item">
-                    <a class="nav-link navigation-link {{ ($navbar_page == "my account") ? 'navigation-link-current-page' : '' }}" href="{{ route('my account') }}">My Account</a>
+                    <a class="nav-link navigation-link {{ ($navbar_page == "my account") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.my account") }}">My Account</a>
                 </li>
                 {{-- Dropdown Example
                 <li class="nav-item dropdown">

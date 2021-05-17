@@ -1,3 +1,6 @@
+<?php
+    $mode = (isset($request)) ? $request -> session() -> get('mode', 'business') : 'business';
+?>
 @extends('layouts.master')
 
 @section('before-header')
@@ -6,7 +9,7 @@
 
 @section('main-content')
         <hr />
-        <div class="row flex-grow-1 no-padding">
+        <div class="row flex-grow-1 no-padding background-image-docks">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content">
                 <h1>What We Do</h1>
@@ -31,7 +34,7 @@
             </div>
             <div class="col-2 d-lg-none d-block"></div>
             <div class="col-2 d-lg-none d-block"></div>
-            <div class="col-xl-6 col-lg-5 col-md-8 no-padding" style="align-items: center; justify-content: center; margin: auto;">
+            <div class="col-xl-6 col-lg-5 col-md-8 no-padding center-content">
                 <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="100%" height="200" />
             </div>
             <div class="col-2 col-lg-1 d-block"></div>
@@ -39,9 +42,9 @@
     </div>
     <div class="d-flex flex-column" style="background-color: darkslategrey; height: 30vw; min-height: 300px;">
         <div class="row flex-grow-1" sytle="align-content: center;">
-            <div style="align-items: center; justify-content: center; margin: auto; width: 600px; max-width: 100%; text-align: center">
+            <div class="center-content" style="width: 600px; max-width: 100%; text-align: center">
                 <p style="font-weight: bold; font-size: 30px; color: #f3f2f1;">Need Help?</p>
-                <a href="{{ route('support') }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
+                <a href="{{ route("$mode.support") }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
             </div>
         </div>
     </div>

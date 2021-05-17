@@ -108,8 +108,8 @@
     <div id="support" class="full-size container-fluid d-flex h-100 flex-column font-color-white">
         <h1 style="text-align: center"> Support </h1>
         <div class="row flex-grow-1 no-padding">
-            <div class="col-12 col-lg-4 col-md-6" style="align-items: center; justify-content: center; margin: auto;"></div>
-            <div class="col-12 col-lg-4 col-md-6" style="align-items: center; justify-content: center; margin: auto;">
+            <div class="col-12 col-lg-4 col-md-6 center-content"></div>
+            <div class="col-12 col-lg-4 col-md-6 center-content">
                 <div class="contact-us-blue-box-inner" style='content: ""; clear: both; display: table;'>
                     <h2> Raise Support Issue</h2>
                     @include('media.dashed-white-line')
@@ -135,7 +135,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-12 col-lg-4 col-md-6" style="align-items: center; justify-content: center; margin: auto;"></div>
+            <div class="col-12 col-lg-4 col-md-6 center-content"></div>
         </div>
     </div>
 @endsection()

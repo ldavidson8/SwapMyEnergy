@@ -31,13 +31,21 @@
     <script src="{{ asset('js/site.js') }}"></script>
 
 </head>
-<body class="{{ (isset($request)) ? $request -> session() -> get('mode', 'business') : 'business' }}">
+<body class="{{ $mode }}">
     @yield('before-header')
 
     <header>
-        <img class="mode-switch logo" src="{{ asset('img/logo.png') }}" width="auto" />
-        <img class="mode-switch switch float-right" src="{{ asset('img/switch.png') }}" width="auto" />
-        <div class="mode-switch switch-text float-right center-text">Switch to<br />Business<br />Mode</div>
+        <a href="{{ ($mode == 'business') ? route('residential.home') : route('business.home') }}">
+            <img class="mode-switch logo" src="{{ asset('img/logo.png') }}" width="auto" />
+        </a>
+        <a href="{{ ($mode == 'business') ? route('residential.home') : route('business.home') }}">
+            <img class="mode-switch switch float-right" src="{{ asset('img/switch.png') }}" width="auto" />
+            <div class="mode-switch switch-text float-right center-text">
+                Switch to<br />
+                {{ ($mode == 'business') ? 'Residential' : 'Business' }}<br />
+                Mode
+            </div>
+        </a>
         @include('partials.navbar')
     </header>
 
@@ -53,7 +61,8 @@
             var modeSwitchTags = $(".mode-switch");
             modeSwitchTags.click(function()
             {
-                $("body").toggleClass("residential business");
+                // TODO: animate switches
+                // $("body").toggleClass("residential business");
             });
         });
     </script>

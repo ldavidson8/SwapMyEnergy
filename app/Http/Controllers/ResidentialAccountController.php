@@ -7,48 +7,39 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class AccountController extends Controller
+class ResidentialAccountController extends Controller
 {
     public function myAccount(Request $request)
     {
-        return view('my-account.index',
-        [
-            'request' => $request,
-            'navbar_page' => 'my account',
-            'page_title' => 'My Account',
-            'user' => Auth::user()
-        ]);
+        $navbar_page = 'my account';
+        $page_title = 'My Account';
+        $user = Auth::user();
+        return view('my-account.residential.index', compact('request', 'navbar_page', 'page_title', 'user'));
     }
     
 
     public function yourPlan(Request $request)
     {
-        return view('my-account.plan',
-        [
-            'request' => $request,
-            'navbar_page' => 'my account',
-            'page_title' => 'Plan - My Account',
-            'user' => Auth::user()
-        ]);
+        $navbar_page = 'my account';
+        $page_title = 'Plan - My Account';
+        $user = Auth::user();
+        return view('my-account.residential.plan', compact('request', 'navbar_page', 'page_title', 'user'));
     }
     
     public function yourPlanPost(Request $request)
     {
         // TODO: handle form post
 
-        return redirect() -> route('my account');
+        return redirect() -> route('residential.my account');
     }
 
 
     public function yourDetails(Request $request)
     {
-        return view('my-account.details',
-        [
-            'request' => $request,
-            'navbar_page' => 'my account',
-            'page_title' => 'Details - My Account',
-            'user' => Auth::user()
-        ]);
+        $navbar_page = 'my account';
+        $page_title = 'Details - My Account';
+        $user = Auth::user();
+        return view('my-account.residential.details', compact('request', 'navbar_page', 'page_title', 'user'));
     }
     
     public function yourDetailsPost(Request $request)
@@ -77,25 +68,22 @@ class AccountController extends Controller
         if ($request -> input('new_password') != '') $data['Password'] = Hash::make($request -> input('new_password'));
         DB::table('users') -> where('email', $email) -> update($data);
 
-        return redirect() -> route('my account');
+        return redirect() -> route('residential.my account');
     }
 
 
     public function yourOptions(Request $request)
     {
-        return view('my-account.options',
-        [
-            'request' => $request,
-            'navbar_page' => 'my account',
-            'page_title' => 'Options - My Account',
-            'user' => Auth::user()
-        ]);
+        $navbar_page = 'my account';
+        $page_title = 'Options - My Account';
+        $user = Auth::user();
+        return view('my-account.residential.options', compact('request', 'navbar_page', 'page_title', 'user'));
     }
     
     public function yourOptionsPost(Request $request)
     {
         // TODO: handle form post
 
-        return redirect() -> route('my account');
+        return redirect() -> route('residential.my account');
     }
 }

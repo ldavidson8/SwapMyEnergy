@@ -122,7 +122,7 @@
             }
             .border-bottom-sm
             {
-                border-bottom: 3px solid black;
+                border-bottom: 3px solid #202020;
             }
 
             .join-our-family

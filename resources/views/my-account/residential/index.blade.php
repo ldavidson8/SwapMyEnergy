@@ -19,14 +19,14 @@
                         <p>A saving of many pounds</p>
                         <p class="my-account-big-text">Ends: 01 Dec 2020</p>
                     </div>
-
-                    <a href="{{ route('my account.plan') }}" class="my-account-blue-button-outer">
+                    
+                    <a href="{{ route("residential.my account.plan") }}" class="my-account-blue-button-outer">
                         <button class="my-account-blue-button">Your Plan</button>
                     </a>
-                    <a href="{{ route('my account.details') }}" class="my-account-blue-button-outer">
+                    <a href="{{ route("residential.my account.details") }}" class="my-account-blue-button-outer">
                         <button class="my-account-blue-button">Your Details</button>
                     </a>
-                    <a href="{{ route('my account.options') }}" class="my-account-blue-button-outer">
+                    <a href="{{ route("residential.my account.options") }}" class="my-account-blue-button-outer">
                         <button class="my-account-blue-button">Your Options</button>
                     </a>
                 </div>
