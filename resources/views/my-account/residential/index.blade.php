@@ -5,7 +5,7 @@
 @endsection
 
 @section('before-header')
-    <div class="full-size full-size-exact-lg container-fluid d-flex h-100 flex-column">
+    <div class="full-size full-size-exact-lg container-fluid d-flex h-100 flex-column background-image-docks">
 @endsection
 
 @section('main-content')

@@ -136,7 +136,7 @@
 
 @section('main-content')
     <hr />
-    <div class="container-fluid" style="text-align: center;">
+    <div class="container-fluid background-image-market background-image-opacity-35" style="text-align: center;">
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
@@ -177,7 +177,7 @@
 
     <div id="AffiliatesProgramme" class="full-size-80 container-fluid d-flex flex-column no-padding">
         <main class="row flex-grow-1 no-padding">
-            <div class="col-xl-6 col-12 row no-padding align-items-center">
+            <div class="col-xl-6 col-12 row no-padding align-items-center background-image-train background-image-right">
                 <div class="col row no-padding">
                     <div class="col-sm-6 col-12 border-right-sm border-bottom-sm section-padding" style="text-align: right;">
                         <h2> Your Benefits </h2>
@@ -199,7 +199,7 @@
     </div>
 
     <hr />
-    <div class="full-size-60 container-fluid d-flex flex-column no-padding" style="font-size: 22px;">
+    <div class="full-size-60 container-fluid d-flex flex-column no-padding background-image-market background-image-opacity-35" style="font-size: 22px;">
         <main class="row flex-grow-1 no-padding">
             <div id="PartnerApply" class="col-lg-6 col-12 row no-padding border-bottom-lg">
                 <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px; position: relative;">

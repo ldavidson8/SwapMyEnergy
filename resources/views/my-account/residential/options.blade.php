@@ -13,7 +13,7 @@
 @endsection
 
 @section('before-header')
-    <div class="full-size full-size-exact-lg container-fluid d-flex h-100 flex-column">
+    <div class="full-size full-size-exact-lg container-fluid d-flex h-100 flex-column background-image-docks">
 @endsection
 
 @section('main-content')
@@ -35,7 +35,7 @@
                         <button class="my-account-blue-button">Your Details</button>
                     </a>
                     <a href="{{ route("residential.my account.options") }}" class="my-account-blue-button-outer">
-                        <button class="my-account-blue-button">Your Options</button>
+                        <button class="my-account-blue-button my-account-blue-button-selected">Your Options</button>
                     </a>
                 </div>
             </div>

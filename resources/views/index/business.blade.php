@@ -154,11 +154,11 @@
             </div>
         </div>
     </div>
-    <div class="d-flex flex-column" style="background-color: darkslategrey; min-height: 250px; padding-bottom: 10px;">
-        <div class="row flex-grow-1" style="align-content: center;">
+    <div class="d-flex flex-column background-image-preston-behind" style="min-height: 250px; padding-bottom: 10px;">
+        <div class="row flex-grow-1 background-image-preston background-image-bottom" style="align-content: center;">
             <div class="center-content" style="width: 600px; max-width: 100%; text-align: center">
                 <p style="font-weight: bold; font-size: 30px; color: #f3f2f1;"> Still need Help?</p>
-                <a href="{{ route('business.support') }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
+                <a href="{{ route('residential.support') }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
             </div>
         </div>
     </div>

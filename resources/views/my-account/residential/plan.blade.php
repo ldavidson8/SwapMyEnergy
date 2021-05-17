@@ -116,7 +116,7 @@
 @endsection
 
 @section('before-header')
-    <div class="full-size full-size-exact-lg container-fluid d-flex h-100 flex-column">
+    <div class="full-size full-size-exact-lg container-fluid d-flex h-100 flex-column background-image-docks">
 @endsection
 
 @section('main-content')
@@ -132,7 +132,7 @@
                     </div>
                     
                     <a href="{{ route("residential.my account.plan") }}" class="my-account-blue-button-outer">
-                        <button class="my-account-blue-button">Your Plan</button>
+                        <button class="my-account-blue-button my-account-blue-button-selected">Your Plan</button>
                     </a>
                     <a href="{{ route("residential.my account.details") }}" class="my-account-blue-button-outer">
                         <button class="my-account-blue-button">Your Details</button>

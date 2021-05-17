@@ -40,8 +40,8 @@
             <div class="col-2 col-lg-1 d-block"></div>
         </div>
     </div>
-    <div class="d-flex flex-column" style="background-color: darkslategrey; height: 30vw; min-height: 300px;">
-        <div class="row flex-grow-1" sytle="align-content: center;">
+    <div class="d-flex flex-column background-image-preston-behind" style="height: 30vw; min-height: 300px;">
+        <div class="row flex-grow-1 background-image-preston background-image-bottom" sytle="align-content: center;">
             <div class="center-content" style="width: 600px; max-width: 100%; text-align: center">
                 <p style="font-weight: bold; font-size: 30px; color: #f3f2f1;">Need Help?</p>
                 <a href="{{ route("$mode.support") }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
