@@ -58,7 +58,10 @@
             <div class="row flex-grow-1 no-padding font-color-white">
                 <div class="col-12 col-lg-4 col-md-6 contact-us-blue-box">
                     <div class="contact-us-blue-box-inner">
-                        <h2 style="display: inline-block"> Call Us </h2>
+                        <div style="position: relative;">
+                            <h2> Call Us </h2>
+                            <img width="80px" height="80px" src="{{ asset('img/support icons/phone.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
+                        </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center;">
                             <p style="font-size:30px; padding-top: 25px; padding-bottom:40px;"> 01772 000000 </p>
@@ -72,7 +75,10 @@
                 </div>
                 <div class="col-12 col-lg-4 col-md-6 contact-us-blue-box">
                     <div class="contact-us-blue-box-inner">
-                        <h2 style="display: inline-block"> Email Us </h2>
+                        <div style="position: relative;">
+                            <h2> Email Us </h2>
+                            <img width="80px" height="80px" src="{{ asset('img/support icons/email.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
+                        </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center;">
                             <p> Email us and we will aim to get back to you within 24 hours </p>
@@ -87,7 +93,10 @@
                 <div class="col-md-3 d-lg-none"></div>
                 <div class="col-12 col-lg-4 col-md-6 contact-us-blue-box">
                     <div class="contact-us-blue-box-inner">
-                        <h2 style="display: inline-block"> Message Us </h2>
+                        <div style="position: relative;">
+                            <h2> Message Us </h2>
+                            <img width="80px" height="80px" src="{{ asset('img/support icons/chat.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
+                        </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center;">
                             <p style="text-decoration: underline">
@@ -111,11 +120,13 @@
     <div class="background-image-preston-behind">
         <div id="support" class="full-size container-fluid d-flex h-100 flex-column font-color-white background-image-preston background-image-bottom">
             <h1 style="text-align: center"> Support </h1>
-            <div class="row flex-grow-1 no-padding">
-                <div class="col-12 col-lg-4 col-md-6 center-content"></div>
-                <div class="col-12 col-lg-4 col-md-6 center-content">
+            <div class="row flex-grow-1 align-items-center padding-20px">
+                <div class="center-content" style="width: 600px; max-width: 100%;">
                     <div class="contact-us-blue-box-inner" style='content: ""; clear: both; display: table;'>
-                        <h2> Raise Support Issue</h2>
+                        <div style="position: relative;">
+                            <h2 style="padding-right: 90px;"> Raise Support Issue</h2>
+                            <img width="80px" height="80px" src="{{ asset('img/support icons/cogs.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
+                        </div>
                         @include('media.dashed-white-line')
                         <form id="formPartnerApply">
                             <div class="form-group">
@@ -139,7 +150,6 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 col-md-6 center-content"></div>
             </div>
         </div>
     </div>
