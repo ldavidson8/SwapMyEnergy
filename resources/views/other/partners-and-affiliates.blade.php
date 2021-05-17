@@ -207,20 +207,20 @@
                     <form id="formPartnerApply" class="form-black">
                         <div class="form-group">
                             <label for="fullName">Full Name</label>
-                            <input type="text" class="form-control" id="fullName" required />
+                            <input type="text" class="form-control" id="fullName" name="name" required />
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Email Address</label>
-                            <input type="email" class="form-control" id="email" placeholder="example@domain.com" required />
+                            <input type="email" class="form-control" id="email" placeholder="example@domain.com" name="email" required />
                         </div>  
                         <div class="form-group">
                             <label for="phoneNumber">Phone Number</label>
                             <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
-                            <input type="text" class="form-control" id="phoneNumber" required />
+                            <input type="text" class="form-control" id="phoneNumber" name="tel-national" required />
                         </div>
                         <div class="form-group">
                             <label for="companyAddress">Company Address</label>
-                            <textarea name="companyAddress" class="form-control" required rows="4"></textarea>
+                            <textarea id="companyAddress" class="form-control" name="street-address" required rows="4"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kindOfCompany">Nature of company</label>
@@ -233,7 +233,7 @@
                         </div>
                         <div class="form-group">
                             <label for="webLink">Link (If applicable)</label>
-                            <input type="url" class="form-control" id="webLink">
+                            <input type="url" class="form-control" id="webLink" name="url">
                         </div>
                         <div class="form-group bottom-right">
                             <div class="text-center position-relative">
@@ -250,20 +250,20 @@
                     <form id="formPartnerApply" class="form-black">
                         <div class="form-group">
                             <label for="fullName">Full Name</label>
-                            <input type="text" class="form-control" id="fullName" required />
+                            <input type="text" class="form-control" id="fullName" name="name" required />
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Email Address</label>
-                            <input type="email" class="form-control" id="email" placeholder="example@domain.com" required />
+                            <input type="email" class="form-control" id="email" placeholder="example@domain.com" name="email" required />
                         </div>
                         <div class="form-group">
                             <label for="phoneNumber">Phone Number</label>
                             <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
-                            <input type="text" class="form-control" id="phoneNumber" required />
+                            <input type="text" class="form-control" id="phoneNumber" name="tel-national" required />
                         </div>
                         <div class="form-group">
-                            <label for="companyAddress">Company Address</label>
-                            <textarea name="companyAddress" class="form-control" required rows="4"></textarea>
+                            <label for="companyAddress">Street Address</label>
+                            <textarea id="companyAddress" class="form-control" name="street-address" required rows="4"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="kindOfAffiliate">Nature of affiliate</label>
@@ -276,7 +276,7 @@
                         </div>
                         <div class="form-group">
                             <label for="webLink">Link (If applicable)</label>
-                            <input type="url" class="form-control" id="webLink" />
+                            <input type="url" class="form-control" name="url" id="webLink" />
                         </div>
                         <div class="form-group bottom-right">
                             <div class="text-center position-relative">
