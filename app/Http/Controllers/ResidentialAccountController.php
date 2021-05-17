@@ -47,8 +47,8 @@ class ResidentialAccountController extends Controller
         $validatedData = $request -> validate([
             'full_name' => 'required',
             'email' => 'required|email',
-            'address' => 'required',
-            'phone_number' => 'required',
+            'address' => '',
+            'phone_number' => '',
             'new_password' => '',
             'password' => 'required'
         ]);
@@ -61,7 +61,7 @@ class ResidentialAccountController extends Controller
         }
         
         $data = [];
-        if ($request -> input('name') != '') $data['name'] = $request -> input('full_name');
+        if ($request -> input('full_name') != '') $data['name'] = $request -> input('full_name');
         if ($request -> input('email') != '') $data['email'] = $request -> input('email');
         if ($request -> input('address') != '') $data['address'] = $request -> input('address');
         if ($request -> input('phone_number') != '') $data['phone_number'] = $request -> input('phone_number');
