@@ -2,7 +2,42 @@
     $mode = (isset($request)) ? $request -> session() -> get('mode', 'business') : 'business';
 ?>
 @extends('layouts.master')
+@section('stylesheets')
+    <style>
+        .map-responsive
+        {
+            overflow:hidden;
+            padding-bottom:56.25%;
+            position:relative;
+            height:0;
+            max-width: 100%;
+        }
 
+        .map-responsive iframe
+        {
+            left:0;
+            top:0;
+            height:100%;
+            width:100%;
+            position:absolute;
+
+        }
+
+        @media (min-width: 992px)
+        {
+            .resp-iframe-lg 
+            {
+            position: absolute;
+            top: 0;
+            left: 40;
+            width: 600px;
+            height: 450px;
+            border: 0;
+
+            }
+        }
+    </style>
+@endsection
 @section('before-header')
     <div class="full-size container-fluid d-flex h-100 flex-column">
 @endsection
@@ -34,10 +69,12 @@
             </div>
             <div class="col-2 d-lg-none d-block"></div>
             <div class="col-2 d-lg-none d-block"></div>
-            <div class="col-xl-6 col-lg-5 col-md-8 no-padding center-content">
-                <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="100%" height="200" />
+            <div class="col-xl-6 col-lg-6 col-md-8 no-padding center-content">
+                <div class="map-responsive">
+                <iframe width="600" height="450" style="border:0;" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=18%20fox%20street%2C%20preston&key=AIzaSyCSV5ZAUwOLQdr8mz_ALHB5f1q-OlM00EI" align="center" width="100%"></iframe>
+                </div>
             </div>
-            <div class="col-2 col-lg-1 d-block"></div>
+            <div class="col-2 d-block d-lg-none"></div>
         </div>
     </div>
     <div class="d-flex flex-column background-image-preston-behind" style="height: 30vw; min-height: 300px;">
