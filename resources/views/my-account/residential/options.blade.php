@@ -10,6 +10,7 @@
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/my-account.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/password.css') }}" />
 @endsection
 
 @section('before-header')
@@ -63,8 +64,10 @@
                         </label>
                     </div>
                     <div class="form-group">
-                        <label for="confirm_password">Insert Password to confirm</label>
-                        <input id="options_confirm_password" class="form-control" type="password" name="confirm_password" />
+                        <label for="confirm_password">Insert Password to confirm *</label>
+                        <div class="has-float-label pass_show">
+                            <input id="options_confirm_password" class="form-control" type="password" name="confirm_password" required />
+                        </div>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="square-blue-button" value="Confirm" />
@@ -74,3 +77,7 @@
         </div>
     </div>
 @endsection()
+
+@section('script')
+    <script type="text/javascript" src="{{ URL::asset('js/show-hide-password.js') }}"></script>
+@endsection

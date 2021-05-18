@@ -165,7 +165,7 @@
 @endsection
 
 @section('script')
-<script>
+<script defer>
     var faqAccordian = document.getElementsByClassName("faq-accordion");
     var i;
 

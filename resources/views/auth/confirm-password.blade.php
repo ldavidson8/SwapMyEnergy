@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('stylesheets')
+    <link rel="stylesheet" href="{{ asset('css/password.css') }}" />
+@endsection
+
 @section('main-content')
     <main class="col-md-12">
         <div class="container">
@@ -21,8 +25,10 @@
                         {{ csrf_field() }}
 
                         <div class="form-group {{ $errors -> has('confirm_password') ? ' has-error' : '' }}">
-                            <label for="password">To access this area of the website, please confirm your password.</label>
-                            <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" required autofocus />
+                            <label for="password">To access this area of the website, please confirm your password *</label>
+                            <div class="has-float-label pass_show">
+                                <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" required autofocus />
+                            </div>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-lg" value="Confirm" />
@@ -33,3 +39,7 @@
         </div>
     </main>
 @endsection()
+
+@section('script')
+    <script type="text/javascript" src="{{ URL::asset('js/show-hide-password.js') }}"></script>
+@endsection

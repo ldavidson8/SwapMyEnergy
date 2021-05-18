@@ -20,7 +20,8 @@
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/my-account.css') }}" />
-    
+    <link rel="stylesheet" href="{{ asset('css/password.css') }}" />
+
     <style type="text/css">
         form
         {
@@ -84,11 +85,11 @@
                 <form method="post" action="{{ route("$mode.my account.details") }}" class="form-black">
                     @csrf
                     <div class="form-group">
-                        <label for="full_name">Full Name</label>
+                        <label for="full_name">Full Name *</label>
                         <input id="form_full_name" class="form-control" type="text" name="full_name" value="{{ $user_name }}" required />
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address</label>
+                        <label for="email">Email Address *</label>
                         <input id="form_email" class="form-control" type="email" name="email" value="{{ $user_email }}" required />
                     </div>
                     <div class="form-group">
@@ -101,11 +102,15 @@
                     </div>
                     <div class="form-group">
                         <label for="new_password">Change Your Password?</label>
-                        <input id="form_new_password" class="form-control" type="password" name="new_password" />
+                        <div class="has-float-label pass_show">
+                            <input id="form_new_password" class="form-control" type="password" name="new_password" />
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="password">Enter your existing password to save</label>
-                        <input id="form_password" class="form-control" type="password" name="password" required />
+                        <label for="password">Enter your existing password to save *</label>
+                        <div class="has-float-label pass_show">
+                            <input id="form_password" class="form-control" type="password" name="password" required />
+                        </div>
                     </div>
                     <div class="form-group" style="text-align: right;">
                         <input type="submit" class="square-blue-button" value="Save Details" />
@@ -115,3 +120,7 @@
         </div>
     </div>
 @endsection()
+
+@section('script')
+    <script type="text/javascript" src="{{ URL::asset('js/show-hide-password.js') }}"></script>
+@endsection

@@ -138,15 +138,15 @@
                         @include('media.dashed-white-line')
                         <form id="formPartnerApply">
                             <div class="form-group">
-                                <label for="fullName">Full Name</label>
+                                <label for="fullName">Full Name *</label>
                                 <input type="text" class="form-control" id="fullName" required />
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Address</label>
+                                <label for="email">Email Address *</label>
                                 <input type="email" class="form-control" id="email" required />
                             </div>
                             <div class="form-group">
-                                <label for="phoneNumber">Contact Number</label>
+                                <label for="phoneNumber">Contact Number *</label>
                                 <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
                                 <input type="text" class="form-control" id="phoneNumber" required />
                             </div>

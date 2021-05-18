@@ -12,6 +12,7 @@
             background-color: #202020;
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/password.css') }}" />
 @endsection
 
 @section('main-content')
@@ -42,13 +43,15 @@
                                 {{ csrf_field() }}
 
                                 <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <input type="email" class="form-control" placeholder="Email Address" name="email" value="{{ old('email') }}" autofocus required />
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" class="form-control" placeholder=" " name="email" value="{{ old('email') }}" autofocus required />
                                 </div>
                                 <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <input type="password" class="form-control" name="password" placeholder="Password" autocomplete="current-password" required />
-                                    {{-- <i class="far fa-eye" id="togglePassword"></i> --}}
+                                    <label for="password">Password *</label>
+                                    <div class="has-float-label pass_show">
+                                        <input type="password" class="form-control" name="password" placeholder=" " autocomplete="off" required />
+                                    </div>
                                 </div>
-                                {{-- <button id="toggle-password" type="button" aria-label="Show password as plain text. Warning: this will display your password on the screen.">Show password</button> --}}
                                 <div class="form-group">
                                     <div class="checkbox">
                                         <input type="checkbox" name="remember" /> 
@@ -88,22 +91,25 @@
                                 {{ csrf_field() }}
                                 
                                 <div class="form-group">
+                                    <label for="email">Full Name *</span></label>
                                     <input id="register_name" type="text" class="form-control" placeholder="Name" name="name" value="{{ old('name') }}" required />
                                 </div>
                                 <div class="form-group">
+                                    <label for="email">Email Address *</span></label>
                                     <input id="register_email" type="email" class="form-control" placeholder="Email Address" name="email" value="{{ old('email') }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <input id="register_password" type="password" class="form-control" name="password" placeholder="Password" oninput="check_pass();" required />
+                                    <label for="email">Password *</span></label>
+                                    <div class="has-float-label pass_show">
+                                        <input id="register_password" type="password" class="form-control" name="password" autocomplete="off" placeholder=" " oninput="check_pass();" required />
+                                    </div>
                                 </div>
-
                                 <div class="form-group">
-                                    <input id="register_password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" oninput="check_pass();" required />
-                                    {{-- <div class="input-group-addon">
-                                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                                    </div> --}}
+                                    <label for="email">Confirm Password *</span></label>
+                                    <div class="has-float-label pass_show">
+                                        <input id="register_password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder=" " autocomplete="off" oninput="check_pass();" required />
+                                    </div>
                                 </div>
-
                                 <div class="form-group">
                                     <input id="register_submit" type="submit" class="btn btn-block btn-success btn-lg" value="Register" />
                                 </div>
@@ -117,7 +123,6 @@
 @endsection()
 
 @section('script')
-@yield('script')
 <script>
     var registerPassword = document.getElementById('register_password');
     var registerConfirmPassword = document.getElementById('register_password_confirmation');
@@ -130,5 +135,5 @@
         }
     }
 </script>
-{{-- <script src="bootstrap-show-password.js"></script> --}}
+<script type="text/javascript" src="{{ URL::asset('js/show-hide-password.js') }}"></script>
 @endsection()

@@ -206,24 +206,24 @@
                     <h2 style="column-span: all;">Apply to be a partner</h2>
                     <form id="formPartnerApply" class="form-black">
                         <div class="form-group">
-                            <label for="fullName">Full Name</label>
+                            <label for="fullName">Full Name *</label>
                             <input type="text" class="form-control" id="fullName" name="name" required />
                         </div>
                         <div class="form-group">
-                            <label for="inputAddress">Email Address</label>
+                            <label for="inputAddress">Email Address *</label>
                             <input type="email" class="form-control" id="email" placeholder="example@domain.com" name="email" required />
                         </div>  
                         <div class="form-group">
-                            <label for="phoneNumber">Phone Number</label>
+                            <label for="phoneNumber">Phone Number *</label>
                             <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
                             <input type="text" class="form-control" id="phoneNumber" name="tel-national" required />
                         </div>
                         <div class="form-group">
-                            <label for="companyAddress">Company Address</label>
+                            <label for="companyAddress">Company Address *</label>
                             <textarea id="companyAddress" class="form-control" name="street-address" required rows="4"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="kindOfCompany">Nature of company</label>
+                            <label for="kindOfCompany">Nature of company *</label>
                             <select id="kindOfCompany" class="custom-select form-control" required />
                                 <option value="" disabled selected hidden></option>
                                 <option value="energy-broker">Energy Broker</option>
@@ -249,24 +249,24 @@
                     <h2 style="column-span: all;">Apply to be an affiliate</h2>
                     <form id="formPartnerApply" class="form-black">
                         <div class="form-group">
-                            <label for="fullName">Full Name</label>
+                            <label for="fullName">Full Name *</label>
                             <input type="text" class="form-control" id="fullName" name="name" required />
                         </div>
                         <div class="form-group">
-                            <label for="inputAddress">Email Address</label>
+                            <label for="inputAddress">Email Address *</label>
                             <input type="email" class="form-control" id="email" placeholder="example@domain.com" name="email" required />
                         </div>
                         <div class="form-group">
-                            <label for="phoneNumber">Phone Number</label>
+                            <label for="phoneNumber">Phone Number *</label>
                             <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
                             <input type="text" class="form-control" id="phoneNumber" name="tel-national" required />
                         </div>
                         <div class="form-group">
-                            <label for="companyAddress">Street Address</label>
+                            <label for="companyAddress">Street Address *</label>
                             <textarea id="companyAddress" class="form-control" name="street-address" required rows="4"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="kindOfAffiliate">Nature of affiliate</label>
+                            <label for="kindOfAffiliate">Nature of affiliate *</label>
                             <select id="kindOfAffiliate" class="custom-select form-control" required>
                                 <option value="" disabled selected hidden></option>
                                 <option value="YouTuber">YouTuber</option>
