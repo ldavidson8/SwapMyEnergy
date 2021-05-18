@@ -52,6 +52,12 @@ class BusinessHomeController extends Controller
         return view('other.support', compact('request', 'navbar_page', 'page_title'));
     }
     
+    public function supportPost(Request $request)
+    {
+        // TODO: handle the request object
+        return redirect() -> back();
+    }
+    
     public function partnersAndAffiliates(Request $request)
     {
         ModeSession::setBusiness($request);

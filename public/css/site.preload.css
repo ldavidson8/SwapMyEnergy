@@ -1,0 +1,20 @@
+.background-image-docks.preload::before { background-image: url('/img/background/docks_full.jpg'); }
+.background-image-market.preload::before { background-image: url('/img/background/market_full.jpg'); }
+.background-image-preston.preload::before { background-image: url('/img/background/preston_full.jpg'); }
+.background-image-train.preload::before { background-image: url('/img/background/train_full.jpg'); }
+
+@media (max-width: 1000px) and (max-height: 563px)
+{
+    .background-image-docks.preload::before { background-image: url('/img/background/docks_half.jpg'); }
+    .background-image-market.preload::before { background-image: url('/img/background/market_half.jpg'); }
+    .background-image-preston.preload::before { background-image: url('/img/background/preston_half.jpg'); }
+    .background-image-train.preload::before { background-image: url('/img/background/train_half.jpg'); }
+}
+
+@media (max-width: 500px) and (max-height: 281px)
+{
+    .background-image-docks.preload::before { background-image: url('/img/background/docks_quarter.jpg'); }
+    .background-image-market.preload::before { background-image: url('/img/background/market_quarter.jpg'); }
+    .background-image-preston.preload::before { background-image: url('/img/background/preston_quarter.jpg'); }
+    .background-image-train.preload::before { background-image: url('/img/background/train_quarter.jpg'); }
+}

@@ -121,7 +121,7 @@
         </div>
     </div>
     <div class="full-size-50 container-fluid d-flex flex-column background-image-preston-behind">
-        <div class="row flex-grow-1 padding-20px background-image-preston background-image-bottom center-content">
+        <div class="row flex-grow-1 padding-20px background-image-preston background-image-bottom preload center-content">
             <div class="align-items-center" style="width: 600px; max-width: 100%; text-align: center;">
                 <p style="color: #f3f2f1;">Geoff "saved" £100 on his energy bill with another energy broker only to find out he had hidden fees to pay at the end of the year.</p>
                 <p style="font-weight: bold; font-size: 35px; color: #f3f2f1;">Sound familiar?</p>
@@ -155,7 +155,7 @@
         </div>
     </div>
     <div class="d-flex flex-column background-image-preston-behind" style="min-height: 250px; padding-bottom: 10px;">
-        <div class="row flex-grow-1 background-image-preston background-image-bottom" style="align-content: center;">
+        <div class="row flex-grow-1 background-image-preston background-image-bottom preload" style="align-content: center;">
             <div class="center-content" style="width: 600px; max-width: 100%; text-align: center">
                 <p style="font-weight: bold; font-size: 30px; color: #f3f2f1;"> Still need Help?</p>
                 <a href="{{ route('residential.support') }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
@@ -165,25 +165,25 @@
 @endsection
 
 @section('script')
-<script defer>
-    var faqAccordian = document.getElementsByClassName("faq-accordion");
-    var i;
+    <script defer="true">
+        var faqAccordian = document.getElementsByClassName("faq-accordion");
+        var i;
 
-    for (i = 0; i < faqAccordian.length; i++)
-    {
-        faqAccordian[i].addEventListener("click", function()
+        for (i = 0; i < faqAccordian.length; i++)
         {
-            this.classList.toggle("faq-active");
-            var faqPanel = this.nextElementSibling;
-            if (faqPanel.style.maxHeight)
+            faqAccordian[i].addEventListener("click", function()
             {
-                faqPanel.style.maxHeight = null;
-            }
-            else
-            {
-                faqPanel.style.maxHeight = faqPanel.scrollHeight + "px";
-            }
-        });
-    }
-</script>
+                this.classList.toggle("faq-active");
+                var faqPanel = this.nextElementSibling;
+                if (faqPanel.style.maxHeight)
+                {
+                    faqPanel.style.maxHeight = null;
+                }
+                else
+                {
+                    faqPanel.style.maxHeight = faqPanel.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
 @endsection
