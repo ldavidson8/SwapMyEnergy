@@ -12,6 +12,6 @@ class BusinessAccountController extends Controller
         $navbar_page = 'my account';
         $page_title = 'My Account';
         $user = Auth::user();
-        return view('my-account.residential.index', compact('request', 'navbar_page', 'page_title', 'user'));
+        return view('my-account.business.index', compact('request', 'navbar_page', 'page_title', 'user'));
     }
 }

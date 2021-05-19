@@ -10,7 +10,34 @@
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/my-account.css') }}" />
+<<<<<<< Updated upstream
     <link rel="stylesheet" href="{{ asset('css/password.css') }}" />
+=======
+>>>>>>> Stashed changes
+
+    <style>
+        label.checkbox-image
+        {
+            position: relative;
+        }
+
+        label.checkbox-image::before
+        {
+            background-image: url("{{ asset('img/my-account/no-button.png') }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        :checked + label.checkbox-image::before
+        {
+            background-image: url("{{ asset('img/my-account/yes-button.png') }}");
+        }
+    </style>
 @endsection
 
 @section('before-header')
@@ -52,15 +79,10 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Cancel Plan?</label><br />
-                        <label for="cancel_plan_no">
-                            <input id="options_cancel_plan_no" class="form-control" type="checkbox" name="cancel_plan_no" style="display: none;" />
-                            <img width="130px" height="72px" src="{{ asset('img/forms/no_button.png') }}" style="vertical-align: middle;" />
-                        </label>
-                        <div style="vertical-align: middle; font-size: 150px; line-height: 1; display: inline-block;">/</div>
-                        <label for="cancel_plan_no">
-                            <input id="options_cancel_plan_yes" class="form-control" type="checkbox" name="cancel_plan_yes" style="display: none;" />
-                            <img width="130px" height="72px" src="{{ asset('img/forms/yes_button.png') }}" style="vertical-align: middle;" />
+                        Chancel Plan?<br />
+                        <input id="options_cancel_plan" class="form-control" type="checkbox" name="cancel_plan" style="display: none;" />
+                        <label for="options_cancel_plan" class="checkbox-image">
+                            <img height="70" src="{{ asset('img/my-account/no-button.png') }}" style="vertical-align: middle; visibility: hidden;" />
                         </label>
                     </div>
                     <div class="form-group">
@@ -76,8 +98,11 @@
             </div>
         </div>
     </div>
+<<<<<<< Updated upstream
 @endsection()
 
 @section('script')
     <script type="text/javascript" src="{{ URL::asset('js/show-hide-password.js') }}"></script>
+=======
+>>>>>>> Stashed changes
 @endsection

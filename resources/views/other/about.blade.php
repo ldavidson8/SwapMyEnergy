@@ -6,34 +6,32 @@
     <style>
         .map-responsive
         {
-            overflow:hidden;
-            padding-bottom:56.25%;
-            position:relative;
-            height:0;
+            overflow: hidden;
+            padding-bottom: 56.25%;
+            position: relative;
+            height: 0;
             max-width: 100%;
         }
 
         .map-responsive iframe
         {
-            left:0;
-            top:0;
-            height:100%;
-            width:100%;
-            position:absolute;
-
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            position: absolute;
         }
 
         @media (min-width: 992px)
         {
             .resp-iframe-lg 
             {
-            position: absolute;
-            top: 0;
-            left: 40;
-            width: 600px;
-            height: 450px;
-            border: 0;
-
+                position: absolute;
+                top: 0;
+                left: 40;
+                width: 600px;
+                height: 450px;
+                border: 0;
             }
         }
     </style>
@@ -68,17 +66,17 @@
                 </div>
             </div>
             <div class="col-2 d-lg-none d-block"></div>
-            <div class="col-2 d-lg-none d-block"></div>
-            <div class="col-xl-6 col-lg-6 col-md-8 no-padding center-content">
+            <div class="col-2 d-md-none d-block"></div>
+            <div class="col-xl-6 col-lg-6 col-md-12 no-padding center-content">
                 <div class="map-responsive">
-                <iframe width="600" height="450" style="border:0;" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=18%20fox%20street%2C%20preston&key=AIzaSyCSV5ZAUwOLQdr8mz_ALHB5f1q-OlM00EI" align="center" width="100%"></iframe>
+                    <iframe width="600" height="450" style="border:0;" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=18%20fox%20street%2C%20preston&key=AIzaSyCSV5ZAUwOLQdr8mz_ALHB5f1q-OlM00EI" align="center" width="100%"></iframe>
                 </div>
             </div>
-            <div class="col-2 d-block d-lg-none"></div>
+            <div class="col-2 d-md-none d-block"></div>
         </div>
     </div>
     <div class="d-flex flex-column background-image-preston-behind" style="height: 30vw; min-height: 300px;">
-        <div class="row flex-grow-1 background-image-preston background-image-bottom" sytle="align-content: center;">
+        <div class="row flex-grow-1 background-image-preston background-image-bottom preload" sytle="align-content: center;">
             <div class="center-content" style="width: 600px; max-width: 100%; text-align: center">
                 <p style="font-weight: bold; font-size: 30px; color: #f3f2f1;">Need Help?</p>
                 <a href="{{ route("$mode.support") }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             

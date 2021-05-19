@@ -20,17 +20,20 @@
 
     <!-- Bootstrap Stylesheet -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <!-- Our Stylesheet -->
+
+    <!-- Our Stylesheets -->
     <link rel="stylesheet" href="{{ asset('css/site.css') }}" />
+    
+    <link rel="preload" href="{{ asset('css/site.preload.css') }}" as="style" onload="this.onload = null; this.rel = 'stylesheet';" />
+    <noscript><link rel="stylesheet" href="{{ asset('css/site.preload.css') }}"></noscript>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     @yield('stylesheets')
     
     <!-- Bootstrap Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
-    <!-- Our Scripts -->
-    <script src="{{ asset('js/site.js') }}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer="true"></script>
+    <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js" defer="true"></script>
 
 </head>
 <body class="{{ $mode }}">
@@ -38,21 +41,24 @@
 
     <header>
         <a href="{{ ($mode == 'business') ? route('residential.home') : route('business.home') }}" class="mode-switch"></a>
-        <a href="{{ ($mode == 'business') ? route('residential.home') : route('business.home') }}">
-            <div class="logo-svg mode-switch" width="auto" style="position: relative;">
-                <img src="{{ asset('img/header/logo_text.svg') }}" style="position: absolute; left: 8px; top: 0px; width: 85px;" />
+        
+        <div class="logo-svg" width="auto" style="position: relative;">
+            <a href="{{ route("$mode.home") }}">
+                <img alt="Swap My Energy Logo" src="{{ asset('img/header/logo_text.svg') }}" style="position: absolute; left: 8px; top: 0px; width: 85px;" />
+            </a>
+            <a href="{{ ($mode == 'business') ? route('residential.home') : route('business.home') }}" class="mode-switch">
                 <svg viewBox="142.99 202.403 191.238 88" xmlns="http://www.w3.org/2000/svg" width="43" height="20" style="position: absolute; left: 9px; top: 34px; width: 43px;"><defs><clipPath id="clip1"><path d="M 5.8125 147 L 197.0625 147 L 197.0625 236 L 5.8125 236 Z M 5.8125 147 "/></clipPath></defs><g clip-path="url(#clip1)" clip-rule="nonzero" transform="matrix(1, 0, 0, 1, 137.169662, 55.277882)"><path class="header-switch-animation-item header-switch-switch" style="stroke: none; fill-rule: nonzero; fill-opacity: 1;" d="M 49.644531 235.125 L 153.234375 235.125 C 177.136719 235.125 197.058594 215.527344 197.058594 191.125 C 197.058594 167.125 177.535156 147.125 153.234375 147.125 L 49.644531 147.125 C 25.742188 147.125 5.820312 166.726562 5.820312 191.125 C 5.820312 215.527344 25.34375 235.125 49.644531 235.125 Z M 49.644531 235.125 "/></g></svg>
-                <img class="header-switch-animation-item header-switch-1-shadow-left" src="{{ asset('img/header/logo_shadow_left.svg') }}" />
-                <img class="header-switch-animation-item header-switch-1-shadow-right" src="{{ asset('img/header/logo_shadow_right.svg') }}" />
-                <img class="header-switch-animation-item header-switch-1-slider" src="{{ asset('img/header/logo_slider.svg') }}" />
-            </div>
-        </a>
+                <img alt="Logo Left Shadow" class="header-switch-animation-item header-switch-1-shadow-left" src="{{ asset('img/header/logo_shadow_left.svg') }}" />
+                <img alt="Logo Right Shadow" class="header-switch-animation-item header-switch-1-shadow-right" src="{{ asset('img/header/logo_shadow_right.svg') }}" />
+                <img alt="Logo Slider" class="header-switch-animation-item header-switch-1-slider" src="{{ asset('img/header/logo_slider.svg') }}" />
+            </a>
+        </div>
         <a href="{{ ($mode == 'business') ? route('residential.home') : route('business.home') }}">
             <div class="mode-switch float-right logo-svg mode-switch" width="auto" style="position: relative; margin: 0px; height: 100px;">
                 <svg viewBox="142.99 202.403 191.238 88" xmlns="http://www.w3.org/2000/svg" width="55" height="25" style="position: absolute; left: 10px; top: 38px; width: 55px;"><defs><clipPath id="clip1"><path d="M 5.8125 147 L 197.0625 147 L 197.0625 236 L 5.8125 236 Z M 5.8125 147 "/></clipPath></defs><g clip-path="url(#clip1)" clip-rule="nonzero" transform="matrix(1, 0, 0, 1, 137.169662, 55.277882)"><path class="header-switch-animation-item header-switch-switch" style="stroke: none; fill-rule: nonzero; fill-opacity: 1;" d="M 49.644531 235.125 L 153.234375 235.125 C 177.136719 235.125 197.058594 215.527344 197.058594 191.125 C 197.058594 167.125 177.535156 147.125 153.234375 147.125 L 49.644531 147.125 C 25.742188 147.125 5.820312 166.726562 5.820312 191.125 C 5.820312 215.527344 25.34375 235.125 49.644531 235.125 Z M 49.644531 235.125 "/></g></svg>
-                <img class="header-switch-animation-item header-switch-2-shadow-left" src="{{ asset('img/header/logo_shadow_left.svg') }}" />
-                <img class="header-switch-animation-item header-switch-2-shadow-right" src="{{ asset('img/header/logo_shadow_right.svg') }}" />
-                <img class="header-switch-animation-item header-switch-2-slider" src="{{ asset('img/header/logo_slider.svg') }}" />
+                <img alt="Logo Left Shadow" class="header-switch-animation-item header-switch-2-shadow-left" src="{{ asset('img/header/logo_shadow_left.svg') }}" />
+                <img alt="Logo Right Shadow" class="header-switch-animation-item header-switch-2-shadow-right" src="{{ asset('img/header/logo_shadow_right.svg') }}" />
+                <img alt="Logo Slider" class="header-switch-animation-item header-switch-2-slider" src="{{ asset('img/header/logo_slider.svg') }}" />
             </div>
             <div class="mode-switch switch-text float-right center-text">
                 Switch to<br />
@@ -67,8 +73,9 @@
 
     @include('partials.foooter')
     
+    <!-- Scripts -->
     @yield('script')
-    <script src="{{ asset('js/site.js') }}"></script>
+    <script src="{{ asset('js/site.js') }}" defer="true"></script>
 
 </body>
 </html>

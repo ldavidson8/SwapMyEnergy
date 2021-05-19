@@ -126,7 +126,7 @@
     </div>
     <hr style="border-color: #00c2cb;" />
     <div class="background-image-preston-behind">
-        <div id="support" class="full-size container-fluid d-flex h-100 flex-column font-color-white background-image-preston background-image-bottom">
+        <div id="support" class="full-size container-fluid d-flex h-100 flex-column font-color-white background-image-preston background-image-bottom preload">
             <h1 style="text-align: center"> Support </h1>
             <div class="row flex-grow-1 align-items-center padding-20px">
                 <div class="center-content" style="width: 600px; max-width: 100%;">
@@ -136,7 +136,7 @@
                             <img width="80px" height="80px" src="{{ asset('img/support icons/cogs.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
-                        <form id="formPartnerApply">
+                        <form id="formSupport" action="{{ route("$mode.support") }}">
                             <div class="form-group">
                                 <label for="fullName">Full Name *</label>
                                 <input type="text" class="form-control" id="fullName" required />
@@ -154,7 +154,7 @@
                                 <label for="supportIssue">Issue</label>
                                 <textarea id="supportIssue" class="form-control" name="supportIssue" rows="3"></textarea>
                             </div>
-                            <button type="button" class="small-white-button" style='float: right;'> Submit </button>
+                            <button type="submit" class="small-white-button" style='float: right;'> Submit </button>
                         </form>
                     </div>
                 </div>
@@ -165,7 +165,7 @@
 
 @section('script')
     <script>
-        $(function()
+        document.body.onload = function()
         {
             var phoneNumberError = document.getElementById("phoneNumberError");
             document.getElementById("formSupport").onsubmit = function (e)
@@ -182,6 +182,6 @@
                     phoneNumberError.innerHTML = "";
                 }
             }
-        });
+        };
     </script>
 @endsection
