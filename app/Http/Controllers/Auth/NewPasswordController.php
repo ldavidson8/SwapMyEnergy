@@ -17,9 +17,12 @@ class NewPasswordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function create(Request $request)
+    public function create(Request $request, $token, $email)
     {
-        return view('auth.reset-password', [ 'request' => $request ]);
+        if ($token == null || $email == null) return redirect() -> route('home');
+
+        $page_title = 'Reset Password - Swap My Energy';
+        return view('auth.reset-password', compact('request', 'page_title', 'token', 'email')); 
     }
 
     /**
@@ -32,7 +35,7 @@ class NewPasswordController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $request -> validate([
             'token' => 'required',
             'email' => 'required|email',
             'password' => 'required|string|confirmed|min:8',
@@ -57,8 +60,7 @@ class NewPasswordController extends Controller
         // the application's home authenticated view. If there is an error we can
         // redirect them back to where they came from with their error message.
         return $status == Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+            ? redirect()->route('home')->with('status', __($status))
+            : back()->withInput($request->only('email'))->withErrors(['email' => __($status)]);
     }
 }

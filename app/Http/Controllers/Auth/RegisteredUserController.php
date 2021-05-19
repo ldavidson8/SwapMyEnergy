@@ -23,7 +23,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request -> password_confirmation != $request -> password) return redirect() -> back() -> withErrors([ 'password' => 'Both passwords must match' ]);
+        if ($request -> password_confirmation != $request -> password) return redirect() -> back() -> withInput() -> withErrors([ 'password' => 'Both passwords must match' ]);
 
         $request->validate([
             'name' => 'required|string|max:255',

@@ -57,7 +57,7 @@ class ResidentialAccountController extends Controller
         $password = $request -> input('password');
         if (!Auth::validate([ 'email' => $email, 'password' => $password ]))
         {
-            return redirect() -> back() -> withErrors([ 'password' => 'Invalid Password.' ]);
+            return redirect() -> back() -> withInput() -> withErrors([ 'password' => 'Invalid Password.' ]);
         }
         
         $data = [];

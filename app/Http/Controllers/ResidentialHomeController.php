@@ -55,7 +55,7 @@ class ResidentialHomeController extends Controller
     public function supportPost(Request $request)
     {
         // TODO: handle the request object
-        return redirect() -> back();
+        return redirect() -> back() -> withInput();
     }
     
     public function partnersAndAffiliates(Request $request)

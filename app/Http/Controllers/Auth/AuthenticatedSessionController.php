@@ -38,7 +38,7 @@ class AuthenticatedSessionController extends Controller
         }
 
         $request->session()->flash('message-login', 'The login credentials are incorrect.');
-        return back();
+        return back()->withInput();
     }
 
     /**

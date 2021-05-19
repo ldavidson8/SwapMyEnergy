@@ -95,11 +95,8 @@
             </div>
         </div>
     </div>
-<<<<<<< Updated upstream
 @endsection()
 
 @section('script')
-    <script type="text/javascript" src="{{ URL::asset('js/show-hide-password.js') }}"></script>
-=======
->>>>>>> Stashed changes
+    <script type="text/javascript" src="{{ URL::asset('js/show-hide-password.js') }}" defer="true"></script>
 @endsection

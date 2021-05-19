@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ForgotPassword;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class PasswordResetLinkController extends Controller
 {
@@ -16,7 +21,9 @@ class PasswordResetLinkController extends Controller
      */
     public function create(Request $request)
     {
-        return view('auth.forgot-password', [ 'request' => $request, 'page_title' => 'Forgot Password' ]);
+        $success = $request -> session() -> get('success', false);
+        $page_title = 'Forgot Password';
+        return view('auth.forgot-password', compact('request', 'page_title', 'success'));
     }
 
     /**
@@ -29,27 +36,37 @@ class PasswordResetLinkController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-        ]);
+        $request->validate([ 'email' => 'required|email' ]);
 
-        $users = DB::table('users') -> select('email') -> where('email', $request -> input('email'));
-        if ($users == null || count($users) == 0)
+        // $status = Password::sendResetLink(
+        //     $request->only('email')
+        // );
+    
+        // return $status === Password::RESET_LINK_SENT ? back()->with(['status' => __($status)]) : back()->withErrors(['email' => __($status)]);
+
+        $email = $request -> input('email');
+
+        $user = DB::table('users') -> where('email', $email) -> select() -> first();
+        if ($user == null)
         {
-            return redirect() -> route('passwords.sent');
+            return redirect() -> back() -> withInput() -> witherrors([ 'email' => 'That email does not exist' ]);
         }
 
-        // We will send the password reset link to this user. Once we have attempted
-        // to send the link, we will examine the response then see the message we
-        // need to show to the user. Finally, we'll send out a proper response.
-        
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
+        $token = STR::random(60);
+        DB::table('password_resets')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
 
-        return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+        try
+        {
+            Mail::to($email) -> queue(new ForgotPassword($user, $token));
+            return redirect() -> back() -> with('success', true);
+        }
+        catch (Exception $ex)
+        {
+            return redirect() -> back() -> withErrors([ '' => 'Failed to send the email try again later.' ]);
+        }
     }
 }

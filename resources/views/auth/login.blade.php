@@ -63,6 +63,7 @@
                                     {{-- TODO: uncomment when email system works <br/>
                                     <a class="pull-right" href="{{ route('password.request') }}">Forgot Your Password?</a> --}}
                                 </div>
+                                <p><a href="{{ route('password.request') }}">Forgot Password?</a></p>
                             </form>
                         </div>
                     </div>
