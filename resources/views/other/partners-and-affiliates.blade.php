@@ -7,11 +7,13 @@
             padding: 30px;
             margin: auto;
             width: 19%;
+            height: 150px;
         }
 
         img.gallery-logo {
             display: inline-block;
             max-width: 100%;
+            max-height: 100%;
         }
 
 
@@ -137,16 +139,16 @@
 @section('main-content')
     <hr />
     <div class="container-fluid background-image-market background-image-opacity-35" style="text-align: center;">
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/tradeenergygrants_light.png') }}" width="200" height="auto" /></div>
+        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/partner-logos/TEG.png') }}" width="200" height="auto"/></div>
+        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/british-gas.svg') }}" width="200" height="auto" /></div>
+        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/edf.svg') }}" width="200" height="auto" /></div>
+        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/scottish-power.svg') }}" width="200" height="auto" /></div>
+        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/ecotricity.svg') }}" width="200" height="auto" /></div>
+        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/eon.svg') }}" width="200" height="auto" /></div>
+        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/ovo.svg') }}" width="200" height="auto" /></div>
+        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/partner-logos/SSE.png') }}" width="200" height="auto" /></div>
+        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/partner-logos/shell-energy.png') }}" width="200" height="auto" /></div>
+        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/partner-logos/your-business-energy.png') }}" width="200" height="auto" /></div>
     </div>
 
     <hr />

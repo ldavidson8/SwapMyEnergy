@@ -13,7 +13,7 @@
         {
             position: relative;
             overflow: hidden;
-            display:inline-block;
+            display: inline-block;
         }
 
         .upload-btn-wrapper input[type=file]
@@ -23,6 +23,13 @@
             left: 0;
             top: 0;
             opacity: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .upload-btn-wrapper label
+        {
+            margin-bottom: 0px;
         }
 
         .upload-btn 
@@ -32,8 +39,37 @@
             padding: 10px;
             font-size: 27px;
             font-weight: bold;
-            
         }
+
+
+        .logos-container
+        {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-align: center;
+            min-height: 300px;
+            display: inline;
+        }
+
+        .logos-item-outer
+        {
+            width: 200px;
+            height: 100px;
+            max-width: 100%;
+            text-align: center;
+            display: inline-block;
+            margin: 20px;
+        }
+
+        .logos-item
+        {
+            max-height: 100%;
+            margin: auto;
+            width: auto;
+            max-width: 100%;
+        }
+
 
         @media (max-width: 767px)
         {
@@ -64,8 +100,8 @@
                 <p>Your business is important to you, so let us help
                     you find a better energy deal for your business.</p>
                 <div class="upload-btn-wrapper">
-                    <button class="big-blue-button"> Upload your bills </button>
-                    <input type="file" name="bills-upload" />
+                    <label for="bills-upload"><button class="big-blue-button"> Upload your bills </button></label>
+                    <input type="file" id="bills-upload" name="bills-upload" />
                 </div>
                 <p style="padding-top: "> or request a callback </p>
                 <form class="form-black" action="">
@@ -76,48 +112,57 @@
                         <input type="text" class="form-control larger-form" id="phoneNumber" name="tel-national" placeholder="Contact Number" required />
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control larger-form" id="email" name="email" placeholder="Email (optional)" required />
+                        <input type="text" class="form-control larger-form" id="email" name="email" placeholder="Email (optional)" />
                     </div>
                     <button type="submit" class="big-blue-button">Call Me</button>
                 </form>
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 col-12 d-md-flex d-none center-content" style="min-height: 300px;">
-                {{-- <div class="align-items-center">
-                    <p style="text-align: center"> 
-                        Love Energy <br>
-                        Assured Energy <br>
-                    </p>
-                    <p style="text-align: center"> 
-                        My Account <br>
-                        Savings based on facts, not estimates
-                    </p>
-                </div> --}}
-            </div>
+            <div class="col-xl-6 col-lg-5 col-md-2 col-12 d-md-flex d-none center-content" style="min-height: 300px;"></div>
         </div>
     </div>
     <hr/>
-    <div id="HowItWorks" class="full-size-50 container-fluid d-flex flex-column">
-        <div class="row flex-grow-1 no-padding" style="background-color: #f3f2f1;">
-            <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left;">
-                <div>
-                    <h2> How it works </h2>
-                    <p style="padding-top: 15px">Other energy brokers promise false savings based on their estimates, which can fall short of your actual usage, which can result in steep final bills and hassle that you just don't need. Our savings are calculated based on the unit price, which means that a lower unit price plan will result in savings for you or some room for more brews or a new TV to binge-watch Netflix on. </p>
-                </div>
+    <div class="full-size-40 container-fluid d-flex flex-column">
+        <div class="row flex-grow-1">
+            <div class="col-12 center-content" style="text-align: center;">
+                <h2 style="padding-top: 30px;"> Our Suppliers</h2>
+                <ul class="logos-container">
+                    <li class="logos-item-outer">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.svg') }}">
+                    </li>
+                    <li class="logos-item-outer">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/edf.svg') }}">
+                    </li>
+                    <li class="logos-item-outer">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.svg') }}">
+                    </li>
+                    <li class="logos-item-outer">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/ecotricity.svg') }}">
+                    </li>
+                    <li class="logos-item-outer">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/eon.svg') }}">
+                    </li>
+                    <li class="logos-item-outer">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.svg') }}">
+                    </li>
+                </ul>
+            <p> Plus more </p>
             </div>
-            <div class="col-2 d-lg-none d-block"></div>
-            <div class="col-2 d-lg-none d-block"></div>
-            <div class="col-xl-6 col-lg-5 col-md-8 no-padding center-content">
-                <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="100%" height="200" />
-            </div>
-            <div class="col-2 col-lg-1 d-block"></div>
         </div>
     </div>
+      
     <div class="full-size-50 container-fluid d-flex flex-column background-image-preston-behind">
-        <div class="row flex-grow-1 padding-20px background-image-preston background-image-bottom preload center-content">
-            <div class="align-items-center" style="width: 600px; max-width: 100%; text-align: center;">
-                <p style="color: #f3f2f1;">Geoff "saved" £100 on his energy bill with another energy broker only to find out he had hidden fees to pay at the end of the year.</p>
-                <p style="font-weight: bold; font-size: 35px; color: #f3f2f1;">Sound familiar?</p>
+        <div class="row flex-grow-1 padding-20px background-image-preston background-image-bottom preload">
+            <div class="col-12 col-lg-6 center-content">
+                <div style="max-width: 100%; text-align: center;">
+                    <p style="color: #f3f2f1; font-size: 50px;">Want us to do the heavy lifting?</p>
+                    <p style="color: #f3f2f1;">You can upload your bill and we'll do the rest</p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 center-content" style="text-align: center;">
+                <div class="upload-btn-wrapper">
+                    <label for="bills-upload"><button class="big-blue-button">Upload</button></label>
+                    <input type="file" id="bills-upload" name="bills-upload" />
+                </div>
             </div>
         </div>
     </div>

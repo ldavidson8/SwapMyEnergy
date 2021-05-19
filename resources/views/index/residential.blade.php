@@ -82,6 +82,14 @@
                 opacity: 0;
             }
         }
+
+        @media (max-width: 991px)
+        {
+            .bottom-padding-image-md
+            {
+                padding-bottom: 30px !important;
+            }
+        }
     </style>
 @endsection
 
@@ -114,10 +122,10 @@
             </div>
             <div class="col-2 d-lg-none d-block"></div>
             <div class="col-2 d-lg-none d-block"></div>
-            <div class="col-xl-6 col-lg-5 col-md-8 no-padding center-content">
-                <img class="gallery-logo" src="{{ asset('img/bluesquare.png') }}" width="100%" height="200" />
+            <div class="col-xl-6 col-lg-5 col-md-8 center-content text-center">
+                <img class="bottom-padding-image-md" src="{{ asset('img/usage-graph.png') }}" />
             </div>
-            <div class="col-2 col-lg-1 d-block"></div>
+            <div class="col-2 col-lg-1 col-md-2 d-block"></div>
         </div>
     </div>
     <div class="full-size-50 container-fluid d-flex flex-column background-image-preston-behind">
