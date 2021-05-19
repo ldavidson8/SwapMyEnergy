@@ -63,10 +63,10 @@
             color: #202020;
         }
 
-        .custom-select
+        /* .custom-select
         {
             background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='white' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
-        }
+        } */
 
         @media (min-width: 1364px)
         {

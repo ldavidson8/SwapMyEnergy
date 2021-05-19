@@ -2,84 +2,50 @@
 
 @section('stylesheets')
     <style>
-        #section01
+        .larger-form
+        {
+            display:inline-block;
+            padding: 25px 15px;
+            line-height: 130%;
+        }
+
+        .upload-btn-wrapper
         {
             position: relative;
+            overflow: hidden;
+            display:inline-block;
         }
 
-        #scroll-down-link
+        .upload-btn-wrapper input[type=file]
         {
+            font-size: 100px;
             position: absolute;
-            bottom: 80px;
-            left: 50%;
-            z-index: 2;
-            display: inline-block;
-            -webkit-transform: translateX(0, -50%);
-            transform: translateX(-50%);
-            color: #202020;
-            font: normal 400 20px/1 'Josefin Sans', sans-serif;
-            letter-spacing: .1em;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-        #scroll-down-link:hover
-        {
-            opacity: 0.5;
-        }
-        #section01 #scroll-down-link
-        {
-            padding-top: 70px;
-        }
-        #section01 #scroll-down-link span
-        {
-            position: absolute;
-            top: 80px;
-            left: 50%;
-            width: 24px;
-            height: 24px;
-            margin-left: -12px;
-            border-left: 1px solid #202020;
-            border-bottom: 1px solid #202020;
-            -webkit-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-            -webkit-animation: sdb05 3s infinite;
-            animation: sdb05 3s infinite;
-            box-sizing: border-box;
+            left: 0;
+            top: 0;
+            opacity: 0;
         }
 
-        @-webkit-keyframes sdb05
+        .upload-btn 
         {
-            0%
-            {
-                -webkit-transform: rotate(-45deg) translate(0, 0);
-                opacity: 0;
-            }
-            50%
-            {
-                opacity: 1;
-            }
-            100%
-            {
-                -webkit-transform: rotate(-45deg) translate(-20px, 20px);
-                opacity: 0;
-            }
+            width: 250px;
+            border-radius: 12px;
+            padding: 10px;
+            font-size: 27px;
+            font-weight: bold;
+            
         }
-        @keyframes sdb05
+
+        @media (max-width: 767px)
         {
-            0%
+            .background-image-non-moblie { background-color: #f3f2f1; }
+            .background-image-non-moblie::before { background-image: none !important; }
+        }
+
+        @media (max-width: 500px)
+        {
+            .border-bottom-sm
             {
-                transform: rotate(-45deg) translate(0, 0);
-                opacity: 0;
-            }
-            50%
-            {
-                opacity: 1;
-            }
-            100%
-            {
-                transform: rotate(-45deg) translate(-20px, 20px);
-                opacity: 0;
+                border-bottom: 3px solid #202020;
             }
         }
     </style>
@@ -91,14 +57,41 @@
 
 @section('main-content')
         <hr/>
-        <div class="row flex-grow-1 no-padding background-image-docks">
+        <div class="row flex-grow-1 no-padding background-image-preston background-image-non-moblie border-bottom-sm align-items-center">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content">
                 <h1>Empower your business to overcome rising energy prices</h1>
-                <p>Too many energy brokers promise savings that don’t stick. These promises are made on estimates, which aren’t always respective of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you deserve when it comes to your bills.</p>
+                <p>Your business is important to you, so let us help
+                    you find a better energy deal for your business.</p>
+                <div class="upload-btn-wrapper">
+                    <button class="big-blue-button"> Upload your bills </button>
+                    <input type="file" name="bills-upload" />
+                </div>
+                <p style="padding-top: "> or request a callback </p>
+                <form class="form-black" action="">
+                    <div class="form-group">
+                        <input type="text" class="form-control larger-form" id="fullName" name="fullName" placeholder="Full Name" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control larger-form" id="phoneNumber" name="tel-national" placeholder="Contact Number" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control larger-form" id="email" name="email" placeholder="Email (optional)" required />
+                    </div>
+                    <button type="submit" class="big-blue-button">Call Me</button>
+                </form>
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block">
-                <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
+            <div class="col-xl-6 col-lg-5 col-md-2 col-12 d-md-flex d-none center-content" style="min-height: 300px;">
+                {{-- <div class="align-items-center">
+                    <p style="text-align: center"> 
+                        Love Energy <br>
+                        Assured Energy <br>
+                    </p>
+                    <p style="text-align: center"> 
+                        My Account <br>
+                        Savings based on facts, not estimates
+                    </p>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -128,7 +121,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid d-flex flex-column">
+    {{-- <div class="container-fluid d-flex flex-column">
         <div class="row flex-grow-1 no-padding">
             <div class="col-12 left-column-content-no-padding align-items-center" style="text-align: left;">
                 <div class="faq padding-20px">
@@ -161,7 +154,7 @@
                 <a href="{{ route('residential.support') }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection
 
 @section('script')
