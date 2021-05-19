@@ -10,10 +10,7 @@
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/my-account.css') }}" />
-<<<<<<< Updated upstream
     <link rel="stylesheet" href="{{ asset('css/password.css') }}" />
-=======
->>>>>>> Stashed changes
 
     <style>
         label.checkbox-image
