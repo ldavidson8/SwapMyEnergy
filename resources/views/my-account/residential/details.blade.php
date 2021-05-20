@@ -85,11 +85,11 @@
                 <form method="post" action="{{ route("$mode.my account.details") }}" class="form-black">
                     @csrf
                     <div class="form-group">
-                        <label for="full_name">Full Name *</label>
+                        <label for="full_name">Full Name <span class="text-danger">*</span></label>
                         <input id="form_full_name" class="form-control" type="text" name="full_name" value="{{ $user_name }}" required />
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address *</label>
+                        <label for="email">Email Address <span class="text-danger">*</span></label>
                         <input id="form_email" class="form-control" type="email" name="email" value="{{ $user_email }}" required />
                     </div>
                     <div class="form-group">
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password">Enter your existing password to save *</label>
+                        <label for="password">Enter your existing password to save <span class="text-danger">*</span></label>
                         <div class="has-float-label pass_show">
                             <input id="form_password" class="form-control" type="password" name="password" required />
                         </div>

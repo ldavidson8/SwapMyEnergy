@@ -138,15 +138,15 @@
                         @include('media.dashed-white-line')
                         <form id="formSupport" action="{{ route("$mode.support") }}">
                             <div class="form-group">
-                                <label for="fullName">Full Name *</label>
+                                <label for="fullName">Full Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="fullName" required />
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Address *</label>
+                                <label for="email">Email Address <span class="text-danger">*</span></label>
                                 <input type="email" class="form-control" id="email" required />
                             </div>
                             <div class="form-group">
-                                <label for="phoneNumber">Contact Number *</label>
+                                <label for="phoneNumber">Contact Number <span class="text-danger">*</span></label>
                                 <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
                                 <input type="text" class="form-control" id="phoneNumber" required />
                             </div>

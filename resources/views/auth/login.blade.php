@@ -43,11 +43,11 @@
                                 {{ csrf_field() }}
 
                                 <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <label for="email">Email Address *</label>
+                                    <label for="email">Email Address <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control" placeholder=" " name="email" value="{{ old('email') }}" autofocus required />
                                 </div>
                                 <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <label for="password">Password *</label>
+                                    <label for="password">Password <span class="text-danger">*</span></label>
                                     <div class="has-float-label pass_show">
                                         <input type="password" class="form-control" name="password" placeholder=" " autocomplete="off" required />
                                     </div>
@@ -92,21 +92,21 @@
                                 {{ csrf_field() }}
                                 
                                 <div class="form-group">
-                                    <label for="email">Full Name *</span></label>
+                                    <label for="email">Full Name <span class="text-danger">*</span></label>
                                     <input id="register_name" type="text" class="form-control" placeholder="Name" name="name" value="{{ old('name') }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email Address *</span></label>
+                                    <label for="email">Email Address <span class="text-danger">*</span></label>
                                     <input id="register_email" type="email" class="form-control" placeholder="Email Address" name="email" value="{{ old('email') }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Password *</span></label>
+                                    <label for="email">Password <span class="text-danger">*</span></label>
                                     <div class="has-float-label pass_show">
                                         <input id="register_password" type="password" class="form-control" name="password" autocomplete="off" placeholder=" " oninput="check_pass();" required />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Confirm Password *</span></label>
+                                    <label for="email">Confirm Password <span class="text-danger">*</span></label>
                                     <div class="has-float-label pass_show">
                                         <input id="register_password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder=" " autocomplete="off" oninput="check_pass();" required />
                                     </div>

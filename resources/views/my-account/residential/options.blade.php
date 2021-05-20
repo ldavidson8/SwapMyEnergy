@@ -83,7 +83,7 @@
                         </label>
                     </div>
                     <div class="form-group">
-                        <label for="confirm_password">Insert Password to confirm *</label>
+                        <label for="confirm_password">Insert Password to confirm <span class="text-danger">*</span></label>
                         <div class="has-float-label pass_show">
                             <input id="options_confirm_password" class="form-control" type="password" name="confirm_password" required />
                         </div>
