@@ -109,3 +109,25 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
 
 Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show']) -> middleware('auth') -> name('password.confirm');
 Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']) -> middleware('auth') -> name('password.confirm');
+
+
+
+
+
+
+
+
+
+
+// test pages
+
+Route::get('/test/observer', function ()
+{
+    return view('test.observer-api');
+}) -> name('test.observer-api');
+
+Route::get('/test/page-load', function ()
+{
+    return view('test.page-load');
+}) -> name('test.page-load');
+

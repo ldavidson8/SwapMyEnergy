@@ -234,6 +234,11 @@ footer
     font-weight: 700;
 }
 
+a:focus
+{
+    outline: 1px solid orange;
+}
+
 
 
 table#footer-links

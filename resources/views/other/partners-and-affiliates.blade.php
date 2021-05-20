@@ -314,8 +314,8 @@
                     phoneNumberError.innerHTML = "";
                 }
             }
-        });
+        };
     </script>
 
-    <script defer="true" src="https://kit.fontawesome.com/6e2d0444fe.js" crossorigin="anonymous"></script>
+    {{-- <script defer="true" src="https://kit.fontawesome.com/6e2d0444fe.js" crossorigin="anonymous"></script> --}}
 @endsection

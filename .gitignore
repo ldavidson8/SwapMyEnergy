@@ -11,3 +11,11 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+resources/views/test/observer-api.blade.php
+public/img/test/Iglesia_de_Nuestra_Señora_de_La_Blanca,_Cardejón,_España,_2012-09-01,_DD_02.jpg
+public/img/test/Monasterio_Khor_Virap,_Armenia,_2016-10-01,_DD_25 (1).jpg
+public/img/test/Monasterio_Khor_Virap,_Armenia,_2016-10-01,_DD_25.jpg
+public/img/test/pexels-andré-cook-131723.jpg
+public/img/test/pexels-gabriela-palai-507410.jpg
+public/img/test/pexels-pixabay-462162.jpg
+resources/views/test/page-load.blade.php

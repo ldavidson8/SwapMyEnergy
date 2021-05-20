@@ -67,7 +67,7 @@
                     <div class="contact-us-blue-box-inner">
                         <div style="position: relative;">
                             <h2> Call Us </h2>
-                            <img width="80px" height="80px" src="{{ asset('img/support icons/phone.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
+                            <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/phone.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center;">
@@ -84,7 +84,7 @@
                     <div class="contact-us-blue-box-inner">
                         <div style="position: relative;">
                             <h2> Email Us </h2>
-                            <img width="80px" height="80px" src="{{ asset('img/support icons/email.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
+                            <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/email.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center;">
@@ -103,7 +103,7 @@
                     <div class="contact-us-blue-box-inner">
                         <div style="position: relative;">
                             <h2> Message Us </h2>
-                            <img width="80px" height="80px" src="{{ asset('img/support icons/chat.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
+                            <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/chat.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center;">
@@ -133,7 +133,7 @@
                     <div class="contact-us-blue-box-inner" style='content: ""; clear: both; display: table;'>
                         <div style="position: relative;">
                             <h2 style="padding-right: 90px;"> Raise Support Issue</h2>
-                            <img width="80px" height="80px" src="{{ asset('img/support icons/cogs.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
+                            <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/cogs.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
                         <form id="formSupport" action="{{ route("$mode.support") }}">

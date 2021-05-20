@@ -123,7 +123,7 @@
             <div class="col-2 d-lg-none d-block"></div>
             <div class="col-2 d-lg-none d-block"></div>
             <div class="col-xl-6 col-lg-5 col-md-12 center-content text-center">
-                <img class="bottom-padding-image-md" src="{{ asset('img/usage-graph.png') }}" style="width: auto; max-width: 100%; height: auto;" />
+                <img class="bottom-padding-image-md" src="{{ asset('img/usage-graph.png') }}" style="width: auto; max-width: 100%; height: auto;" alt="Graph comparing your actual energy usage to current estimated usage from other energy brokers" />
             </div>
             <div class="col-2 col-lg-1 col-md-2 d-block"></div>
         </div>
