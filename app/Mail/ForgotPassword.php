@@ -37,8 +37,6 @@ class ForgotPassword extends Mailable
 
         $link = route('password.reset', compact('token', 'user'));
         $params = compact($link, $user);
-        return $this
-            -> view('_emails.auth.forgot-password', $params)
-            -> text('_emails.auth.forgot-password', $params);
+        return $this -> view('_emails.auth.forgot-password', $params) -> text('_emails.auth.forgot-password-text', $params);
     }
 }

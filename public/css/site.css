@@ -366,6 +366,13 @@ h3, h5, h6
     -webkit-text-fill-color: #f3f2f1;
 }
 
+.form-error-message
+{
+    font-size: 15px;
+    color: red;
+    font-weight: normal;
+}
+
 .big-blue-button, .square-blue-button, input[type=submit], input[type=button], input[type=reset]
 {
     background-color: #00d2db !important;

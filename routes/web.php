@@ -37,6 +37,8 @@ Route::group([ 'prefix' => 'business' ], function()
     Route::get('support', [ BusinessHomeController::class, 'support' ]) -> name('business.support');
     Route::get('partners-and-affiliates', [ BusinessHomeController::class, 'partnersAndAffiliates' ]) -> name('business.partners and affiliates');
 
+    Route::post('request-callback', [ BusinessContactController::class, 'requestCallback' ]) -> name('business.request callback');
+
     Route::group([ 'prefix' => 'my-account', 'middleware' => 'business' ], function()
     {
         Route::get('/', [ BusinessAccountController::class, 'myAccount' ]) -> name('business.my account') -> middleware('password.confirm');
