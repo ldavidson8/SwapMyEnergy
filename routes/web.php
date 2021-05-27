@@ -113,10 +113,12 @@ Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show']) 
 Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']) -> middleware('auth') -> name('password.confirm');
 
 
+// Energy query
 
-
-
-
+Route::get('/energy-query/energy-form', function ()
+{
+    return view('energy-query.energy-form');
+}) -> name('energy-query.energy-form');
 
 
 
