@@ -106,7 +106,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address (optional)</label>
-                        <input type="email" class="form-control tall-form-control" id="email" name="email" placeholder="Email (optional)" />
+                        <input type="email" class="form-control tall-form-control" id="email" name="email_address" placeholder="Email (optional)" />
                     </div>
                     <button type="submit" class="big-blue-button">Call Me</button>
                 </form>
