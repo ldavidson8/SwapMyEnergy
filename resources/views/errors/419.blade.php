@@ -1,5 +1,5 @@
 <?php
-    $page_title = 'Too Many Requests';
+    $page_title = 'Page Expired';
 ?>
 @extends('layouts.master')
 
