@@ -14,72 +14,112 @@ use Illuminate\Support\Facades\Validator;
 
 class BusinessContactController extends Controller
 {
-    public function requestCallback(Request $request)
+    public function requestCallbackPost(Request $request)
     {
-        // truncate the tables for testing purposes
-        DB::select('TRUNCATE TABLE `callback_requests`');
-        DB::select('TRUNCATE TABLE `callback_request_file_uploads`');
+        $successFlags = 0;
 
         // form validation
+        // TODO: restrict file extensions like exe, bat, etc.
         Validator::validate($request -> only([ 'full_name', 'phone_number' ]),
         [
             'full_name' => 'required',
             'phone_number' => 'required'
         ]);
-
+        
         if ($request -> has('email_address') && $request -> input('email_address') != "")
         {
-            //Validator::validate($request -> only(['email_address']), ['email_address' => 'email|unique:App\Models\User,email']);
             Validator::validate($request -> only(['email_address']), ['email_address' => 'email']);
         }
         
 
         // save form details to the database
-        $data = 
-        [
-            'full_name' => $request -> input('full_name'),
-            'phone_number' => $request -> input('phone_number')
-        ];
-        if ($request -> has('email_address')) $data['email_address'] = $request -> input('email_address');
-        $callbackRequest = new CallbackRequests($data);
-        $callbackRequest -> save();
-        
-        
-        // save file uploads to the database
-        if ($request -> hasFile('billsUpload'))
-        {
-            foreach ($request -> billsUpload as $upload)
-            {
-                $filename = $upload -> store('uploaded-bills');
-                $callbackRequestFileUpload = new CallbackRequestFileUploads(
-                    [
-                        'file_upload_id' => $callbackRequest -> id,
-                        'filename' => $filename
-                    ]
-                );
-                $callbackRequestFileUpload -> save();
-            }
-        }
-
-        return response() -> json(DB::select(
-            'SELECT * FROM `callback_requests` as cr INNER JOIN `callback_request_file_uploads` as crfu WHERE cr.id = crfu.file_upload_id AND cr.id=?',
-            [ $callbackRequest -> id ]
-        ));
-
-        $to_email = env('MAIL_CONTACT_TO_ADDRESS');
-        
         try
         {
-            // TODO: send email
-            //Mail::to($to_email) -> queue(new BusinessRequestCallback());
-            //return redirect() -> back() -> with('success', true);
+            $data = 
+            [
+                'full_name' => $request -> input('full_name'),
+                'phone_number' => $request -> input('phone_number')
+            ];
+            if ($request -> has('email_address')) $data['email_address'] = $request -> input('email_address');
+            $callbackRequest = new CallbackRequests($data);
+            $callbackRequest -> save();
+
+            $successFlags |= 1;
         }
         catch (Exception $ex)
         {
             // TODO: add error logging
-            //return redirect() -> back() -> withErrors([ '' => 'Failed to send the email try again later.' ]);
+            throw $ex;
+        }
+        
+        
+        // save file uploads to the database
+        $fileUploads = [];
+        if ($request -> hasFile('billsUpload'))
+        {
+            try
+            {
+                foreach ($request -> billsUpload as $upload)
+                {
+                    $filename = $upload -> store('uploaded-bills');
+                    $callbackRequestFileUpload = new CallbackRequestFileUploads(
+                        [
+                            'file_upload_id' => $callbackRequest -> id,
+                            'filename' => $filename
+                        ]
+                    );
+                    $callbackRequestFileUpload -> save();
+                    $fileUploads[] = $callbackRequestFileUpload;
+                }
+
+                $successFlags |= 2;
+            }
+            catch (Exception $ex)
+            {
+                // TODO: add error logging
+                throw $ex;
+            }
+        }
+        
+        // --- SQL query to test that the database was updated successfully ---
+        // return response() -> json(DB::select(
+        //     'SELECT * FROM `callback_requests` as cr INNER JOIN `callback_request_file_uploads` as crfu WHERE cr.id = crfu.file_upload_id AND cr.id=?',
+        //     [ $callbackRequest -> id ]
+        // ));
+
+        try
+        {
+            // TODO: send email
+            $to_email = env('MAIL_CONTACT_TO_ADDRESS');
+            Mail::to($to_email) -> queue(new BusinessRequestCallback($data, $fileUploads));
+
+            $successFlags |= 4;
+        }
+        catch (Exception $ex)
+        {
+            // TODO: add error logging
+            throw $ex;
         }
 
-        // TODO: redirect
+
+        if ($successFlags | 7 == 7)
+        {
+            // TODO: make delete files successfully
+            // TODO: also delete from database or remove filename from record
+            foreach ($fileUploads as $file)
+            {
+                Storage::delete(storage_path('app\\' . $file -> filename));
+            }
+            return redirect() -> route('business.request callback.success');
+        }
+
+
+        // TODO: redirect based on $successFlags
+        return $successFlags;
+    }
+
+    public function requestCallbackSuccess()
+    {
+        return view('request-callback.success');
     }
 }

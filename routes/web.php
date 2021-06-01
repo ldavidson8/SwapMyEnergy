@@ -18,13 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function(Request $request)
 {
-    if ($request -> session() -> get('mode') == 'business')
+    if ($request -> session() -> get('mode') == 'residential')
     {
-        return redirect() -> route('business.home');
+        return redirect() -> route('residential.home');
     }
     else
     {
-        return redirect() -> route('residential.home');
+        return redirect() -> route('business.home');
     }
 }) -> name('home');
 
@@ -37,7 +37,11 @@ Route::group([ 'prefix' => 'business' ], function()
     Route::get('support', [ BusinessHomeController::class, 'support' ]) -> name('business.support');
     Route::get('partners-and-affiliates', [ BusinessHomeController::class, 'partnersAndAffiliates' ]) -> name('business.partners and affiliates');
 
-    Route::post('request-callback', [ BusinessContactController::class, 'requestCallback' ]) -> name('business.request callback');
+    Route::group([ 'prefix' => 'request-callback' ], function()
+    {
+        Route::post('/', [ BusinessContactController::class, 'requestCallbackPost' ]) -> name('business.request callback');
+        Route::get('success', [ BusinessContactController::class, 'requestCallbackSuccess' ]) -> name('business.request callback.success');
+    });
 
     Route::group([ 'prefix' => 'my-account', 'middleware' => 'business' ], function()
     {

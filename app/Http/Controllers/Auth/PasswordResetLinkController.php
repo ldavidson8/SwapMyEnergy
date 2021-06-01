@@ -58,7 +58,7 @@ class PasswordResetLinkController extends Controller
             'token' => $token,
             'created_at' => Carbon::now()
         ]);
-
+        
         try
         {
             Mail::to($email) -> queue(new ForgotPassword($user, $token));

@@ -61,10 +61,11 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" class="btn btn-block btn-lg" value="Sign in" />
-                                    {{-- TODO: uncomment when email system works <br/>
-                                    <a class="pull-right" href="{{ route('password.request') }}">Forgot Your Password?</a> --}}
                                 </div>
-                                <p><a href="{{ route('password.request') }}">Forgot Password?</a></p>
+                                {{--
+                                    TODO: uncomment when working
+                                    <p><a href="{{ route('password.request') }}">Forgot YourPassword?</a></p>
+                                --}}
                             </form>
                         </div>
                     </div>
