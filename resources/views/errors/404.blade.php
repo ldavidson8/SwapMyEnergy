@@ -27,7 +27,7 @@
                 <br />
                 <br />
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block" style="background-image: url(https://media.istockphoto.com/vectors/broken-light-bulb-vector-flat-icon-vector-id664676934?k=6&m=664676934&s=612x612&w=0&h=w7hEuWvC_c2tFvrndQtf9a-fGnV_iSksuzIX3O0K5cI=); background-repeat: no-repeat; background-position: center; background-size: center;"></div>
+            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block" style="background-image: url(); background-repeat: no-repeat; background-position: center; background-size: center;"></div>
         </div>
     </div>
     <style>

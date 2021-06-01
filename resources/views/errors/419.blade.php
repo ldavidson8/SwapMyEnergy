@@ -20,7 +20,7 @@
                 <br />
                 <br />
                 <div style="display: flex; justify-content: center; align-items: center;">
-                   <p><a href="{{ route("$mode.home") }}"><button class="big-blue-button" style="width: 300px; font-size: 23px;">Refresh</button></a></p>
+                   <p><a href="{{ route("$mode.home") }}"><button class="big-blue-button" style="width: 300px; font-size: 23px;">Home</button></a></p>
                    @if ($exception -> getMessage() != '')
                    <h2>{{ $exception -> getMessage() }}</h2>
                    @endif
