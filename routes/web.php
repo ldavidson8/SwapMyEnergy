@@ -66,6 +66,11 @@ Route::group([ 'prefix' => 'residential' ], function()
         Route::get('options', [ ResidentialAccountController::class, 'yourOptions' ]) -> name('residential.my account.options') -> middleware('password.confirm');
         Route::post('options', [ ResidentialAccountController::class, 'yourOptionsPost' ]) -> name('residential.my account.options') -> middleware('password.confirm');
     });
+
+    Route::group([ 'prefix' => 'energy-comparison' ], function()
+    {
+        Route::get('/', [ ResidentialComparisonController::class, 'index' ]) -> name('residential.energy-comparison');
+    });
 });
 
 
