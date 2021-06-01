@@ -16,6 +16,7 @@
 @endsection
 
 @section('main-content')
+    <hr />
     <main class="col-md-12">
         <div class="container">
             <h1 style="text-align: center;">Login or Register</h1>
