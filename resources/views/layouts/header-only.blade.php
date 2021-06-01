@@ -17,23 +17,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
-
+    
     <!-- Bootstrap Stylesheet -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
 
     <!-- Our Stylesheets -->
     <link rel="stylesheet" href="{{ asset('css/site.css') }}" />
     
-    <link rel="preload" href="{{ asset('css/site.preload.css') }}" as="style" onload="this.onload = null; this.rel = 'stylesheet';" />
-    <noscript><link rel="stylesheet" href="{{ asset('css/site.preload.css') }}"></noscript>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    @yield('stylesheets')
-    
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer="true"></script>
 
+    @yield('stylesheets')
 </head>
 <body class="{{ $mode }}">
     @yield('before-header')
@@ -65,15 +59,10 @@
                 Mode
             </div>
         </a>
-        @include('partials.navbar')
     </header>
 
     @yield('main-content')
-
-    @include('partials.foooter')
     
-    <!-- Scripts -->
-    @yield('script')
     <script src="{{ asset('js/site.js') }}" defer="true"></script>
 
 </body>

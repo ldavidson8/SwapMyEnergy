@@ -123,15 +123,15 @@ Route::get('/energy-query/energy-form', function ()
 
 
 
-// test pages
+// // test pages
 
-Route::get('/test/observer', function ()
-{
-    return view('test.observer-api');
-}) -> name('test.observer-api');
+// Route::get('/test/observer', function ()
+// {
+//     return view('test.observer-api');
+// }) -> name('test.observer-api');
 
-Route::get('/test/page-load', function ()
-{
-    return view('test.page-load');
-}) -> name('test.page-load');
+// Route::get('/test/page-load', function ()
+// {
+//     return view('test.page-load');
+// }) -> name('test.page-load');
 

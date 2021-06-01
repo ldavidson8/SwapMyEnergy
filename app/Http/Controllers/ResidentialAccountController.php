@@ -11,6 +11,7 @@ class ResidentialAccountController extends Controller
 {
     public function myAccount(Request $request)
     {
+        return redirect() -> route('residential.home');
         $navbar_page = 'my account';
         $page_title = 'My Account';
         $user = Auth::user();
@@ -20,6 +21,7 @@ class ResidentialAccountController extends Controller
 
     public function yourPlan(Request $request)
     {
+        return redirect() -> route('residential.home');
         $navbar_page = 'my account';
         $page_title = 'Plan - My Account';
         $user = Auth::user();
@@ -28,6 +30,7 @@ class ResidentialAccountController extends Controller
     
     public function yourPlanPost(Request $request)
     {
+        return redirect() -> route('residential.home');
         // TODO: handle form post
 
         return redirect() -> route('residential.my account');
@@ -36,6 +39,7 @@ class ResidentialAccountController extends Controller
 
     public function yourDetails(Request $request)
     {
+        return redirect() -> route('residential.home');
         $navbar_page = 'my account';
         $page_title = 'Details - My Account';
         $user = Auth::user();
@@ -44,6 +48,7 @@ class ResidentialAccountController extends Controller
     
     public function yourDetailsPost(Request $request)
     {
+        return redirect() -> route('residential.home');
         $validatedData = $request -> validate([
             'full_name' => 'required',
             'email' => 'required|email',
@@ -74,6 +79,7 @@ class ResidentialAccountController extends Controller
 
     public function yourOptions(Request $request)
     {
+        return redirect() -> route('residential.home');
         $navbar_page = 'my account';
         $page_title = 'Options - My Account';
         $user = Auth::user();
@@ -82,6 +88,7 @@ class ResidentialAccountController extends Controller
     
     public function yourOptionsPost(Request $request)
     {
+        return redirect() -> route('residential.home');
         // TODO: handle form post
 
         return redirect() -> route('residential.my account');
