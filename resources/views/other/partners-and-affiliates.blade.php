@@ -159,12 +159,10 @@
                 <div class="col-sm-6 col-12 border-right-sm border-bottom-sm section-padding" style="text-align: right;">
                     <h2> Your Benefits </h2>
                     <ul style="line-height: 1.2;">
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
-                        <li>Incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation.
-                        </li>
-                        <li>Ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit.
-                        </li>
-                        <li>In voluptate velit esse cillum dolore eu fugiat nullapariatur. Excepteur sint occaecat cupidatate.</li>
+                        <li>Promotion opportunities across our social channels and website</li>
+                        <li>Earn for when you help switch customers with us</li>
+                        <li>Potential collaboration opportunities upon discussion with ourselves</li>
+                        <li>And more when you get in touch</li>
                     </ul>
                 </div>
                 <div class="col-sm-6 col-12 join-our-family section-padding">
@@ -184,10 +182,10 @@
                     <div class="col-sm-6 col-12 border-right-sm border-bottom-sm section-padding" style="text-align: right;">
                         <h2> Your Benefits </h2>
                         <ul style="line-height: 1.2;">
-                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
-                            <li>Incididunt ut labore et dolore magna aliqua. Utenim ad minim veniam, quis nostrud exercitation.</li>
-                            <li>Ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit.</li>
-                            <li>In voluptate velit esse cillum dolore eu fugiat nullapariatur. Excepteur sint occaecat cupidatate.</li>
+                            <li>Earn for when you help switch customers with us</li>
+                            <li>Affiliate showcases</li>
+                            <li>Potential collaboration opportunities upon discussion with ourselves</li>
+                            <li>And more when you get in touch</li>
                         </ul>
                     </div>
                     <div class="col-sm-6 col-12 join-our-family section-padding">

@@ -62,7 +62,8 @@
             <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left; background-color: transparent;">
                 <div>
                     <h2> Our home </h2>
-                    <p style="padding-top: 15px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                    <p style="padding-top: 15px;">Preston is in our blood, savings are in our heart.</p>
+                    <p style="font-weight: normal;"> Swap My Energy, operated by Znergi Ltd, is run right from the heart of Preston, with our home situated just off Fishergate. We have a small, but passionate team who are dedicated to providing you with the best possible deals for your energy.
                 </div>
             </div>
             <div class="col-2 d-lg-none d-block"></div>
