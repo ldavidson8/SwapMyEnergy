@@ -27,7 +27,7 @@
                 </div>
                 <br />
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block" style="background-image: url(); background-repeat: no-repeat; background-position: center; background-size: cover;"></div>
+            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block" style="background-image: url(https://i.postimg.cc/PfYVk0Rg/401.png); background-repeat: no-repeat; background-position: center; background-size: 700px;"></div>
         </div>
     </div>
     <style>
@@ -38,4 +38,3 @@
     }
     </style>
 @endsection
-

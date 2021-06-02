@@ -28,7 +28,7 @@
                 <br />
                 <br />
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block"></div>
+            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block" style="background-image: url(https://i.postimg.cc/dVTb8Rrc/429.png); background-repeat: no-repeat; background-position: center; background-size: 600px;"></div>
         </div>
     </div>
     <style>
