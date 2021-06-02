@@ -6,8 +6,10 @@ use App\Mail\BusinessRequestCallback;
 use App\Models\CallbackRequests;
 use App\Models\CallbackRequestFileUploads;
 use Exception;
+use Throwable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -17,6 +19,10 @@ class BusinessContactController extends Controller
     public function requestCallbackPost(Request $request)
     {
         $successFlags = 0;
+
+        Log::channel('request-callback') -> info('');
+        Log::channel('request-callback') -> info('');
+        Log::channel('request-callback') -> info('');
 
         // form validation
         // TODO: restrict file extensions like exe, bat, etc.
@@ -30,9 +36,10 @@ class BusinessContactController extends Controller
         {
             Validator::validate($request -> only(['email_address']), ['email_address' => 'email']);
         }
+        Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Validated Successfully', [ 'successFlags' => $successFlags ]);
         
 
-        // save form details to the database
+        // try catch 1 - save form details to the database
         try
         {
             $data = 
@@ -45,15 +52,16 @@ class BusinessContactController extends Controller
             $callbackRequest -> save();
 
             $successFlags |= 1;
+            Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Saved form fields to the database', [ 'successFlags' => $successFlags ]);
         }
-        catch (Exception $ex)
+        catch (Throwable $th)
         {
-            // TODO: add error logging
-            throw $ex;
+            report($th);
+            Log::channel('request-callback') -> error('BusinessContactController -> requestCallbackPost(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
         }
         
         
-        // save file uploads to the database
+        // try catch 2 - save file uploads to the database
         $fileUploads = [];
         if ($request -> hasFile('billsUpload'))
         {
@@ -73,53 +81,108 @@ class BusinessContactController extends Controller
                 }
 
                 $successFlags |= 2;
+                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Saved file upload details to the database', [ 'successFlags' => $successFlags ]);
             }
-            catch (Exception $ex)
+            catch (Throwable $th)
             {
-                // TODO: add error logging
-                throw $ex;
+                report($th);
+                Log::channel('request-callback') -> error('BusinessContactController -> requestCallbackPost(), try catch 2, Error saving file upload details to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
             }
         }
         
-        // --- SQL query to test that the database was updated successfully ---
-        // return response() -> json(DB::select(
-        //     'SELECT * FROM `callback_requests` as cr INNER JOIN `callback_request_file_uploads` as crfu WHERE cr.id = crfu.file_upload_id AND cr.id=?',
-        //     [ $callbackRequest -> id ]
-        // ));
-
+        // try catch 3 - send email
         try
         {
-            // TODO: send email
-            $to_email = env('MAIL_CONTACT_TO_ADDRESS');
+            $to_email = [ env('MAIL_TO_ADDRESS') ];
             Mail::to($to_email) -> queue(new BusinessRequestCallback($data, $fileUploads));
 
             $successFlags |= 4;
+            Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Sent email containing the callback request', [ 'successFlags' => $successFlags ]);
         }
-        catch (Exception $ex)
+        catch (Throwable $th)
         {
-            // TODO: add error logging
-            throw $ex;
-        }
-
-
-        if ($successFlags | 7 == 7)
-        {
-            // TODO: make delete files successfully
-            // TODO: also delete from database or remove filename from record
-            foreach ($fileUploads as $file)
-            {
-                Storage::delete(storage_path('app\\' . $file -> filename));
-            }
-            return redirect() -> route('business.request callback.success');
+            report($th);
+            Log::channel('request-callback') -> error('BusinessContactController -> requestCallbackPost(), try catch 3, Error sending email containing the callback request  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
         }
 
 
         // TODO: redirect based on $successFlags
-        return $successFlags;
+        switch ($successFlags)
+        {
+            case 7:
+                // try catch 4 delete files
+                try
+                {
+                    // TODO: make delete files successfully and delete from database or remove filename from record
+                    foreach ($fileUploads as $file)
+                    {
+                        Storage::delete(storage_path('app/' . $file -> filename));
+                    }
+                }
+                catch (\Throwable $th)
+                {
+                    report($th);
+                    Log::channel('request-callback') -> error('BusinessContactController -> requestCallbackPost(), try catch 4, Error deleting uploaded bills  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
+                }
+
+                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request Success with attachments', [ 'successFlags' => $successFlags ]);
+                return redirect() -> route('business.request callback.success');
+            case 6:
+                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request Success with attachments, database query 1 fail', [ 'successFlags' => $successFlags ]);
+                return redirect() -> route('business.request callback.success');
+            case 5:
+                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request Success no attachments', [ 'successFlags' => $successFlags ]);
+                return redirect() -> route('business.request callback.success');
+            case 4:
+                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request Success no attachments, database query fails', [ 'successFlags' => $successFlags ]);
+                return redirect() -> route('business.request callback.success');
+            case 3:
+                // TODO: send email
+
+                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request database only', [ 'successFlags' => $successFlags ]);
+                abort(500);
+                return redirect() -> route('business.request callback.success');
+            case 2:
+                // TODO: send email
+
+                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request database query 2 only', [ 'successFlags' => $successFlags ]);
+                abort(500);
+                return redirect() -> route('business.request callback.success');
+            case 1:
+                // TODO: send email
+
+                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request database query 1 only', [ 'successFlags' => $successFlags ]);
+                abort(500);
+                return redirect() -> route('business.request callback.success');
+            case 0:
+            default:
+                //TODO: send email?
+                
+                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request full fail', [ 'successFlags' => $successFlags ]);
+                abort(500);
+                return redirect() -> route('business.request callback.success');
+        }
+
+        abort(500);
     }
 
     public function requestCallbackSuccess()
     {
         return view('request-callback.success');
     }
+
+    // TODO: use this to get client ip address for logging
+    // public function getIp(){
+    //     foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key){
+    //         if (array_key_exists($key, $_SERVER) === true){
+    //             foreach (explode(',', $_SERVER[$key]) as $ip){
+    //                 $ip = trim($ip); // just to be safe
+    //                 if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false){
+    //                     return $ip;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     return request()->ip(); // it will return server ip when no client ip found
+    // }
 }

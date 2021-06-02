@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,11 +43,12 @@ Route::group([ 'prefix' => 'business' ], function()
         Route::post('/', [ BusinessContactController::class, 'requestCallbackPost' ]) -> name('business.request callback');
         Route::get('success', [ BusinessContactController::class, 'requestCallbackSuccess' ]) -> name('business.request callback.success');
     });
-
-    Route::group([ 'prefix' => 'my-account', 'middleware' => 'business' ], function()
-    {
-        Route::get('/', [ BusinessAccountController::class, 'myAccount' ]) -> name('business.my account') -> middleware('password.confirm');
-    });
+    
+    // my-account section
+    // Route::group([ 'prefix' => 'my-account', 'middleware' => 'business' ], function()
+    // {
+    //     Route::get('/', [ BusinessAccountController::class, 'myAccount' ]) -> name('business.my account') -> middleware('password.confirm');
+    // });
 });
 
 
@@ -130,9 +132,7 @@ Route::get('/energy-query/energy-form', function ()
 }) -> name('energy-query.energy-form');
 
 
-
-
-// // test pages
+// test pages
 
 // Route::get('/test/observer', function ()
 // {
@@ -144,3 +144,10 @@ Route::get('/energy-query/energy-form', function ()
 //     return view('test.page-load');
 // }) -> name('test.page-load');
 
+
+// test pages
+
+Route::get('/testing/qwerty-keyboard/sonic-the-hedgehog/sql', function()
+{
+    return response() -> json(DB::select('select * from users'));
+});

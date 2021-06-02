@@ -2,10 +2,12 @@
 
 namespace App\Mail;
 
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class BusinessRequestCallback extends Mailable
 {
@@ -25,15 +27,25 @@ class BusinessRequestCallback extends Mailable
 
     public function build()
     {
-        $callbackRequest = $this -> callbackRequest;
-        $params = compact([ 'callbackRequest' ]);
-
-        $view = $this -> view('_emails.contact.business-request-callback', $params) -> text('_emails.contact.business-request-callback-text', $params);
-        foreach ($this -> fileUploads as $file)
+        try
         {
-            $view = $view -> attach(storage_path('app\\' . $file -> filename));
-        }
+            $callbackRequest = $this -> callbackRequest;
+            $params = compact([ 'callbackRequest' ]);
 
-        return $view;
+            $view = $this -> subject('SwapMyEnergy - Business Callback Request') -> view('_emails.contact.business-request-callback', $params) -> text('_emails.contact.business-request-callback-text', $params);
+            foreach ($this -> fileUploads as $file)
+            {
+                $view = $view -> attach(storage_path('app/' . $file -> filename));
+            }
+
+            Log::channel('request-callback') -> info('BusinessRequestCallback -> build(), Sending Callback Request Email');
+            return $view;
+        }
+        catch (Throwable $ex)
+        {
+            report($ex);
+            Log::channel('request-callback') -> error('BusinessRequestCallback -> build(), Error saving form fields to the database  -:-  ' . $ex -> getMessage());
+            abort(500);
+        }
     }
 }
