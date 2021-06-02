@@ -14,6 +14,11 @@
             background-color: #f1f2f3;
     }
 
+    .form-padding-50
+    {
+        padding: 50px;
+    }
+
     #registration_form fieldset:not(:first-of-type) 
     {
         display: none;
@@ -40,6 +45,7 @@
     .paragraph-margin
     {
         font-size: 28px;
+        margin-top: 20px;   
     }
 
     .submit
@@ -141,8 +147,8 @@
     
     .swiper-container 
     {
-        width: 90%;
-        height: 175px;
+        width: 100%;
+        height: 190px;
         margin: 1em 0 40px 40px;
     }
 
@@ -189,7 +195,27 @@
         bottom: 0;
         right: 0;
     }
-    
+
+    @media (max-width: 919px)
+    {
+        .btn-group label 
+        {
+            display: inline-block;
+            background-color: #ddd;
+            padding: 30px 50px;
+            font-size: 28px;
+            border: 2px solid #444;
+            border-radius: 4px;
+            margin: 0 30px 30px 0px;
+        }
+    }
+    @media (max-width: 400px)
+    {
+        .form-mobile-no-padding
+        {
+            padding: 0px;
+        }
+    }
 </style>
 @endsection
 
@@ -201,10 +227,10 @@
 
 @section('main-content')
 <hr />
-    <form action="" method="POST" id="registration_form" style="padding: 50px">
+    <form action="" method="POST" id="registration_form" class="form-padding-50 form-mobile-no-padding">
         <fieldset class="col-12 col-lg-4 col-md-6 center-content" style="margin-top: 250px; ">
             <label style="font-size: 24px;"> Enter your postcode to begin... 
-                <input type="text" style="height: 50px;">
+                <input type="text" class="form-control" style="height: 50px;">
             </label>
                 <button class="square-white-button" style="display: inline-block" type="button">Search</button> 
                 <select id="House-number" class="form-control" style="margin-top: 10px; height: 55px;"required>
@@ -216,7 +242,7 @@
             <input type="button" name="password" class="next button-margin-top" value="CONTINUE"/>
         </fieldset>
 
-        <fieldset>
+        <fieldset class="col-sm-12">
             <p class="paragraph-margin"> What are you looking to compare? </p>
             <div class="btn-group flex-wrap" role="group">
                 <input type="radio" class="radio-hidden" name="gas-electric-radio" id="Gas&Electric" autocomplete="off" checked>
@@ -385,7 +411,7 @@
                 </div>
             <div class="form-group">
                 <label for="currentTariff" style="font-weight: 700; font-size: 28px">What is the name of your current tariff? </label>
-                <select name="currentTariff" id="currentTariff" class="form-control" style="width: 20%;" >
+                <select name="currentTariff" id="currentTariff" class="form-control" style="width: 250px;" >
                     <option value="" disabled selected hidden></option>
                     <option value="Other"> Not listed / Not sure</option>
                     <option value="EON">E. ON</option>
@@ -395,14 +421,14 @@
             </div>
             <p class="paragraph-margin"> Your Usage </p>
             <div class="inline-form">
-                    <label for="usageAmount"> I use </label>
-                    <input type="number" pattern="[0-9]*" id="usageAmount" />
-                    <label for="usageAmountPer"> kWh per </label>
-                    <select name="usageAmountPer" id="usageAmountPer" class="form-control">
-                        <option value="Month"> Month </option>
-                        <option value="Quarter"> Quarter </option>
-                        <option value="Year"> Year </option>
-                    </select>
+                <label for="usageAmount"> I use </label>
+                <input type="number" pattern="[0-9]*" id="usageAmount" />
+                <label for="usageAmountPer"> kWh per </label>
+                <select name="usageAmountPer" id="usageAmountPer" class="form-control">
+                    <option value="Month"> Month </option>
+                    <option value="Quarter"> Quarter </option>
+                    <option value="Year"> Year </option>
+                </select>
             </div>
 
 
