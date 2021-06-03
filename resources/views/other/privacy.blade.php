@@ -6,10 +6,20 @@
     {
         font-weight: bold;
     }
-    body
+
+    p
     {
-        font-weight: normal;
+    font-weight: normal;
+    line-height: 1;  
     }
+
+    h2
+    {
+    background: #00C2CB;
+    font-size: 28px;
+    padding: 10px;
+    }
+    
     .indented-list
     {
         margin: 20px 0;

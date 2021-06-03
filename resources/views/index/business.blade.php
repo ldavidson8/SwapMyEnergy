@@ -78,7 +78,7 @@
             .background-image-non-moblie { background-color: #f3f2f1; }
             .background-image-non-moblie::before { background-image: none !important; }
         }
-        @media (max-width: 1119px)
+        @media (max-width: 991px)
         {
             .background-mobile-white 
             { 
@@ -96,8 +96,8 @@
         <hr/>
         <div class="row flex-grow-1 no-padding background-image-preston background-image-non-moblie justify-content-center">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content row align-content-center">
-                <div>
+            <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content row align-content-center no-margin">
+                <div style="max-width: 100%;">
                     <div style="text-align: center">
                         <h2 style="max-width: 100%; width: 500px; padding-bottom: 30px; margin: auto;"> It's time to switch to a more cost-effective energy plan for your business! </h2>
                     </div>
@@ -115,7 +115,7 @@
                                 <img src="{{ asset('img/business-homepage/handshake.svg')}}" style="width: 100px;" alt="handshake">
                             </td>
                             <td>
-                                <p style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simple select the option that is most appropriate for your company. We'll always be on hand to help you understander your options. </p>
+                                <p style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simple select the option that is most appropriate for your company. We'll always be on hand to help you understand your options. </p>
                             </td>
                         </tr>
                         <tr>
