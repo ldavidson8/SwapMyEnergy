@@ -27,7 +27,7 @@
                 <br />
                 <br />
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block" style="background-image: url(https://i.postimg.cc/TwGcSRTf/503-2.png); background-repeat: no-repeat; background-position: center; background-size: 650px; opacity: 0.8;"></div>
+            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block" style="background-image: url(https://i.postimg.cc/x1ccTXY6/503.png); background-repeat: no-repeat; background-position: center; background-size: 650px; opacity: 0.8;"></div>
         </div>
     </div>
     <style>
