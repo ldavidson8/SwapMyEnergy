@@ -262,7 +262,7 @@ table#footer-links td
 }
 
 
-.full-size, .full-size-80, .full-size-60, .full-size-50, .full-size-40
+.full-size, .full-size-80, .full-size-60, .full-size-50, .full-size-40, .full-size-30
 {
     padding: 0px;
 }
@@ -290,6 +290,11 @@ table#footer-links td
 .full-size-40
 {
     min-height: 40vh;
+}
+
+.full-size-30
+{
+    min-height: 30vh;
 }
 
 

@@ -22,6 +22,14 @@
             position: absolute;
         }
 
+        /* video 
+        {
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        } */
+
         @media (min-width: 992px)
         {
             .resp-iframe-lg 
@@ -52,7 +60,16 @@
                 The more you use, the more you pay and vice versa. 
                 You may end up paying more but that will only happen because you used more, not because the cost of usage is higher.</p>    
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block"></div>
+            <div class="col-md-2 d-none d-lg-none d-md-block"></div>
+            <div class="col-md-2 d-none d-lg-none d-md-block"></div>
+            <div class="col-xl-6 col-lg-5 col-md-8 d-none d-md-block center-content" style="text-align: center;">
+                {{-- <div id="video"> --}}
+                <video width="800px" height="auto" style="margin: auto; max-width: 100%;" autoplay muted loop>
+                    <source src="{{ asset('media/sme_mute.mp4') }}" />
+                </video>
+                {{-- </div> --}}
+            </div>
+            <div class="col-md-2 d-none d-lg-none d-md-block"></div>
         </div>
     </div>
     <hr/>

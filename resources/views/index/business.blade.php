@@ -206,6 +206,21 @@
             </div>
         </div>
     </div>
+    <div class="full-size-30 container-fluid d-flex flex-column">
+        <div class="row flex-grow-1 padding-20px">
+            <div class="col-12 col-lg-9 center-content">
+                <div style="max-width: 100%;">
+                    <p style="font-size: 24px;"> At Swap My Energy, we pride ourselves on giving businesses of all sizes easy access to the best commerical energy tariffs on the market. With our market leading commerical energy calculator, you can quickly find the best energy prices to make maximum savings on your business gas and electric bills. Our specialist business energy advisors are committed to supporting you throughout the process, from finding the best deal for your business to negotiating with suppliers to ensure your switch runs smoothly.
+                    </p>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3 center-content">
+                <div style="text-align: center;">
+                    <img src={{ asset('img/business-homepage/laptop.png')}}>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')
