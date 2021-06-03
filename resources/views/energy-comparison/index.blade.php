@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('stylesheets')
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}" />
 <style>
     .square-white-button
     {
@@ -14,14 +14,25 @@
             background-color: #f1f2f3;
     }
 
+    .form-padding-50
+    {
+        padding: 50px;
+    }
+
     #registration_form fieldset:not(:first-of-type) 
     {
         display: none;
     } 
 
-    input[type=button] 
+    .button-margin-top
     {
         margin-top: 40px;
+    }
+
+    .scroll-text
+    {
+        float: right;
+        font-size: 20px;
     }
 
     .radio-hidden
@@ -31,9 +42,10 @@
         width: 0;
     }
 
-    h2
+    .paragraph-margin
     {
-        margin: 10px 0 0 1em;
+        font-size: 28px;
+        margin-top: 20px;   
     }
 
     .submit
@@ -77,7 +89,17 @@
         font-size: 28px;
         border: 2px solid #444;
         border-radius: 4px;
-        margin: 30px;
+        margin: 0 30px 30px 30px;
+    }
+
+    .btn-group label:first-of-type 
+    {
+        margin-left: 0; 
+    }
+
+    .btn-group label:last-of-type
+    {
+        margin-right: 0;
     }
 
     .btn-group label:hover 
@@ -98,41 +120,41 @@
         align-items: center;
     }
 
-    .inline-form label 
+    /* .inline-form label 
     {
-        margin: 5px 10px 5px 0;
-    }
+        margin: 5px 10px;
+    } */
 
     .inline-form input 
     {
         vertical-align: middle;
-        margin: 5px 10px 5px 0;
-        padding: 10px;
+        margin: 5px 20px;
+        padding: 10px 5px;
         border: 1px solid #ddd;
     }
     
     .inline-form select 
     {
         width: 200px;
+        margin-left: 20px;
     }
 
     /* Swiperjs stylings */
-    .swiper-slide input:checked + img 
+    .swiper-slide input:checked + *
     {
         background-color: #00d2db;
     }
     
     .swiper-container 
     {
-        width: 90%;
-        height: 175px;
+        width: 100%;
+        height: 190px;
         margin: 1em 0 40px 40px;
-        /* margin-bottom: 40px;
-        margin-top: 1em; */
     }
 
     .swiper-slide 
     {
+        position: relative;
         text-align: center;
         font-size: 18px;
         background-color: white;
@@ -164,6 +186,36 @@
         margin-left: auto;
         margin-right: auto;
     }
+
+    .check-image-background
+    {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    @media (max-width: 919px)
+    {
+        .btn-group label 
+        {
+            display: inline-block;
+            background-color: #ddd;
+            padding: 30px 50px;
+            font-size: 28px;
+            border: 2px solid #444;
+            border-radius: 4px;
+            margin: 0 30px 30px 0px;
+        }
+    }
+    @media (max-width: 400px)
+    {
+        .form-mobile-no-padding
+        {
+            padding: 0px;
+        }
+    }
 </style>
 @endsection
 
@@ -175,10 +227,11 @@
 
 @section('main-content')
 <hr />
-    <form action="" method="POST" id="registration_form">
+    <form action="" method="POST" id="registration_form" class="form-padding-50 form-mobile-no-padding">
         <fieldset class="col-12 col-lg-4 col-md-6 center-content" style="margin-top: 250px; ">
-            <h3 style="font-size: 24px;"> Enter your postcode to begin... </h2>
-                <input type="text" style="height: 50px;">
+            <label style="font-size: 24px;"> Enter your postcode to begin... 
+                <input type="text" class="form-control" style="height: 50px;">
+            </label>
                 <button class="square-white-button" style="display: inline-block" type="button">Search</button> 
                 <select id="House-number" class="form-control" style="margin-top: 10px; height: 55px;"required>
                     <option value="" disabled selected hidden></option>
@@ -186,11 +239,11 @@
                     <option value="ipsum">Ipsum</option>
                     <option value="ipsum">Other</option>
                 </select>
-            <input type="button" name="password" class="next" value="CONTINUE"/>
+            <input type="button" name="password" class="next button-margin-top" value="CONTINUE"/>
         </fieldset>
 
-        <fieldset>
-            <h2> What are you looking to compare? </h2>
+        <fieldset class="col-sm-12">
+            <p class="paragraph-margin"> What are you looking to compare? </p>
             <div class="btn-group flex-wrap" role="group">
                 <input type="radio" class="radio-hidden" name="gas-electric-radio" id="Gas&Electric" autocomplete="off" checked>
                 <label for="Gas&Electric">Gas & Electricity </label>
@@ -201,7 +254,7 @@
             </div>
             
 
-            <h2> Do you have the same supplier for both gas and electricity? </h2>
+            <p class="paragraph-margin"> Do you have the same supplier for both gas and electricity? </p>
             <div class="btn-group flex-wrap" role="group">
                 <input type="radio" class="radio-hidden" name="yes-no-radio" id="optionYes" autocomplete="off" checked>
                 <label for="optionYes"> Yes </label>
@@ -209,111 +262,135 @@
                 <label for="optionNo"> No </label>
             </div>
 
-            <h2> Who is your current gas supplier? </h2>
-            <p class="float-right"> Scroll to see more </p>
+            <p class="paragraph-margin p-clear-right-mobile"> Who is your current gas supplier? <span class="scroll-text"> Scroll to see more </span></p>
             <!-- Swiper -->
             <div class="swiper-container mySwiper">
                 <div class="swiper-wrapper">    
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" id="gasSupplierEon" autocomplete="off">
-                                <img src="{{ asset('img/supplier-logos/eon.svg') }}"/>
+                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" value="eon" id="gasSupplierEon" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/supplier-logos/eon.svg') }}"/>
+                                </div>
                             </label>
                         </div>
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" id="gasSupplierBritishGas" autocomplete="off">
-                                <img src="{{ asset('img/supplier-logos/british-gas.svg') }}"/>
+                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" value="british gas" id="gasSupplierBritishGas" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/supplier-logos/british-gas.svg') }}"/>
+                                </div>
                             </label>
                         </div>
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" id="gasSupplierEdf" autocomplete="off">
-                                <img src="{{ asset('img/supplier-logos/edf.svg') }}"/>
+                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" value="edf" id="gasSupplierEdf" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/supplier-logos/edf.svg') }}"/>
+                                </div>
                             </label>
                         </div>
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" id="gasSupplierOvo" autocomplete="off">
-                                <img src="{{ asset('img/supplier-logos/ovo.svg') }}"/>
+                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" value="ovo" id="gasSupplierOvo" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/supplier-logos/ovo.svg') }}"/>
+                                </div>
                             </label>
                         </div>
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" id="gasSupplierScottishPower" autocomplete="off">
-                                <img src="{{ asset('img/supplier-logos/scottish-power.svg') }}"/>
+                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" value="scottish power" id="gasSupplierScottishPower" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/supplier-logos/scottish-power.svg') }}"/>
+                                </div>
                             </label>
                         </div>
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" id="gasSupplierEcotricity" autocomplete="off">
-                                <img src="{{ asset('img/supplier-logos/ecotricity.svg') }}" style=""/>
+                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" value="ecotricity" id="gasSupplierEcotricity" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/supplier-logos/ecotricity.svg') }}"/>
+                                </div>
                             </label>
                         </div>
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" id="gasSupplierSse" autocomplete="off">
-                                <img src="{{ asset('img/partner-logos/SSE.png') }}"/>
+                                <input type="radio" class="radio-hidden" name="gas-supplier-radio" value="sse" id="gasSupplierSSE" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/partner-logos/SSE.png') }}"/>
+                                </div>
                             </label>
                         </div>
                 </div>
             </div>
         
 
-            <h2> Who is your current electricity supplier? </h2>
-            <p class="float-right"> Scroll to see more </p>
+            <p class="paragraph-margin"> Who is your current electricity supplier? <span class="scroll-text"> Scroll to see more </span></p>
             <!-- Swiper -->
             <div class="swiper-container mySwiper">
                 <div class="swiper-wrapper">    
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierEon" autocomplete="off">
-                                <img src="{{ asset('img/supplier-logos/eon.svg') }}"/>
+                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierEon" value="eon" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/supplier-logos/eon.svg') }}"/>
+                                </div>
                             </label>
                         </div>
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierBritishGas" autocomplete="off" />
-                                <img src="{{ asset('img/supplier-logos/british-gas.svg') }}"/>
+                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierBritishGas" value="british gas" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/supplier-logos/british-gas.svg') }}"/>
+                                </div>
                             </label>
                         </div>
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierEdf" autocomplete="off" >
-                                <img src="{{ asset('img/supplier-logos/edf.svg') }}"/>
+                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierEdf" value="edf" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/supplier-logos/edf.svg') }}"/>
+                                </div>
                             </label>
                         </div>
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierOvo" autocomplete="off" >
-                                <img src="{{ asset('img/supplier-logos/ovo.svg') }}"/>
+                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierOvo" value="ovo" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/supplier-logos/ovo.svg') }}"/>
+                                </div>
                             </label>
                         </div>
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierScottishPower" autocomplete="off" >
-                                <img src="{{ asset('img/supplier-logos/scottish-power.svg') }}"/>
+                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierScottishPower" value="scottish power" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/supplier-logos/scottish-power.svg') }}"/>
+                                </div>
                             </label>
                         </div>
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierEcotricity" autocomplete="off" >
-                                <img src="{{ asset('img/supplier-logos/ecotricity.svg') }}"/>
+                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierEcotricity" value="ecotricity" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/supplier-logos/ecotricity.svg') }}"/>
+                                </div>
                             </label>
                         </div>
                         <div class="swiper-slide">
                             <label>
-                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierSse" autocomplete="off" >
-                                <img src="{{ asset('img/partner-logos/SSE.png') }}"/>
+                                <input type="radio" class="radio-hidden" name="electric-supplier-radio" id="electricSupplierSse" value="sse" autocomplete="off">
+                                <div class="check-image-background">
+                                    <img src="{{ asset('img/partner-logos/SSE.png') }}"/>
+                                </div>
                             </label>
                         </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
         
 
-            <h2> How do you pay for your energy </h2>
+            <p class="paragraph-margin"> How do you pay for your energy? </p>
             <div class="btn-group flex-wrap" role="group">
                 <input type="radio" class="radio-hidden" name="paymentMethodRadio" id="monthlyDirectDebit" autocomplete="off" checked>
                 <label for="monthlyDirectDebit"> Monthly Direct Debit </label>
@@ -325,7 +402,7 @@
                 <label for="prepayment"> Prepayment Meter </label>
             </div>
 
-            <h2> Do you have Economy7? </h2>
+            <p class="paragraph-margin"> Do you have Economy7? </p>
                 <div class="btn-group flex-wrap" role="group">
                     <input type="radio" class="radio-hidden" name="Economy7Radio" id="economy7Yes" autocomplete="off" checked>
                     <label for="economy7Yes"> Yes </label>
@@ -333,8 +410,8 @@
                     <label for="economy7No"> No </label>
                 </div>
             <div class="form-group">
-                <label for="currentTariff" style="margin: 10px 0 0 1em; font-weight: 700; font-size: 2rem;">What is the name of your current tariff? </label>
-                <select name="currentTariff" id="currentTariff" class="form-control" style="width: 20%; margin: 1em 0 0 2em;" >
+                <label for="currentTariff" style="font-weight: 700; font-size: 28px">What is the name of your current tariff? </label>
+                <select name="currentTariff" id="currentTariff" class="form-control" style="width: 250px;" >
                     <option value="" disabled selected hidden></option>
                     <option value="Other"> Not listed / Not sure</option>
                     <option value="EON">E. ON</option>
@@ -342,22 +419,22 @@
                     <option value="ScottishPower"> Scottish Power</option>
                     </select>
             </div>
-            <h2 style="margin-bottom: 1em;"> Your Usage </h2>
+            <p class="paragraph-margin"> Your Usage </p>
             <div class="inline-form">
-                    <label for="usageAmount"> I use </label>
-                    <input type="number" id="usageAmount" />
-                    <label for="usageAmountPer"> kWh per </label>
-                    <select name="usageAmountPer" id="usageAmountPer" class="form-control">
-                        <option value="Month"> Month </option>
-                        <option value="Quarter"> Quarter </option>
-                        <option value="Year"> Year </option>
-                    </select>
+                <label for="usageAmount"> I use </label>
+                <input type="number" pattern="[0-9]*" id="usageAmount" />
+                <label for="usageAmountPer"> kWh per </label>
+                <select name="usageAmountPer" id="usageAmountPer" class="form-control">
+                    <option value="Month"> Month </option>
+                    <option value="Quarter"> Quarter </option>
+                    <option value="Year"> Year </option>
+                </select>
             </div>
 
 
         
-            <input type="button" name="previous" class="previous btn btn-default" value="Previous" />
-            <input type="button" name="submit" class="submit btn btn-success" value="Submit" />
+            <input type="button" name="previous" class="previous btn btn-default button-margin-top" value="Previous" />
+            <input type="submit" name="submit" class="submit btn btn-success button-margin-top" value="Submit" />
         </fieldset>
     </form>
     </div>
@@ -388,7 +465,7 @@ $(document).ready(function(){
 </script>
 
 <!-- Swiper JS -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script type="text/javascript" src="{{ URL::asset('js/swiper-bundle.min.js') }}"></script>
 
 <!-- Initialize Swiper -->
 <script>

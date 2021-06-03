@@ -11,7 +11,9 @@
                 </tr>
                 <tr>
                     <td><a class="footer-link {{ ($navbar_page == "privacy policy") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.privacy policy") }}">Privacy Policy</a></td>
-                    <td><a class="footer-link {{ ($navbar_page == "my account") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.my account") }}">My Account</a></td>
+                    {{-- My Account Page
+                        <td><a class="footer-link {{ ($navbar_page == "my account") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.my account") }}">My Account</a></td>
+                    --}}
                 </tr>
                 <tr>
                     <td><a class="footer-link {{ ($navbar_page == "support") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.support") }}#contact">Contact Us</a></td>

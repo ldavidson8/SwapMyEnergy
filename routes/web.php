@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function(Request $request)
 {
-    if ($request -> session() -> get('mode') == 'business')
+    if ($request -> session() -> get('mode') == 'residential')
     {
-        return redirect() -> route('business.home');
+        return redirect() -> route('residential.home');
     }
     else
     {
-        return redirect() -> route('residential.home');
+        return redirect() -> route('business.home');
     }
 }) -> name('home');
 
@@ -37,12 +38,17 @@ Route::group([ 'prefix' => 'business' ], function()
     Route::get('support', [ BusinessHomeController::class, 'support' ]) -> name('business.support');
     Route::get('partners-and-affiliates', [ BusinessHomeController::class, 'partnersAndAffiliates' ]) -> name('business.partners and affiliates');
 
-    Route::post('request-callback', [ BusinessContactController::class, 'requestCallback' ]) -> name('business.request callback');
-
-    Route::group([ 'prefix' => 'my-account', 'middleware' => 'business' ], function()
+    Route::group([ 'prefix' => 'request-callback' ], function()
     {
-        Route::get('/', [ BusinessAccountController::class, 'myAccount' ]) -> name('business.my account') -> middleware('password.confirm');
+        Route::post('/', [ BusinessContactController::class, 'requestCallbackPost' ]) -> name('business.request callback');
+        Route::get('success', [ BusinessContactController::class, 'requestCallbackSuccess' ]) -> name('business.request callback.success');
     });
+    
+    // my-account section
+    // Route::group([ 'prefix' => 'my-account', 'middleware' => 'business' ], function()
+    // {
+    //     Route::get('/', [ BusinessAccountController::class, 'myAccount' ]) -> name('business.my account') -> middleware('password.confirm');
+    // });
 });
 
 
@@ -126,9 +132,7 @@ Route::get('/energy-query/energy-form', function ()
 }) -> name('energy-query.energy-form');
 
 
-
-
-// // test pages
+// test pages
 
 // Route::get('/test/observer', function ()
 // {
@@ -140,3 +144,10 @@ Route::get('/energy-query/energy-form', function ()
 //     return view('test.page-load');
 // }) -> name('test.page-load');
 
+
+// test pages
+
+Route::get('/testing/qwerty-keyboard/sonic-the-hedgehog/sql', function()
+{
+    return response() -> json(DB::select('select * from users'));
+});

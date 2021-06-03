@@ -35,6 +35,12 @@ return [
     */
 
     'channels' => [
+        'request-callback' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/request-callback.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],
