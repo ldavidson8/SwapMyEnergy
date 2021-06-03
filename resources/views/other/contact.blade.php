@@ -87,7 +87,7 @@
                             <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/email.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
-                        <div style="text-align: center;">
+                        <div style="text-align: center; padding-top: 23px;">
                             <p> Email us and we will aim to get back to you within 24 hours </p>
                             <p style="overflow-wrap: break-word;"> contact@swapmyenergy.co.uk </p>
                             <div class="bottom-aligner"></div>
@@ -106,7 +106,7 @@
                             <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/chat.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
-                        <div style="text-align: center;">
+                        <div style="text-align: center; padding: 29px;">
                             <p style="text-decoration: underline">
                                 Live Hours
                             </p>
@@ -134,27 +134,28 @@
                 <div class="center-content" style="width: 600px; max-width: 100%;">
                     <div class="contact-us-blue-box-inner" style='content: ""; clear: both; display: table;'>
                         <div style="position: relative;">
-                            <h2 style="padding-right: 90px;"> Raise a Support Request</h2>
+                            <h2 style="padding-right: 90px;">Raise A Support Request</h2>
                             <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/cogs.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
-                        <form id="formSupport" action="{{ route("$mode.contact") }}">
+                        <form id="formSupport" action="{{ route("$mode.raise-support-request") }}" method="post">
+                            @csrf
                             <div class="form-group">
-                                <label for="fullName">Full Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="fullName" required />
+                                <label for="full_name">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="full_name" name="full_name" required="required" value="{{ old('full_name') }}" />
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Address <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="email" required />
+                                <label for="email_address">Email Address <span class="text-danger">*</span></label>
+                                <input type="email_address" class="form-control" id="email_address" name="email_address" value="{{ old('email_address') }}" required="required" />
                             </div>
                             <div class="form-group">
-                                <label for="phoneNumber">Contact Number <span class="text-danger">*</span></label>
-                                <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
-                                <input type="text" class="form-control" id="phoneNumber" required />
+                                <label for="phone_number">Contact Number <span class="text-danger">*</span></label>
+                                <p id="phone_number_error" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
+                                <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required="required" />
                             </div>
                             <div class="form-group">
-                                <label for="supportIssue">Issue</label>
-                                <textarea id="supportIssue" class="form-control" name="supportIssue" rows="3"></textarea>
+                                <label for="support_issue">Issue <span class="text-danger">*</span></label>
+                                <textarea id="support_issue" class="form-control" name="support_issue" value="{{ old('support_issue') }}" rows="3" required="required"></textarea>
                             </div>
                             <button type="submit" class="small-white-button" style='float: right;'> Submit </button>
                         </form>
@@ -169,10 +170,10 @@
     <script>
         document.body.onload = function()
         {
-            var phoneNumberError = document.getElementById("phoneNumberError");
+            var phoneNumberError = document.getElementById("phone_number_error");
             document.getElementById("formSupport").onsubmit = function (e)
             {
-                var phoneNumber = document.getElementById("phoneNumber").value;
+                var phoneNumber = document.getElementById("phone_number").value;
 
                 if (phoneNumber.replace(/[^0-9]/g, "").length < 7)
                 {

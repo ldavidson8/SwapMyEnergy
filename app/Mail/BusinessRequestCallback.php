@@ -32,7 +32,7 @@ class BusinessRequestCallback extends Mailable
             $callbackRequest = $this -> callbackRequest;
             $params = compact([ 'callbackRequest' ]);
 
-            $view = $this -> subject('SwapMyEnergy - Business Callback Request') -> view('_emails.contact.business-request-callback', $params) -> text('_emails.contact.business-request-callback-text', $params);
+            $view = $this -> subject('SwapMyEnergy - Business Callback Request') -> view('_emails.contact-forms.business-request-callback', $params) -> text('_emails.contact-forms.business-request-callback-text', $params);
             foreach ($this -> fileUploads as $file)
             {
                 $view = $view -> attach(storage_path('app/' . $file -> filename));
@@ -44,7 +44,7 @@ class BusinessRequestCallback extends Mailable
         catch (Throwable $ex)
         {
             report($ex);
-            Log::channel('request-callback') -> error('BusinessRequestCallback -> build(), Error saving form fields to the database  -:-  ' . $ex -> getMessage());
+            Log::channel('request-callback') -> error('BusinessRequestCallback -> build(), Error Sending Callback Request Email  -:-  ' . $ex -> getMessage());
             abort(500);
         }
     }

@@ -35,6 +35,12 @@ return [
     */
 
     'channels' => [
+        'raise-support-request' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/raise-support-request.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
         'request-callback' => [
             'driver' => 'single',
             'path' => storage_path('logs/request-callback.log'),

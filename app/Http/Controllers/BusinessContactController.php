@@ -126,50 +126,55 @@ class BusinessContactController extends Controller
                 }
 
                 Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request Success with attachments', [ 'successFlags' => $successFlags ]);
-                return redirect() -> route('business.request callback.success');
+                return redirect() -> route('business.request-callback.success');
             case 6:
                 Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request Success with attachments, database query 1 fail', [ 'successFlags' => $successFlags ]);
-                return redirect() -> route('business.request callback.success');
+                return redirect() -> route('business.request-callback.success');
             case 5:
                 Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request Success no attachments', [ 'successFlags' => $successFlags ]);
-                return redirect() -> route('business.request callback.success');
+                return redirect() -> route('business.request-callback.success');
             case 4:
                 Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request Success no attachments, database query fails', [ 'successFlags' => $successFlags ]);
-                return redirect() -> route('business.request callback.success');
+                return redirect() -> route('business.request-callback.success');
             case 3:
-                // TODO: send email
+                // TODO: send backup email
 
                 Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request database only', [ 'successFlags' => $successFlags ]);
-                abort(500);
-                return redirect() -> route('business.request callback.success');
+                return redirect() -> route('business.request-callback.error');
             case 2:
-                // TODO: send email
+                // TODO: send backup email
 
                 Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request database query 2 only', [ 'successFlags' => $successFlags ]);
-                abort(500);
-                return redirect() -> route('business.request callback.success');
+                return redirect() -> route('business.request-callback.error');
             case 1:
-                // TODO: send email
+                // TODO: send backup email
 
                 Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request database query 1 only', [ 'successFlags' => $successFlags ]);
-                abort(500);
-                return redirect() -> route('business.request callback.success');
+                return redirect() -> route('business.request-callback.error');
             case 0:
             default:
-                //TODO: send email?
+                //TODO: send backup email
                 
                 Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request full fail', [ 'successFlags' => $successFlags ]);
-                abort(500);
-                return redirect() -> route('business.request callback.success');
+                return redirect() -> route('business.request-callback.error');
         }
 
         abort(500);
     }
 
+
     public function requestCallbackSuccess()
     {
-        return view('request-callback.success');
+        $page_title = 'Request Callback - Swap My Energy';
+        return view('contact-forms.request-callback.success', compact('page_title'));
     }
+
+    public function requestCallbackError()
+    {
+        $page_title = 'Request Callback - Swap My Energy';
+        return view('contact-forms.request-callback.error', compact('page_title'));
+    }
+
 
     // TODO: use this to get client ip address for logging
     // public function getIp(){

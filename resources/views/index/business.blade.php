@@ -136,7 +136,7 @@
                     <h1>Empower your business to overcome rising energy prices</h1>
                     <p>Your business is important to you, so let us help
                         you find a better energy deal for your business.</p>
-                    <form id="requestCallbackForm" class="form-black" action="{{ route('business.request callback') }}" method="post" enctype="multipart/form-data">
+                    <form id="requestCallbackForm" class="form-black" action="{{ route('business.request-callback') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">

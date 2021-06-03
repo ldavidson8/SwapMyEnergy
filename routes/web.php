@@ -36,13 +36,20 @@ Route::group([ 'prefix' => '' ], function()
     Route::get('privacy-policy', [ BusinessHomeController::class, 'privacyPolicy' ]) -> name('business.privacy policy');
     Route::get('terms-and-conditions', [ BusinessHomeController::class, 'termsAndConditions' ]) -> name('business.t&c');
     Route::get('contact', [ BusinessHomeController::class, 'contact' ]) -> name('business.contact');
-    Route::post('contact', [ BusinessHomeController::class, 'contactPost' ]) -> name('residential.contact');
     Route::get('partners-and-affiliates', [ BusinessHomeController::class, 'partnersAndAffiliates' ]) -> name('business.partners and affiliates');
-
+    
+    Route::group([ 'prefix' => '/raise-support-request' ], function()
+    {
+        Route::post('/', [ ContactController::class, 'raiseSupportRequest' ]) -> name('business.raise-support-request');
+        Route::get('/success/{ticket}', [ ContactController::class, 'raiseSupportRequestSuccess' ]) -> name('business.raise-support-request.success');
+        Route::get('/error', [ ContactController::class, 'raiseSupportRequestError' ]) -> name('business.raise-support-request.error');
+    });
+    
     Route::group([ 'prefix' => 'request-callback' ], function()
     {
-        Route::post('/', [ BusinessContactController::class, 'requestCallbackPost' ]) -> name('business.request callback');
-        Route::get('success', [ BusinessContactController::class, 'requestCallbackSuccess' ]) -> name('business.request callback.success');
+        Route::post('/', [ BusinessContactController::class, 'requestCallbackPost' ]) -> name('business.request-callback');
+        Route::get('/success', [ BusinessContactController::class, 'requestCallbackSuccess' ]) -> name('business.request-callback.success');
+        Route::get('/error', [ BusinessContactController::class, 'requestCallbackError' ]) -> name('business.request-callback.error');
     });
     
     // my-account section
@@ -53,15 +60,16 @@ Route::group([ 'prefix' => '' ], function()
 });
 
 
-Route::group([ 'prefix' => 'residential' ], function()
+Route::group([ 'prefix' => '/residential' ], function()
 {
     Route::get('/', [ ResidentialHomeController::class, 'index' ]) -> name('residential.home');
     Route::get('about', [ ResidentialHomeController::class, 'about' ]) -> name('residential.about');
     Route::get('privacy-policy', [ ResidentialHomeController::class, 'privacyPolicy' ]) -> name('residential.privacy policy');
     Route::get('terms-and-conditions', [ ResidentialHomeController::class, 'termsAndConditions' ]) -> name('residential.t&c');
     Route::get('contact', [ ResidentialHomeController::class, 'contact' ]) -> name('residential.contact');
-    Route::post('contact', [ ResidentialHomeController::class, 'contactPost' ]) -> name('residential.contact');
     Route::get('partners-and-affiliates', [ ResidentialHomeController::class, 'partnersAndAffiliates' ]) -> name('residential.partners and affiliates');
+    
+    Route::post('raise-support-request', [ ContactController::class, 'raiseSupportRequest' ]) -> name('residential.raise-support-request');
     
     Route::group([ 'prefix' => 'my-account', 'middleware' => 'residential' ], function()
     {
