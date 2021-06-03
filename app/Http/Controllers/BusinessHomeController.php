@@ -43,16 +43,16 @@ class BusinessHomeController extends Controller
         return view('other.t&c', compact('request', 'navbar_page', 'page_title'));
     }
     
-    public function support(Request $request)
+    public function contact(Request $request)
     {
         ModeSession::setBusiness($request);
 
-        $navbar_page = 'support';
-        $page_title = 'Contact/Support';
-        return view('other.support', compact('request', 'navbar_page', 'page_title'));
+        $navbar_page = 'contact';
+        $page_title = 'Contact Us';
+        return view('other.contact', compact('request', 'navbar_page', 'page_title'));
     }
     
-    public function supportPost(Request $request)
+    public function contactPost(Request $request)
     {
         // TODO: handle the request object
         return redirect() -> back() -> withInput();

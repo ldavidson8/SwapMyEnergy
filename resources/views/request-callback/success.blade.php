@@ -20,7 +20,7 @@
 @section('main-content')
         <div class="row flex-grow-1 no-padding centered-content-white">
             <div>
-                <h1>Request a Callback Success</h1>
+                <h1>Thank you for requesting a callback</h1>
                 <p>We will contact you soon.</p>
                 <a href="{{ route("$mode.home") }}"><button class="big-blue-button" style="width: auto; padding: 8px 15px;">Back to the homepage</button></a>
             </div>

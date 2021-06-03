@@ -1,17 +1,4 @@
 @extends('layouts.master')
-@section('stylesheets')
-<style>
-p{
-    font-weight: normal;
-    line-height: 1;  
-}
-h2{
-    background: #00C2CB;
-    font-size: 28px;
-    padding: 10px;
-}
-</style>
-@endsection
 
 @section('stylesheets')
 <style>
@@ -316,7 +303,7 @@ h2{
                 <p>
                     You also have the right to access your personal information, to object to the use of your personal information for 
                     certain purposes, and the right to erase, restrict or receive a machine-readable copy of your personal information. 
-                    To update or delete your information please email privacy@swapmyenergy.co.uk or contact us using the address below. 
+                    To update or delete your information please email <a href="mailto:privacy@swapmyenergy.co.uk">privacy@swapmyenergy.co.uk</a> or contact us using the address below. 
                     We will handle your request in accordance with the law. This means there may be legal reasons why we cannot fulfil 
                     all requests.
                 </p>
