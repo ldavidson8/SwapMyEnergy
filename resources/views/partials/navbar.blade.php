@@ -34,14 +34,18 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
                 </li> --}}
-                <div class="d-xs-block d-lg-none">
-                    @include('partials.navbar-account')
-                </div>
+                @if ($mode == "residential")
+                    <div class="d-xs-block d-lg-none">
+                        @include('partials.navbar-account')
+                    </div>
+                @endif
             </ul>
         </div>
     </div>
     
-    <div class="collapse navbar-collapse d-xs-none d-lg-block">
-        @include('partials.navbar-account')
-    </div>
+    @if ($mode == "residential")
+        <div class="collapse navbar-collapse d-xs-none d-lg-block">
+            @include('partials.navbar-account')
+        </div>
+    @endif
 </nav>

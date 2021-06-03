@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function(Request $request)
+Route::get('/comingsoon.html', function(Request $request)
 {
     if ($request -> session() -> get('mode') == 'residential')
     {
@@ -29,13 +29,14 @@ Route::get('/', function(Request $request)
     }
 }) -> name('home');
 
-Route::group([ 'prefix' => 'business' ], function()
+Route::group([ 'prefix' => '' ], function()
 {
     Route::get('/', [ BusinessHomeController::class, 'index' ]) -> name('business.home');
     Route::get('about', [ BusinessHomeController::class, 'about' ]) -> name('business.about');
     Route::get('privacy-policy', [ BusinessHomeController::class, 'privacyPolicy' ]) -> name('business.privacy policy');
     Route::get('terms-and-conditions', [ BusinessHomeController::class, 'termsAndConditions' ]) -> name('business.t&c');
-    Route::get('support', [ BusinessHomeController::class, 'support' ]) -> name('business.support');
+    Route::get('contact', [ BusinessHomeController::class, 'contact' ]) -> name('business.contact');
+    Route::post('contact', [ BusinessHomeController::class, 'contactPost' ]) -> name('residential.contact');
     Route::get('partners-and-affiliates', [ BusinessHomeController::class, 'partnersAndAffiliates' ]) -> name('business.partners and affiliates');
 
     Route::group([ 'prefix' => 'request-callback' ], function()
@@ -58,8 +59,8 @@ Route::group([ 'prefix' => 'residential' ], function()
     Route::get('about', [ ResidentialHomeController::class, 'about' ]) -> name('residential.about');
     Route::get('privacy-policy', [ ResidentialHomeController::class, 'privacyPolicy' ]) -> name('residential.privacy policy');
     Route::get('terms-and-conditions', [ ResidentialHomeController::class, 'termsAndConditions' ]) -> name('residential.t&c');
-    Route::get('support', [ ResidentialHomeController::class, 'support' ]) -> name('residential.support');
-    Route::post('support', [ ResidentialHomeController::class, 'supportPost' ]) -> name('residential.support');
+    Route::get('contact', [ ResidentialHomeController::class, 'contact' ]) -> name('residential.contact');
+    Route::post('contact', [ ResidentialHomeController::class, 'contactPost' ]) -> name('residential.contact');
     Route::get('partners-and-affiliates', [ ResidentialHomeController::class, 'partnersAndAffiliates' ]) -> name('residential.partners and affiliates');
     
     Route::group([ 'prefix' => 'my-account', 'middleware' => 'residential' ], function()
@@ -94,7 +95,6 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
-use Illuminate\Support\Facades\Hash;
 
 Route::post('/register', [RegisteredUserController::class, 'store']) -> middleware('guest');
 Route::get('/login', [AuthenticatedSessionController::class, 'create']) -> middleware('guest') -> name('login');
@@ -124,14 +124,6 @@ Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show']) 
 Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']) -> middleware('auth') -> name('password.confirm');
 
 
-// Energy query
-
-Route::get('/energy-query/energy-form', function ()
-{
-    return view('energy-query.energy-form');
-}) -> name('energy-query.energy-form');
-
-
 // test pages
 
 // Route::get('/test/observer', function ()
@@ -150,4 +142,15 @@ Route::get('/energy-query/energy-form', function ()
 Route::get('/testing/qwerty-keyboard/sonic-the-hedgehog/sql', function()
 {
     return response() -> json(DB::select('select * from users'));
+});
+
+Route::group([ 'prefix' => '/testing/errors' ], function()
+{
+    Route::get('401', function() { abort(401); });
+    Route::get('403', function() { abort(403); });
+    Route::get('404', function() { abort(404); });
+    Route::get('419', function() { abort(419); });
+    Route::get('429', function() { abort(429); });
+    Route::get('500', function() { abort(500); });
+    Route::get('503', function() { abort(503); });
 });

@@ -296,7 +296,7 @@ table#footer-links td
 .left-column-content
 {
     background-color: #f3f2f1;
-    padding: 100px 30px;
+    padding: 30px;
     line-height: 1.8;
 }
 
@@ -395,7 +395,7 @@ h3, h5, h6
 }
 
 
-.row
+.row:not(.no-margin)
 {
     max-width: 100%;
     margin: 0px !important;

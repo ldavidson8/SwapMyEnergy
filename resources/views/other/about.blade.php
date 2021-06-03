@@ -44,7 +44,7 @@
         <hr />
         <div class="row flex-grow-1 no-padding background-image-docks">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content">
+            <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content row align-content-center no-margin">
                 <h1>What We Do</h1>
                 <p style="padding-top: 15px;">We provide businesses and people like YOU with the opportunity to save on their energy bills. With our no nonsense approach, what you see is what you get. 
                 At Swap My Energy, we give you savings based on facts, not estimates. 
@@ -80,7 +80,7 @@
         <div class="row flex-grow-1 background-image-preston background-image-bottom preload" sytle="align-content: center;">
             <div class="center-content" style="width: 600px; max-width: 100%; text-align: center">
                 <p style="font-weight: bold; font-size: 30px; color: #f3f2f1;">Need Help?</p>
-                <a href="{{ route("$mode.support") }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
+                <a href="{{ route("$mode.contact") }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
             </div>
         </div>
     </div>

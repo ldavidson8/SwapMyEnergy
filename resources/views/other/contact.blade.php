@@ -71,7 +71,7 @@
                         </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center;">
-                            <p style="font-size:30px; padding-top: 25px; padding-bottom:40px;"> 01772 000000 </p>
+                            <p style="font-size:30px; padding-top: 25px; padding-bottom:40px;"> 01772 584880 </p>
                             <h3 style="text-decoration: underline; font-size: 24px;"> Opening Hours </h3>
                             <p>
                                 10am - 4:30pm <br>
@@ -89,11 +89,11 @@
                         @include('media.dashed-white-line')
                         <div style="text-align: center;">
                             <p> Email us and we will aim to get back to you within 24 hours </p>
-                            <p style="overflow-wrap: break-word;"> placeholder@swapmyenergy.co.uk </p>
+                            <p style="overflow-wrap: break-word;"> contact@swapmyenergy.co.uk </p>
                             <div class="bottom-aligner"></div>
                             <p> 
                                 Technical Issues? <br> 
-                                View our support page 
+                                Raise a support request
                             </p>
                         </div>
                     </div>
@@ -110,13 +110,15 @@
                             <p style="text-decoration: underline">
                                 Live Hours
                             </p>
+                            <p>
                                 10am - 4:30pm <br />
                                 Monday to Thursday
                             </p>
                             <p>
                                 We will aim to get back to you within 24 hours.
                             </p>
-                            <button type="button" class="btn-lg big-white-button"> Launch Chat </button>
+                            {{-- <button type="button" class="btn-lg big-white-button" style="width: auto; cursor: default;"> Webchat Coming Soon </button> --}}
+                            <p>Webchat Coming Soon</p>
                         </div>
                     </div>
                 </div>
@@ -132,11 +134,11 @@
                 <div class="center-content" style="width: 600px; max-width: 100%;">
                     <div class="contact-us-blue-box-inner" style='content: ""; clear: both; display: table;'>
                         <div style="position: relative;">
-                            <h2 style="padding-right: 90px;"> Raise Support Issue</h2>
+                            <h2 style="padding-right: 90px;"> Raise a Support Request</h2>
                             <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/cogs.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
-                        <form id="formSupport" action="{{ route("$mode.support") }}">
+                        <form id="formSupport" action="{{ route("$mode.contact") }}">
                             <div class="form-group">
                                 <label for="fullName">Full Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="fullName" required />
