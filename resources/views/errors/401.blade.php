@@ -38,3 +38,7 @@
     }
     </style>
 @endsection
+
+@section('after-footer')
+    </div>
+@endsection

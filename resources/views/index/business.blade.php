@@ -30,6 +30,15 @@
             font-size: 27px;
             font-weight: bold;
         } */
+        .table-steps
+        {
+            width: 100%;
+        }
+        
+        td 
+        {
+            padding: 20px;
+        }   
 
         .logos-container
         {
@@ -69,6 +78,14 @@
             .background-image-non-moblie { background-color: #f3f2f1; }
             .background-image-non-moblie::before { background-image: none !important; }
         }
+        @media (max-width: 991px)
+        {
+            .background-mobile-white 
+            { 
+                background-color: #f3f2f1; 
+                border-top: 3px solid #202020; 
+            }
+        }
     </style>
 @endsection
 
@@ -78,40 +95,70 @@
 
 @section('main-content')
         <hr/>
-        <div class="row flex-grow-1 no-padding background-image-preston background-image-non-moblie align-items-center">
+        <div class="row flex-grow-1 no-padding background-image-preston background-image-non-moblie justify-content-center">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content">
-                <h1>Empower your business to overcome rising energy prices</h1>
-                <p>Your business is important to you, so let us help
-                    you find a better energy deal for your business.</p>
-                {{-- <div class="upload-btn-wrapper">
-                    <label for="billsUpload"><button class="big-blue-button"> Upload your bills </button></label>
-                    <input type="file" id="billsUpload" name="billsUpload" />
-                </div> --}}
-                <form id="requestCallbackForm" class="form-black" action="{{ route('business.request callback') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-
-                    <div class="form-group">
-                        <label for="full_name">Full Name/Business Name</label>
-                        <input type="text" class="form-control tall-form-control" id="full_name" name="full_name" placeholder="Full Name/Business Name" required="required" />
+            <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content row align-content-center">
+                <div>
+                    <div style="text-align: center">
+                        <h2 style="max-width: 100%; width: 500px; padding-bottom: 30px; margin: auto;"> It's time to switch to a more cost-effective energy plan for your business! </h2>
                     </div>
-                    <div class="form-group">
-                        <span class="form-error-message" id="phoneNumberError"></span>
-                        <div><label for="phone_number">Phone Number</label></div>
-                        <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number" placeholder="Contact Number" required="required"" />
-                    </div>
-                    <div class="form-group">
-                        <label for="billsUpload">Upload Your Bills (optional)</label>
-                        <input type="file" class="form-control" id="billsUpload" name="billsUpload[]" multiple style="padding: 7px 10px; height: auto;" />
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address (optional)</label>
-                        <input type="email" class="form-control tall-form-control" id="email" name="email_address" placeholder="Email (optional)" />
-                    </div>
-                    <button type="submit" class="big-blue-button">Call Me</button>
-                </form>
+                    <table class="table-steps">
+                        <tr>
+                            <td>
+                                <img src="{{ asset('img/business-homepage/upload_icon.svg')}}" style="width: 100px;">
+                            </td>
+                            <td>
+                                <p style="font-weight: normal;"><b>Step One - Upload your bill or request a callback</b><br> To get started, simply submit a copy of your energy bill. One of our experts will analyse your bill and provide you with a list of the best deals available to you. </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="{{ asset('img/Business-homepage/handshake.svg')}}" style="width: 100px;">
+                            </td>
+                            <td>
+                                <p style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simple select the option that is most appropriate for your company. We'll always be on hand to help you understander your options. </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="{{ asset('img/Business-homepage/coins.svg')}}" style="width: 100px;">
+                            </td>
+                            <td>
+                                <p style="font-weight: normal;"><b>Step Three - Save </b><br> Change to a less expensive plan. Take a seat and unwind. We'll let you know when your contract is up for renewal so you can make sure you're getting the best value possible. </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 col-12 d-md-flex d-none center-content" style="min-height: 300px;"></div>
+            <div class="col-xl-6 col-lg-5 col-md-8 col-12 d-md-flex center-content background-mobile-white" style="padding: 100px 30px;">
+                <div style="max-width: 600px; min-width: 200px;">
+                    <h1>Empower your business to overcome rising energy prices</h1>
+                    <p>Your business is important to you, so let us help
+                        you find a better energy deal for your business.</p>
+                    <form id="requestCallbackForm" class="form-black" action="{{ route('business.request callback') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="full_name">Full Name/Business Name</label>
+                            <input type="text" class="form-control tall-form-control" id="full_name" name="full_name" placeholder="Full Name/Business Name" required="required" />
+                        </div>
+                        <div class="form-group">
+                            <span class="form-error-message" id="phoneNumberError"></span>
+                            <div><label for="phone_number">Phone Number</label></div>
+                            <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number" placeholder="Contact Number" required="required"" />
+                        </div>
+                        <div class="form-group">
+                            <label for="billsUpload">Upload Your Bills (optional)</label>
+                            <input type="file" class="form-control" id="billsUpload" name="billsUpload[]" multiple style="padding: 7px 10px; height: auto;" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address (optional)</label>
+                            <input type="email" class="form-control tall-form-control" id="email" name="email_address" placeholder="Email (optional)" />
+                        </div>
+                        <button type="submit" class="big-blue-button">Call Me</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <hr />

@@ -71,6 +71,8 @@
     @yield('main-content')
 
     @include('partials.foooter')
+
+    @yield('after-footer')
     
     <!-- Scripts -->
     @yield('script')
