@@ -69,6 +69,11 @@ body
 }
 
 
+img.default
+{
+    max-width: 100%;
+}
+
 hr
 {
     border: 3px solid #202020;
@@ -223,9 +228,31 @@ footer
     font-size: 22px;
 }
 
+footer a:link:not(.footer-link), 
+footer a:visited:not(.footer-link), 
+footer a:hover:not(.footer-link), 
+footer a:active:not(.footer-link)
+{
+    color: #f3f2f1;
+}
+
 .footer-link
 {
     color: #f3f2f1;
+}
+
+.footer-social-link-image
+{
+    margin: 10px;
+    
+}
+
+.footer-social-link:link
+.footer-social-link:visited,
+.footer-social-link:hover,
+.footer-social-link:active
+{
+    text-decoration: none;
 }
 
 .navigation-link-footer-current-page
@@ -532,3 +559,14 @@ body.business .switch-text
         padding: 30px;
     }
 }
+
+@media (max-width: 400px)
+{
+    footer td, footer th
+    {
+        width: 100%;
+        display: block;
+        text-align: center !important;
+    }
+}
+
