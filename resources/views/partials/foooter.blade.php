@@ -5,7 +5,7 @@
     <div class="container">
         <div style="text-align: center; font-weight: 700; font-size: 16px;">
         <p> Swap My Energy is part of the Znergi Limited Registered in England, Company Registration Number 12937329 </p>
-        <p> Copyright &#169; 2021 Znergi Limited All rights reserved. Swap My Energy is an energy intermediary and not supplier. <br /> The UK trading name follows the Utilities Intermediaries Association code of conduct and Ofgem policies. </p>
+        <p> Copyright &copy; 2021 Znergi Limited All rights reserved. Swap My Energy is an energy intermediary and not supplier. <br /> The UK trading name follows the Utilities Intermediaries Association code of conduct and Ofgem policies. </p>
         <p> All suppliers logos are trademarks of their respective owners. </p>
         <p> Percentage energy savings quoted are against customers who let their last contract renew automatically. </p>
         <a href="https://www.znergi.co.uk/"> www.znergi.co.uk </a>
