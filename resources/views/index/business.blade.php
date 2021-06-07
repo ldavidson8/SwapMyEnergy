@@ -94,7 +94,7 @@
 
 @section('main-content')
         <hr/>
-        <div class="row flex-grow-1 no-padding background-image-preston background-image-non-moblie justify-content-center">
+        <div class="row flex-grow-1 no-padding background-image-coffee-shop justify-content-center">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content row align-content-center no-margin">
                 <div style="max-width: 100%;">

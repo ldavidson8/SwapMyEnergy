@@ -136,9 +136,26 @@
     </style>
 @endsection
 
+@section('before-header')
+    <div class="full-size container-fluid d-flex h-100 flex-column">
+@endsection
+
 @section('main-content')
-    <hr />
-    <div class="container-fluid background-image-market background-image-opacity-35" style="text-align: center;">
+        <hr />
+        <div class="row flex-grow-1 no-padding background-image-hydropower-plant">
+            <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
+            <div class="col-xl-4 col-lg-6 col-md-8 col-12 center-content no-margin" style="padding: 30px; color: #f3f2f1;">
+                <h1>Help Shape the future of energy</h1>
+                <p style="padding-top: 30px; width: 450px; max-width: 100%;">Join our Partnership or Affiliate programme and help us share the future energy</p>    
+            </div>
+            <div class="col-md-2 d-none d-lg-none d-md-block"></div>
+            <div class="col-md-2 d-none d-lg-none d-md-block"></div>
+            <div class="col-xl-6 col-lg-5 col-md-8 d-none d-md-block center-content" style="text-align: center;">
+            </div>
+            <div class="col-md-2 d-none d-lg-none d-md-block"></div>
+        </div>
+    </div>
+    {{-- <div class="container-fluid background-image-market background-image-opacity-35" style="text-align: center;">
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/partner-logos/TEG.png') }}" width="200" height="auto"/></div>
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/british-gas.svg') }}" width="200" height="auto" /></div>
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/edf.svg') }}" width="200" height="auto" /></div>
@@ -149,11 +166,11 @@
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/partner-logos/SSE.png') }}" width="200" height="auto" /></div>
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/partner-logos/shell-energy.png') }}" width="200" height="auto" /></div>
         <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/partner-logos/your-business-energy.png') }}" width="200" height="auto" /></div>
-    </div>
+    </div> --}}
 
     <hr />
 
-    <div id="PartnerProgramme" class="container-fluid no-padding-left-right section-padding" style="background-color: #f3f2f1;">
+    {{-- <div id="PartnerProgramme" class="container-fluid no-padding-left-right section-padding" style="background-color: #f3f2f1;">
         <div class="container no-padding-left-right">
             <div class="row">
                 <div class="col-sm-6 col-12 border-right-sm border-bottom-sm section-padding" style="text-align: right;">
@@ -171,6 +188,11 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+
+    <div class="full-size container-fluid">
+        <div class
+
     </div>
 
     <hr />

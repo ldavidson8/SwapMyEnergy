@@ -50,11 +50,11 @@
 
 @section('main-content')
         <hr />
-        <div class="row flex-grow-1 no-padding background-image-docks">
+        <div class="row flex-grow-1 no-padding background-image-powerline">
             <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-4 col-lg-6 col-md-8 col-12 row align-content-center no-margin" style="padding: 30px; color: #f3f2f1;">
+            <div class="col-xl-4 col-lg-6 col-md-8 col-12 center-content no-margin" style="padding: 30px; color: #f3f2f1;">
                 <h1>What We Do</h1>
-                <p style="padding-top: 15px; max-width: 400px; width: 100%;">We provide businesses and people like YOU with the opportunity to save on their energy bills. With our no nonsense approach, what you see is what you get. 
+                <p style="padding-top: 30px; width: 450px; max-width: 100%;">We provide businesses and people like YOU with the opportunity to save on their energy bills. With our no nonsense approach, what you see is what you get. 
                 At Swap My Energy, we give you savings based on facts, not estimates. 
                 By finding you a cheaper unique cost you will have the opportunity to save money. 
                 The more you use, the more you pay and vice versa. 
@@ -63,16 +63,15 @@
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
             <div class="col-xl-6 col-lg-5 col-md-8 d-none d-md-block center-content" style="text-align: center;">
-                {{-- <div id="video"> --}}
-                <video width="800px" height="auto" style="margin: auto; max-width: 100%;" autoplay muted loop>
-                    <source src="{{ asset('media/sme_mute.mp4') }}" />
-                </video>
-                {{-- </div> --}}    
             </div>
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
         </div>
     </div>
     <hr/>
+        <video width="100%" height="auto" style="margin: auto; max-width: 100%;" autoplay muted loop>
+            <source src="{{ asset('media/sme_mute.mp4') }}" type="video/mp4" />
+            <source src="{{ asset('media/sme_mute_mobi.mp4') }}" type="video/mp4 media='(max-width: 991px)'">
+        </video>
     <div class="full-size-50 container-fluid d-flex flex-column">
         <div class="row flex-grow-1 no-padding">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>

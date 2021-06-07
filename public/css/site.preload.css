@@ -1,20 +1,23 @@
-.background-image-docks.preload::before { background-image: url('/img/background/docks_full.jpg'); }
-.background-image-market.preload::before { background-image: url('/img/background/market_full.jpg'); }
+.background-image-powerline.preload::before { background-image: url('/img/background/powerline_full.png'); }
+.background-image-hydropower-plant.preload::before { background-image: url('/img/background/hydropower-plant_full.png'); }
+.background-image-wind-turbines.preload::before { background-image: url('/img/background/wind-turbines_full.jpg'); }
 .background-image-preston.preload::before { background-image: url('/img/background/preston_full.jpg'); }
-.background-image-train.preload::before { background-image: url('/img/background/train_full.jpg'); }
+.background-image-coffee-shop.preload::before { background-image: url('/img/background/coffee-shop_full.png'); }
 
 @media (max-width: 1000px) and (max-height: 563px)
 {
-    .background-image-docks.preload::before { background-image: url('/img/background/docks_half.jpg'); }
-    .background-image-market.preload::before { background-image: url('/img/background/market_half.jpg'); }
+    .background-image-powerline.preload::before { background-image: url('/img/background/powerline_half.png'); }
+    .background-image-hydropower-plant.preload::before { background-image: url('/img/background/hydropower-plant_half.png'); }
+    .background-image-wind-turbines.preload::before { background-image: url('/img/background/wind-turbines_half.jpg'); }
     .background-image-preston.preload::before { background-image: url('/img/background/preston_half.jpg'); }
-    .background-image-train.preload::before { background-image: url('/img/background/train_half.jpg'); }
+    .background-image-coffee-shop.preload::before { background-image: url('/img/background/coffee-shop_half.png'); }
 }
 
 @media (max-width: 500px) and (max-height: 281px)
 {
-    .background-image-docks.preload::before { background-image: url('/img/background/docks_quarter.jpg'); }
-    .background-image-market.preload::before { background-image: url('/img/background/market_quarter.jpg'); }
+    .background-image-powerline.preload::before { background-image: url('/img/background/powerline_quarter.png'); }
+    .background-image-hydropower-plant.preload::before { background-image: url('/img/background/hydropower-plant_quarter.png'); }
+    .background-image-wind-turbines.preload::before { background-image: url('/img/background/wind-turbines_quarter.jpg'); }
     .background-image-preston.preload::before { background-image: url('/img/background/preston_quarter.jpg'); }
-    .background-image-train.preload::before { background-image: url('/img/background/train_quarter.jpg'); }
+    .background-image-coffee-shop.preload::before { background-image: url('/img/background/coffee-shop_quarter.png'); }
 }
