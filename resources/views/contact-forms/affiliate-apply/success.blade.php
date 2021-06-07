@@ -10,7 +10,7 @@
 @section('main-content')
         <div class="row flex-grow-1 centered-content-white">
             <div>
-                <h1>Thank you for requesting a callback</h1>
+                <h1>Thank you for applying to be an affiliate.</h1>
                 <p>We will contact you soon.</p>
                 <a href="{{ route("$mode.home") }}"><button class="big-blue-button" style="width: auto; padding: 8px 15px;">Back to the homepage</button></a>
             </div>

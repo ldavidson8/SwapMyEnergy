@@ -9,7 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class BusinessRequestCallback extends Mailable
+class BusinessRequestCallbackEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -38,13 +38,13 @@ class BusinessRequestCallback extends Mailable
                 $view = $view -> attach(storage_path('app/' . $file -> filename));
             }
 
-            Log::channel('request-callback') -> info('BusinessRequestCallback -> build(), Sending Callback Request Email');
+            Log::channel('request-callback') -> info('BusinessRequestCallbackEmail -> build(), Sending Callback Request Email');
             return $view;
         }
         catch (Throwable $ex)
         {
             report($ex);
-            Log::channel('request-callback') -> error('BusinessRequestCallback -> build(), Error Sending Callback Request Email  -:-  ' . $ex -> getMessage());
+            Log::channel('request-callback') -> error('BusinessRequestCallbackEmail -> build(), Error Sending Callback Request Email  -:-  ' . $ex -> getMessage());
             abort(500);
         }
     }

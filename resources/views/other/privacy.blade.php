@@ -335,7 +335,7 @@
                     01772584880
                 </p>
                 <p>By email</p>
-                <p><a href="mailto:contact@swapmyenergy.co.uk">contact@swapmyenergy.co.uk</a></p>
+                <p><a href="mailto: {{ env('DATA_CONTACT_EMAIL') }}"> {{ env('DATA_CONTACT_EMAIL') }}</a></p>
                 <p>
                     If you have unresolved concerns, you have the right to complain to a data protection authority. In the United Kingdom 
                     the relevant authority is

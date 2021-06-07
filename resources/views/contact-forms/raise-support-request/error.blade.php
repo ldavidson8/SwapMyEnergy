@@ -1,16 +1,6 @@
 @extends('layouts.master')
 @section('stylesheets')
-    <style>
-        .centered-content-white
-        {
-            align-items: center;
-            justify-content: center;
-            margin: auto;
-            height: 400px;
-            padding: 20px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/result-page.css') }}" />
 @endsection
 
 @section('before-header')
@@ -18,16 +8,19 @@
 @endsection
 
 @section('main-content')
-        <div class="row flex-grow-1 no-padding centered-content-white">
+        <div class="row flex-grow-1 centered-content-white">
             <div>
                 <h1>There was a problem processing your support request</h1>
                 <p>Please contact us using the details below.</p>
                 <p>
-                    Telephone: 01772 584880<br />
-                    Email: contact@swapmyenergy.co.uk.
+                    Telephone: {{ env('DATA_CONTACT_PHONE_NUMBER') }}<br />
+                    Email: {{ env('DATA_CONTACT_EMAIL') }}.
                 </p>
                 <a href="{{ route("$mode.home") }}"><button class="big-blue-button" style="width: auto; padding: 8px 15px;">Back to the homepage</button></a>
             </div>
         </div>
-    </div>
 @endsection()
+
+@section('after-footer')
+    </div>
+@endsection

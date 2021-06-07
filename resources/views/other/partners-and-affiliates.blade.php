@@ -2,7 +2,8 @@
 
 @section('stylesheets')
     <style>
-        .gallery-logo-outer {
+        .gallery-logo-outer
+        {
             display: inline-block;
             padding: 30px;
             margin: auto;
@@ -10,18 +11,21 @@
             height: 150px;
         }
 
-        img.gallery-logo {
+        img.gallery-logo
+        {
             display: inline-block;
             max-width: 100%;
             max-height: 100%;
         }
 
 
-        .center-div-outer {
+        .center-div-outer
+        {
             position: relative;
         }
 
-        .center-div {
+        .center-div
+        {
             margin: 0;
             position: absolute;
             top: 50%;
@@ -65,10 +69,6 @@
             color: #202020;
         }
 
-        /* .custom-select
-        {
-            background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='white' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
-        } */
 
         @media (min-width: 1364px)
         {
@@ -204,37 +204,46 @@
             <div id="PartnerApply" class="col-lg-6 col-12 row no-padding border-bottom-lg">
                 <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px; position: relative;">
                     <h2 style="column-span: all;">Apply to be a partner</h2>
-                    <form id="formPartnerApply" class="form-black">
+                    @if ($errors -> hasBag('partner'))
+                        <div class="alert alert-info text-danger">
+                            @foreach ($errors -> getBag('partner') -> all() as $error)
+                                {{ $error }}<br />
+                            @endforeach
+                        </div>
+                    @endif
+                    <form id="formPartnerApply" class="form-black" action="{{ route('partner-apply') }}" method="post">
+                        @csrf
                         <div class="form-group">
-                            <label for="fullName">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="fullName" name="name" required />
+                            <label for="full_name">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="full_name" name="full_name" value="{{ old('full_name') }}" required />
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Email Address <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" id="email" placeholder="example@domain.com" name="email" required />
+                            <input type="email_address" class="form-control" id="email_address" name="email_address" value="{{ old('email_address') }}" placeholder="example@domain.com" required />
                         </div>  
                         <div class="form-group">
-                            <label for="phoneNumber">Phone Number <span class="text-danger">*</span></label>
-                            <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
-                            <input type="text" class="form-control" id="phoneNumber" name="tel-national" required />
+                            <label for="phone_number">Phone Number <span class="text-danger">*</span></label>
+                            <p id="phone_number_error" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
+                            <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required />
                         </div>
                         <div class="form-group">
-                            <label for="companyAddress">Company Address <span class="text-danger">*</span></label>
-                            <textarea id="companyAddress" class="form-control" name="street-address" required rows="4"></textarea>
+                            <label for="company_address">Company Address <span class="text-danger">*</span></label>
+                            <textarea id="company_address" class="form-control" name="company_address" required rows="4">{{ old('company_address') }}</textarea>
                         </div>
+                        <?php $type_of_company = old('type_of_company') ?>
                         <div class="form-group">
-                            <label for="kindOfCompany">Type of Company <span class="text-danger">*</span></label>
-                            <select id="kindOfCompany" class="form-control" required />
-                                <option value="" disabled selected hidden></option>
-                                <option value="energy-broker">Energy Broker</option>
-                                <option value="lorem">Lorem</option>
-                                <option value="ipsum">Ipsum</option>
-                                <option value="ipsum">Other</option>
+                            <label for="type_of_company">Type of Company <span class="text-danger">*</span></label>
+                            <select id="type_of_company" class="form-control" name="type_of_company" required />
+                                <option value="" disabled {{ (isset($type_of_company)) ? '' : 'selected' }} hidden></option>
+                                <option value="energy-broker" {{ ($type_of_company == 'energy-broker') ? 'selected' : '' }}>Energy Broker</option>
+                                <option value="lorem" {{ ($type_of_company == 'lorem') ? 'selected' : '' }}>Lorem</option>
+                                <option value="ipsum" {{ ($type_of_company == 'ipsum') ? 'selected' : '' }}>Ipsum</option>
+                                <option value="other" {{ ($type_of_company == 'other') ? 'selected' : '' }}>Other</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="webLink">Link (If applicable)</label>
-                            <input type="url" class="form-control" id="webLink" name="url">
+                            <label for="web_link">Link (If applicable)</label>
+                            <input type="url" class="form-control" id="web_link" name="web_link" value="{{ old('web_link') }}" />
                         </div>
                         <div class="form-group bottom-right">
                             <div class="text-center position-relative">
@@ -248,27 +257,36 @@
             <div id="AffiliateApply" class="col-lg-6 col-12 row no-padding section-border-left-lg">
                 <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px; position: relative;">
                     <h2 style="column-span: all;">Apply to be an affiliate</h2>
-                    <form id="formPartnerApply" class="form-black">
+                    @if ($errors -> hasBag('affiliate') > 0)
+                        <div class="alert alertinfo text-danger">
+                            @foreach ($errors -> getBag('affiliate') -> all() as $error)
+                                {{ $error }}<br />
+                            @endforeach
+                        </div>
+                    @endif
+                    <form id="formPartnerApply" class="form-black" action="{{ route('affiliate-apply') }}" method="post">
+                        @csrf
                         <div class="form-group">
-                            <label for="fullName">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="fullName" name="name" required />
+                            <label for="full_name">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="full_name" name="full_name" value="{{ old('full_name') }}" required />
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Email Address <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control" id="email" placeholder="example@domain.com" name="email" required />
+                            <input type="email_address" class="form-control" id="email_address" name="email_address" value="{{ old('email_address') }}" placeholder="example@domain.com" required />
+                        </div>  
+                        <div class="form-group">
+                            <label for="phone_number">Phone Number <span class="text-danger">*</span></label>
+                            <p id="phone_number_error" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
+                            <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required />
                         </div>
                         <div class="form-group">
-                            <label for="phoneNumber">Phone Number <span class="text-danger">*</span></label>
-                            <p id="phoneNumberError" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
-                            <input type="text" class="form-control" id="phoneNumber" name="tel-national" required />
+                            <label for="company_address">Company Address <span class="text-danger">*</span></label>
+                            <textarea id="company_address" class="form-control" name="company_address" required rows="4">{{ old('company_address') }}</textarea>
                         </div>
+                        <?php $type_of_company = old('type_of_company') ?>
                         <div class="form-group">
-                            <label for="companyAddress">Street Address <span class="text-danger">*</span></label>
-                            <textarea id="companyAddress" class="form-control" name="street-address" required rows="4"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="kindOfAffiliate">Type of Affiliate <span class="text-danger">*</span></label>
-                            <select id="kindOfAffiliate" class="form-control" required>
+                            <label for="type_of_company">Type of Company <span class="text-danger">*</span></label>
+                            <select id="type_of_company" class="form-control" name="type_of_company" required />
                                 <option value="" disabled selected hidden></option>
                                 <option value="YouTuber">YouTuber</option>
                                 <option value="lorem">Lorem</option>
@@ -277,8 +295,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="webLink">Link (If applicable)</label>
-                            <input type="url" class="form-control" name="url" id="webLink" />
+                            <label for="web_link">Link (If applicable)</label>
+                            <input type="url" class="form-control" id="web_link" name="web_link" value="{{ old('web_link') }}" />
                         </div>
                         <div class="form-group bottom-right">
                             <div class="text-center position-relative">
@@ -297,10 +315,10 @@
     <script>
         document.body.onload = function()
         {
-            var phoneNumberError = document.getElementById("phoneNumberError");
+            var phoneNumberError = document.getElementById("phone_number_error");
             document.getElementById("formPartnerApply").onsubmit = function (e)
             {
-                var phoneNumber = document.getElementById("phoneNumber").value;
+                var phoneNumber = document.getElementById("phone_number").value;
 
                 if (phoneNumber.replace(/[^0-9]/g, "").length < 7)
                 {

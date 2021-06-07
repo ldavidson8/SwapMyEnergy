@@ -14,5 +14,5 @@ Phone Number:
 Support Issue:
     {{ $formData["support_issue"] }}
 
-Ticket Number:
+Reference Number:
     {{ $ticket }}

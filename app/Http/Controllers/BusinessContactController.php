@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\BusinessRequestCallback;
+use App\Mail\BusinessRequestCallbackEmail;
 use App\Models\CallbackRequests;
 use App\Models\CallbackRequestFileUploads;
 use Exception;
@@ -94,7 +94,7 @@ class BusinessContactController extends Controller
         try
         {
             $to_email = [ env('MAIL_TO_ADDRESS') ];
-            Mail::to($to_email) -> queue(new BusinessRequestCallback($data, $fileUploads));
+            Mail::to($to_email) -> queue(new BusinessRequestCallbackEmail($data, $fileUploads));
 
             $successFlags |= 4;
             Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Sent email containing the callback request', [ 'successFlags' => $successFlags ]);

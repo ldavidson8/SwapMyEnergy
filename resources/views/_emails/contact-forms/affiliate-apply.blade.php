@@ -1,7 +1,7 @@
 @extends('_emails.layouts.master')
 
 @section('main-content')
-    <h1>Support Request</h1>
+    <h1>Application to be an Affiliate</h1>
     <table>
         <tbody>
             <tr>
@@ -17,12 +17,16 @@
                 <td>{{ $formData["phone_number"] }}</td>
             </tr>
             <tr>
-                <th>Support Issue</th>
-                <td>{{ $formData["support_issue"] }}</td>
+                <th>Company Address</th>
+                <td>{{ $formData["company_address"] }}</td>
             </tr>
             <tr>
-                <th>Reference Number</th>
-                <td>{{ $ticket }}</td>
+                <th>Type Of Company</th>
+                <td>{{ $formData["type_of_company"] }}</td>
+            </tr>
+            <tr>
+                <th>Web Link</th>
+                <td>{{ (isset($formData["web_link"])) ? $formData["web_link"] : 'N/A' }}</td>
             </tr>
         </tbody>
     </table>

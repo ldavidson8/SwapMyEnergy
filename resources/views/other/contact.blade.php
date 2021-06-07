@@ -89,7 +89,7 @@
                         @include('media.dashed-white-line')
                         <div style="text-align: center; padding-top: 23px;">
                             <p> Email us and we will aim to get back to you within 24 hours </p>
-                            <p style="overflow-wrap: break-word;"> contact@swapmyenergy.co.uk </p>
+                            <p style="overflow-wrap: break-word;">  {{ env('DATA_CONTACT_EMAIL') }} </p>
                             <div class="bottom-aligner"></div>
                             <p> 
                                 Technical Issues? <br> 

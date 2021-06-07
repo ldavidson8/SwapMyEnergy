@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\ForgotPassword;
+use App\Mail\ForgotPasswordEmail;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -61,7 +61,7 @@ class PasswordResetLinkController extends Controller
         
         try
         {
-            Mail::to($email) -> queue(new ForgotPassword($user, $token));
+            Mail::to($email) -> queue(new ForgotPasswordEmail($user, $token));
             return redirect() -> back() -> with('success', true);
         }
         catch (Exception $ex)

@@ -1,0 +1,13 @@
+h1
+{
+    text-align: center !important;
+}
+
+.centered-content-white
+{
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}

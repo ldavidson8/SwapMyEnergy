@@ -10,8 +10,12 @@
 @section('main-content')
         <div class="row flex-grow-1 centered-content-white">
             <div>
-                <h1>Thank you for requesting a callback</h1>
-                <p>We will contact you soon.</p>
+                <h1>There was a problem processing your application to be an affiliate</h1>
+                <p>Please contact us using the details below.</p>
+                <p>
+                    Telephone: {{ env('DATA_CONTACT_PHONE_NUMBER') }}<br />
+                    Email: {{ env('DATA_CONTACT_EMAIL') }}.
+                </p>
                 <a href="{{ route("$mode.home") }}"><button class="big-blue-button" style="width: auto; padding: 8px 15px;">Back to the homepage</button></a>
             </div>
         </div>

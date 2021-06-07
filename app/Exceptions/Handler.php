@@ -3,15 +3,16 @@
 namespace App\Exceptions;
 
 use Exception;
+use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
-use Throwable;
+use Illuminate\Support\Facades\Request;
 
 class Handler extends ExceptionHandler
 {
     /**
      * A list of the exception types that are not reported.
-     *
+     *  
      * @var array
      */
     protected $dontReport = [
@@ -36,13 +37,7 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e)
-        {
-            Log::notice($e -> getMessage());
-        });
-        $this->reportable(function (Exception $e)
-        {
-            Log::error($e -> getMessage());
-        });
+        $this->reportable(function (Throwable $e) { Log::channel('errorlog') -> error("Throwable - " . $e -> getMessage()); });
+        $this->reportable(function (Exception $e) { Log::channel('errorlog') -> error("Error - " . $e -> getMessage()); });
     }
 }
