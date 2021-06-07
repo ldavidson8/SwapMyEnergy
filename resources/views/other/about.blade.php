@@ -51,10 +51,10 @@
 @section('main-content')
         <hr />
         <div class="row flex-grow-1 no-padding background-image-docks">
-            <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content row align-content-center no-margin">
+            <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
+            <div class="col-xl-4 col-lg-6 col-md-8 col-12 row align-content-center no-margin" style="padding: 30px; color: #f3f2f1;">
                 <h1>What We Do</h1>
-                <p style="padding-top: 15px;">We provide businesses and people like YOU with the opportunity to save on their energy bills. With our no nonsense approach, what you see is what you get. 
+                <p style="padding-top: 15px; max-width: 400px; width: 100%;">We provide businesses and people like YOU with the opportunity to save on their energy bills. With our no nonsense approach, what you see is what you get. 
                 At Swap My Energy, we give you savings based on facts, not estimates. 
                 By finding you a cheaper unique cost you will have the opportunity to save money. 
                 The more you use, the more you pay and vice versa. 
@@ -67,7 +67,7 @@
                 <video width="800px" height="auto" style="margin: auto; max-width: 100%;" autoplay muted loop>
                     <source src="{{ asset('media/sme_mute.mp4') }}" />
                 </video>
-                {{-- </div> --}}
+                {{-- </div> --}}    
             </div>
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
         </div>
@@ -85,9 +85,9 @@
             </div>
             <div class="col-2 d-lg-none d-block"></div>
             <div class="col-2 d-md-none d-block"></div>
-            <div class="col-xl-6 col-lg-6 col-md-12 no-padding center-content">
+            <div class="col-xl-6 col-lg-6 col-md-12 no-p    adding center-content">
                 <div class="map-responsive">
-                    <iframe width="600" height="450" style="border:0;" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=18%20fox%20street%2C%20preston&key=AIzaSyCSV5ZAUwOLQdr8mz_ALHB5f1q-OlM00EI" align="center" width="100%"></iframe>
+                    <iframe width="600" height="450" style="border:0;" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d294.8453044806136!2d-2.703525!3d53.7581131!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487b73cbe298c65b%3A0xc8a861caf3690757!2sZnergi%20Ltd!5e0!3m2!1sen!2suk!4v1623075572177!5m2!1sen!2suk" align="center" width="100%"></iframe>
                 </div>
             </div>
             <div class="col-2 d-md-none d-block"></div>

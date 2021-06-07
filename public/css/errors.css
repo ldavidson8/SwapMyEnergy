@@ -1,0 +1,7 @@
+@media (max-width: 991px)
+{
+    .background-image-display-none
+    {
+        display: none; /* for hiding background image on below large desktop sizes */
+    }
+}
