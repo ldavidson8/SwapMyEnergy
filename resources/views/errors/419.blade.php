@@ -30,7 +30,7 @@
                 <br />
                 <br />
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 background-image-display-none" style="background-image: url('{{ asset('img/error pages/419.png') }}'); background-repeat: no-repeat; background-position: center; background-size: 130%; background-origin: content-box; padding: 50px; opacity: 0.8;"></div>
+            <div class="col-xl-6 col-lg-5 col-md-2 background-image-display-none" style="background-image: url('{{ asset('img/error pages/419.png') }}'); background-repeat: no-repeat; background-position: center; background-size: contain; background-origin: content-box; padding: 50px; opacity: 0.8;"></div>
         </div>
     <style>
     button:hover{
