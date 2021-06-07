@@ -3,6 +3,10 @@
 ?>
 @extends('layouts.master')
 
+@section('stylesheets')
+    <link rel="stylesheet" href="{{ asset('css/errors.css') }}" />
+@endsection
+
 @section('before-header')
     <div class="full-size container-fluid d-flex h-100 flex-column" style="background-color: #f0f0f0">
 @endsection
@@ -26,7 +30,7 @@
                 <br />
                 <br />
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block" style="background-image: url(https://i.postimg.cc/x1ccTXY6/503.png); background-repeat: no-repeat; background-position: center; background-size: 650px; opacity: 0.8;"></div>
+            <div class="col-xl-6 col-lg-5 col-md-2 background-image-display-none" style="background-image: url('{{ asset('img/error pages/503.png') }}'); background-repeat: no-repeat; background-position: center; background-size: contain; background-origin: content-box; padding: 50px; opacity: 0.8;"></div>
         </div>
     <style>
     button:hover{
