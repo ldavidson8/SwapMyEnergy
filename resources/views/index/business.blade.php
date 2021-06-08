@@ -37,8 +37,13 @@
         
         td 
         {
-            padding: 20px;
+            padding: 10px;
         }   
+
+        .white-text
+        {
+            color: #f3f2f1;
+        }
 
         .logos-container
         {
@@ -96,34 +101,32 @@
         <hr/>
         <div class="row flex-grow-1 no-padding background-image-coffee-shop justify-content-center">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content row align-content-center no-margin">
+            <div class="col-xl-5 col-lg-6 col-md-8 col-12 row align-content-center no-margin">
                 <div style="max-width: 100%;">
-                    <div style="text-align: center">
-                        <h2 style="max-width: 100%; width: 500px; padding-bottom: 30px; margin: auto;"> It's time to switch to a more cost-effective energy plan for your business! </h2>
-                    </div>
+                    <h1 class="white-text">Empower your business to overcome rising energy prices</h1>
                     <table class="table-steps">
                         <tr>
                             <td>
-                                <img src="{{ asset('img/business-homepage/upload_icon.svg')}}" style="width: 100px;" alt="upload icon">
+                                <img src="{{ asset('img/business-homepage/upload.png')}}" style="width: 100px;" alt="upload icon">
                             </td>
                             <td>
-                                <p style="font-weight: normal;"><b>Step One - Upload your bill or request a callback</b><br> To get started, simply submit a copy of your energy bill. One of our experts will analyse your bill and provide you with a list of the best deals available to you. </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <img src="{{ asset('img/business-homepage/handshake.svg')}}" style="width: 100px;" alt="handshake">
-                            </td>
-                            <td>
-                                <p style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simple select the option that is most appropriate for your company. We'll always be on hand to help you understand your options. </p>
+                                <p class="white-text" style="font-weight: normal;"><b>Step One - Upload your bill or request a callback</b><br> To get started, simply submit a copy of your energy bill. One of our experts will analyse your bill and provide you with a list of the best deals available to you. </p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <img src="{{ asset('img/business-homepage/coins.svg')}}" style="width: 100px;" alt="pound coins stacked on top each other">
+                                <img src="{{ asset('img/business-homepage/signed-document.png')}}" style="width: 100px;" alt="signed document">
                             </td>
                             <td>
-                                <p style="font-weight: normal;"><b>Step Three - Save </b><br> Change to a less expensive plan. Take a seat and unwind. We'll let you know when your contract is up for renewal so you can make sure you're getting the best value possible. </p>
+                                <p class="white-text" style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simple select the option that is most appropriate for your company. We'll always be on hand to help you understand your options. </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="{{ asset('img/business-homepage/coins.png')}}" style="width: 100px;" alt="pound coins stacked on top each other">
+                            </td>
+                            <td>
+                                <p class="white-text" style="font-weight: normal;"><b>Step Three - Save </b><br> Change to a less expensive plan. Take a seat and unwind. We'll let you know when your contract is up for renewal so you can make sure you're getting the best value possible. </p>
                             </td>
                         </tr>
                     </table>
@@ -131,11 +134,8 @@
             </div>
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
-            <div class="col-xl-5 col-lg-5 col-md-8 col-12 d-md-flex center-content background-mobile-white">
-                <div style="max-width: 100%; width: 600px;">
-                    <h1>Empower your business to overcome rising energy prices</h1>
-                    <p>Your business is important to you, so let us help
-                        you find a better energy deal for your business.</p>
+            <div class="col-xl-5 col-lg-5 col-md-8 col-12 d-md-flex center-content">
+                <div class="white-text" style="max-width: 100%; width: 600px;">
                     <form id="requestCallbackForm" class="form-black" action="{{ route('business.request-callback') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
@@ -188,7 +188,7 @@
                         <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.svg') }}">
                     </li>
                 </ul>
-                <p> Plus more </p>
+                <p style="font-size: 28px;"> Plus many more... </p>
             </div>
         </div>
     </div>
@@ -197,8 +197,8 @@
         <div class="row flex-grow-1 padding-20px background-image-preston background-image-bottom preload">
             <div class="col-12 col-lg-6 center-content">
                 <div style="max-width: 100%; text-align: center;">
-                    <p style="color: #f3f2f1; font-size: 50px;">Let us help you navigate through the energy maze</p>
-                    <p style="color: #f3f2f1;">You can upload your bill and we'll do the rest</p>
+                    <p class="white-text" style="font-size: 50px; font-weight: 700;">Let us help you navigate through the energy maze</p>
+                    <p class="white-text">You can upload your bill and we'll do the rest</p>
                 </div>
             </div>
             <div class="col-12 col-lg-6 center-content" style="text-align: center;">

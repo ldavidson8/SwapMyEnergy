@@ -68,7 +68,7 @@
         </div>
     </div>
     <hr/>
-        <video width="100%" height="auto" style="margin: auto; max-width: 100%;" autoplay muted loop>
+        <video width="100%" height="auto" style="margin: auto; max-width: 100%; background: black url('{{ asset('img/Loading-thumbnail.png') }}') center center no-repeat" preload="none" autoplay muted loop>
             <source src="{{ asset('media/sme_mute.mp4') }}" type="video/mp4" />
             <source src="{{ asset('media/sme_mute_mobi.mp4') }}" type="video/mp4 media='(max-width: 991px)'">
         </video>

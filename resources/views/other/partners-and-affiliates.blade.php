@@ -2,7 +2,7 @@
 
 @section('stylesheets')
     <style>
-        .gallery-logo-outer
+        /* .gallery-logo-outer
         {
             display: inline-block;
             padding: 30px;
@@ -16,8 +16,63 @@
             display: inline-block;
             max-width: 100%;
             max-height: 100%;
+        } */
+
+        .oval-button
+        {
+            width: 250px;
+            border-radius: 36px;
+            padding: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #00d2db;
+            border: none;
         }
 
+        ul {
+        margin: 0;
+        }
+
+        ul.dashed 
+        {
+        list-style-type: none;
+        }
+
+        ul.dashed > li 
+        {
+        text-indent: -5px;
+        }
+
+        ul.dashed > li:before 
+        {
+        content: "-";
+        text-indent: -5px;
+        }
+
+        .heading-text
+        {
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        .div-padding-top-200
+        {
+            padding-top: 200px;
+        }
+
+        .large-blue-button
+        {
+            background-color: #00d2db;
+            width: 500px;
+            max-width: 100%;
+            border-radius: 12px;
+            padding: 30px;
+            font-size: 27px;
+            font-weight: bold;
+            color:#f3f2f1;
+            display: inline-block;
+            overflow: hidden;
+        }
 
         .center-div-outer
         {
@@ -144,9 +199,10 @@
         <hr />
         <div class="row flex-grow-1 no-padding background-image-hydropower-plant">
             <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-4 col-lg-6 col-md-8 col-12 center-content no-margin" style="padding: 30px; color: #f3f2f1;">
+            <div class="col-xl-4 col-lg-6 col-md-8 col-12 no-margin" style="padding-top: 150px; color: #f3f2f1;">
                 <h1>Help Shape the future of energy</h1>
                 <p style="padding-top: 30px; width: 450px; max-width: 100%;">Join our Partnership or Affiliate programme and help us share the future energy</p>    
+                <button class="oval-button">Find out more </button>
             </div>
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
@@ -190,14 +246,38 @@
         </div>
     </div> --}}
 
-    <div class="full-size container-fluid">
-        <div class
-
+    <div class="full-size background-image-preston">
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-12 no-margin div-padding-top-200" style="color: #f3f2f1;">
+                    <h2 class="heading-text">Have an idea of how we can work together?</h2>
+                    <p style="padding-top: 30px; font-size: 24px;">Why not get in touch</p>    
+                </div>
+                <div class="col-xl-6 col-lg-6 col-12 div-padding-top-200">
+                    <a href="mailto:contact@swapmyenergy.co.uk?subject=Partnership" class="btn large-blue-button">
+                    Send an email to <span style="overflow-wrap: break-word; word-wrap: bread-word"> {{ env('DATA_CONTACT_EMAIL') }} </span> with the subject "Partnership" 
+                    <br><span style="font-size: 16px">or click here </span>
+                    </a>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-12">
+                <div class="clearfix" style="background: #f3f2f1 url('{{ asset('img/hipster.png') }}') right bottom/auto 90% no-repeat; border-radius: 15px; margin: 150px 0 0 0; padding: 30px 0 30px 30px;">
+                    <p class="heading-text"> Our Affiliate Program </p>
+                    <ul class="dashed" style="font-weight: 700;">
+                        <li>Promotion opportunities across our social channels and website</li>
+                        <li>Earn for when you help switch customers with us</li>
+                        <li>Potential collaboration opportunities upon discussion with ourselves</li>
+                        <li>And more when you get in touch</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
     </div>
 
-    <hr />
 
-    <div id="AffiliatesProgramme" class="full-size-80 container-fluid d-flex flex-column no-padding">
+    {{-- <div id="AffiliatesProgramme" class="full-size-80 container-fluid d-flex flex-column no-padding">
         <main class="row flex-grow-1 no-padding">
             <div class="col-xl-6 col-12 row no-padding align-items-center background-image-train background-image-right preload">
                 <div class="col row no-padding">
@@ -218,7 +298,7 @@
             </div>
             <div class="col-xl-6 d-none d-xl-block section-border-left" style="background-color: #f3f2f1; min-height: 300px;"></div>
         </main>
-    </div>
+    </div> --}}
 
     <hr />
     <div class="full-size-60 container-fluid d-flex flex-column no-padding background-image-market background-image-opacity-35 preload" style="font-size: 22px;">
