@@ -21,7 +21,7 @@
         .oval-button
         {
             width: 250px;
-            border-radius: 36px;
+            border-radius: 50px;
             padding: 10px;
             font-size: 24px;
             font-weight: bold;
@@ -31,6 +31,7 @@
 
         ul {
         margin: 0;
+        padding: 0;
         }
 
         ul.dashed 
@@ -38,16 +39,6 @@
         list-style-type: none;
         }
 
-        ul.dashed > li 
-        {
-        text-indent: -5px;
-        }
-
-        ul.dashed > li:before 
-        {
-        content: "-";
-        text-indent: -5px;
-        }
 
         .heading-text
         {
@@ -72,6 +63,20 @@
             color:#f3f2f1;
             display: inline-block;
             overflow: hidden;
+        }
+
+        .clearfix:after 
+        {
+            content: " "; /* Older browser do not support empty content */
+            visibility: hidden;
+            display: block;
+            height: 0;
+            clear: both;
+        }
+
+        .border-radius-15
+        {
+            border-radius: 15px;
         }
 
         .center-div-outer
@@ -152,17 +157,11 @@
             }
         }
         
-        @media (max-width: 992px)
+        @media (max-width: 991px)
         {
-            .gallery-logo-outer
+            .border-radius-none-md
             {
-                width: 32%;
-                padding: 10px;
-            }
-            
-            .border-bottom-lg
-            {
-                border-bottom: 3px solid #202020;
+                border-radius: 0;
             }
         }
         
@@ -247,31 +246,47 @@
     </div> --}}
 
     <div class="full-size background-image-preston">
-        <div class="container-lg">
+        <div class="container-lg no-padding">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-12 no-margin div-padding-top-200" style="color: #f3f2f1;">
                     <h2 class="heading-text">Have an idea of how we can work together?</h2>
                     <p style="padding-top: 30px; font-size: 24px;">Why not get in touch</p>    
                 </div>
                 <div class="col-xl-6 col-lg-6 col-12 div-padding-top-200">
-                    <a href="mailto:contact@swapmyenergy.co.uk?subject=Partnership" class="btn large-blue-button">
-                    Send an email to <span style="overflow-wrap: break-word; word-wrap: bread-word"> {{ env('DATA_CONTACT_EMAIL') }} </span> with the subject "Partnership" 
-                    <br><span style="font-size: 16px">or click here </span>
-                    </a>
+                    <h2 style="color: #f3f2f1"> Apply to be a Partner </h2>
+                    <form action="mailto:{{ env('DATA_CONTACT_EMAIL') }}" method="GET" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="full_name" style="color: #f3f2f1">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="full_name" name="full_name" value="{{ old('full_name') }}" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress" style="color: #f3f2f1">Email Address <span class="text-danger">*</span></label>
+                            <input type="email_address" class="form-control" id="email_address" name="email_address" value="{{ old('email_address') }}" placeholder="example@domain.com" required />
+                        </div>  
+                        <div class="form-group">
+                            <label for="company_address" style="color: #f3f2f1">Message<span class="text-danger">*</span></label>
+                            <textarea id="company_address" class="form-control" name="company_address" required rows="4">{{ old('company_address') }}</textarea>
+                        </div>
+                        <button type="submit" class="btn big-blue-button btn-lg">Submit</button>
+                    </form>
                 </div>
             </div>
             <div class="w-100"></div>
-            <div class="col-12">
-                <div class="clearfix" style="background: #f3f2f1 url('{{ asset('img/hipster.png') }}') right bottom/auto 90% no-repeat; border-radius: 15px; margin: 150px 0 0 0; padding: 30px 0 30px 30px;">
-                    <p class="heading-text"> Our Affiliate Program </p>
-                    <ul class="dashed" style="font-weight: 700;">
-                        <li>Promotion opportunities across our social channels and website</li>
-                        <li>Earn for when you help switch customers with us</li>
-                        <li>Potential collaboration opportunities upon discussion with ourselves</li>
-                        <li>And more when you get in touch</li>
-                    </ul>
+            <div class="col-12 no-padding">
+                <div class="no-padding border-radius-none-md border-radius-15" style="background-color:#f3f2f1; margin: 150px 0 0 0;">
+                    <div class="clearfix">
+                        <img src="{{ asset('img/hipster.png') }}" style="vertical-align: bottom; margin: auto; float: right;">
+                        <span style="padding: 30px; vertical-align: bottom;">
+                            <p class="heading-text"> Our Affiliate Program </p>
+                            <ul class="dashed" style="font-weight: 700;">
+                                <li>- Promotion opportunities across our social channels and website</li>
+                                <li>- Earn for when you help switch customers with us</li>
+                                <li>- Potential collaboration opportunities upon discussion with ourselves</li>
+                                <li>- And more when you get in touch</li>
+                            </ul>
+                        </span>  
+                    </div>
                 </div>
-                
             </div>
         </div>
     </div>
@@ -301,63 +316,16 @@
     </div> --}}
 
     <hr />
-    <div class="full-size-60 container-fluid d-flex flex-column no-padding background-image-market background-image-opacity-35 preload" style="font-size: 22px;">
-        <main class="row flex-grow-1 no-padding">
-            <div id="PartnerApply" class="col-lg-6 col-12 row no-padding border-bottom-lg">
-                <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px; position: relative;">
-                    <h2 style="column-span: all;">Apply to be a partner</h2>
-                    @if ($errors -> hasBag('partner'))
-                        <div class="alert alert-info text-danger">
-                            @foreach ($errors -> getBag('partner') -> all() as $error)
-                                {{ $error }}<br />
-                            @endforeach
-                        </div>
-                    @endif
-                    <form id="formPartnerApply" class="form-black" action="{{ route('partner-apply') }}" method="post">
-                        @csrf
-                        <div class="form-group">
-                            <label for="full_name">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="full_name" name="full_name" value="{{ old('full_name') }}" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress">Email Address <span class="text-danger">*</span></label>
-                            <input type="email_address" class="form-control" id="email_address" name="email_address" value="{{ old('email_address') }}" placeholder="example@domain.com" required />
-                        </div>  
-                        <div class="form-group">
-                            <label for="phone_number">Phone Number <span class="text-danger">*</span></label>
-                            <p id="phone_number_error" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
-                            <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="company_address">Company Address <span class="text-danger">*</span></label>
-                            <textarea id="company_address" class="form-control" name="company_address" required rows="4">{{ old('company_address') }}</textarea>
-                        </div>
-                        <?php $type_of_company = old('type_of_company') ?>
-                        <div class="form-group">
-                            <label for="type_of_company">Type of Company <span class="text-danger">*</span></label>
-                            <select id="type_of_company" class="form-control" name="type_of_company" required />
-                                <option value="" disabled {{ (isset($type_of_company)) ? '' : 'selected' }} hidden></option>
-                                <option value="energy-broker" {{ ($type_of_company == 'energy-broker') ? 'selected' : '' }}>Energy Broker</option>
-                                <option value="lorem" {{ ($type_of_company == 'lorem') ? 'selected' : '' }}>Lorem</option>
-                                <option value="ipsum" {{ ($type_of_company == 'ipsum') ? 'selected' : '' }}>Ipsum</option>
-                                <option value="other" {{ ($type_of_company == 'other') ? 'selected' : '' }}>Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="web_link">Link (If applicable)</label>
-                            <input type="url" class="form-control" id="web_link" name="web_link" value="{{ old('web_link') }}" />
-                        </div>
-                        <div class="form-group bottom-right">
-                            <div class="text-center position-relative">
-                                <button type="submit" class="btn big-blue-button btn-lg">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="col-sm-6 col-12"></div>
+    <div class="full-size-60 container-fluid no-padding background-image-market background-image-opacity-35 preload" style="font-size: 22px;">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="center-content" style="text-align: left; width: 50%;">
+                <p class="heading-text"> Interested in joining our affiliate programme? </p>
+                <p> Fill in this form and we'll be back in touch </p>
                 </div>
             </div>
-            <div id="AffiliateApply" class="col-lg-6 col-12 row no-padding section-border-left-lg">
-                <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px; position: relative;">
+            <div id="AffiliateApply" class="col-12 col-lg-6 no-padding">
+                <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px;">
                     <h2 style="column-span: all;">Apply to be an affiliate</h2>
                     @if ($errors -> hasBag('affiliate') > 0)
                         <div class="alert alertinfo text-danger">
@@ -400,16 +368,13 @@
                             <label for="web_link">Link (If applicable)</label>
                             <input type="url" class="form-control" id="web_link" name="web_link" value="{{ old('web_link') }}" />
                         </div>
-                        <div class="form-group bottom-right">
-                            <div class="text-center position-relative">
-                                <button type="submit" class="btn big-blue-button btn-lg">Submit</button>
-                            </div>
+                        <div class="text-center position-relative">
+                            <button type="submit" class="btn big-blue-button btn-lg" style="width: 400px; padding: 30px;">Submit</button>
                         </div>
                     </form>
-                    <div class="col-sm-6 col-12"></div>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
 @endsection()
 
