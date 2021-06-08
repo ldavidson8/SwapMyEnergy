@@ -9,46 +9,51 @@ use Illuminate\Support\Facades\Hash;
 
 class ResidentialAccountController extends Controller
 {
-    public function myAccount(Request $request)
+    public function myAccount()
     {
         return redirect() -> route('residential.home');
+
         $navbar_page = 'my account';
         $page_title = 'My Account';
         $user = Auth::user();
-        return view('my-account.residential.index', compact('request', 'navbar_page', 'page_title', 'user'));
+        return view('my-account.residential.index', compact('navbar_page', 'page_title', 'user'));
     }
     
 
-    public function yourPlan(Request $request)
+    public function yourPlan()
     {
         return redirect() -> route('residential.home');
+
         $navbar_page = 'my account';
         $page_title = 'Plan - My Account';
         $user = Auth::user();
-        return view('my-account.residential.plan', compact('request', 'navbar_page', 'page_title', 'user'));
+        return view('my-account.residential.plan', compact('navbar_page', 'page_title', 'user'));
     }
     
     public function yourPlanPost(Request $request)
     {
-        return redirect() -> route('residential.home');
+        return redirect() -> back() -> withinput();
+        
         // TODO: handle form post
 
         return redirect() -> route('residential.my account');
     }
 
 
-    public function yourDetails(Request $request)
+    public function yourDetails()
     {
         return redirect() -> route('residential.home');
+
         $navbar_page = 'my account';
         $page_title = 'Details - My Account';
         $user = Auth::user();
-        return view('my-account.residential.details', compact('request', 'navbar_page', 'page_title', 'user'));
+        return view('my-account.residential.details', compact('navbar_page', 'page_title', 'user'));
     }
     
     public function yourDetailsPost(Request $request)
     {
-        return redirect() -> route('residential.home');
+        return redirect() -> back() -> withinput();
+
         $validatedData = $request -> validate([
             'full_name' => 'required',
             'email' => 'required|email',
@@ -77,18 +82,20 @@ class ResidentialAccountController extends Controller
     }
 
 
-    public function yourOptions(Request $request)
+    public function yourOptions()
     {
         return redirect() -> route('residential.home');
+
         $navbar_page = 'my account';
         $page_title = 'Options - My Account';
         $user = Auth::user();
-        return view('my-account.residential.options', compact('request', 'navbar_page', 'page_title', 'user'));
+        return view('my-account.residential.options', compact('navbar_page', 'page_title', 'user'));
     }
     
     public function yourOptionsPost(Request $request)
     {
-        return redirect() -> route('residential.home');
+        return redirect() -> back() -> withinput();
+        
         // TODO: handle form post
 
         return redirect() -> route('residential.my account');

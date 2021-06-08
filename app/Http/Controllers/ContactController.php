@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Mail\RaiseSupportRequestEmail;
 use App\Mail\PartnerApplyEmail;
 use App\Mail\AffiliateApplyEmail;
-use Exception;
 use Throwable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;

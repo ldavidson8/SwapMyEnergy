@@ -29,6 +29,13 @@ Route::get('/comingsoon.html', function(Request $request)
     }
 }) -> name('home');
 
+
+/*
+|--------------------------------------------------------------------------
+| Business Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::group([ 'prefix' => '' ], function()
 {
     Route::get('/', [ BusinessHomeController::class, 'index' ]) -> name('business.home');
@@ -53,6 +60,45 @@ Route::group([ 'prefix' => '' ], function()
 });
 
 
+/*
+|--------------------------------------------------------------------------
+| Residential Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::group([ 'prefix' => '/residential' ], function()
+{
+    Route::get('/', [ ResidentialHomeController::class, 'index' ]) -> name('residential.home');
+    Route::get('/about', [ ResidentialHomeController::class, 'about' ]) -> name('residential.about');
+    Route::get('/privacy-policy', [ ResidentialHomeController::class, 'privacyPolicy' ]) -> name('residential.privacy policy');
+    Route::get('/terms-and-conditions', [ ResidentialHomeController::class, 'termsAndConditions' ]) -> name('residential.t&c');
+    Route::get('/contact', [ ResidentialHomeController::class, 'contact' ]) -> name('residential.contact');
+    Route::get('/partners-and-affiliates', [ ResidentialHomeController::class, 'partnersAndAffiliates' ]) -> name('residential.partners and affiliates');
+    
+    Route::group([ 'prefix' => '/my-account', 'middleware' => 'residential' ], function()
+    {
+        Route::get('/', [ ResidentialAccountController::class, 'myAccount' ]) -> name('residential.my account') -> middleware('password.confirm');
+        Route::get('/plan', [ ResidentialAccountController::class, 'yourPlan' ]) -> name('residential.my account.plan') -> middleware('password.confirm');
+        Route::post('/plan', [ ResidentialAccountController::class, 'yourPlanPost' ]) -> name('residential.my account.plan') -> middleware('password.confirm');
+        Route::get('/details', [ ResidentialAccountController::class, 'yourDetails' ]) -> name('residential.my account.details') -> middleware('password.confirm');
+        Route::post('/details', [ ResidentialAccountController::class, 'yourDetailsPost' ]) -> name('residential.my account.details') -> middleware('password.confirm');
+        Route::get('/options', [ ResidentialAccountController::class, 'yourOptions' ]) -> name('residential.my account.options') -> middleware('password.confirm');
+        Route::post('/options', [ ResidentialAccountController::class, 'yourOptionsPost' ]) -> name('residential.my account.options') -> middleware('password.confirm');
+    });
+
+    Route::group([ 'prefix' => '/energy-comparison' ], function()
+    {
+        Route::get('/', [ ResidentialComparisonController::class, 'index' ]) -> name('residential.energy-comparison');
+    });
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Contact Form Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::group([ 'prefix' => '/partner-apply'], function()
 {
     Route::post('/', [ ContactController::class, 'partnerApplyPost' ]) -> name('partner-apply');
@@ -74,39 +120,6 @@ Route::group([ 'prefix' => '/affiliate-apply'], function()
     Route::get('/error', [ ContactController::class, 'affiliateApplyError' ]) -> name('affiliate-apply.error');
 });
 
-
-Route::group([ 'prefix' => '/residential' ], function()
-{
-    Route::get('/', [ ResidentialHomeController::class, 'index' ]) -> name('residential.home');
-    Route::get('/about', [ ResidentialHomeController::class, 'about' ]) -> name('residential.about');
-    Route::get('/privacy-policy', [ ResidentialHomeController::class, 'privacyPolicy' ]) -> name('residential.privacy policy');
-    Route::get('/terms-and-conditions', [ ResidentialHomeController::class, 'termsAndConditions' ]) -> name('residential.t&c');
-    Route::get('/contact', [ ResidentialHomeController::class, 'contact' ]) -> name('residential.contact');
-    Route::get('/partners-and-affiliates', [ ResidentialHomeController::class, 'partnersAndAffiliates' ]) -> name('residential.partners and affiliates');
-    
-    Route::group([ 'prefix' => '/raise-support-request' ], function()
-    {
-        Route::post('/', [ ContactController::class, 'raiseSupportRequestPost' ]) -> name('residential.raise-support-request');
-        Route::get('/success/{ticket}', [ ContactController::class, 'raiseSupportRequestSuccess' ]) -> name('residential.raise-support-request.success');
-        Route::get('/error', [ ContactController::class, 'raiseSupportRequestError' ]) -> name('residential.raise-support-request.error');
-    });
-    
-    Route::group([ 'prefix' => '/my-account', 'middleware' => 'residential' ], function()
-    {
-        Route::get('/', [ ResidentialAccountController::class, 'myAccount' ]) -> name('residential.my account') -> middleware('password.confirm');
-        Route::get('/plan', [ ResidentialAccountController::class, 'yourPlan' ]) -> name('residential.my account.plan') -> middleware('password.confirm');
-        Route::post('/plan', [ ResidentialAccountController::class, 'yourPlanPost' ]) -> name('residential.my account.plan') -> middleware('password.confirm');
-        Route::get('/details', [ ResidentialAccountController::class, 'yourDetails' ]) -> name('residential.my account.details') -> middleware('password.confirm');
-        Route::post('/details', [ ResidentialAccountController::class, 'yourDetailsPost' ]) -> name('residential.my account.details') -> middleware('password.confirm');
-        Route::get('/options', [ ResidentialAccountController::class, 'yourOptions' ]) -> name('residential.my account.options') -> middleware('password.confirm');
-        Route::post('/options', [ ResidentialAccountController::class, 'yourOptionsPost' ]) -> name('residential.my account.options') -> middleware('password.confirm');
-    });
-
-    Route::group([ 'prefix' => '/energy-comparison' ], function()
-    {
-        Route::get('/', [ ResidentialComparisonController::class, 'index' ]) -> name('residential.energy-comparison');
-    });
-});
 
 
 /*

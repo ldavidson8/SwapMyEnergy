@@ -3,67 +3,60 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Mode\ModeSession;
-use Illuminate\Http\Request;
 
 class BusinessHomeController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        ModeSession::setBusiness($request);
+        ModeSession::setBusiness();
 
         $navbar_page = 'home';
         $page_title = 'Swap My Energy - Home';
-        return view('index.business', compact('request', 'navbar_page', 'page_title'));
+        return view('index.business', compact('navbar_page', 'page_title'));
     }
     
-    public function about(Request $request)
+    public function about()
     {
-        ModeSession::setBusiness($request);
+        ModeSession::setBusiness();
         
         $navbar_page = 'about';
         $page_title = 'About Swap My Energy';
-        return view('other.about', compact('request', 'navbar_page', 'page_title'));
+        return view('other.about', compact('navbar_page', 'page_title'));
     }
     
-    public function privacyPolicy(Request $request)
+    public function privacyPolicy()
     {
-        ModeSession::setBusiness($request);
+        ModeSession::setBusiness();
 
         $navbar_page = 'privacy policy';
         $page_title = 'Privacy Policy';
-        return view('other.privacy', compact('request', 'navbar_page', 'page_title'));
+        return view('other.privacy', compact('navbar_page', 'page_title'));
     }
     
-    public function termsAndConditions(Request $request)
+    public function termsAndConditions()
     {
-        ModeSession::setBusiness($request);
+        ModeSession::setBusiness();
 
         $navbar_page = 'terms and conditions';
         $page_title = 'Terms and Conditions';
-        return view('other.t&c', compact('request', 'navbar_page', 'page_title'));
+        return view('other.t&c', compact('navbar_page', 'page_title'));
     }
     
-    public function contact(Request $request)
+    public function contact()
     {
-        ModeSession::setBusiness($request);
+        ModeSession::setBusiness();
 
         $navbar_page = 'contact';
         $page_title = 'Contact Us';
-        return view('other.contact', compact('request', 'navbar_page', 'page_title'));
+        return view('other.contact', compact('navbar_page', 'page_title'));
     }
     
-    public function contactPost(Request $request)
+    public function partnersAndAffiliates()
     {
-        // TODO: handle the request object
-        return redirect() -> back() -> withInput();
-    }
-    
-    public function partnersAndAffiliates(Request $request)
-    {
-        ModeSession::setBusiness($request);
+        ModeSession::setBusiness();
 
         $navbar_page = 'partners and affiliates';
         $page_title = 'Partners and Affiliates';
-        return view('other.partners-and-affiliates', compact('request', 'navbar_page', 'page_title'));
+        return view('other.partners-and-affiliates', compact('navbar_page', 'page_title'));
     }
 }

@@ -2,22 +2,22 @@
 
 namespace App\Http\Requests\Mode;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ModeSession
 {
-    public static function setBusiness(Request $request)
+    public static function setBusiness()
     {
-        $request -> session() -> put('mode', 'business');
+        Session::put('mode', 'business');
     }
     
-    public static function setResidential(Request $request)
+    public static function setResidential()
     {
-        $request -> session() -> put('mode', 'residential');
+        Session::put('mode', 'residential');
     }
 
-    public static function isBusiness(Request $request)
+    public static function isBusiness()
     {
-        return $request -> session() -> get('mode') == 'business';
+        return Session::get('mode') == 'business';
     }
 }
