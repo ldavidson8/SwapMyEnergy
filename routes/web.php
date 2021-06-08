@@ -38,13 +38,6 @@ Route::group([ 'prefix' => '' ], function()
     Route::get('/contact', [ BusinessHomeController::class, 'contact' ]) -> name('business.contact');
     Route::get('/partners-and-affiliates', [ BusinessHomeController::class, 'partnersAndAffiliates' ]) -> name('business.partners and affiliates');
 
-    Route::group([ 'prefix' => '/raise-support-request' ], function()
-    {
-        Route::post('/', [ ContactController::class, 'raiseSupportRequestPost' ]) -> name('business.raise-support-request');
-        Route::get('/success/{ticket}', [ ContactController::class, 'raiseSupportRequestSuccess' ]) -> name('business.raise-support-request.success');
-        Route::get('/error', [ ContactController::class, 'raiseSupportRequestError' ]) -> name('business.raise-support-request.error');
-    });
-    
     Route::group([ 'prefix' => '/request-callback' ], function()
     {
         Route::post('/', [ BusinessContactController::class, 'requestCallbackPost' ]) -> name('business.request-callback');
@@ -65,6 +58,13 @@ Route::group([ 'prefix' => '/partner-apply'], function()
     Route::post('/', [ ContactController::class, 'partnerApplyPost' ]) -> name('partner-apply');
     Route::get('/success', [ ContactController::class, 'partnerApplySuccess' ]) -> name('partner-apply.success');
     Route::get('/error', [ ContactController::class, 'partnerApplyError' ]) -> name('partner-apply.error');
+});
+
+Route::group([ 'prefix' => '/raise-support-request' ], function()
+{
+    Route::post('/', [ ContactController::class, 'raiseSupportRequestPost' ]) -> name('raise-support-request');
+    Route::get('/success/{ticket}', [ ContactController::class, 'raiseSupportRequestSuccess' ]) -> name('raise-support-request.success');
+    Route::get('/error', [ ContactController::class, 'raiseSupportRequestError' ]) -> name('raise-support-request.error');
 });
 
 Route::group([ 'prefix' => '/affiliate-apply'], function()

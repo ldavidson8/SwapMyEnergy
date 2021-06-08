@@ -71,7 +71,7 @@
                         </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center;">
-                            <p style="font-size:30px; padding-top: 25px; padding-bottom:40px;"> 01772 584880 </p>
+                            <p style="font-size:30px; padding-top: 25px; padding-bottom:40px;"> {{ env('DATA_CONTACT_PHONE_NUMBER') }} </p>
                             <h3 style="text-decoration: underline; font-size: 24px;"> Opening Hours </h3>
                             <p>
                                 10am - 4:30pm <br>
@@ -138,7 +138,7 @@
                             <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/cogs.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
-                        <form id="formSupport" action="{{ route("$mode.raise-support-request") }}" method="post">
+                        <form id="formSupport" action="{{ route("raise-support-request") }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="full_name">Full Name <span class="text-danger">*</span></label>

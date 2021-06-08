@@ -67,7 +67,7 @@ class ContactController extends Controller
         {
             // TODO: generate a ticket which increments
             // generate random string
-            $ticket = hash('sha1', time());
+            $ticket = date("dHis");
 
             $to_email = [ env('MAIL_TO_ADDRESS') ];
             Mail::to($to_email) -> queue(new RaiseSupportRequestEmail($formData, $ticket));
