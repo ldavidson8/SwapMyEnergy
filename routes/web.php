@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\API\ResidentialApiController;
+use App\Http\Requests\Mode\ModeSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -88,7 +90,19 @@ Route::group([ 'prefix' => '/residential' ], function()
 
     Route::group([ 'prefix' => '/energy-comparison' ], function()
     {
+        // pages
         Route::get('/', [ ResidentialComparisonController::class, 'index' ]) -> name('residential.energy-comparison');
+        
+        // api
+        Route::get('/addresses/{postcode}', [ ResidentialApiController::class, 'addresses' ]) -> name('residential.energy-comparison.addresses');
+        Route::get('/addresses/mprn/{postcode}/{houseNo}', [ ResidentialApiController::class, 'addresses_mprn' ]) -> name('residential.energy-comparison.addresses.mprn');
+        Route::get('/addresses/mprndetails/{mprn}', [ ResidentialApiController::class, 'addresses_mprndetails' ]) -> name('residential.energy-comparison.addresses.mprndetails');
+        Route::get('/suppliers', [ ResidentialApiController::class, 'suppliers' ]) -> name('residential.energy-comparison.suppliers');
+        Route::get('/suppliers/{supplierId}', [ ResidentialApiController::class, 'supplierById' ]) -> name('residential.energy-comparison.suppliers.by-id');
+        
+        // test
+        Route::get('/test/one', [ ResidentialApiController::class, 'testOne' ]);
+        Route::get('/test/many', [ ResidentialApiController::class, 'testMany' ]);
     });
 });
 

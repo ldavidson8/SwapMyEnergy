@@ -10,6 +10,8 @@
         <meta name="description" content="{{ $description }}" />
     @endif
     
+    <link rel="shortcut icon" type="image/jpg" href="{{ asset('favicon.png') }}"/>
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet" />

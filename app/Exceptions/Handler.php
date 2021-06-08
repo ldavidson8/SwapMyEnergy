@@ -2,11 +2,14 @@
 
 namespace App\Exceptions;
 
+use App\Http\Requests\Mode\ModeSession;
 use Exception;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 
 class Handler extends ExceptionHandler
 {
@@ -30,6 +33,17 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+
+    public function render($request, $ex)
+    {
+        if ($ex instanceof MethodNotAllowedHttpException)
+        {
+            return redirect() -> to(ModeSession::getHomeUrl());
+        }
+
+        return parent::render($request, $ex);
+    }
+
     /**
      * Register the exception handling callbacks for the application.
      *
@@ -37,7 +51,7 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) { Log::channel('errorlog') -> error("Throwable - " . $e -> getMessage()); });
         $this->reportable(function (Exception $e) { Log::channel('errorlog') -> error("Error - " . $e -> getMessage()); });
+        $this->reportable(function (Throwable $e) { Log::channel('errorlog') -> error("Throwable - " . $e -> getMessage()); });
     }
 }
