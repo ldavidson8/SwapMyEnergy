@@ -11,7 +11,7 @@
             font-weight: bold;
             border: none;
             display: inline-block;
-            background-color: #f1f2f3;
+            background-color: #f3f2f1;
     }
 
     .form-padding-50
@@ -220,7 +220,7 @@
 @endsection
 
 @section('before-header')
-<div style="background-color: #f1f2f3;">
+<div style="background-color: #f3f2f1;">
     <div class="full-size container-fluid background-image-preston background-bottom">
 
 @endsection
