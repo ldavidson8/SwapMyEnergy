@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 class ResidentialApiRepository extends Controller implements IResidentialAPI
