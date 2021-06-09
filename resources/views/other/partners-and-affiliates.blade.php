@@ -46,6 +46,12 @@
             font-weight: 700;
         }
 
+        .text-horizontal-center
+        {
+            display: flex;
+            justify-content: center;
+        }
+
         .div-padding-top-200
         {
             padding-top: 200px;
@@ -77,6 +83,20 @@
         .border-radius-15
         {
             border-radius: 15px;
+        }
+
+        .rounded-input-field
+        {
+            width: 100%;
+            border-radius: 15px;
+            padding: 10px;
+            border: 1px solid;
+        }
+
+        .rounded-input-field::focus 
+        {
+            outline: none;
+            border-color: #ffaa00;
         }
 
         .center-div-outer
@@ -316,17 +336,14 @@
     </div> --}}
 
     <hr />
-    <div class="full-size-60 container-fluid no-padding background-image-market background-image-opacity-35 preload" style="font-size: 22px;">
+    <div class="full-size-60 container-fluid background-image-market background-image-opacity-35 preload" style="font-size: 22px; padding: 50px;">
         <div class="row">
-            <div class="col-12 col-lg-6">
-                <div class="center-content" style="text-align: left; width: 50%;">
-                <p class="heading-text"> Interested in joining our affiliate programme? </p>
-                <p> Fill in this form and we'll be back in touch </p>
-                </div>
+            <div class="col-12 col-lg-4">
+                    <p class="heading-text"> Interested in joining our affiliate programme? </p>
+                    <p> Fill in this form and we'll be back in touch </p>
             </div>
-            <div id="AffiliateApply" class="col-12 col-lg-6 no-padding">
+            <div id="AffiliateApply" class="col-12 col-lg-8 no-padding">
                 <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px;">
-                    <h2 style="column-span: all;">Apply to be an affiliate</h2>
                     @if ($errors -> hasBag('affiliate') > 0)
                         <div class="alert alertinfo text-danger">
                             @foreach ($errors -> getBag('affiliate') -> all() as $error)
@@ -334,42 +351,44 @@
                             @endforeach
                         </div>
                     @endif
-                    <form id="formPartnerApply" class="form-black" action="{{ route('affiliate-apply') }}" method="post">
+                    <form id="formAffiliateApply" class="form-black" action="{{ route('affiliate-apply') }}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="full_name">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="full_name" name="full_name" value="{{ old('full_name') }}" required />
+                            <input type="text" class="rounded-input-field" id="full_name" name="full_name" value="{{ old('full_name') }}" required />
                         </div>
                         <div class="form-group">
                             <label for="inputAddress">Email Address <span class="text-danger">*</span></label>
-                            <input type="email_address" class="form-control" id="email_address" name="email_address" value="{{ old('email_address') }}" placeholder="example@domain.com" required />
+                            <input type="email_address" class="rounded-input-field" id="email_address" name="email_address" value="{{ old('email_address') }}" placeholder="example@domain.com" required />
                         </div>  
                         <div class="form-group">
                             <label for="phone_number">Phone Number <span class="text-danger">*</span></label>
                             <p id="phone_number_error" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
-                            <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="company_address">Company Address <span class="text-danger">*</span></label>
-                            <textarea id="company_address" class="form-control" name="company_address" required rows="4">{{ old('company_address') }}</textarea>
-                        </div>
-                        <?php $type_of_company = old('type_of_company') ?>
-                        <div class="form-group">
-                            <label for="type_of_company">Type of Company <span class="text-danger">*</span></label>
-                            <select id="type_of_company" class="form-control" name="type_of_company" required />
-                                <option value="" disabled selected hidden></option>
-                                <option value="YouTuber">YouTuber</option>
-                                <option value="lorem">Lorem</option>
-                                <option value="ipsum">Ipsum</option>
-                                <option value="ipsum">Other</option>
-                            </select>
+                            <input type="text" class="rounded-input-field" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required />
                         </div>
                         <div class="form-group">
                             <label for="web_link">Link (If applicable)</label>
-                            <input type="url" class="form-control" id="web_link" name="web_link" value="{{ old('web_link') }}" />
+                            <input type="url" class="rounded-input-field" id="web_link" name="web_link" value="{{ old('web_link') }}" />
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address <span class="text-danger">*</span></label>
+                            <textarea id="address" class="rounded-input-field" name="address" required rows="4">{{ old('address') }}</textarea>
+                        </div>
+                        <?php $type_of_affiliate = old('type_of_affiliate') ?>
+                        <div class="form-group">
+                            <label for="type_of_affiliate">Type of Affiliate <span class="text-danger">*</span></label>
+                            <select id="type_of_affiliate" class="rounded-input-field" name="type_of_affiliate" required />
+                                <option value="" disabled {{ (isset($type_of_affiliate)) ? '' : 'selected' }} hidden></option>
+                                <option value="youtuber" {{ ($type_of_affiliate == 'youtuber') ? 'selected' : '' }}>Youtuber</option>
+                                <option value="instagram_influencer" {{ ($type_of_affiliate == 'instagram_influencer') ? 'selected' : '' }}>Instagram Influencer</option>
+                                <option value="blogger" {{ ($type_of_affiliate == 'blogger') ? 'selected' : '' }}>Blogger</option>
+                                <option value="tiktoker" {{ ($type_of_affiliate == 'tiktoker') ? 'selected' : '' }}>Tiktoker</option>
+                                <option value="podcaster" {{ ($type_of_affiliate == 'podcaster') ? 'selected' : '' }}>Podcaster</option>
+
+                            </select>
                         </div>
                         <div class="text-center position-relative">
-                            <button type="submit" class="btn big-blue-button btn-lg" style="width: 400px; padding: 30px;">Submit</button>
+                            <button type="submit" class="btn large-blue-button" style="width: 100%;">Submit</button>
                         </div>
                     </form>
                 </div>

@@ -86,6 +86,10 @@ body
     .background-image-hydropower-plant:not(.preload)::before { background-image: url('/img/background/hydropower-plant_quarter.png'); }
 }
 
+img.default
+{
+    max-width: 100%;
+}
 
 hr
 {
@@ -244,6 +248,20 @@ footer
 .footer-link
 {
     color: #f3f2f1;
+}
+
+.footer-social-link-image
+{
+    margin: 10px;
+
+}
+
+.footer-social-link:link
+.footer-social-link:visited,
+.footer-social-link:hover,
+.footer-social-link:active
+{
+    text-decoration: none;
 }
 
 .navigation-link-footer-current-page
@@ -548,5 +566,15 @@ body.business .switch-text
     .mobile-only-padding-30
     {
         padding: 30px;
+    }
+}
+
+@media (max-width: 400px)
+{
+    footer td, footer th
+    {
+        width: 100%;
+        display: block;
+        text-align: center !important;
     }
 }

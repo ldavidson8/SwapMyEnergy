@@ -62,6 +62,7 @@
             text-align: center;
             display: inline-block;
             margin: 20px;
+            border: 2px solid #202020
         }
         .logos-item
         {
@@ -77,18 +78,21 @@
             height: auto;
         }
 
+        @media (max-width: 991px)
+        {
+            .background-mobile-white { background-color: #f3f2f1; }
+            .hide-logo-large { display: none; }
+        }
 
         @media (max-width: 767px)
         {
             .background-image-non-moblie { background-color: #f3f2f1; }
             .background-image-non-moblie::before { background-image: none !important; }
         }
-        @media (max-width: 991px)
+        
+        @media (max-width: 761px)
         {
-            .background-mobile-white 
-            { 
-                background-color: #f3f2f1; 
-            }
+            .hide-logo-medium { display: none; }
         }
     </style>
 @endsection
@@ -170,22 +174,34 @@
                 <h2 style="padding-top: 30px;"> Our Suppliers</h2>
                 <ul class="logos-container">
                     <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.svg') }}">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/eon.png') }}">
                     </li>
                     <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/edf.svg') }}">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.png') }}">
                     </li>
                     <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.svg') }}">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.png') }}">
+                    </li>
+                    <li class="logos-item-outer">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.png') }}">
                     </li>
                     <li class="logos-item-outer">
                         <img class="logos-item" src="{{ asset('img/supplier-logos/ecotricity.svg') }}">
                     </li>
                     <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/eon.svg') }}">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/utilita.png') }}">
                     </li>
                     <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.svg') }}">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/avanti-gas.png') }}">
+                    </li>
+                    <li class="logos-item-outer">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/opus-energy.png') }}">
+                    </li>
+                    <li class="logos-item-outer hide-logo-medium">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/sse.png') }}">
+                    </li>
+                    <li class="logos-item-outer hide-logo-large">
+                        <img class="logos-item" src="{{ asset('img/supplier-logos/crown-gas.png') }}">
                     </li>
                 </ul>
                 <p style="font-size: 28px;"> Plus many more... </p>
