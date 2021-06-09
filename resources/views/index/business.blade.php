@@ -44,6 +44,10 @@
         {
             color: #f3f2f1;
         }
+        .plus-many-font
+        {
+            font-size: 28px;
+        }
 
         .logos-container
         {
@@ -81,7 +85,7 @@
         @media (max-width: 991px)
         {
             .background-mobile-white { background-color: #f3f2f1; }
-            .hide-logo-large { display: none; }
+            .plus-many-font-medium { font-size: 22px;}
         }
 
         @media (max-width: 767px)
@@ -92,8 +96,12 @@
         
         @media (max-width: 761px)
         {
-            .hide-logo-medium { display: none; }
         }
+
+        @media (max-width: 515px)
+        {
+        }
+
     </style>
 @endsection
 
@@ -168,44 +176,69 @@
         </div>
     </div>
     <hr />
-    <div class="full-size-40 container-fluid d-flex flex-column">
-        <div class="row flex-grow-1">
-            <div class="col-12 center-content" style="text-align: center;">
-                <h2 style="padding-top: 30px;"> Our Suppliers</h2>
-                <ul class="logos-container">
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/eon.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/ecotricity.svg') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/utilita.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/avanti-gas.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/opus-energy.png') }}">
-                    </li>
-                    <li class="logos-item-outer hide-logo-medium">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/sse.png') }}">
-                    </li>
-                    <li class="logos-item-outer hide-logo-large">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/crown-gas.png') }}">
-                    </li>
-                </ul>
-                <p style="font-size: 28px;"> Plus many more... </p>
+    <div class="full-size-40 container-fluid flex-column padding-20px">
+        <div style="text-align: center;">
+            <h2 style="padding-top: 30px;"> Our Suppliers</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-1 d-md-block d-none"> </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/eon.png') }}">
+                </a>
             </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/bristol-energy.png') }}">
+                </a>
+            </div>
+            <div class="col-md-1 d-md-block d-none"> </div>   
+            <div class="col-md-1 d-md-block d-none"> </div>  
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/utilita.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/avanti-gas.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/opus-energy.png') }}">
+                </a>
+            </div>
+            <div class="col-sm-3 d-sm-block d-md-none"></div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/sse.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/crown-gas.png') }}">
+                </a>
+            </div>
+            <div class="col-md-1 d-md-block d-none"> </div>   
+        </div>
+        <div style="text-align: center;">
+            <p class="plus-many-font plus-many-font-medium"> Plus many more... </p>
         </div>
     </div>
     <hr />
@@ -232,7 +265,7 @@
             </div>
             <div class="col-12 col-lg-3 center-content">
                 <div style="text-align: center;">
-                    <img src={{ asset('img/business-homepage/laptop.png')}}>
+                    <img src={{ asset('img/business-homepage/laptop.png')}} style="max-width: 100%;">
                 </div>
             </div>
         </div>
