@@ -11,11 +11,11 @@ Email Address:
 Phone Number:
     {{ $formData["phone_number"] }}
 
-Company Address:
-    {{ $formData["company_address"] }}
+Address:
+    {{ $formData["address"] }}
 
-Type of Company
-    {{ $formData["type_of_company"] }}
+Type of Affiliate:
+    {{ $formData["type_of_affiliate"] }}
 
 Web Link:
     {{ (isset($formData["web_link"])) ? $formData["web_link"] : 'N/A' }}

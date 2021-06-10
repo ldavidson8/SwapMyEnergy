@@ -230,42 +230,10 @@
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
         </div>
     </div>
-    {{-- <div class="container-fluid background-image-market background-image-opacity-35" style="text-align: center;">
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/partner-logos/TEG.png') }}" width="200" height="auto"/></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/british-gas.svg') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/edf.svg') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/scottish-power.svg') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/ecotricity.svg') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/eon.svg') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/supplier-logos/ovo.svg') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/partner-logos/SSE.png') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/partner-logos/shell-energy.png') }}" width="200" height="auto" /></div>
-        <div class="gallery-logo-outer"><img class="gallery-logo" src="{{ asset('img/partner-logos/your-business-energy.png') }}" width="200" height="auto" /></div>
-    </div> --}}
 
     <hr />
 
-    {{-- <div id="PartnerProgramme" class="container-fluid no-padding-left-right section-padding" style="background-color: #f3f2f1;">
-        <div class="container no-padding-left-right">
-            <div class="row">
-                <div class="col-sm-6 col-12 border-right-sm border-bottom-sm section-padding" style="text-align: right;">
-                    <h2> Your Benefits </h2>
-                    <ul style="line-height: 1.2;">
-                        <li>Promotion opportunities across our social channels and website</li>
-                        <li>Earn for when you help switch customers with us</li>
-                        <li>Potential collaboration opportunities upon discussion with ourselves</li>
-                        <li>And more when you get in touch</li>
-                    </ul>
-                </div>
-                <div class="col-sm-6 col-12 join-our-family section-padding">
-                    <h2 style="font-size: 45px;"> Join Our Family</h2>
-                    <a href="#PartnerApply"><button type="button" class="big-blue-button btn-lg" href="#section03">Join Us</button></a>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-    <div class="full-size background-image-preston">
+    <div id="PartnerApply" class="full-size background-image-preston">
         <div class="container-lg no-padding">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-12 no-margin div-padding-top-200" style="color: #f3f2f1;">
@@ -274,18 +242,19 @@
                 </div>
                 <div class="col-xl-6 col-lg-6 col-12 div-padding-top-200">
                     <h2 style="color: #f3f2f1"> Apply to be a Partner </h2>
-                    <form action="mailto:{{ env('DATA_CONTACT_EMAIL') }}" method="GET" enctype="text/plain">
+                    <form id="formPartnerApply" action="{{ route('partner-apply') }}" method="post">
+                        @csrf
                         <div class="form-group">
                             <label for="full_name" style="color: #f3f2f1">Full Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="full_name" name="full_name" value="{{ old('full_name') }}" required />
                         </div>
                         <div class="form-group">
-                            <label for="inputAddress" style="color: #f3f2f1">Email Address <span class="text-danger">*</span></label>
+                            <label for="email_address" style="color: #f3f2f1">Email Address <span class="text-danger">*</span></label>
                             <input type="email_address" class="form-control" id="email_address" name="email_address" value="{{ old('email_address') }}" placeholder="example@domain.com" required />
                         </div>  
                         <div class="form-group">
-                            <label for="company_address" style="color: #f3f2f1">Message<span class="text-danger">*</span></label>
-                            <textarea id="company_address" class="form-control" name="company_address" required rows="4">{{ old('company_address') }}</textarea>
+                            <label for="message" style="color: #f3f2f1">Message<span class="text-danger">*</span></label>
+                            <textarea id="message" class="form-control" name="message" required rows="4">{{ old('message') }}</textarea>
                         </div>
                         <button type="submit" class="btn big-blue-button btn-lg">Submit</button>
                     </form>
@@ -311,38 +280,14 @@
         </div>
     </div>
 
-
-    {{-- <div id="AffiliatesProgramme" class="full-size-80 container-fluid d-flex flex-column no-padding">
-        <main class="row flex-grow-1 no-padding">
-            <div class="col-xl-6 col-12 row no-padding align-items-center background-image-train background-image-right preload">
-                <div class="col row no-padding">
-                    <div class="col-sm-6 col-12 border-right-sm border-bottom-sm section-padding" style="text-align: right;">
-                        <h2> Your Benefits </h2>
-                        <ul style="line-height: 1.2;">
-                            <li>Earn for when you help switch customers with us</li>
-                            <li>Affiliate showcases</li>
-                            <li>Potential collaboration opportunities upon discussion with ourselves</li>
-                            <li>And more when you get in touch</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-12 join-our-family section-padding">
-                        <h2 style="font-size: 45px;">Our affiliates programme</h2>
-                        <a href="#AffiliateApply"><button class="big-blue-button btn-lg">Join Now</button></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6 d-none d-xl-block section-border-left" style="background-color: #f3f2f1; min-height: 300px;"></div>
-        </main>
-    </div> --}}
-
     <hr />
-    <div class="full-size-60 container-fluid background-image-market background-image-opacity-35 preload" style="font-size: 22px; padding: 50px;">
+    <div id="AffiliateApply" class="full-size-60 container-fluid background-image-market background-image-opacity-35 preload" style="font-size: 22px; padding: 50px;">
         <div class="row">
             <div class="col-12 col-lg-4">
-                    <p class="heading-text"> Interested in joining our affiliate programme? </p>
-                    <p> Fill in this form and we'll be back in touch </p>
+                <p class="heading-text"> Interested in joining our affiliate programme? </p>
+                <p> Fill in this form and we'll be back in touch </p>
             </div>
-            <div id="AffiliateApply" class="col-12 col-lg-8 no-padding">
+            <div class="col-12 col-lg-8 no-padding">
                 <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px;">
                     @if ($errors -> hasBag('affiliate') > 0)
                         <div class="alert alertinfo text-danger">
@@ -402,7 +347,7 @@
         document.body.onload = function()
         {
             var phoneNumberError = document.getElementById("phone_number_error");
-            document.getElementById("formPartnerApply").onsubmit = function (e)
+            document.getElementById("formAffiliateApply").onsubmit = function(e)
             {
                 var phoneNumber = document.getElementById("phone_number").value;
 
@@ -418,6 +363,4 @@
             }
         };
     </script>
-
-    {{-- <script defer="true" src="https://kit.fontawesome.com/6e2d0444fe.js" crossorigin="anonymous"></script> --}}
 @endsection
