@@ -2,6 +2,25 @@
 
 @section('stylesheets')
     <style>
+        .white-box-infographics
+        {
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            height: auto;
+            padding: 20px 0;
+        }
+
+        .white-box-infographics-inner
+        {
+            background-color: white;;
+            border-radius: 20px;
+            width: 300px;
+            height: 100%;
+            padding: 20px;
+            margin: auto;
+            max-width: 100%;
+        }
         #section01
         {
             position: relative;
@@ -112,6 +131,39 @@
         </div>
     </div>
     <hr/>
+    <div class="full-size-80 container-fluid d-flex h-100 flex-column background-image-preston">
+        <div class="row flex-grow-1 font-color-white">
+            <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
+                <div class="white-box-infographics-inner">
+                    <div style="text-align: center;">
+                        <img src="{{ asset('img/infographic icons/signed-form.svg') }}"/>
+                        <p style="margin-top: 50px; "> Fill in our form </p>
+                        <p> Our form is easy to understand and will help you get the best deals available to you </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
+                <div class="white-box-infographics-inner">
+                    <div style="text-align: center;">
+                        <img src="{{ asset('img/infographic icons/search-icon.svg') }}"/>
+                        <p style="margin-top: 50px; "> Browse our deals </p>
+                        <p> You'll have all the best deals presented to you, allowing you to easily understand which deal best suits you.  </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-lg-none"></div>
+            <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
+                <div class="white-box-infographics-inner">
+                    <div style="text-align: center;">
+                        <img src="{{ asset('img/infographic icons/switch-icon.svg') }}"/>
+                        <p style="margin-top: 50px; "> Get switching </p>
+                        <p> Once you're sure that you got the best deal for you, toggle the switch and leave the rest up to us. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 d-lg-none"></div>
+        </div>
+    </div>
     <div id="HowItWorks" class="full-size-50 container-fluid d-flex flex-column">
         <div class="row flex-grow-1 no-padding" style="background-color: #f3f2f1;">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
@@ -139,25 +191,29 @@
     </div>
     <div class="container-fluid d-flex flex-column">
         <div class="row flex-grow-1 no-padding">
-            <div class="col-12 left-column-content-no-padding align-items-center" style="text-align: left;">
+            <div class="col-12 left-column-content-no-padding align-items-center">
                 <div class="faq padding-20px">
-                    <h2>Frequently Asked Questions</h2>
-                    <button class="faq-accordion">How is the service free?</button>
+                    <h2 style="text-align: center;">Frequently Asked Questions</h2>
+                    <button class="faq-accordion">Why choose Swap My Energy?</button>
                     <div class="faq-panel">
-                        <p>Lorem ipsum...</p>
+                        <p>Swap My Energy are dedicated to making switching simple. We allow you to see as much information regarding the deals available to you as possible, allowing you to gain a full understanding on why the prices are the way they are.</p>
+                    </div>
+                    <button class="faq-accordion">How long does it take to switch?</button>
+                    <div class="faq-panel">
+                        <p>Once you've decided to switch, your information will be provided to the supplier of your choice and your switching will be underway. Typically, suppliers take around 2 weeks to switch you over, this is because you have the option within the 2 weeks to stop switching.</p>
+                    </div>
+
+                    <button class="faq-accordion">Why do you need my suppliers name and my current usage?</button>
+                    <div class="faq-panel">
+                        <p>This helps us understand the deal you were on and to help calculate the prices of the deals based on your current usage.</p>
                     </div>
                     <button class="faq-accordion">Will you always get me a better deal?</button>
                     <div class="faq-panel">
-                        <p>Lorem ipsum...</p>
+                        <p>No. Some other energy switching companies will promise you a better deal, by "estimating" your usage for the next year. We let you know your unit price and standing charges, allowing you to understand how much it costs you per kW. Our aim to get you a better deal based on unit price and standing charges, meaning that if you get lower prices on these, then you'll end up paying less (assuming that your usage is the same). <br /> This works in a similar way to when you're putting fuel in your car. If one week you buy 50L of fuel at £1.35 per litre and then the next week at £1.25 per litre, you'll save money. But if you buy 75L of fuel at £1.25 instead, you'll end up spending more</p>
                     </div>
-
-                    <button class="faq-accordion">How will I know when you've switched me?</button>
+                    <button class="faq-accordion">Can I opt-out of switching?</button>
                     <div class="faq-panel">
-                        <p>Lorem ipsum...</p>
-                    </div>
-                    <button class="faq-accordion">Can i opt-out at any time?</button>
-                    <div class="faq-panel">
-                        <p>Lorem ipsum...</p>
+                        <p>Yes you can. From initially agreeing to switch, you have up to 2 weeks to opt-out.</p>
                     </div>
                 </div>  
             </div>
