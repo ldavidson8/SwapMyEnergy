@@ -2,6 +2,23 @@
 
 @section('stylesheets')
     <style>
+        .white-box-infographics
+        {
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            height: 400px;
+            padding: 2  0px;
+        }
+
+        .white-box-infographics-inner
+        {
+            background-color: white;;
+            border-radius: 20px;
+            width: 60%;
+            height: 100%;
+            padding: 20px;
+        }
         #section01
         {
             position: relative;
@@ -99,19 +116,44 @@
 
 @section('main-content')
         <hr/>
-        <div class="row flex-grow-1 no-padding background-image-docks">
-            <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content">
+        <div class="row flex-grow-1 no-padding background-image-wind-turbines">
+            <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
+            <div class="col-xl-3 col-lg-6 col-md-8 col-12 center-content">
                 <h1>Don't fall victim to rising energy prices</h1>
                 <p>Too many energy brokers promise savings that don’t stick. These promises are made on estimates, which aren’t always respective of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you deserve when it comes to your bills.</p>
                 <a href="{{ route('residential.energy-comparison') }}" class="btn big-blue-button" role="button" style="margin-top: 10px;">Get started</a>
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block">
+            <div class="col-xl-7 col-lg-5 col-md-2 d-none d-md-block">
                 <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
             </div>
         </div>
     </div>
     <hr/>
+    <div class="full-size-80 container-fluid d-flex h-100 flex-column background-image-preston">
+        <div class="row flex-grow-1 font-color-white">
+            <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
+                <div class="white-box-infographics-inner">
+                    <div style="text-align: center;">
+                        <img src="{{ asset('img/infographic icons/signed-form.svg') }}"/>
+                        <p style="margin-top: 50px; "> Fill in our form </p>
+                        <p> Our form is easy to understand and will help you get the best deals available to you </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
+                <div class="white-box-infographics-inner">
+
+                </div>
+            </div>
+            <div class="col-md-3 d-lg-none"></div>
+            <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
+                <div class="white-box-infographics-inner">
+                    
+                </div>
+            </div>
+            <div class="col-md-3 d-lg-none"></div>
+        </div>
+    </div>
     <div id="HowItWorks" class="full-size-50 container-fluid d-flex flex-column">
         <div class="row flex-grow-1 no-padding" style="background-color: #f3f2f1;">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
@@ -163,7 +205,7 @@
             </div>
         </div>
     </div>
-    <div class="d-flex flex-column background-image-preston-behind" style="min-height: 250px; padding-bottom: 10px;">
+    <div class="d-flex flex-column background-image-preston-behind" style="min-height: 250px;">
         <div class="row flex-grow-1 background-image-preston background-image-bottom preload" style="align-content: center;">
             <div class="center-content" style="width: 600px; max-width: 100%; text-align: center">
                 <p style="font-weight: bold; font-size: 30px; color: #f3f2f1;"> Still need Help?</p>
