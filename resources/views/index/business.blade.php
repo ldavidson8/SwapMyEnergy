@@ -49,6 +49,17 @@
             font-size: 28px;
         }
 
+        .rounded-blue-button
+        {
+            background-color: #00d2db;
+            border: none;
+            width: 300px;
+            border-radius: 18px;
+            padding: 12px;
+            font-size: 27px;
+            font-weight: bold;
+        }
+
         .logos-container
         {
             padding: 0;
@@ -168,7 +179,7 @@
                             <label for="email">Email Address (optional)</label>
                             <input type="email" class="form-control tall-form-control" id="email" name="email_address" placeholder="Email (optional)" />
                         </div>
-                        <button type="submit" class="big-blue-button">Call Me</button>
+                        <button type="submit" class="rounded-blue-button" style="padding: 8px; width: 250px; color: #f3f2f1;">Call Me</button>
                     </form>
                 </div>
             </div>
@@ -251,7 +262,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6 center-content" style="text-align: center;">
-                <a href="#requestCallback"><button class="big-blue-button" style="width: auto; padding-left: 20px; padding-right: 20px;">Request a Callback</button></a>
+                <a href="#requestCallback"><button class="rounded-blue-button">Lets do it!</button></a>
             </div>
         </div>
     </div>
