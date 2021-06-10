@@ -497,11 +497,12 @@ h3, h5, h6
 
 .faq-accordion:after
 {
-    content: '\2304'; /* Unicode character for "plus" sign (+) */
-    font-size: 40px;
+    content: '\25BE'; /* Unicode character for "plus" sign (+) */
+    font-size: 36px;
     color: #f3f2f1;
     float: right;
     margin-left: 5px;
+    padding: 0;
 }
 .faq-active:after
 {

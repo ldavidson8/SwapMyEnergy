@@ -191,7 +191,7 @@
     </div>
     <div class="container-fluid d-flex flex-column">
         <div class="row flex-grow-1 no-padding">
-            <div class="col-12 left-column-content-no-padding align-items-center">
+            <div class="col-12 align-items-center" style="padding: 0 50px;">
                 <div class="faq padding-20px">
                     <h2 style="text-align: center;">Frequently Asked Questions</h2>
                     <button class="faq-accordion">Why choose Swap My Energy?</button>
