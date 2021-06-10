@@ -35,6 +35,12 @@ return [
     */
 
     'channels' => [
+        'energy-comparison/find-address-post' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/energy-comparison/find-address-post.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
         'raise-support-request' => [
             'driver' => 'single',
             'path' => storage_path('logs/raise-support-request.log'),

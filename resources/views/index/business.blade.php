@@ -142,7 +142,6 @@
                 <div class="white-text" style="max-width: 100%; width: 600px;">
                     <form id="requestCallbackForm" class="form-black" action="{{ route('business.request-callback') }}" method="post" enctype="multipart/form-data">
                         @csrf
-
                         <div class="form-group">
                             <label for="full_name">Full Name/Business Name</label>
                             <input type="text" class="form-control tall-form-control" id="full_name" name="full_name" placeholder="Full Name/Business Name" required="required" />

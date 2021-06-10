@@ -91,15 +91,17 @@ Route::group([ 'prefix' => '/residential' ], function()
     Route::group([ 'prefix' => '/energy-comparison' ], function()
     {
         // pages
-        Route::get('/', [ ResidentialComparisonController::class, 'form1' ]) -> name('residential.energy-comparison');
-        Route::get('/2', [ ResidentialComparisonController::class, 'form2' ]) -> name('residential.energy-comparison-2');
+        Route::get('/address', [ ResidentialComparisonController::class, 'findAddress' ]) -> name('residential.energy-comparison.1-address');
+        Route::post('/address', [ ResidentialComparisonController::class, 'findAddressPost' ]) -> name('residential.energy-comparison.1-address');
+        Route::get('/existing-tariff', [ ResidentialComparisonController::class, 'existingTariff' ]) -> name('residential.energy-comparison.2-existing-tariff');
+        Route::post('/existing-tariff', [ ResidentialComparisonController::class, 'existingPost' ]) -> name('residential.energy-comparison.2-existing-tariff');
         
         // api
-        Route::post('/addresses/{postcode}', [ ResidentialApiController::class, 'addresses' ]) -> name('residential.energy-comparison.addresses');
-        Route::post('/addresses/mprn/{postcode}/{houseNo}', [ ResidentialApiController::class, 'addresses_mprn' ]) -> name('residential.energy-comparison.addresses.mprn');
-        Route::post('/addresses/mprndetails/{mprn}', [ ResidentialApiController::class, 'addresses_mprndetails' ]) -> name('residential.energy-comparison.addresses.mprndetails');
-        Route::post('/suppliers', [ ResidentialApiController::class, 'suppliers' ]) -> name('residential.energy-comparison.suppliers');
-        Route::post('/suppliers/{supplierId}', [ ResidentialApiController::class, 'supplierById' ]) -> name('residential.energy-comparison.suppliers.by-id');
+        Route::post('/addresses/{postcode}', [ ResidentialApiController::class, 'addresses' ]) -> name('residential.energy-comparison.api.addresses');
+        Route::post('/addresses/mprn/{postcode}/{houseNo}', [ ResidentialApiController::class, 'addresses_mprn' ]) -> name('residential.energy-comparison.api.addresses.mprn');
+        Route::post('/addresses/mprndetails/{mprn}', [ ResidentialApiController::class, 'addresses_mprndetails' ]) -> name('residential.energy-comparison.api.addresses.mprndetails');
+        Route::post('/suppliers', [ ResidentialApiController::class, 'suppliers' ]) -> name('residential.energy-comparison.api.suppliers');
+        Route::post('/suppliers/{supplierId}', [ ResidentialApiController::class, 'supplierById' ]) -> name('residential.energy-comparison.api.suppliers.by-id');
         
         // test
         Route::get('/test/one', [ ResidentialApiController::class, 'testOne' ]);

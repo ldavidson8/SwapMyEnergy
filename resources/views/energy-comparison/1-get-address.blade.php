@@ -3,12 +3,7 @@
 @section('stylesheets')
 <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}" />
     <style>
-        .white-text
-        {
-            color: white;
-        }
-
-        #energy_form
+        #form-container
         {
             padding: 50px;
             width: 600px;
@@ -30,7 +25,7 @@
 
         @media (max-width: 400px)
         {
-            #energy_form
+            #form-container
             {
                 padding: 0px;
             }
@@ -44,24 +39,37 @@
 
 @section('main-content')
         <hr/>
-        <div class="row flex-grow-1 no-padding background-image-preston center-content white-text">
-            <form action="" method="POST" id="energy_form">
-                <div class="form-group">
-                    <div id="postcode_error" class="alert alert-danger" style="display: none;"></div>
-                    <label for="postcode" style="font-size: 24px;">Enter your postcode to begin...</label>
-                    <input type="text" id="postcode" class="form-control" />
-                    <button type="button" id="btn_postcode_search" class="white-search-button" style="display: inline-block; margin-top: 10px;">Search</button>
-                </div>
-                <div id="form_address_fields" class="form-group" style="display: none;">
-                    <br /><br />
-                    <label for="address" style="font-size: 24px">Select your address</label>
-                    <select id="address" name="address" class="form-control" required>
-                        <option value="" selected>Please Select</option>
-                        <optgroup id="address_values"></optgroup>
-                    </select>
-                    <input type="submit" class="big-blue-button" value="Continue" style="margin-top: 10px;" />
-                </div>
-            </form>
+        <div class="row flex-grow-1 no-padding background-image-preston center-content" style="color: #f3f2f1;">
+            <div id="form-container">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        @foreach ($errors -> all() as $error)
+                            {{ $error }}<br />
+                        @endforeach
+                    </div>
+                @endif
+                <form id="form_postcode">
+                    <div class="form-group">
+                        <div id="postcode_error" class="alert alert-danger" style="display: none;"></div>
+                        <label for="postcode_search" style="font-size: 24px;">Enter your postcode to begin...</label>
+                        <input type="text" class="form-control" id="postcode_search" name="postcode_search" value="{{ old('postcode') }}" />
+                        <button type="button" class="white-search-button" id="btn_postcode_search" style="display: inline-block; margin-top: 10px;">Search</button>
+                    </div>
+                </form>
+                <form id="form_address" action="{{ route('residential.energy-comparison.1-address') }}" method="POST" id="energy_form" style="display: none;">
+                    @csrf
+                    <div class="form-group">
+                        <br />
+                        <input type="hidden" id="postcode" name="postcode" value="" />
+                        <label for="houseNo" style="font-size: 24px">Select your address</label>
+                        <select id="houseNo" name="houseNo" class="form-control" value="{{ old('houseNo') }}" required>
+                            <option value="" selected>Please Select</option>
+                            <optgroup id="houseNo_values"></optgroup>
+                        </select>
+                        <input type="submit" class="big-blue-button" value="Continue" style="margin-top: 10px;" />
+                    </div>
+                </form>
+            </div>
         </div>
 @endsection
 
@@ -75,20 +83,14 @@
         document.body.onload = function()
         {
             var postcodeError = $("#postcode_error");
-            var inputPostcode = $("#postcode");
-            var btnPostcodeSearch = $("#btn_postcode_search");
+            var inputPostcodeSearch = $("#postcode_search");
+            var btnPostcode = $("#btn_postcode_search");
 
-            var addressSection = $("#form_address_fields");
-            var inputAddress = $("#address");
-            var inputAddressValues = $("#address_values");
+            var frmAddress = $("#form_address");
+            var inputPostcode = $("#postcode");
+            var inputHouseNo = $("#houseNo");
+            var inputHouseNoValues = $("#houseNo_values");
             
-            $.ajaxSetup(
-            {
-                headers:
-                {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
             $.ajaxSetup(
             {
                 headers:
@@ -97,21 +99,24 @@
                 }
             });
 
-            btnPostcodeSearch.click(function()
+
+            btnPostcode.click(function()
             {
                 HidePostcodeError();
                 
-                if (inputPostcode.val() == "")
+                if (inputPostcodeSearch.val() == "")
                 {
                     ShowPostcodeError('The postcode field is required.');
                     HideAddressSection();
                     return;
                 }
 
+                inputPostcode.val(inputPostcodeSearch.val());
+
                 try
                 {
-                    var url = "{{ route('residential.energy-comparison.addresses', [ 'postcode' => 'postcode' ]) }}";
-                    url = url.replace('/postcode', '/' + inputPostcode.val());
+                    var url = "{{ route('residential.energy-comparison.api.addresses', [ 'postcode' => 'postcode' ]) }}";
+                    url = url.replace('/postcode', '/' + inputPostcodeSearch.val());
                     $.ajax(
                     {
                         type: 'POST',
@@ -129,18 +134,19 @@
                             try
                             {
                                 // parse the returned json into an object
-                                var rows = JSON.parse(result);
+                                //var rows = JSON.parse(result);
+                                var rows = result;
 
                                 // sort the rows by the address property
                                 rows.sort((a, b) => (a.address.localeCompare(b.address, 'en', { numeric: true })));
 
                                 // empty the dropdown list
-                                inputAddressValues.empty();
+                                inputHouseNoValues.empty();
 
                                 // add each row to the dropdown list
                                 for (i in rows)
                                 {
-                                    inputAddressValues.append($('<option value="' + rows[i].mpan + '">' + rows[i].address + '</option>'));
+                                    inputHouseNoValues.append($('<option value="' + rows[i].houseNo + '">' + rows[i].address + '</option>'));
                                 }
 
                                 ShowAddressSection();
@@ -149,12 +155,14 @@
                             {
                                 ShowPostcodeError()
                                 HideAddressSection();
+                                console.log(ex.message);
                             }
                         },
                         error: function(xhr, status, error)
                         {
                             ShowPostcodeError()
                             HideAddressSection();
+                            console.log(error.message);
                         }
                     });
                 }
@@ -162,18 +170,19 @@
                 {
                     ShowPostcodeError()
                     HideAddressSection();
+                    console.log(ex.message);
                 }
             });
 
 
             function ShowAddressSection()
             {
-                addressSection.show();
+                frmAddress.show();
             }
 
             function HideAddressSection()
             {
-                addressSection.hide();
+                frmAddress.hide();
             }
 
             function ShowPostcodeError(message)
