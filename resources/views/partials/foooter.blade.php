@@ -19,17 +19,17 @@
 <footer>
     <div class="container-fluid flex-column d-flex">
         <div class="row flex-grow-1">
-            <div class="col-12 col-md-4 order-2 order-md-1 mb-2 mb-md-0">
+            <div class="col-12 col-lg-4 order-2 order-lg-1 mb-2 mb-lg-0">
                 <div style="text-align: left; font-size: 16px; border-bottom: 3px solid #f3f2f1;">
-                <p> Swap My Energy is an energy intermediary and not supplier <br /> The UK trading name follows the Utilities Intermediaries Association code of conduct and Ofgem policies. All suppliers logos are trademarks of their respective owners. Percentage energy savings quoted are against customers who let their last contract renew automatically. </p>
+                    <p> Swap My Energy is an energy intermediary and not supplier <br /> The UK trading name follows the Utilities Intermediaries Association code of conduct and Ofgem policies. All suppliers logos are trademarks of their respective owners. Percentage energy savings quoted are against customers who let their last contract renew automatically. </p>
                 </div>
-                    <a href="https://www.znergi.co.uk/">
+                <a href="https://www.znergi.co.uk/">
                     <img class="default" src="{{ asset('img/Znergi_logo.png')}}" style="vertical-align:top; float: left; margin: 20px 30px 0 0;">
-                    </a>
-                    <p style="text-align: left;"> 2nd Floor Estate House, <br /> Fox Street, Preston, PR1 2AB <br /> 01772 584880 (Option 1) <br /> <a style="color: #f3f2f1; text-decoration: underline;" href="https://www.znergi.co.uk/"> www.znergi.co.uk </a></p>
+                </a>
+                <p style="text-align: left;"> 2nd Floor Estate House, <br /> Fox Street, Preston, PR1 2AB <br /> 01772 584880 (Option 1) <br /> <a style="color: #f3f2f1; text-decoration: underline;" href="https://www.znergi.co.uk/"> www.znergi.co.uk </a></p>
             </div>
-            <div class="col-12 col-md-4 order-1 order-md-2 mb-4 mb-md-0">
-                <table id="footer-links" style="vertical-align: bottom;">
+            <div class="col-12 col-lg-4 order-1 order-lg-2 center-content">
+                <table id="footer-links" class="mb-3 mb-lg-0">
                     <tbody>
                         <tr>
                             <td><a class="footer-link {{ ($navbar_page == "terms and conditions") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("business.t&c") }}">Terms & Conditions</a></td>
@@ -49,8 +49,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-12 col-md-4 order-3 order-md-3">
-                <div style="text-align: center; margin: 10px; font-size: 16px;">
+            <div class="col-12 col-lg-4 order-3 order-lg-3 center-content">
+                <div style="text-align: center; margin: auto; padding: 10px; font-size: 16px;">
                     <p> Swap My Energy is a trading name of Znergi Limited in England, Company Registration Number 12937329</p>
                     <p> Copyright &copy; 2021 Znergi Limited All rights reserved </p>
                     <a class="footer-social-link" href="https://www.facebook.com/Swap-My-Energy-101013942165296">
