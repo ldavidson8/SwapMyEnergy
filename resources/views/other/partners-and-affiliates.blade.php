@@ -264,10 +264,10 @@
             <div class="col-12 no-padding">
                 <div class="no-padding border-radius-none-md border-radius-15" style="background-color:#f3f2f1; margin: 150px 0 0 0;">
                     <div class="clearfix">
-                        <img src="{{ asset('img/hipster.png') }}" style="vertical-align: bottom; margin: auto; float: right;">
-                        <span style="padding: 30px; vertical-align: bottom;">
-                            <p class="heading-text"> Our Affiliate Program </p>
-                            <ul class="dashed" style="font-weight: 700;">
+                        <img src="{{ asset('img/hipster.png') }}" height="90%" style="vertical-align: bottom; margin: auto; float: right;">
+                        <span class="padding-left-inner" style="padding: 10px 0px; vertical-align: bottom;">
+                            <p class="heading-text" style="padding-left: 10px"> Our Affiliate Program </p>
+                            <ul class="dashed" style="font-weight: 700; padding-left: 20px;">
                                 <li>- Promotion opportunities across our social channels and website</li>
                                 <li>- Earn for when you help switch customers with us</li>
                                 <li>- Potential collaboration opportunities upon discussion with ourselves</li>
