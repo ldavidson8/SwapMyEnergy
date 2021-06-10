@@ -182,18 +182,18 @@ Route::group([ 'prefix' => '/affiliate-apply'], function()
 
 // test pages
 
-Route::get('/testing/qwerty-keyboard/sonic-the-hedgehog/sql', function()
-{
-    return response() -> json(DB::select('select * from users'));
-});
+// Route::get('/testing/qwerty-keyboard/sonic-the-hedgehog/sql', function()
+// {
+//     return response() -> json(DB::select('select * from users'));
+// });
 
-Route::group([ 'prefix' => '/testing/errors' ], function()
-{
-    Route::get('401', function() { abort(401); });
-    Route::get('403', function() { abort(403); });
-    Route::get('404', function() { abort(404); });
-    Route::get('419', function() { abort(419); });
-    Route::get('429', function() { abort(429); });
-    Route::get('500', function() { abort(500); });
-    Route::get('503', function() { abort(503); });
-});
+// Route::group([ 'prefix' => '/testing/errors' ], function()
+// {
+//     Route::get('401', function() { abort(401); });
+//     Route::get('403', function() { abort(403); });
+//     Route::get('404', function() { abort(404); });
+//     Route::get('419', function() { abort(419); });
+//     Route::get('429', function() { abort(429); });
+//     Route::get('500', function() { abort(500); });
+//     Route::get('503', function() { abort(503); });
+// });
