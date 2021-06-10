@@ -176,43 +176,43 @@
         </div>
     </div>
     <hr />
-    <div class="full-size-40 container-fluid d-flex flex-column">
-        <div class="row flex-grow-1">
-            <div class="col-12 center-content" style="text-align: center;">
-                <h2 style="padding-top: 30px;"> Our Suppliers</h2>
-                <ul class="logos-container">
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/eon.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/ecotricity.svg') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/utilita.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/avanti-gas.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/opus-energy.png') }}">
-                    </li>
-                    <li class="logos-item-outer hide-logo-medium">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/sse.png') }}">
-                    </li>
-                    <li class="logos-item-outer hide-logo-large">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/crown-gas.png') }}">
-                    </li>
-                </ul>
-                <p style="font-size: 28px;"> Plus many more... </p>
+    <div class="full-size-40 container-fluid flex-column padding-20px">
+        <div style="text-align: center;">
+            <h2 style="padding-top: 30px;"> Our Suppliers</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-1 d-md-block d-none"> </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/eon.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/bristol-energy.png') }}">
+                </a>
+            </div>
+            <div class="col-md-1 d-md-block d-none"> </div>   
+            <div class="col-md-1 d-md-block d-none"> </div>  
+            <div class="col-md-2 col-sm-3 col-6">
+                <a>
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/utilita.png') }}">
+                </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
                 <a>
