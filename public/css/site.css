@@ -457,21 +457,28 @@ h3, h5, h6
 /* Style the buttons that are used to open and close the accordion panel */
 .faq-accordion
 {
-    background-color: transparent;
+    background-color: #00c2cb;
     cursor: pointer;
     padding: 18px;
     width: 100%;
     text-align: left;
     transition: 0.4s;
     border-width: 0;
-    border-bottom: 4px solid #202020;
-    align-content: center;
-    display: flex;
+    margin-bottom: 10px;
+    font-size: 26px;
+    color: #f3f2f1;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.faq-accordion:first-of-type
+{
+    margin-top: 100px;
 }
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
 .faq-active, .faq-accordion:hover
 {
-    background-color: #ccc;
+    background-color: #ffaa00;
 }
 
 /* Style the accordion panel. Note: hidden by default */
@@ -488,15 +495,15 @@ h3, h5, h6
     padding-top: 18px;
 }
 
-.faq-accordion:before
+.faq-accordion:after
 {
-    content: '\0002B'; /* Unicode character for "plus" sign (+) */
-    font-size: 20px;
-    color: #777;
-    float: left;
-    margin-right: 15px;
+    content: '\2304'; /* Unicode character for "plus" sign (+) */
+    font-size: 40px;
+    color: #f3f2f1;
+    float: right;
+    margin-left: 5px;
 }
-.faq-active:before
+.faq-active:after
 {
     content: "\2212"; /* Unicode character for "minus" sign (-) */
 }

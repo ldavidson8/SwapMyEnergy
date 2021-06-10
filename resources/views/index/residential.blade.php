@@ -219,7 +219,7 @@
             </div>
         </div>
     </div>
-    <div class="d-flex flex-column background-image-preston-behind" style="min-height: 250px; padding-bottom: 10px;">
+    <div class="d-flex flex-column background-image-preston-behind" style="min-height: 250px;">
         <div class="row flex-grow-1 background-image-preston background-image-bottom preload" style="align-content: center;">
             <div class="center-content" style="width: 600px; max-width: 100%; text-align: center">
                 <p style="font-weight: bold; font-size: 30px; color: #f3f2f1;"> Still need Help?</p>
