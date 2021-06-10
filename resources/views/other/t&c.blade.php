@@ -44,7 +44,7 @@ h1{
                     2.2 "You", "Your", "Customer" and related expressions refer to the user of the Service and/or Our Site.
                     <br />
                     <br />
-                    2.3 "Our Site" means the website with address <!--change here--><a class="anchor-default" href="http://127.0.0.1:8000/">www.swapmyenergy.co.uk.</a> 
+                    2.3 "Our Site" means the website with address <!--change here--><a class="anchor-default" href="http://www.swapmyenergy.co.uk/">www.swapmyenergy.co.uk.</a> 
                     <br />
                     <br />
                     2.4 "Service" means the service provided by <!--change here-->Swap My Energy via the SwapMyEnergy.com website ("Our Site") or call centre whereby the Customer may obtain impartial information on the Suppliers and the services and products they offer and potentially transact with the Suppliers for the provision of those services and/or products;
