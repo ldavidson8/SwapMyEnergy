@@ -30,10 +30,12 @@ class ResidentialComparisonController extends Controller
         // TODO: add logging
         Log::channel('energy-comparison/find-address-post') -> info('ContactController -> raiseSupportRequest(), Form Validated Successfully');
         
+        $obj = json_decode('{"address_id":"6005872275","house_name":"","house_number":"3","country":"GB","county":"LA","current_supplier_id":"OCT","delivery_point_alias":"","dependent_street":"","dmq":17609,"double_dependent_locality":"","gas_transport_id":"Cadent Gas Limited","ldz_id":"NW","meter_capacity":"2","meter_mechanism_code":"CR","meter_serial_number":"719502","mpaq":"17609","mprn":"1558776604","ndmq":"17178","po_box_number":"","post_town":"PRESTON","postcode":"PR2 9UU","smart_equipment_technical_code":"","street":"TOWER GREEN","sub_building_name":"","supplierId":104,"supplierName":"Octopus Energy"}');
+        return response() -> json($obj);
 
         $response = ResidentialApiRepository::addresses_mprn($request -> input('postcode'), $request -> input('houseNo'));
 
-        if ($response -> unsuccessful())
+        if (!$response -> successful())
         {
             Log::channel('energy-comparison/find-address-post') -> info('ResidentialComparisonController -> findAddressPost(), ResidentialApiRepository::addresses_mprn returned unsuccessful response');
             return redirect() -> back() -> withErrors([ 'error' => 'An error occured, please try again later.' ]) -> withInput();
