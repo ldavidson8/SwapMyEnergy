@@ -77,9 +77,8 @@
                 <h1>What We Do</h1>
                 <p style="padding-top: 30px; width: 450px; max-width: 100%;">We provide businesses and people like YOU with the opportunity to save on their energy bills. With our no nonsense approach, what you see is what you get. 
                 At Swap My Energy, we give you savings based on facts, not estimates. 
-                By finding you a cheaper unique cost you will have the opportunity to save money. 
-                The more you use, the more you pay and vice versa. 
-                You may end up paying more but that will only happen because you used more, not because the cost of usage is higher.</p>    
+                By finding you a cheaper unique cost you will have the opportunity to save money and the peace of mind that your energy bill switching is in good hands.
+                </p>    
             </div>
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
