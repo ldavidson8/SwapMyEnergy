@@ -93,8 +93,8 @@ Route::group([ 'prefix' => '/residential' ], function()
         // pages
         Route::get('/address', [ ResidentialComparisonController::class, 'findAddress' ]) -> name('residential.energy-comparison.1-address');
         Route::post('/address', [ ResidentialComparisonController::class, 'findAddressPost' ]) -> name('residential.energy-comparison.1-address');
-        Route::get('/existing-tariff', [ ResidentialComparisonController::class, 'existingTariff' ]) -> name('residential.energy-comparison.2-existing-tariff');
-        Route::post('/existing-tariff', [ ResidentialComparisonController::class, 'existingPost' ]) -> name('residential.energy-comparison.2-existing-tariff');
+        Route::get('/existing-tariff', [ ResidentialComparisonController::class, 'setExistingTariff' ]) -> name('residential.energy-comparison.2-existing-tariff');
+        Route::post('/existing-tariff', [ ResidentialComparisonController::class, 'setExistingTariffPost' ]) -> name('residential.energy-comparison.2-existing-tariff');
         
         // api
         Route::post('/addresses/{postcode}', [ ResidentialApiController::class, 'addresses' ]) -> name('residential.energy-comparison.api.addresses');
