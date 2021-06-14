@@ -35,7 +35,7 @@ h1{
                 <br />
                 <br />
                 <h2 class="section-title">1. Parties</h2>
-                    <p>1.1 This Agreement is made between You the customer ("Customer") and <!--change here-->Znergi Ltd. ("Swap My Energy"), a company registered in England, (Company Number <!--change here-->01772 000000) whose registered address is <!--change here-->Estate House, 18 Fox St, Preston PR1 2AB.</p>
+                    <p>1.1 This Agreement is made between You the customer ("Customer") and <!--change here-->Znergi Ltd. ("Swap My Energy"), a company registered in England, (Company Number <!--change here-->12937329) whose registered address is <!--change here-->Estate House, 18 Fox St, Preston PR1 2AB.</p>
                     <br />
                 <h2 class="section-title">2. Definitions</h2>
                     <p>2.1 In this Agreement, unless the context otherwise requires: "We", "Us", "Our" and related expressions refer to <!--change here-->Znergi Ltd.
