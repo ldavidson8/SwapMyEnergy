@@ -22,6 +22,19 @@
             position: absolute;
         }
 
+        .rounded-blue-button
+        {
+            background-color: #00d2db;
+            border: none;
+            width: 300px;
+            border-radius: 18px;
+            padding: 12px;
+            font-size: 27px;
+            font-weight: bold;
+            color: #202020;
+        }
+        
+
         /* video 
         {
             left: 50%;
@@ -29,6 +42,14 @@
             top: 50%;
             transform: translate(-50%, -50%);
         } */
+
+        @media (min-width: 1200px)
+        {
+            .lg-padding-content
+            {
+               padding-top: 200px;
+            }
+        }
 
         @media (min-width: 992px)
         {
@@ -77,14 +98,22 @@
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left; background-color: transparent;">
                 <div>
-                    <h2> Our home </h2>
-                    <p style="padding-top: 15px;">Preston is in our blood, savings are in our heart.</p>
-                    <p style="font-weight: normal;"> Swap My Energy, operated by Znergi Ltd, is run right from the heart of Preston, with our home situated just off Fishergate. We have a small, but passionate team who are dedicated to providing you with the best possible deals for your energy.
+                    <h2 style="font-size: 48px;"> Our home </h2>
+                    <p style="padding-top: 15px; font-weight: 700;">Preston is in our blood, savings are in our heart.</p>
+                    <p style="font-weight: normal;"> Swap My Energy, operated by Znergi Ltd, is run right from the heart of Preston, with our home situated just off Fishergate. We have a small, but passionate team who are dedicated to providing you with the best possible deals for your energy. </p>
+                    <div class="lg-padding-content">
+                        <h3 style="padding-top: 15px; font-size: 30px; font-weight: 700; margin: 0; display:inline "> Find Us Online </h3>
+                        <img src={{ asset('img/click-cursor1.png')}}>
+                        <p style="font-weight: 700;"> We're on your favourite social media sites! </p>
+                        <div style="text-align: center;">
+                            <a href="https://linktr.ee/swapmyenergy"><button class="rounded-blue-button" role="button"> FOLLOW US </button></a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-2 d-lg-none d-block"></div>
             <div class="col-2 d-md-none d-block"></div>
-            <div class="col-xl-6 col-lg-6 col-md-12 no-p    adding center-content">
+            <div class="col-xl-6 col-lg-6 col-md-12 no-padding center-content">
                 <div class="map-responsive">
                     <iframe width="600" height="450" style="border:0;" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d294.8453044806136!2d-2.703525!3d53.7581131!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487b73cbe298c65b%3A0xc8a861caf3690757!2sZnergi%20Ltd!5e0!3m2!1sen!2suk!4v1623075572177!5m2!1sen!2suk" align="center" width="100%"></iframe>
                 </div>
