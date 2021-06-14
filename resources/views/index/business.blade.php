@@ -126,7 +126,7 @@
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-5 col-lg-6 col-md-8 col-12 row align-content-center no-margin">
                 <div style="max-width: 100%;">
-                    <h1 class="white-text">Empower your business to overcome rising energy prices Switch to a cheaper business energy deal today! </h1>
+                    <h1 class="white-text">Empower your business to overcome rising energy prices. Switch to a cheaper business energy deal today! </h1>
                     <table class="table-steps">
                         <tr>
                             <td>
