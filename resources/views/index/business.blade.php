@@ -194,59 +194,59 @@
         <div class="row">
             <div class="col-md-1 d-md-block d-none"> </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.eonenergy.com/">
+                <a href="https://www.eonenergy.com/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/eon.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.ovoenergy.com/">
+                <a href="https://www.ovoenergy.com/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.britishgas.co.uk/">
+                <a href="https://www.britishgas.co.uk/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.scottishpower.co.uk/">
+                <a href="https://www.scottishpower.co.uk/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.bristol-energy.co.uk/">
+                <a href="https://www.bristol-energy.co.uk/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/bristol-energy.png') }}">
                 </a>
             </div>
             <div class="col-md-1 d-md-block d-none"> </div>   
             <div class="col-md-1 d-md-block d-none"> </div>  
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://utilita.co.uk/">
+                <a href="https://utilita.co.uk/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/utilita.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.avantigas.com/">
+                <a href="https://www.avantigas.com/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/avanti-gas.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.opusenergy.com/">
+                <a href="https://www.opusenergy.com/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/opus-energy.png') }}">
                 </a>
             </div>
             <div class="col-sm-3 d-sm-block d-md-none"></div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://sse.co.uk/home">
+                <a href="https://sse.co.uk/home" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/sse.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.crowngas.co.uk/">
+                <a href="https://www.crowngas.co.uk/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/crown-gas.png') }}">
                 </a>
             </div>
-            <div class="col-md-1 d-md-block d-none"> </div>   
+            <div class="col-md-1 d-md-block d-none"> </div>
         </div>
         <div style="text-align: center;">
             <p class="plus-many-font plus-many-font-medium"> Plus many more... </p>
