@@ -43,9 +43,10 @@
             <div id="form-container">
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
-                        @foreach ($errors -> all() as $error)
+                        An error has ocurred. Please try again later, or <a href='{{ route("$mode.contact") }}'>contact us here</a>.
+                        {{-- @foreach ($errors -> all() as $error)
                             {{ $error }}<br />
-                        @endforeach
+                        @endforeach --}}
                     </div>
                 @endif
                 <div id="form_postcode">

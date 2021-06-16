@@ -102,6 +102,7 @@ Route::group([ 'prefix' => '/residential' ], function()
         Route::post('/addresses/mprndetails/{mprn}', [ ResidentialApiController::class, 'addresses_mprndetails' ]) -> name('residential.energy-comparison.api.addresses.mprndetails');
         Route::post('/suppliers', [ ResidentialApiController::class, 'suppliers' ]) -> name('residential.energy-comparison.api.suppliers');
         Route::post('/suppliers/{supplierId}', [ ResidentialApiController::class, 'supplierById' ]) -> name('residential.energy-comparison.api.suppliers.by-id');
+        Route::post('/paymentMethods/suppliers/{supplierId}/{serviceType}', [ ResidentialApiController::class, 'paymentMethods_suppliers']) -> name('residential.energy-comparison.api.paymentMethods.by-supplier-id');
         
         // test
         Route::get('/test/one', [ ResidentialApiController::class, 'testOne' ]);
