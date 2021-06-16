@@ -126,7 +126,7 @@
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-5 col-lg-6 col-md-8 col-12 row align-content-center no-margin">
                 <div style="max-width: 100%;">
-                    <h1 class="white-text">Empower your business to overcome rising energy prices</h1>
+                    <h1 class="white-text">Empower your business to overcome rising energy prices. Switch to a cheaper business energy deal today! </h1>
                     <table class="table-steps">
                         <tr>
                             <td>
@@ -179,7 +179,7 @@
                             <label for="email">Email Address (optional)</label>
                             <input type="email" class="form-control tall-form-control" id="email" name="email_address" placeholder="Email (optional)" />
                         </div>
-                        <button type="submit" class="rounded-blue-button" style="padding: 8px; width: 250px; color: #f3f2f1;">Call Me</button>
+                        <button type="submit" class="rounded-blue-button" style="padding: 8px; width: 250px;">Call Me</button>
                     </form>
                 </div>
             </div>
@@ -194,55 +194,55 @@
         <div class="row">
             <div class="col-md-1 d-md-block d-none"> </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a>
+                <a href="https://www.eonenergy.com/">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/eon.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a>
+                <a href="https://www.ovoenergy.com/">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a>
+                <a href="https://www.britishgas.co.uk/">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a>
+                <a href="https://www.scottishpower.co.uk/">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a>
+                <a href="https://www.bristol-energy.co.uk/">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/bristol-energy.png') }}">
                 </a>
             </div>
             <div class="col-md-1 d-md-block d-none"> </div>   
             <div class="col-md-1 d-md-block d-none"> </div>  
             <div class="col-md-2 col-sm-3 col-6">
-                <a>
+                <a href="https://utilita.co.uk/">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/utilita.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a>
+                <a href="https://www.avantigas.com/">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/avanti-gas.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a>
+                <a href="https://www.opusenergy.com/">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/opus-energy.png') }}">
                 </a>
             </div>
             <div class="col-sm-3 d-sm-block d-md-none"></div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a>
+                <a href="https://sse.co.uk/home">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/sse.png') }}">
                 </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a>
+                <a href="https://www.crowngas.co.uk/">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/crown-gas.png') }}">
                 </a>
             </div>
