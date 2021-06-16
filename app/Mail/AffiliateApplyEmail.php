@@ -29,7 +29,7 @@ class AffiliateApplyEmail extends Mailable
 
             $view = $this -> subject('SwapMyEnergy - Application to be an Affiliate') -> view('_emails.contact-forms.affiliate-apply', $params) -> text('_emails.contact-forms.affiliate-apply-text', $params);
             
-            Log::channel('affiliate-apply') -> info('AffiliateApplyEmail -> build(), Sent Email, Application to be an Affiliate');
+            Log::channel('affiliate-apply') -> info('AffiliateApplyEmail -> build(), Sending Email, Application to be an Affiliate');
             return $view;
         }
         catch (Throwable $ex)

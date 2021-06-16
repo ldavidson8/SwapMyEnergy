@@ -53,9 +53,15 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
-        'partner-affiliate-apply' => [
+        'partner-apply' => [
             'driver' => 'single',
-            'path' => storage_path('logs/partner-affiliate-apply.log'),
+            'path' => storage_path('logs/partner-apply.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
+        'affiliate-apply' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/affiliate-apply.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 

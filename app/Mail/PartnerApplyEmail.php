@@ -29,7 +29,7 @@ class PartnerApplyEmail extends Mailable
 
             $view = $this -> subject('SwapMyEnergy - Application to be a Partner') -> view('_emails.contact-forms.partner-apply', $params) -> text('_emails.contact-forms.partner-apply-text', $params);
             
-            Log::channel('partner-apply') -> info('PartnerApplyEmail -> build(), Sent Email, Application to be a Partner');
+            Log::channel('partner-apply') -> info('PartnerApplyEmail -> build(), Sending Email, Application to be a Partner');
             return $view;
         }
         catch (Throwable $ex)

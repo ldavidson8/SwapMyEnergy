@@ -118,14 +118,14 @@
 
 @section('main-content')
         <hr/>
-        <div class="row flex-grow-1 no-padding background-image-docks">
-            <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content">
+        <div class="row flex-grow-1 no-padding background-image-wind-turbines">
+            <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
+            <div class="col-xl-3 col-lg-6 col-md-8 col-12 center-content">
                 <h1>Don't fall victim to rising energy prices</h1>
                 <p>Too many energy brokers promise savings that don’t stick. These promises are made on estimates, which aren’t always respective of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you deserve when it comes to your bills.</p>
                 <a href="{{ route('residential.energy-comparison.1-address') }}" class="btn big-blue-button" role="button" style="margin-top: 10px;">Get started</a>
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block">
+            <div class="col-xl-7 col-lg-5 col-md-2 d-none d-md-block">
                 <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
             </div>
         </div>

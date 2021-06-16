@@ -33,9 +33,8 @@ h1{
             </div>
             <section>
                 <br />
-                <br />
                 <h2 class="section-title">1. Parties</h2>
-                    <p>1.1 This Agreement is made between You the customer ("Customer") and <!--change here-->Znergi Ltd. ("Swap My Energy"), a company registered in England, (Company Number <!--change here-->01772 000000) whose registered address is <!--change here-->Estate House, 18 Fox St, Preston PR1 2AB.</p>
+                    <p>1.1 This Agreement is made between You the customer ("Customer") and <!--change here-->Znergi Ltd. ("Swap My Energy"), a company registered in England, (Company Number <!--change here-->12937329) whose registered address is <!--change here-->Estate House, 18 Fox St, Preston PR1 2AB.</p>
                     <br />
                 <h2 class="section-title">2. Definitions</h2>
                     <p>2.1 In this Agreement, unless the context otherwise requires: "We", "Us", "Our" and related expressions refer to <!--change here-->Znergi Ltd.
@@ -44,7 +43,7 @@ h1{
                     2.2 "You", "Your", "Customer" and related expressions refer to the user of the Service and/or Our Site.
                     <br />
                     <br />
-                    2.3 "Our Site" means the website with address <!--change here--><a class="anchor-default" href="http://127.0.0.1:8000/">www.swapmyenergy.co.uk.</a> 
+                    2.3 "Our Site" means the website with address <!--change here--><a class="anchor-default" href="http://www.swapmyenergy.co.uk/">www.swapmyenergy.co.uk.</a> 
                     <br />
                     <br />
                     2.4 "Service" means the service provided by <!--change here-->Swap My Energy via the SwapMyEnergy.com website ("Our Site") or call centre whereby the Customer may obtain impartial information on the Suppliers and the services and products they offer and potentially transact with the Suppliers for the provision of those services and/or products;
