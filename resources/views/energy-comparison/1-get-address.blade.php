@@ -42,7 +42,7 @@
         <div class="row flex-grow-1 no-padding background-image-preston center-content" style="color: #f3f2f1;">
             <div id="form-container">
                 @if (count($errors) > 0)
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger post-error">
                         An error has ocurred. Please try again later, or <a href='{{ route("$mode.contact") }}'>contact us here</a>.
                         {{-- @foreach ($errors -> all() as $error)
                             {{ $error }}<br />
@@ -61,8 +61,9 @@
                     @csrf
                     <div class="form-group">
                         <br />
-                        <input type="hidden" id="postcode" name="postcode" value="" />
-                        <label for="houseNo" style="font-size: 24px">Select your address</label>
+                        <input type="hidden" id="postcode" name="postcode" />
+                        <input type="hidden" id="mpan" name="mpan" />
+                        <label id="labelHouseNo" for="houseNo" style="font-size: 24px">Select your address</label>
                         <select id="houseNo" name="houseNo" class="form-control" value="{{ old('houseNo') }}" required>
                             <option value="" selected>Please Select</option>
                             <optgroup id="houseNo_values"></optgroup>
@@ -83,6 +84,7 @@
     <script type="text/javascript">
         document.body.onload = function()
         {
+            var postError = $(".post-error");
             var postcodeError = $("#postcode_error");
             var inputPostcodeSearch = $("#postcode_search");
             var btnPostcode = $("#btn_postcode_search");
@@ -91,6 +93,7 @@
             var inputPostcode = $("#postcode");
             var inputHouseNo = $("#houseNo");
             var inputHouseNoValues = $("#houseNo_values");
+            var inputMpan = $("#mpan");
             
             $.ajaxSetup(
             {
@@ -147,9 +150,8 @@
                                 // add each row to the dropdown list
                                 for (i in rows)
                                 {
-                                    inputHouseNoValues.append($('<option value="' + rows[i].houseNo + '">' + rows[i].address + '</option>'));
+                                    inputHouseNoValues.append($('<option class="house-number-option" value="' + rows[i].houseNo + '" data-mpan="' + rows[i].mpan + '">' + rows[i].address + '</option>'));
                                 }
-
                                 ShowAddressSection();
                             }
                             catch (ex)
@@ -175,6 +177,11 @@
                 }
             });
 
+            inputHouseNo.change(function(e)
+            {
+                inputMpan.val(inputHouseNo.find(":selected").attr("data-mpan"));
+            });
+
 
             function ShowAddressSection()
             {
@@ -195,6 +202,7 @@
             function HidePostcodeError()
             {
                 postcodeError.hide().text('');
+                postError.hide();
             }
         };
     </script>

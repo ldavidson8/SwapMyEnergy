@@ -31,6 +31,12 @@ class ResidentialApiRepository extends Controller
         return self::getOneObject($response, $status);
     }
 
+    public static function regionsByPostcode($postcode, $mpan, &$status)
+    {
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> get(self::_apiUrl . "regions/postcode?postcode=$postcode&mpan=$mpan");
+        return self::getManyObjects($response, $status);
+    }
+
     public static function suppliers(&$status)
     {
         if (Session::has('suppliers'))
@@ -52,6 +58,23 @@ class ResidentialApiRepository extends Controller
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> get(self::_apiUrl . "suppliers/$supplierId");
         return self::getOneObject($response, $status);
+    }
+
+    public static function suppliersByRegion($regionId, &$status)
+    {
+        if (Session::has('suppliersByRegion'))
+        {
+            $suppliers = Session::get('suppliersByRegion');
+            if (isset($suppliers) && count($suppliers) >= 0)
+            {
+                $status = 200;
+                return $suppliers;
+            }
+        }
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> get(self::_apiUrl . "suppliers/region/$regionId");
+        $suppliers = self::getManyObjects($response, $status);
+        Session::put('suppliersByRegion', $suppliers);
+        return $suppliers;
     }
 
     public static function paymentMethods_suppliers($supplierId, $serviceType, &$status)
