@@ -36,7 +36,7 @@ h1{
                 <h1> SwapMyEnergy.co.uk Cookie policy</h1>
                 <br />
                 <div>
-                <p> Znergi Ltd("swapmyenergy.co.uk", "we" or "us") uses cookies and other similar technologies in the operation of this website. We'll only ever use cookies and other similar technologies for the purposes set out in this policy.</p>
+                    <p> Znergi Ltd("swapmyenergy.co.uk", "we" or "us") uses cookies and other similar technologies in the operation of this website. We'll only ever use cookies and other similar technologies for the purposes set out in this policy.</p>
                 </div>
             </div>
             <section>
