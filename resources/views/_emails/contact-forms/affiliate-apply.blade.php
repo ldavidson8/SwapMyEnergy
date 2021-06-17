@@ -17,12 +17,12 @@
                 <td>{{ $formData["phone_number"] }}</td>
             </tr>
             <tr>
-                <th>Company Address</th>
-                <td>{{ $formData["company_address"] }}</td>
+                <th>Address</th>
+                <td>{{ $formData["address"] }}</td>
             </tr>
             <tr>
-                <th>Type Of Company</th>
-                <td>{{ $formData["type_of_company"] }}</td>
+                <th>Type Of Affiliate</th>
+                <td>{{ $formData["type_of_affiliate"] }}</td>
             </tr>
             <tr>
                 <th>Web Link</th>

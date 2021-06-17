@@ -11,6 +11,11 @@
             color: #f3f2f1;
         }
 
+        .contact-us-blue-boxes
+        {
+            font-size: 22px;
+        }
+
         .contact-us-blue-box
         {
             align-items: center;
@@ -62,7 +67,7 @@
 
 @section('main-content')
             <h1 class="font-color-white" style="text-align: center"> Get in touch </h1>
-            <div class="row flex-grow-1 no-padding font-color-white">
+            <div class="row flex-grow-1 no-padding font-color-white contact-us-blue-boxes">
                 <div class="col-12 col-lg-4 col-md-6 contact-us-blue-box">
                     <div class="contact-us-blue-box-inner">
                         <div style="position: relative;">
@@ -107,18 +112,20 @@
                         </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center; padding: 29px;">
-                            <p style="text-decoration: underline">
-                                Live Hours
-                            </p>
-                            <p>
-                                10am - 4:30pm <br />
-                                Monday to Thursday
-                            </p>
-                            <p>
-                                We will aim to get back to you within 24 hours.
-                            </p>
-                            {{-- <button type="button" class="btn-lg big-white-button" style="width: auto; cursor: default;"> Webchat Coming Soon </button> --}}
-                            <p>Webchat Coming Soon</p>
+                            {{-- 
+                                <p style="text-decoration: underline">
+                                    Live Hours
+                                </p>
+                                <p>
+                                    10am - 4:30pm <br />
+                                    Monday to Thursday
+                                </p>
+                                <p>
+                                    We will aim to get back to you within 24 hours.
+                                </p>
+                                <button type="button" class="btn-lg big-white-button" style="width: auto; cursor: default;"> Webchat Coming Soon </button>
+                            --}}
+                            <p style="font-size: 30px;">Webchat Coming Soon</p>
                         </div>
                     </div>
                 </div>

@@ -43,20 +43,21 @@
             <div id="form-container">
                 @if (count($errors) > 0)
                     <div class="alert alert-danger">
-                        @foreach ($errors -> all() as $error)
+                        An error has ocurred. Please try again later, or <a href='{{ route("$mode.contact") }}'>contact us here</a>.
+                        {{-- @foreach ($errors -> all() as $error)
                             {{ $error }}<br />
-                        @endforeach
+                        @endforeach --}}
                     </div>
                 @endif
-                <form id="form_postcode">
+                <div id="form_postcode">
                     <div class="form-group">
                         <div id="postcode_error" class="alert alert-danger" style="display: none;"></div>
                         <label for="postcode_search" style="font-size: 24px;">Enter your postcode to begin...</label>
                         <input type="text" class="form-control" id="postcode_search" name="postcode_search" value="{{ old('postcode') }}" />
                         <button type="button" class="white-search-button" id="btn_postcode_search" style="display: inline-block; margin-top: 10px;">Search</button>
                     </div>
-                </form>
-                <form id="form_address" action="{{ route('residential.energy-comparison.1-address') }}" method="POST" id="energy_form" style="display: none;">
+                </div>
+                <form id="form_address" action="{{ route('residential.energy-comparison.1-address') }}" method="POST" style="display: none;">
                     @csrf
                     <div class="form-group">
                         <br />

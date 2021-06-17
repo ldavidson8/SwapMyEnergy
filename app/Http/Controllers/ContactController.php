@@ -126,11 +126,8 @@ class ContactController extends Controller
         $validatorArray = [
             'full_name' => 'required',
             'email_address' => 'required|email',
-            'phone_number' => 'required',
-            'company_address' => 'required',
-            'type_of_company' => 'required'
+            'message' => 'required'
         ];
-        if ($request -> has('web_link') && $request -> input('web_link') != "") $validatorArray['web_link'] = 'url';
         $validator = Validator::make($formData, $validatorArray);
         if ($validator -> fails()) { return redirect() -> to(url() -> previous() . "#PartnerApply") -> withInput() -> withErrors($validator, 'partner'); }
         Log::channel('partner-apply') -> info('ContactController -> partnerApplyPost(), Form Validated Successfully', [ 'successFlags' => $successFlags ]);
@@ -149,12 +146,12 @@ class ContactController extends Controller
         //     $callbackRequest -> save();
 
         //     $successFlags |= 1;
-        //     Log::channel('raise-support-request') -> info('ContactController -> raiseSupportRequest(), Saved form fields to the database', [ 'successFlags' => $successFlags ]);
+        //     Log::channel('partner-apply') -> info('ContactController -> partnerApplyPost(), Saved form fields to the database', [ 'successFlags' => $successFlags ]);
         // }
         // catch (Throwable $th)
         // {
         //     report($th);
-        //     Log::channel('raise-support-request') -> error('ContactController -> raiseSupportRequest(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
+        //     Log::channel('partner-apply') -> error('ContactController -> partnerApplyPost(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
         // }
         
         
@@ -220,8 +217,8 @@ class ContactController extends Controller
             'full_name' => 'required',
             'email_address' => 'required|email',
             'phone_number' => 'required',
-            'company_address' => 'required',
-            'type_of_company' => 'required'
+            'address' => 'required',
+            'type_of_affiliate' => 'required'
         ];
         if ($request -> has('web_link') && $request -> input('web_link') != "") $validatorArray['web_link'] = 'url';
         $validator = Validator::make($formData, $validatorArray);
@@ -242,12 +239,12 @@ class ContactController extends Controller
         //     $callbackRequest -> save();
 
         //     $successFlags |= 1;
-        //     Log::channel('raise-support-request') -> info('ContactController -> raiseSupportRequest(), Saved form fields to the database', [ 'successFlags' => $successFlags ]);
+        //     Log::channel('affiliate-apply') -> info('ContactController -> affiliateApplyPost(), Saved form fields to the database', [ 'successFlags' => $successFlags ]);
         // }
         // catch (Throwable $th)
         // {
         //     report($th);
-        //     Log::channel('raise-support-request') -> error('ContactController -> raiseSupportRequest(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
+        //     Log::channel('affiliate-apply') -> error('ContactController -> affiliateApplyPost(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
         // }
         
         

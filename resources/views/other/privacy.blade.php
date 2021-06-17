@@ -290,7 +290,7 @@
                     so (such as to fulfil a contract between us, perform a service you requested or for our legitimate interests). 
                     We'll then either delete it or anonymise it so it doesn't identify you.
                 </p>
-                <p class="font-weight-bold">Cookies</p>
+                {{-- <p class="font-weight-bold">Cookies</p>
                 <p>
                     We use cookies and similar technologies to help deliver, optimise, personalise and analyse our services and for advertising 
                     purposes. You may adjust the settings on your browser to refuse cookies but some of our services may not work if you do. 
@@ -309,7 +309,7 @@
                     You have the right to ask us not to process your personal information for marketing purposes. You can do this at any 
                     time by clicking on the "unsubscribe" link in any marketing email we send you. You can also opt out of marketing by 
                     emailing <a href="mailto:unsubscribe@swapmyenergy.co.uk">unsubscribe@swapmyenergy.co.uk</a>.
-                </p>
+                </p> --}}
                 <p>
                     You also have the right to access your personal information, to object to the use of your personal information for 
                     certain purposes, and the right to erase, restrict or receive a machine-readable copy of your personal information. 

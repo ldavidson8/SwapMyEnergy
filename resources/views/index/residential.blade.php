@@ -133,7 +133,7 @@
                 <a href="{{ route('residential.energy-comparison.1-address') }}" class="btn big-blue-button" role="button" style="margin-top: 10px;">Get started</a>
             </div>
             <div class="col-xl-7 col-lg-5 col-md-2 d-none d-md-block">
-                <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks" style="color: #f3f2f1"><span></span>How It Works</a>
+                <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
             </div>
         </div>
     </div>

@@ -44,6 +44,21 @@
         {
             color: #f3f2f1;
         }
+        .plus-many-font
+        {
+            font-size: 28px;
+        }
+
+        .rounded-blue-button
+        {
+            background-color: #00d2db;
+            border: none;
+            width: 300px;
+            border-radius: 18px;
+            padding: 12px;
+            font-size: 27px;
+            font-weight: bold;
+        }
 
         .logos-container
         {
@@ -81,7 +96,7 @@
         @media (max-width: 991px)
         {
             .background-mobile-white { background-color: #f3f2f1; }
-            .hide-logo-large { display: none; }
+            .plus-many-font-medium { font-size: 22px;}
         }
 
         @media (max-width: 767px)
@@ -90,10 +105,6 @@
             .background-image-non-moblie::before { background-image: none !important; }
         }
         
-        @media (max-width: 761px)
-        {
-            .hide-logo-medium { display: none; }
-        }
     </style>
 @endsection
 
@@ -107,7 +118,7 @@
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-5 col-lg-6 col-md-8 col-12 row align-content-center no-margin">
                 <div style="max-width: 100%;">
-                    <h1 class="white-text">Empower your business to overcome rising energy prices</h1>
+                    <h1 class="white-text">Empower your business to overcome rising energy prices. Switch to a cheaper business energy deal today! </h1>
                     <table class="table-steps">
                         <tr>
                             <td>
@@ -159,7 +170,7 @@
                             <label for="email">Email Address (optional)</label>
                             <input type="email" class="form-control tall-form-control" id="email" name="email_address" placeholder="Email (optional)" />
                         </div>
-                        <button type="submit" class="big-blue-button">Call Me</button>
+                        <button type="submit" class="rounded-blue-button" style="padding: 8px; width: 250px;">Call Me</button>
                     </form>
                 </div>
             </div>
@@ -167,44 +178,69 @@
         </div>
     </div>
     <hr />
-    <div class="full-size-40 container-fluid d-flex flex-column">
-        <div class="row flex-grow-1">
-            <div class="col-12 center-content" style="text-align: center;">
-                <h2 style="padding-top: 30px;"> Our Suppliers</h2>
-                <ul class="logos-container">
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/eon.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/ecotricity.svg') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/utilita.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/avanti-gas.png') }}">
-                    </li>
-                    <li class="logos-item-outer">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/opus-energy.png') }}">
-                    </li>
-                    <li class="logos-item-outer hide-logo-medium">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/sse.png') }}">
-                    </li>
-                    <li class="logos-item-outer hide-logo-large">
-                        <img class="logos-item" src="{{ asset('img/supplier-logos/crown-gas.png') }}">
-                    </li>
-                </ul>
-                <p style="font-size: 28px;"> Plus many more... </p>
+    <div class="full-size-40 container-fluid flex-column padding-20px">
+        <div style="text-align: center;">
+            <h2 style="padding-top: 30px;"> Our Suppliers</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-1 d-md-block d-none"> </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a href="https://www.eonenergy.com/" rel="external">
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/eon.png') }}">
+                </a>
             </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a href="https://www.ovoenergy.com/" rel="external">
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a href="https://www.britishgas.co.uk/" rel="external">
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a href="https://www.scottishpower.co.uk/" rel="external">
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a href="https://www.bristol-energy.co.uk/" rel="external">
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/bristol-energy.png') }}">
+                </a>
+            </div>
+            <div class="col-md-1 d-md-block d-none"> </div>   
+            <div class="col-md-1 d-md-block d-none"> </div>  
+            <div class="col-md-2 col-sm-3 col-6">
+                <a href="https://utilita.co.uk/" rel="external">
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/utilita.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a href="https://www.avantigas.com/" rel="external">
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/avanti-gas.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a href="https://www.opusenergy.com/" rel="external">
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/opus-energy.png') }}">
+                </a>
+            </div>
+            <div class="col-sm-3 d-sm-block d-md-none"></div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a href="https://sse.co.uk/home" rel="external">
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/sse.png') }}">
+                </a>
+            </div>
+            <div class="col-md-2 col-sm-3 col-6">
+                <a href="https://www.crowngas.co.uk/" rel="external">
+                    <img class="logos-item" src="{{ asset('img/supplier-logos/crown-gas.png') }}">
+                </a>
+            </div>
+            <div class="col-md-1 d-md-block d-none"> </div>
+        </div>
+        <div style="text-align: center;">
+            <p class="plus-many-font plus-many-font-medium"> Plus many more... </p>
         </div>
     </div>
     <hr />
@@ -217,7 +253,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6 center-content" style="text-align: center;">
-                <a href="#requestCallback"><button class="big-blue-button" style="width: auto; padding-left: 20px; padding-right: 20px;">Request a Callback</button></a>
+                <a href="#requestCallback"><button class="rounded-blue-button">Lets do it!</button></a>
             </div>
         </div>
     </div>
@@ -231,7 +267,7 @@
             </div>
             <div class="col-12 col-lg-3 center-content">
                 <div style="text-align: center;">
-                    <img src={{ asset('img/business-homepage/laptop.png')}}>
+                    <img src={{ asset('img/business-homepage/laptop.png')}} style="max-width: 100%;">
                 </div>
             </div>
         </div>

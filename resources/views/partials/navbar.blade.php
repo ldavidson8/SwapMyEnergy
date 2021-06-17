@@ -34,7 +34,7 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
                 </li> --}}
-                @if ($mode == "residential")
+                @if (false && $mode == "residential")
                     <div class="d-xs-block d-lg-none">
                         @include('partials.navbar-account')
                     </div>
@@ -43,7 +43,7 @@
         </div>
     </div>
     
-    @if ($mode == "residential")
+    @if (false && $mode == "residential")
         <div class="collapse navbar-collapse d-xs-none d-lg-block">
             @include('partials.navbar-account')
         </div>
