@@ -15,11 +15,18 @@
         {
             background-color: white;;
             border-radius: 20px;
-            width: 300px;
-            height: 100%;
+            width: 325px;
+            height: 425px;
             padding: 20px;
             margin: auto;
             max-width: 100%;
+        }
+
+        .infographics-header
+        {
+            margin-top: 50px;
+            font-size: 26px;
+            font-weight: 700;
         }
         #section01
         {
@@ -35,7 +42,7 @@
             display: inline-block;
             -webkit-transform: translateX(0, -50%);
             transform: translateX(-50%);
-            color: #202020;
+            color: #f3f2f1;
             font: normal 400 20px/1 'Josefin Sans', sans-serif;
             letter-spacing: .1em;
             text-decoration: none;
@@ -58,8 +65,8 @@
             width: 24px;
             height: 24px;
             margin-left: -12px;
-            border-left: 1px solid #202020;
-            border-bottom: 1px solid #202020;
+            border-left: 1px solid #f3f2f1;
+            border-bottom: 1px solid #f3f2f1;
             -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
             -webkit-animation: sdb05 3s infinite;
@@ -118,15 +125,15 @@
 
 @section('main-content')
         <hr/>
-        <div class="row flex-grow-1 no-padding background-image-docks">
-            <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content">
+        <div class="row flex-grow-1 no-padding background-image-wind-turbines">
+            <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
+            <div class="col-xl-3 col-lg-6 col-md-8 col-12 center-content">
                 <h1>Don't fall victim to rising energy prices</h1>
                 <p>Too many energy brokers promise savings that don’t stick. These promises are made on estimates, which aren’t always respective of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you deserve when it comes to your bills.</p>
                 <a href="{{ route('residential.energy-comparison.1-address') }}" class="btn big-blue-button" role="button" style="margin-top: 10px;">Get started</a>
             </div>
-            <div class="col-xl-6 col-lg-5 col-md-2 d-none d-md-block">
-                <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
+            <div class="col-xl-7 col-lg-5 col-md-2 d-none d-md-block">
+                <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks" style="color: #f3f2f1"><span></span>How It Works</a>
             </div>
         </div>
     </div>
@@ -137,7 +144,7 @@
                 <div class="white-box-infographics-inner">
                     <div style="text-align: center;">
                         <img src="{{ asset('img/infographic icons/signed-form.svg') }}"/>
-                        <p style="margin-top: 50px; "> Fill in our form </p>
+                        <p class="infographics-header"> Fill in our form </p>
                         <p> Our form is easy to understand and will help you get the best deals available to you </p>
                     </div>
                 </div>
@@ -146,7 +153,7 @@
                 <div class="white-box-infographics-inner">
                     <div style="text-align: center;">
                         <img src="{{ asset('img/infographic icons/search-icon.svg') }}"/>
-                        <p style="margin-top: 50px; "> Browse our deals </p>
+                        <p class="infographics-header"> Browse our deals </p>
                         <p> You'll have all the best deals presented to you, allowing you to easily understand which deal best suits you.  </p>
                     </div>
                 </div>
@@ -156,7 +163,7 @@
                 <div class="white-box-infographics-inner">
                     <div style="text-align: center;">
                         <img src="{{ asset('img/infographic icons/switch-icon.svg') }}"/>
-                        <p style="margin-top: 50px; "> Get switching </p>
+                        <p class="infographics-header"> Get switching </p>
                         <p> Once you're sure that you got the best deal for you, toggle the switch and leave the rest up to us. </p>
                     </div>
                 </div>
@@ -169,14 +176,14 @@
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left;">
                 <div>
-                    <h2> How it works </h2>
+                    <h2 style="font-size: 44px"> How it works </h2>
                     <p style="padding-top: 15px">Other energy brokers promise false savings based on their estimates, which can fall short of your actual usage, which can result in steep final bills and hassle that you just don't need. Our savings are calculated based on the unit price, which means that a lower unit price plan will result in savings for you or some room for more brews or a new TV to binge-watch Netflix on. </p>
                 </div>
             </div>
             <div class="col-2 d-lg-none d-block"></div>
             <div class="col-2 d-lg-none d-block"></div>
             <div class="col-xl-6 col-lg-5 col-md-12 center-content text-center">
-                <img class="bottom-padding-image-md" src="{{ asset('img/usage-graph.png') }}" style="width: auto; max-width: 100%; height: auto;" alt="Graph comparing your actual energy usage to current estimated usage from other energy brokers" />
+                <img class="bottom-padding-image-md" src="{{ asset('img/How-it-works-graph.png') }}" style="width: auto; max-width: 100%; height: auto;" alt="Graph comparing your actual energy usage to the estimated usage from other energy brokers" />
             </div>
             <div class="col-2 col-lg-1 col-md-2 d-block"></div>
         </div>
@@ -216,14 +223,6 @@
                         <p>Yes you can. From initially agreeing to switch, you have up to 2 weeks to opt-out.</p>
                     </div>
                 </div>  
-            </div>
-        </div>
-    </div>
-    <div class="d-flex flex-column background-image-preston-behind" style="min-height: 250px;">
-        <div class="row flex-grow-1 background-image-preston background-image-bottom preload" style="align-content: center;">
-            <div class="center-content" style="width: 600px; max-width: 100%; text-align: center">
-                <p style="font-weight: bold; font-size: 30px; color: #f3f2f1;"> Still need Help?</p>
-                <a href="{{ route('residential.contact') }}" class="btn big-blue-button btn-lg" role="button">Contact Us</a>             
             </div>
         </div>
     </div>

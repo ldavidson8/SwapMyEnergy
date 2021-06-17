@@ -109,6 +109,14 @@ Route::group([ 'prefix' => '/residential' ], function()
     });
 });
 
+Route::get('/browse', function () {
+    return view('browse');
+});
+
+Route::get('/get-switching', function () {
+    return view('get-switching');
+});
+
 
 /*
 |--------------------------------------------------------------------------
