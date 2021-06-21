@@ -57,6 +57,7 @@ class ResidentialComparisonController extends Controller
         
         $region = Session::get('region', null);
         if (!isset($region)) return redirect() -> back() -> withErrors([ 'error' => 'An error occured, please try again later.' ]) -> withInput();
+        //return response() -> json($region["id"]);
         
         $suppliers = Repository::suppliersByRegion($region["id"], $status);
         if (!isset($suppliers) || count($suppliers) == 0) return redirect() -> back() -> withErrors([ 'error' => 'An error occured, please try again later.' ]) -> withInput();
@@ -95,10 +96,27 @@ class ResidentialComparisonController extends Controller
         // return response() -> json($supplier_data);
         
         $page_title = 'Compare Energy Prices - Your Tariff';
-        return view('energy-comparison.2-set-existing-tariff', compact('page_title', 'supplier_data'));
+        return view('energy-comparison.2-set-existing-tariff', compact('page_title', 'supplier_data', 'region'));
     }
 
     public function setExistingTariffPost()
+    {
+    }
+
+
+    public function browseDeals()
+    {
+    }
+    
+    public function browseDealsPost(Request $request)
+    {
+    }
+    
+    public function getSwitching()
+    {
+    }
+    
+    public function getSwitchingPost(Request $request)
     {
     }
 }

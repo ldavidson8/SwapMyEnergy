@@ -89,6 +89,12 @@ class ResidentialApiController extends Controller
         $result = Repository::paymentMethods_suppliers($supplierId, $serviceType, $status);
         return response() -> json($result, $status);
     }
+
+    public static function tariffs_forASuppllier($supplierId, $regionId, $serviceType, $paymentMethod, $e7)
+    {
+        $result = Repository::tariffs_forASuppllier($supplierId, $regionId, $serviceType, $paymentMethod, $e7, $statusLive, $statusPresereved);
+        return response() -> json($result, $statusLive);
+    }
     
 
     public static function testOne()
