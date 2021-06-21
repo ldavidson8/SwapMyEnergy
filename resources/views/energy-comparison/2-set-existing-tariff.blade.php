@@ -393,7 +393,7 @@
                             <select id="tariff_1_current_tariff" name="tariff_1_current_tariff" style="width: 100%; margin-bottom: 10px;" >
                                 <option class="initial-values" value="" disabled selected hidden></option>
                             </select>
-                            <input type="checkbox" id="tariff_1_current_tariff_not_listed" class="initial-values" value="notListed" />
+                            <input type="checkbox" id="tariff_1_current_tariff_not_listed" name="tariff_1_current_tariff_not_listed" class="initial-values" value="notListed" />
                             <label for="tariff_1_current_tariff_not_listed">Not listed/Not sure</label>
                             <br />
                             <p id="tariff_1_current_tariff_not_listed_message" style="display: none;">That's okay. We will compare against your supplier's most popular default tariff to bring you the best deals.</p>
@@ -488,7 +488,7 @@
                             <select id="tariff_2_current_tariff" name="tariff_2_current_tariff" style="width: 100%; margin-bottom: 10px;" >
                                 <option class="initial-values" value="" disabled selected hidden></option>
                             </select>
-                            <input type="checkbox" id="tariff_2_current_tariff_not_listed" class="initial-values" value="notListed" />
+                            <input type="checkbox" id="tariff_2_current_tariff_not_listed" name="tariff_2_current_tariff_not_listed" class="initial-values" value="notListed" />
                             <label for="tariff_2_current_tariff_not_listed">Not listed/Not sure</label>
                             <br />
                             <p id="tariff_2_current_tariff_not_listed_message" style="display: none;">That's okay. We will compare against your supplier's most popular default tariff to bring you the best deals.</p>
@@ -529,13 +529,10 @@
                             </table>
                         </div>
                     </div>
+                    <br />
                     <div id="section_your_electric_usage" style="display: none;">
                         <p class="paragraph-margin"> Your Electricity Usage </p>
                         <div style="text-align: center;">
-                            <div class="your-usage-box">
-                                <label for="your_electric_usage_kwh"> I use </label>
-                                <input type="number" class="form-control" pattern="[0-9]*" name="your_electric_usage_kwh" id="your_electric_usage_kwh" />
-                            </div>
                             <table class="your-usage-table">
                                 <tr>
                                     <td></td>
@@ -1121,7 +1118,6 @@
                     {
                         type: 'POST',
                         url: url,
-                        async: false,
                         success: success /*function(result, success, xhr)
                         {
                             if (xhr != null && xhr.status == 204)
@@ -1184,10 +1180,12 @@
                 var tariff_1_payment_method = sections.tariff_1.payment_method.radio.filter(":checked").val();
                 var tariff_1_e7 = sections.tariff_1.e7.radio.filter(":checked").val();
                 var tariff_1_current_tariff = sections.tariff_1.current_tariff.input.val();
+                var tariff_1_current_tariff_not_listed = sections.tariff_1.current_tariff.notListed.prop("checked");
                 
                 var tariff_2_payment_method = sections.tariff_2.payment_method.radio.filter(":checked").val();
                 var tariff_2_e7 = sections.tariff_2.e7.radio.filter(":checked").val();
                 var tariff_2_current_tariff = sections.tariff_2.current_tariff.input.val();
+                var tariff_2_current_tariff_not_listed = sections.tariff_2.current_tariff.notListed.prop("checked");
                 
                 var your_gas_usage_kwh = sections.your_gas_usage.kwh.val();
                 var your_gas_usage_length = sections.your_gas_usage.length.val();
@@ -1227,15 +1225,21 @@
                 {
                     if (!tariff_1_payment_method) { ShowErrorSubsection("tariff_1", "payment_method", "Please select a payment method."); e.preventDefault(); return; }
                     if (!tariff_1_e7) { ShowErrorSubsection("tariff_1", "e7", "Please select yes or no."); e.preventDefault(); return; }
-                    if (!tariff_1_current_tariff) { ShowErrorSubsection("tariff_1", "current_tariff", "Please select a tariff."); e.preventDefault(); return; }
+                    if (!tariff_1_current_tariff && !tariff_1_current_tariff_not_listed) { ShowErrorSubsection("tariff_1", "current_tariff", "Please select a tariff."); e.preventDefault(); return; }
+                }
+                if (checkElectric)
+                {
+                    if (!tariff_2_payment_method) { ShowErrorSubsection("tariff_2", "payment_method", "Please select a payment method."); e.preventDefault(); return; }
+                    if (!tariff_2_e7) { ShowErrorSubsection("tariff_2", "e7", "Please select yes or no."); e.preventDefault(); return; }
+                    if (!tariff_2_current_tariff && !tariff_2_current_tariff_not_listed) { ShowErrorSubsection("tariff_2", "current_tariff", "Please select a tariff."); e.preventDefault(); return; }
+                }
+                if (checkDual || checkGas)
+                {
                     if (!your_gas_usage_kwh) { sections.your_gas_usage.kwh_error.show().text("Please enter your kwh of gas usage."); e.preventDefault(); return; }
                     if (!your_gas_usage_length) { sections.your_gas_usage.length_error.show().text("Please enter a length of time."); e.preventDefault(); return; }
                 }
                 if (checkDual || checkElectric)
                 {
-                    if (!tariff_2_payment_method) { ShowErrorSubsection("tariff_2", "payment_method", "Please select a payment method."); e.preventDefault(); return; }
-                    if (!tariff_2_e7) { ShowErrorSubsection("tariff_2", "e7", "Please select yes or no."); e.preventDefault(); return; }
-                    if (!tariff_2_current_tariff) { ShowErrorSubsection("tariff_2", "current_tariff", "Please select a tariff."); e.preventDefault(); return; }
                     if (!your_electric_usage_kwh) { sections.your_electric_usage.kwh_error.show().text("Please enter your kwh of electricity usage."); e.preventDefault(); return; }
                     if (!your_electric_usage_length) { sections.your_electric_usage.length_error.show().text("Please select a length of time."); e.preventDefault(); return; }
                 }

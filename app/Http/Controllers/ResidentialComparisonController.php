@@ -99,8 +99,9 @@ class ResidentialComparisonController extends Controller
         return view('energy-comparison.2-set-existing-tariff', compact('page_title', 'supplier_data', 'region'));
     }
 
-    public function setExistingTariffPost()
+    public function setExistingTariffPost(Request $request)
     {
+        return response() -> json($request -> all());
     }
 
 
