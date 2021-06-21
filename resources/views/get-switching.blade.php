@@ -101,7 +101,7 @@
     {
         background-color: #f3f2f1; 
         padding: 35px;
-        border-radius: 0 35px 0 0;
+        /* border-radius: 0 35px 0 0; */
         border-radius: 0 35px 0 35px;
         width: 200px;
         text-align: center;
@@ -130,12 +130,12 @@
         text-align: right;
     }
 
-    .table-current-tariff
+    .table-tariff
     {
         display: inline-block;
     }
 
-    .table-current-tariff td
+    .table-tariff td
     {
         padding: 10px;
     }
@@ -143,12 +143,6 @@
     .table-choose-tariff
     {
         display: inline-block;
-        border-collapse: separate;
-    }
-
-    .row-spacer
-    {
-        border-top: 100px solid transparent; 
     }
 
     .table-choose-tariff td
@@ -156,7 +150,7 @@
         padding: 10px;
     }
 
-    .black-progress-bar
+    .white-progress-bar
     {
         width:350px;
         height:50px; 
@@ -169,7 +163,7 @@
         position: relative;
     }
 
-    .black-progress-bar-text
+    .white-progress-bar-text
     {
         z-index: 22;
         position: absolute;
@@ -180,7 +174,7 @@
         padding: 5px;
     }
 
-    .black-progress-bar-bordered
+    .white-progress-bar-border
     {
         width:350px;
         height:50px; 
@@ -193,7 +187,7 @@
         position: relative;
     }
 
-    .black-progress-bar-bordered-text
+    .white-progress-bar-border-text
     {
         z-index: 22;
         position: absolute;
@@ -232,25 +226,126 @@
         z-index: 20;
     }
 
-    @media (max-width: 767px)
+    .form-outer-box
     {
-        .form-top-left-border-sm
+        padding: 20px 0;
+    }
+
+    .pricing-text
+    {
+        width: auto;
+        float: right;
+    }
+
+    .collapse-table
+    {
+        border: none;
+        outline: none !important;
+        font-weight: 700;
+        padding: 20px 0;
+        margin: 0 0 30px 0;
+        border-bottom: solid 3px #00c2cb;
+        width: 100%;
+        text-align:left;
+        background: none;
+    }
+
+    #tariff-info
+    {
+        text-transform: uppercase;
+    }
+
+    #tariff-info tr:not(:last-child)
+    {
+        border-bottom: solid 2px #202020;
+    }
+
+    #tariff-info td
+    {
+       padding: 10px 0;
+       width: 50%;
+    }
+
+    #tariff-info tbody:before
+    {
+        line-height: 20px
+        content:"_";
+        color: #f3f2f1;
+        display:block;
+    }
+
+    #tariff-info td:nth-of-type(2n+1)
+    {
+       border-right: solid 2px #202020;
+    }
+
+    @media (min-width: 768px) and (max-width: 991px)
+    {
+        .form-top-left-border-md
         {
             border-radius: 35px 35px 0 0;
         }
-        .form-top-img-border-sm
+
+        .form-top-img-border-md
         {
             border-radius: 0 0 0 35px;
         }
+    }
 
-        .table-current-tariff
+
+    @media (max-width: 767px)
+    {
+
+        .container, .container-fluid
+        {
+            max-width: 100% !important;
+            width: 100%;
+            padding: 0;
+            border-radius: 0px !important;
+        }
+
+        .white-rounded-container
+        {
+            padding-bottom: 20px;
+        }
+
+        .form-outer-box
+        {
+            padding: 0;
+        }
+
+        .form-top-left-border-md
+        {
+            border-radius: 0;
+        }
+        
+        .form-top-img-border-sm
+        {
+            border-radius: 0;
+            width: 100%;
+        }
+
+        .form-top-middle-heading
+        {
+            text-align: center;
+        }
+        
+        .pricing-text
+        {
+            float: none;
+            text-align: left;
+            width: 100%;
+            padding-right: 10px;
+        }
+
+        .table-block-on-mobile
         {
             width: 100%;
         }
 
-        .table-current-tariff tbody,
-        .table-current-tariff tr,
-        .table-current-tariff td
+        .table-block-on-mobile tbody,
+        .table-block-on-mobile tr,
+        .table-block-on-mobile td
         {
             display: block;
             width: 100%;
@@ -271,12 +366,12 @@
             max-width: 100%;
         }
 
-        .black-progress-bar
+        .white-progress-bar
         {
             width: 100%;
             max-width: 100%;
         }
-        .black-progress-bar-bordered
+        .white-progress-bar-border
         {
             width: 100%;
             max-width: 100%;
@@ -292,23 +387,23 @@
 @endsection
 
 @section('before-header')
-    <div id="section01" class="container-fluid d-flex h-100 flex-column">
+    <div id="section01" class="container-fluid no-padding d-flex h-100 flex-column">
 @endsection
 
 @section('main-content')
         <hr/>
-        <div class="background-image-wind-turbines flex-fill">
-            <div class="col-12 padding-20px center-content">
+        <div class="background-image-wind-turbines background-image-contain flex-fill">
+            <div class="col-12 center-content form-outer-box">
                 <div class="container outer-rounded-container no-padding flex-row">  
                     <div class="row form-top-outer">
-                        <div class="col-12 col-md-4 form-top-heading form-top-left-heading form-top-left-border-sm">
-                            <table class="form-table"><tr><td>Step 4 | Get Switching</td></tr></table>
+                        <div class="col-12 col-lg-4 form-top-heading form-top-left-heading form-top-left-border-md">
+                            <table class="form-table"><tr><td>Step 4 | Get Switching </td></tr></table>
                         </div>
                         <div class="flex-fill form-top-heading form-top-middle-heading">
-                            <table class="form-table"><tr><td>Current Tariff</td></tr></table>
+                            <table class="form-table"><tr><td>Selected Tariff</td></tr></table>
                         </div>
-                        <div class="no-padding form-top-img form-top-img-border-sm">
-                            <table class="form-table"><tr><td><img src="{{ asset('img/supplier-logos/utilita.png') }}" height="auto" width="auto" /></td></tr></table>
+                        <div class="no-padding form-top-img form-top-img-border-sm form-top-img-border-md">
+                            <table class="form-table"><tr><td><img src="{{ asset('img/supplier-logos/edf.png') }}" height="auto" width="auto" /></td></tr></table>
                         </div>
                     </div>
                     <div class="container rounded-container blue-rounded-container">
@@ -317,14 +412,14 @@
                                 <td>
                                     <div class="row no-padding">
                                         <div class="col-lg-8 col-12 no-padding">
-                                            <table class="table-current-tariff" style=" vertical-align: bottom;">
+                                            <table class="table-tariff table-block-on-mobile" style=" vertical-align: bottom;">
                                                 <tr>
                                                     <td>
                                                         Unit Rate:
                                                     </td>
                                                     <td>
-                                                        <div class="black-progress-bar">
-                                                            <div class="black-progress-bar-text">12p*</div>
+                                                        <div class="white-progress-bar">
+                                                            <div class="white-progress-bar-text">12p*</div>
                                                             <div class="blue-progress-bar" style="width: 80%;"></div>  
                                                         </div>
                                                     </td>
@@ -334,8 +429,8 @@
                                                         Standing Charge:
                                                     </td>
                                                     <td>
-                                                        <div class="black-progress-bar">
-                                                            <div class="black-progress-bar-text">2p*</div>
+                                                        <div class="white-progress-bar">
+                                                            <div class="white-progress-bar-text">2p*</div>
                                                             <div class="blue-progress-bar" style="width: 30%"></div>  
                                                         </div>
                                                     </td>
@@ -343,16 +438,21 @@
                                             </table>
                                         </div>
                                         <div class="col-lg-4 col-12 no-padding">
-                                            <table class="form-table" style="width: auto; float: right;">
+                                            <table class="form-table pricing-text">
+                                                <tr>
+                                                    <td colspan="2" style="vertical-align: bottom;">
+                                                        <p style="font-size: 16px;">*compared to regional averages</p>
+                                                    </td>
+                                                </tr>
                                                 <tr>
                                                     <td style="vertical-align: bottom;">
-                                                        <p style="text-align: center; border-right: solid 2px #f3f2f1; line-height: ">
+                                                        <p style="font-size: 20px; text-align: center; border-right: solid 2px #f3f2f1;">
                                                             <span style="font-size: 34px;">£81.76</span> 
                                                             <br /> 
                                                             per month
                                                         </p>
                                                     </td>
-                                                    <td style="vertical-align: bottom; text-align: right;">
+                                                    <td style="vertical-align: bottom; text-align: center;">
                                                         <p style="font-size: 20px;"> 24 month<br />contract </p>  
                                                     </td>
                                                 </tr>
@@ -367,6 +467,84 @@
                     <div style="position: relative;">
                         <div class="white-rounded-container-positioned"></div>
                         <div class="container rounded-container white-rounded-container">
+                            <button class="collapse-table" id="tariff-info-toggle" role="button"> TARIFF INFORMATION </button>
+                            <table id="tariff-info" style="width: 100%;">
+                                <tr>
+                                    <td>
+                                        Supplier
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Tariff name
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Tariff type
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Payment method
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Unit rate
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Standing charge
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Tariff ends On
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Price guaranteed until 
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        VAT
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                </tr>
+                            </table>
+                            <div style="float:right; text-transform: uppercase; display:block;">
+                            Get switching 
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -374,4 +552,32 @@
         </div>
     </div>
 
+@endsection
+
+@section('script')
+    <script>
+    $('#tariff-info-toggle').click(function() {
+        $('#tariff-info').fadeToggle(750);
+    });
+    var animationItems = $('.header-switch-animation-item');
+    var modeSwitchTags = $(".mode-switch");
+    var headerAnimationStarted = false;
+    modeSwitchTags.one("click", function(event)
+    {
+        if (!headerAnimationStarted)
+        {
+            for (var i = 0; i < animationItems.length; i++)
+            {
+                animationItems.addClass('animate');
+            }
+        
+            setTimeout(function()
+            {
+                location.assign(modeSwitchTags[0].href);
+            }, 1000);
+
+            event.preventDefault();
+        }
+    });
+    </script>
 @endsection
