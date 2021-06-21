@@ -71,13 +71,13 @@
                 <div class="col-12 col-lg-4 col-md-6 contact-us-blue-box">
                     <div class="contact-us-blue-box-inner">
                         <div style="position: relative;">
-                            <h2> Call Us </h2>
+                            <h2> Call us </h2>
                             <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/phone.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center;">
                             <p style="font-size:30px; padding-top: 25px; padding-bottom:40px;"> {{ env('DATA_CONTACT_PHONE_NUMBER') }} </p>
-                            <h3 style="text-decoration: underline; font-size: 24px;"> Opening Hours </h3>
+                            <h3 style="text-decoration: underline;"> Opening Hours </h3>
                             <p>
                                 10am - 4:30pm <br>
                                 Monday to Thursday 
@@ -88,7 +88,7 @@
                 <div class="col-12 col-lg-4 col-md-6 contact-us-blue-box">
                     <div class="contact-us-blue-box-inner">
                         <div style="position: relative;">
-                            <h2> Email Us </h2>
+                            <h2> Email us </h2>
                             <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/email.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
@@ -107,7 +107,7 @@
                 <div class="col-12 col-lg-4 col-md-6 contact-us-blue-box">
                     <div class="contact-us-blue-box-inner">
                         <div style="position: relative;">
-                            <h2> Message Us </h2>
+                            <h2> Message us </h2>
                             <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/chat.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')

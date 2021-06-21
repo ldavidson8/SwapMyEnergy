@@ -332,7 +332,7 @@
                 <p>If you have questions about this privacy policy you can contact us;</p>
                 <p>By Phone</p>
                 <p>
-                    01772584880
+                    01772 584880
                 </p>
                 <p>By email</p>
                 <p><a href="mailto: {{ env('DATA_CONTACT_EMAIL') }}"> {{ env('DATA_CONTACT_EMAIL') }}</a></p>

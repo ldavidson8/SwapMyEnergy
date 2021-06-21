@@ -141,7 +141,7 @@
                                 <img src="{{ asset('img/business-homepage/signed-document.png')}}" style="width: 100px;" alt="signed document">
                             </td>
                             <td>
-                                <p class="white-text" style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simple select the option that is most appropriate for your company. We'll always be on hand to help you understand your options. </p>
+                                <p class="white-text" style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simply select the option that is most appropriate for your company. We'll always be on hand to help you understand your options. </p>
                             </td>
                         </tr>
                         <tr>
@@ -149,7 +149,7 @@
                                 <img src="{{ asset('img/business-homepage/coins.png')}}" style="width: 100px;" alt="pound coins stacked on top each other">
                             </td>
                             <td>
-                                <p class="white-text" style="font-weight: normal;"><b>Step Three - Save </b><br> Change to a less expensive plan. Take a seat and unwind. We'll let you know when your contract is up for renewal so you can make sure you're getting the best value possible. </p>
+                                <p class="white-text" style="font-weight: normal;"><b>Step Three - Save </b><br> Change to a cheaper plan. Take a seat and unwind. We'll let you know when your contract is up for renewal so you can make sure you're getting the best value possible. </p>
                             </td>
                         </tr>
                     </table>

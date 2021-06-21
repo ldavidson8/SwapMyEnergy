@@ -90,6 +90,7 @@
             width: 100%;
             border-radius: 15px;
             padding: 10px;
+            border: none;
             border: 1px solid;
         }
 
@@ -219,7 +220,7 @@
         <div class="row flex-grow-1 no-padding background-image-hydropower-plant">
             <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-4 col-lg-6 col-md-8 col-12 no-margin" style="padding-top: 150px; color: #f3f2f1;">
-                <h1>Help Shape the future of energy</h1>
+                <h1>Help shape the future of energy</h1>
                 <p style="padding-top: 30px; width: 450px; max-width: 100%;">Join our Affiliate programme and help us share the future energy</p>    
                 <a href="#AffiliateApply"><button class="oval-button">Find out more </button></a>
             </div>
@@ -329,6 +330,7 @@
                                 <option value="blogger" {{ ($type_of_affiliate == 'blogger') ? 'selected' : '' }}>Blogger</option>
                                 <option value="tiktoker" {{ ($type_of_affiliate == 'tiktoker') ? 'selected' : '' }}>Tiktoker</option>
                                 <option value="podcaster" {{ ($type_of_affiliate == 'podcaster') ? 'selected' : '' }}>Podcaster</option>
+                                <option value="other" {{ ($type_of_affiliate == 'other') ? 'selected' : '' }}>Other</option>
 
                             </select>
                         </div>
