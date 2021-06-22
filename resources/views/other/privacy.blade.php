@@ -330,11 +330,11 @@
                 </p>
                 <p class="font-weight-bold">How you can contact us?</p>
                 <p>If you have questions about this privacy policy you can contact us;</p>
-                <p>By Phone</p>
+                <p>By Phone:</p>
                 <p>
                     01772 584880
                 </p>
-                <p>By email</p>
+                <p>By email:</p>
                 <p><a href="mailto: {{ env('DATA_CONTACT_EMAIL') }}"> {{ env('DATA_CONTACT_EMAIL') }}</a></p>
                 <p>
                     If you have unresolved concerns, you have the right to complain to a data protection authority. In the United Kingdom 

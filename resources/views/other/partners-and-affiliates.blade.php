@@ -66,7 +66,6 @@
             padding: 30px;
             font-size: 27px;
             font-weight: bold;
-            color:#f3f2f1;
             display: inline-block;
             overflow: hidden;
         }

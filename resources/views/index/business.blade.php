@@ -194,57 +194,37 @@
         <div class="row">
             <div class="col-md-1 d-md-block d-none"> </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.eonenergy.com/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/eon.png') }}">
-                </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.ovoenergy.com/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.png') }}">
-                </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.britishgas.co.uk/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.png') }}">
-                </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.scottishpower.co.uk/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.png') }}">
-                </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.bristol-energy.co.uk/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/bristol-energy.png') }}">
-                </a>
             </div>
             <div class="col-md-1 d-md-block d-none"> </div>   
             <div class="col-md-1 d-md-block d-none"> </div>  
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://utilita.co.uk/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/utilita.png') }}">
-                </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.avantigas.com/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/avanti-gas.png') }}">
-                </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.opusenergy.com/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/opus-energy.png') }}">
-                </a>
             </div>
             <div class="col-sm-3 d-sm-block d-md-none"></div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://sse.co.uk/home" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/sse.png') }}">
-                </a>
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                <a href="https://www.crowngas.co.uk/" rel="external">
                     <img class="logos-item" src="{{ asset('img/supplier-logos/crown-gas.png') }}">
-                </a>
             </div>
             <div class="col-md-1 d-md-block d-none"> </div>
         </div>
@@ -270,7 +250,7 @@
         <div class="row flex-grow-1 padding-20px">
             <div class="col-12 col-lg-9 center-content">
                 <div style="max-width: 100%;">
-                    <p style="font-size: 24px;"> At Swap My Energy, we pride ourselves on giving businesses of all sizes easy access to the best commerical energy tariffs on the market. With our market leading commerical energy calculator, you can quickly find the best energy prices to make maximum savings on your business gas and electric bills. Our specialist business energy advisors are committed to supporting you throughout the process, from finding the best deal for your business to negotiating with suppliers to ensure your switch runs smoothly.
+                    <p> At Swap My Energy, we pride ourselves on giving businesses of all sizes easy access to the best commerical energy tariffs on the market. With our market leading commerical energy calculator, you can quickly find the best energy prices to make maximum savings on your business gas and electric bills. Our specialist business energy advisors are committed to supporting you throughout the process, from finding the best deal for your business to negotiating with suppliers to ensure your switch runs smoothly.
                     </p>
                 </div>
             </div>

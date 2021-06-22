@@ -13,7 +13,7 @@
 
         .contact-us-blue-boxes
         {
-            font-size: 22px;
+            font-size: 20px;
         }
 
         .contact-us-blue-box
@@ -47,7 +47,7 @@
             width: 200px;
             border-radius: 10px;
             padding: 5px;
-            font-size: 27px;
+            font-size: 24px;
             font-weight: bold;
             border: none;
         }
