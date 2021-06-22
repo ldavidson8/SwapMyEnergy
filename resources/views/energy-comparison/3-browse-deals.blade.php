@@ -3,17 +3,6 @@
 @section('stylesheets')
 <style>
 
-    .rounded-blue-button
-    {
-        background-color: #00d2db;
-        border: none;
-        width: 300px;
-        border-radius: 18px;
-        padding: 20px;
-        font-size: 27px;
-        font-weight: bold;
-    }
-
     .uppercase-white-text
     {
         text-transform: uppercase;
@@ -345,7 +334,7 @@
 @endsection
 
 @section('before-header')
-    <div id="section01" class="container-fluid d-flex h-100 flex-column">
+    <div id="section01" class="container-fluid no-padding d-flex h-100 flex-column">
 @endsection
 
 @section('main-content')

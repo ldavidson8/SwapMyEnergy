@@ -49,17 +49,6 @@
             font-size: 28px;
         }
 
-        .rounded-blue-button
-        {
-            background-color: #00d2db;
-            border: none;
-            width: 300px;
-            border-radius: 18px;
-            padding: 12px;
-            font-size: 27px;
-            font-weight: bold;
-        }
-
         .logos-container
         {
             padding: 0;
@@ -253,7 +242,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6 center-content" style="text-align: center;">
-                <a href="#requestCallback"><button class="rounded-blue-button">Lets do it!</button></a>
+                <a href="#requestCallback"><button class="rounded-blue-button" style="padding: 12px;">Lets do it!</button></a>
             </div>
         </div>
     </div>

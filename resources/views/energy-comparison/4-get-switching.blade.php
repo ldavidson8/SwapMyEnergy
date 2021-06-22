@@ -2,17 +2,50 @@
 
 @section('stylesheets')
 <style>
-
-    .rounded-blue-button
-    {
-        background-color: #00d2db;
-        border: none;
+    
+    .switchButton {
         width: 300px;
-        border-radius: 18px;
         padding: 20px;
-        font-size: 27px;
-        font-weight: bold;
+        background-color: white;
+        border-radius: 6px;
+        position: relative;
+        overflow: hidden;
+        float: right;
+        text-transform: uppercase;
+        font-weight: 700;
     }
+
+    .switchButton span {
+        color: black;
+        position: relative;
+        z-index: 1;
+        transition: color 0.6s cubic-bezier(0.53, 0.21, 0, 1);
+    }
+
+    .switchButton::before {
+        content: 'SUBMIT';
+        padding: 20px;
+        text-transform: uppercase;
+        font-weight: 700;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        border-radius: 6px;
+        transform: translate(-100%, -50%);
+        width: 100%;
+        height: 100%;
+        background-color: #00c2cb;
+        transition: transform 0.6s cubic-bezier(0.53, 0.21, 0, 1);
+    }
+
+    .switchButton:hover span {
+        color: white;
+    }
+
+    .switchButton:hover::before {
+        transform: translate(0, -50%);
+    }
+
 
     .uppercase-white-text
     {
@@ -26,7 +59,7 @@
         border-radius: 35px;
         z-index: 11;
         font-weight: 700;
-        font-size: 26px;
+        font-size: 24px;
         color: #f3f2f1;
     }
 
@@ -121,13 +154,16 @@
         display: inline-table;
     }
 
-    .bottom-right
+    .form-check
+    {
+        position: relative;
+        display: block;
+    }
+
+    .form-check-input
     {
         position: absolute;
-        bottom: 10px;
-        right: 30px;
-        width: 50%;
-        text-align: right;
+        margin-top: 10px;
     }
 
     .table-tariff
@@ -459,7 +495,6 @@
                                             </table>
                                         </div>
                                     </div>
-
                                 </td>
                             </tr>
                         </table>
@@ -542,9 +577,87 @@
                                     </td>
                                 </tr>
                             </table>
-                            <div style="float:right; text-transform: uppercase; display:block;">
-                            Get switching 
+                            <form>
+                            <div class="form-group">
+                                <label for="accountName" class="font-weight-bold">Account Holder Name*</label> 
+                                <input id="accountName" name="accountName" type="text" class="form-control">
                             </div>
+                            <div class="row no-margin">
+                                <div class="col-md-8 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="sortCodeOne" class="font-weight-bold d-block">Sort Code*</label>
+                                        <input id="sortCodeOne" name="sortCodeOne" inputmode="tel" maxlength="2" type="text" class="form-control w-25 d-inline text-center"> 
+                                        <input id="sortCodeTwo" name="sortCodeTwo" inputmode="tel" maxlength="2" type="text" class="form-control w-25 d-inline text-center"> 
+                                        <input id="sortCodeThree" name="sortCodeThree" inputmode="tel" maxlength="2" type="text" class="form-control w-25 d-inline text-center">
+                                    </div>
+                                </div> 
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="accountNumber" class="font-weight-bold">Account Number*</label> 
+                                        <input id="accountNumber" name="accountNumber" inputmode="tel" maxlength="8" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row no-margin">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="preferredDay" class="font-weight-bold">Select your payment date*</label>
+                                        <select id="preferredDay" name="preferredDay" class="form-control w-25 custom-select d-block">
+                                            <option value=""></option> 
+                                            <option value="1">1</option> 
+                                            <option value="2">2</option> 
+                                            <option value="3">3</option> 
+                                            <option value="4">4</option> 
+                                            <option value="5">5</option> 
+                                            <option value="6">6</option> 
+                                            <option value="7">7</option> 
+                                            <option value="8">8</option> 
+                                            <option value="9">9</option> 
+                                            <option value="10">10</option> 
+                                            <option value="11">11</option> 
+                                            <option value="12">12</option> 
+                                            <option value="13">13</option> 
+                                            <option value="14">14</option> 
+                                            <option value="15">15</option> 
+                                            <option value="16">16</option> 
+                                            <option value="17">17</option> 
+                                            <option value="18">18</option> 
+                                            <option value="19">19</option> 
+                                            <option value="20">20</option> 
+                                            <option value="21">21</option> 
+                                            <option value="22">22</option> 
+                                            <option value="23">23</option> 
+                                            <option value="24">24</option> 
+                                            <option value="25">25</option> 
+                                            <option value="26">26</option> 
+                                            <option value="27">27</option> 
+                                            <option value="28">28</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-check"><input id="ddConfirmation" name="ddConfirmation" type="checkbox" class="form-check-input"> 
+                                <label for="ddConfirmation" class="form-check-label">
+                                I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account.
+                                </label>
+                            </div>
+                            <div class="row no-margin mt-4">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="receiveBills" class="font-weight-bold">
+                                            How would you like to receive all communications from <!-- insert name of selected tariff here -->? An electronic preference means <!-- "they" will be name of selected tariff -->they will
+                                            communicate with you electronically wherever possible.*
+                                        </label> 
+                                        <select id="receiveBills" name="receiveBills" class="form-control w-75 custom-select d-block">
+                                            <option value=""></option> 
+                                            <option value="Email">Electronically</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="switchButton">GET SWITCHING</button>
+                            </form>
+                            <div style="clear: both;"></div>
                         </div>
                     </div>
                 </div>
@@ -558,26 +671,6 @@
     <script>
     $('#tariff-info-toggle').click(function() {
         $('#tariff-info').fadeToggle(750);
-    });
-    var animationItems = $('.header-switch-animation-item');
-    var modeSwitchTags = $(".mode-switch");
-    var headerAnimationStarted = false;
-    modeSwitchTags.one("click", function(event)
-    {
-        if (!headerAnimationStarted)
-        {
-            for (var i = 0; i < animationItems.length; i++)
-            {
-                animationItems.addClass('animate');
-            }
-        
-            setTimeout(function()
-            {
-                location.assign(modeSwitchTags[0].href);
-            }, 1000);
-
-            event.preventDefault();
-        }
     });
     </script>
 @endsection
