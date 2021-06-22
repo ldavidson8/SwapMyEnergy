@@ -5,32 +5,41 @@ namespace App\Models\TheEnergyShopAPI;
 use TariffModel;
 use NewTariffModel;
 
+use App\Http\Controllers\API\ResidentialApiRepository as Repository;
+
 class ExistingTariffModel
 {
     public function __construct(array $request)
     {
-        if (isset($request["region_id"])) $this -> region_id = $request["region_id"];
+        if (isset($request["region_id"])) $this -> region_id = (int) $request["region_id"];
         if (isset($request["fuel_type"])) $this -> fuel_type = $request["fuel_type"];
         if (isset($request["same_fuel_supplier"])) $this -> same_fuel_supplier = $request["same_fuel_supplier"];
         
         switch ($this -> fuel_type)
         {
             case "dual":
+                $this -> current_service_type = "D";
                 if ($this -> same_fuel_supplier == "yes")
                 {
-                    if (isset($request["dual_supplier"])) $this -> supplier_1 = $request["dual_supplier"];
+                    $this -> service_type_to_compare = "df";
+                    if (isset($request["dual_supplier"])) $this -> supplier_1 = (int) $request["dual_supplier"];
                 }
                 else
                 {
-                    if (isset($request["gas_supplier"])) $this -> supplier_1 = $request["gas_supplier"];
-                    if (isset($request["electric_supplier"])) $this -> supplier_2 = $request["electric_supplier"];
+                    $this -> service_type_to_compare = "dfs";
+                    if (isset($request["gas_supplier"])) $this -> supplier_1 = (int) $request["gas_supplier"];
+                    if (isset($request["electric_supplier"])) $this -> supplier_2 = (int) $request["electric_supplier"];
                 }
                 break;
             case "gas":
-                if (isset($request["gas_supplier"])) $this -> supplier_1 = $request["gas_supplier"];
+                $this -> current_service_type = "G";
+                $this -> service_type_to_compare = "ne";
+                if (isset($request["gas_supplier"])) $this -> supplier_1 = (int) $request["gas_supplier"];
                 break;
             case "electric":
-                if (isset($request["electric_supplier"])) $this -> supplier_2 = $request["electric_supplier"];
+                $this -> current_service_type = "E";
+                $this -> service_type_to_compare = "ng";
+                if (isset($request["electric_supplier"])) $this -> supplier_2 = (int) $request["electric_supplier"];
                 break;
         }
 
@@ -50,19 +59,21 @@ class ExistingTariffModel
         if (isset($request["your_electric_usage_length"])) $this -> your_electric_usage_length = $request["your_electric_usage_length"];
     }
     
-    public int $region_id; // 7
-    public string $fuel_type; // "dual","gas","electric"
-    public string $same_fuel_supplier; // "yes","no"
-    public int $supplier_1; // 5
-    public int $supplier_2; // 5
-    public string $tariff_1_payment_method; // "MDD","QDD","CAC","PRE"
-    public string $tariff_1_e7; // "true","false"
-    public int $tariff_1_current_tariff; // "1623849" or "notListed"
-    public string $tariff_2_payment_method; // "MDD","QDD","CAC","PRE"
-    public string $tariff_2_e7; // "true","false"
-    public int $tariff_2_current_tariff; // "1619803" or "notListed"
-    public int $your_gas_usage_kwh; // 2000
-    public string $your_gas_usage_length; // "Month"
-    public int $your_electric_usage_kwh; // 3000
-    public string $your_electric_usage_length; // "Month","Quarter","Year"
+    public $region_id; // 7
+    public $fuel_type; // "dual","gas","electric"
+    public $same_fuel_supplier; // "yes","no"
+    public $current_service_type; // "D","G","E"
+    public $service_type_to_compare; // "df","dfs","ng"    "ne"??
+    public $supplier_1; // 5
+    public $supplier_2; // 5
+    public $tariff_1_payment_method; // "MDD","QDD","CAC","PRE"
+    public $tariff_1_e7; // "true","false"
+    public $tariff_1_current_tariff; // "1623849" or "notListed"
+    public $tariff_2_payment_method; // "MDD","QDD","CAC","PRE"
+    public $tariff_2_e7; // "true","false"
+    public $tariff_2_current_tariff; // "1619803" or "notListed"
+    public $your_gas_usage_kwh; // 2000
+    public $your_gas_usage_length; // "Month"
+    public $your_electric_usage_kwh; // 3000
+    public $your_electric_usage_length; // "Month","Quarter","Year"
 }

@@ -6,12 +6,12 @@ use Throwable;
 
 use App\Http\Controllers\API\ResidentialApiRepository as Repository;
 use App\Http\Requests\Mode\ModeSession;
-use App\Models\TheEnergyShopAPI\ExistingTariffModel;
+use App\Models\TheEnergyShopAPI\ExistingTariffGasModel;
+use App\Models\TheEnergyShopAPI\BrowseDealsViewModel;
+use App\Models\TheEnergyShopAPI\ExistingTariffElecModel;
 use App\Models\TheEnergyShopAPI\TariffModel;
 use App\Models\TheEnergyShopAPI\NewTariffModel;
-use App\Models\TheEnergyShopAPI\PostRequests\CurrentTariffPostRequestEnergyUsageModel;
-use App\Models\TheEnergyShopAPI\PostRequests\CurrentTariffPostRequestModel;
-use App\Models\TheEnergyShopAPI\PostRequests\CurrentTariffPostRequestTariffModel;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
@@ -123,33 +123,129 @@ class ResidentialComparisonController extends Controller
         // TODO: validation
         try
         {
-            $existing_tariff_model = new ExistingTariffModel($request -> all());
-            // return response() -> json($existing_tariff_model); // DEBUG: returns the data posted to the page in a model
-            
-            switch ($existing_tariff_model -> fuel_type)
+            switch ($request["fuel_type"])
             {
                 case "dual":
-                    $current_service_type = "D";
-                    if ($existing_tariff_model -> same_fuel_supplier == "yes")
+                    if ($this -> same_fuel_supplier == "yes")
                     {
-                        $service_type_to_compare = "df";
+                        return;
                     }
                     else
                     {
-                        $service_type_to_compare = "dfs";
+                        return;
                     }
-                    break;
                 case "gas":
-                    $current_service_type = "G";
-                    $service_type_to_compare = "ne";
-                    break;
+                    return $this -> setExistingTariffGas($request);
                 case "electric":
-                    $current_service_type = "E";
-                    $service_type_to_compare = "ng";
-                    break;
-                default:
-                    return response() -> json("false");
-                    return redirect() -> back() -> withErrors([ '' => "We were unable to process your data. Please check your input and try again later." ]) -> withInput();
+                    return $this -> setExistingTariffElec($request);
+            }
+
+            return redirect() -> route("residential.energy-comparison.3-browse-deals");
+        }
+        catch (Throwable $th)
+        {
+            report($th);
+            throw $th;
+            return redirect() -> back() -> withErrors([ '' => "We were unable to process your data. Please check your input and try again later." ]) -> withInput();
+        }
+    }
+
+    public function setExistingTariffGas(Request $request)
+    {
+        // TODO: validation
+        try
+        {
+            $existing_tariff = new ExistingTariffGasModel($request -> all());
+            return response() -> json($existing_tariff); // DEBUG: returns the data posted to the page in a model
+        }
+        catch (Throwable $th)
+        {
+            report($th);
+            throw $th;
+            return redirect() -> back() -> withErrors([ '' => "We were unable to process your data. Please check your input and try again later." ]) -> withInput();
+        }
+    }
+    
+    public function setExistingTariffElec(Request $request)
+    {
+        // TODO: validation
+        try
+        {
+            $existing_tariff = new ExistingTariffElecModel($request -> all());
+            // return response() -> json($existing_tariff); // DEBUG: returns the data posted to the page in a model
+
+            if (isset($existing_tariff -> current_tariff))
+            {
+                $tariff = Repository::tariffs_info_by_id($existing_tariff -> current_tariff, $tariff_status);
+            }
+            else if (isset($existing_tariff -> current_tariff_not_listed))
+            {
+                $tariff = Repository::tariffs_defaultForASupplier(
+                    $existing_tariff -> current_tariff,
+                    $existing_tariff -> fuel_type_char,
+                    $existing_tariff -> payment_method,
+                    $existing_tariff -> e7,
+                    $existing_tariff -> region_id,
+                    $tariff_status);
+            }
+            // return response() -> json($tariff, $tariff_status);
+
+            $tariff_results = Repository::tariffs_results(array(
+                "currentElectricityTariff" =>
+                [
+                    "servicePart" => $tariff -> serviceType,
+                    "serviceType" => $tariff -> serviceType,
+                    "regionId" => $existing_tariff -> region_id,
+                    "tariffId" => $tariff -> tariffId,
+                    "tariffName" => $tariff -> tariffName,
+                    "tariffType" => $tariff -> tariffType,
+                    "supplierId" => $tariff -> supplierId,
+                    "supplierName" => $tariff -> supplierName,
+                    "supplierTilName" => null,
+                    "paymentMethod" => $tariff -> paymentMethod,
+                    "paymentMethodName" => $tariff -> paymentMethodName,
+                    "e7" => $tariff -> e7,
+                    "bill" => $tariff -> bill,
+                    "units" => $tariff -> units,
+                    "tariffEndDateType" => $tariff -> tariffEndDateType,
+                    "tariffEndDatePeriodFixed" => $tariff -> tariffEndDatePeriodFixed,
+                    "contractLength" => $tariff -> contractLength,
+                    "exitPenaltyAmount" => $tariff -> exitPenaltyAmount,
+                    "exitPenaltyEndDate" => $tariff -> exitPenaltyEndDate,
+                    "pricePerUnit" => 0.0,
+                    "priceE7PerUnit" => 0.0,
+                    "standingCharge" => $tariff -> standingChargeElec,
+                    "standingChargeDaily" => 0.0,
+                    "tariffEndDate" => $tariff -> tariffEndDate,
+                    "discountAmount" => $tariff -> discountAmountElec,
+                    "discountAmountDualFuel" => $tariff -> discountAmountDf,
+                    "tcr" => $tariff -> tcrElec
+                ]
+            ), $tariff_results_status);
+            return $tariff_results;
+            return response() -> json($tariff_results, $tariff_results_status);
+            
+            if (is_numeric($existing_tariff -> tariff_1_current_tariff))
+            {
+                $existing_tariff -> tariff_1 = Repository::tariffs_forASuppllier(
+                    $existing_tariff -> supplier_1,
+                    $existing_tariff -> region_id,
+                    $existing_tariff -> current_service_type,
+                    $existing_tariff -> tariff_1_payment_method,
+                    $existing_tariff -> tariff_1_e7,
+                    $statusLive, $statusPreserved);
+            }
+
+            $result = Repository::tariffs_defaultForASupplier($this -> supplier_1, $this -> current_service_type, $this -> tariff_1_payment_method, $this -> tariff_1_e7, $this -> region_id, $status);
+
+            $result = Repository::features_by_tariff_ids($existing_tariff -> tariff_1_current_tariff);
+            return $result;
+            return response() -> json($result);
+            
+            if (!isset($existing_tariff -> current_service_type) || !isset($existing_tariff -> service_type_to_compare))
+            {
+                return response() -> json("false");
+                return redirect() -> back() -> withErrors([ '' => "We were unable to process your data. Please check your input and try again later." ]) -> withInput();
             }
 
             // $currentTariffRequest = 
@@ -161,7 +257,7 @@ class ResidentialComparisonController extends Controller
             //     "currentServiceType" => $current_service_type
             // ];
 
-            // $result = Repository::supplierById($existing_tariff_model -> supplier_1, $status);
+            // $result = Repository::supplierById($existing_tariff -> supplier_1, $status);
             // return response() -> json($result, $status);
 
             $currentTariffRequest =
@@ -189,41 +285,55 @@ class ResidentialComparisonController extends Controller
             ];
             // $currentTariffRequest = json_decode('[{"currentGasTariff":{"regionId":0,"supplierId":0,"paymentMethod":""},"currentElectricityTariff":{"regionId":0,"supplierId":0,"paymentMethod":""},"energyUsage":{"consumptionFigures":"kwh","annualGasConsumption":0,"annualElecConsumption":0},"serviceTypeToCompare":"","currentServiceType":""}]');
 
-            // return response() -> json($existing_tariff_model); // DEBUG: returns the data posted to the page in a model
+            // return response() -> json($existing_tariff); // DEBUG: returns the data posted to the page in a model
 
-            if ($service_type_to_compare == "df") $dual_supplier_id = $existing_tariff_model -> supplier_1;
+            if ($service_type_to_compare == "df") $dual_supplier_id = $existing_tariff -> supplier_1;
             if ($current_service_type == "D" || $current_service_type == "G")
             {
                 $currentTariffRequest["currentGasTariff"] =
                 [
-                    "regionId" => $existing_tariff_model -> region_id,
-                    "supplierId" => (isset($dual_supplier_id)) ? $dual_supplier_id : $existing_tariff_model -> supplier_1,
-                    "paymentMethod" => $existing_tariff_model -> tariff_1_payment_method
+                    "regionId" => $existing_tariff -> region_id,
+                    "supplierId" => (isset($dual_supplier_id)) ? $dual_supplier_id : $existing_tariff -> supplier_1,
+                    "paymentMethod" => $existing_tariff -> tariff_1_payment_method
                 ];
                 $your_gas_multiplier = 1;
-                switch ($existing_tariff_model -> your_gas_usage_length)
+                switch ($existing_tariff -> your_gas_usage_length)
                 {
                     case "Month": $your_gas_multiplier = 12; break;
                     case "Quarter": $your_gas_multiplier = 4; break;
                 }
-                $currentTariffRequest["energyUsage"]["annualGasConsumption"] = $existing_tariff_model -> your_gas_usage_kwh * $your_gas_multiplier;
+                $currentTariffRequest["energyUsage"]["annualGasConsumption"] = $existing_tariff -> your_gas_usage_kwh * $your_gas_multiplier;
             }
             if ($current_service_type == "D" || $current_service_type == "E")
             {
                 $currentTariffRequest["currentElectricityTariff"] =
                 [
-                    "regionId" => $existing_tariff_model -> region_id,
-                    "supplierId" => (isset($dual_supplier_id)) ? $dual_supplier_id : $existing_tariff_model -> supplier_2,
-                    "paymentMethod" => $existing_tariff_model -> tariff_2_payment_method
+                    "regionId" => $existing_tariff -> region_id,
+                    "supplierId" => (isset($dual_supplier_id)) ? $dual_supplier_id : $existing_tariff -> supplier_2,
+                    "paymentMethod" => $existing_tariff -> tariff_2_payment_method
                 ];
                 $your_electric_multiplier = 1;
-                switch ($existing_tariff_model -> your_electric_usage_length)
+                switch ($existing_tariff -> your_electric_usage_length)
                 {
                     case "Month": $your_electric_multiplier = 12; break;
                     case "Quarter": $your_electric_multiplier = 4; break;
                 }
-                $currentTariffRequest["energyUsage"]["annualElecConsumption"] = $existing_tariff_model -> your_electric_usage_kwh * $your_electric_multiplier;
+                $currentTariffRequest["energyUsage"]["annualElecConsumption"] = $existing_tariff -> your_electric_usage_kwh * $your_electric_multiplier;
             }
+            
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "https://api.theenergyshop.co.uk/api/v1/tariffs/results");
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($currentTariffRequest));
+            curl_setopt($ch, CURLOPT_HTTPHEADER,
+            [
+                'Authorization: 0468AFBE-AB78-4A23-BBB7-CD6597B8EE5E',
+                'Content-Type: application/json'
+            ]);
+            $server_output = curl_exec($ch);
+            curl_close($ch);
+
+            return $server_output;
 
             // $currentTariffRequest =
             // [
@@ -248,9 +358,9 @@ class ResidentialComparisonController extends Controller
             //     "serviceTypeToCompare" => "D",
             //     "currentServiceType" => "df"
             // ];
-            $tariff_1 = Repository::tariffs_info_by_id($existing_tariff_model -> tariff_1_current_tariff, $status);
-            // $tariff_2 = Repository::tariffs_info_by_id($existing_tariff_model -> tariff_2_current_tariff, $status);
-            $payment_methods = Repository::paymentMethods_suppliers($existing_tariff_model -> supplier_1, $current_service_type, $status);
+            $tariff_1 = Repository::tariffs_info_by_id($existing_tariff -> tariff_1_current_tariff, $status);
+            // $tariff_2 = Repository::tariffs_info_by_id($existing_tariff -> tariff_2_current_tariff, $status);
+            $payment_methods = Repository::paymentMethods_suppliers($existing_tariff -> supplier_1, $current_service_type, $status);
             // return response() -> json($tariff_1);
             $tariffs_results =
             [
@@ -258,7 +368,7 @@ class ResidentialComparisonController extends Controller
                 [
                     "servicePart" => null,
                     "serviceType" => $tariff_1 -> serviceType,
-                    "regionId" => $existing_tariff_model -> region_id,
+                    "regionId" => $existing_tariff -> region_id,
                     "tariffId" => $tariff_1 -> tariffId,
                     "tariffName" => $tariff_1 -> tariffName,
                     "tariffType" => $tariff_1 -> tariffType,
@@ -288,7 +398,7 @@ class ResidentialComparisonController extends Controller
                 [
                     "servicePart" => null,
                     "serviceType" => $tariff_1 -> serviceType,
-                    "regionId" => $existing_tariff_model -> region_id,
+                    "regionId" => $existing_tariff -> region_id,
                     "tariffId" => $tariff_1 -> tariffId,
                     "tariffName" => $tariff_1 -> tariffName,
                     "tariffType" => $tariff_1 -> tariffType,
@@ -339,7 +449,7 @@ class ResidentialComparisonController extends Controller
         catch (Throwable $th)
         {
             report($th);
-            return $th -> getMessage();
+            throw $th;
             return redirect() -> back() -> withErrors([ '' => "We were unable to process your data. Please check your input and try again later." ]) -> withInput();
         }
     }
@@ -348,6 +458,7 @@ class ResidentialComparisonController extends Controller
     public function browseDeals()
     {
     }
+    
     
     public function browseDealsPost(Request $request)
     {

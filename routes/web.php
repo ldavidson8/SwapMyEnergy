@@ -103,8 +103,6 @@ Route::group([ 'prefix' => '/residential' ], function()
     });
 });
 
-Route::post('/moose', function() { return response() -> json([ "moose" ]); });
-
 Route::get('/browse', function () {
     return view('browse');
 });
