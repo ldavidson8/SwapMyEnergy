@@ -19,27 +19,6 @@
             position: absolute;
         }
 
-        .rounded-blue-button
-        {
-            background-color: #00d2db;
-            border: none;
-            width: 300px;
-            border-radius: 18px;
-            padding: 12px;
-            font-size: 27px;
-            font-weight: bold;
-            color: #202020;
-        }
-        
-
-        /* video 
-        {
-            left: 50%;
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        } */
-
         @media (min-width: 1200px)
         {
             .lg-padding-content
@@ -101,7 +80,7 @@
                         <h3 style="padding-top: 15px; font-size: 30px; font-weight: 700; margin: 0; display:inline "> Find Us Online </h3>
                         <img src={{ asset('img/click-cursor.png')}}>
                         <p style="font-weight: 700;"> We're on your favourite social media sites! </p>
-                        <a href="https://linktr.ee/swapmyenergy" rel="external"><button class="rounded-blue-button" role="button"> FOLLOW US </button></a>
+                        <a href="https://linktr.ee/swapmyenergy" rel="external"><button class="rounded-blue-button" role="button" style="padding: 12px;"> FOLLOW US </button></a>
                     </div>
                 </div>
             </div>
