@@ -62,6 +62,10 @@
                             <td><a class="footer-link {{ ($navbar_page == "contact") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("business.contact") }}#contact">Contact Us</a></td>
                             <td><a class="footer-link {{ ($navbar_page == "contact") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("business.contact") }}#support">Support</a></td>
                         </tr>
+                        <tr>
+                            <td><a class="footer-link {{ ($navbar_page == "cookie policy") ? 'navigation-link-footer-current-page' : '' }}" href="{{route('business.cookie policy')}}">Cookie policy</a></td>
+                            <td><a class="footer-link {{ ($navbar_page == "sitemap") ? 'navigation-link-footer-current-page' : '' }}" href="{{route('business.sitemap')}}">Sitemap</a></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

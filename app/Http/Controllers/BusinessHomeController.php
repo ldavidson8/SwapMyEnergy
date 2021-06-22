@@ -59,4 +59,21 @@ class BusinessHomeController extends Controller
         $page_title = 'Partners and Affiliates';
         return view('other.partners-and-affiliates', compact('navbar_page', 'page_title'));
     }
+
+    public function cookiePolicy()
+    {
+        ModeSession::setBusiness();
+
+        $navbar_page = 'cookie policy';
+        $page_title = 'Cookie Policy';
+        return view('other.cookie-policy', compact('navbar_page', 'page_title'));
+    }
+    public function siteMap()
+    {
+        ModeSession::setBusiness();
+
+        $navbar_page = 'sitemap';
+        $page_title = 'Sitemap';
+        return view('other.sitemap', compact('navbar_page', 'page_title'));
+    }
 }

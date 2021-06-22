@@ -18,10 +18,14 @@
    <url>
       <loc>http://www.swapmyenergy.co.uk/partners-and-affiliates</loc>
    </url>
+    <url>
+      <loc>http://www.swapmyenergy.co.uk/cookie-policy</loc>
+   </url>
+   <url>
+      <loc>http://www.swapmyenergy.co.uk/sitemap</loc>
+   </url>
    <url>
       <loc>http://www.swapmyenergy.co.uk/residential</loc>
       <changefreq>monthly</changefreq>
    </url>
-   <!-- Add Cookies page -->
-   <!-- Add Sitemap page -->
 </urlset>

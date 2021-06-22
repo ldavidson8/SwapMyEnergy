@@ -68,4 +68,25 @@ class ResidentialHomeController extends Controller
         $page_title = 'Partners and Affiliates';
         return view('other.partners-and-affiliates', compact('navbar_page', 'page_title'));
     }
+
+    public function cookiePolicy()
+    {
+        return redirect() -> route('residential.home');
+
+        ModeSession::setResidential();
+
+        $navbar_page = 'cookie policy';
+        $page_title = 'Cookie Policy';
+        return view('other.cookie-policy', compact('navbar_page', 'page_title'));
+    }
+    public function siteMap()
+    {
+        return redirect() -> route('residential.home');
+        
+        ModeSession::setResidential();
+
+        $navbar_page = 'sitemap';
+        $page_title = 'Sitemap';
+        return view('other.sitemap', compact('navbar_page', 'page_title'));
+    }
 }
