@@ -83,6 +83,12 @@ class ResidentialApiRepository extends Controller
         return self::getManyObjects($response, $status);
     }
 
+    public static function tariffs_info_by_id($tariffId, &$status)
+    {
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> get(self::_apiUrl . "tariffs/$tariffId/info");
+        return self::getOneObject($response, $status);
+    }
+
     public static function tariffs_forASuppllier($supplierId, $regionId, $serviceType, $paymentMethod, $e7, &$statusLive, &$statusPreserved)
     {
         $response1 = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> get(self::_apiUrl . "tariffs/suppliers/$supplierId?regionId=$regionId&serviceType=$serviceType&paymentMethod=$paymentMethod&e7=$e7&preservedTariff=L");
@@ -94,6 +100,20 @@ class ResidentialApiRepository extends Controller
         if (isset($liveObject) && isset($preservedObject))
         return array_merge($liveObject, $preservedObject);
     }
+    
+    public static function tariffs_current($request_data, &$status)
+    {
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> post(self::_apiUrl . "tariffs/current", $request_data);
+        return $response;
+        return self::getOneObject($response, $status);
+    }
+
+    public static function tariffs_results($request_data, &$status)
+    {
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> get(self::_apiUrl . "tariffs/results", $request_data);
+        return $response;
+        return self::getManyObjects($response, $status);
+    }
 
 
     public static function testOne()
@@ -103,7 +123,6 @@ class ResidentialApiRepository extends Controller
 
     public static function testMany()
     {
-        // $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> get(self::_apiUrl . "paymentMethods");
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> get(self::_apiUrl . "paymentMethods/suppliers/68?serviceType=G&e7=false");
         return self::getManyObjects($response, $status);
     }

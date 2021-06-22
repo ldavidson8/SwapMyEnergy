@@ -394,9 +394,11 @@
                                 <option class="initial-values" value="" disabled selected hidden></option>
                             </select>
                             <input type="checkbox" id="tariff_1_current_tariff_not_listed" name="tariff_1_current_tariff_not_listed" class="initial-values" value="notListed" />
-                            <label for="tariff_1_current_tariff_not_listed">Not listed/Not sure</label>
+                            <label id="tariff_1_current_tariff_not_listed_label" for="tariff_1_current_tariff_not_listed">Not listed/Not sure</label>
                             <br />
                             <p id="tariff_1_current_tariff_not_listed_message" style="display: none;">That's okay. We will compare against your supplier's most popular default tariff to bring you the best deals.</p>
+                            <p id="tariff_1_current_tariff_no_content" style="display: none;">Sorry, but we could not find any tariffs from the data you provided. Please check your input above.</p>
+                            <p id="tariff_1_current_tariff_error_message" style="display: none;">Sorry, but there was a problem processing your data. Please check your information above, or try again later.</p>
                         </div>
                         <br /><br />
                     </div>
@@ -489,9 +491,11 @@
                                 <option class="initial-values" value="" disabled selected hidden></option>
                             </select>
                             <input type="checkbox" id="tariff_2_current_tariff_not_listed" name="tariff_2_current_tariff_not_listed" class="initial-values" value="notListed" />
-                            <label for="tariff_2_current_tariff_not_listed">Not listed/Not sure</label>
+                            <label id="tariff_2_current_tariff_not_listed_label" for="tariff_2_current_tariff_not_listed">Not listed/Not sure</label>
                             <br />
                             <p id="tariff_2_current_tariff_not_listed_message" style="display: none;">That's okay. We will compare against your supplier's most popular default tariff to bring you the best deals.</p>
+                            <p id="tariff_2_current_tariff_no_content" style="display: none;">Sorry, but we could not find any tariffs from the data you provided. Please check your input above.</p>
+                            <p id="tariff_2_current_tariff_error_message" style="display: none;">Sorry, but there was a problem processing your data. Please check your information above, or try again later.</p>
                         </div>
                         <br /><br />
                     </div>
@@ -636,7 +640,10 @@
                         "error": $("#tariff_1_current_tariff_error"),
                         "input": $("#tariff_1_current_tariff"),
                         "notListed": $("#tariff_1_current_tariff_not_listed"),
-                        "notListed_message": $("#tariff_1_current_tariff_not_listed_message")
+                        "notListed_full": $("#tariff_1_current_tariff_not_listed_label, #tariff_1_current_tariff_not_listed"),
+                        "notListed_message": $("#tariff_1_current_tariff_not_listed_message"),
+                        "noContent": $("#tariff_1_current_tariff_no_content"),
+                        "errorMessage": $("#tariff_1_current_tariff_error_message")
                     }
                 },
                 tariff_2:
@@ -660,7 +667,10 @@
                         "error": $("#tariff_2_current_tariff_error"),
                         "input": $("#tariff_2_current_tariff"),
                         "notListed": $("#tariff_2_current_tariff_not_listed"),
-                        "notListed_message": $("#tariff_2_current_tariff_not_listed_message")
+                        "notListed_full": $("#tariff_2_current_tariff_not_listed_label, #tariff_2_current_tariff_not_listed"),
+                        "notListed_message": $("#tariff_2_current_tariff_not_listed_message"),
+                        "noContent": $("#tariff_2_current_tariff_no_content"),
+                        "errorMessage": $("#tariff_2_current_tariff_error_message")
                     }
                 },
                 your_usage:
@@ -907,7 +917,6 @@
                     if (xhr != null && xhr.status == 204)
                     {
                         return; // no data returned
-                        // TODO: display error
                     }
                     
                     try
@@ -933,12 +942,10 @@
                     catch (ex)
                     {
                         // an error ocurred processing the request
-                        // TODO: display error
                     }
                 }, function(xhr, status, error)
                 {
                     // the request failed
-                    // TODO: display error
                 });
             }
             
@@ -953,7 +960,6 @@
                     if (xhr != null && xhr.status == 204)
                     {
                         return; // no data returned
-                        // TODO: display error
                     }
                     
                     try
@@ -979,29 +985,19 @@
                     catch (ex)
                     {
                         // an error ocurred processing the request
-                        // TODO: display error
                     }
                 }, function(xhr, status, error)
                 {
                     // the request failed
-                    // TODO: display error
                 });
             }
             
             function GetTariffsForSupplier1()
             {
                 var payment_method = sections.tariff_1.payment_method.radio.filter(":checked").val();
-                if (!payment_method)
-                {
-                    return; // payment method is not set
-                    // TODO: display error message
-                }
+                if (!payment_method) return; // payment method is not set
                 var e7 = sections.tariff_1.e7.radio.filter(":checked").val();
-                if (!e7)
-                {
-                    return; // payment method is not set
-                    // TODO: display error message
-                }
+                if (!e7) return; // payment method is not set
 
                 var url = "{{ route('residential.energy-comparison.api.tariffs.for-a-suppllier', [ 'supplierId' => 'supplierId', 'regionId' => 'regionId', 'serviceType' => 'serviceType', 'paymentMethod' => 'paymentMethod', 'e7' => 'e7' ]) }}";
                 url = url.replace('/supplierId', '/' + sections.post_data.supplier_1);
@@ -1011,14 +1007,19 @@
                 url = url.replace('/e7', '/' + e7);
                 SendAjaxRequest(url, function(results, success, xhr)
                 {
+                    sections.tariff_1.current_tariff.notListed_message.hide();
+                    sections.tariff_1.current_tariff.noContent.hide();
+                    sections.tariff_1.current_tariff.errorMessage.hide();
+                    sections.tariff_1.current_tariff.notListed_full.show();
                     sections.tariff_1.current_tariff.input.find("option:not(.initial-values)").remove();
 
                     if (xhr != null && xhr.status == 204)
                     {
                         // no data returned
                         console.log("GetTariffsForSupplier1(): 204: No data was returned");
+                        sections.tariff_1.current_tariff.noContent.show();
+                        sections.tariff_1.current_tariff.notListed_full.hide();
                         return;
-                        // TODO: display error
                     }
                     
                     try
@@ -1036,30 +1037,24 @@
                     {
                         // an error ocurred processing the request
                         console.log("GetTariffsForSupplier1(): Error: " + ex.message);
-                        // TODO: display error
+                        sections.tariff_1.current_tariff.errorMessage.show();
+                        sections.tariff_1.current_tariff.notListed_full.hide();
                     }
                 }, function(xhr, status, error)
                 {
                     // the request failed
                     console.log("GetTariffsForSupplier1(): Status: " + status);
-                    // TODO: display error
+                    sections.tariff_1.current_tariff.errorMessage.show();
+                    sections.tariff_1.current_tariff.notListed_full.hide();
                 });
             }
             
             function GetTariffsForSupplier2()
             {
                 var payment_method = sections.tariff_2.payment_method.radio.filter(":checked").val();
-                if (!payment_method)
-                {
-                    return; // payment method is not set
-                    // TODO: display error message
-                }
+                if (!payment_method) return; // payment method is not set
                 var e7 = sections.tariff_2.e7.radio.filter(":checked").val();
-                if (!e7)
-                {
-                    return; // payment method is not set
-                    // TODO: display error message
-                }
+                if (!e7) return; // payment method is not set
 
                 var url = "{{ route('residential.energy-comparison.api.tariffs.for-a-suppllier', [ 'supplierId' => 'supplierId', 'regionId' => 'regionId', 'serviceType' => 'serviceType', 'paymentMethod' => 'paymentMethod', 'e7' => 'e7' ]) }}";
                 url = url.replace('/supplierId', '/' + sections.post_data.supplier_2);
@@ -1069,14 +1064,19 @@
                 url = url.replace('/e7', '/' + e7);
                 SendAjaxRequest(url, function(results, success, xhr)
                 {
+                    sections.tariff_2.current_tariff.notListed_message.hide();
+                    sections.tariff_2.current_tariff.noContent.hide();
+                    sections.tariff_2.current_tariff.errorMessage.hide();
+                    sections.tariff_2.current_tariff.notListed_full.show();
                     sections.tariff_2.current_tariff.input.find("option:not(.initial-values)").remove();
 
                     if (xhr != null && xhr.status == 204)
                     {
                         // no data returned
                         console.log("GetTariffsForSupplier2(): 204: No data was returned");
+                        sections.tariff_2.current_tariff.noContent.show();
+                        sections.tariff_2.current_tariff.notListed_full.hide();
                         return;
-                        // TODO: display error
                     }
                     
                     try
@@ -1094,13 +1094,15 @@
                     {
                         // an error ocurred processing the request
                         console.log("GetTariffsForSupplier2(): Error: " + ex.message);
-                        // TODO: display error
+                        sections.tariff_2.current_tariff.errorMessage.show();
+                        sections.tariff_2.current_tariff.notListed_full.hide();
                     }
                 }, function(xhr, status, error)
                 {
                     // the request failed
                     console.log("GetTariffsForSupplier2(): Status: " + status);
-                    // TODO: display error
+                    sections.tariff_2.current_tariff.errorMessage.show();
+                    sections.tariff_2.current_tariff.notListed_full.hide();
                 });
             }
             
@@ -1170,12 +1172,13 @@
             mainForm.submit(function(e)
             {
                 HideErrors();
-                // do validation
-                var fuel_type = sections.post_data.fuel_type;
-                var same_fuel_supplier = sections.post_data.same_fuel_supplier;
+                // validation
+                var fuel_type = sections.fuel_type.radio.filter(":checked").val();
+                var same_fuel_supplier = sections.same_fuel_supplier.radio.filter(":checked").val();
                 
-                var supplier_1 = sections.post_data.supplier_1;
-                var supplier_2 = sections.post_data.supplier_2;
+                var dual_supplier = sections.dual_supplier.select.val();
+                var gas_supplier = sections.gas_supplier.select.val();
+                var electric_supplier = sections.electric_supplier.select.val();
                 
                 var tariff_1_payment_method = sections.tariff_1.payment_method.radio.filter(":checked").val();
                 var tariff_1_e7 = sections.tariff_1.e7.radio.filter(":checked").val();
