@@ -5,3 +5,7 @@
         display: none; /* for hiding background image on below large desktop sizes */
     }
 }
+
+button:hover{
+    color: #ffc46c; 
+}

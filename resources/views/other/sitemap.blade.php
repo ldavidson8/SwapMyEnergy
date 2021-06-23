@@ -1,53 +1,53 @@
 @extends('layouts.master')
 
 @section('stylesheets')
-<style>
-ul{
-    list-style: none;
-}
-p{
-    font-weight: normal;   
-}
-.line-height{
-    line-height: 2.5;
-}
-.anchor-default:link, .anchor-default:visited{
-    color: #00aeb6;
-    outline: none;
-}
-.anchor-default:hover, .anchor-default:active{
-    color: #fdae36;
-    outline: none;
-    text-decoration: none;
-}
-h1{
-    background: #00C2CB;
-    padding: 10px 10px 10px 20px;
-    border-radius: 25px;
-}
-.font-weight-bold{
-    background: #00C2CB;
-    padding: 2.5mm;
-    margin-right: 2cm;
-    border-radius: 25px;
-    text-align: center;
-}
-@media (max-width: 521px)
-{
-    .section-title
-    {
-        font-size: 6.5vmin;
-        text-align: center;
-    }
-}
-@media (max-width: 334px)
-{
-    .font-weight-bold
-    {
-        margin-right: 5px;
-    }
-}
-</style>
+    <style>
+        ul{
+            list-style: none;
+        }
+        p{
+            font-weight: normal;   
+        }
+        .line-height{
+            line-height: 2.5;
+        }
+        .anchor-default:link, .anchor-default:visited{
+            color: #00aeb6;
+            outline: none;
+        }
+        .anchor-default:hover, .anchor-default:active{
+            color: #fdae36;
+            outline: none;
+            text-decoration: none;
+        }
+        h1{
+            background: #00C2CB;
+            padding: 10px 10px 10px 20px;
+            border-radius: 25px;
+        }
+        .font-weight-bold{
+            background: #00C2CB;
+            padding: 2.5mm;
+            margin-right: 2cm;
+            border-radius: 25px; 
+            text-align: center;
+        }
+        @media (max-width: 521px)
+        {
+            .section-title
+            {
+                font-size: 6.5vmin;
+                text-align: center;
+            }
+        }
+        @media (max-width: 334px)
+        {
+            .font-weight-bold
+            {
+                margin-right: 5px;
+            }
+        }
+    </style>
 @endsection
 
 @section('main-content')

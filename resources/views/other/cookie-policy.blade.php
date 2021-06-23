@@ -1,48 +1,48 @@
 @extends('layouts.master')
 @section('stylesheets')
-<style>
-p{
-    font-weight: normal;
-    line-height: 1;  
-}
-h2{
-    background: #00C2CB;
-    font-size: 28px;
-    padding: 10px 10px 10px 20px ;
-    border-radius: 25px;
-}
-h1{
-    text-decoration: none;
-}
-.font-weight-bold{
-    font-weight: bold;
-    color: #3e3d3c;
-}
-.anchor-default:link, .anchor-default:visited{
-    color: #00C2CB;
-    outline: none;
-}
-.anchor-default:hover, .anchor-default:active{
-    color: #fdae36;
-    outline: none;
-}
-@media (max-width: 494px)
-{
-    .main-title
-    {
-        font-size: 8.5vmin;
-        margin-left: -15px;
-    }
-}
-@media (max-width: 374px)
-{
-    .section-title
-    {
-        font-size: 25px;
-        text-align: center;
-    }
-}
-</style>
+    <style>
+        p{
+            font-weight: normal;
+            line-height: 1;  
+        }
+        h2{
+            background: #00C2CB;
+            font-size: 28px;
+            padding: 10px 10px 10px 20px ;
+            border-radius: 25px;
+        }
+        h1{
+            text-decoration: none;
+        }
+        .font-weight-bold{
+            font-weight: bold;
+            color: #3e3d3c;
+        }
+        .anchor-default:link, .anchor-default:visited{
+            color: #00C2CB;
+            outline: none;
+        }
+        .anchor-default:hover, .anchor-default:active{
+            color: #fdae36;
+            outline: none;
+        }
+        @media (max-width: 494px)
+        {
+            .main-title
+            {
+                font-size: 8.5vmin;
+                margin-left: -15px;
+            }
+        }
+        @media (max-width: 374px)
+        {
+            .section-title
+            {
+                font-size: 25px;
+                text-align: center;
+            }
+        }
+    </style>
 @endsection
 
 @section('main-content')
