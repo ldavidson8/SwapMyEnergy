@@ -1032,6 +1032,7 @@
                             var row = results[i];
                             dropdown.append($("<option value='" + row.tariffId + "'>" + row.tariffName + "</option>"));
                         }
+                        dropdown.val("");
                     }
                     catch (ex)
                     {
@@ -1089,6 +1090,7 @@
                             var row = results[i];
                             dropdown.append($("<option value='" + row.tariffId + "'>" + row.tariffName + "</option>"));
                         }
+                        dropdown.val("");
                     }
                     catch (ex)
                     {
@@ -1205,22 +1207,22 @@
                         if (same_fuel_supplier == "yes")
                         {
                             checkDual = true;
-                            if (!supplier_1) { ShowError("dual_supplier", "Please select a supplier."); e.preventDefault(); return; }
+                            if (!dual_supplier) { ShowError("dual_supplier", "Please select a supplier."); e.preventDefault(); return; }
                         }
                         else
                         {
                             checkGas = true; checkElectric = true;
-                            if (!supplier_1) { ShowError("gas_supplier", "Please select a gas supplier."); e.preventDefault(); return; }
-                            if (!supplier_2) { ShowError("electric_supplier", "Please selecte an electricity supplier."); e.preventDefault(); return; }
+                            if (!gas_supplier) { ShowError("gas_supplier", "Please select a gas supplier."); e.preventDefault(); return; }
+                            if (!electric_supplier) { ShowError("electric_supplier", "Please selecte an electricity supplier."); e.preventDefault(); return; }
                         }
                         break;
                     case "gas":
                         checkGas = true;
-                        if (!supplier_1) { ShowError("gas_supplier", "Please select a gas supplier."); e.preventDefault(); return; }
+                        if (!gas_supplier) { ShowError("gas_supplier", "Please select a gas supplier."); e.preventDefault(); return; }
                         break;
                     case "electric":
                         checkElectric = true;
-                        if (!supplier_2) { ShowError("electric_supplier", "Please selecte an electricity supplier."); e.preventDefault(); return; }
+                        if (!electric_supplier) { ShowError("electric_supplier", "Please selecte an electricity supplier."); e.preventDefault(); return; }
                         break;
                 }
 

@@ -103,7 +103,7 @@ class ResidentialApiRepository extends Controller
 
     public static function tariffs_defaultForASupplier($supplierId, $serviceType, $paymentMethod, $e7, $regionId, &$status)
     {
-        $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> get(self::_apiUrl . "tariffs/suppliers/$supplierId/default?serviceType=$serviceType&paymentMethod=$paymentMethod&e7=$e7&regionId=$regionId");
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> get(self::_apiUrl . "tariffs/suppliers/{$supplierId}/default?serviceType=$serviceType&paymentMethod=$paymentMethod&e7=$e7&regionId=$regionId");
         return self::getOneObject($response, $status);
     }
 
@@ -119,35 +119,67 @@ class ResidentialApiRepository extends Controller
         return array_merge($liveObject, $preservedObject);
     }
     
-    public static function tariffs_current($request_data, &$status)
+    public static function tariffs_current($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $gas_kwh, $elec_kwh, &$status)
     {
-        $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> post(self::_apiUrl . "tariffs/current", $request_data);
-        return $response;
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> post(self::_apiUrl . "tariffs/current", array(
+            "currentGasTariff" => $gas_tariff,
+            "currentElectricityTariff" => $electricity_tariff,
+            "serviceTypeToCompare" => $fuel_type_char,
+            "currentServiceType" => $fuel_type_str,
+            "energyUsage" =>
+            [
+                "consumptionFigures" => "kwh",
+                "annualGasConsumption" => $gas_kwh,
+                "annualElecConsumption" => $elec_kwh
+            ]
+        ));
         return self::getOneObject($response, $status);
     }
 
-    public static function tariffs_results($request_data, &$status)
+    public static function tariffs_results($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $gas_kwh, $elec_kwh, $e7_usage, $home_mover, $preferred_payment_method, $show_only_apply_tariff, $features, $postcode, &$status)
     {
-        $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> post(self::_apiUrl . "tariffs/results", $request_data);
-        return $response;
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> post(self::_apiUrl . "tariffs/results", array(
+            "currentGasTariff" => $gas_tariff,
+            "currentElectricityTariff" => $electricity_tariff,
+            "serviceTypeToCompare" => $fuel_type_char,
+            "currentServiceType" => $fuel_type_str,
+            "energyUsage" =>
+            [
+                "consumptionFigures" => "kwh",
+                "annualGasConsumption" => $gas_kwh,
+                "annualElecConsumption" => $elec_kwh,
+                "e7Usage" => $e7_usage
+            ],
+            "homeMover" => false,
+            "preferredPaymentMethod" => $preferred_payment_method,
+            "showOnlyApplyTariff" => $show_only_apply_tariff,
+            "features" => $features,
+            "postcode" => $postcode
+        ));
         return self::getManyObjects($response, $status);
     }
 
     
-    /// Tarrifs ///
+    /// Features ///
 
-    public static function features_by_tariff_ids(int ...$tariff_ids)
+    public static function features(&$status)
+    {
+        $response = Http::withHeaders(['Authorization' => self::_apiKey]) -> get(self::_apiUrl . "features");
+        // return $response;
+        return self::getOneObject($response, $status);
+    }
+
+    public static function features_by_tariff_ids(array $tariff_ids, &$status)
     {
         $ids_string = "";
-        foreach ($tariff_ids as $id)
         for ($i = 0; $i < count($tariff_ids); $i++)
         {
-            if ($i > 0) $ids_string .= ".";
-            $ids_string .= $id;
+            if ($i > 0) $ids_string .= ",";
+            $ids_string .= $tariff_ids[$i];
         }
-        $response = Http::withHeaders(['Authorization' => self::_apiKey]) -> get(self::_apiUrl . "features/tariffs?tariffIds=");
-        return $response;
-        return self::getManyObjects($response, $status);
+        $response = Http::withHeaders(['Authorization' => self::_apiKey]) -> get(self::_apiUrl . "features/tariffs?tariffIds=" . $ids_string);
+        // return $response;
+        return self::getOneObject($response, $status);
     }
 
 

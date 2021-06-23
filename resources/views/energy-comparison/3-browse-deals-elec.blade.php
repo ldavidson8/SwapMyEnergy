@@ -347,7 +347,7 @@
                             <table class="form-table"><tr><td>Step 3 | Browse Deals</td></tr></table>
                         </div>
                         <div class="flex-fill form-top-heading form-top-middle-heading">
-                            <table class="form-table"><tr><td>Current Tariff - Dual</td></tr></table>
+                            <table class="form-table"><tr><td>Current Tariff - Electric</td></tr></table>
                         </div>
                         <div class="no-padding form-top-img form-top-img-border-sm form-top-img-border-md">
                             <table class="form-table"><tr><td><img src="{{ asset('img/supplier-logos/edf.png') }}" height="auto" width="auto" /></td></tr></table>
