@@ -22,12 +22,30 @@ p{
 }
 h1{
     background: #00C2CB;
-    padding: 10px;
+    padding: 10px 10px 10px 20px;
+    border-radius: 25px;
 }
 .font-weight-bold{
     background: #00C2CB;
     padding: 2.5mm;
-    margin-right: 3.5cm;
+    margin-right: 2cm;
+    border-radius: 25px;
+    text-align: center;
+}
+@media (max-width: 521px)
+{
+    .section-title
+    {
+        font-size: 6.5vmin;
+        text-align: center;
+    }
+}
+@media (max-width: 334px)
+{
+    .font-weight-bold
+    {
+        margin-right: 5px;
+    }
 }
 </style>
 @endsection
@@ -37,7 +55,7 @@ h1{
         <div class="container">
             <div class="title">
                 <br />
-                <h1 class="section-title"> SwapMyEnergy.co.uk Sitemap </h1>
+                <h1 class="section-title"> SwapMyEnergy.co.uk Sitemap</h1>
                 <br />
                 <div>
                     <p>Swap My Energy aims to bring you great deals by giving you easy access to the best commerical energy tariffs on the market. With our market leading commerical energy calculator, you can quickly find the best energy prices available to you.</p>
@@ -92,5 +110,5 @@ h1{
             </div>
         </div>
     </main>
-    <br /><br /><br /><br /><br />            
+    <br /><br /><br />    
 @endsection()

@@ -2,36 +2,54 @@
 
 @section('stylesheets')
 <style>
-    .bold-font
-    {
-        font-weight: bold;
-    }
-
-    p
-    {
+.bold-font{
+    font-weight: bold;
+}
+p{
     font-weight: normal;
     line-height: 1;  
-    }
-
-    h2
-    {
+}
+h2{
     background: #00C2CB;
     font-size: 28px;
-    padding: 10px;
-    }
-    
-    .indented-list
+    padding: 10px 10px 10px 20px;
+    border-radius: 25px;
+}
+.indented-list{
+    margin: 20px 0;
+    list-style-type: disc;
+}
+.anchor-default:link, .anchor-default:visited{
+    color: #00C2CB;
+    outline: none;
+}
+.anchor-default:hover, .anchor-default:active{
+    color: #fdae36;
+    outline: none;
+}
+    @media (max-width: 494px)
+{
+    .main-title
     {
-        margin: 20px 0;
-        list-style-type: disc;
+        font-size: 8.5vmin;
+        margin-left: -15px;
     }
+}
+@media (max-width: 374px)
+{
+    .section-title
+    {
+        font-size: 25px;
+    }
+}
 </style>
 @endsection
 
 @section('main-content')
 <main class="col-md-12">
         <div class="container">
-                <h1>swapmyenergy.co.uk Privacy policy</h1>
+                <h1 class="main-title">SwapMyEnergy.co.uk Privacy policy</h1>
+                <br />
                 <p>
                     Znergi Ltd ("swapmyenergy.co.uk", "we" or "us") is committed to respecting and protecting your privacy.
                 </p>
@@ -43,7 +61,7 @@
                 <p>
                     For the purposes of data protection law, the controller is Znergi Ltd, Estate House, 18 Fox St, Preston PR1 2AB.
                 </p>
-                <h2>What personal data do we collect?</h2>
+                <h2 class="section-title">What personal data do we collect?</h2>
                 <p>
                     When you use our services, we have to collect, keep and share some personal data and we ask that you agree to that in 
                     line with this policy.
@@ -85,7 +103,7 @@
                     information from them about whether you went ahead with your application and what you applied for. We may combine 
                     this information with other information you have provided to us or which we collected about you.
                 </p>
-                <h2>How we use your personal data</h2>
+                <h2 class="section-title">How we use your personal data</h2>
                 <p>
                     We only use your information where you've given us your consent, where it's necessary to deliver the services 
                     you've requested, where it's necessary to exercise or comply with legal rights or obligations, or for normal 
@@ -173,7 +191,7 @@
                         may have originated from, or to protect our services against misuse from automated software agents.
                     </li>
                 </ul>
-                <h2>Lawful basis for processing</h2>
+                <h2 class="section-title">Lawful basis for processing</h2>
                 <p>
                     Our legal basis for processing your personal data for the purposes described above will typically be one of the following:
                 </p>
@@ -196,7 +214,7 @@
                     your experience of our services or use your information for analytic purposes), for security and fraud prevention, for 
                     identifying and correcting faults with our services and to protect our business.
                 </p>
-                <h2>Sharing your personal data</h2>
+                <h2 class="section-title">Sharing your personal data</h2>
                 <p>
                     We may share your personal data with selected third parties who provide us with a variety of different services that support 
                     the delivery of our services. These may include;
@@ -269,7 +287,7 @@
                     information, if necessary, to prevent, detect or prosecute illegal or suspected illegal activities, including fraud, 
                     or to prevent other damage or where necessary in response to legal action against us, or to enforce our rights and claims.
                 </p>
-                <h2>Storing your personal information</h2>
+                <h2 class="section-title">Storing your personal information</h2>
                 <p>
                     We store the information we collect from you on secure servers. We may transfer, store or process your personal information 
                     outside of the European Economic Area ("EEA"). The laws in some countries may not provide as much legal protection for your 
@@ -313,7 +331,7 @@
                 <p>
                     You also have the right to access your personal information, to object to the use of your personal information for 
                     certain purposes, and the right to erase, restrict or receive a machine-readable copy of your personal information. 
-                    To update or delete your information please email <a href="mailto:privacy@swapmyenergy.co.uk">privacy@swapmyenergy.co.uk</a> or contact us using the address below. 
+                    To update or delete your information please email <a class="anchor-default" href="mailto:privacy@swapmyenergy.co.uk">privacy@swapmyenergy.co.uk</a> or contact us using the address below. 
                     We will handle your request in accordance with the law. This means there may be legal reasons why we cannot fulfil 
                     all requests.
                 </p>
@@ -349,4 +367,5 @@
                 </p>
             </div>
     </main>
+    <br />
 @endsection()

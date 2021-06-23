@@ -8,7 +8,8 @@ p{
 h2{
     background: #00C2CB;
     font-size: 28px;
-    padding: 10px;
+    padding: 10px 10px 10px 20px ;
+    border-radius: 25px;
 }
 h1{
     text-decoration: none;
@@ -25,6 +26,22 @@ h1{
     color: #fdae36;
     outline: none;
 }
+@media (max-width: 494px)
+{
+    .main-title
+    {
+        font-size: 8.5vmin;
+        margin-left: -15px;
+    }
+}
+@media (max-width: 374px)
+{
+    .section-title
+    {
+        font-size: 25px;
+        text-align: center;
+    }
+}
 </style>
 @endsection
 
@@ -33,7 +50,7 @@ h1{
         <div class="container">
             <div class="title">
                 <br />
-                <h1> SwapMyEnergy.co.uk Cookie policy</h1>
+                <h1 class="main-title">SwapMyEnergy.co.uk Cookie policy</h1>
                 <br />
                 <div>
                     <p> Znergi Ltd("swapmyenergy.co.uk", "we" or "us") uses cookies and other similar technologies in the operation of this website. We'll only ever use cookies and other similar technologies for the purposes set out in this policy.</p>
@@ -99,7 +116,7 @@ h1{
                         When you first access our services, we ask you to confirm if you're ok with us using Cookies in line with this policy. If you don't agree to our use of these technologies, or you change your mind at a later date, you can either withdraw your consent by altering the settings on your internet browser or, alternatively, stop using our services (which we hope you won't).
                         <br />
                         <br />
-                        The easiest way to withdraw your consent to Cookies is via the settings of the browser or device you are using to access our services. Modern Internet browsers such as Chrome, Safari, Firefox and Edge have settings that allow you to control the way your information is collected and shared. Typically, these browsers allow you to view all the cookies they are storing on your device, to delete your cache of cookies, and to adjust your preferences for future collection. Guides on how to access and use such functionality are available at <a class="anchor-default" href="www.aboutcookies.org/">www.aboutcookies.org</a> and <a class="anchor-default" href="www.youronlinechoices.eu/">www.youronlinechoices.eu.</a>
+                        The easiest way to withdraw your consent to Cookies is via the settings of the browser or device you are using to access our services. Modern Internet browsers such as Chrome, Safari, Firefox and Edge have settings that allow you to control the way your information is collected and shared. Typically, these browsers allow you to view all the cookies they are storing on your device, to delete your cache of cookies, and to adjust your preferences for future collection. Guides on how to access and use such functionality are available at <a class="anchor-default" href="www.aboutcookies.org/" target="_blank">www.aboutcookies.org</a> and <a class="anchor-default" href="www.youronlinechoices.eu "target="_blank">www.youronlinechoices.eu.</a>
                         <br />
                         <br />
                         <span class="font-weight-bold">Important.</span> Please note that if you adjust your internet browser settings to refuse the setting of cookies, you may not be able to access or fully use certain parts or functionality of our website. Because of this, we would recommend taking a more targeted approach to withdrawing your consent. For example, if you wanted to stop Cookies being used for the purposes of serving you with interest-based advertisements, then instead of blocking all cookies, you could instead opt-out of these on a case-by-case basis.

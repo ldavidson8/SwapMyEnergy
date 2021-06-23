@@ -8,8 +8,10 @@ p{
 h2{
     background: #00C2CB;
     font-size: 28px;
-    padding: 10px;
+    padding: 10px 10px 10px 20px;
+    border-radius: 25px;
 }
+
 h1{
     text-decoration: underline;
 }
@@ -20,6 +22,13 @@ h1{
 .anchor-default:hover, .anchor-default:active{
     color: #fdae36;
     outline: none;
+}
+@media (max-width: 407px)
+{
+    .section-title
+    {
+        font-size: 23px;
+    }
 }
 </style>
 @endsection
