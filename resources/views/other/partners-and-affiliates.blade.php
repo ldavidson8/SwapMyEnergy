@@ -154,7 +154,7 @@
         }
         .section-padding
         {
-            padding: 30px 25px 40px;
+            padding: 50px 0 25px 50px;
         }
 
         .no-padding-left-right
@@ -231,6 +231,12 @@
             {
                 text-align: center;
             }
+
+            .section-padding
+            {
+                text-align: center;
+                padding: 5px;
+            }
         }
 
     </style>
@@ -261,32 +267,34 @@
 
     <div id="PartnerApply" class="row flex-grow-1 full-size-80 background-image-preston">
         <div class="col-12 col-lg-6" style="color: #f3f2f1;">
-            <h2 class="sub-header-size"> Become a partner with a ground breaking energy broker: </h2>
-            <p> Our business partner programme was created to give businesses and people the option to offer new and valued services to their customers </p>
-            <p> You will be able to offer your clients our exclusive energy solution products as a result of the partnership. We recognise the importance of building long-term connections, therefore it's critical that you work with a firm that will treat you and your clients with transparency and industry-leading customer service.</p>
-            <p style="font-size: 34px; font-weight: 700;"> Apply to be a partner: </p>
-            <form id="formPartnerApply" action="{{ route('partner-apply') }}" method="post">
-                @csrf
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <div class="form-group" style="margin-bottom: 48px;">
-                            <label for="full_name" style="color: #f3f2f1">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="full_name" name="full_name" value="{{ old('full_name') }}" required />
+            <div class="section-padding">
+                <h2 class="sub-header-size"> Become a partner with a ground breaking energy broker: </h2>
+                <p> Our business partner programme was created to give businesses and people the option to offer new and valued services to their customers </p>
+                <p> You will be able to offer your clients our exclusive energy solution products as a result of the partnership. We recognise the importance of building long-term connections, therefore it's critical that you work with a firm that will treat you and your clients with transparency and industry-leading customer service.</p>
+                <p style="font-size: 34px; font-weight: 700;"> Apply to be a partner: </p>
+                <form id="formPartnerApply" action="{{ route('partner-apply') }}" method="post">
+                    @csrf
+                    <div class="row no-margin">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group" style="margin-bottom: 48px;">
+                                <label for="full_name" style="color: #f3f2f1">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="full_name" name="full_name" value="{{ old('full_name') }}" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="email_address" style="color: #f3f2f1">Email Address <span class="text-danger">*</span></label>
+                                <input type="email_address" class="form-control" id="email_address" name="email_address" value="{{ old('email_address') }}" placeholder="example@domain.com" required />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email_address" style="color: #f3f2f1">Email Address <span class="text-danger">*</span></label>
-                            <input type="email_address" class="form-control" id="email_address" name="email_address" value="{{ old('email_address') }}" placeholder="example@domain.com" required />
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label for="message" style="color: #f3f2f1">Message<span class="text-danger">*</span></label>
+                                <textarea id="message" class="form-control" name="message" required rows="4">{{ old('message') }}</textarea>
+                            </div>
+                            <button type="submit" class="btn large-blue-button btn-lg">Submit</button>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label for="message" style="color: #f3f2f1">Message<span class="text-danger">*</span></label>
-                            <textarea id="message" class="form-control" name="message" required rows="4">{{ old('message') }}</textarea>
-                        </div>
-                        <button type="submit" class="btn large-blue-button btn-lg">Submit</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
         <div class="col-12 col-lg-6 no-padding">
             <div class="flex-container">
