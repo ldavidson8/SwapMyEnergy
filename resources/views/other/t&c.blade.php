@@ -1,27 +1,36 @@
 @extends('layouts.master')
 @section('stylesheets')
-<style>
-p{
-    font-weight: normal;
-    line-height: 1;  
-}
-h2{
-    background: #00C2CB;
-    font-size: 28px;
-    padding: 10px;
-}
-h1{
-    text-decoration: underline;
-}
-.anchor-default:link, .anchor-default:visited{
-    color: #00C2CB;
-    outline: none;
-}
-.anchor-default:hover, .anchor-default:active{
-    color: #fdae36;
-    outline: none;
-}
-</style>
+    <style>
+        p{
+            font-weight: normal;
+            line-height: 1;  
+        }
+        h2{
+            background: #00C2CB;
+            font-size: 28px;
+            padding: 10px 10px 10px 20px;
+            border-radius: 25px;
+        }
+
+        h1{
+            text-decoration: underline;
+        }
+        .anchor-default:link, .anchor-default:visited{
+            color: #00C2CB;
+            outline: none;
+        }
+        .anchor-default:hover, .anchor-default:active{
+            color: #fdae36;
+            outline: none;
+        }
+        @media (max-width: 407px)
+        {
+            .section-title
+            {
+                font-size: 23px;
+            }
+        }
+    </style>
 @endsection
 
 @section('main-content')
