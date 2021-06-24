@@ -374,7 +374,7 @@
                         <br /><br />
                     </div>
                     
-                    <div id="section_tariff_1_e7">
+                    <div id="section_tariff_1_e7" style="display: none;">
                         <span id="tariff_1_e7_error" class="form-error-message text-danger"></span>
                         <p class="paragraph-margin"> Do you have Economy7? </p>
                         <div class="btn-group btn-group-2 flex-wrap" role="group">
@@ -510,15 +510,20 @@
                                     <td></td>
                                     <td><span id="your_gas_usage_kwh_error" class="form-error-message text-danger"></span></td>
                                 </tr>
-                                <tr>
-                                    <td><label for="your_gas_usage_kwh"> I use </label></td>
-                                    <td><input class="form-control" type="number" pattern="[0-9]*" name="your_gas_usage_kwh" id="your_gas_usage_kwh" style="margin-bottom: 1em;" /></td>
-                                </tr>
-                                <tr>
-                                    <td><span id="your_gas_usage_length_error" class="form-error-message text-danger"></span></td>
-                                </tr>
+                                @if (isset($dmq) && is_numeric($dmq) && $dmq > 0)
+                                    <tr>
+                                        <td><label for="your_gas_usage_kwh"> I use </label></td>
+                                        <td><input class="form-control" type="number" pattern="[0-9]*" name="your_gas_usage_kwh" id="your_gas_usage_kwh" style="margin-bottom: 1em;" value="{{ $dmq }}" /></td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td><label for="your_gas_usage_kwh"> I use </label></td>
+                                        <td><input type="number" pattern="[0-9]*" name="your_gas_usage_kwh" id="your_gas_usage_kwh" style="margin-bottom: 1em;" /></td>
+                                    </tr>
+                                @endif
                                 <tr>
                                     <td></td>
+                                    <td><span id="your_gas_usage_length_error" class="form-error-message text-danger"></span></td>
                                 </tr>
                                 <tr>
                                     <td><label for="your_gas_usage_length"> kWh per </label></td>
@@ -526,10 +531,19 @@
                                         <select class="form-control" id="your_gas_usage_length" name="your_gas_usage_length">
                                             <option value="Month"> Month </option>
                                             <option value="Quarter"> Quarter </option>
+                                            @if (isset($dmq) && is_numeric($dmq) && $dmq > 0)
+                                                <option value="Year" selected> Year </option>
+                                            @else
                                             <option value="Year"> Year </option>
+                                            @endif
                                         </select>
                                     </td>
                                 </tr>
+                                @if (isset($dmq) && is_numeric($dmq) && $dmq > 0)
+                                    <tr>
+                                        <td colspan="2">Our systems tell us that your gas usage is {{ $dmq }} kwh per year. If this is wrong, please change the value above.</td>
+                                    </tr>
+                                @endif
                             </table>
                         </div>
                     </div>
@@ -763,6 +777,7 @@
                 GetTariff1PaymentMethods(e.target.value, "D", sections.tariff_1.payment_method.radio);
                 ShowSection("tariff_1");
                 ShowSection("your_usage");
+                sections.tariff_1.e7.section.show();
                 GetTariffsForSupplier1();
             }
             
@@ -785,6 +800,7 @@
                 sections.post_data.supplier_1 = e.target.value;
                 GetTariff1PaymentMethods(e.target.value, "G", sections.tariff_1.payment_method.radio);
                 ShowSection("tariff_1");
+                sections.tariff_1.e7.section.hide();
                 ShowSection("your_usage");
                 ShowSection("your_gas_usage");
                 GetTariffsForSupplier1();

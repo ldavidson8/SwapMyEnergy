@@ -11,19 +11,19 @@ class ExistingTariffGasModel
         $this -> fuel_type = $request["fuel_type"];
 
         $this -> region_id = (int) $request["region_id"];
-        $this -> supplier = (int) $request["electric_supplier"];
+        $this -> supplier = (int) $request["gas_supplier"];
         
         $this -> payment_method = $request["tariff_1_payment_method"];
-        $this -> e7 = $request["tariff_1_e7"];
+        $this -> e7 = false;
         if (isset($request["tariff_1_current_tariff"])) $this -> current_tariff = $request["tariff_1_current_tariff"];
         else if (isset($request["tariff_1_current_tariff_not_listed"])) $this -> current_tariff_not_listed = $request["tariff_1_current_tariff_not_listed"];
         
-        $this -> elec_length = $request["your_electric_usage_length"];
-        $this -> elec_kwh = (int) $request["your_electric_usage_kwh"];
-        switch ($this -> elec_length)
+        $this -> gas_length = $request["your_gas_usage_length"];
+        $this -> gas_kwh = (int) $request["your_gas_usage_kwh"];
+        switch ($this -> gas_length)
         {
-            case "Month": (int) $this -> elec_kwh *= 12; break;
-            case "Quarter": (int) $this -> elec_kwh *= 4; break;
+            case "Month": (int) $this -> gas_kwh *= 12; break;
+            case "Quarter": (int) $this -> gas_kwh *= 4; break;
         }
     }
     

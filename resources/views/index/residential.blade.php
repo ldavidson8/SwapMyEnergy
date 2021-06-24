@@ -191,7 +191,7 @@
     <div class="full-size-50 container-fluid d-flex flex-column background-image-preston-behind">
         <div class="row flex-grow-1 padding-20px background-image-preston background-image-bottom preload center-content">
             <div class="align-items-center" style="width: 600px; max-width: 100%; text-align: center;">
-                <p style="color: #f3f2f1;">Geoff "saved" £100 on his energy bill with another energy broker only to find out he had hidden fees to pay at the end of the year.</p>
+                <p style="color: #f3f2f1;">Geoff "saved" &pound;100 on his energy bill with another energy broker only to find out he had hidden fees to pay at the end of the year.</p>
                 <p style="font-weight: bold; font-size: 35px; color: #f3f2f1;">Sound familiar?</p>
             </div>
         </div>
@@ -216,7 +216,7 @@
                     </div>
                     <button class="faq-accordion">Will you always get me a better deal?</button>
                     <div class="faq-panel">
-                        <p>No. Some other energy switching companies will promise you a better deal, by "estimating" your usage for the next year. We let you know your unit price and standing charges, allowing you to understand how much it costs you per kW. Our aim to get you a better deal based on unit price and standing charges, meaning that if you get lower prices on these, then you'll end up paying less (assuming that your usage is the same). <br /> This works in a similar way to when you're putting fuel in your car. If one week you buy 50L of fuel at £1.35 per litre and then the next week at £1.25 per litre, you'll save money. But if you buy 75L of fuel at £1.25 instead, you'll end up spending more</p>
+                        <p>No. Some other energy switching companies will promise you a better deal, by "estimating" your usage for the next year. We let you know your unit price and standing charges, allowing you to understand how much it costs you per kW. Our aim to get you a better deal based on unit price and standing charges, meaning that if you get lower prices on these, then you'll end up paying less (assuming that your usage is the same). <br /> This works in a similar way to when you're putting fuel in your car. If one week you buy 50L of fuel at &pound;1.35 per litre and then the next week at &pound;1.25 per litre, you'll save money. But if you buy 75L of fuel at &pound;1.25 instead, you'll end up spending more</p>
                     </div>
                     <button class="faq-accordion">Can I opt-out of switching?</button>
                     <div class="faq-panel">

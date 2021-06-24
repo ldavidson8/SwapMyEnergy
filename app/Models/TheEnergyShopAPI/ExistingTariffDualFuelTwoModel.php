@@ -12,7 +12,8 @@ class ExistingTariffDualFuelTwoModel
         $this -> same_fuel_supplier = $request["same_fuel_supplier"];
 
         $this -> region_id = (int) $request["region_id"];
-        $this -> supplier = (int) $request["electric_supplier"];
+        $this -> supplier_1 = (int) $request["gas_supplier"];
+        $this -> supplier_2 = (int) $request["electric_supplier"];
         
         $this -> payment_method_1 = $request["tariff_1_payment_method"];
         $this -> e7_1 = $request["tariff_1_e7"];

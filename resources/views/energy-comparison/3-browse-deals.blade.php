@@ -37,7 +37,7 @@
         background-color: #f3f2f1;
         z-index: 10;
         color: #202020;
-        padding: 50px;
+        padding: 20px 40px;
         border-bottom: solid 2px #202020;
         border-left: solid 2px #202020;
         border-right: solid 2px #202020;
@@ -144,7 +144,7 @@
         width:350px;
         height:50px; 
         background-color: #202020; 
-        border: 3px solid #f3f2f1;
+        border: 2px solid #f3f2f1;
         border-radius: 10px;
         color: #f3f2f1;
         text-align: center;
@@ -339,142 +339,15 @@
 
 @section('main-content')
         <hr/>
-        <div class="background-image-wind-turbines flex-fill">
+        <div class="background-image-wind-turbines background-image-top background-image-contain background-image-no-mobile flex-fill">
             <div class="col-12 center-content form-outer-box">
                 <div class="container outer-rounded-container no-padding flex-row">  
-                    <div class="row form-top-outer">
-                        <div class="col-12 col-lg-4 form-top-heading form-top-left-heading form-top-left-border-md">
-                            <table class="form-table"><tr><td>Step 3 | Browse Deals</td></tr></table>
-                        </div>
-                        <div class="flex-fill form-top-heading form-top-middle-heading">
-                            <table class="form-table"><tr><td>Current Tariff - Dual</td></tr></table>
-                        </div>
-                        <div class="no-padding form-top-img form-top-img-border-sm form-top-img-border-md">
-                            <table class="form-table"><tr><td><img src="{{ asset('img/supplier-logos/edf.png') }}" height="auto" width="auto" /></td></tr></table>
-                        </div>
-                    </div>
-                    <div class="container rounded-container blue-rounded-container">
-                        <table class="form-table">
-                            <tr>
-                                <td>
-                                    <div class="row no-padding">
-                                        <div class="col-lg-8 col-12 no-padding">
-                                            <table class="table-tariff table-block-on-mobile" style=" vertical-align: bottom;">
-                                                <tr>
-                                                    <td>
-                                                        Current Usage:
-                                                    </td>
-                                                    <td>
-                                                        <div class="white-progress-bar">
-                                                            <div class="white-progress-bar-text">1234kWh*</div>
-                                                            <div class="blue-progress-bar" style="width: 50%;"></div>  
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Unit Rate:
-                                                    </td>
-                                                    <td>
-                                                        <div class="white-progress-bar">
-                                                            <div class="white-progress-bar-text">12p*</div>
-                                                            <div class="blue-progress-bar" style="width: 80%;"></div>  
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Standing Charge:
-                                                    </td>
-                                                    <td>
-                                                        <div class="white-progress-bar">
-                                                            <div class="white-progress-bar-text">2p*</div>
-                                                            <div class="blue-progress-bar" style="width: 30%"></div>  
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-lg-4 col-12 no-padding">
-                                            <table class="form-table pricing-text">
-                                                <tr>
-                                                    <td colspan="2" style="vertical-align: bottom;">
-                                                        <p style="font-size: 16px;">*compared to regional averages</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="vertical-align: bottom;">
-                                                        <p style="font-size: 20px; text-align: center; border-right: solid 2px #f3f2f1;">
-                                                            <span style="font-size: 34px;">£81.76</span> 
-                                                            <br /> 
-                                                            per month
-                                                        </p>
-                                                    </td>
-                                                    <td style="vertical-align: bottom; text-align: center;">
-                                                        <p style="font-size: 20px;"> 24 month<br />contract </p>  
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="position: relative;">
-                        <div class="white-rounded-container-positioned"></div>
-                        <div class="container rounded-container white-rounded-container">
-                            <div class="row">
-                                <div class="col-12 col-lg-2">
-                                    <img src="{{ asset('img/supplier-logos/utilita.png') }}" height="100px" width="auto">
-                                    <p style="border-bottom: solid 2px black; padding: 5px;">
-                                    <span style="font-size: 34px;">£51.32* </span> <br /> per month
-                                    </p>
-                                    <p> 12 month contract </p>  
-                                </div>
-                                <div class="col-12 col-lg-10">
-                                    <table class="form-table table-block-on-mobile">
-                                        <tr>
-                                            <td colspan="2">
-                                                <table class="table-tariff table-block-on-mobile">
-                                                    <td>
-                                                        Unit Rate:
-                                                    </td>
-                                                    <td>
-                                                        <div class="white-progress-bar-border">
-                                                            <div class="white-progress-bar-border-text">8p</div>
-                                                            <div class="blue-progress-bar" style="width: 80%;"></div>  
-                                                        </div> 
-                                                    </td>
-                                                    <tr>
-                                                        <td>
-                                                            Standing Charge: 
-                                                        </td>
-                                                        <td>
-                                                            <div class="white-progress-bar-border">
-                                                                <div class="white-progress-bar-border-text">1p</div>
-                                                                <div class="blue-progress-bar" style="width: 20%;"></div>  
-                                                            </div> 
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                £32 exit fee <br />
-                                                <span style="font-size: 16px">*calculated based on your existing usage </span>
-                                            </td>
-                                            <td style="text-align: right;">
-                                                <button type="submit" class="rounded-blue-button">GET SWITCHING  </button>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @switch($existing_tariff -> fuel_type_str)
+                        @case("dfs") @include('energy-comparison.partials.3-browse-deals-dfs') @break
+                        @case("df") @include('energy-comparison.partials.3-browse-deals-df') @break
+                        @case("ng") @include('energy-comparison.partials.3-browse-deals-elec') @break
+                        @default @include('energy-comparison.partials.3-browse-deals-gas') @break
+                    @endswitch
                 </div>
             </div>            
         </div>

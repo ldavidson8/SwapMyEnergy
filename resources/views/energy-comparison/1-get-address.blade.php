@@ -71,6 +71,7 @@
                         <input type="submit" class="big-blue-button" value="Continue" style="margin-top: 10px;" />
                     </div>
                 </form>
+                <label for="movingHouse"><input type="checkbox" id="movingHouse" name="movingHouse" form="form_address" /> I have recently moved or am about to</label>
             </div>
         </div>
 @endsection
