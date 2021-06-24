@@ -194,37 +194,37 @@
         <div class="row">
             <div class="col-md-1 d-md-block d-none"> </div>
             <div class="col-md-2 col-sm-3 col-6">
-                    <img class="logos-item" src="{{ asset('img/supplier-logos/eon.png') }}">
+                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/eon.png') }}" alt="Eon logo">
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                    <img class="logos-item" src="{{ asset('img/supplier-logos/ovo.png') }}">
+                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/ovo.png') }}" alt="Ovo logo">
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                    <img class="logos-item" src="{{ asset('img/supplier-logos/british-gas.png') }}">
+                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/british-gas.png') }}" alt="British gas logo">
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                    <img class="logos-item" src="{{ asset('img/supplier-logos/scottish-power.png') }}">
+                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/scottish-power.png') }}" alt="Scottish power logo">
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                    <img class="logos-item" src="{{ asset('img/supplier-logos/bristol-energy.png') }}">
+                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/bristol-energy.png') }}" alt="Bristol energy logo">
             </div>
             <div class="col-md-1 d-md-block d-none"> </div>   
             <div class="col-md-1 d-md-block d-none"> </div>  
             <div class="col-md-2 col-sm-3 col-6">
-                    <img class="logos-item" src="{{ asset('img/supplier-logos/utilita.png') }}">
+                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/utilita.png') }}" alt="Utilita logo">
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                    <img class="logos-item" src="{{ asset('img/supplier-logos/avanti-gas.png') }}">
+                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/avanti-gas.png') }}" alt="Avanti gas logo">
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                    <img class="logos-item" src="{{ asset('img/supplier-logos/opus-energy.png') }}">
+                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/opus-energy.png') }}" alt="Opus energy logo">
             </div>
             <div class="col-sm-3 d-sm-block d-md-none"></div>
             <div class="col-md-2 col-sm-3 col-6">
-                    <img class="logos-item" src="{{ asset('img/supplier-logos/sse.png') }}">
+                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/sse.png') }}" alt="SSE logo">
             </div>
             <div class="col-md-2 col-sm-3 col-6">
-                    <img class="logos-item" src="{{ asset('img/supplier-logos/crown-gas.png') }}">
+                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/crown-gas.png') }}" alt="Crown gas logo">
             </div>
             <div class="col-md-1 d-md-block d-none"> </div>
         </div>
@@ -256,7 +256,7 @@
             </div>
             <div class="col-12 col-lg-3 center-content">
                 <div style="text-align: center;">
-                    <img src={{ asset('img/business-homepage/laptop.png')}} style="max-width: 100%;">
+                    <img alt="Image of Laptop viewing our website" class="lazy" data-src={{ asset('img/business-homepage/laptop.png')}} style="max-width: 100%;" >
                 </div>
             </div>
         </div>

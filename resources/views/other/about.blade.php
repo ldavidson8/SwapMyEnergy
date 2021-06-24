@@ -102,7 +102,7 @@
                     <p style="font-weight: normal;"> Swap My Energy, operated by Znergi Ltd, is run right from the heart of Preston, with our home situated just off Fishergate. We have a small, but passionate team who are dedicated to providing you with the best possible deals for your energy. </p>
                     <div class="lg-padding-content">
                         <h3 style="padding-top: 15px; font-size: 30px; font-weight: 700; margin: 0; display:inline "> Find Us Online </h3>
-                        <img src={{ asset('img/click-cursor.png')}}>
+                        <img alt="" src={{ asset('img/click-cursor.png')}}>
                         <p style="font-weight: 700;"> We're on your favourite social media sites! </p>
                         <a href="https://linktr.ee/swapmyenergy" rel="external"><button class="rounded-blue-button" role="button"> FOLLOW US </button></a>
                     </div>

@@ -312,7 +312,7 @@
                         </ul>
                     </div>
                     <div class="partner-wind-turbine">
-                        <img src="{{ asset('img/partner-wind-turbine.png')}}" width="100%" height="100% " style="object-fit:contain;">
+                        <img alt="" class="lazy" data-src="{{ asset('img/partner-wind-turbine.png')}}" width="100%" height="100% " style="object-fit:contain;">
                     </div>
                 </div>
             </div>
@@ -332,26 +332,11 @@
                                 <li>And more when you get in touch</li>
                             </ul>
                             <div>
-                                <img src="{{ asset('img/hipster.png') }}" max-width="25%" style="margin-top: auto; float: right; object-fit:contain; border-radius: 0 0 18px 0;">
+                                <img alt="" class="lazy" data-src="{{ asset('img/hipster.png') }}" max-width="25%" style="margin-top: auto; float: right; object-fit:contain; border-radius: 0 0 18px 0;">
                             </div>
                             <p style="margin-top: 30px;"> <span style="font-size: 2rem; font-weight: 700;"> Interested? </span> <br /> Fill in this form and we'll be back in touch </p>
                     </div>
                 </div>
-                {{-- <div class="flex-container flex-container-shadow">
-                    <div class="affiliate-program-inner">
-                            <p class="sub-header-size"> Our Affiliate Program </p>
-                            <ul class="no-padding-margin" style="list-style: square inside; font-weight: 700;">
-                                <li>Promotion opportunities across our social channels and website</li>
-                                <li>Earn for when you help switch customers with us</li>
-                                <li>Potential collaboration opportunities upon discussion with ourselves</li>
-                                <li>And more when you get in touch</li>
-                            </ul>
-                        <div class="clearfix" style="align-self: flex-end;">
-                            <p> <span style="font-size: 2rem; font-weight: 700;"> Interested? </span> <br /> Fill in this form and we'll be back in touch </p>
-                            <img src="{{ asset('img/hipster.png') }}" max-width="100%" style="vertical-align: bottom; margin: auto; float: right; object-fit:contain;">
-                        </div>
-                    </div>
-                </div> --}}
             </div>
             <div class="col-12  col-lg-6">
                 <div class="col" style="column-count: 2; column-width: 310px; padding: 20px;">
