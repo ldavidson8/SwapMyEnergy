@@ -37,7 +37,6 @@
             .section-title
             {
                 font-size: 6.5vmin;
-                text-align: center;
             }
         }
         @media (max-width: 334px)
@@ -72,7 +71,7 @@
                             <p><a class="anchor-default" href="{{route('business.t&c')}}">Terms and Conditions</a></p>
                             <p><a class="anchor-default" href="{{route('business.privacy policy')}}">Privacy Policy</a></p>
                             <p><a class="anchor-default" href="{{route('business.cookie policy')}}">Our Cookie policy</a></p>
-                            <p><a class="anchor-default" href="https://www.znergi.co.uk/">Znergi.co.uk</a></p>
+                            {{--<p><a class="anchor-default" href="https://www.znergi.co.uk/">Znergi.co.uk</a></p>--}}
                         </li>
                     </ul>
                 </div>
