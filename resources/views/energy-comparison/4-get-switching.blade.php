@@ -1,3 +1,6 @@
+{{-- TODO: add empty string of values are null or undefined --}}
+{{-- TODO: add carrets to the accordians --}}
+
 @extends('layouts.master')
 
 @section('stylesheets')
@@ -80,6 +83,7 @@
         z-index: 10;
         color: #202020;
         padding: 50px;
+        font-size: 20px;
     }
 
     .white-rounded-container-positioned
@@ -267,17 +271,19 @@
     #tariff-info
     {
         text-transform: uppercase;
-    }
-
-    #tariff-info tr:not(:last-child)
-    {
-        border-bottom: solid 2px #202020;
+        text-align: center;
     }
 
     #tariff-info td
     {
-       padding: 10px 0;
-       width: 50%;
+        padding: 15px;
+        width: 50%;
+        border: 2px solid #202020;
+    }
+
+    #tariff-info td:first-child
+    {
+        font-weight: bold;
     }
 
     #tariff-info tbody:before
@@ -296,13 +302,25 @@
     label
     {
         font-weight: bold;
+        display: inline;
     }
 
-    input
+    input:not([type="checkbox"])
     {
         display: block;
         width: 100%;
         max-width: 100%;
+    }
+
+    input[type="checkbox"]
+    {
+        float: left;
+        margin: 11px 11px 11px 0px;
+    }
+
+    .small-input-text
+    {
+        font-size: 18px;
     }
 
     @media (min-width: 768px) and (max-width: 991px)
@@ -484,17 +502,25 @@
                     <div style="position: relative; font-size; 22px; font-weight: normal;">
                         <div class="white-rounded-container-positioned"></div>
                         <div class="container rounded-container white-rounded-container">
-                            <button class="collapse-table" id="tariff-info-toggle" role="button"> TARIFF INFORMATION </button>
+                            <h1 style="margin: 0px 0px 20px 0px;">Switch to a new Tariff</h1>
+                            <h2>What happens next?</h2>
+                            <p>We will send your application securely to the new energy supplier. They will contact your current supplier to arrange a 'Supply Start Date' usually within the next 21-days. Everything will be handled by the energy suppliers meaning you only need to do something if asked to do so e.g. provide a final meter reading. If you have any questions whatsoever, contact us on 0800 448 0205 or email help@theenergyshop.com and we will be happy to help.</p>
+
+                            <button class="collapse-table" id="tariff-info-toggle" role="button">Information about the Selected Tariff</button>
                             <table id="tariff-info" style="width: 100%;">
-                                <tr><td>Supplier</td><td></td></tr>
-                                <tr><td>Tariff Name</td><td></td></tr>
-                                <tr><td>Tariff Type</td><td></td></tr>
-                                <tr><td>Payment method</td><td></td></tr>
-                                <tr><td>Unit rate</td><td></td></tr>
-                                <tr><td>Standing charge</td><td></td></tr>
-                                <tr><td>Tariff ends On</td><td></td></tr>
-                                <tr><td>Price guaranteed until</td><td></td></tr>
-                                <tr><td>VAT</td><td></td></tr>
+                                <tr><td>Supplier</td><td>{{ $selected_tariff["supplierName"] }}</td></tr>
+                                <tr><td>Tariff Name</td><td>{{ $selected_tariff["tariffName"] }}</td></tr>
+                                <tr><td>Estimated Anuall Cost</td><td>{{ $selected_tariff["bill"] }}</td></tr>
+                                <tr><td>Estimated Anuall Saving</td><td>{{ $selected_tariff["saving"] }}</td></tr>
+                                <tr><td>Payment Method</td><td>{{ $selected_tariff["paymentMethod"] }}</td></tr>
+                                @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "G")
+                                    <tr><td>Gas Unit Rate</td><td>{{ $selected_tariff["price1Gas"] }}</td></tr>
+                                    <tr><td>Gas Standing Charge</td><td>{{ number_format($selected_tariff["standingChargeGas"] / 365, 2) }}</td></tr>
+                                @endif
+                                @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "E")
+                                    <tr><td>Electricity Unit Rate</td><td>{{ $selected_tariff["price1Elec"] }}</td></tr>
+                                    <tr><td>Electricity Standing Charge</td><td>{{ number_format($selected_tariff["standingChargeElec"] / 365, 2) }}</td></tr>
+                                @endif
                             </table>
                             
                             <br />
@@ -502,11 +528,11 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="postcode">Postcode</label>
-                                    <input type="text" id="postcode" name="postcode" value="{{ "" /*$user_address['postcode']*/ }}" />
+                                    <input type="text" id="postcode" name="postcode" value="{{ $user_address['postcode'] }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="address_line_1">Address Line 1<span class="text-danger">*</span></label>
-                                    <input type="text" id="address_line_1" name="address_line_1" value="" required />
+                                    <input type="text" id="address_line_1" name="address_line_1" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="address_line_2">Address Line 2</label>
@@ -523,6 +549,7 @@
                                 <div class="form-group">
                                     <label for="county">Do you already have a smart meter installed at your home?<span class="text-danger">*</span></label>
                                     <select id="county" name="county" value="">
+                                        <option value="">Please Select</option>
                                         <option value="yes">Yes</option>
                                         <option value="no">No</option>
                                         <option value="doNotKnow">Don't Know</option>
@@ -530,42 +557,40 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="gas_meter_number">Gas meter number<span class="text-danger">*</span></label>
-                                    <p><input type="text" id="gas_meter_number" name="gas_meter_number" value="" required /></p>
+                                    <p><input type="text" id="gas_meter_number" name="gas_meter_number" value="{{ $mprn -> mprn }}" required /></p>
                                     <p>Your gas meter number is also known as a Meter Point Reference Number (MPRN). Please enter the number as you find it on your gas bill. If you are unable to find this information on your energy bill, you can get it by calling the National Grid on 0870 608 1524 (press 2 then 1).</p>
                                     <p>Or click here to find this information online. Enter your postcode first and then your house number.</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="elec_meter_number">Electricity meter number<span class="text-danger">*</span></label>
-                                    <p><input type="text" id="elec_meter_number" name="elec_meter_number" value="" /></p>
+                                    <p><input type="text" id="elec_meter_number" name="elec_meter_number" value="{{ $user_address['mpan'] }}" /></p>
                                     <p>Your electricity meter number is also known as a Supply (S) Number or MPAN. Please enter the bottom row of numbers as you find them on your electricity bill without spaces as highlighted in the example below.</p>
                                     <img alt="Example of an Electricity Number" src="" />
                                 </div>
-                                <br />
 
-                                <hr class="thin-line" />
-                                <br />
+                                <br /><hr class="thin-line" /><br />
                                 
                                 <h2>Your Direct Debit Details</h2>
-                                <p><b>You will pay {{ "" }} per month to {{ "" }}</b></p>
+                                <p>You will pay &pound;{{ number_format($selected_tariff["bill"] / 12, 2) }} per month to {{ $selected_tariff["supplierName"] }}.</p>
                                 <p>Even after you have submitted this application you still have 14 days from today to cancel your contract if you change your mind.</p>
                                 
                                 <div class="form-group">
                                     <label for="accountName" class="font-weight-bold">Account Holder Name<span class="text-danger">*</span></label> 
-                                    <input type="text" id="accountName" name="accountName" value="" class="form-control" />
+                                    <input type="text" id="accountName" name="accountName" value="" required />
                                 </div>
                                 <div class="row no-margin">
                                     <div class="col-md-8 col-sm-12">
                                         <div class="form-group">
                                             <label for="sortCode1 sortCode2 sortCode3" class="font-weight-bold d-block">Sort Code<span class="text-danger">*</span></label>
-                                            <input id="sortCode1" name="sortCodeOne" inputmode="tel" maxlength="2" type="text" class="form-control w-25 d-inline text-center"> 
-                                            <input id="sortCode2" name="sortCode2" inputmode="tel" maxlength="2" type="text" class="form-control w-25 d-inline text-center"> 
-                                            <input id="sortCode3" name="sortCode3" inputmode="tel" maxlength="2" type="text" class="form-control w-25 d-inline text-center">
+                                            <input id="sortCode1" name="sortCodeOne" inputmode="tel" maxlength="2" type="text" class="w-25 d-inline text-center" required />
+                                            <input id="sortCode2" name="sortCode2" inputmode="tel" maxlength="2" type="text" class="w-25 d-inline text-center" required />
+                                            <input id="sortCode3" name="sortCode3" inputmode="tel" maxlength="2" type="text" class="w-25 d-inline text-center" required />
                                         </div>
                                     </div> 
                                     <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
                                             <label for="accountNumber" class="font-weight-bold">Account Number<span class="text-danger">*</span></label> 
-                                            <input id="accountNumber" name="accountNumber" inputmode="tel" maxlength="8" type="text" class="form-control">
+                                            <input id="accountNumber" name="accountNumber" inputmode="tel" maxlength="8" type="text" required />
                                         </div>
                                     </div>
                                 </div>
@@ -573,8 +598,8 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label for="preferredDay" class="font-weight-bold">Select your payment date<span class="text-danger">*</span></label>
-                                            <select id="preferredDay" name="preferredDay" class="form-control w-25 custom-select d-block">
-                                                <option value=""></option> 
+                                            <select id="preferredDay" name="preferredDay" required>
+                                                <option value="" selected>Please Select</option> 
                                                 <option value="1">1</option> 
                                                 <option value="2">2</option> 
                                                 <option value="3">3</option> 
@@ -607,10 +632,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-check"><input id="ddConfirmation" name="ddConfirmation" type="checkbox" class="form-check-input"> 
-                                    <label for="ddConfirmation" class="form-check-label">
-                                    I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account.
-                                    </label>
+                                <div class="form-group">
+                                    <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" />
+                                    <label for="direct_debit_confirmation" class="">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account.</label>
                                 </div>
                                 <div class="row no-margin mt-4">
                                     <div class="col-md-12">
@@ -619,14 +643,50 @@
                                                 How would you like to receive all communications from <!-- insert name of selected tariff here -->? An electronic preference means <!-- "they" will be name of selected tariff -->they will
                                                 communicate with you electronically wherever possible.<span class="text-danger">*</span>
                                             </label> 
-                                            <select id="receiveBills" name="receiveBills" class="form-control w-75 custom-select d-block">
-                                                <option value=""></option> 
-                                                <option value="Email">Electronically</option>
+                                            <select id="receiveBills" name="receiveBills" required>
+                                                <option value="electronically">Electronically</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="switchButton">GET SWITCHING</button>
+                                <button type="button" class="collapse-table" id="cancellation-rights-toggle" role="button" style="border: none;">Your Cancellation Rights</button>
+                                <div id="cancellation-rights" style="display: none">If you change your mind and want to cancel the contract, you must tell Igloo Energy within the cooling off period, which ends 14 days from day after you sign up.</div>
+                                
+                                <br /><hr class="thin-line" /><br />
+
+                                <h2>Your Contact Details</h2>
+                                <div class="form-group">
+                                    <label for="title" class="font-weight-bold">Title<span class="text-danger">*</span></label> 
+                                    <input type="text" id="title" name="title" value="" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="firstName" class="font-weight-bold">First Name<span class="text-danger">*</span></label> 
+                                    <input type="text" id="firstName" name="firstName" value="" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName" class="font-weight-bold">Last Name<span class="text-danger">*</span></label> 
+                                    <input type="text" id="lastName" name="lastName" value="" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="telephone" class="font-weight-bold">Telephone<span class="text-danger">*</span></label> 
+                                    <input type="text" id="telephone" name="telephone" value="" required />
+                                    <span class="small-input-text">Please enter the number starting with 0 and not the dialling code.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mobile" class="font-weight-bold">Mobile</label> 
+                                    <input type="text" id="mobile" name="mobile" value="" />
+                                    <span class="small-input-text">Please enter the number starting with 0 and not the dialling code.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="emailAddress" class="font-weight-bold">Email Address<span class="text-danger">*</span></label> 
+                                    <input type="text" id="emailAddress" name="emailAddress" value="" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="dob" class="font-weight-bold">Date of Birth<span class="text-danger">*</span></label> 
+                                    <input type="text" id="dob" name="dob" value="" required />
+                                </div>
+                                
+                                <button type="submit" class="switchButton">Get Switching</button>
                             </form>
                             <div style="clear: both;"></div>
                         </div>
@@ -640,8 +700,13 @@
 
 @section('script')
     <script>
-    $('#tariff-info-toggle').click(function() {
-        $('#tariff-info').fadeToggle(750);
-    });
+        $('#tariff-info-toggle').click(function()
+        {
+            $('#tariff-info').fadeToggle(750);
+        });
+        $('#cancellation-rights-toggle').click(function()
+        {
+            $('#cancellation-rights').fadeToggle(750);
+        });
     </script>
 @endsection

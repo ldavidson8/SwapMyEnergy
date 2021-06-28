@@ -111,6 +111,7 @@ class ResidentialComparisonController extends Controller
             
             $mprn = Repository::addresses_mprn($user_address['postcode'], $user_address['houseNo'], $status);
             $dmq = $mprn -> dmq;
+            Session::put('ResidentialAPI.mprn', $mprn);
             
             $page_title = 'Compare Energy Prices - Your Tariff';
             return view('energy-comparison.2-set-existing-tariff', compact('page_title', 'supplier_data', 'region', 'dmq'));
@@ -191,6 +192,7 @@ class ResidentialComparisonController extends Controller
             $new_tariffs = [];
             foreach ($tariff_results["tariffs"] as $row)
             {
+                // TODO: find a better way
                 // $tariff_ids[] = $row["tariffId"];
                 $row["tariff_info"] = Repository::tariffs_info_by_id($row["tariffId"], $status);
                 $new_tariffs[] = $row;
@@ -245,6 +247,7 @@ class ResidentialComparisonController extends Controller
             $new_tariffs = [];
             foreach ($tariff_results["tariffs"] as $row)
             {
+                // TODO: find a better way
                 // $tariff_ids[] = $row["tariffId"];
                 $row["tariff_info"] = Repository::tariffs_info_by_id($row["tariffId"], $status);
                 $new_tariffs[] = $row;
@@ -299,6 +302,7 @@ class ResidentialComparisonController extends Controller
             $new_tariffs = [];
             foreach ($tariff_results["tariffs"] as $row)
             {
+                // TODO: find a better way
                 // $tariff_ids[] = $row["tariffId"];
                 $row["tariff_info"] = Repository::tariffs_info_by_id($row["tariffId"], $status);
                 $new_tariffs[] = $row;
@@ -359,6 +363,7 @@ class ResidentialComparisonController extends Controller
             $new_tariffs = [];
             foreach ($tariff_results["tariffs"] as $row)
             {
+                // TODO: find a better way
                 // $tariff_ids[] = $row["tariffId"];
                 $row["tariff_info"] = Repository::tariffs_info_by_id($row["tariffId"], $status);
                 $new_tariffs[] = $row;
@@ -412,16 +417,12 @@ class ResidentialComparisonController extends Controller
     {
         try
         {
-            // return response() -> json($request);
-            
-            // de-comment these lines when the api returns data again
-            // $selected_tariff = Repository::tariffs_info_by_id($request -> input("tariffId"), $status);
-            // return response() -> json($status);
-            // return response() -> json($selected_tariff, $status);
+            $new_tariffs = Session::get('ResidentialAPI.new_tariffs');
+            $tariff_position = $request -> input('tariffPosition');
+            $selected_tariff = $new_tariffs[$tariff_position];
+            Session::put('ResidentialAPI.selected_tariff', $selected_tariff);
 
-            Session::put('ResidentialAPI.selected_tariff_id');
-
-            return redirect() -> action([ self::class, 'getSwitching' ] );
+            return redirect() -> action([ self::class, 'getSwitching' ]);
         }
         catch (Throwable $th)
         {
@@ -433,15 +434,30 @@ class ResidentialComparisonController extends Controller
     
     public function getSwitching()
     {
-        $user_address = Session::put('ResidentialAPI.user_address');
-        $region = Session::put('ResidentialAPI.region');
-        $existing_tariff = Session::get('ResidentialAPI.existing_tariff');
-        $current_tariffs = Session::get('ResidentialAPI.current_tariffs');
-        $new_tariffs = Session::get('ResidentialAPI.new_tariffs');
-        $selected_tariff_id = Session::get('ResidentialAPI.selected_tariff_id');
+        try
+        {
+            $user_address = Session::get('ResidentialAPI.user_address');
+            $region = Session::get('ResidentialAPI.region');
+            $existing_tariff = Session::get('ResidentialAPI.existing_tariff');
+            $current_tariffs = Session::get('ResidentialAPI.current_tariffs');
+            $selected_tariff = Session::get('ResidentialAPI.selected_tariff');
+            $mprn = Session::get('ResidentialAPI.mprn');
 
-        $params = compact('user_address', 'region', 'existing_tariff', 'current_tariffs', 'new_tariffs', 'selected_tariff_id');
-        return view('energy-comparison.4-get-switching', $params);
+            if (!isset($user_address) || !isset($region) || !isset($existing_tariff) || !isset($current_tariffs) || !isset($selected_tariff) || !isset($mprn))
+            {
+                return $this -> BackTo3BrowseDeals();
+            }
+            
+            $params = compact('user_address', 'region', 'existing_tariff', 'current_tariffs', 'selected_tariff', 'mprn');
+            // return response() -> json($params);
+            return view('energy-comparison.4-get-switching', $params);
+        }
+        catch (Throwable $th)
+        {
+            throw $th;
+            report($th);
+            return $this -> BackTo3BrowseDeals();
+        }
     }
     
     public function getSwitchingPost(Request $request)

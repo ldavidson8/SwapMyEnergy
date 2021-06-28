@@ -175,7 +175,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Standing Charge: {{ $row["tariff_info"] -> standingChargeGas }}</td>
+                                            <td>Standing Charge:</td>
                                             <td>
                                                 <div class="white-progress-bar-border">
                                                     <div class="white-progress-bar-border-text">{{ number_format($row["tariff_info"] -> standingChargeGas / 365, 2) }}p per day</div>
