@@ -410,14 +410,161 @@ class ResidentialComparisonController extends Controller
     
     public function browseDealsPost(Request $request)
     {
+        try
+        {
+            // return response() -> json($request);
+            
+            // de-comment these lines when the api returns data again
+            // $selected_tariff = Repository::tariffs_info_by_id($request -> input("tariffId"), $status);
+            // return response() -> json($status);
+            // return response() -> json($selected_tariff, $status);
+
+            Session::put('ResidentialAPI.selected_tariff_id');
+
+            return redirect() -> action([ self::class, 'getSwitching' ] );
+        }
+        catch (Throwable $th)
+        {
+            throw $th;
+            report($th);
+            return $this -> BackTo3BrowseDeals();
+        }
     }
     
     public function getSwitching()
     {
+        $user_address = Session::put('ResidentialAPI.user_address');
+        $region = Session::put('ResidentialAPI.region');
+        $existing_tariff = Session::get('ResidentialAPI.existing_tariff');
+        $current_tariffs = Session::get('ResidentialAPI.current_tariffs');
+        $new_tariffs = Session::get('ResidentialAPI.new_tariffs');
+        $selected_tariff_id = Session::get('ResidentialAPI.selected_tariff_id');
+
+        $params = compact('user_address', 'region', 'existing_tariff', 'current_tariffs', 'new_tariffs', 'selected_tariff_id');
+        return view('energy-comparison.4-get-switching', $params);
     }
     
     public function getSwitchingPost(Request $request)
     {
+        try
+        {
+            $selected_tariff_id = Session::get('ResidentialAPI.selected_tariff_id');
+            $existing_tariff = Session::get('ResidentialAPI.existing_tariff');
+            $current_tariffs = Session::get('ResidentialAPI.current_tariffs');
+            $new_tariffs = Session::get('ResidentialAPI.new_tariffs');
+
+            $requestObj = array("user" =>
+            [
+                "saleType" => "A",
+                "agentId" => "arRyhhr",
+                "serviceTypeToCompare" => $existing_tariff["fuel_type_char"],
+                "gasSupplier" => 5,
+                "gasTariffId" => 1562756,
+                "gasPayment" => "MDD",
+                "currentTariffGasConsumption" => 12000,
+                "currentTariffGasBill" => 516.76,
+                "elecSupplier" => 14,
+                "elecTariffId" => 1503152,
+                "elecPayment" => "MDD",
+                "currentTariffElecConsumption" => 3100,
+                "currentTariffGasBill" => 627.12,
+                "E7" => false,
+                "e7Usage" => 0,
+                "tariffId" => 1562756,
+                "tariffPosition" => 1,
+                "bill" => 858.03,
+                "billGas" => 339.55,
+                "billElec" => 518.48,
+                "saving" => 285.85,
+                "savingPercentage" => 25.0,
+                "title" => "Mr",
+                "firstName" => "Test",
+                "lastName" => "Test",
+                "telephoneNo" => "01234567891",
+                "mobileNo" => "07812345679",
+                "email" => "test@test.com",
+                "currentAddress" => [
+                    "line1" => "1 Street",
+                    "line2" => "Area",
+                    "line3" => "",
+                    "town" => "London",
+                    "county" => "East London",
+                    "bldNumber" => "1",
+                    "bldName" => "",
+                    "subBld" => "",
+                    "throughfare" => "",
+                    "dependantThroughFare" => "",
+                    "yearsAtResidence" => 3,
+                    "monthsAtResidence" => 6,
+                    "mprn" => "123456789",
+                    "mpanNumber" => "1234567891"
+                ],
+                "billingAddress" => [
+                    "line1" => "1 Street",
+                    "line2" => "Area",
+                    "line3" => "",
+                    "town" => "London",
+                    "county" => "East London",
+                    "bldNumber" => "1",
+                    "bldName" => "",
+                    "subBld" => "",
+                    "throughfare" => "",
+                    "dependantThroughFare" => ""
+                ],
+                "previousAddress" => [
+                    "line1" => "1 Street",
+                    "line2" => "Area",
+                    "line3" => "",
+                    "town" => "London",
+                    "county" => "East London",
+                    "bldNumber" => "1",
+                    "bldName" => "",
+                    "subBld" => "",
+                    "throughfare" => "",
+                    "dependantThroughFare" => "",
+                    "yearsAtResidence" => 3,
+                    "monthsAtResidence" => 6
+                ],
+                "previousAddressTwo" => [
+                    "line1" => "1 Street",
+                    "line2" => "Area",
+                    "line3" => "",
+                    "town" => "London",
+                    "county" => "East London",
+                    "bldNumber" => "1",
+                    "bldName" => "",
+                    "subBld" => "",
+                    "throughfare" => "",
+                    "dependantThroughFare" => "",
+                    "yearsAtResidence" => 3,
+                    "monthsAtResidence" => 6
+                ],
+                "smartMeter" => "Y"
+            ],
+            "payment" => [
+                "accountName" => "Mr Test Test",
+                "sortCodeOne" => "10",
+                "sortCodeTwo" => "00",
+                "sortCodeThree" => "00",
+                "accountNumber" => "12345679",
+                "bankName" => "Test Bank",
+                "preferredDay" => 6,
+                "ddAuthorisation" => true,
+                "receiveBills" => "Email",
+                "supplierOptIn" => true,
+                "supplierLetterOptIn" => true,
+                "supplierPhoneOptIn" => true,
+                "supplierTextOptIn" => true,
+                "specialNeeds" => false
+            ]);
+            return response() -> json($requestObj);
+        }
+        catch (Throwable $th)
+        {
+            throw $th;
+            report($th);
+            return $this -> BackTo3BrowseDeals();
+        }
     }
 
     

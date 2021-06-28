@@ -19,7 +19,7 @@
         <tr>
             <td>
                 <div style="text-align: center;">
-                    <p style="font-size: 22px; font-weight: normal; background-color: #f3f2f1; color: #202020; border-radius: 100px; display: inline-block; padding: 2px 25px;">
+                    <p class="estimated-annual-energy-costs-banner">
                         Your estimated annual energy costs for the past 12 months are &pound;{{ number_format($current_tariffs -> E -> bill, 2) }}
                     </p>
                 </div>
@@ -114,13 +114,13 @@
             <div class="white-rounded-container-positioned"></div>
             <div class="container rounded-container white-rounded-container">
                 <div class="row">
-                    <div class="col-12 col-lg-3 no-padding" style="font-size: 16px;">
-                        <img src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="100px" width="auto">
-                        <p style="border-bottom: solid 2px black; padding: 5px; display: inline-block;">
+                    <div class="col-12 col-lg-3 no-padding" style="font-size: 16px; padding: 0px 10px 0px 0px !important;">
+                        <img class="new-supplier-logo" src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="100px" width="auto" /><br />
+                        <p style="border-bottom: solid 2px black; padding: 5px;">
                             <span style="font-size: 34px;">&pound;{{ number_format($row["bill"] / 12, 2) }}* </span><br />per month
                         </p>
                         <p>Estimated Annual Saving: &pound;{{ number_format($row["saving"], 2) }}*</p>
-                        <p>
+                        <p class="no-padding">
                             @if ($row["contractLength"] > 0)
                                 {{ $current_tariffs -> E -> contractLength }} month contract
                             @else
@@ -162,7 +162,7 @@
                                     <span style="font-size: 16px">*calculated based on your existing usage </span>
                                 </td>
                                 <td style="text-align: right;">
-                                    <button type="submit" class="rounded-blue-button">GET SWITCHING  </button>
+                                    @include('energy-comparison.partials.switch-form')
                                 </td>
                             </tr>
                         </table>

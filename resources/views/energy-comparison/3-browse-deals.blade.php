@@ -2,6 +2,27 @@
 
 @section('stylesheets')
 <style>
+    h2
+    {
+        font-size: 26px;
+        color: #202020;
+    }
+
+    td
+    {
+        padding: 0px;
+    }
+
+    .estimated-annual-energy-costs-banner
+    {
+        font-size: 22px;
+        font-weight: normal;
+        background-color: #f3f2f1;
+        color: #202020;
+        border-radius: 100px;
+        display: inline-block;
+        padding: 2px 25px;
+    }
 
     .uppercase-white-text
     {
@@ -37,7 +58,7 @@
         background-color: #f3f2f1;
         z-index: 10;
         color: #202020;
-        padding: 20px 40px;
+        padding: 20px 30px;
         border-bottom: solid 2px #202020;
         border-left: solid 2px #202020;
         border-right: solid 2px #202020;
@@ -122,27 +143,20 @@
     .table-tariff
     {
         display: inline-block;
+        font-size: 20px;
     }
 
     .table-tariff td
     {
-        padding: 10px;
-    }
-
-    .table-choose-tariff
-    {
-        display: inline-block;
-    }
-
-    .table-choose-tariff td
-    {
-        padding: 10px;
+        padding: 5px;
+        padding-left: 15px;
     }
 
     .white-progress-bar
     {
-        width:350px;
-        height:50px; 
+        width: 350px;
+        max-width: 100%;
+        height: 40px;
         background-color: #202020; 
         border: 2px solid #f3f2f1;
         border-radius: 10px;
@@ -160,13 +174,13 @@
         right: 0;
         top: 0;
         bottom: 0;
-        padding: 5px;
+        padding: 3px;
     }
 
     .white-progress-bar-border
     {
-        width:350px;
-        height:50px; 
+        width: 350px;
+        height: 40px;
         background-color: #202020; 
         border-radius: 10px;
         border: 2px solid #202020;
@@ -184,7 +198,7 @@
         right: 0;
         top: 0;
         bottom: 0;
-        padding: 5px;
+        padding: 3px;
     }
 
     /* .black-progress-bar
@@ -226,6 +240,11 @@
         float: right;
     }
 
+    .new-supplier-logo
+    {
+        max-width: 100%;
+    }
+
     @media (min-width: 768px) and (max-width: 991px)
     {
         .form-top-left-border-md
@@ -235,13 +254,18 @@
 
         .form-top-img-border-md
         {
-            border-radius: 0 0 0 35px;
+            border-radius: 0 0 0 0;
         }
     }
 
 
     @media (max-width: 767px)
     {
+        .estimated-annual-energy-costs-banner
+        {
+            border-radius: 0;
+            border: none;
+        }
 
         .container, .container-fluid
         {
@@ -253,6 +277,7 @@
 
         .white-rounded-container
         {
+            padding: 10px;
             padding-bottom: 20px;
         }
 
@@ -299,14 +324,15 @@
             max-width: 100%;
         }
 
-        .table-choose-tariff
+        .table-tariff
         {
             width: 100%;
         }
 
-        .table-choose-tariff tbody,
-        .table-choose-tariff tr,
-        .table-choose-tariff td
+        .table-tariff tbody,
+        .table-tariff tr,
+        .table-tariff th,
+        .table-tariff td
         {
             display: block;
             width: 100%;
@@ -341,7 +367,7 @@
         <hr/>
         <div class="background-image-wind-turbines background-image-top background-image-contain background-image-no-mobile flex-fill">
             <div class="col-12 center-content form-outer-box">
-                <div class="container outer-rounded-container no-padding flex-row">  
+                <div class="container outer-rounded-container no-padding flex-row">
                     @switch($existing_tariff -> fuel_type_str)
                         @case("dfs") @include('energy-comparison.partials.3-browse-deals-dfs') @break
                         @case("df") @include('energy-comparison.partials.3-browse-deals-df') @break
@@ -349,8 +375,8 @@
                         @default @include('energy-comparison.partials.3-browse-deals-gas') @break
                     @endswitch
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
-
+    
 @endsection

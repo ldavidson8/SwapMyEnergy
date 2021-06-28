@@ -165,7 +165,6 @@ class ResidentialApiRepository extends Controller
     public static function features(&$status)
     {
         $response = Http::withHeaders(['Authorization' => self::_apiKey]) -> get(self::_apiUrl . "features");
-        // return $response;
         return self::getOneObject($response, $status);
     }
 
@@ -178,7 +177,16 @@ class ResidentialApiRepository extends Controller
             $ids_string .= $tariff_ids[$i];
         }
         $response = Http::withHeaders(['Authorization' => self::_apiKey]) -> get(self::_apiUrl . "features/tariffs?tariffIds=" . $ids_string);
-        // return $response;
+        return self::getOneObject($response, $status);
+    }
+
+
+    
+    /// Process an Application ///
+
+    public static function applications_processapplication($data, $status)
+    {
+        $response = Http::withHeaders(['Authorization' => self::_apiKey]) -> post(self::_apiUrl . "applications/processapplication", $data);
         return self::getOneObject($response, $status);
     }
 

@@ -3,7 +3,8 @@
 @section('stylesheets')
 <style>
     
-    .switchButton {
+    .switchButton
+    {
         width: 300px;
         padding: 20px;
         background-color: white;
@@ -15,14 +16,16 @@
         font-weight: 700;
     }
 
-    .switchButton span {
+    .switchButton span
+    {
         color: black;
         position: relative;
         z-index: 1;
         transition: color 0.6s cubic-bezier(0.53, 0.21, 0, 1);
     }
 
-    .switchButton::before {
+    .switchButton::before
+    {
         content: 'SUBMIT';
         padding: 20px;
         text-transform: uppercase;
@@ -38,22 +41,17 @@
         transition: transform 0.6s cubic-bezier(0.53, 0.21, 0, 1);
     }
 
-    .switchButton:hover span {
+    .switchButton:hover span
+    {
         color: white;
     }
 
-    .switchButton:hover::before {
+    .switchButton:hover::before
+    {
         transform: translate(0, -50%);
     }
 
 
-    .uppercase-white-text
-    {
-        text-transform: uppercase;
-        color: #f3f2f1;
-        font-size: 24px;
-    } 
-    
     .outer-rounded-container
     {
         border-radius: 35px;
@@ -82,9 +80,6 @@
         z-index: 10;
         color: #202020;
         padding: 50px;
-        border-bottom: solid 2px #202020;
-        border-left: solid 2px #202020;
-        border-right: solid 2px #202020;
     }
 
     .white-rounded-container-positioned
@@ -110,8 +105,7 @@
     .form-top-left-heading
     {
         background-color: #202020;
-        border-radius: 35px 0 0 0;
-        border-radius: 35px 0 35px 0;
+        border-radius: 33px 0 0 0;
         text-align: center;
         display: inline-block;
         z-index: 2;
@@ -127,7 +121,7 @@
     {
         /* background: url('{{ asset('img/bottom-border-white.png') }}') bottom repeat-x; */
         background-color: #00c2cb;
-        border-radius: 35px 35px 0 0;
+        border-radius: 33px 33px 0 0;
     }
 
     .form-top-img
@@ -135,7 +129,7 @@
         background-color: #f3f2f1; 
         padding: 35px;
         /* border-radius: 0 35px 0 0; */
-        border-radius: 0 35px 0 35px;
+        border-radius: 0 33px 0 0;
         width: 200px;
         text-align: center;
     }
@@ -172,16 +166,6 @@
     }
 
     .table-tariff td
-    {
-        padding: 10px;
-    }
-
-    .table-choose-tariff
-    {
-        display: inline-block;
-    }
-
-    .table-choose-tariff td
     {
         padding: 10px;
     }
@@ -267,12 +251,6 @@
         padding: 20px 0;
     }
 
-    .pricing-text
-    {
-        width: auto;
-        float: right;
-    }
-
     .collapse-table
     {
         border: none;
@@ -314,17 +292,29 @@
     {
        border-right: solid 2px #202020;
     }
+    
+    label
+    {
+        font-weight: bold;
+    }
+
+    input
+    {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+    }
 
     @media (min-width: 768px) and (max-width: 991px)
     {
         .form-top-left-border-md
         {
-            border-radius: 35px 35px 0 0;
+            border-radius: 33px 33px 0 0;
         }
 
         .form-top-img-border-md
         {
-            border-radius: 0 0 0 35px;
+            border-radius: 0;
         }
     }
 
@@ -365,14 +355,6 @@
         {
             text-align: center;
         }
-        
-        .pricing-text
-        {
-            float: none;
-            text-align: left;
-            width: 100%;
-            padding-right: 10px;
-        }
 
         .table-block-on-mobile
         {
@@ -388,14 +370,14 @@
             max-width: 100%;
         }
 
-        .table-choose-tariff
+        .table-tariff
         {
             width: 100%;
         }
 
-        .table-choose-tariff tbody,
-        .table-choose-tariff tr,
-        .table-choose-tariff td
+        .table-tariff tbody,
+        .table-tariff tr,
+        .table-tariff td
         {
             display: block;
             width: 100%;
@@ -419,6 +401,10 @@
         }
     }
 
+    hr.thin-line
+    {
+        border-top: none;
+    }
 </style>
 @endsection
 
@@ -427,10 +413,10 @@
 @endsection
 
 @section('main-content')
-        <hr/>
+        <hr />
         <div class="background-image-wind-turbines background-image-contain flex-fill">
             <div class="col-12 center-content form-outer-box">
-                <div class="container outer-rounded-container no-padding flex-row">  
+                <div class="container outer-rounded-container no-padding flex-row" style="border: solid 2px #202020;">
                     <div class="row form-top-outer">
                         <div class="col-12 col-lg-4 form-top-heading form-top-left-heading form-top-left-border-md">
                             <table class="form-table"><tr><td>Step 4 | Get Switching </td></tr></table>
@@ -442,7 +428,7 @@
                             <table class="form-table"><tr><td><img src="{{ asset('img/supplier-logos/edf.png') }}" height="auto" width="auto" /></td></tr></table>
                         </div>
                     </div>
-                    <div class="container rounded-container blue-rounded-container">
+                    {{-- <div class="container rounded-container blue-rounded-container">
                         <table class="form-table">
                             <tr>
                                 <td>
@@ -474,21 +460,17 @@
                                             </table>
                                         </div>
                                         <div class="col-lg-4 col-12 no-padding">
-                                            <table class="form-table pricing-text">
+                                            <table class="form-table" style="">
+                                                <tr style="height: 100%;"></tr>
                                                 <tr>
-                                                    <td colspan="2" style="vertical-align: bottom;">
-                                                        <p style="font-size: 16px;">*compared to regional averages</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="vertical-align: bottom;">
+                                                    <td style="vertical-align: bottom; width: 50%; text-align: center;">
                                                         <p style="font-size: 20px; text-align: center; border-right: solid 2px #f3f2f1;">
                                                             <span style="font-size: 34px;">£81.76</span> 
                                                             <br /> 
                                                             per month
                                                         </p>
                                                     </td>
-                                                    <td style="vertical-align: bottom; text-align: center;">
+                                                    <td style="vertical-align: bottom; width: 50%; text-align: center;">
                                                         <p style="font-size: 20px;"> 24 month<br />contract </p>  
                                                     </td>
                                                 </tr>
@@ -498,164 +480,153 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>
-                    <div style="position: relative;">
+                    </div> --}}
+                    <div style="position: relative; font-size; 22px; font-weight: normal;">
                         <div class="white-rounded-container-positioned"></div>
                         <div class="container rounded-container white-rounded-container">
                             <button class="collapse-table" id="tariff-info-toggle" role="button"> TARIFF INFORMATION </button>
                             <table id="tariff-info" style="width: 100%;">
-                                <tr>
-                                    <td>
-                                        Supplier
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Tariff name
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Tariff type
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Payment method
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Unit rate
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Standing charge
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Tariff ends On
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Price guaranteed until 
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        VAT
-                                    </td>
-                                    <td>
-                                        
-                                    </td>
-                                </tr>
+                                <tr><td>Supplier</td><td></td></tr>
+                                <tr><td>Tariff Name</td><td></td></tr>
+                                <tr><td>Tariff Type</td><td></td></tr>
+                                <tr><td>Payment method</td><td></td></tr>
+                                <tr><td>Unit rate</td><td></td></tr>
+                                <tr><td>Standing charge</td><td></td></tr>
+                                <tr><td>Tariff ends On</td><td></td></tr>
+                                <tr><td>Price guaranteed until</td><td></td></tr>
+                                <tr><td>VAT</td><td></td></tr>
                             </table>
-                            <form>
-                            <div class="form-group">
-                                <label for="accountName" class="font-weight-bold">Account Holder Name*</label> 
-                                <input id="accountName" name="accountName" type="text" class="form-control">
-                            </div>
-                            <div class="row no-margin">
-                                <div class="col-md-8 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="sortCodeOne" class="font-weight-bold d-block">Sort Code*</label>
-                                        <input id="sortCodeOne" name="sortCodeOne" inputmode="tel" maxlength="2" type="text" class="form-control w-25 d-inline text-center"> 
-                                        <input id="sortCodeTwo" name="sortCodeTwo" inputmode="tel" maxlength="2" type="text" class="form-control w-25 d-inline text-center"> 
-                                        <input id="sortCodeThree" name="sortCodeThree" inputmode="tel" maxlength="2" type="text" class="form-control w-25 d-inline text-center">
-                                    </div>
-                                </div> 
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="accountNumber" class="font-weight-bold">Account Number*</label> 
-                                        <input id="accountNumber" name="accountNumber" inputmode="tel" maxlength="8" type="text" class="form-control">
+                            
+                            <br />
+                            <form action="{{ route('residential.energy-comparison.4-get-switching') }}" method="post">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="postcode">Postcode</label>
+                                    <input type="text" id="postcode" name="postcode" value="{{ "" /*$user_address['postcode']*/ }}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="address_line_1">Address Line 1<span class="text-danger">*</span></label>
+                                    <input type="text" id="address_line_1" name="address_line_1" value="" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="address_line_2">Address Line 2</label>
+                                    <input type="text" id="address_line_2" name="address_line_2" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="town">Town<span class="text-danger">*</span></label>
+                                    <input type="text" id="town" name="town" value="" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="county">County</label>
+                                    <input type="text" id="county" name="county" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="county">Do you already have a smart meter installed at your home?<span class="text-danger">*</span></label>
+                                    <select id="county" name="county" value="">
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                        <option value="doNotKnow">Don't Know</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gas_meter_number">Gas meter number<span class="text-danger">*</span></label>
+                                    <p><input type="text" id="gas_meter_number" name="gas_meter_number" value="" required /></p>
+                                    <p>Your gas meter number is also known as a Meter Point Reference Number (MPRN). Please enter the number as you find it on your gas bill. If you are unable to find this information on your energy bill, you can get it by calling the National Grid on 0870 608 1524 (press 2 then 1).</p>
+                                    <p>Or click here to find this information online. Enter your postcode first and then your house number.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="elec_meter_number">Electricity meter number<span class="text-danger">*</span></label>
+                                    <p><input type="text" id="elec_meter_number" name="elec_meter_number" value="" /></p>
+                                    <p>Your electricity meter number is also known as a Supply (S) Number or MPAN. Please enter the bottom row of numbers as you find them on your electricity bill without spaces as highlighted in the example below.</p>
+                                    <img alt="Example of an Electricity Number" src="" />
+                                </div>
+                                <br />
+
+                                <hr class="thin-line" />
+                                <br />
+                                
+                                <h2>Your Direct Debit Details</h2>
+                                <p><b>You will pay {{ "" }} per month to {{ "" }}</b></p>
+                                <p>Even after you have submitted this application you still have 14 days from today to cancel your contract if you change your mind.</p>
+                                
+                                <div class="form-group">
+                                    <label for="accountName" class="font-weight-bold">Account Holder Name<span class="text-danger">*</span></label> 
+                                    <input type="text" id="accountName" name="accountName" value="" class="form-control" />
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-md-8 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="sortCode1 sortCode2 sortCode3" class="font-weight-bold d-block">Sort Code<span class="text-danger">*</span></label>
+                                            <input id="sortCode1" name="sortCodeOne" inputmode="tel" maxlength="2" type="text" class="form-control w-25 d-inline text-center"> 
+                                            <input id="sortCode2" name="sortCode2" inputmode="tel" maxlength="2" type="text" class="form-control w-25 d-inline text-center"> 
+                                            <input id="sortCode3" name="sortCode3" inputmode="tel" maxlength="2" type="text" class="form-control w-25 d-inline text-center">
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="accountNumber" class="font-weight-bold">Account Number<span class="text-danger">*</span></label> 
+                                            <input id="accountNumber" name="accountNumber" inputmode="tel" maxlength="8" type="text" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row no-margin">
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="preferredDay" class="font-weight-bold">Select your payment date*</label>
-                                        <select id="preferredDay" name="preferredDay" class="form-control w-25 custom-select d-block">
-                                            <option value=""></option> 
-                                            <option value="1">1</option> 
-                                            <option value="2">2</option> 
-                                            <option value="3">3</option> 
-                                            <option value="4">4</option> 
-                                            <option value="5">5</option> 
-                                            <option value="6">6</option> 
-                                            <option value="7">7</option> 
-                                            <option value="8">8</option> 
-                                            <option value="9">9</option> 
-                                            <option value="10">10</option> 
-                                            <option value="11">11</option> 
-                                            <option value="12">12</option> 
-                                            <option value="13">13</option> 
-                                            <option value="14">14</option> 
-                                            <option value="15">15</option> 
-                                            <option value="16">16</option> 
-                                            <option value="17">17</option> 
-                                            <option value="18">18</option> 
-                                            <option value="19">19</option> 
-                                            <option value="20">20</option> 
-                                            <option value="21">21</option> 
-                                            <option value="22">22</option> 
-                                            <option value="23">23</option> 
-                                            <option value="24">24</option> 
-                                            <option value="25">25</option> 
-                                            <option value="26">26</option> 
-                                            <option value="27">27</option> 
-                                            <option value="28">28</option>
-                                        </select>
+                                <div class="row no-margin">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="preferredDay" class="font-weight-bold">Select your payment date<span class="text-danger">*</span></label>
+                                            <select id="preferredDay" name="preferredDay" class="form-control w-25 custom-select d-block">
+                                                <option value=""></option> 
+                                                <option value="1">1</option> 
+                                                <option value="2">2</option> 
+                                                <option value="3">3</option> 
+                                                <option value="4">4</option> 
+                                                <option value="5">5</option> 
+                                                <option value="6">6</option> 
+                                                <option value="7">7</option> 
+                                                <option value="8">8</option> 
+                                                <option value="9">9</option> 
+                                                <option value="10">10</option> 
+                                                <option value="11">11</option> 
+                                                <option value="12">12</option> 
+                                                <option value="13">13</option> 
+                                                <option value="14">14</option> 
+                                                <option value="15">15</option> 
+                                                <option value="16">16</option> 
+                                                <option value="17">17</option> 
+                                                <option value="18">18</option> 
+                                                <option value="19">19</option> 
+                                                <option value="20">20</option> 
+                                                <option value="21">21</option> 
+                                                <option value="22">22</option> 
+                                                <option value="23">23</option> 
+                                                <option value="24">24</option> 
+                                                <option value="25">25</option> 
+                                                <option value="26">26</option> 
+                                                <option value="27">27</option> 
+                                                <option value="28">28</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-check"><input id="ddConfirmation" name="ddConfirmation" type="checkbox" class="form-check-input"> 
-                                <label for="ddConfirmation" class="form-check-label">
-                                I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account.
-                                </label>
-                            </div>
-                            <div class="row no-margin mt-4">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="receiveBills" class="font-weight-bold">
-                                            How would you like to receive all communications from <!-- insert name of selected tariff here -->? An electronic preference means <!-- "they" will be name of selected tariff -->they will
-                                            communicate with you electronically wherever possible.*
-                                        </label> 
-                                        <select id="receiveBills" name="receiveBills" class="form-control w-75 custom-select d-block">
-                                            <option value=""></option> 
-                                            <option value="Email">Electronically</option>
-                                        </select>
+                                <div class="form-check"><input id="ddConfirmation" name="ddConfirmation" type="checkbox" class="form-check-input"> 
+                                    <label for="ddConfirmation" class="form-check-label">
+                                    I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account.
+                                    </label>
+                                </div>
+                                <div class="row no-margin mt-4">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="receiveBills" class="font-weight-bold">
+                                                How would you like to receive all communications from <!-- insert name of selected tariff here -->? An electronic preference means <!-- "they" will be name of selected tariff -->they will
+                                                communicate with you electronically wherever possible.<span class="text-danger">*</span>
+                                            </label> 
+                                            <select id="receiveBills" name="receiveBills" class="form-control w-75 custom-select d-block">
+                                                <option value=""></option> 
+                                                <option value="Email">Electronically</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <button type="submit" class="switchButton">GET SWITCHING</button>
+                                <button type="submit" class="switchButton">GET SWITCHING</button>
                             </form>
                             <div style="clear: both;"></div>
                         </div>
