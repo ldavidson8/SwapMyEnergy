@@ -59,10 +59,10 @@
             <section>
                 <br />
                 <h2 class="section-title">About this Policy</h2>
-                    <p>Along with our Terms of Use and Privacy Policy, this cookie policy provides you with information about the various types of cookies and other similar technologies that are used by our websites, mobile apps and other services. We'll review this policy from time to time to make sure it's up-to-date. If we make changes, we'll post the latest version here.</p>
+                    <p>Along with our Terms & conditions and Privacy Policy, this cookie policy provides you with information about the various types of cookies and other similar technologies that are used by our websites, mobile apps and other services. We'll review this policy from time to time to make sure it's up-to-date. If we make changes, we'll post the latest version here.</p>
                     <br />
                 <h2 class="section-title">What are Cookies?</h2>
-                    <p>A cookie is a small text file which is placed on your device, for example a computer or smartphone, via your web browser, by the websites you visit or applications you use and which stores information on your device for a limited period of time. It allows the website or app to recognise your device and store some information about your preferences or past actions.</p>
+                    <p>A cookie is a small text file which is placed on your device via your web browser by the websites you visit or applications you use. It stores information on your device for a limited period of time and it allows the website or app to recognise your device and store some information about your preferences or past actions.</p>
                     <br />
                 <h2 class="section-title">How do we use cookies and similar technologies?</h2>
                     <p>We use cookies and similar technologies when you use our services. These cookies and similar technologies are controlled either by us directly, or by third party partners.
@@ -71,7 +71,7 @@
                     We use cookies when they are essential to deliver our services, to optimise and personalise the delivery of our services, to analyse and better understand our services and to deliver advertising.
                     <br />
                     <br />
-                    Some of the cookies we use are removed as soon you leave our site or app, because we don't need to store this information between visits (session cookies). In contrast, 'persistent' cookies enable our services or tags to recognise you when you make return visits to us, and automatically expire when they reach a specified expiry date (unless you delete them earlier). There are tools available to check the expiry date on cookies, and this functionality may be provided by your browser.
+                    Some of the cookies we use are removed as soon you leave our site, because we don't need to store this information between visits (session cookies). In contrast, 'persistent' cookies enable our services or tags to recognise you when you make return visits to us, and automatically expire when they reach a specified expiry date (unless you delete them earlier). There are tools available to check the expiry date on cookies, and this functionality may be provided by your browser.
                     <br />
                     <br />
                     We also use similar technologies referred to as 'tags'. Tags are implemented on our services and are often used together with text cookies to enable information to be stored on, or transmitted to and from, the device you use to access swapmyenergy.co.uk. Tags are often referred to as 'tracking pixels' or 'code snippets'.
@@ -100,7 +100,7 @@
                         <br />
                         <span class="font-weight-bold">To analyse and better understand our services</span>
                         <br />
-                        We really want our users to receive a good experience using our site and our services. We use Cookies to allow us to monitor how visitors access and use our website and our services. These cookies provide us with anonymous statistics on how many people visit the website, where they have come from, the pages they visit and where they go when they leave.
+                        We use Cookies to allow us to monitor how visitors access and use our website and our services. These cookies provide us with anonymous statistics on how many people visit the website, where they have come from, the pages they visit and where they go when they leave.
                         <br />
                         <br />
                         This enables us to develop and improve our website and our services as well as helping us understand how effective our advertising has been.

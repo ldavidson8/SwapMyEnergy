@@ -68,7 +68,7 @@
                     <ul class="line-height">
                         <li>
                             <p><a class="anchor-default" href="{{route('business.about')}}">About Us</a></p>
-                            <p><a class="anchor-default" href="https://linktr.ee/swapmyenergy" rel="external">Our Social Media</a></p>
+                            {{--<p><a class="anchor-default" href="https://linktr.ee/swapmyenergy" rel="external">Our Social Media</a></p>--}}
                             <p><a class="anchor-default" href="{{route('business.t&c')}}">Terms and Conditions</a></p>
                             <p><a class="anchor-default" href="{{route('business.privacy policy')}}">Privacy Policy</a></p>
                             <p><a class="anchor-default" href="{{route('business.cookie policy')}}">Our Cookie policy</a></p>
