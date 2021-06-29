@@ -15,43 +15,42 @@ class ResidentialApiController extends Controller
         // return response() -> json($obj);
         
         $result = Repository::addresses($postcode, $status);
-
-        if (isset($result))
+        if (!isset($result)) return response() -> json([ 'error' => 'An Error Occured' ], $status);
+        
+        $responseArray = [];
+        foreach ($result as $row)
         {
-            $responseArray = [];
+            $lines = [];
+            if ($row -> line1 != "") $lines[] = $row -> line1;
+            if ($row -> line2 != "") $lines[] = $row -> line2;
+            if ($row -> line3 != "") $lines[] = $row -> line3;
+            if ($row -> line4 != "") $lines[] = $row -> line4;
+            if ($row -> line5 != "") $lines[] = $row -> line5;
+            if ($row -> line6 != "") $lines[] = $row -> line6;
+            if ($row -> line7 != "") $lines[] = $row -> line7;
+            if ($row -> line8 != "") $lines[] = $row -> line8;
+            if ($row -> line9 != "") $lines[] = $row -> line9;
 
-            foreach ($result as $row)
+            $addressStr = "";
+            $houseNo = "";
+            $houseName = "";
+            foreach ($lines as $line)
             {
-                $lines = [];
-                if ($row -> line1 != "") $lines[] = $row -> line1;
-                if ($row -> line2 != "") $lines[] = $row -> line2;
-                if ($row -> line3 != "") $lines[] = $row -> line3;
-                if ($row -> line4 != "") $lines[] = $row -> line4;
-                if ($row -> line5 != "") $lines[] = $row -> line5;
-                if ($row -> line6 != "") $lines[] = $row -> line6;
-                if ($row -> line7 != "") $lines[] = $row -> line7;
-                if ($row -> line8 != "") $lines[] = $row -> line8;
-                if ($row -> line9 != "") $lines[] = $row -> line9;
-
-                $addressStr = "";
-                $houseNo = "";
-                foreach ($lines as $line)
-                {
-                    $addressStr .= "$line ";
-                    if ($houseNo == "" && is_numeric($line)) $houseNo = $line;
-                }
-
-                $responseArray[] =
-                [
-                    'mpan' => $row -> mpan,
-                    'address' => $addressStr,
-                    'houseNo' => $houseNo
-                ];
+                $addressStr .= "$line ";
+                if ($houseNo == "" && is_numeric($line)) $houseNo = $line;
+                if ($houseName == "" && !is_numeric($line)) $houseName .= " $line";
             }
 
-            return response() -> json($responseArray, $status);
+            $responseArray[] =
+            [
+                'mpan' => $row -> mpan,
+                'address' => $addressStr,
+                'houseNo' => $houseNo,
+                'houseName' => trim($houseName)
+            ];
         }
-        return response() -> json([ 'error' => 'An Error Occured' ], $status);
+
+        return response() -> json($responseArray, $status);
     }
     
     public static function addresses_mprn($postcode, $houseNo, $houseName = null)

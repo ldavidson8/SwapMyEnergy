@@ -1,5 +1,60 @@
-{{-- TODO: add empty string of values are null or undefined --}}
+{{-- TODO: add empty string if values are null or undefined --}}
 {{-- TODO: add carrets to the accordians --}}
+{{-- TODO: add bank name input --}}
+
+<?php
+    $old_postcode = old('postcode');
+    $old_address_line_1 = old('address_line_1');
+    $old_address_line_2 = old('address_line_2');
+    $old_town = old('town');
+    $old_county = old('county');
+    $old_smartMeter = old('smartMeter');
+    $old_gas_meter_number = old('gas_meter_number');
+    $old_elec_meter_number = old('elec_meter_number');
+    
+    $postcode = (isset($old_postcode)) ? $old_postcode : $mprn -> postcode;
+    $address_line_1 = (isset($old_address_line_1)) ? $old_address_line_1 : "";
+    $address_line_2 = (isset($old_address_line_2)) ? $old_address_line_2 : "";
+    $town = (isset($old_town)) ? $old_town : $mprn -> post_town;
+    $county = (isset($old_county)) ? $old_county : $mprn -> county;
+    $smartMeter = (isset($old_smartMeter)) ? $old_smartMeter : "";
+    $gas_meter_number = (isset($old_gas_meter_number)) ? $old_gas_meter_number : $mprn -> mprn;
+    $elec_meter_number = (isset($old_elec_meter_number)) ? $old_elec_meter_number : $user_address["mpan"];
+    
+    
+    $old_accountName = old('accountName');
+    $old_sortCode1 = old('sortCode1');
+    $old_sortCode2 = old('sortCode2');
+    $old_sortCode3 = old('sortCode3');
+    $old_accountNumber = old('accountNumber');
+    $old_preferredDay = old('preferredDay');
+    $old_direct_debit_confirmation = old('direct_debit_confirmation');
+    $old_receiveBills = old('receiveBills');
+    
+    $accountName = (isset($old_accountName)) ? $old_accountName : "";
+    $sortCode1 = (isset($old_sortCode1)) ? $old_sortCode1 : "";
+    $sortCode2 = (isset($old_sortCode2)) ? $old_sortCode2 : "";
+    $sortCode3 = (isset($old_sortCode3)) ? $old_sortCode3 : "";
+    $accountNumber = (isset($old_accountNumber)) ? $old_accountNumber : "";
+    $preferredDay = (isset($old_preferredDay)) ? $old_preferredDay : "";
+    $direct_debit_confirmation = (isset($old_direct_debit_confirmation)) ? $old_direct_debit_confirmation : "";
+    $receiveBills = (isset($old_receiveBills)) ? $old_receiveBills : "";
+
+
+    $old_title = old('title');
+    $old_firstName = old('firstName');
+    $old_lastName = old('lastName');
+    $old_telephone = old('telephone');
+    $old_mobile = old('mobile');
+    $old_emailAddress = old('emailAddress');
+
+    $title = (isset($old_title)) ? $old_title : "";
+    $firstName = (isset($old_firstName)) ? $old_firstName : "";
+    $lastName = (isset($old_lastName)) ? $old_lastName : "";
+    $telephone = (isset($old_telephone)) ? $old_telephone : "";
+    $mobile = (isset($old_mobile)) ? $old_mobile : "";
+    $emailAddress = (isset($old_emailAddress)) ? $old_emailAddress : "";
+?>
 
 @extends('layouts.master')
 
@@ -502,10 +557,19 @@
                     <div style="position: relative; font-size; 22px; font-weight: normal;">
                         <div class="white-rounded-container-positioned"></div>
                         <div class="container rounded-container white-rounded-container">
-                            <h1 style="margin: 0px 0px 20px 0px;">Switch to a new Tariff</h1>
+                            <h1 style="margin: 0px 0px 20px 0px;">Switching to a new Tariff</h1>
+                            
                             <h2>What happens next?</h2>
                             <p>We will send your application securely to the new energy supplier. They will contact your current supplier to arrange a 'Supply Start Date' usually within the next 21-days. Everything will be handled by the energy suppliers meaning you only need to do something if asked to do so e.g. provide a final meter reading. If you have any questions whatsoever, contact us on 0800 448 0205 or email help@theenergyshop.com and we will be happy to help.</p>
-
+                            
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    @foreach ($errors -> all() as $error)
+                                        {{ $error }}<br />
+                                    @endforeach
+                                </div>
+                            @endif
+                            
                             <button class="collapse-table" id="tariff-info-toggle" role="button">Information about the Selected Tariff</button>
                             <table id="tariff-info" style="width: 100%;">
                                 <tr><td>Supplier</td><td>{{ $selected_tariff["supplierName"] }}</td></tr>
@@ -528,46 +592,46 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="postcode">Postcode</label>
-                                    <input type="text" id="postcode" name="postcode" value="{{ $user_address['postcode'] }}" />
+                                    <input type="text" id="postcode" name="postcode" value="{{ $postcode }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="address_line_1">Address Line 1<span class="text-danger">*</span></label>
-                                    <input type="text" id="address_line_1" name="address_line_1" required />
+                                    <input type="text" id="address_line_1" name="address_line_1" value="{{ $address_line_1 }}" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="address_line_2">Address Line 2</label>
-                                    <input type="text" id="address_line_2" name="address_line_2" value="" />
+                                    <input type="text" id="address_line_2" name="address_line_2" value="{{ $address_line_2 }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="town">Town<span class="text-danger">*</span></label>
-                                    <input type="text" id="town" name="town" value="" required />
+                                    <input type="text" id="town" name="town" value="{{ $town }}" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="county">County</label>
-                                    <input type="text" id="county" name="county" value="" />
+                                    <input type="text" id="county" name="county" value="{{ $county }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="county">Do you already have a smart meter installed at your home?<span class="text-danger">*</span></label>
-                                    <select id="county" name="county" value="">
+                                    <label for="smartMeter">Do you already have a smart meter installed at your home?<span class="text-danger">*</span></label>
+                                    <select id="smartMeter" name="smartMeter" data-value="{{ $smartMeter }}" required>
                                         <option value="">Please Select</option>
-                                        <option value="yes">Yes</option>
-                                        <option value="no">No</option>
+                                        <option value="Y">Yes</option>
+                                        <option value="N">No</option>
                                         <option value="doNotKnow">Don't Know</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="gas_meter_number">Gas meter number<span class="text-danger">*</span></label>
-                                    <p><input type="text" id="gas_meter_number" name="gas_meter_number" value="{{ $mprn -> mprn }}" required /></p>
+                                    <p><input type="text" id="gas_meter_number" name="gas_meter_number" value="{{ $gas_meter_number }}" required /></p>
                                     <p>Your gas meter number is also known as a Meter Point Reference Number (MPRN). Please enter the number as you find it on your gas bill. If you are unable to find this information on your energy bill, you can get it by calling the National Grid on 0870 608 1524 (press 2 then 1).</p>
-                                    <p>Or click here to find this information online. Enter your postcode first and then your house number.</p>
+                                    <p>Or <a href="https://www.findmysupplier.energy/webapp/index.html">click here</a> to find this information online. Enter your postcode first and then your house number.</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="elec_meter_number">Electricity meter number<span class="text-danger">*</span></label>
-                                    <p><input type="text" id="elec_meter_number" name="elec_meter_number" value="{{ $user_address['mpan'] }}" /></p>
+                                    <p><input type="text" id="elec_meter_number" name="elec_meter_number" value="{{ $elec_meter_number }}" /></p>
                                     <p>Your electricity meter number is also known as a Supply (S) Number or MPAN. Please enter the bottom row of numbers as you find them on your electricity bill without spaces as highlighted in the example below.</p>
                                     <img alt="Example of an Electricity Number" src="" />
                                 </div>
-
+                                
                                 <br /><hr class="thin-line" /><br />
                                 
                                 <h2>Your Direct Debit Details</h2>
@@ -576,21 +640,21 @@
                                 
                                 <div class="form-group">
                                     <label for="accountName" class="font-weight-bold">Account Holder Name<span class="text-danger">*</span></label> 
-                                    <input type="text" id="accountName" name="accountName" value="" required />
+                                    <input type="text" id="accountName" name="accountName" value="{{ $accountName }}" required />
                                 </div>
                                 <div class="row no-margin">
                                     <div class="col-md-8 col-sm-12">
                                         <div class="form-group">
                                             <label for="sortCode1 sortCode2 sortCode3" class="font-weight-bold d-block">Sort Code<span class="text-danger">*</span></label>
-                                            <input id="sortCode1" name="sortCodeOne" inputmode="tel" maxlength="2" type="text" class="w-25 d-inline text-center" required />
-                                            <input id="sortCode2" name="sortCode2" inputmode="tel" maxlength="2" type="text" class="w-25 d-inline text-center" required />
-                                            <input id="sortCode3" name="sortCode3" inputmode="tel" maxlength="2" type="text" class="w-25 d-inline text-center" required />
+                                            <input id="sortCode1" name="sortCode1" inputmode="tel" minlength="2" maxlength="2" type="text" class="w-25 d-inline text-center" value="{{ $sortCode1 }}" required />
+                                            <input id="sortCode2" name="sortCode2" inputmode="tel" minlength="2" maxlength="2" type="text" class="w-25 d-inline text-center" value="{{ $sortCode2 }}" required />
+                                            <input id="sortCode3" name="sortCode3" inputmode="tel" minlength="2" maxlength="2" type="text" class="w-25 d-inline text-center" value="{{ $sortCode3 }}" required />
                                         </div>
                                     </div> 
                                     <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
                                             <label for="accountNumber" class="font-weight-bold">Account Number<span class="text-danger">*</span></label> 
-                                            <input id="accountNumber" name="accountNumber" inputmode="tel" maxlength="8" type="text" required />
+                                            <input id="accountNumber" name="accountNumber" inputmode="tel" maxlength="8" type="text" value="{{ $accountNumber }}" required />
                                         </div>
                                     </div>
                                 </div>
@@ -598,7 +662,7 @@
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label for="preferredDay" class="font-weight-bold">Select your payment date<span class="text-danger">*</span></label>
-                                            <select id="preferredDay" name="preferredDay" required>
+                                            <select id="preferredDay" name="preferredDay" data-value="{{ $preferredDay }}" required>
                                                 <option value="" selected>Please Select</option> 
                                                 <option value="1">1</option> 
                                                 <option value="2">2</option> 
@@ -633,7 +697,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" />
+                                    <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
                                     <label for="direct_debit_confirmation" class="">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account.</label>
                                 </div>
                                 <div class="row no-margin mt-4">
@@ -643,8 +707,8 @@
                                                 How would you like to receive all communications from <!-- insert name of selected tariff here -->? An electronic preference means <!-- "they" will be name of selected tariff -->they will
                                                 communicate with you electronically wherever possible.<span class="text-danger">*</span>
                                             </label> 
-                                            <select id="receiveBills" name="receiveBills" required>
-                                                <option value="electronically">Electronically</option>
+                                            <select id="receiveBills" name="receiveBills" value="{{ $receiveBills }}" required>
+                                                <option value="Email">Email</option>
                                             </select>
                                         </div>
                                     </div>
@@ -657,33 +721,29 @@
                                 <h2>Your Contact Details</h2>
                                 <div class="form-group">
                                     <label for="title" class="font-weight-bold">Title<span class="text-danger">*</span></label> 
-                                    <input type="text" id="title" name="title" value="" required />
+                                    <input type="text" id="title" name="title" value="{{ $title }}" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="firstName" class="font-weight-bold">First Name<span class="text-danger">*</span></label> 
-                                    <input type="text" id="firstName" name="firstName" value="" required />
+                                    <input type="text" id="firstName" name="firstName" value="{{ $firstName }}" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="lastName" class="font-weight-bold">Last Name<span class="text-danger">*</span></label> 
-                                    <input type="text" id="lastName" name="lastName" value="" required />
+                                    <input type="text" id="lastName" name="lastName" value="{{ $lastName }}" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="telephone" class="font-weight-bold">Telephone<span class="text-danger">*</span></label> 
-                                    <input type="text" id="telephone" name="telephone" value="" required />
+                                    <input type="text" id="telephone" name="telephone" value="{{ $telephone }}" required />
                                     <span class="small-input-text">Please enter the number starting with 0 and not the dialling code.</span>
                                 </div>
                                 <div class="form-group">
                                     <label for="mobile" class="font-weight-bold">Mobile</label> 
-                                    <input type="text" id="mobile" name="mobile" value="" />
+                                    <input type="text" id="mobile" name="mobile" value="{{ $mobile }}" />
                                     <span class="small-input-text">Please enter the number starting with 0 and not the dialling code.</span>
                                 </div>
                                 <div class="form-group">
                                     <label for="emailAddress" class="font-weight-bold">Email Address<span class="text-danger">*</span></label> 
-                                    <input type="text" id="emailAddress" name="emailAddress" value="" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="dob" class="font-weight-bold">Date of Birth<span class="text-danger">*</span></label> 
-                                    <input type="text" id="dob" name="dob" value="" required />
+                                    <input type="email" id="emailAddress" name="emailAddress" value="{{ $emailAddress }}" required />
                                 </div>
                                 
                                 <button type="submit" class="switchButton">Get Switching</button>
@@ -700,6 +760,14 @@
 
 @section('script')
     <script>
+        $(function()
+        {
+            var inputSmartMeter = $("#smartMeter");
+            var inputPreferredDay = $("#preferredDay");
+            inputSmartMeter.find('[value=' + inputSmartMeter.attr('data-value') + ']').prop("selected", true);
+            inputPreferredDay.find('[value=' + inputPreferredDay.attr('data-value') + ']').prop("selected", true);
+        });
+
         $('#tariff-info-toggle').click(function()
         {
             $('#tariff-info').fadeToggle(750);

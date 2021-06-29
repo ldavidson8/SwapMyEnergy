@@ -184,7 +184,7 @@ class ResidentialApiRepository extends Controller
     
     /// Process an Application ///
 
-    public static function applications_processapplication($data, $status)
+    public static function applications_processapplication($data, &$status)
     {
         $response = Http::withHeaders(['Authorization' => self::_apiKey]) -> post(self::_apiUrl . "applications/processapplication", $data);
         return self::getOneObject($response, $status);

@@ -63,6 +63,7 @@
                         <br />
                         <input type="hidden" id="postcode" name="postcode" />
                         <input type="hidden" id="mpan" name="mpan" />
+                        <input type="hidden" id="houseName" name="houseName" />
                         <label id="labelHouseNo" for="houseNo" style="font-size: 24px">Select your address</label>
                         <select id="houseNo" name="houseNo" class="form-control" value="{{ old('houseNo') }}" required>
                             <option value="" selected>Please Select</option>
@@ -92,6 +93,7 @@
 
             var frmAddress = $("#form_address");
             var inputPostcode = $("#postcode");
+            var inputHouseName = $("#houseName");
             var inputHouseNo = $("#houseNo");
             var inputHouseNoValues = $("#houseNo_values");
             var inputMpan = $("#mpan");
@@ -151,8 +153,9 @@
                                 // add each row to the dropdown list
                                 for (i in rows)
                                 {
-                                    inputHouseNoValues.append($('<option class="house-number-option" value="' + rows[i].houseNo + '" data-mpan="' + rows[i].mpan + '">' + rows[i].address + '</option>'));
+                                    inputHouseNoValues.append($('<option class="house-number-option" value="' + rows[i].houseNo + '" data-mpan="' + rows[i].mpan + '" data-houseName="' + rows[i].houseName + '">' + rows[i].address + '</option>'));
                                 }
+                                
                                 ShowAddressSection();
                             }
                             catch (ex)
@@ -181,6 +184,7 @@
             inputHouseNo.change(function(e)
             {
                 inputMpan.val(inputHouseNo.find(":selected").attr("data-mpan"));
+                inputHouseName.val(inputHouseNo.find(":selected").attr("data-houseName"));
             });
 
 

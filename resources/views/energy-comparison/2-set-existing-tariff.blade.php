@@ -1,4 +1,7 @@
-<?php $logo_drag_text = "Drag the logo banner sideways to see more options"; ?>
+<?php
+    $logo_drag_text = "Drag the logo banner sideways to see more options";
+    $dmq = $supplier_data["mprn"] -> dmq;
+?>
 
 @extends('layouts.master')
 
@@ -224,7 +227,7 @@
         <div class="row flex-grow-1 no-padding background-image-wind-turbines background-image-top background-image-contain background-image-no-mobile" style="color: #202020;">
             <form id="form-main" class="container" action="{{ route('residential.energy-comparison.2-existing-tariff') }}" method="POST" id="energy_form" style="width: 100%;">
                 @csrf
-                <input type="hidden" id="region_id" name="region_id" value="<?= $region["id"] ?>" />
+                <input type="hidden" id="region_id" name="region_id" value="<?= $supplier_data["region"]["id"] ?>" />
                 <div>
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
@@ -510,17 +513,10 @@
                                     <td></td>
                                     <td><span id="your_gas_usage_kwh_error" class="form-error-message text-danger"></span></td>
                                 </tr>
-                                @if (isset($dmq) && is_numeric($dmq) && $dmq > 0)
-                                    <tr>
-                                        <td><label for="your_gas_usage_kwh"> I use </label></td>
-                                        <td><input class="form-control" type="number" pattern="[0-9]*" name="your_gas_usage_kwh" id="your_gas_usage_kwh" style="margin-bottom: 1em;" value="{{ $dmq }}" /></td>
-                                    </tr>
-                                @else
-                                    <tr>
-                                        <td><label for="your_gas_usage_kwh"> I use </label></td>
-                                        <td><input type="number" pattern="[0-9]*" name="your_gas_usage_kwh" id="your_gas_usage_kwh" style="margin-bottom: 1em;" /></td>
-                                    </tr>
-                                @endif
+                                <tr>
+                                    <td><label for="your_gas_usage_kwh"> I use </label></td>
+                                    <td><input class="form-control" type="number" pattern="[0-9]*" name="your_gas_usage_kwh" id="your_gas_usage_kwh" style="margin-bottom: 1em;" value="{{ (isset($dmq) && is_numeric($dmq) && $dmq > 0) ? $dmq : "" }}" /></td>
+                                </tr>
                                 <tr>
                                     <td></td>
                                     <td><span id="your_gas_usage_length_error" class="form-error-message text-danger"></span></td>
@@ -531,11 +527,7 @@
                                         <select class="form-control" id="your_gas_usage_length" name="your_gas_usage_length">
                                             <option value="Month"> Month </option>
                                             <option value="Quarter"> Quarter </option>
-                                            @if (isset($dmq) && is_numeric($dmq) && $dmq > 0)
-                                                <option value="Year" selected> Year </option>
-                                            @else
-                                            <option value="Year"> Year </option>
-                                            @endif
+                                            <option value="Year" selected> Year </option>
                                         </select>
                                     </td>
                                 </tr>
@@ -570,7 +562,7 @@
                                         <select class="form-control" id="your_electric_usage_length" name="your_electric_usage_length">
                                             <option value="Month"> Month </option>
                                             <option value="Quarter"> Quarter </option>
-                                            <option value="Year"> Year </option>
+                                            <option value="Year" selected> Year </option>
                                         </select>
                                     </td>
                                 </tr>
