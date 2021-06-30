@@ -128,13 +128,6 @@
                                 variable length<br />contract
                             @endif
                         </p>
-                        @if (strlen($row["tariff_info"] -> features) > 0)
-                            <p style="border-top: solid 2px black;">
-                                @foreach (explode(",", $row["tariff_info"] -> features) as $feature)
-                                    <div>{{ $feature }}</div>
-                                @endforeach
-                            </p>
-                        @endif
                     </div>
                     <div class="col-12 col-lg-9 no-padding">
                         <table class="form-table table-block-on-mobile">
@@ -161,12 +154,23 @@
                                                 </div> 
                                             </td>
                                         </tr>
+                                        @if (strlen($row["tariff_info"] -> features) > 0)
+                                            <tr>
+                                                <td colspan="2">
+                                                    <p style="font-size: 16px; margin: 1em 0px;">
+                                                        @foreach (explode(",", $row["tariff_info"] -> features) as $feature)
+                                                            <span style="display: block; margin: 0px;">{{ $feature }}</span>
+                                                        @endforeach
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     </table>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    &pound;{{ $row["exitPenaltyAmount"] }} exit fee <br />
+                                    &pound;{{ $row["exitPenaltyAmount"] }} early exit fee <br />
                                     <span style="font-size: 16px">*calculated based on your existing usage </span>
                                 </td>
                                 <td style="text-align: right;">
