@@ -202,7 +202,7 @@
     }
     .form-top-img img
     {
-        max-width: 100%;
+        max-width: 80%;
         max-height: 100px;
     }
 

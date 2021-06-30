@@ -118,7 +118,7 @@
     }
     .form-top-img img
     {
-        max-width: 100%;
+        max-width: 80%;
         max-height: 100px;
     }
 
@@ -243,6 +243,7 @@
     .new-supplier-logo
     {
         max-width: 100%;
+        max-height: 100px;
     }
 
     @media (min-width: 768px) and (max-width: 991px)

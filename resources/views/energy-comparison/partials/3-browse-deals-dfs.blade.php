@@ -13,9 +13,10 @@
         background-color: #f3f2f1;
         color: #202020;
         text-align: center;
-        width: 200px;
-        height: 80px;
+        width: auto;
+        height: auto;
         display: inline-block;
+        padding: 5px;
     }
 
     #currentTariffTable td.current-supplier-monthly-cost-and-length
@@ -97,7 +98,7 @@
                                 <td colspan="2"><h2>Gas</h2></td>
                                 <td colspan="2" rowspan="4" style="vertical-align: top; padding-bottom: 20px;">
                                     <div class="current-supplier-logo">
-                                        <table class="form-table"><tr><td><img src="{{ asset('img/supplier-logos/') }}" alt="{{ $current_tariffs -> G -> supplierName }}" height="auto" width="auto" /></td></tr></table>
+                                        <table class="form-table"><tr><td style="padding: 0px;"><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> G -> supplierName . '.png') }}" alt="{{ $current_tariffs -> G -> supplierName }}" height="auto" width="auto" /></td></tr></table>
                                     </div>
                                 </td>
                             </tr>
@@ -132,7 +133,7 @@
                                 <td colspan="2"><h2 style="padding-top: 15px;">Electricity</h2></td>
                                 <td colspan="2" rowspan="2" style="vertical-align: bottom; padding-bottom: 20px;">
                                     <div class="current-supplier-logo">
-                                        <table class="form-table"><tr><td><img src="{{ asset('img/supplier-logos/') }}" alt="{{ $current_tariffs -> E -> supplierName }}" height="auto" width="auto" /></td></tr></table>
+                                        <table class="form-table"><tr><td style="padding: 0px;"><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> E -> supplierName . '.png') }}" alt="{{ $current_tariffs -> E -> supplierName }}" height="auto" width="auto" /></td></tr></table>
                                     </div>
                                 </td>
                             </tr>
@@ -225,7 +226,7 @@
             <div class="container rounded-container white-rounded-container">
                 <div class="row">
                     <div class="col-12 col-lg-3 no-padding" style="font-size: 16px; padding: 0px 10px 0px 0px !important;">
-                        <img class="new-supplier-logo" src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="100px" width="auto" /><br />
+                        <img class="new-supplier-logo" src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="auto" width="auto" /><br />
                         <p>{{ $row["tariffName"] }}</p>
                         <p style="border-bottom: solid 2px black; padding: 5px;">
                             <span style="font-size: 34px;">&pound;{{ number_format($row["bill"] / 12, 2) }}* </span><br />per month

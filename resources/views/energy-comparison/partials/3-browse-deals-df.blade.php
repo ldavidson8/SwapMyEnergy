@@ -15,7 +15,7 @@
         <table class="form-table"><tr><td>Current Tariff</td></tr></table>
     </div>
     <div class="no-padding form-top-img form-top-img-border-sm form-top-img-border-md" style="color: #202020;">
-        <table class="form-table"><tr><td><img src="{{ asset('img/supplier-logos/') }}" alt="{{ $current_tariffs -> G -> supplierName }}" height="auto" width="auto" /></td></tr></table>
+        <table class="form-table"><tr><td><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> G -> supplierName . '.png') }}" alt="{{ $current_tariffs -> G -> supplierName }}" height="auto" width="auto" /></td></tr></table>
     </div>
 </div>
 <div class="container rounded-container blue-rounded-container">
@@ -146,7 +146,7 @@
             <div class="container rounded-container white-rounded-container">
                 <div class="row">
                     <div class="col-12 col-lg-3 no-padding" style="font-size: 16px; padding: 0px 10px 0px 0px !important;">
-                        <img class="new-supplier-logo" src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="100px" width="auto" /><br />
+                        <img class="new-supplier-logo" src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="auto" width="auto" /><br />
                         <p>{{ $row["tariffName"] }}</p>
                         <p style="border-bottom: solid 2px black; padding: 5px;">
                             <span style="font-size: 34px;">&pound;{{ number_format($row["bill"] / 12, 2) }}* </span><br />per month
