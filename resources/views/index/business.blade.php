@@ -133,7 +133,7 @@
                                 <img src="{{ asset('img/business-homepage/upload.png')}}" style="width: 100px;" alt="upload icon">
                             </td>
                             <td>
-                                <p class="white-text" style="font-weight: normal;"><b>Step One - Upload your bill or request a callback</b><br> To get started, simply submit a copy of your energy bill. One of our experts will analyse your bill and provide you with a list of the best deals available to you. </p>
+                                <p class="white-text" style="font-weight: normal;"><b>Step One - Upload your bill or request a call-back</b><br> To get started, simply submit a copy of your energy bill. One of our experts will analyse your bill and provide you with a list of the best deals for you. </p>
                             </td>
                         </tr>
                         <tr>
@@ -141,7 +141,7 @@
                                 <img src="{{ asset('img/business-homepage/signed-document.png')}}" style="width: 100px;" alt="signed document">
                             </td>
                             <td>
-                                <p class="white-text" style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simply select the option that is most appropriate for your company. We'll always be on hand to help you understand your options. </p>
+                                <p class="white-text" style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simply select the option that is most appropriate for your company. We will (no contractions) always be on hand to help you understand your choices. </p>
                             </td>
                         </tr>
                         <tr>
@@ -149,7 +149,7 @@
                                 <img src="{{ asset('img/business-homepage/coins.png')}}" style="width: 100px;" alt="pound coins stacked on top each other">
                             </td>
                             <td>
-                                <p class="white-text" style="font-weight: normal;"><b>Step Three - Save </b><br> Change to a cheaper plan. Take a seat and unwind. We'll let you know when your contract is up for renewal so you can make sure you're getting the best value possible. </p>
+                                <p class="white-text" style="font-weight: normal;"><b>Step Three - Save </b><br> Change to a cheaper plan, take a seat and unwind. We will let you know when your contract is up for renewal so you can make sure you are getting the best value possible. </p>
                             </td>
                         </tr>
                     </table>
@@ -250,7 +250,7 @@
         <div class="row flex-grow-1 padding-20px">
             <div class="col-12 col-lg-9 center-content">
                 <div style="max-width: 100%;">
-                    <p> At Swap My Energy, we pride ourselves on giving businesses of all sizes easy access to the best commerical energy tariffs on the market. With our market leading commerical energy calculator, you can quickly find the best energy prices to make maximum savings on your business gas and electric bills. Our specialist business energy advisors are committed to supporting you throughout the process, from finding the best deal for your business to negotiating with suppliers to ensure your switch runs smoothly.
+                    <p> At Swap My Energy, we pride ourselves on giving businesses of all sizes easy access to the best commerical energy tariffs on the market. With our leading energy calculator, you can quickly find the best energy prices to make maximum savings on your business' gas and electric bills. Our specialist advisors are committed to supporting you throughout the process, from finding the best deal for your business to negotiating with suppliers to ensure your switch runs smoothly.
                     </p>
                 </div>
             </div>
