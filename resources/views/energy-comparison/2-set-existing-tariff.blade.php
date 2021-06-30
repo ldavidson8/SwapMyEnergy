@@ -236,7 +236,7 @@
                             @endforeach
                         </div>
                     @endif
-
+                    
                     <span id="fuel_type_error" class="form-error-message text-danger"></span>
                     <p class="paragraph-margin"> What are you looking to compare? </p>
                     <div class="btn-group btn-group-3 flex-wrap" role="group">

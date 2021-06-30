@@ -102,7 +102,6 @@ class ResidentialComparisonController extends Controller
 
             $supplier_data = Session::get('ResidentialAPI.supplier_data');
             if (!isset($supplier_data)) return $this -> BackTo1FindAddress();
-            // return response() -> json($supplier_data);
             
             $page_title = 'Compare Energy Prices - Your Tariff';
             return view('energy-comparison.2-set-existing-tariff', compact('page_title', 'supplier_data'));
@@ -152,7 +151,6 @@ class ResidentialComparisonController extends Controller
 
     public function setExistingTariffGas(Request $request, $user_address)
     {
-        // return response() -> json(, $status);
         // TODO: validation
         try
         {
@@ -179,12 +177,12 @@ class ResidentialComparisonController extends Controller
                 $user_address["movingHouse"], $existing_tariff -> payment_method, true, "", $user_address["postcode"],
                 $status);
 
-            // $tariff_ids = [];
+            $tariff_ids = [];
             $new_tariffs = [];
             foreach ($tariff_results["tariffs"] as $row)
             {
                 // TODO: find a better way
-                // $tariff_ids[] = $row["tariffId"];
+                $tariff_ids[] = $row["tariffId"];
                 $row["tariff_info"] = Repository::tariffs_info_by_id($row["tariffId"], $status);
                 $new_tariffs[] = $row;
             }
@@ -392,7 +390,6 @@ class ResidentialComparisonController extends Controller
             
             /// Build the view model ///
             $params = [ "existing_tariff" => $existing_tariff, "current_tariffs" => $current_tariffs, "new_tariffs" => $new_tariffs, 'page_title' => 'Compare Energy Prices - Browse Deals' ];
-            // return response() -> json($params);
             return view('energy-comparison.3-browse-deals', $params);
         }
         catch (Throwable $th)
@@ -410,7 +407,7 @@ class ResidentialComparisonController extends Controller
         {
             $new_tariffs = Session::get('ResidentialAPI.new_tariffs');
             $tariff_position = $request -> input('tariffPosition');
-            $selected_tariff = $new_tariffs[$tariff_position];
+            $selected_tariff = $new_tariffs[$tariff_position - 1];
             Session::put('ResidentialAPI.selected_tariff', $selected_tariff);
 
             return redirect() -> action([ self::class, 'getSwitching' ]);
@@ -441,7 +438,6 @@ class ResidentialComparisonController extends Controller
             
             $page_title = "Get Switching - Energy Swap";
             $params = compact('page_title', 'user_address', 'region', 'existing_tariff', 'current_tariffs', 'selected_tariff', 'mprn');
-            // return response() -> json($params);
             return view('energy-comparison.4-get-switching', $params);
         }
         catch (Throwable $th)
@@ -456,6 +452,7 @@ class ResidentialComparisonController extends Controller
     {
         try
         {
+            // return $this -> BackTo4GetSwitching();
             $validator = Validator::make($request -> all(),
             [
                 'postcode' => 'required|string',
@@ -485,9 +482,9 @@ class ResidentialComparisonController extends Controller
             if (strlen($telephone) != 11) return $this -> BackTo4GetSwitching($validator -> errors([ '' => 'The telephone must be 11 digits long.' ]));
             if ($request -> has('mobile'))
             {
-                if (strlen($request -> input('mobile')) != 11) return $this -> BackTo4GetSwitching($validator -> errors([ '' => 'The telephone must be 11 digits long.' ]));
+                $mobile = $request -> input('mobile');
+                if (strlen($mobile) > 0 && strlen($request -> input('mobile')) != 11) return $this -> BackTo4GetSwitching($validator -> errors([ '' => 'The telephone must be 11 digits long.' ]));
             }
-
             // return response() -> json($request -> all());
             
             $user_address = Session::get('ResidentialAPI.user_address');
@@ -503,6 +500,9 @@ class ResidentialComparisonController extends Controller
             {
                 return $this -> BackTo4GetSwitching();
             }
+            
+            // $mpandetails = Repository::addresses_mpandetails($user_address["mpan"], $status);
+            // return response() -> json($mpandetails, $status);
             
             $address_line_2 = $request -> input("address_line_2");
             $county = $request -> input("county");
@@ -528,18 +528,18 @@ class ResidentialComparisonController extends Controller
                 "mobileNo" => $request -> input("mobile"),
                 "email" => $request -> input("emailAddress"),
                 "currentAddress" => [
-                    "line1" => $request -> input("address_line_1"),
-                    "line2" => (isset($address_line_2)) ? $address_line_2 : "",
+                    "line1" => "3 TOWER GREEN", //$request -> input("address_line_1"),
+                    "line2" => "FULWOOD", // (isset($address_line_2)) ? $address_line_2 : "",
                     "line3" => "",
-                    "town" => $request -> input("town"),
-                    "county" => (isset($county)) ? $county : "",
-                    // "bldNumber" => "",
-                    // "bldName" => "",
-                    // "subBld" => "",
-                    // "throughfare" => "",
-                    // "dependantThroughFare" => "",
-                    // "yearsAtResidence" => 3,
-                    // "monthsAtResidence" => 6,
+                    "town" => "PRESTON", // $request -> input("town"),
+                    "county" => "LANCASHIRE", // (isset($county)) ? $county : "",
+                    "bldNumber" => "1",
+                    "bldName" => "",
+                    "subBld" => "",
+                    "throughfare" => "",
+                    "dependantThroughFare" => "",
+                    "yearsAtResidence" => 3,
+                    "monthsAtResidence" => 6,
                     "mprn" => $mprn -> mprn,
                     "mpanNumber" => $user_address["mpan"]
                 ],
@@ -550,11 +550,15 @@ class ResidentialComparisonController extends Controller
                     "line3" => "",
                     "town" => "London",
                     "county" => "East London",
-                    // "bldNumber" => "1",
-                    // "bldName" => "",
-                    // "subBld" => "",
-                    // "throughfare" => "",
-                    // "dependantThroughFare" => ""
+                    "bldNumber" => "1",
+                    "bldName" => "",
+                    "subBld" => "",
+                    "throughfare" => "",
+                    "dependantThroughFare" => "",
+                    "yearsAtResidence" => 3,
+                    "monthsAtResidence" => 6,
+                    "mprn" => $mprn -> mprn,
+                    "mpanNumber" => $user_address["mpan"]
                 ] : null,
                 "previousAddress" => null,
                 // [
@@ -620,13 +624,29 @@ class ResidentialComparisonController extends Controller
                 $requestObj["user"]["elecTariffId"] = (int)$current_tariffs -> E -> tariffId;
                 $requestObj["user"]["elecPayment"] = $current_tariffs -> E -> paymentMethod;
                 $requestObj["user"]["currentTariffElecConsumption"] = (double)$current_tariffs -> E -> units;
-                $requestObj["user"]["currentTariffGasBill"] = (double)$current_tariffs -> E -> bill;
+                $requestObj["user"]["currentTariffElecBill"] = (double)$current_tariffs -> E -> bill;
             }
-            
-            return response() -> json($requestObj);
 
-            // Repository::applications_processapplication($requestObj, $status);
-            // return response() -> json($requestObj, $status);
+            if (!isset($requestObj["user"]["billingAddress"]))
+            {
+                $requestObj["user"]["billingAddress"] = $requestObj["user"]["currentAddress"];
+                $requestObj["user"]["billingAddress"] = [];
+                $requestObj["user"]["billingAddress"]["line1"] = $requestObj["user"]["currentAddress"]["line1"];
+                $requestObj["user"]["billingAddress"]["line2"] = $requestObj["user"]["currentAddress"]["line2"];
+                $requestObj["user"]["billingAddress"]["line3"] = $requestObj["user"]["currentAddress"]["line3"];
+                $requestObj["user"]["billingAddress"]["town"] = $requestObj["user"]["currentAddress"]["town"];
+                $requestObj["user"]["billingAddress"]["county"] = $requestObj["user"]["currentAddress"]["county"];
+                $requestObj["user"]["billingAddress"]["bldNumber"] = $requestObj["user"]["currentAddress"]["bldNumber"];
+                $requestObj["user"]["billingAddress"]["bldName"] = $requestObj["user"]["currentAddress"]["bldName"];
+                $requestObj["user"]["billingAddress"]["subBld"] = $requestObj["user"]["currentAddress"]["subBld"];
+                $requestObj["user"]["billingAddress"]["throughfare"] = $requestObj["user"]["currentAddress"]["throughfare"];
+                $requestObj["user"]["billingAddress"]["dependantThroughFare"] = $requestObj["user"]["currentAddress"]["dependantThroughFare"];
+            }
+            // return response() -> json($requestObj);
+
+            $result = Repository::applications_processapplication($requestObj, $status);
+            return $result;
+            return response() -> json($result, $status);
         }
         catch (Throwable $th)
         {

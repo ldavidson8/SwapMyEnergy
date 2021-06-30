@@ -22,6 +22,12 @@ class ResidentialApiRepository extends Controller
         return self::getOneObject($response, $status);
     }
     
+    public static function addresses_mpandetails($mpan, &$status)
+    {
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> get(self::_apiUrl . "addresses/mpandetails?mpan=$mpan");
+        return self::getOneObject($response, $status);
+    }
+    
     public static function addresses_mprn($postcode, $houseNo, $houseName = null, &$status = 200)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey ]) -> get(self::_apiUrl . "addresses/mprn?postcode=$postcode&houseNo=$houseNo&houseName=$houseName");
@@ -187,6 +193,7 @@ class ResidentialApiRepository extends Controller
     public static function applications_processapplication($data, &$status)
     {
         $response = Http::withHeaders(['Authorization' => self::_apiKey]) -> post(self::_apiUrl . "applications/processapplication", $data);
+        return $response;
         return self::getOneObject($response, $status);
     }
 

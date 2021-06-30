@@ -226,6 +226,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-3 no-padding" style="font-size: 16px; padding: 0px 10px 0px 0px !important;">
                         <img class="new-supplier-logo" src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="100px" width="auto" /><br />
+                        <p>{{ $row["tariffName"] }}</p>
                         <p style="border-bottom: solid 2px black; padding: 5px;">
                             <span style="font-size: 34px;">&pound;{{ number_format($row["bill"] / 12, 2) }}* </span><br />per month
                         </p>
@@ -237,6 +238,13 @@
                                 variable length<br />contract
                             @endif
                         </p>
+                        @if (strlen($row["tariff_info"] -> features) > 0)
+                            <p style="border-top: solid 2px black;">
+                                @foreach (explode(",", $row["tariff_info"] -> features) as $feature)
+                                    <div>{{ $feature }}</div>
+                                @endforeach
+                            </p>
+                        @endif
                     </div>
                     <div class="col-12 col-lg-9 no-padding">
                         <table class="form-table table-block-on-mobile">
