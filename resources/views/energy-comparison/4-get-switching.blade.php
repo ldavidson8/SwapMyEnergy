@@ -11,6 +11,7 @@
     $old_smartMeter = old('smartMeter');
     $old_gas_meter_number = old('gas_meter_number');
     $old_elec_meter_number = old('elec_meter_number');
+    $old_same_current_address = old('same_current_address');
     
     $postcode = (isset($old_postcode)) ? $old_postcode : $mprn -> postcode;
     $address_line_1 = (isset($old_address_line_1)) ? $old_address_line_1 : trim($user_address["houseNo"] . " " . $user_address["houseName"]);
@@ -20,8 +21,10 @@
     $smartMeter = (isset($old_smartMeter)) ? $old_smartMeter : "";
     $gas_meter_number = (isset($old_gas_meter_number)) ? $old_gas_meter_number : $mprn -> mprn;
     $elec_meter_number = (isset($old_elec_meter_number)) ? $old_elec_meter_number : $user_address["mpan"];
+    $same_current_address = (isset($same_current_address)) ? $same_current_address : true;
     
     
+    $old_payment_method = old('payment_method');
     $old_bankName = old('bankName');
     $old_accountName = old('accountName');
     $old_sortCode1 = old('sortCode1');
@@ -32,6 +35,7 @@
     $old_direct_debit_confirmation = old('direct_debit_confirmation');
     $old_receiveBills = old('receiveBills');
     
+    $payment_method = (isset($old_payment_method)) ? $old_payment_method : "";
     $bankName = (isset($old_bankName)) ? $old_bankName : "";
     $accountName = (isset($old_accountName)) ? $old_accountName : "";
     $sortCode1 = (isset($old_sortCode1)) ? $old_sortCode1 : "";
@@ -49,6 +53,7 @@
     $old_telephone = old('telephone');
     $old_mobile = old('mobile');
     $old_emailAddress = old('emailAddress');
+    $old_dob = old('dob');
 
     $title = (isset($old_title)) ? $old_title : "";
     $firstName = (isset($old_firstName)) ? $old_firstName : "";
@@ -56,6 +61,17 @@
     $telephone = (isset($old_telephone)) ? $old_telephone : "";
     $mobile = (isset($old_mobile)) ? $old_mobile : "";
     $emailAddress = (isset($old_emailAddress)) ? $old_emailAddress : "";
+    $dob = (isset($old_dob)) ? $old_dob : "";
+
+    $coolingOff = 0;
+    if (isset($selected_tariff["supplierCoolingOff"]) && is_numeric(isset($selected_tariff["supplierCoolingOff"])))
+    {
+        $coolingOff = isset($selected_tariff["supplierCoolingOff"]);
+    }
+    if (isset($selected_tariff["tariff_info"] -> supplierCoolingOff) && is_numeric(isset($selected_tariff["tariff_info"] -> supplierCoolingOff)))
+    {
+        $coolingOff = isset($selected_tariff["tariff_info"] -> supplierCoolingOff);
+    }
 ?>
 
 @extends('layouts.master')
@@ -368,7 +384,8 @@
         display: inline;
     }
 
-    input:not([type="checkbox"])
+    input:not([type="checkbox"]),
+    select
     {
         display: block;
         width: 100%;
@@ -600,8 +617,8 @@
                                 @csrf
                                 <div class="form-group">
                                     <span id="postcode_error" class="form-error-message text-danger"></span>
-                                    <label for="postcode">Postcode</label>
-                                    <input type="text" id="postcode" name="postcode" value="{{ $postcode }}" />
+                                    <label for="postcode">Postcode <span class="text-danger">*</span></label>
+                                    <input type="text" id="postcode" name="postcode" value="{{ $postcode }}" required />
                                 </div>
                                 <div class="form-group">
                                     <span id="address_line_1_error" class="form-error-message text-danger"></span>
@@ -630,7 +647,7 @@
                                         <option value="">Please Select</option>
                                         <option value="Y">Yes</option>
                                         <option value="N">No</option>
-                                        <option value="doNotKnow">Don't Know</option>
+                                        <option value="DK">Don't Know</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -647,16 +664,34 @@
                                     <p>Your electricity meter number is also known as a Supply (S) Number or MPAN. Please enter the bottom row of numbers as you find them on your electricity bill without spaces as highlighted in the example below.</p>
                                     <img alt="Example of an Electricity Number" src="" />
                                 </div>
+                                <div class="form-group">
+                                    <span id="same_current_address_error" class="form-error-message text-danger"></span>
+                                    <label for="same_current_address">Billing Address</label>
+                                    <input type="checkbox" id="same_current_address" name="same_current_address" {{ ($same_current_address == true) ? "checked" : "" }} />
+                                    <label for="same_current_address" style="font-weight: normal;">My billing address is the same as my supply address.</label>
+                                </div>
                                 
                                 <br /><hr class="thin-line" /><br />
                                 
                                 <h2>Your Direct Debit Details</h2>
                                 <p>You will pay &pound;{{ number_format($selected_tariff["bill"] / 12, 2) }} per month to {{ $selected_tariff["supplierName"] }}.</p>
-                                <p>Even after you have submitted this application you still have 14 days from today to cancel your contract if you change your mind.</p>
+                                @if ($coolingOff > 0)
+                                    <p>Even after you have submitted this application you still have {{ $coolingOff }} days from today to cancel your contract if you change your mind.</p>
+                                @endif
                                 
                                 <div class="form-group">
+                                    <span id="payment_method_error" class="form-error-message text-danger"></span>
+                                    <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
+                                    <select type="text" id="payment_method" name="payment_method" data-value="{{ $payment_method }}" required>
+                                        <option value="">Please Select</option>
+                                        @foreach ($selected_payment_methods as $spm)
+                                            <option value="{{ $spm['id'] }}">{{ $spm['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <span id="bankName_error" class="form-error-message text-danger"></span>
-                                    <label for="bankName" class="font-weight-bold">Bank Name</label>
+                                    <label for="bankName" class="font-weight-bold">Bank Name <span class="text-danger">*</span></label>
                                     <input type="text" id="bankName" name="bankName" value="{{ $bankName }}" required="required" />
                                 </div>
                                 <div class="form-group">
@@ -664,29 +699,24 @@
                                     <label for="accountName" class="font-weight-bold">Account Holder Name<span class="text-danger">*</span></label> 
                                     <input type="text" id="accountName" name="accountName" value="{{ $accountName }}" required />
                                 </div>
-                                <div class="row no-margin">
-                                    <div class="col-md-8 col-sm-12">
-                                        <div class="form-group">
-                                            <span id="sortCode_error" class="form-error-message text-danger"></span>
-                                            <label for="sortCode1 sortCode2 sortCode3" class="font-weight-bold d-block">Sort Code<span class="text-danger">*</span></label>
-                                            <input id="sortCode1" name="sortCode1" inputmode="tel" minlength="2" maxlength="2" type="text" class="w-25 d-inline text-center" value="{{ $sortCode1 }}" required />
-                                            <input id="sortCode2" name="sortCode2" inputmode="tel" minlength="2" maxlength="2" type="text" class="w-25 d-inline text-center" value="{{ $sortCode2 }}" required />
-                                            <input id="sortCode3" name="sortCode3" inputmode="tel" minlength="2" maxlength="2" type="text" class="w-25 d-inline text-center" value="{{ $sortCode3 }}" required />
-                                        </div>
-                                    </div> 
-                                    <div class="col-md-4 col-sm-12">
-                                        <div class="form-group">
-                                            <span id="accountNumber_error" class="form-error-message text-danger"></span>
-                                            <label for="accountNumber" class="font-weight-bold">Account Number<span class="text-danger">*</span></label> 
-                                            <input id="accountNumber" name="accountNumber" inputmode="tel" maxlength="8" type="text" value="{{ $accountNumber }}" required />
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <span id="sortCode_error" class="form-error-message text-danger"></span>
+                                    <label for="sortCode1 sortCode2 sortCode3" class="font-weight-bold d-block">Sort Code<span class="text-danger">*</span></label>
+                                    <input id="sortCode1" name="sortCode1" inputmode="tel" minlength="2" maxlength="2" type="text" value="{{ $sortCode1 }}" required class="d-inline text-center" style="width: 150px; max-width: 100%;" />
+                                    <input id="sortCode2" name="sortCode2" inputmode="tel" minlength="2" maxlength="2" type="text" value="{{ $sortCode2 }}" required class="d-inline text-center" style="width: 150px; max-width: 100%;" />
+                                    <input id="sortCode3" name="sortCode3" inputmode="tel" minlength="2" maxlength="2" type="text" value="{{ $sortCode3 }}" required class="d-inline text-center" style="width: 150px; max-width: 100%;" />
+                                </div> 
+                                <div class="form-group">
+                                    <span id="accountNumber_error" class="form-error-message text-danger"></span>
+                                    <label for="accountNumber" class="font-weight-bold">Account Number<span class="text-danger">*</span></label> 
+                                    <input id="accountNumber" name="accountNumber" inputmode="tel" maxlength="8" type="text" value="{{ $accountNumber }}" required />
+                                    <span class="small-input-text">If your account number is less than 8 digits, you should add zeros to the beginning of your account number until it is exactly 8 digits long.</span>
                                 </div>
                                 <div class="row no-margin">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <span id="preferredDay_error" class="form-error-message text-danger"></span>
-                                            <label for="preferredDay" class="font-weight-bold">Select your payment date<span class="text-danger">*</span></label>
+                                            <label for="preferredDay" class="font-weight-bold">Select your payment date <span class="text-danger">*</span></label>
                                             <select id="preferredDay" name="preferredDay" data-value="{{ $preferredDay }}" required>
                                                 <option value="" selected>Please Select</option> 
                                                 <option value="1">1</option> 
@@ -721,10 +751,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <br />
                                 <div class="form-group">
                                     <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
+                                    <p><label for="direct_debit_confirmation">Direct Debit Confirmation <span class="text-danger">*</span></label></p>
                                     <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
-                                    <label for="direct_debit_confirmation" class="">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account.</label>
+                                    <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
                                 </div>
                                 <div class="row no-margin mt-4">
                                     <div class="col-md-12">
@@ -740,8 +772,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="collapse-table" id="cancellation-rights-toggle" role="button" style="border: none;">Your Cancellation Rights</button>
-                                <div id="cancellation-rights" style="display: none">If you change your mind and want to cancel the contract, you must tell Igloo Energy within the cooling off period, which ends 14 days from day after you sign up.</div>
+
+                                @if ($coolingOff > 0)
+                                    <button type="button" class="collapse-table" id="cancellation-rights-toggle" role="button" style="border: none;">Your Cancellation Rights</button>
+                                    <div id="cancellation-rights" style="display: none">If you change your mind and want to cancel the contract, you must tell {{ $selected_tariff["supplierName"] }} within the cooling off period, which ends 14 days from day after you sign up.</div>
+                                @endif
                                 
                                 <br /><hr class="thin-line" /><br />
 
@@ -778,6 +813,11 @@
                                     <label for="emailAddress" class="font-weight-bold">Email Address<span class="text-danger">*</span></label> 
                                     <input type="email" id="emailAddress" name="emailAddress" value="{{ $emailAddress }}" required />
                                 </div>
+                                <div class="form-group">
+                                    <span id="dob_error" class="form-error-message text-danger"></span>
+                                    <label for="dob" class="font-weight-bold">Date of Birth<span class="text-danger">*</span></label> 
+                                    <input type="date" id="dob" name="dob" value="{{ $dob }}" required />
+                                </div>
                                 
                                 <button type="submit" class="switchButton">Get Switching</button>
                             </form>
@@ -795,12 +835,6 @@
     <script>
         document.body.onload = function()
         {
-            var inputSmartMeter = $("#smartMeter");
-            var inputPreferredDay = $("#preferredDay");
-            inputSmartMeter.find('[value=' + inputSmartMeter.attr('data-value') + ']').prop("selected", true);
-            inputPreferredDay.find('[value=' + inputPreferredDay.attr('data-value') + ']').prop("selected", true);
-            
-
             // javascript validation
             var mainForm = document.getElementById("main_form");
             
@@ -814,13 +848,15 @@
             // var inputTown = $("#town");
             // var errorCounty = $("#county_error");
             // var inputCounty = $("#county");
-            // var errorSmartMeter = $("#smartMeter_error");
-            // var inputSmartMeter = $("#smartMeter");
+            var errorSmartMeter = $("#smartMeter_error");
+            var inputSmartMeter = $("#smartMeter");
             // var errorGasMeterNumber = $("#gas_meter_number_error");
             // var inputGasMeterNumber = $("#gas_meter_number");
             // var errorElecMeterNumber = $("#elec_meter_number_error");
             // var inputElecMeterNumber = $("#elec_meter_number");
 
+            var errorPaymentMethod = $("#payment_method_error");
+            var inputPaymentMethod = $("#payment_method");
             // var errorBankName = $("#bankName_error");
             // var inputBankName = $("#bankName");
             // var errorAccountName = $("#accountName_error");
@@ -833,10 +869,10 @@
             // var inputSortCode3 = $("#sortCode3");
             // var errorAccountNumber = $("#accountNumber_error");
             // var inputAccountNumber = $("#accountNumber");
-            // var errorPreferredDay = $("#preferredDay_error");
-            // var inputPreferredDay = $("#preferredDay");
-            // var errorDirectDebitConfirmation = $("#direct_debit_confirmation_error");
-            // var inputDirectDebitConfirmation = $("#direct_debit_confirmation");
+            var errorPreferredDay = $("#preferredDay_error");
+            var inputPreferredDay = $("#preferredDay");
+            var errorDirectDebitConfirmation = $("#direct_debit_confirmation_error");
+            var inputDirectDebitConfirmation = $("#direct_debit_confirmation");
             // var errorReceiveBills = $("#receiveBills_error");
             // var inputReceiveBills = $("#receiveBills");
             
@@ -853,10 +889,40 @@
             // var errorEmailAddress = $("#emailAddress_error");
             // var inputEmailAddress = $("#emailAddress");
             
+
+            try
+            {
+                // var inputSmartMeter = $("#smartMeter");
+                // var inputPreferredDay = $("#preferredDay");
+                inputSmartMeter.find('[value=' + inputSmartMeter.attr('data-value') + ']').prop("selected", true);
+                inputPreferredDay.find('[value=' + inputPreferredDay.attr('data-value') + ']').prop("selected", true);
+                inputPaymentMethod.find('[value=' + inputPaymentMethod.attr('data-value') + ']').prop("selected", true);
+            }
+            catch {}
+
+            
             mainForm.onsubmit = function(e)
             {
                 $(".form-error-message").text('');
+
+                if (inputPaymentMethod.val().length == 0)
+                {
+                    e.preventDefault();
+                    errorPaymentMethod.text("The payment method is required.");
+                    try { $("html, body").animate({ "scrollTop": errorPaymentMethod.offset().top }, 0); }
+                    catch (ex) {}
+                    return;
+                }
                 
+                if (!inputDirectDebitConfirmation.prop("checked"))
+                {
+                    e.preventDefault();
+                    errorDirectDebitConfirmation.text("You must confirm to continue.");
+                    try { $("html, body").animate({ "scrollTop": errorDirectDebitConfirmation.offset().top }, 0); }
+                    catch (ex) {}
+                    return;
+                }
+
                 if (!inputTelephone.val().startsWith('0'))
                 {
                     e.preventDefault();

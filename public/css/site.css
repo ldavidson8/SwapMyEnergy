@@ -20,16 +20,20 @@ body
 .background-image-coffee-shop,
 .background-image-wind-turbines,
 .background-image-hydropower-plant,
-.background-image-preston
+.background-image-preston,
+.background-image-docks
 {
     position: relative;
 }
+
+.background-image-preston { background-color: #202020; z-index: 2; }
 
 .background-image-powerline::before,
 .background-image-coffee-shop::before,
 .background-image-wind-turbines::before,
 .background-image-hydropower-plant::before,
-.background-image-preston::before
+.background-image-preston::before,
+.background-image-docks::before
 {
     content: "";
     position: absolute;
@@ -49,8 +53,6 @@ body
     opacity: 0.3;
 }
 
-.background-image-preston { background-color: #202020; z-index: 2; }
-
 
 .background-image-contain::before { background-size: 100% auto; }
 
@@ -65,6 +67,7 @@ body
 .background-image-coffee-shop:not(.preload)::before { background-image: url('/img/background/coffee-shop_full.png'); }
 .background-image-wind-turbines:not(.preload)::before { background-image: url('/img/background/wind-turbines_full.png'); }
 .background-image-hydropower-plant:not(.preload)::before { background-image: url('/img/background/hydropower-plant_full.png'); }
+.background-image-docks:not(.preload)::before { background-image: url('/img/background/docks_full.jpg'); }
 
 @media (max-width: 1000px) and (max-height: 563px)
 {
@@ -73,6 +76,7 @@ body
     .background-image-coffee-shop:not(.preload)::before { background-image: url('/img/background/coffee-shop_half.png'); }
     .background-image-wind-turbines:not(.preload)::before { background-image: url('/img/background/wind-turbines_half.png'); }
     .background-image-hydropower-plant:not(.preload)::before { background-image: url('/img/background/hydropower-plant_half.png'); }
+    .background-image-docks:not(.preload)::before { background-image: url('/img/background/docks_half.jpg'); }
 }
 
 @media (max-width: 500px) and (max-height: 281px)
@@ -82,6 +86,7 @@ body
     .background-image-coffee-shop:not(.preload)::before { background-image: url('/img/background/coffee-shop_quarter.png'); }
     .background-image-wind-turbines:not(.preload)::before { background-image: url('/img/background/wind-turbines_quarter.png'); }
     .background-image-hydropower-plant:not(.preload)::before { background-image: url('/img/background/hydropower-plant_quarter.png'); }
+    .background-image-docks:not(.preload)::before { background-image: url('/img/background/docks_quarter.jpg'); }
 }
 
 img.default
