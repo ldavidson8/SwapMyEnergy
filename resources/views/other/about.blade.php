@@ -35,13 +35,22 @@
         }
         
 
-        /* video 
+        .video-container
         {
-            left: 50%;
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+
+        .SME-video
+        {
             position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        } */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
         @media (min-width: 1200px)
         {
@@ -88,10 +97,13 @@
         </div>
     </div>
     <hr/>
-        <video width="100%" height="auto" style="margin: auto; max-width: 100%; background: black url('{{ asset('img/Loading-thumbnail.png') }}') center center no-repeat" preload="none" autoplay muted loop>
+    <div class="video-container">
+        <iframe class="SME-video" width="100vw" height="calc(100vw/1.77)" src=https://www.youtube.com/embed/1BbKeuILfEo?playlist=1BbKeuILfEo&rel=0&amp;controls=0&modestbranding=1&autoplay=1&loop=1&mute=1 title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+        {{-- <video width="100%" height="auto" style="margin: auto; max-width: 100%; background: black url('{{ asset('img/Loading-thumbnail.png') }}') center center no-repeat" preload="none" autoplay muted loop>
             <source src="{{ asset('media/sme_mute.mp4') }}" type="video/mp4" />
             <source src="{{ asset('media/sme_mute_mobi.mp4') }}" type="video/mp4 media='(max-width: 991px)'">
-        </video>
+        </video> --}}
     <div class="full-size-50 container-fluid d-flex flex-column">
         <div class="row flex-grow-1 no-padding">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
