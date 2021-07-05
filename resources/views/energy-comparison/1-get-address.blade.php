@@ -66,8 +66,7 @@
                         <input type="hidden" id="houseName" name="houseName" />
                         <label id="labelHouseNo" for="houseNo" style="font-size: 24px">Select your address</label>
                         <select id="houseNo" name="houseNo" class="form-control" value="{{ old('houseNo') }}" required>
-                            <option value="" selected>Please Select</option>
-                            <optgroup id="houseNo_values"></optgroup>
+                            <option class="initial-values" value="" selected>Please Select</option>
                         </select>
                         <input type="submit" class="big-blue-button" value="Continue" style="margin-top: 10px;" />
                     </div>
@@ -143,17 +142,17 @@
                                 // parse the returned json into an object
                                 //var rows = JSON.parse(result);
                                 var rows = result;
-
+                                
                                 // sort the rows by the address property
                                 rows.sort((a, b) => (a.address.localeCompare(b.address, 'en', { numeric: true })));
-
+                                
                                 // empty the dropdown list
-                                inputHouseNoValues.empty();
-
+                                inputHouseNo.find("option:not(.initial-values)").remove();
+                                
                                 // add each row to the dropdown list
                                 for (i in rows)
                                 {
-                                    inputHouseNoValues.append($('<option class="house-number-option" value="' + rows[i].houseNo + '" data-mpan="' + rows[i].mpan + '" data-houseName="' + rows[i].houseName + '">' + rows[i].address + '</option>'));
+                                    inputHouseNo.append($('<option class="house-number-option" value="' + rows[i].houseNo + '" data-mpan="' + rows[i].mpan + '" data-houseName="' + rows[i].houseName + '">' + rows[i].address + '</option>'));
                                 }
                                 
                                 ShowAddressSection();

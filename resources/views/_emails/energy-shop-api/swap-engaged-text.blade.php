@@ -1,6 +1,6 @@
------------------------------------
---- Application to be an Affiliate ---
------------------------------------
+-------------------------------------------------
+--- The Energy Shop API - Energy Swap Engaged ---
+-------------------------------------------------
 
 {{ $api_key_used }}
 
@@ -15,12 +15,21 @@ Last Name:  {{ $user["lastName"] }}
 Telephone:  {{ $user["telephoneNo"] }}
 Mobile:     {{ (isset($user["mobileNo"])) ? $user["mobileNo"] : "N/A" }}
 Email:      {{ $user["email"] }}
-
-Current Postcode: {{ $user["currentAddress"]["postcode"] }}
-Billing Address Same As Supply Address: {{ $user["sameCurrentAddress"] }}
-Billing Address Postcode: {{ $user["billingAddress"]["postcode"] }}
-
 Smart Meter: {{ $user["smartMeter"] }}
+
+--- Customer Address ---
+Postcode: {{ $user["currentAddress"]["postcode"] }}
+Address Line 1: {{ $user["currentAddress"]["line1"] }}
+Address Line 2: {{ $user["currentAddress"]["line2"] }}
+City: {{ $user["currentAddress"]["town"] }}
+County: {{ $user["currentAddress"]["county"] }}
+
+--- Billing Address ---
+Postcode: {{ $user["billingAddress"]["postcode"] }}
+Address Line 1: {{ $user["billingAddress"]["line1"] }}
+Address Line 2: {{ $user["billingAddress"]["line2"] }}
+City: {{ $user["billingAddress"]["town"] }}
+County: {{ $user["billingAddress"]["county"] }}
 
 
 --- Previous Tariff ---

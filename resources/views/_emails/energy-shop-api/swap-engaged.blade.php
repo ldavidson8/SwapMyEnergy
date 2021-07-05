@@ -6,7 +6,7 @@
         td { font-weight: normal; }
     </style>
 
-    <h1>Application to be an Affiliate</h1>
+    <h1>The Energy Shop API - Energy Swap Engaged</h1>
     <p>{{ $api_key_used }}</p>
     <p>The reference is: {{ $result_str }}</p>
 
@@ -48,16 +48,50 @@
     <table>
         <tbody>
             <tr>
-                <th>Current Postcode:</th>
+                <th>Postcode:</th>
                 <td>{{ $user["currentAddress"]["postcode"] }}</td>
             </tr>
             <tr>
-                <th>Billing Address Same As Supply Address:</th>
-                <td>{{ $user["sameCurrentAddress"] }}</td>
+                <th>Address Line 1:</th>
+                <td>{{ $user["currentAddress"]["line1"] }}</td>
             </tr>
             <tr>
-                <th>Billing Address Postcode:</th>
+                <th>Address Line 2:</th>
+                <td>{{ $user["currentAddress"]["line2"] }}</td>
+            </tr>
+            <tr>
+                <th>City:</th>
+                <td>{{ $user["currentAddress"]["town"] }}</td>
+            </tr>
+            <tr>
+                <th>County:</th>
+                <td>{{ $user["currentAddress"]["county"] }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2>Billing Address</h2>
+    <table>
+        <tbody>
+            <tr>
+                <th>Postcode:</th>
                 <td>{{ $user["billingAddress"]["postcode"] }}</td>
+            </tr>
+            <tr>
+                <th>Address Line 1:</th>
+                <td>{{ $user["billingAddress"]["line1"] }}</td>
+            </tr>
+            <tr>
+                <th>Address Line 2:</th>
+                <td>{{ $user["billingAddress"]["line2"] }}</td>
+            </tr>
+            <tr>
+                <th>City:</th>
+                <td>{{ $user["billingAddress"]["town"] }}</td>
+            </tr>
+            <tr>
+                <th>County:</th>
+                <td>{{ $user["billingAddress"]["county"] }}</td>
             </tr>
         </tbody>
     </table>

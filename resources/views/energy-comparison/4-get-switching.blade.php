@@ -21,7 +21,22 @@
     $smartMeter = (isset($old_smartMeter)) ? $old_smartMeter : "";
     $gas_meter_number = (isset($old_gas_meter_number)) ? $old_gas_meter_number : $mprn -> mprn;
     $elec_meter_number = (isset($old_elec_meter_number)) ? $old_elec_meter_number : $user_address["mpan"];
-    $same_current_address = (isset($same_current_address)) ? $same_current_address : true;
+    $same_current_address = (isset($old_same_current_address)) ? $old_same_current_address : true;
+
+    
+    $old_billing_address_line_1 = old('billing_address_line_1');
+    $old_billing_address_line_2 = old('billing_address_line_2');
+    $old_billing_town = old('billing_town');
+    $old_billing_county = old('billing_county');
+    $old_billing_postcode = old('billing_postcode');
+    $old_billing_houseNo = old('billing_houseNo');
+    
+    $billing_address_line_1 = (isset($old_billing_address_line_1)) ? $old_billing_address_line_1 : "";
+    $billing_address_line_2 = (isset($old_billing_address_line_2)) ? $old_billing_address_line_2 : "";
+    $billing_town = (isset($old_billing_town)) ? $old_billing_town : "";
+    $billing_county = (isset($old_billing_county)) ? $old_billing_county : "";
+    $billing_postcode = (isset($old_billing_postcode)) ? $old_billing_postcode : "";
+    $billing_houseNo = (isset($old_billing_houseNo)) ? $old_billing_houseNo : "";
     
     
     $old_payment_method = old('payment_method');
@@ -54,6 +69,7 @@
     $old_mobile = old('mobile');
     $old_emailAddress = old('emailAddress');
     $old_dob = old('dob');
+    $old_supplier_opt_in = old('supplier_opt_in');
 
     $title = (isset($old_title)) ? $old_title : "";
     $firstName = (isset($old_firstName)) ? $old_firstName : "";
@@ -62,6 +78,7 @@
     $mobile = (isset($old_mobile)) ? $old_mobile : "";
     $emailAddress = (isset($old_emailAddress)) ? $old_emailAddress : "";
     $dob = (isset($old_dob)) ? $old_dob : "";
+    $supplier_opt_in = (isset($old_supplier_opt_in)) ? $old_supplier_opt_in : "";
 
     $coolingOff = 0;
     if (isset($selected_tariff["supplierCoolingOff"]) && is_numeric(isset($selected_tariff["supplierCoolingOff"])))
@@ -349,10 +366,9 @@
 
     #tariff-info
     {
-        text-transform: uppercase;
         text-align: center;
     }
-
+    
     #tariff-info td
     {
         padding: 15px;
@@ -363,14 +379,15 @@
     #tariff-info td:first-child
     {
         font-weight: bold;
+        text-transform: capitalize;
     }
 
     #tariff-info tbody:before
     {
         line-height: 20px
-        content:"_";
+        content: "_";
         color: #f3f2f1;
-        display:block;
+        display: block;
     }
 
     #tariff-info td:nth-of-type(2n+1)
@@ -401,6 +418,26 @@
     .small-input-text
     {
         font-size: 18px;
+    }
+    
+    #billing_table th
+    {
+        padding: 7px;
+        padding-bottom: 0px;
+    }
+    
+    #billing_table td
+    {
+        padding: 7px;
+    }
+
+    #billing_button
+    {
+        background-color: #00c2cb;
+        color: #202020;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
     }
 
     @media (min-width: 768px) and (max-width: 991px)
@@ -590,7 +627,11 @@
                             @if (count($errors) > 0)
                                 <div class="alert alert-danger">
                                     @foreach ($errors -> all() as $error)
-                                        {{ $error }}<br />
+                                        @if (str_starts_with($error, "The billing "))
+                                            Billing Address: The {{ substr($error, 12) }}<br />
+                                        @else
+                                            {{ $error }}<br />
+                                        @endif
                                     @endforeach
                                 </div>
                             @endif
@@ -601,14 +642,13 @@
                                 <tr><td>Tariff Name</td><td>{{ $selected_tariff["tariffName"] }}</td></tr>
                                 <tr><td>Estimated Anuall Cost</td><td>{{ $selected_tariff["bill"] }}</td></tr>
                                 <tr><td>Estimated Anuall Saving</td><td>{{ $selected_tariff["saving"] }}</td></tr>
-                                <tr><td>Payment Method</td><td>{{ $selected_tariff["paymentMethod"] }}</td></tr>
                                 @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "G")
-                                    <tr><td>Gas Unit Rate</td><td>{{ $selected_tariff["tariff_info"] -> price1Gas }}</td></tr>
-                                    <tr><td>Gas Standing Charge</td><td>{{ number_format($selected_tariff["tariff_info"] -> standingChargeGas / 365, 2) }}</td></tr>
+                                    <tr><td>Gas Unit Rate</td><td>{{ $selected_tariff["tariff_info"] -> price1Gas }}p</td></tr>
+                                    <tr><td>Gas Standing Charge</td><td>{{ number_format($selected_tariff["tariff_info"] -> standingChargeGas / 365, 2) }}p</td></tr>
                                 @endif
                                 @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "E")
-                                    <tr><td>Electricity Unit Rate</td><td>{{ $selected_tariff["tariff_info"] -> price1Elec }}</td></tr>
-                                    <tr><td>Electricity Standing Charge</td><td>{{ number_format($selected_tariff["tariff_info"] -> standingChargeElec / 365, 2) }}</td></tr>
+                                    <tr><td>Electricity Unit Rate</td><td>{{ $selected_tariff["tariff_info"] -> price1Elec }}p</td></tr>
+                                    <tr><td>Electricity Standing Charge</td><td>{{ number_format($selected_tariff["tariff_info"] -> standingChargeElec / 365, 2) }}p</td></tr>
                                 @endif
                             </table>
                             
@@ -650,25 +690,74 @@
                                         <option value="DK">Don't Know</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <span id="gas_meter_number_error" class="form-error-message text-danger"></span>
-                                    <label for="gas_meter_number">Gas meter number<span class="text-danger">*</span></label>
-                                    <p><input type="text" id="gas_meter_number" name="gas_meter_number" value="{{ $gas_meter_number }}" required /></p>
-                                    <p>Your gas meter number is also known as a Meter Point Reference Number (MPRN). Please enter the number as you find it on your gas bill. If you are unable to find this information on your energy bill, you can get it by calling the National Grid on 0870 608 1524 (press 2 then 1).</p>
-                                    <p>Or <a href="https://www.findmysupplier.energy/webapp/index.html">click here</a> to find this information online. Enter your postcode first and then your house number.</p>
-                                </div>
-                                <div class="form-group">
-                                    <span id="elec_meter_number_error" class="form-error-message text-danger"></span>
-                                    <label for="elec_meter_number">Electricity meter number<span class="text-danger">*</span></label>
-                                    <p><input type="text" id="elec_meter_number" name="elec_meter_number" value="{{ $elec_meter_number }}" /></p>
-                                    <p>Your electricity meter number is also known as a Supply (S) Number or MPAN. Please enter the bottom row of numbers as you find them on your electricity bill without spaces as highlighted in the example below.</p>
-                                    <img alt="Example of an Electricity Number" src="" />
-                                </div>
+                                @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "G")
+                                    <div class="form-group">
+                                        <span id="gas_meter_number_error" class="form-error-message text-danger"></span>
+                                        <label for="gas_meter_number">Gas meter number<span class="text-danger">*</span></label>
+                                        <p><input type="text" id="gas_meter_number" name="gas_meter_number" value="{{ $gas_meter_number }}" required /></p>
+                                        <p>Your gas meter number is also known as a Meter Point Reference Number (MPRN). Please enter the number as you find it on your gas bill. If you are unable to find this information on your energy bill, you can get it by calling the National Grid on 0870 608 1524 (press 2 then 1).</p>
+                                        <p>Or <a href="https://www.findmysupplier.energy/webapp/index.html">click here</a> to find this information online. Enter your postcode first and then your house number.</p>
+                                    </div>
+                                @endif
+                                @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "E")
+                                    <div class="form-group">
+                                        <span id="elec_meter_number_error" class="form-error-message text-danger"></span>
+                                        <label for="elec_meter_number">Electricity meter number<span class="text-danger">*</span></label>
+                                        <p><input type="text" id="elec_meter_number" name="elec_meter_number" value="{{ $elec_meter_number }}" /></p>
+                                        <p>Your electricity meter number is also known as a Supply (S) Number or MPAN. Please enter the bottom row of numbers as you find them on your electricity bill without spaces as highlighted in the example below.</p>
+                                        <img alt="Example of an Electricity Number" src="" />
+                                    </div>
+                                @endif
                                 <div class="form-group">
                                     <span id="same_current_address_error" class="form-error-message text-danger"></span>
-                                    <label for="same_current_address">Billing Address</label>
+                                    <p><label for="same_current_address">Billing Address</label></p>
                                     <input type="checkbox" id="same_current_address" name="same_current_address" {{ ($same_current_address == true) ? "checked" : "" }} />
                                     <label for="same_current_address" style="font-weight: normal;">My billing address is the same as my supply address.</label>
+                                </div>
+                                <div class="form-group" id="billing_section" style="display: none;">
+                                    {{-- <span id="billing_error" class="form-error-message text-danger"></span>
+                                    <table id="billing_table">
+                                        <tr>
+                                            <th><label for="billing_postcode">Postcode</label></th>
+                                            <th colspan="2"><label for="billing_houseNo">House Number</label></th>
+                                            <th><label for="billing_address">Billing Address</label></th>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text" id="billing_postcode" name="billing_postcode" value="{{ $billing_postcode }}" style="width: 200px; max-width: 100%;" /></td>
+                                            <td><input type="text" id="billing_houseNo" value="{{ $billing_houseNo }}" style="width: 200px; max-width: 100%;" /></td>
+                                            <td><button id="billing_button" type="button">Look Up</button></td>
+                                            <td>
+                                                <select id="billing_address" name="billing_address" style="width: 200px; max-width: 100%;">
+                                                    <option class="initial-values" value="">Please Select</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table> --}}
+                                    <div class="form-group">
+                                        <span id="billing_postcode_error" class="form-error-message text-danger"></span>
+                                        <label for="billing_postcode">Postcode <span class="text-danger">*</span></label>
+                                        <input type="text" id="billing_postcode" name="billing_postcode" value="{{ $billing_postcode }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <span id="billing_address_line_1_error" class="form-error-message text-danger"></span>
+                                        <label for="billing_address_line_1">Address Line 1 <span class="text-danger">*</span></label>
+                                        <input type="text" id="billing_address_line_1" name="billing_address_line_1" value="{{ $billing_address_line_1 }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <span id="billing_address_line_2_error" class="form-error-message text-danger"></span>
+                                        <label for="billing_address_line_2">Address Line 2</label>
+                                        <input type="text" id="billing_address_line_2" name="billing_address_line_2" value="{{ $billing_address_line_2 }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <span id="billing_town_error" class="form-error-message text-danger"></span>
+                                        <label for="billing_town">Town <span class="text-danger">*</span></label>
+                                        <input type="text" id="billing_town" name="billing_town" value="{{ $billing_town }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <span id="billing_county_error" class="form-error-message text-danger"></span>
+                                        <label for="billing_county">County</label>
+                                        <input type="text" id="billing_county" name="billing_county" value="{{ $billing_county }}" />
+                                    </div>
                                 </div>
                                 
                                 <br /><hr class="thin-line" /><br />
@@ -819,6 +908,15 @@
                                     <input type="date" id="dob" name="dob" value="{{ $dob }}" required />
                                 </div>
                                 
+                                <br /><br /><hr class="thin-line" /><br />
+                                
+                                <h2>Stay in touch</h2>
+                                <p>{{ $selected_tariff["supplierName"] }} would like to share information with you about any products, services on offer from {{ $selected_tariff["supplierName"] }} and its associated companies.</p>
+                                <div class="form-group">
+                                    <input type="checkbox" id="supplier_opt_in" name="supplier_opt_in" {{ ($supplier_opt_in == true) ? "checked" : "" }} />
+                                    <label for="supplier_opt_in" style="font-weight: normal;">Yes please, I would like to hear what {{ $selected_tariff["supplierName"] }} has to offer.</label>
+                                </div>
+                                
                                 <button type="submit" class="switchButton">Get Switching</button>
                             </form>
                             <div style="clear: both;"></div>
@@ -854,7 +952,19 @@
             // var inputGasMeterNumber = $("#gas_meter_number");
             // var errorElecMeterNumber = $("#elec_meter_number_error");
             // var inputElecMeterNumber = $("#elec_meter_number");
-
+            
+            var inputSameCurrentAddress = $("#same_current_address");
+            var billingSection = $("#billing_section");
+            var errorBilling = $("#billing_error");
+            var inputBillingPostcode = $("#billing_postcode");
+            var inputBillingHouseNo = $("#billing_houseNo");
+            var inputBillingButton = $("#billing_button");
+            var inputBillingAddress = $("#billing_address");
+            var inputBillingStreetName = $("#billing_street_name");
+            var inputBillingArea = $("#billing_area");
+            var inputBillingTown = $("#billing_town");
+            var inputBillingCounty = $("#billing_county");
+            
             var errorPaymentMethod = $("#payment_method_error");
             var inputPaymentMethod = $("#payment_method");
             // var errorBankName = $("#bankName_error");
@@ -890,17 +1000,114 @@
             // var inputEmailAddress = $("#emailAddress");
             
 
-            try
-            {
-                // var inputSmartMeter = $("#smartMeter");
-                // var inputPreferredDay = $("#preferredDay");
-                inputSmartMeter.find('[value=' + inputSmartMeter.attr('data-value') + ']').prop("selected", true);
-                inputPreferredDay.find('[value=' + inputPreferredDay.attr('data-value') + ']').prop("selected", true);
-                inputPaymentMethod.find('[value=' + inputPaymentMethod.attr('data-value') + ']').prop("selected", true);
-            }
-            catch {}
-
+            // select previous input for dropdown lists
+            try { if (inputSmartMeter != null) inputSmartMeter.find('[value=' + inputSmartMeter.attr('data-value') + ']').prop("selected", true); } catch {}
+            try { if (inputPreferredDay != null) inputPreferredDay.find('[value=' + inputPreferredDay.attr('data-value') + ']').prop("selected", true); } catch {}
+            try { if (inputPaymentMethod != null) inputPaymentMethod.find('[value=' + inputPaymentMethod.attr('data-value') + ']').prop("selected", true); } catch {}
             
+
+            // billing address section
+            inputSameCurrentAddress.change(function() { BillingShowHideAddressSection(); });
+            BillingShowHideAddressSection();
+            function BillingShowHideAddressSection()
+            {
+                if (inputSameCurrentAddress.prop("checked")) billingSection.hide();
+                else billingSection.show();
+            }
+            
+
+            // using ajax to find addresses
+            
+            $.ajaxSetup(
+            {
+                headers:
+                {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                }
+            });
+
+            inputBillingButton.click(function()
+            {
+                errorBilling.text('');
+
+                var postcode = inputBillingPostcode.val();
+                var houseNo = inputBillingHouseNo.val();
+                if (!postcode)
+                {
+                    errorBilling.text('The postcode field is required.');
+                }
+                if (!houseNo)
+                {
+                    houseNo = '';
+                }
+                
+                try
+                {
+                    if (houseNo)
+                    {
+                        var url = "{{ route('residential.energy-comparison.api.addresses-by-postcode', [ 'postcode' => 'postcode', 'houseNo' => 'houseNo' ]) }}";
+                        url = url.replace('/postcode', '/' + postcode);
+                        url = url.replace('/houseNo', '/' + houseNo);
+                    }
+                    else
+                    {
+                        var url = "{{ route('residential.energy-comparison.api.addresses', [ 'postcode' => 'postcode' ]) }}";
+                        url = url.replace('/postcode', '/' + postcode);
+                    }
+                    $.ajax(
+                    {
+                        type: 'POST',
+                        url: url,
+                        success: function(result, success, xhr)
+                        {
+                            // if nothing is returned
+                            if (xhr != null && xhr.status == 204)
+                            {
+                                errorBilling.text('That postcode is invalid.');
+                                return;
+                            }
+
+                            try
+                            {
+                                var rows = result;
+                                rows.sort((a, b) => (a.address.localeCompare(b.address, 'en', { numeric: true })));
+                                inputBillingAddress.find("option:not(.initial-values)").remove();
+                                for (i in rows)
+                                {
+                                    inputBillingAddress.append($('<option class="house-number-option" value="' + rows[i].houseNo + '" data-mpan="' + rows[i].mpan + '" data-houseName="' + rows[i].houseName + '">' + rows[i].address + '</option>'));
+                                }
+                                if (rows.length > 0)
+                                {
+                                    inputBillingStreetName.val(row[0].streetName);
+                                    inputBillingArea.val(row[0].area);
+                                    inputBillingTown.val(row[0].town);
+                                    inputBillingCounty.val(row[0].county);
+                                }
+                            }
+                            catch (ex)
+                            {
+                                ShowPostcodeError()
+                                HideAddressSection();
+                                console.log(ex.message);
+                            }
+                        },
+                        error: function(xhr, status, error)
+                        {
+                            ShowPostcodeError()
+                            HideAddressSection();
+                            console.log(error.message);
+                        }
+                    });
+                }
+                catch (ex)
+                {
+                    ShowPostcodeError()
+                    HideAddressSection();
+                    console.log(ex.message);
+                }
+            });
+            
+            // form submit code
             mainForm.onsubmit = function(e)
             {
                 $(".form-error-message").text('');

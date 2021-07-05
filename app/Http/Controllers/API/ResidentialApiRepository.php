@@ -21,6 +21,12 @@ class ResidentialApiRepository extends Controller
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . 'addresses?postcode=' . $postcode);
         return self::getOneObject($response, $status);
     }
+
+    public static function addresses_byHouseNo($postcode, $houseNo, &$status)
+    {
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . 'addresses?postcode=' . $postcode . '&houseNo=' . $houseNo);
+        return self::getOneObject($response, $status);
+    }
     
     public static function addresses_mpandetails($mpan, &$status)
     {
@@ -197,18 +203,6 @@ class ResidentialApiRepository extends Controller
         return self::getOneObject($response, $status);
     }
 
-
-    public static function testOne()
-    {
-        $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "addresses?postcode=PR1 9UU");
-    }
-
-    public static function testMany()
-    {
-        $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "paymentMethods/suppliers/68?serviceType=G&e7=false");
-        return self::getManyObjects($response, $status);
-    }
-
     
     public static function getOneObject(Response $response, &$status)
     {
@@ -241,5 +235,3 @@ class ResidentialApiRepository extends Controller
         return null;
     }
 }
-
-// TODO: make all requests post requests for csrf protection

@@ -37,7 +37,9 @@ class ResidentialAPINotificationEmail extends Mailable
             $result_str = $this -> result_str;
             $params = compact([ 'user', 'payment', 'dateTime', 'api_key_used', 'result_str' ]);
             
-            $view = $this -> subject('The Energy Shop API - Energy Swap Engaged') -> view('_emails.energy-shop-api.swap-engaged', $params) -> text('_emails.energy-shop-api.swap-engaged-text', $params);
+            $view = $this -> subject('The Energy Shop API - Energy Swap Engaged')
+                -> view('_emails.energy-shop-api.swap-engaged', $params)
+                -> text('_emails.energy-shop-api.swap-engaged-text', $params);
             
             Log::channel('energy-shop-api-swap-engaged') -> info('ResidentialAPINotificationEmail -> build(), Sending Email, The Energy Shop API - Energy Swap Engaged');
             return $view;

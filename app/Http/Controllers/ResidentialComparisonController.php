@@ -7,13 +7,11 @@ use Throwable;
 use App\Http\Controllers\API\ResidentialApiRepository as Repository;
 use App\Http\Requests\Mode\ModeSession;
 use App\Mail\ResidentialAPINotificationEmail;
-use App\Models\TheEnergyShopAPI\ExistingTariffGasModel;
-use App\Models\TheEnergyShopAPI\BrowseDealsViewModel;
+use App\Mail\ResidentialAPINotificationCustomerConfirmationEmail;
+use App\Models\TheEnergyShopAPI\ExistingTariffGasModel;use App\Models\TheEnergyShopAPI\BrowseDealsViewModel;
 use App\Models\TheEnergyShopAPI\ExistingTariffDualFuelOneModel;
 use App\Models\TheEnergyShopAPI\ExistingTariffDualFuelTwoModel;
 use App\Models\TheEnergyShopAPI\ExistingTariffElecModel;
-use App\Models\TheEnergyShopAPI\TariffModel;
-use App\Models\TheEnergyShopAPI\NewTariffModel;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -473,8 +471,6 @@ class ResidentialComparisonController extends Controller
                 'county' => 'nullable|string',
                 'postcode' => 'required|string',
                 'smartMeter' => 'required|string|in:Y,N,DK',
-                'gas_meter_number' => 'required|numeric',
-                'elec_meter_number' => 'required|numeric',
                 'payment_method' => 'required|in:MDD,QDD,CAC,PRE',
                 'accountName' => 'required|string',
                 'sortCode1' => 'required|numeric|digits:2',
@@ -493,8 +489,9 @@ class ResidentialComparisonController extends Controller
                 'emailAddress' => 'required|email',
                 'dob' => 'required|date'
             ]);
-            if (!$validator -> validate()) return $this -> BackTo4GetSwitching($validator -> errors());
+            $validator -> validate();
             
+
             $telephone = $request -> input('telephone');
             if (strlen($telephone) != 11) return $this -> BackTo4GetSwitching($validator -> errors([ '' => 'The telephone must be 11 digits long.' ]));
             if ($request -> has('mobile'))
@@ -504,13 +501,57 @@ class ResidentialComparisonController extends Controller
             }
             if (!$request -> input('direct_debit_confirmation')) return $this -> BackTo4GetSwitching([ '' => 'You must confirm that you are the account holder and the only person required to authorise Direct Debits from your bank account.' ]);
             
-            $same_current_address = in_array($request -> input('same_current_address'), [ true, 1, '1' ], true) || strtolower($request -> input('same_current_address')) == 'on';
+            $supplier_opt_in = $request -> has('supplier_opt_in') && (in_array($request -> input('supplier_opt_in'), [ true, 1, '1' ], true) || strtolower($request -> input('supplier_opt_in')) == 'on');
+            $billing_address = null;
+            $same_current_address = $request -> has('same_current_address') && (in_array($request -> input('same_current_address'), [ true, 1, '1' ], true) || strtolower($request -> input('same_current_address')) == 'on');
+            if (!$same_current_address)
+            {
+                $validator = Validator::make($request -> all(),
+                [
+                    'billing_postcode' => 'required|string',
+                    'billing_address_line_1' => 'required|string',
+                    'billing_address_line_2' => 'nullable|string',
+                    'billing_town' => 'required|string',
+                    'billing_county' => 'nullable|string'
+                ]);
+                if ($validator -> fails()) return $this -> BackTo4GetSwitching($validator -> errors());
+
+                $billing_address =
+                [
+                    "line1" => $request -> input('billing_address_line_1'),
+                    "line2" => $request -> input('billing_address_line_2'),
+                    "line3" => "",
+                    "town" => $request -> input('billing_town'),
+                    "county" => $request -> input('billing_county'),
+                    "postcode" => $request -> input('billing_postcode'),
+                    "bldNumber" => "1",
+                    "bldName" => "",
+                    "subBld" => "",
+                    "throughfare" => "",
+                    "dependantThroughFare" => ""
+                ];
+            }
             
             $user_address = Session::get('ResidentialAPI.user_address');
             $mprn = Session::get('ResidentialAPI.mprn');
             $existing_tariff = Session::get('ResidentialAPI.existing_tariff');
             $current_tariffs = Session::get('ResidentialAPI.current_tariffs');
             $selected_tariff = Session::get('ResidentialAPI.selected_tariff');
+            
+            if ($existing_tariff -> fuel_type_char == 'D' || $existing_tariff -> fuel_type_char == 'G')
+            {
+                if (!$request -> has('gas_meter_number') || strlen($request -> input('gas_meter_number')) <= 0)
+                {
+                    return $this -> BackTo4GetSwitching([ '' => 'The gas meter number is required.' ]);
+                }
+            }
+            if ($existing_tariff -> fuel_type_char == 'D' || $existing_tariff -> fuel_type_char == 'E')
+            {
+                if (!$request -> has('elec_meter_number') || strlen($request -> input('elec_meter_number')) <= 0)
+                {
+                    return $this -> BackTo4GetSwitching([ '' => 'The electricity meter number is required.' ]);
+                }
+            }
             
             // $addresses_mprn = Repository::addresses_mprn($mprn -> postcode, $mprn -> house_number);
             // return response() -> json($addresses_mprn);
@@ -527,7 +568,6 @@ class ResidentialComparisonController extends Controller
             
             $address_line_2 = $request -> input("address_line_2");
             $county = $request -> input("county");
-            $billingAddress = $request -> input("billingAddress");
             $requestObj = array("user" =>
             [
                 "saleType" => "A",
@@ -578,20 +618,20 @@ class ResidentialComparisonController extends Controller
                     "mpanNumber" => $request -> input("elec_meter_number")
                 ],
                 "sameCurrentAddress" => $same_current_address,
-                "billingAddress" => (isset($billingAddress) && $billingAddress == "true") ?
-                [
-                    "line1" => "1 Street",
-                    "line2" => "Area",
-                    "line3" => "",
-                    "town" => "London",
-                    "county" => "East London",
-                    "postcode" => "E1 6AN",
-                    "bldNumber" => "1",
-                    "bldName" => "",
-                    "subBld" => "",
-                    "throughfare" => "",
-                    "dependantThroughFare" => ""
-                ] : null,
+                "billingAddress" => null,
+                // [
+                //     "line1" => "1 Street",
+                //     "line2" => "Area",
+                //     "line3" => "",
+                //     "town" => "London",
+                //     "county" => "East London",
+                //     "postcode" => "E1 6AN",
+                //     "bldNumber" => "1",
+                //     "bldName" => "",
+                //     "subBld" => "",
+                //     "throughfare" => "",
+                //     "dependantThroughFare" => ""
+                // ],
                 "previousAddress" => null,
                 // [
                 //     "line1" => "1 Street",
@@ -635,10 +675,10 @@ class ResidentialComparisonController extends Controller
                 "preferredDay" => (int)$request -> input("preferredDay"),
                 "ddAuthorisation" => (bool)$request -> input("direct_debit_confirmation"),
                 "receiveBills" => $request -> input("receiveBills"),
-                "supplierOptIn" => false,
-                "supplierLetterOptIn" => false,
-                "supplierPhoneOptIn" => false,
-                "supplierTextOptIn" => false,
+                "supplierOptIn" => $supplier_opt_in,
+                "supplierLetterOptIn" => $supplier_opt_in,
+                "supplierPhoneOptIn" => $supplier_opt_in,
+                "supplierTextOptIn" => $supplier_opt_in,
                 "specialNeeds" => false
             ]);
             
@@ -650,7 +690,15 @@ class ResidentialComparisonController extends Controller
                 $requestObj["user"]["currentTariffGasConsumption"] = (double)$current_tariffs -> G -> units;
                 $requestObj["user"]["currentTariffGasBill"] = (double)$current_tariffs -> G -> bill;
                 
-                $requestObj["user"]["billGas"] = (double)(($selected_tariff["tariff_info"] -> price1Gas * $current_tariffs -> G -> units) + $selected_tariff["tariff_info"] -> standingChargeGas);
+                // if (!isset($requestObj["user"]["billGas"]) || $requestObj["user"]["billGas"] == 0)
+                // {
+                //     $requestObj["user"]["billGas"] = (double)(($selected_tariff["tariff_info"] -> price1Gas * $current_tariffs -> G -> units) + $selected_tariff["tariff_info"] -> standingChargeGas);
+                //     return response() -> json(
+                //         [
+                //         'gas_units' => $selected_tariff["tariff_info"] -> price1Gas * $current_tariffs -> G -> units,
+                //         'standingCharge' => $selected_tariff["tariff_info"] -> standingChargeGas
+                //     ]);
+                // }
             }
 
             if (in_array($existing_tariff -> fuel_type_char, [ "D", "E" ]))
@@ -661,35 +709,58 @@ class ResidentialComparisonController extends Controller
                 $requestObj["user"]["currentTariffElecConsumption"] = (double)$current_tariffs -> E -> units;
                 $requestObj["user"]["currentTariffElecBill"] = (double)$current_tariffs -> E -> bill;
                 
-                $requestObj["user"]["billElec"] = (double)(($selected_tariff["tariff_info"] -> price1Elec * $current_tariffs -> E -> units) + $selected_tariff["tariff_info"] -> standingChargeElec);
+                // if (!isset($requestObj["user"]["billElec"]) || $requestObj["user"]["billElec"] == 0)
+                // {
+                //     $requestObj["user"]["billElec"] = (double)(($selected_tariff["tariff_info"] -> price1Elec * $current_tariffs -> E -> units) + $selected_tariff["tariff_info"] -> standingChargeElec);
+                //     return response() -> json(
+                //     [
+                //         'bill' => $selected_tariff["bill"],
+                //         'info_bill' => $selected_tariff["tariff_info"] -> bill,
+                //         'elec_subtotal' => $selected_tariff["tariff_info"] -> price1Elec * $current_tariffs -> E -> units / 100,
+                //         'elec_price' => $selected_tariff["tariff_info"] -> price1Elec,
+                //         'elec_units' => $current_tariffs -> E -> units,
+                //         'standingCharge' => $selected_tariff["tariff_info"] -> standingChargeElec / 100
+                //     ]);
+                // }
             }
-
-            if (!isset($requestObj["user"]["billingAddress"]))
+            
+            if (!$same_current_address)
             {
-                $requestObj["user"]["billingAddress"] = [];
-                $requestObj["user"]["billingAddress"]["line1"] = $requestObj["user"]["currentAddress"]["line1"];
-                $requestObj["user"]["billingAddress"]["line2"] = $requestObj["user"]["currentAddress"]["line2"];
-                $requestObj["user"]["billingAddress"]["line3"] = $requestObj["user"]["currentAddress"]["line3"];
-                $requestObj["user"]["billingAddress"]["town"] = $requestObj["user"]["currentAddress"]["town"];
-                $requestObj["user"]["billingAddress"]["county"] = $requestObj["user"]["currentAddress"]["county"];
-                $requestObj["user"]["billingAddress"]["postcode"] = $requestObj["user"]["currentAddress"]["postcode"];
-                $requestObj["user"]["billingAddress"]["bldNumber"] = $requestObj["user"]["currentAddress"]["bldNumber"];
-                $requestObj["user"]["billingAddress"]["bldName"] = $requestObj["user"]["currentAddress"]["bldName"];
-                $requestObj["user"]["billingAddress"]["subBld"] = $requestObj["user"]["currentAddress"]["subBld"];
-                $requestObj["user"]["billingAddress"]["throughfare"] = $requestObj["user"]["currentAddress"]["throughfare"];
-                $requestObj["user"]["billingAddress"]["dependantThroughFare"] = $requestObj["user"]["currentAddress"]["dependantThroughFare"];
+                $requestObj["user"]["billingAddress"] = $billing_address;
+            }
+            else
+            {
+                $requestObj["user"]["billingAddress"] = 
+                [
+                    "line1" => $requestObj["user"]["currentAddress"]["line1"],
+                    "line2" => $requestObj["user"]["currentAddress"]["line2"],
+                    "line3" => $requestObj["user"]["currentAddress"]["line3"],
+                    "town" => $requestObj["user"]["currentAddress"]["town"],
+                    "county" => $requestObj["user"]["currentAddress"]["county"],
+                    "postcode" => $requestObj["user"]["currentAddress"]["postcode"],
+                    "bldNumber" => $requestObj["user"]["currentAddress"]["bldNumber"],
+                    "bldName" => $requestObj["user"]["currentAddress"]["bldName"],
+                    "subBld" => $requestObj["user"]["currentAddress"]["subBld"],
+                    "throughfare" => $requestObj["user"]["currentAddress"]["throughfare"],
+                    "dependantThroughFare" => $requestObj["user"]["currentAddress"]["dependantThroughFare"]
+                ];
             }
             // return response() -> json($requestObj);
             
-            $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
-            if (str_starts_with($result_str, "{"))
-            {
-                // The api returned an error
-                return $this -> BackTo4GetSwitching();
-            }
+            $result_str = "Testing";
+            // $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
+            // if (str_starts_with($result_str, "{"))
+            // {
+            //     // The api returned an error
+            //     return $this -> BackTo4GetSwitching();
+            // }
+
+            Session::put('ResidentialAPI.reference', $result_str);
             
             $to_email = env('MAIL_TO_ADDRESS');
             Mail::to($to_email) -> queue(new ResidentialAPINotificationEmail($requestObj, date("Y-m-d H:i:s"), "Test API Key", $result_str));
+
+            Mail::to($request -> input("emailAddress")) -> queue(new ResidentialAPINotificationCustomerConfirmationEmail($requestObj, $result_str), $result_str);
 
             return redirect() -> route('residential.energy-comparison.success');
         }
@@ -704,10 +775,11 @@ class ResidentialComparisonController extends Controller
     public function success()
     {
         $selected_tariff = Session::get('ResidentialAPI.selected_tariff');
-        if (!isset($selected_tariff)) return $this -> BackTo4GetSwitching();
+        $reference = Session::get('ResidentialAPI.reference');
+        if (!isset($selected_tariff) || !isset($reference)) return $this -> BackTo4GetSwitching();
 
         $page_title = "Compare Energy Prices - Success";
-        return view('energy-comparison.success', compact('page_title', 'selected_tariff'));
+        return view('energy-comparison.success', compact('page_title', 'selected_tariff', 'reference'));
     }
 
     
