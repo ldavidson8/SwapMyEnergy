@@ -97,8 +97,8 @@
         </div>
     </div>
     <hr/>
-    <div class="video-container">
-        <iframe class="SME-video" width="100vw" height="calc(100vw/1.77)" src=https://www.youtube.com/embed/1BbKeuILfEo?playlist=1BbKeuILfEo&rel=0&amp;controls=0&modestbranding=1&autoplay=1&loop=1&mute=1 title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src=https://www.youtube.com/embed/1BbKeuILfEo?playlist=1BbKeuILfEo&rel=0&amp;controls=0&modestbranding=1&autoplay=1&loop=1&mute=1 title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
         {{-- <video width="100%" height="auto" style="margin: auto; max-width: 100%; background: black url('{{ asset('img/Loading-thumbnail.png') }}') center center no-repeat" preload="none" autoplay muted loop>
             <source src="{{ asset('media/sme_mute.mp4') }}" type="video/mp4" />
