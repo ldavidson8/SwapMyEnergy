@@ -252,7 +252,7 @@
             <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-4 col-lg-6 col-md-8 col-12 no-margin" style="padding-top: 150px; color: #f3f2f1;">
                 <h1>Help shape the future of energy</h1>
-                <p style="padding-top: 30px; width: 450px; max-width: 100%;">Join our Affiliate programme and help us share the future energy</p>    
+                <p style="padding-top: 30px; width: 450px; max-width: 100%;">Join our Affiliate programme and help us shape the future of energy</p>    
                 <a href="#AffiliateApply"><button class="oval-button">Find out more </button></a>
             </div>
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
@@ -268,9 +268,9 @@
     <div id="PartnerApply" class="row flex-grow-1 full-size-80 background-image-preston">
         <div class="col-12 col-lg-6" style="color: #f3f2f1;">
             <div class="section-padding">
-                <h2 class="sub-header-size"> Become a partner with a ground breaking energy broker: </h2>
-                <p> Our business partner programme was created to give businesses and people the option to offer new and valued services to their customers </p>
-                <p> You will be able to offer your clients our exclusive energy solution products as a result of the partnership. We recognise the importance of building long-term connections, therefore it's critical that you work with a firm that will treat you and your clients with transparency and industry-leading customer service.</p>
+                <h2 class="sub-header-size"> Become a partner with a ground-breaking energy broker: </h2>
+                <p> Our partner programme was created to give businesses the option to offer new and valued services to their clients </p>
+                <p> You will be able to offer your clients our exclusive energy solution products as a result of the partnership. We recognise the importance of building long-term connections, being a firm that will treat you and your clients with transparency and industry-leading customer service.</p>
                 <p style="font-size: 34px; font-weight: 700;"> Apply to be a partner: </p>
                 <form id="formPartnerApply" action="{{ route('partner-apply') }}" method="post">
                     @csrf
@@ -302,17 +302,17 @@
                     <div style="padding: 0 20px 0 30px;">
                         <p class="sub-header-size"> Reasons to work with Swap my Energy: </p>
                         <ul class="no-padding-margin" style="list-style: square inside; font-weight: 700; ">
-                            <li>Commercials that are unique and adaptable to your requirements </li>
-                            <li>Prices and services that are unrivalled in the industry </li>
+                            <li>Adverts that are unique and adaptable to your requirements </li>
+                            <li>Prices and services that are unrivalled in the energy industry </li>
                             <li>Leading energy pricing portal, CRM and reporting package for marketing </li>
                             <li>Account managers with extensive experience (minimum of 8 years) </li>
                             <li>Full administrative and sales assistance is offered, as well as full training from professional energy managers </li>
                             <li>Marketing assistance is offered </li>
-                            <li>For all clients, a comprehensive care package is given     </li>
+                            <li>For all clients, a comprehensive care package is given </li>
                         </ul>
                     </div>
                     <div class="partner-wind-turbine">
-                        <img src="{{ asset('img/partner-wind-turbine.png')}}" width="100%" height="100% " style="object-fit:contain;">
+                        <img alt="" class="lazy" data-src="{{ asset('img/partner-wind-turbine.png')}}" width="100%" height="100% " style="object-fit:contain;">
                     </div>
                 </div>
             </div>
@@ -332,26 +332,11 @@
                                 <li>And more when you get in touch</li>
                             </ul>
                             <div>
-                                <img src="{{ asset('img/hipster.png') }}" max-width="25%" style="margin-top: auto; float: right; object-fit:contain; border-radius: 0 0 18px 0;">
+                                <img alt="" class="lazy" data-src="{{ asset('img/hipster.png') }}" max-width="25%" style="margin-top: auto; float: right; object-fit:contain; border-radius: 0 0 18px 0;">
                             </div>
                             <p style="margin-top: 30px;"> <span style="font-size: 2rem; font-weight: 700;"> Interested? </span> <br /> Fill in this form and we'll be back in touch </p>
                     </div>
                 </div>
-                {{-- <div class="flex-container flex-container-shadow">
-                    <div class="affiliate-program-inner">
-                            <p class="sub-header-size"> Our Affiliate Program </p>
-                            <ul class="no-padding-margin" style="list-style: square inside; font-weight: 700;">
-                                <li>Promotion opportunities across our social channels and website</li>
-                                <li>Earn for when you help switch customers with us</li>
-                                <li>Potential collaboration opportunities upon discussion with ourselves</li>
-                                <li>And more when you get in touch</li>
-                            </ul>
-                        <div class="clearfix" style="align-self: flex-end;">
-                            <p> <span style="font-size: 2rem; font-weight: 700;"> Interested? </span> <br /> Fill in this form and we'll be back in touch </p>
-                            <img src="{{ asset('img/hipster.png') }}" max-width="100%" style="vertical-align: bottom; margin: auto; float: right; object-fit:contain;">
-                        </div>
-                    </div>
-                </div> --}}
             </div>
             <div class="col-12  col-lg-6">
                 <div class="col" style="column-count: 2; column-width: 310px; padding: 20px;">

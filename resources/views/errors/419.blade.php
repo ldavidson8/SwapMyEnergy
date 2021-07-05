@@ -15,10 +15,10 @@
     <hr/>
     <div class="row flex-grow-1 no-padding">
         <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-        <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content" style="background-image: url(); background-position: left; background: #f0f0f0;">
+        <div class="col-xl-5 col-lg-6 col-md-8 col-12 left-column-content" style="background-position: left; background: #f0f0f0;">
             <h1 style="font-weight: bold; font-size: 40px; color: #000; text-align: center; letter-spacing: -3px;"><span style="letter-spacing: 3px; font-size: 90px;color: #00C2CB;">419</span><br />Your Session Has Expired</h1>
             <br /><br /><br />
-            <p style="color: #000; text-align: center; font-size: 18px;letter-spacing: 1px;">Your session has <span style=" color: #00C2CB;">expired</span><br />Please go back and try again<p>
+            <p style="color: #000; text-align: center; font-size: 18px; letter-spacing: 1px;">Your session has <span style=" color: #00C2CB;">expired</span><br />Please go back and try again<p>
             <br />
             <br />
             <div style="display: flex; justify-content: center; align-items: center;">

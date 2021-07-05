@@ -59,10 +59,10 @@
             <section>
                 <br />
                 <h2 class="section-title">About this Policy</h2>
-                    <p>Along with our Terms of Use and Privacy Policy, this cookie policy provides you with information about the various types of cookies and other similar technologies that are used by our websites, mobile apps and other services. We'll review this policy from time to time to make sure it's up-to-date. If we make changes, we'll post the latest version here.</p>
+                    <p>Along with our Terms & conditions and Privacy Policy, this cookie policy provides you with information about the various types of cookies and other similar technologies that are used by our websites, mobile apps and other services. We'll review this policy from time to time to make sure it's up-to-date. If we make changes, we'll post the latest version here.</p>
                     <br />
                 <h2 class="section-title">What are Cookies?</h2>
-                    <p>A cookie is a small text file which is placed on your device, for example a computer or smartphone, via your web browser, by the websites you visit or applications you use and which stores information on your device for a limited period of time. It allows the website or app to recognise your device and store some information about your preferences or past actions.</p>
+                    <p>A cookie is a small text file which is placed on your device via your web browser by the websites you visit or applications you use. It stores information on your device for a limited period of time and it allows the website or app to recognise your device and store some information about your preferences or past actions.</p>
                     <br />
                 <h2 class="section-title">How do we use cookies and similar technologies?</h2>
                     <p>We use cookies and similar technologies when you use our services. These cookies and similar technologies are controlled either by us directly, or by third party partners.
@@ -71,7 +71,7 @@
                     We use cookies when they are essential to deliver our services, to optimise and personalise the delivery of our services, to analyse and better understand our services and to deliver advertising.
                     <br />
                     <br />
-                    Some of the cookies we use are removed as soon you leave our site or app, because we don't need to store this information between visits (session cookies). In contrast, 'persistent' cookies enable our services or tags to recognise you when you make return visits to us, and automatically expire when they reach a specified expiry date (unless you delete them earlier). There are tools available to check the expiry date on cookies, and this functionality may be provided by your browser.
+                    Some of the cookies we use are removed as soon you leave our site, because we don't need to store this information between visits (session cookies). In contrast, 'persistent' cookies enable our services or tags to recognise you when you make return visits to us, and automatically expire when they reach a specified expiry date (unless you delete them earlier). There are tools available to check the expiry date on cookies, and this functionality may be provided by your browser.
                     <br />
                     <br />
                     We also use similar technologies referred to as 'tags'. Tags are implemented on our services and are often used together with text cookies to enable information to be stored on, or transmitted to and from, the device you use to access swapmyenergy.co.uk. Tags are often referred to as 'tracking pixels' or 'code snippets'.
@@ -100,7 +100,7 @@
                         <br />
                         <span class="font-weight-bold">To analyse and better understand our services</span>
                         <br />
-                        We really want our users to receive a good experience using our site and our services. We use Cookies to allow us to monitor how visitors access and use our website and our services. These cookies provide us with anonymous statistics on how many people visit the website, where they have come from, the pages they visit and where they go when they leave.
+                        We use Cookies to allow us to monitor how visitors access and use our website and our services. These cookies provide us with anonymous statistics on how many people visit the website, where they have come from, the pages they visit and where they go when they leave.
                         <br />
                         <br />
                         This enables us to develop and improve our website and our services as well as helping us understand how effective our advertising has been.
@@ -116,7 +116,7 @@
                         When you first access our services, we ask you to confirm if you're ok with us using Cookies in line with this policy. If you don't agree to our use of these technologies, or you change your mind at a later date, you can either withdraw your consent by altering the settings on your internet browser or, alternatively, stop using our services (which we hope you won't).
                         <br />
                         <br />
-                        The easiest way to withdraw your consent to Cookies is via the settings of the browser or device you are using to access our services. Modern Internet browsers such as Chrome, Safari, Firefox and Edge have settings that allow you to control the way your information is collected and shared. Typically, these browsers allow you to view all the cookies they are storing on your device, to delete your cache of cookies, and to adjust your preferences for future collection. Guides on how to access and use such functionality are available at <a class="anchor-default" href="www.aboutcookies.org/" target="_blank">www.aboutcookies.org</a> and <a class="anchor-default" href="www.youronlinechoices.eu "target="_blank">www.youronlinechoices.eu.</a>
+                        The easiest way to withdraw your consent to Cookies is via the settings of the browser or device you are using to access our services. Modern Internet browsers such as Chrome, Safari, Firefox and Edge have settings that allow you to control the way your information is collected and shared. Typically, these browsers allow you to view all the cookies they are storing on your device, to delete your cache of cookies, and to adjust your preferences for future collection. {{--Guides on how to access and use such functionality are available at <a class="anchor-default" href="www.aboutcookies.org/" target="_blank">www.aboutcookies.org</a> and <a class="anchor-default" href="www.youronlinechoices.eu "target="_blank">www.youronlinechoices.eu.</a>--}}
                         <br />
                         <br />
                         <span class="font-weight-bold">Important.</span> Please note that if you adjust your internet browser settings to refuse the setting of cookies, you may not be able to access or fully use certain parts or functionality of our website. Because of this, we would recommend taking a more targeted approach to withdrawing your consent. For example, if you wanted to stop Cookies being used for the purposes of serving you with interest-based advertisements, then instead of blocking all cookies, you could instead opt-out of these on a case-by-case basis.

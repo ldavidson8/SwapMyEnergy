@@ -3,14 +3,14 @@
 
     // TODO: make code use $mode instead of 'business'
 ?>
-<nav class="navbar navbar-expand-lg navbar-light navbar-outer">
+<nav class="navbar navbar-expand-md navbar-light navbar-outer">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto" style="display: flex; align-items: center; font-size: 22px; font-">
+            <ul class="navbar-nav mr-auto" style="display: flex; align-items: center; font-size: 22px;">
                 <li class="nav-item">
                     <a class="nav-link navigation-link {{ ($navbar_page == "home") ? 'navigation-link-current-page' : '' }}" href="{{ route("business.home") }}">Home</a>
                 </li>
