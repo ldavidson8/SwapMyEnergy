@@ -15,7 +15,7 @@
                 <div class="my-account-blue-box-outer">
                     <div class="my-account-blue-box">
                         <p class="my-account-big-bold-text">You are currently paying</p>
-                        <p class="my-account-big-bold-text">£228.60</p>
+                        <p class="my-account-big-bold-text">&pound;228.60</p>
                         <p>A saving of many pounds</p>
                         <p class="my-account-big-text">Ends: 01 Dec 2020</p>
                     </div>
