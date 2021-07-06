@@ -36,6 +36,8 @@ Route::group([ 'prefix' => '' ], function()
     Route::get('/sitemap', [ BusinessHomeController::class, 'siteMap' ]) -> name('business.sitemap');
     Route::get('/contact', [ BusinessHomeController::class, 'contact' ]) -> name('business.contact');
     Route::get('/partners-and-affiliates', [ BusinessHomeController::class, 'partnersAndAffiliates' ]) -> name('business.partners and affiliates');
+    Route::get('/our-team', [ BusinessHomeController::class, 'ourTeam' ]) -> name('business.our team');
+
 
     Route::group([ 'prefix' => '/request-callback' ], function()
     {
