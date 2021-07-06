@@ -454,7 +454,7 @@ class ResidentialComparisonController extends Controller
     }
 
 
-    public static $agentId = "333-7TDfpTnZOo";
+    protected const agentId = "333-7TDfpTnZOo";
     
     public function getSwitchingPost(Request $request)
     {
@@ -571,7 +571,7 @@ class ResidentialComparisonController extends Controller
             $requestObj = array("user" =>
             [
                 "saleType" => "A",
-                "agentId" => self::$agentId,
+                "agentId" => self::agentId,
                 "serviceTypeToCompare" => $existing_tariff -> fuel_type_char,
                 "gasSupplier" => null,
                 "gasTariffId" => null,
@@ -632,36 +632,36 @@ class ResidentialComparisonController extends Controller
                 //     "throughfare" => "",
                 //     "dependantThroughFare" => ""
                 // ],
-                "previousAddress" => null,
-                // [
-                //     "line1" => "1 Street",
-                //     "line2" => "Area",
-                //     "line3" => "",
-                //     "town" => "London",
-                //     "county" => "East London",
-                //     "bldNumber" => "1",
-                //     "bldName" => "",
-                //     "subBld" => "",
-                //     "throughfare" => "",
-                //     "dependantThroughFare" => "",
-                //     "yearsAtResidence" => 3,
-                //     "monthsAtResidence" => 6
-                // ],
-                "previousAddressTwo" => null,
-                // [
-                //     "line1" => "1 Street",
-                //     "line2" => "Area",
-                //     "line3" => "",
-                //     "town" => "London",
-                //     "county" => "East London",
-                //     "bldNumber" => "1",
-                //     "bldName" => "",
-                //     "subBld" => "",
-                //     "throughfare" => "",
-                //     "dependantThroughFare" => "",
-                //     "yearsAtResidence" => 3,
-                //     "monthsAtResidence" => 6
-                // ],
+                "previousAddress" =>
+                [
+                    "line1" => "",
+                    "line2" => "",
+                    "line3" => "",
+                    "town" => "",
+                    "county" => "",
+                    "bldNumber" => "",
+                    "bldName" => "",
+                    "subBld" => "",
+                    "throughfare" => "",
+                    "dependantThroughFare" => "",
+                    "yearsAtResidence" => 0,
+                    "monthsAtResidence" => 0
+                ],
+                "previousAddressTwo" =>
+                [
+                    "line1" => "",
+                    "line2" => "",
+                    "line3" => "",
+                    "town" => "",
+                    "county" => "",
+                    "bldNumber" => "",
+                    "bldName" => "",
+                    "subBld" => "",
+                    "throughfare" => "",
+                    "dependantThroughFare" => "",
+                    "yearsAtResidence" => 0,
+                    "monthsAtResidence" => 0
+                ],
                 "smartMeter" => $request -> input("smartMeter")
             ],
             "payment" => [
@@ -730,7 +730,7 @@ class ResidentialComparisonController extends Controller
             }
             else
             {
-                $requestObj["user"]["billingAddress"] = 
+                $requestObj["user"]["billingAddress"] =
                 [
                     "line1" => $requestObj["user"]["currentAddress"]["line1"],
                     "line2" => $requestObj["user"]["currentAddress"]["line2"],
@@ -745,15 +745,20 @@ class ResidentialComparisonController extends Controller
                     "dependantThroughFare" => $requestObj["user"]["currentAddress"]["dependantThroughFare"]
                 ];
             }
-            // return response() -> json($requestObj);
-            
-            $result_str = "Testing";
-            // $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
-            // if (str_starts_with($result_str, "{"))
-            // {
-            //     // The api returned an error
-            //     return $this -> BackTo4GetSwitching();
-            // }
+            return response() -> json($requestObj);
+            // TODO: remove this if statement for the live site
+            if ($requestObj["email"] != "testingthefinalapicall@testing.co.uk")
+            {
+                $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
+                if (str_starts_with($result_str, "{"))
+                {
+                    // The api returned an error
+                    Log::channel("energy-comparison/get-switching-post") -> critical("The API returned an error.");
+                    return $this -> BackTo4GetSwitching();
+                }
+                Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
+            }
+            else $result_str = "Testing123Testing";
 
             Session::put('ResidentialAPI.reference', $result_str);
             
