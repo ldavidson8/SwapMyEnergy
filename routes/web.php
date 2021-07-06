@@ -61,11 +61,11 @@ Route::group([ 'prefix' => '' ], function()
 Route::group([ 'prefix' => '/residential' ], function()
 {
     Route::get('/', [ ResidentialHomeController::class, 'index' ]) -> name('residential.home');
-    // Route::get('/about', [ ResidentialHomeController::class, 'about' ]) -> name('residential.about');
-    // Route::get('/privacy-policy', [ ResidentialHomeController::class, 'privacyPolicy' ]) -> name('residential.privacy policy');
-    // Route::get('/terms-and-conditions', [ ResidentialHomeController::class, 'termsAndConditions' ]) -> name('residential.t&c');
-    // Route::get('/contact', [ ResidentialHomeController::class, 'contact' ]) -> name('residential.contact');
-    // Route::get('/partners-and-affiliates', [ ResidentialHomeController::class, 'partnersAndAffiliates' ]) -> name('residential.partners and affiliates');
+    Route::get('/about', [ ResidentialHomeController::class, 'about' ]) -> name('residential.about');
+    Route::get('/privacy-policy', [ ResidentialHomeController::class, 'privacyPolicy' ]) -> name('residential.privacy policy');
+    Route::get('/terms-and-conditions', [ ResidentialHomeController::class, 'termsAndConditions' ]) -> name('residential.t&c');
+    Route::get('/contact', [ ResidentialHomeController::class, 'contact' ]) -> name('residential.contact');
+    Route::get('/partners-and-affiliates', [ ResidentialHomeController::class, 'partnersAndAffiliates' ]) -> name('residential.partners and affiliates');
     
     // Route::group([ 'prefix' => '/my-account', 'middleware' => 'residential' ], function()
     // {
@@ -78,22 +78,29 @@ Route::group([ 'prefix' => '/residential' ], function()
     //     Route::post('/options', [ ResidentialAccountController::class, 'yourOptionsPost' ]) -> name('residential.my account.options') -> middleware('password.confirm');
     // });
 
-    // Route::group([ 'prefix' => '/energy-comparison' ], function()
-    // {
+    Route::group([ 'prefix' => '/energy-comparison' ], function()
+    {
         // pages
-        // Route::get('/', [ ResidentialComparisonController::class, 'index' ]) -> name('residential.energy-comparison');
+        Route::get('/address', [ ResidentialComparisonController::class, 'findAddress' ]) -> name('residential.energy-comparison.1-address');
+        Route::post('/address', [ ResidentialComparisonController::class, 'findAddressPost' ]) -> name('residential.energy-comparison.1-address');
+        Route::get('/existing-tariff', [ ResidentialComparisonController::class, 'setExistingTariff' ]) -> name('residential.energy-comparison.2-existing-tariff');
+        Route::post('/existing-tariff', [ ResidentialComparisonController::class, 'setExistingTariffPost' ]) -> name('residential.energy-comparison.2-existing-tariff');
+        Route::get('/browse-deals', [ ResidentialComparisonController::class, 'browseDeals' ]) -> name('residential.energy-comparison.3-browse-deals');
+        Route::post('/browse-deals', [ ResidentialComparisonController::class, 'browseDealsPost' ]) -> name('residential.energy-comparison.3-browse-deals');
+        Route::get('/get-switching', [ ResidentialComparisonController::class, 'getSwitching' ]) -> name('residential.energy-comparison.4-get-switching');
+        Route::post('/get-switching', [ ResidentialComparisonController::class, 'getSwitchingPost' ]) -> name('residential.energy-comparison.4-get-switching');
+        Route::get('/success', [ ResidentialComparisonController::class, 'success' ]) -> name('residential.energy-comparison.success');
         
         // api
-        // Route::get('/addresses/{postcode}', [ ResidentialApiController::class, 'addresses' ]) -> name('residential.energy-comparison.addresses');
-        // Route::get('/addresses/mprn/{postcode}/{houseNo}', [ ResidentialApiController::class, 'addresses_mprn' ]) -> name('residential.energy-comparison.addresses.mprn');
-        // Route::get('/addresses/mprndetails/{mprn}', [ ResidentialApiController::class, 'addresses_mprndetails' ]) -> name('residential.energy-comparison.addresses.mprndetails');
-        // Route::get('/suppliers', [ ResidentialApiController::class, 'suppliers' ]) -> name('residential.energy-comparison.suppliers');
-        // Route::get('/suppliers/{supplierId}', [ ResidentialApiController::class, 'supplierById' ]) -> name('residential.energy-comparison.suppliers.by-id');
-        
-        // test
-        //     Route::get('/test/one', [ ResidentialApiController::class, 'testOne' ]);
-        //     Route::get('/test/many', [ ResidentialApiController::class, 'testMany' ]);
-    // });
+        Route::post('/addresses/{postcode}', [ ResidentialApiController::class, 'addresses' ]) -> name('residential.energy-comparison.api.addresses');
+        Route::post('/addresses/{postcode}/{houseNo}', [ ResidentialApiController::class, 'addresses_byHouseNo' ]) -> name('residential.energy-comparison.api.addresses-by-postcode');
+        Route::post('/addresses/mprn/{postcode}/{houseNo}', [ ResidentialApiController::class, 'addresses_mprn' ]) -> name('residential.energy-comparison.api.addresses.mprn');
+        Route::post('/addresses/mprndetails/{mprn}', [ ResidentialApiController::class, 'addresses_mprndetails' ]) -> name('residential.energy-comparison.api.addresses.mprndetails');
+        Route::post('/suppliers', [ ResidentialApiController::class, 'suppliers' ]) -> name('residential.energy-comparison.api.suppliers');
+        Route::post('/suppliers/{supplierId}', [ ResidentialApiController::class, 'supplierById' ]) -> name('residential.energy-comparison.api.suppliers.by-id');
+        Route::post('/paymentMethods/suppliers/{supplierId}/{serviceType}', [ ResidentialApiController::class, 'paymentMethods_suppliers']) -> name('residential.energy-comparison.api.paymentMethods.by-supplier-id');
+        Route::post('/tariffs/suppliers/{supplierId}/{regionId}/{serviceType}/{paymentMethod}/{e7}', [ ResidentialApiController::class, 'tariffs_forASuppllier']) -> name('residential.energy-comparison.api.tariffs.for-a-suppllier');
+    });
 });
 
 

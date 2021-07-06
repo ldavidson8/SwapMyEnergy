@@ -4,7 +4,7 @@
 @endsection
 
 @section('before-header')
-    <div id="contact" class="full-size container-fluid d-flex h-100 flex-column background-image-docks background-image-top">
+    <div id="contact" class="full-size container-fluid d-flex h-100 flex-column background-image-docks">
 @endsection
 
 @section('main-content')

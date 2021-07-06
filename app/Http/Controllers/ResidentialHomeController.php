@@ -12,14 +12,12 @@ class ResidentialHomeController extends Controller
 
         $navbar_page = 'home';
         $page_title = 'Swap My Energy - Home';
-        //return view('index.residential', compact('navbar_page', 'page_title'));
-        return view('index.residential-coming-soon', compact('navbar_page', 'page_title'));
+        return view('index.residential', compact('navbar_page', 'page_title'));
+        //return view('index.residential-coming-soon', compact('navbar_page', 'page_title'));
     }
     
     public function about()
     {
-        return redirect() -> route('residential.home');
-        
         ModeSession::setResidential();
         
         $navbar_page = 'about';
@@ -29,8 +27,6 @@ class ResidentialHomeController extends Controller
     
     public function privacyPolicy()
     {
-        return redirect() -> route('residential.home');
-        
         ModeSession::setResidential();
 
         $navbar_page = 'privacy policy';
@@ -40,8 +36,8 @@ class ResidentialHomeController extends Controller
     
     public function termsAndConditions()
     {
-        return redirect() -> route('residential.home');
-        
+        ModeSession::setResidential();
+
         $navbar_page = 'terms and conditions';
         $page_title = 'Terms and Conditions';
         return view('other.t&c', compact('navbar_page', 'page_title'));
@@ -49,8 +45,6 @@ class ResidentialHomeController extends Controller
     
     public function contact()
     {
-        return redirect() -> route('residential.home');
-        
         ModeSession::setResidential();
 
         $navbar_page = 'contact';
@@ -60,8 +54,6 @@ class ResidentialHomeController extends Controller
 
     public function partnersAndAffiliates()
     {
-        return redirect() -> route('residential.home');
-        
         ModeSession::setResidential();
 
         $navbar_page = 'partners and affiliates';

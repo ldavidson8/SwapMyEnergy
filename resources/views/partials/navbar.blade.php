@@ -1,7 +1,5 @@
 <?php
     if (!isset($navbar_page)) $navbar_page = "";
-
-    // TODO: make code use $mode instead of 'business'
 ?>
 <nav class="navbar navbar-expand-md navbar-light navbar-outer">
     <div class="container-fluid">
@@ -12,16 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto" style="display: flex; align-items: center; font-size: 22px;">
                 <li class="nav-item">
-                    <a class="nav-link navigation-link {{ ($navbar_page == "home") ? 'navigation-link-current-page' : '' }}" href="{{ route("business.home") }}">Home</a>
+                    <a class="nav-link navigation-link {{ ($navbar_page == "home") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.home") }}">Home</a>
                 </li>
                 <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>
                 <li class="nav-item">
-                    <a class="nav-link navigation-link {{ ($navbar_page == "about") ? 'navigation-link-current-page' : '' }}" href="{{ route("business.about") }}">About</a>
+                    <a class="nav-link navigation-link {{ ($navbar_page == "about") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.about") }}">About</a>
                 </li>
                 {{-- My Account Page
                     <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>
                     <li class="nav-item">
-                        <a class="nav-link navigation-link {{ ($navbar_page == "my account") ? 'navigation-link-current-page' : '' }}" href="{{ route("business.my account") }}">My Account</a>
+                        <a class="nav-link navigation-link {{ ($navbar_page == "my account") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.my account") }}">My Account</a>
                     </li>
                 --}}
                 {{-- Dropdown Example

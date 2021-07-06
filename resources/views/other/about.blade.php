@@ -1,6 +1,3 @@
-<?php
-    $mode = (isset($request)) ? $request -> session() -> get('mode', 'business') : 'business';
-?>
 @extends('layouts.master')
 @section('stylesheets')
     <style>
