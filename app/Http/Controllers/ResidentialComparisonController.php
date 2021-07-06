@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Throwable;
 
-use App\Http\Controllers\API\ResidentialApiRepository as Repository;
+use App\Http\Controllers\Api\ResidentialApiRepository as Repository;
 use App\Http\Requests\Mode\ModeSession;
 use App\Mail\ResidentialAPINotificationEmail;
 use App\Mail\ResidentialAPINotificationCustomerConfirmationEmail;
@@ -228,7 +228,7 @@ class ResidentialComparisonController extends Controller
             $tariff_results = Repository::tariffs_results(
                 null, $current_tariffs -> E,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
-                null, $existing_tariff -> elec_kwh, 0.0,
+                null, $existing_tariff -> elec_kwh, $existing_tariff -> e7_percent,
                 $user_address["movingHouse"], $existing_tariff -> payment_method, true, "", $user_address["postcode"],
                 $status);
 
@@ -283,7 +283,7 @@ class ResidentialComparisonController extends Controller
             $tariff_results = Repository::tariffs_results(
                 $current_tariffs -> G, $current_tariffs -> E,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
-                $existing_tariff -> gas_kwh, $existing_tariff -> elec_kwh, 0.0,
+                $existing_tariff -> gas_kwh, $existing_tariff -> elec_kwh, $existing_tariff -> e7_percent,
                 $user_address["movingHouse"], $existing_tariff -> payment_method, true, "", $user_address["postcode"],
                 $status);
 
@@ -344,7 +344,7 @@ class ResidentialComparisonController extends Controller
             $tariff_results = Repository::tariffs_results(
                 $current_tariffs -> G, $current_tariffs -> E,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
-                $existing_tariff -> gas_kwh, $existing_tariff -> elec_kwh, 0.0,
+                $existing_tariff -> gas_kwh, $existing_tariff -> elec_kwh, $existing_tariff -> e7_percent,
                 $user_address["movingHouse"], $existing_tariff -> payment_method_1, true, "", $user_address["postcode"],
                 $status);
             

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 
@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Session;
 
 class ResidentialApiRepository extends Controller
 {
-    protected static function _apiUrl() { return "https://api.theenergyshop.co.uk/api/v1/"; } //env("API_URL"); }
-    protected static function _apiKey() { return "0468AFBE-AB78-4A23-BBB7-CD6597B8EE5E"; } //env("API_KEY"); }
+    protected static function _apiUrl() { return env("API_URL"); }
+    protected static function _apiKey() { return env("API_KEY"); }
 
     
     /// Addresses ///

@@ -379,7 +379,7 @@
                     
                     <div id="section_tariff_1_e7" style="display: none;">
                         <span id="tariff_1_e7_error" class="form-error-message text-danger"></span>
-                        <p class="paragraph-margin"> Do you have Economy7? </p>
+                        <p class="paragraph-margin"> Do you have Economy 7? </p>
                         <div class="btn-group btn-group-2 flex-wrap" role="group">
                             <input type="radio" class="radio-hidden tariff_1_e7_radio" id="tariff_1_e7_radio_yes" name="tariff_1_e7" value="true" autocomplete="off" />
                             <label for="tariff_1_e7_radio_yes"> Yes </label>
@@ -476,11 +476,11 @@
                     
                     <div id="section_tariff_2_e7">
                         <span id="tariff_2_e7_error" class="form-error-message text-danger"></span>
-                        <p class="paragraph-margin"> Do you have Economy7? </p>
+                        <p class="paragraph-margin"> Do you have Economy 7? </p>
                         <div class="btn-group btn-group-2 flex-wrap" role="group">
-                            <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_yes" name="tariff_2_e7" value="true" autocomplete="off" checked="true" />
+                            <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_yes" name="tariff_2_e7" value="true" autocomplete="off" />
                             <label for="tariff_2_e7_radio_yes"> Yes </label>
-                            <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_no" name="tariff_2_e7" value="false" autocomplete="off" />
+                            <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_no" name="tariff_2_e7" value="false" autocomplete="off" checked="true" />
                             <label for="tariff_2_e7_radio_no"> No </label>
                         </div>
                         <br /><br />
@@ -559,13 +559,30 @@
                                 <tr>
                                     <td><label for="your_electric_usage_length"> kWh per </label></td>
                                     <td>
-                                        <select class="form-control" id="your_electric_usage_length" name="your_electric_usage_length">
+                                        <select class="form-control" id="your_electric_usage_length" name="your_electric_usage_length" style="margin-bottom: 1em;">
                                             <option value="Month"> Month </option>
                                             <option value="Quarter"> Quarter </option>
                                             <option value="Year" selected> Year </option>
                                         </select>
                                     </td>
                                 </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <br />
+                    <div id="section_your_electric_e7" style="display: none;">
+                        <p class="paragraph-margin">Your Economy 7 Usage</p>
+                        <div style="text-align: center;">
+                            <table class="your-usage-table">
+                                <tr>
+                                    <td></td>
+                                    <td><span id="your_electric_e7_error" class="form-error-message text-danger"></span></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="your_electric_e7_input">% Economy 7 Usage</label></td>
+                                    <td><input type="number" class="form-control" id="your_electric_e7_input" name="your_electric_e7_input" style="text-align: left;" value="42" min="0" max="99" /></td>
+                                </tr>
+                                <tr><td colspan="2">Please tell us how much of your energy is used at night. Your bill will detail this on a separate line. Leave the default value if you don't know.</td></tr>
                             </table>
                         </div>
                     </div>
@@ -697,7 +714,13 @@
                     "kwh_error": $("#your_electric_usage_kwh_error"),
                     "kwh": $("#your_electric_usage_kwh"),
                     "length_error": $("#your_electric_usage_length_error"),
-                    "length": $("#your_electric_usage_length")
+                    "length": $("#your_electric_usage_length"),
+                    e7:
+                    {
+                        "section": $("#section_your_electric_e7"),
+                        "error": $("#your_electric_e7_error"),
+                        "input": $("#your_electric_e7_input")
+                    }
                 }
             };
 
@@ -718,6 +741,7 @@
                         break;
                     case "gas":
                         ShowSection("gas_supplier");
+                        sections.your_electric_usage.e7.section.hide();
                         sections.post_data.fuel_char_1 = "G";
                         break;
                     case "electric":
@@ -820,6 +844,10 @@
             sections.tariff_1.e7.radio.change(function(e)
             {
                 sections.post_data.tariff_1.e7 = e.target.value;
+                
+                if (e.target.value == "true" && sections.fuel_type != "gas") sections.your_electric_usage.e7.section.show();
+                else sections.your_electric_usage.e7.section.hide();
+                
                 GetTariffsForSupplier1();
             });
             // current tariff
@@ -874,6 +902,10 @@
             sections.tariff_2.e7.radio.change(function(e)
             {
                 sections.post_data.tariff_2.e7 = e.target.value;
+                
+                if (e.target.value == "true" && sections.fuel_type != "gas") sections.your_electric_usage.e7.section.show();
+                else sections.your_electric_usage.e7.section.hide();
+                
                 GetTariffsForSupplier2();
             });
             // current tariff
@@ -1130,42 +1162,8 @@
                     {
                         type: 'POST',
                         url: url,
-                        success: success /*function(result, success, xhr)
-                        {
-                            if (xhr != null && xhr.status == 204)
-                            {
-                                // no data returned
-                                return xhr.status;
-                            }
-
-                            try
-                            {
-                                // parse the returned json into an object
-                                var rows = JSON.parse(result);
-
-                                // sort the rows by the address property
-                                rows.sort((a, b) => (a.address.localeCompare(b.address, 'en', { numeric: true })));
-
-                                // empty the dropdown list
-                                inputAddressValues.empty();
-
-                                // add each row to the dropdown list
-                                for (i in rows)
-                                {
-                                    inputAddressValues.append($('<option value="' + rows[i].mpan + '">' + rows[i].address + '</option>'));
-                                }
-                            }
-                            catch (ex)
-                            {
-                                // an error ocurred processing the request
-                                return false;
-                            }
-                        }*/,
-                        error: error /* function(xhr, status, error)
-                        {
-                            // the request failed
-                            return false;
-                        } */
+                        success: success,
+                        error: error
                     });
                 }
                 catch (ex)
@@ -1204,6 +1202,7 @@
                 var your_gas_usage_length = sections.your_gas_usage.length.val();
                 var your_electric_usage_kwh = sections.your_electric_usage.kwh.val();
                 var your_electric_usage_length = sections.your_electric_usage.length.val();
+                var your_electric_usage_e7_percent = sections.your_electric_usage.e7.input.val();
 
                 var checkDual = false; var checkGas = false; var checkElectric = false;
 
@@ -1255,6 +1254,8 @@
                 {
                     if (!your_electric_usage_kwh) { sections.your_electric_usage.kwh_error.show().text("Please enter your kwh of electricity usage."); e.preventDefault(); return; }
                     if (!your_electric_usage_length) { sections.your_electric_usage.length_error.show().text("Please select a length of time."); e.preventDefault(); return; }
+                    if (!your_electric_usage_e7_percent) { sections.your_electric_usage.e7.error.show().text("Please enter a % economy 7 usage. If you are not sure, use the leave it at the average, 42."); e.preventDefault(); return; }
+                    if (!isFinite(your_electric_usage_e7_percent) && your_electric_usage_e7_percent < 0 && your_electric_usage_e7_percent > 99) { sections.your_electric_usage.e7.error.show().text("The % economy 7 usage must be a number between 0 and 99."); e.preventDefault(); return; }
                 }
             });
             

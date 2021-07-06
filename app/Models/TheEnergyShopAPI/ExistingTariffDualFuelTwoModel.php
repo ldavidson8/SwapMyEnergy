@@ -40,6 +40,9 @@ class ExistingTariffDualFuelTwoModel
             case "Month": (int) $this -> elec_kwh *= 12; break;
             case "Quarter": (int) $this -> elec_kwh *= 4; break;
         }
+        
+        if ($this -> e7 == "true") $this -> e7_percent = $request["your_electric_e7_input"];
+        else $this -> e7_percent = 0;
     }
     
     public $fuel_type_char; // "D"
@@ -64,4 +67,6 @@ class ExistingTariffDualFuelTwoModel
     public $gas_length; // "Month","Quarter","Year"
     public $elec_kwh; // 3000
     public $elec_length; // "Month","Quarter","Year"
+
+    public $e7_percent; // 42
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\API\ResidentialApiController;
+use App\Http\Controllers\Api\ResidentialApiController;
 use App\Http\Requests\Mode\ModeSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

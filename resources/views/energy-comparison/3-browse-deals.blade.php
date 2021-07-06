@@ -12,6 +12,11 @@
     {
         padding: 0px;
     }
+    
+    .current-supplier-logo td
+    {
+        width: 100% !important;
+    }
 
     .estimated-annual-energy-costs-banner
     {
