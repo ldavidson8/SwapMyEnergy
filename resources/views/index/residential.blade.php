@@ -245,7 +245,7 @@
             }
             else
             {
-                faqPanel.style.maxHeight = faqPanel.scrollHeight + "px";
+                faqPanel.style.maxHeight = "none";
             }
         });
     }

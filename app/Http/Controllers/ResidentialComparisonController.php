@@ -745,9 +745,10 @@ class ResidentialComparisonController extends Controller
                     "dependantThroughFare" => $requestObj["user"]["currentAddress"]["dependantThroughFare"]
                 ];
             }
-            return response() -> json($requestObj);
+            // return response() -> json($requestObj);
+
             // TODO: remove this if statement for the live site
-            if ($requestObj["email"] != "testingthefinalapicall@testing.co.uk")
+            if ($requestObj["user"]["email"] == "testingthefinalapicall@testing.co.uk")
             {
                 $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
                 if (str_starts_with($result_str, "{"))

@@ -64,6 +64,8 @@ Route::group([ 'prefix' => '/residential' ], function()
     Route::get('/about', [ ResidentialHomeController::class, 'about' ]) -> name('residential.about');
     Route::get('/privacy-policy', [ ResidentialHomeController::class, 'privacyPolicy' ]) -> name('residential.privacy policy');
     Route::get('/terms-and-conditions', [ ResidentialHomeController::class, 'termsAndConditions' ]) -> name('residential.t&c');
+    Route::get('/cookie-policy', [ ResidentialHomeController::class, 'cookiePolicy' ]) -> name('residential.cookie policy');
+    Route::get('/sitemap', [ ResidentialHomeController::class, 'siteMap' ]) -> name('residential.sitemap');
     Route::get('/contact', [ ResidentialHomeController::class, 'contact' ]) -> name('residential.contact');
     Route::get('/partners-and-affiliates', [ ResidentialHomeController::class, 'partnersAndAffiliates' ]) -> name('residential.partners and affiliates');
     

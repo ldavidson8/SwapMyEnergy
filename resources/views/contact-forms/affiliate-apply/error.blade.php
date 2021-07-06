@@ -9,7 +9,7 @@
 
 @section('main-content')
         <div class="row flex-grow-1 centered-content-white">
-            <div>
+            <div class="container-md" style="background-color: #f3f2f1; border-radius: 35px; padding: 0px 30px 30px;">
                 <h1>There was a problem processing your application to be an affiliate</h1>
                 <p>Please contact us using the details below.</p>
                 <p>
@@ -19,8 +19,4 @@
                 <a href="{{ route("$mode.home") }}"><button class="big-blue-button" style="width: auto; padding: 8px 15px;">Back to the homepage</button></a>
             </div>
         </div>
-@endsection()
-
-@section('after-footer')
     </div>
-@endsection

@@ -63,8 +63,6 @@ class ResidentialHomeController extends Controller
 
     public function cookiePolicy()
     {
-        return redirect() -> route('residential.home');
-
         ModeSession::setResidential();
 
         $navbar_page = 'cookie policy';
@@ -73,8 +71,6 @@ class ResidentialHomeController extends Controller
     }
     public function siteMap()
     {
-        return redirect() -> route('residential.home');
-        
         ModeSession::setResidential();
 
         $navbar_page = 'sitemap';
