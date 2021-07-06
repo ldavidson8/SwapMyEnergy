@@ -35,13 +35,22 @@
         }
         
 
-        /* video 
+        .video-container
         {
-            left: 50%;
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+
+        .SME-video
+        {
             position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        } */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
         @media (min-width: 1200px)
         {
@@ -75,9 +84,9 @@
             <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-4 col-lg-6 col-md-8 col-12 center-content no-margin" style="padding: 30px; color: #f3f2f1;">
                 <h1>What We Do</h1>
-                <p style="padding-top: 30px; width: 450px; max-width: 100%;">We provide businesses and people like YOU with the opportunity to save on their energy bills. With our no nonsense approach, what you see is what you get. 
+                <p style="padding-top: 30px; width: 450px; max-width: 100%;">We provide businesses and people like YOU with the opportunity to save on their energy bills. With our no-nonsense approach, what you see is what you get. 
                 At Swap My Energy, we give you savings based on facts, not estimates. 
-                By finding you a cheaper unique cost you will have the opportunity to save money and the peace of mind that your energy bill switching is in good hands.
+                By finding you a unique deal you will have the opportunity to save money and the peace of mind that your energy bill switching is in good hands.
                 </p>    
             </div>
             <div class="col-md-2 d-none d-lg-none d-md-block"></div>
@@ -88,23 +97,26 @@
         </div>
     </div>
     <hr/>
-        <video width="100%" height="auto" style="margin: auto; max-width: 100%; background: black url('{{ asset('img/Loading-thumbnail.png') }}') center center no-repeat" preload="none" autoplay muted loop>
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src=https://www.youtube.com/embed/1BbKeuILfEo?playlist=1BbKeuILfEo&rel=0&amp;controls=0&modestbranding=1&autoplay=1&loop=1&mute=1 title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+        {{-- <video width="100%" height="auto" style="margin: auto; max-width: 100%; background: black url('{{ asset('img/Loading-thumbnail.png') }}') center center no-repeat" preload="none" autoplay muted loop>
             <source src="{{ asset('media/sme_mute.mp4') }}" type="video/mp4" />
             <source src="{{ asset('media/sme_mute_mobi.mp4') }}" type="video/mp4 media='(max-width: 991px)'">
-        </video>
+        </video> --}}
     <div class="full-size-50 container-fluid d-flex flex-column">
         <div class="row flex-grow-1 no-padding">
             <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
             <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left; background-color: transparent;">
                 <div>
                     <h2 style="font-size: 48px;"> Our home </h2>
-                    <p style="padding-top: 15px; font-weight: 700;">Preston is in our blood, savings are in our heart.</p>
-                    <p style="font-weight: normal;"> Swap My Energy, operated by Znergi Ltd, is run right from the heart of Preston, with our home situated just off Fishergate. We have a small, but passionate team who are dedicated to providing you with the best possible deals for your energy. </p>
+                    <p style="padding-top: 15px; font-weight: 700;">Preston is in our blood; savings are in our heart.</p>
+                    <p style="font-weight: normal;"> Swap My Energy, operated by Znergi Ltd, is run right from the heart of Preston, with our home situated just off Fishergate. We have a small, but passionate team who will provide you with the best possible deals for your energy. </p>
                     <div class="lg-padding-content">
                         <h3 style="padding-top: 15px; font-size: 30px; font-weight: 700; margin: 0; display:inline "> Find Us Online </h3>
-                        <img src={{ asset('img/click-cursor.png')}}>
+                        <img alt="" src={{ asset('img/click-cursor.png')}}>
                         <p style="font-weight: 700;"> We're on your favourite social media sites! </p>
-                        <a href="https://linktr.ee/swapmyenergy"><button class="rounded-blue-button" role="button"> FOLLOW US </button></a>
+                        <a href="https://linktr.ee/swapmyenergy" rel="external"><button class="rounded-blue-button" role="button"> FOLLOW US </button></a>
                     </div>
                 </div>
             </div>

@@ -76,10 +76,10 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        Chancel Plan?<br />
+                        Cancel Plan?<br />
                         <input id="options_cancel_plan" class="form-control" type="checkbox" name="cancel_plan" style="display: none;" />
                         <label for="options_cancel_plan" class="checkbox-image">
-                            <img height="70" src="{{ asset('img/my-account/no-button.png') }}" style="vertical-align: middle; visibility: hidden;" />
+                            <img height="70" src="{{ asset('img/my-account/no-button.png') }}" style="vertical-align: middle; visibility: hidden;" alt="Button displaying No" />
                         </label>
                     </div>
                     <div class="form-group">

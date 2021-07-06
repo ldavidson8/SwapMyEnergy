@@ -32,6 +32,8 @@ Route::group([ 'prefix' => '' ], function()
     Route::get('/about', [ BusinessHomeController::class, 'about' ]) -> name('business.about');
     Route::get('/privacy-policy', [ BusinessHomeController::class, 'privacyPolicy' ]) -> name('business.privacy policy');
     Route::get('/terms-and-conditions', [ BusinessHomeController::class, 'termsAndConditions' ]) -> name('business.t&c');
+    Route::get('/cookie-policy', [ BusinessHomeController::class, 'cookiePolicy' ]) -> name('business.cookie policy');
+    Route::get('/sitemap', [ BusinessHomeController::class, 'siteMap' ]) -> name('business.sitemap');
     Route::get('/contact', [ BusinessHomeController::class, 'contact' ]) -> name('business.contact');
     Route::get('/partners-and-affiliates', [ BusinessHomeController::class, 'partnersAndAffiliates' ]) -> name('business.partners and affiliates');
 

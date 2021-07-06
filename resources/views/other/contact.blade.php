@@ -11,6 +11,11 @@
             color: #f3f2f1;
         }
 
+        .contact-us-blue-boxes
+        {
+            font-size: 20px;
+        }
+
         .contact-us-blue-box
         {
             align-items: center;
@@ -42,7 +47,7 @@
             width: 200px;
             border-radius: 10px;
             padding: 5px;
-            font-size: 27px;
+            font-size: 24px;
             font-weight: bold;
             border: none;
         }
@@ -62,17 +67,17 @@
 
 @section('main-content')
             <h1 class="font-color-white" style="text-align: center"> Get in touch </h1>
-            <div class="row flex-grow-1 no-padding font-color-white">
+            <div class="row flex-grow-1 no-padding font-color-white contact-us-blue-boxes">
                 <div class="col-12 col-lg-4 col-md-6 contact-us-blue-box">
                     <div class="contact-us-blue-box-inner">
                         <div style="position: relative;">
-                            <h2> Call Us </h2>
+                            <h2> Call us </h2>
                             <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/phone.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center;">
                             <p style="font-size:30px; padding-top: 25px; padding-bottom:40px;"> {{ env('DATA_CONTACT_PHONE_NUMBER') }} </p>
-                            <h3 style="text-decoration: underline; font-size: 24px;"> Opening Hours </h3>
+                            <h3 style="text-decoration: underline;"> Opening Hours </h3>
                             <p>
                                 10am - 4:30pm <br>
                                 Monday to Thursday 
@@ -83,7 +88,7 @@
                 <div class="col-12 col-lg-4 col-md-6 contact-us-blue-box">
                     <div class="contact-us-blue-box-inner">
                         <div style="position: relative;">
-                            <h2> Email Us </h2>
+                            <h2> Email us </h2>
                             <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/email.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
@@ -102,23 +107,25 @@
                 <div class="col-12 col-lg-4 col-md-6 contact-us-blue-box">
                     <div class="contact-us-blue-box-inner">
                         <div style="position: relative;">
-                            <h2> Message Us </h2>
+                            <h2> Message us </h2>
                             <img alt="" width="80px" height="80px" src="{{ asset('img/support icons/chat.png') }}" style="position: absolute; right: 0; bottom: 0;"></img>
                         </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center; padding: 29px;">
-                            <p style="text-decoration: underline">
-                                Live Hours
-                            </p>
-                            <p>
-                                10am - 4:30pm <br />
-                                Monday to Thursday
-                            </p>
-                            <p>
-                                We will aim to get back to you within 24 hours.
-                            </p>
-                            {{-- <button type="button" class="btn-lg big-white-button" style="width: auto; cursor: default;"> Webchat Coming Soon </button> --}}
-                            <p>Webchat Coming Soon</p>
+                            {{-- 
+                                <p style="text-decoration: underline">
+                                    Live Hours
+                                </p>
+                                <p>
+                                    10am - 4:30pm <br />
+                                    Monday to Thursday
+                                </p>
+                                <p>
+                                    We will aim to get back to you within 24 hours.
+                                </p>
+                                <button type="button" class="btn-lg big-white-button" style="width: auto; cursor: default;"> Webchat Coming Soon </button>
+                            --}}
+                            <p style="font-size: 30px;">Webchat Coming Soon</p>
                         </div>
                     </div>
                 </div>
