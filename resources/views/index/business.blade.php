@@ -201,7 +201,7 @@
             </div>
             <div class="col-sm-3 d-sm-block d-md-none"></div>
             <div class="col-md-2 col-sm-3 col-6">
-                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/sse.png') }}" alt="SSE logo">
+                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/SSE.png') }}" alt="SSE logo">
             </div>
             <div class="col-md-2 col-sm-3 col-6">
                     <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/crown-gas.png') }}" alt="Crown gas logo">
