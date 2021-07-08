@@ -460,8 +460,6 @@ class ResidentialComparisonController extends Controller
     {
         try
         {
-            // return $this -> BackTo4GetSwitching();
-            // return response() -> json($request -> all());
             $validator = Validator::make($request -> all(),
             [
                 'postcode' => 'required|string',
@@ -560,8 +558,6 @@ class ResidentialComparisonController extends Controller
             {
                 return $this -> BackTo4GetSwitching();
             }
-
-            // return response() -> json(compact('user_address', 'mprn', 'existing_tariff', 'current_tariffs', 'selected_tariff'));
             
             // $mpandetails = Repository::addresses_mpandetails($user_address["mpan"], $status);
             // return response() -> json($mpandetails, $status);
@@ -745,27 +741,20 @@ class ResidentialComparisonController extends Controller
                     "dependantThroughFare" => $requestObj["user"]["currentAddress"]["dependantThroughFare"]
                 ];
             }
-            // return response() -> json($requestObj);
-
-            // TODO: remove this if statement for the live site
-            if ($requestObj["user"]["email"] == "testingthefinalapicall@testing.co.uk")
+            
+            $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
+            if (str_starts_with($result_str, "{"))
             {
-                $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
-                if (str_starts_with($result_str, "{"))
-                {
-                    // The api returned an error
-                    Log::channel("energy-comparison/get-switching-post") -> critical("The API returned an error.");
-                    return $this -> BackTo4GetSwitching();
-                }
-                Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
+                // The api returned an error
+                Log::channel("energy-comparison/get-switching-post") -> critical("The final post request returned an error.");
+                return $this -> BackTo4GetSwitching();
             }
-            else $result_str = "Testing123Testing";
+            Log::channel("energy-comparison/get-switching-post") -> info("The final post request succeeded.");
 
             Session::put('ResidentialAPI.reference', $result_str);
             
             $to_email = env('MAIL_TO_ADDRESS');
             Mail::to($to_email) -> queue(new ResidentialAPINotificationEmail($requestObj, date("Y-m-d H:i:s"), "Test API Key", $result_str));
-
             Mail::to($request -> input("emailAddress")) -> queue(new ResidentialAPINotificationCustomerConfirmationEmail($requestObj, $result_str), $result_str);
 
             return redirect() -> route('residential.energy-comparison.success');
