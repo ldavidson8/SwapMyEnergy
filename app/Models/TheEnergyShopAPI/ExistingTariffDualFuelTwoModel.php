@@ -16,7 +16,6 @@ class ExistingTariffDualFuelTwoModel
         $this -> supplier_2 = (int) $request["electric_supplier"];
         
         $this -> payment_method_1 = $request["tariff_1_payment_method"];
-        $this -> e7_1 = $request["tariff_1_e7"];
         if (isset($request["tariff_1_current_tariff"])) $this -> current_tariff_1 = $request["tariff_1_current_tariff"];
         else if (isset($request["tariff_1_current_tariff_not_listed"])) $this -> current_tariff_1_not_listed = $request["tariff_1_current_tariff_not_listed"];
 
@@ -41,7 +40,7 @@ class ExistingTariffDualFuelTwoModel
             case "Quarter": (int) $this -> elec_kwh *= 4; break;
         }
         
-        if ($this -> e7 == "true") $this -> e7_percent = $request["your_electric_e7_input"];
+        if ($this -> e7_2 == "true") $this -> e7_percent = $request["your_electric_e7_input"];
         else $this -> e7_percent = 0;
     }
     
@@ -54,7 +53,6 @@ class ExistingTariffDualFuelTwoModel
     public $supplier; // 5
     
     public $payment_method_1; // "MDD","QDD","CAC","PRE"
-    public $e7_1; // "true","false"
     public $current_tariff_1; // "1623849"
     public $current_tariff_1_not_listed; // "notListed"
 

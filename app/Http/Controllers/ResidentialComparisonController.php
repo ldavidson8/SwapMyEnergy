@@ -323,7 +323,7 @@ class ResidentialComparisonController extends Controller
             
             if ($existing_tariff -> current_tariff_1_not_listed == "notListed")
             {
-                $default_tariff = Repository::tariffs_defaultForASupplier($existing_tariff -> supplier_1, $existing_tariff -> fuel_type_char, $existing_tariff -> payment_method_1, $existing_tariff -> e7_1, $existing_tariff -> region_id, $status);
+                $default_tariff = Repository::tariffs_defaultForASupplier($existing_tariff -> supplier_1, $existing_tariff -> fuel_type_char, $existing_tariff -> payment_method_1, "false", $existing_tariff -> region_id, $status);
                 if (count($default_tariff) == 0) return "Four"; // return $this -> BackTo2ExistingTariff();
                 $tariff_1 = Repository::tariffs_info_by_id($default_tariff[0] -> tariffId, $status);
             }
