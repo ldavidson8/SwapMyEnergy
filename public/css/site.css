@@ -59,6 +59,8 @@ body
 .background-image-top::before { background-position: center top !important; }
 .background-image-bottom::before { background-position: center bottom !important; }
 .background-image-right::before { background-position: center right !important; }
+.background-image-left::before { background-position: center left !important; }
+
 
 .background-image-opacity-35::before { opacity: 0.35 !important; }
 
