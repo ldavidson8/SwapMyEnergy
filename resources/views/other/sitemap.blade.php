@@ -62,16 +62,14 @@
                 </div>
             </div>   
             <div class="row">
-                <div class="col-lg-6">
+                {{-- <div class="col-lg-6">
                     <p class="font-weight-bold">SwapMyEnergy information:</p>
                     <ul class="line-height">
                         <li>
                             <p><a class="anchor-default" href="{{route('business.about')}}">About Us</a></p>
-                            {{--<p><a class="anchor-default" href="https://linktr.ee/swapmyenergy" rel="external">Our Social Media</a></p>--}}
                             <p><a class="anchor-default" href="{{route('business.t&c')}}">Terms and Conditions</a></p>
                             <p><a class="anchor-default" href="{{route('business.privacy policy')}}">Privacy Policy</a></p>
                             <p><a class="anchor-default" href="{{route('business.cookie policy')}}">Our Cookie policy</a></p>
-                            {{--<p><a class="anchor-default" href="https://www.znergi.co.uk/">Znergi.co.uk</a></p>--}}
                         </li>
                     </ul>
                 </div>
@@ -84,28 +82,40 @@
                             <p><a class="anchor-default" href="{{route('business.partners and affiliates')}}">Our Affiliate Program</a></p>
                             <p><a class="anchor-default" href="{{route('business.contact')}}">Contact Us</a></p>
                             <p><a class="anchor-default" href="{{route('business.contact')}}#support">Raise a Support Request</a></p>
-                            {{--<p><a class="anchor-default" href="route('residential.#')">Frequently Asked Questions</a></p>--}}
                         </li>
                     </ul>   
-                </div>
-                {{--<div class="col-lg-6">
-                    <p class="font-weight-bold">SwapMyEnergy Residential:</p>
+                </div> --}}
+                <div class="col-lg-6">
+                    <p class="font-weight-bold">Business:</p>
                     <ul class="line-height">
                         <li>
-                            <p><a class="anchor-default" href="{{route('residential.home')}}">Residential Home Page</a></p>
-                            <p><a class="anchor-default" href="route('residential.#')">Frequently Asked Questions</a></p>
+                            <p><a class="anchor-default" href="{{route('business.home')}}">Home</a></p>
+                            <p><a class="anchor-default" href="{{route('business.about')}}">About Us</a></p>
+                            <p><a class="anchor-default" href="{{route('business.partners and affiliates')}}">Our Affiliate Program</a></p>
+                            <p><a class="anchor-default" href="{{route('business.contact')}}">Contact Us</a></p>
+                            <p><a class="anchor-default" href="{{route('business.contact')}}#support">Raise a Support Request</a></p>
+                            <p><a class="anchor-default" href="{{route('business.t&c')}}">Terms and Conditions</a></p>
+                            <p><a class="anchor-default" href="{{route('business.privacy policy')}}">Privacy Policy</a></p>
+                            <p><a class="anchor-default" href="{{route('business.cookie policy')}}">Our Cookie policy</a></p>
                         </li>
                     </ul>
-                    <br />
-                    <p class="font-weight-bold">SwapMyEnergy Business:</p>
+                </div>
+                <div class="col-lg-6">
+                    <p class="font-weight-bold">Residential:</p>
                     <ul class="line-height">
                         <li>
-                            <p><a class="anchor-default" href="{{route('business.home')}}"> Business Home Page</a></p>
-                            <p><a class="anchor-default" href="{{route('business.partners and affiliates')}}">Our Affiliate Program</a></p>
-                            <p><a class="anchor-default" href="route('business.#')">Our Suppliers</a></p>
+                            <p><a class="anchor-default" href="{{route('residential.home')}}">Home</a></p>
+                            <p><a class="anchor-default" href="{{route('residential.energy-comparison.1-address')}}">Swap My Energy</a></p>
+                            <p><a class="anchor-default" href="{{route('residential.about')}}">About Us</a></p>
+                            <p><a class="anchor-default" href="{{route('residential.partners and affiliates')}}">Our Affiliate Program</a></p>
+                            <p><a class="anchor-default" href="{{route('residential.contact')}}">Contact Us</a></p>
+                            <p><a class="anchor-default" href="{{route('residential.contact')}}#support">Raise a Support Request</a></p>
+                            <p><a class="anchor-default" href="{{route('residential.t&c')}}">Terms and Conditions</a></p>
+                            <p><a class="anchor-default" href="{{route('residential.privacy policy')}}">Privacy Policy</a></p>
+                            <p><a class="anchor-default" href="{{route('residential.cookie policy')}}">Our Cookie policy</a></p>
                         </li>
-                    </ul>   
-                </div>--}}
+                    </ul>
+                </div>
             </div>
         </div>
     </main>
