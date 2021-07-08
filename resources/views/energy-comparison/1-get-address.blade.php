@@ -41,9 +41,13 @@
         <hr/>
         <div class="row flex-grow-1 no-padding background-image-preston center-content" style="color: #f3f2f1;">
             <div id="form-container">
-                @if (count($errors) > 0)
+                @if (Session::has('fail') && Session::get('fail') == 'session_expired')
                     <div class="alert alert-danger post-error">
-                        An error has ocurred. Please try again later, or <a href='{{ route("$mode.contact") }}'>contact us here</a>.
+                        Sorry, your session expired. Please try again.
+                    </div>
+                @elseif (count($errors) > 0)
+                    <div class="alert alert-danger post-error">
+                        An error has ocurred. Please try again, or <a href='{{ route("$mode.contact") }}'>contact us here</a>.
                         {{-- @foreach ($errors -> all() as $error)
                             {{ $error }}<br />
                         @endforeach --}}

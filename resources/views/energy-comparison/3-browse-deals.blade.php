@@ -374,6 +374,19 @@
         <div class="background-image-wind-turbines background-image-top background-image-contain background-image-no-mobile flex-fill">
             <div class="col-12 center-content form-outer-box">
                 <div class="container outer-rounded-container no-padding flex-row">
+                    <span style="font-size: 20px;">
+                        @if (Session::has('fail') && Session::get('fail') == 'session_expired')
+                            <div class="alert alert-danger post-error">
+                                Sorry, your session expired. Please try again.
+                            </div>
+                        @elseif (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                @foreach ($errors -> all() as $error)
+                                    {{ $error }}<br />
+                                @endforeach
+                            </div>
+                        @endif
+                    </span>
                     @switch($existing_tariff -> fuel_type_str)
                         @case("dfs") @include('energy-comparison.partials.3-browse-deals-dfs') @break
                         @case("df") @include('energy-comparison.partials.3-browse-deals-df') @break

@@ -33,6 +33,13 @@ class ResidentialComparisonController extends Controller
     {
         try
         {
+            Session::forget('ResidentialAPI.existing_tariff');
+            Session::forget('ResidentialAPI.current_tariffs');
+            Session::forget('ResidentialAPI.new_tariffs');
+            Session::forget('ResidentialAPI.selected_tariff');
+            Session::forget('ResidentialAPI.selected_payment_methods');
+            Session::forget('ResidentialAPI.reference');
+
             $fields = $request -> all();
             $validator = Validator::make($fields,
             [
@@ -87,7 +94,6 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            throw $th;
             report($th);
             return redirect() -> route('residential.energy-comparison.1-address') -> withErrors([ '' => "We were unable to process your data. Please check your input and try again later." ]) -> withInput();
         }
@@ -101,14 +107,13 @@ class ResidentialComparisonController extends Controller
             ModeSession::setResidential();
 
             $supplier_data = Session::get('ResidentialAPI.supplier_data');
-            if (!isset($supplier_data)) return $this -> BackTo1FindAddress();
+            if (!isset($supplier_data)) return $this -> BackTo1FindAddress([], true);
             
             $page_title = 'Compare Energy Prices - Your Tariff';
             return view('energy-comparison.2-set-existing-tariff', compact('page_title', 'supplier_data'));
         }
         catch (Throwable $th)
         {
-            throw($th);
             report($th);
             return redirect() -> route('residential.energy-comparison.1-address') -> withErrors([ '' => "We were unable to process your data. Please check your input and try again later." ]) -> withInput();
         }
@@ -120,7 +125,11 @@ class ResidentialComparisonController extends Controller
         try
         {
             $user_address = Session::get('ResidentialAPI.user_address');
-            if (!isset($user_address)) return $this -> BackTo1FindAddress();
+            if (!isset($user_address)) return $this -> BackTo1FindAddress([], true);
+
+            Session::forget('ResidentialAPI.selected_tariff');
+            Session::forget('ResidentialAPI.selected_payment_methods');
+            Session::forget('ResidentialAPI.reference');
 
             switch ($request["fuel_type"])
             {
@@ -143,8 +152,7 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            // report($th);
-            throw $th;
+            report($th);
             return $this -> BackTo2ExistingTariff();
         }
     }
@@ -198,8 +206,7 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            // report($th);
-            throw $th;
+            report($th);
             return $this -> BackTo2ExistingTariff();
         }
     }
@@ -214,7 +221,7 @@ class ResidentialComparisonController extends Controller
             if ($existing_tariff -> current_tariff_not_listed == "notListed")
             {
                 $default_tariff = Repository::tariffs_defaultForASupplier($existing_tariff -> supplier, $existing_tariff -> fuel_type_char, $existing_tariff -> payment_method, $existing_tariff -> e7, $existing_tariff -> region_id, $status);
-                if (count($default_tariff) == 0) return "Two"; // return $this -> BackTo2ExistingTariff();
+                if (count($default_tariff) == 0) return $this -> BackTo2ExistingTariff();
                 $tariff = Repository::tariffs_info_by_id($default_tariff[0] -> tariffId, $status);
             }
             else $tariff = Repository::tariffs_info_by_id($existing_tariff -> current_tariff, $status);
@@ -253,8 +260,7 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            // report($th);
-            throw $th;
+            report($th);
             return $this -> BackTo2ExistingTariff();
         }
     }
@@ -269,7 +275,7 @@ class ResidentialComparisonController extends Controller
             if ($existing_tariff -> current_tariff_not_listed == "notListed")
             {
                 $default_tariff = Repository::tariffs_defaultForASupplier($existing_tariff -> supplier, $existing_tariff -> fuel_type_char, $existing_tariff -> payment_method, $existing_tariff -> e7, $existing_tariff -> region_id, $status);
-                if (count($default_tariff) == 0) return "Three"; // return $this -> BackTo2ExistingTariff();
+                if (count($default_tariff) == 0) return $this -> BackTo2ExistingTariff();
                 $tariff = Repository::tariffs_info_by_id($default_tariff[0] -> tariffId, $status);
             }
             else $tariff = Repository::tariffs_info_by_id($existing_tariff -> current_tariff, $status);
@@ -308,8 +314,7 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            // report($th);
-            throw $th;
+            report($th);
             return $this -> BackTo2ExistingTariff();
         }
     }
@@ -324,7 +329,7 @@ class ResidentialComparisonController extends Controller
             if ($existing_tariff -> current_tariff_1_not_listed == "notListed")
             {
                 $default_tariff = Repository::tariffs_defaultForASupplier($existing_tariff -> supplier_1, $existing_tariff -> fuel_type_char, $existing_tariff -> payment_method_1, "false", $existing_tariff -> region_id, $status);
-                if (count($default_tariff) == 0) return "Four"; // return $this -> BackTo2ExistingTariff();
+                if (count($default_tariff) == 0) return $this -> BackTo2ExistingTariff();
                 $tariff_1 = Repository::tariffs_info_by_id($default_tariff[0] -> tariffId, $status);
             }
             else $tariff_1 = Repository::tariffs_info_by_id($existing_tariff -> current_tariff_1, $status);
@@ -368,8 +373,7 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            // report($th);
-            throw $th;
+            report($th);
             return $this -> BackTo2ExistingTariff();
         }
     }
@@ -384,8 +388,7 @@ class ResidentialComparisonController extends Controller
             $new_tariffs = Session::get('ResidentialAPI.new_tariffs');
             if (!isset($existing_tariff) || !isset($current_tariffs) || !isset($new_tariffs))
             {
-                return "Five";
-                return $this -> BackTo2ExistingTariff();
+                return $this -> BackTo2ExistingTariff([], true);
             }
             
             /// Build the view model ///
@@ -394,8 +397,7 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            // report($th);
-            throw $th;
+            report($th);
             return redirect() -> route('residential.energy-comparison.2-existing-tariff') -> withErrors([ '' => "We were unable to process your data. Please check your input and try again later." ]) -> withInput();
         }
     }
@@ -407,6 +409,13 @@ class ResidentialComparisonController extends Controller
         {
             $existing_tariff = Session::get('ResidentialAPI.existing_tariff');
             $new_tariffs = Session::get('ResidentialAPI.new_tariffs');
+            if (!isset($existing_tariff) || !isset($new_tariffs))
+            {
+                return $this -> BackTo2ExistingTariff([], true);
+            }
+
+            Session::forget('ResidentialAPI.reference');
+            
             $tariff_position = $request -> input('tariffPosition');
             $selected_tariff = $new_tariffs[$tariff_position - 1];
             Session::put('ResidentialAPI.selected_tariff', $selected_tariff);
@@ -418,7 +427,6 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            throw $th;
             report($th);
             return $this -> BackTo3BrowseDeals();
         }
@@ -438,7 +446,7 @@ class ResidentialComparisonController extends Controller
 
             if (!isset($user_address) || !isset($mprn) || !isset($region) || !isset($existing_tariff) || !isset($current_tariffs) || !isset($selected_tariff) || !isset($selected_payment_methods))
             {
-                return $this -> BackTo3BrowseDeals();
+                return $this -> BackTo3BrowseDeals([], true);
             }
             
             $page_title = "Get Switching - Energy Swap";
@@ -447,7 +455,6 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            throw $th;
             report($th);
             return $this -> BackTo3BrowseDeals();
         }
@@ -558,7 +565,7 @@ class ResidentialComparisonController extends Controller
             
             if (!isset($user_address) || !isset($mprn) || !isset($existing_tariff) || !isset($current_tariffs) || !isset($selected_tariff))
             {
-                return $this -> BackTo4GetSwitching();
+                return $this -> BackTo4GetSwitching([], true);
             }
 
             // return response() -> json(compact('user_address', 'mprn', 'existing_tariff', 'current_tariffs', 'selected_tariff'));
@@ -746,20 +753,19 @@ class ResidentialComparisonController extends Controller
                 ];
             }
             // return response() -> json($requestObj);
-
-            // TODO: remove this if statement for the live site
-            if ($requestObj["user"]["email"] == "testingthefinalapicall@testing.co.uk")
-            {
-                $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
-                if (str_starts_with($result_str, "{"))
-                {
-                    // The api returned an error
-                    Log::channel("energy-comparison/get-switching-post") -> critical("The API returned an error.");
-                    return $this -> BackTo4GetSwitching();
-                }
-                Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
-            }
-            else $result_str = "Testing123Testing";
+            
+            // if ($requestObj["user"]["email"] == "testingthefinalapicall@testing.co.uk")
+            // {
+            //     $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
+            //     if (str_starts_with($result_str, "{"))
+            //     {
+            //         // The api returned an error
+            //         Log::channel("energy-comparison/get-switching-post") -> critical("The API returned an error.");
+            //         return $this -> BackTo4GetSwitching();
+            //     }
+            //     Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
+            // }
+            /*else*/ $result_str = "Testing123Testing";
 
             Session::put('ResidentialAPI.reference', $result_str);
             
@@ -772,7 +778,7 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            throw $th;
+            throw($th);
             report($th);
             return $this -> BackTo4GetSwitching();
         }
@@ -782,7 +788,7 @@ class ResidentialComparisonController extends Controller
     {
         $selected_tariff = Session::get('ResidentialAPI.selected_tariff');
         $reference = Session::get('ResidentialAPI.reference');
-        if (!isset($selected_tariff) || !isset($reference)) return $this -> BackTo4GetSwitching();
+        if (!isset($selected_tariff) || !isset($reference)) return $this -> BackTo4GetSwitching([], true);
 
         $page_title = "Compare Energy Prices - Success";
         return view('energy-comparison.success', compact('page_title', 'selected_tariff', 'reference'));
@@ -790,23 +796,27 @@ class ResidentialComparisonController extends Controller
 
     
 
-    public function BackTo1FindAddress($errors = [ '' => "Something went wrong. Please check your input and try again." ])
+    public function BackTo1FindAddress($errors = [ '' => "Something went wrong. Please check your input and try again." ], $sessionExpired = false)
     {
-        return redirect() -> route('residential.energy-comparison.1-address') -> withErrors($errors) -> withInput();
+        if ($sessionExpired) return redirect() -> route('residential.energy-comparison.1-address') -> withFail('session_expired') -> withInput();
+        else return redirect() -> route('residential.energy-comparison.1-address') -> withErrors($errors) -> withInput();
     }
 
-    public function BackTo2ExistingTariff($errors = [ '' => "Something went wrong. Please check your input and try again." ])
+    public function BackTo2ExistingTariff($errors = [ '' => "Something went wrong. Please check your input and try again." ], $sessionExpired = false)
     {
+        if ($sessionExpired) return redirect() -> route('residential.energy-comparison.2-existing-tariff') -> withFail('session_expired') -> withInput();
         return redirect() -> route('residential.energy-comparison.2-existing-tariff') -> withErrors($errors) -> withInput();
     }
 
-    public function BackTo3BrowseDeals($errors = [ '' => "Something went wrong. Please try again later." ])
+    public function BackTo3BrowseDeals($errors = [ '' => "Something went wrong. Please try again later." ], $sessionExpired = false)
     {
+        if ($sessionExpired) return redirect() -> route('residential.energy-comparison.3-browse-deals') -> withFail('session_expired') -> withInput();
         return redirect() -> route('residential.energy-comparison.3-browse-deals') -> withErrors($errors) -> withInput();
     }
 
-    public function BackTo4GetSwitching($errors = [ '' => "Something went wrong. Please check your input and try again." ])
+    public function BackTo4GetSwitching($errors = [ '' => "Something went wrong. Please check your input and try again." ], $sessionExpired = false)
     {
+        if ($sessionExpired) return redirect() -> route('residential.energy-comparison.4-get-switching') -> withFail('session_expired') -> withInput();
         return redirect() -> route('residential.energy-comparison.4-get-switching') -> withErrors($errors) -> withInput();
     }
 }
