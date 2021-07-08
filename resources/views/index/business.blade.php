@@ -49,17 +49,6 @@
             font-size: 28px;
         }
 
-        .rounded-blue-button
-        {
-            background-color: #00d2db;
-            border: none;
-            width: 300px;
-            border-radius: 18px;
-            padding: 12px;
-            font-size: 27px;
-            font-weight: bold;
-        }
-
         .logos-container
         {
             padding: 0;
@@ -105,14 +94,6 @@
             .background-image-non-moblie::before { background-image: none !important; }
         }
         
-        @media (max-width: 761px)
-        {
-        }
-
-        @media (max-width: 515px)
-        {
-        }
-
     </style>
 @endsection
 
@@ -161,7 +142,6 @@
                 <div class="white-text" style="max-width: 100%; width: 600px;">
                     <form id="requestCallbackForm" class="form-black" action="{{ route('business.request-callback') }}" method="post" enctype="multipart/form-data">
                         @csrf
-
                         <div class="form-group">
                             <label for="full_name">Full Name/Business Name</label>
                             <input type="text" class="form-control tall-form-control" id="full_name" name="full_name" placeholder="Full Name/Business Name" required="required" />
@@ -242,7 +222,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6 center-content" style="text-align: center;">
-                <a href="#requestCallback"><button class="rounded-blue-button">Lets do it!</button></a>
+                <a href="#requestCallback"><button class="rounded-blue-button" style="padding: 12px;">Lets do it!</button></a>
             </div>
         </div>
     </div>

@@ -21,6 +21,11 @@ class ModeSession
         return Session::get('mode') != 'residential';
     }
 
+    public static function getMode()
+    {
+        return Session::get('mode', 'business');
+    }
+
     public static function getHomeUrl()
     {
         if (self::isBusiness())
