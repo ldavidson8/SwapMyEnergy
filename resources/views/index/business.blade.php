@@ -82,6 +82,11 @@
             height: auto;
         }
 
+        .padding-bottom-20px
+        {
+            padding-bottom: 20px;
+        }
+
         @media (max-width: 991px)
         {
             .background-mobile-white { background-color: #f3f2f1; }
@@ -214,7 +219,7 @@
     </div>
     <hr />
     <div class="full-size-50 container-fluid d-flex flex-column background-image-preston-behind">
-        <div class="row flex-grow-1 padding-20px background-image-preston background-image-bottom preload">
+        <div class="row flex-grow-1 padding-bottom-20px background-image-preston background-image-bottom preload">
             <div class="col-12 col-lg-6 center-content">
                 <div style="max-width: 100%; text-align: center;">
                     <p class="white-text" style="font-size: 50px; font-weight: 700;">Let us help you navigate through the energy maze</p>
@@ -230,7 +235,7 @@
         <div class="row flex-grow-1 padding-20px">
             <div class="col-12 col-lg-9 center-content">
                 <div style="max-width: 100%;">
-                    <p> At Swap My Energy, we pride ourselves on giving businesses of all sizes easy access to the best commerical energy tariffs on the market. With our leading energy calculator, you can quickly find the best energy prices to make maximum savings on your business' gas and electric bills. Our specialist advisors are committed to supporting you throughout the process, from finding the best deal for your business to negotiating with suppliers to ensure your switch runs smoothly.
+                    <p> At Swap My Energy, we pride ourselves on giving businesses of all sizes easy access to the best commercial energy tariffs on the market. With our leading energy calculator, you can quickly find the best energy prices to make maximum savings on your business' gas and electric bills. Our specialist advisors are committed to supporting you throughout the process, from finding the best deal for your business to negotiating with suppliers to ensure your switch runs smoothly.
                     </p>
                 </div>
             </div>
