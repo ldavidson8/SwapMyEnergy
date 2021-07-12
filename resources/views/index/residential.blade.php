@@ -116,6 +116,14 @@
                 padding-bottom: 30px !important;
             }
         }
+
+        @media (max-width: 330px)
+        {
+            .white-box-infographics-inner
+            {
+                border-radius: 0;
+            }
+        }
     </style>
 @endsection
 
@@ -127,9 +135,9 @@
         <hr/>
         <div class="row flex-grow-1 no-padding background-image-wind-turbines background-image-left">
             <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-3 col-lg-6 col-md-8 col-12 center-content">
+            <div class="col-xl-3 col-lg-6 col-md-8 col-12 center-content" style="padding-bottom: 20px;">
                 <h1>Don't fall victim to rising energy prices</h1>
-                <p>Too many energy brokers promise savings that do not stick. These promises are made on estimates, which aren not always accurate of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you need when it comes to your bills.</p>
+                <p>Too many energy brokers promise savings that do not stick. These promises are made on estimates, which are not always accurate of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you need when it comes to your bills.</p>
                 <a href="{{ route('residential.energy-comparison.1-address') }}" class="btn big-blue-button" role="button" style="margin-top: 10px;">Get started</a>
             </div>
             <div class="col-xl-7 col-lg-5 col-md-2 d-none d-md-block">
@@ -138,7 +146,7 @@
         </div>
     </div>
     <hr/>
-    <div class="full-size-80 container-fluid d-flex h-100 flex-column background-image-preston">
+    <div class="full-size-60 container-fluid d-flex h-100 flex-column background-image-preston">
         <div class="row flex-grow-1 font-color-white">
             <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
                 <div class="white-box-infographics-inner">

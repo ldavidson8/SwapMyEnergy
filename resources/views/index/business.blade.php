@@ -122,7 +122,7 @@
                                 <img src="{{ asset('img/business-homepage/signed-document.png')}}" style="width: 100px;" alt="signed document">
                             </td>
                             <td>
-                                <p class="white-text" style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simply select the option that is most appropriate for your company. We will (no contractions) always be on hand to help you understand your choices. </p>
+                                <p class="white-text" style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simply select the option that is most appropriate for your company. We will always be on hand to help you understand your choices. </p>
                             </td>
                         </tr>
                         <tr>
