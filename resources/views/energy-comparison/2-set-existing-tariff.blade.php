@@ -203,12 +203,7 @@
                 margin: 0px;
                 border: none;
             }
-
-            .background-image-no-mobile::before
-            {
-                background-image: none !important;
-            }
-
+            
             .your-usage-table td
             {
                 display: block;

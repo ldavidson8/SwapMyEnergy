@@ -483,61 +483,6 @@ h3, h5, h6
 }
 
 
-/* Style the buttons that are used to open and close the accordion panel */
-.faq-accordion
-{
-    background-color: #00c2cb;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    transition: 0.4s;
-    border-width: 0;
-    margin-bottom: 10px;
-    font-size: 26px;
-    color: #f3f2f1;
-    font-weight: 700;
-    border-radius: 10px;
-}
-
-.faq-accordion:first-of-type
-{
-    margin-top: 100px;
-}
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.faq-active, .faq-accordion:hover
-{
-    background-color: #ffaa00;
-}
-
-/* Style the accordion panel. Note: hidden by default */
-.faq-panel
-{
-    padding: 0px 18px;
-    background-color: transparent;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-}
-.faq-active + .faq-panel
-{
-    padding-top: 18px;
-}
-
-.faq-accordion:after
-{
-    content: '\25BE'; /* Unicode character for "plus" sign (+) */
-    font-size: 36px;
-    color: #f3f2f1;
-    float: right;
-    margin-left: 5px;
-    padding: 0;
-}
-.faq-active:after
-{
-    content: "\2212"; /* Unicode character for "minus" sign (-) */
-}
-
 /* ------------------------- */
 /* -----  Residential  ----- */
 /* ------------------------- */
@@ -580,14 +525,6 @@ body.business .switch-text
 }
 
 
-@media (min-width: 768px)
-{
-    .faq
-    {
-        padding-top: 80px !important;
-    }
-}
-
 @media (max-width: 767px)
 {
     .left-column-content
@@ -599,6 +536,16 @@ body.business .switch-text
     {
         padding: 30px;
     }
+
+    .mobile-no-padding
+    {
+        padding: 0px !important;
+    }
+
+    .background-image-no-mobile-2::before
+    {
+        background-image: none !important;
+    }
 }
 
 @media (max-width: 575px)
@@ -608,5 +555,10 @@ body.business .switch-text
         width: 100%;
         display: block;
         text-align: center !important;
+    }
+    
+    .background-image-no-mobile::before
+    {
+        background-image: none !important;
     }
 }

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Mail\RaiseSupportRequestEmail;
 use App\Mail\PartnerApplyEmail;
 use App\Mail\AffiliateApplyEmail;
+use App\Models\SupportRequests;
 use Throwable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -40,25 +42,27 @@ class ContactController extends Controller
         
 
         // try catch 1 - save form details to the database
-        // try
-        // {
-        //     $data = 
-        //     [
-        //         'full_name' => $request -> input('full_name'),
-        //         'phone_number' => $request -> input('phone_number')
-        //     ];
-        //     if ($request -> has('email_address')) $data['email_address'] = $request -> input('email_address');
-        //     $callbackRequest = new CallbackRequests($data);
-        //     $callbackRequest -> save();
+        $ticket = date("dHis");
+        try
+        {
+            $data =
+            [
+                'full_name' => $request -> input('full_name'),
+                'email_address' => $request -> input('email_address'),
+                'phone_number' => $request -> input('phone_number'),
+                'support_issue' => $request -> input('support_issue')
+            ];
+            $insertId = DB::table('support_requests') -> insertGetId($data);
+            $ticket = $insertId;
 
-        //     $successFlags |= 1;
-        //     Log::channel('raise-support-request') -> info('ContactController -> raiseSupportRequest(), Saved form fields to the database', [ 'successFlags' => $successFlags ]);
-        // }
-        // catch (Throwable $th)
-        // {
-        //     report($th);
-        //     Log::channel('raise-support-request') -> error('ContactController -> raiseSupportRequest(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
-        // }
+            $successFlags |= 1;
+            Log::channel('raise-support-request') -> info('ContactController -> raiseSupportRequest(), Saved form fields to the database', [ 'successFlags' => $successFlags ]);
+        }
+        catch (Throwable $th)
+        {
+            report($th);
+            Log::channel('raise-support-request') -> error('ContactController -> raiseSupportRequest(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
+        }
         
         
         // try catch 2 - send email
@@ -66,7 +70,6 @@ class ContactController extends Controller
         {
             // TODO: generate a ticket which increments
             // generate random string
-            $ticket = date("dHis");
 
             $to_email = [ env('MAIL_TO_ADDRESS') ];
             Mail::to($to_email) -> queue(new RaiseSupportRequestEmail($formData, $ticket));

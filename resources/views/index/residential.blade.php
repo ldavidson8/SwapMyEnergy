@@ -117,6 +117,22 @@
             }
         }
 
+        @media (min-width: 768px)
+        {
+            #faq-heading
+            {
+                margin: 50px auto 70px;
+            }
+        }
+
+        @media (max-width: 767px)
+        {
+            .mobile-no-top-margin
+            {
+                margin-top: 0px !important;
+            }
+        }
+
         @media (max-width: 330px)
         {
             .white-box-infographics-inner
@@ -125,6 +141,8 @@
             }
         }
     </style>
+
+    <link rel="stylesheet" href="{{ asset('css/accordion.css') }}" />
 @endsection
 
 @section('before-header')
@@ -153,7 +171,7 @@
                     <div style="text-align: center;">
                         <img src="{{ asset('img/infographic icons/signed-form.svg') }}"/>
                         <p class="infographics-header"> Fill in our form </p>
-                        <p> It's easy to understand and will help you get the best deals you can </p>
+                        <p>It's easy to understand and will help you get the best deals you can.</p>
                     </div>
                 </div>
             </div>
@@ -162,7 +180,7 @@
                     <div style="text-align: center;">
                         <img src="{{ asset('img/infographic icons/search-icon.svg') }}"/>
                         <p class="infographics-header"> Browse our deals </p>
-                        <p>We show you the best deals first, letting you see what you are saving per unit</p>
+                        <p>We show you the best deals first, letting you see what you are saving per unit.</p>
                     </div>
                 </div>
             </div>
@@ -172,7 +190,7 @@
                     <div style="text-align: center;">
                         <img src="{{ asset('img/infographic icons/switch-icon.svg') }}"/>
                         <p class="infographics-header"> Get switching </p>
-                        <p> Once you have the best deal for you, click get switching</p>
+                        <p>Once you have the best deal for you, click get switching.</p>
                     </div>
                 </div>
             </div>
@@ -204,58 +222,39 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid d-flex flex-column">
-        <div class="row flex-grow-1 no-padding">
-            <div class="col-12 align-items-center" style="padding: 0 50px;">
+    <div class="container-fluid d-flex flex-column mobile-no-padding">
+        <div class="row flex-grow-1 no-padding mobile-no-padding">
+            <div class="col-12 align-items-center mobile-no-padding" style="padding: 0 50px;">
                 <div class="faq padding-20px">
-                    <h2 style="text-align: center;">Frequently Asked Questions</h2>
-                    <button class="faq-accordion">Why choose Swap My Energy?</button>
-                    <div class="faq-panel">
+                    <h2 id="faq-heading" style="text-align: center;">Frequently Asked Questions</h2>
+                    <button class="site-accordion mobile-no-top-margin">Why choose Swap My Energy?</button>
+                    <div class="site-accordion-panel">
                         <p>Swap My Energy are dedicated to switching made simple. We allow you to see as much information regarding your deals as possible, allowing you to know exactly why your prices are the way they are.</p>
                     </div>
-                    <button class="faq-accordion">How long does it take to switch?</button>
-                    <div class="faq-panel">
+                    <button class="site-accordion">How long does it take to switch?</button>
+                    <div class="site-accordion-panel">
                         <p>Once you have decided to switch, your information will be provided to the supplier of your choice and your switching will be underway. Typically, suppliers take around two weeks to switch you over, this gives you a chance to change your mind and stop switching.</p>
                     </div>
 
-                    <button class="faq-accordion">Why do you need my suppliers name and my current usage?</button>
-                    <div class="faq-panel">
+                    <button class="site-accordion">Why do you need my suppliers name and my current usage?</button>
+                    <div class="site-accordion-panel">
                         <p>This allows us to understand your current tariffs and to help calculate the deals based on your current usage</p>
                     </div>
-                    <button class="faq-accordion">Will you always get me a better deal?</button>
-                    <div class="faq-panel">
-                        <p>No. Some other energy switching companies will promise you a better deal, by "estimating" your usage for the next year. We let you know your unit price and standing charges, allowing you to understand how much it costs you per kW. Our aim is to get you a better deal based on unit price and standing charges, this means that if you get lower prices on these, then you'll end up paying less (assuming that your usage is the same). This works in a similar way to when you're putting fuel in your car. If one week you buy 50L of fuel at &pound;1.35 per litre and then the next week at &pound;1.25 per litre, you will save money. But if you buy 75L of fuel at £1.25, you'll end up spending more. </p>
+                    <button class="site-accordion">Will you always get me a better deal?</button>
+                    <div class="site-accordion-panel">
+                        <p>No. Some other energy switching companies will promise you a better deal, by "estimating" your usage for the next year. We let you know your unit price and standing charges, allowing you to understand how much it costs you per kW.</p>
+                        <p>Our aim is to get you a better deal based on unit price and standing charges, this means that if you get lower prices on these, then you'll end up paying less (assuming that your usage is the same). This works in a similar way to when you're putting fuel in your car. If one week you buy 50L of fuel at &pound;1.35 per litre and then the next week at &pound;1.25 per litre, you will save money. But if you buy 75L of fuel at £1.25, you'll end up spending more.</p>
                     </div>
-                    <button class="faq-accordion">Can I opt-out of switching?</button>
-                    <div class="faq-panel">
+                    <button class="site-accordion">Can I opt-out of switching?</button>
+                    <div class="site-accordion-panel">
                         <p>Yes you can. From initially agreeing to switch, you have up to 2 weeks to opt-out.</p>
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
     </div>
 @endsection
 
 @section('script')
-<script defer="true">
-    var faqAccordian = document.getElementsByClassName("faq-accordion");
-    var i;
-
-    for (i = 0; i < faqAccordian.length; i++)
-    {
-        faqAccordian[i].addEventListener("click", function()
-        {
-            this.classList.toggle("faq-active");
-            var faqPanel = this.nextElementSibling;
-            if (faqPanel.style.maxHeight)
-            {
-                faqPanel.style.maxHeight = null;
-            }
-            else
-            {
-                faqPanel.style.maxHeight = "none";
-            }
-        });
-    }
-</script>
+    <script defer="true" src="{{ asset('js/accordion.js') }}"></script>
 @endsection

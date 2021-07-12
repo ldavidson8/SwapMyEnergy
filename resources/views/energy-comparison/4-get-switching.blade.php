@@ -1,7 +1,3 @@
-{{-- TODO: add empty string if values are null or undefined --}}
-{{-- TODO: add carrets to the accordians --}}
-{{-- TODO: add bank name input --}}
-
 <?php
     $old_postcode = old('postcode');
     $old_address_line_1 = old('address_line_1');
@@ -94,453 +90,458 @@
 @extends('layouts.master')
 
 @section('stylesheets')
-<style>
-    .form-error-message
-    {
-        display: block;
-        font-size: 20px;
-    }
-
-    .switchButton
-    {
-        width: 300px;
-        padding: 20px;
-        background-color: white;
-        border-radius: 6px;
-        position: relative;
-        overflow: hidden;
-        float: right;
-        text-transform: uppercase;
-        font-weight: 700;
-    }
-
-    .switchButton span
-    {
-        color: black;
-        position: relative;
-        z-index: 1;
-        transition: color 0.6s cubic-bezier(0.53, 0.21, 0, 1);
-    }
-
-    .switchButton::before
-    {
-        content: 'SUBMIT';
-        padding: 20px;
-        text-transform: uppercase;
-        font-weight: 700;
-        position: absolute;
-        top: 50%;
-        left: 0;
-        border-radius: 6px;
-        transform: translate(-100%, -50%);
-        width: 100%;
-        height: 100%;
-        background-color: #00c2cb;
-        transition: transform 0.6s cubic-bezier(0.53, 0.21, 0, 1);
-    }
-
-    .switchButton:hover span
-    {
-        color: white;
-    }
-
-    .switchButton:hover::before
-    {
-        transform: translate(0, -50%);
-    }
-
-
-    .outer-rounded-container
-    {
-        border-radius: 35px;
-        z-index: 11;
-        font-weight: 700;
-        font-size: 24px;
-        color: #f3f2f1;
-    }
-
-    .rounded-container
-    {
-        border-radius: 0 0 35px 35px !important;
-    }
-
-    .blue-rounded-container
-    {
-        background-color: #00c2cb;
-        z-index: 11;
-        color: #f3f2f1;
-        padding: 20px 30px;
-    }
-
-    .white-rounded-container
-    {
-        background-color: #f3f2f1;
-        z-index: 10;
-        color: #202020;
-        padding: 50px;
-        font-size: 20px;
-    }
-
-    .white-rounded-container-positioned
-    {
-        z-index: -1;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: -50px;
-        width: 100%;
-        height: 50px;
-        background-color: #f3f2f1;
-        border-left: solid 2px #202020;
-        border-right: solid 2px #202020;
-    }
-
-    .form-top-heading
-    {
-        padding: 30px;
-        text-transform: uppercase;
-    }
-
-    .form-top-left-heading
-    {
-        background-color: #202020;
-        border-radius: 33px 0 0 0;
-        text-align: center;
-        display: inline-block;
-        z-index: 2;
-        position: relative;
-    }
-    
-    .form-top-middle-heading
-    {
-        text-align: left;
-    }
-
-    .form-top-outer
-    {
-        /* background: url('{{ asset('img/bottom-border-white.png') }}') bottom repeat-x; */
-        background-color: #00c2cb;
-        border-radius: 33px 33px 0 0;
-    }
-
-    .form-top-img
-    {
-        background-color: #f3f2f1; 
-        padding: 35px;
-        /* border-radius: 0 35px 0 0; */
-        border-radius: 0 33px 0 0;
-        width: 200px;
-        text-align: center;
-        color: #202020;
-    }
-    .form-top-img img
-    {
-        max-width: 80%;
-        max-height: 100px;
-    }
-
-    .form-table
-    {
-        width: 100%;
-        height: 100%;
-        border-collapse: collapse;
-        border-spacing: 0;
-        display: inline-table;
-    }
-
-    .form-check
-    {
-        position: relative;
-        display: block;
-    }
-
-    .form-check-input
-    {
-        position: absolute;
-        margin-top: 10px;
-    }
-
-    .table-tariff
-    {
-        display: inline-block;
-    }
-
-    .table-tariff td
-    {
-        padding: 10px;
-    }
-
-    .white-progress-bar
-    {
-        width:350px;
-        height:50px; 
-        background-color: #202020; 
-        border: 3px solid #f3f2f1;
-        border-radius: 10px;
-        color: #f3f2f1;
-        text-align: center;
-        z-index: 18;
-        position: relative;
-    }
-
-    .white-progress-bar-text
-    {
-        z-index: 22;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        padding: 5px;
-    }
-
-    .white-progress-bar-border
-    {
-        width:350px;
-        height:50px; 
-        background-color: #202020; 
-        border-radius: 10px;
-        border: 2px solid #202020;
-        color: #f3f2f1;
-        text-align: center;
-        z-index: 18;
-        position: relative;
-    }
-
-    .white-progress-bar-border-text
-    {
-        z-index: 22;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        padding: 5px;
-    }
-
-    /* .black-progress-bar
-    {
-        height: 100%; 
-        background-color: #202020; 
-        border-radius: 7px;
-        text-align: center;
-        font-size: 24px;
-        color: #00c2cb;
-        padding: 5px 0;
-        position: absolute;
-        top: 0;
-        z-index: 20;
-    } */
-
-    .blue-progress-bar
-    {
-        height: 100%; 
-        background-color: #00c2cb; 
-        border-radius: 7px;
-        text-align: center;
-        font-size: 24px;
-        color: #00c2cb;
-        padding: 5px 0;
-        position: absolute;
-        top: 0;
-        z-index: 20;
-    }
-
-    .form-outer-box
-    {
-        padding: 20px 0;
-    }
-
-    .collapse-table
-    {
-        border: none;
-        outline: none !important;
-        font-weight: 700;
-        padding: 20px 0;
-        margin: 0 0 30px 0;
-        border-bottom: solid 3px #00c2cb;
-        width: 100%;
-        text-align:left;
-        background: none;
-    }
-
-    #tariff-info
-    {
-        text-align: center;
-    }
-    
-    #tariff-info td
-    {
-        padding: 15px;
-        width: 50%;
-        border: 2px solid #202020;
-    }
-
-    #tariff-info td:first-child
-    {
-        font-weight: bold;
-        text-transform: capitalize;
-    }
-
-    #tariff-info tbody:before
-    {
-        line-height: 20px
-        content: "_";
-        color: #f3f2f1;
-        display: block;
-    }
-
-    #tariff-info td:nth-of-type(2n+1)
-    {
-       border-right: solid 2px #202020;
-    }
-    
-    label
-    {
-        font-weight: bold;
-        display: inline;
-    }
-
-    input:not([type="checkbox"]),
-    select
-    {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    input[type="checkbox"]
-    {
-        float: left;
-        margin: 11px 11px 11px 0px;
-    }
-
-    .small-input-text
-    {
-        font-size: 18px;
-    }
-    
-    #billing_table th
-    {
-        padding: 7px;
-        padding-bottom: 0px;
-    }
-    
-    #billing_table td
-    {
-        padding: 7px;
-    }
-
-    #billing_button
-    {
-        background-color: #00c2cb;
-        color: #202020;
-        padding: 5px 10px;
-        border: none;
-        border-radius: 4px;
-    }
-
-    @media (min-width: 768px) and (max-width: 991px)
-    {
-        .form-top-left-border-md
+    <style>
+        .form-error-message
         {
-            border-radius: 33px 33px 0 0;
+            display: block;
+            font-size: 20px;
         }
 
-        .form-top-img-border-md
+        .switchButton
         {
-            border-radius: 0;
+            width: 300px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+            float: right;
+            text-transform: uppercase;
+            font-weight: 700;
         }
-    }
 
-
-    @media (max-width: 767px)
-    {
-
-        .container, .container-fluid
+        .switchButton span
         {
-            max-width: 100% !important;
+            color: black;
+            position: relative;
+            z-index: 1;
+            transition: color 0.6s cubic-bezier(0.53, 0.21, 0, 1);
+        }
+
+        .switchButton::before
+        {
+            content: 'SUBMIT';
+            padding: 20px;
+            text-transform: uppercase;
+            font-weight: 700;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            border-radius: 6px;
+            transform: translate(-100%, -50%);
             width: 100%;
-            padding: 0;
-            border-radius: 0px !important;
+            height: 100%;
+            background-color: #00c2cb;
+            transition: transform 0.6s cubic-bezier(0.53, 0.21, 0, 1);
+        }
+
+        .switchButton:hover span
+        {
+            color: white;
+        }
+
+        .switchButton:hover::before
+        {
+            transform: translate(0, -50%);
+        }
+
+
+        .outer-rounded-container
+        {
+            border-radius: 35px;
+            z-index: 11;
+            font-weight: 700;
+            font-size: 24px;
+            color: #f3f2f1;
+        }
+
+        .rounded-container
+        {
+            border-radius: 0 0 35px 35px !important;
+        }
+
+        .blue-rounded-container
+        {
+            background-color: #00c2cb;
+            z-index: 11;
+            color: #f3f2f1;
+            padding: 20px 30px;
         }
 
         .white-rounded-container
         {
-            padding-bottom: 20px;
+            background-color: #f3f2f1;
+            z-index: 10;
+            color: #202020;
+            padding: 50px;
+            font-size: 20px;
         }
 
-        .form-outer-box
+        .white-rounded-container-positioned
         {
-            padding: 0;
+            z-index: -1;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -50px;
+            width: 100%;
+            height: 50px;
+            background-color: #f3f2f1;
+            border-left: solid 2px #202020;
+            border-right: solid 2px #202020;
         }
 
-        .form-top-left-border-md
+        .form-top-heading
         {
-            border-radius: 0;
+            padding: 30px;
+            text-transform: uppercase;
+        }
+
+        .form-top-left-heading
+        {
+            background-color: #202020;
+            border-radius: 33px 0 0 0;
+            text-align: center;
+            display: inline-block;
+            z-index: 2;
+            position: relative;
         }
         
-        .form-top-img-border-sm
-        {
-            border-radius: 0;
-            width: 100%;
-        }
-
         .form-top-middle-heading
         {
+            text-align: left;
+        }
+
+        .form-top-outer
+        {
+            /* background: url('{{ asset('img/bottom-border-white.png') }}') bottom repeat-x; */
+            background-color: #00c2cb;
+            border-radius: 33px 33px 0 0;
+        }
+
+        .form-top-img
+        {
+            background-color: #f3f2f1;
+            border-radius: 0 33px 0 0;
+            width: 200px;
             text-align: center;
+            color: #202020;
+        }
+        .form-top-img img
+        {
+            max-width: 80%;
+            max-height: 100px;
         }
 
-        .table-block-on-mobile
+        .form-table
         {
             width: 100%;
+            height: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            display: inline-table;
         }
 
-        .table-block-on-mobile tbody,
-        .table-block-on-mobile tr,
-        .table-block-on-mobile td
+        .form-check
         {
+            position: relative;
             display: block;
-            width: 100%;
-            max-width: 100%;
+        }
+
+        .form-check-input
+        {
+            position: absolute;
+            margin-top: 10px;
         }
 
         .table-tariff
         {
-            width: 100%;
+            display: inline-block;
         }
 
-        .table-tariff tbody,
-        .table-tariff tr,
         .table-tariff td
+        {
+            padding: 10px;
+        }
+
+        .white-progress-bar
+        {
+            width:350px;
+            height:50px; 
+            background-color: #202020; 
+            border: 3px solid #f3f2f1;
+            border-radius: 10px;
+            color: #f3f2f1;
+            text-align: center;
+            z-index: 18;
+            position: relative;
+        }
+
+        .white-progress-bar-text
+        {
+            z-index: 22;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            padding: 5px;
+        }
+
+        .white-progress-bar-border
+        {
+            width:350px;
+            height:50px; 
+            background-color: #202020; 
+            border-radius: 10px;
+            border: 2px solid #202020;
+            color: #f3f2f1;
+            text-align: center;
+            z-index: 18;
+            position: relative;
+        }
+
+        .white-progress-bar-border-text
+        {
+            z-index: 22;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            padding: 5px;
+        }
+
+        /* .black-progress-bar
+        {
+            height: 100%; 
+            background-color: #202020; 
+            border-radius: 7px;
+            text-align: center;
+            font-size: 24px;
+            color: #00c2cb;
+            padding: 5px 0;
+            position: absolute;
+            top: 0;
+            z-index: 20;
+        } */
+
+        .blue-progress-bar
+        {
+            height: 100%; 
+            background-color: #00c2cb; 
+            border-radius: 7px;
+            text-align: center;
+            font-size: 24px;
+            color: #00c2cb;
+            padding: 5px 0;
+            position: absolute;
+            top: 0;
+            z-index: 20;
+        }
+
+        .form-outer-box
+        {
+            padding: 20px 0;
+        }
+
+        .collapse-table-button
+        {
+            border: none;
+            outline: none !important;
+            font-weight: 700;
+            padding: 20px 0;
+            margin: 0;
+            border-bottom: solid 3px #00c2cb;
+            width: 100%;
+            text-align:left;
+            background: none;
+        }
+
+        #tariff-info
+        {
+            text-align: center;
+        }
+        
+        #tariff-info td
+        {
+            padding: 15px;
+            width: 50%;
+            border: 2px solid #202020;
+        }
+
+        #tariff-info td:first-child
+        {
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        #tariff-info tbody:before
+        {
+            line-height: 20px
+            content: "_";
+            color: #f3f2f1;
+            display: block;
+        }
+
+        #tariff-info td:nth-of-type(2n+1)
+        {
+        border-right: solid 2px #202020;
+        }
+        
+        label
+        {
+            font-weight: bold;
+            display: inline;
+        }
+
+        input:not([type="checkbox"]),
+        select
         {
             display: block;
             width: 100%;
             max-width: 100%;
         }
 
-        .white-progress-bar
+        input[type="checkbox"]
         {
-            width: 100%;
-            max-width: 100%;
+            float: left;
+            margin: 11px 11px 11px 0px;
         }
-        .white-progress-bar-border
-        {
-            width: 100%;
-            max-width: 100%;
-        }
-        .blue-progress-bar
-        {
-            width: 100%;
-            max-width: 100%;
-        }
-    }
 
-    hr.thin-line
-    {
-        border-top: none;
-    }
-</style>
+        .small-input-text
+        {
+            font-size: 18px;
+        }
+        
+        #billing_table th
+        {
+            padding: 7px;
+            padding-bottom: 0px;
+        }
+        
+        #billing_table td
+        {
+            padding: 7px;
+        }
+
+        #billing_button
+        {
+            background-color: #00c2cb;
+            color: #202020;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .site-accordion-panel
+        {
+            padding-top: 20px;
+        }
+
+        @media (min-width: 768px) and (max-width: 991px)
+        {
+            .form-top-left-border-md
+            {
+                border-radius: 33px 33px 0 0;
+            }
+
+            .form-top-img-border-md
+            {
+                border-radius: 0;
+            }
+        }
+
+
+        @media (max-width: 767px)
+        {
+
+            .container, .container-fluid
+            {
+                max-width: 100% !important;
+                width: 100%;
+                padding: 0;
+                border-radius: 0px !important;
+            }
+
+            .white-rounded-container
+            {
+                padding-bottom: 20px;
+            }
+
+            .form-outer-box
+            {
+                padding: 0;
+            }
+
+            .form-top-left-border-md
+            {
+                border-radius: 0;
+            }
+            
+            .form-top-img-border-sm
+            {
+                border-radius: 0;
+                width: 100%;
+            }
+
+            .form-top-middle-heading
+            {
+                text-align: center;
+            }
+
+            .table-block-on-mobile
+            {
+                width: 100%;
+            }
+
+            .table-block-on-mobile tbody,
+            .table-block-on-mobile tr,
+            .table-block-on-mobile td
+            {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .table-tariff
+            {
+                width: 100%;
+            }
+
+            .table-tariff tbody,
+            .table-tariff tr,
+            .table-tariff td
+            {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .white-progress-bar
+            {
+                width: 100%;
+                max-width: 100%;
+            }
+            .white-progress-bar-border
+            {
+                width: 100%;
+                max-width: 100%;
+            }
+            .blue-progress-bar
+            {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        hr.thin-line
+        {
+            border-top: none;
+        }
+    </style>
+
+    <link rel="stylesheet" href="{{ asset('css/accordion.css') }}" />
 @endsection
 
 @section('before-header')
@@ -549,7 +550,7 @@
 
 @section('main-content')
         <hr />
-        <div class="background-image-wind-turbines background-image-top background-image-contain flex-fill">
+        <div class="background-image-wind-turbines background-image-top background-image-contain background-image-no-mobile-2 flex-fill">
             <div class="col-12 center-content form-outer-box">
                 <div class="container outer-rounded-container no-padding flex-row" style="border: solid 2px #202020;">
                     <div class="row form-top-outer">
@@ -559,64 +560,11 @@
                         <div class="flex-fill form-top-heading form-top-middle-heading">
                             <table class="form-table"><tr><td>Selected Tariff</td></tr></table>
                         </div>
-                        <div class="no-padding form-top-img form-top-img-border-sm form-top-img-border-md">
+                        <div class="form-top-img form-top-img-border-sm form-top-img-border-md mobile-only-padding-30">
                             <table class="form-table"><tr><td><img src="{{ asset('img/supplier-logos/' . $selected_tariff["imageName"]) }}" alt="{{ $selected_tariff["supplierName"] }}" height="auto" width="auto" /></td></tr></table>
                         </div>
                     </div>
-                    {{-- <div class="container rounded-container blue-rounded-container">
-                        <table class="form-table">
-                            <tr>
-                                <td>
-                                    <div class="row no-padding">
-                                        <div class="col-lg-8 col-12 no-padding">
-                                            <table class="table-tariff table-block-on-mobile" style=" vertical-align: bottom;">
-                                                <tr>
-                                                    <td>
-                                                        Unit Rate:
-                                                    </td>
-                                                    <td>
-                                                        <div class="white-progress-bar">
-                                                            <div class="white-progress-bar-text">12p*</div>
-                                                            <div class="blue-progress-bar" style="width: 80%;"></div>  
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Standing Charge:
-                                                    </td>
-                                                    <td>
-                                                        <div class="white-progress-bar">
-                                                            <div class="white-progress-bar-text">2p*</div>
-                                                            <div class="blue-progress-bar" style="width: 30%"></div>  
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="col-lg-4 col-12 no-padding">
-                                            <table class="form-table" style="">
-                                                <tr style="height: 100%;"></tr>
-                                                <tr>
-                                                    <td style="vertical-align: bottom; width: 50%; text-align: center;">
-                                                        <p style="font-size: 20px; text-align: center; border-right: solid 2px #f3f2f1;">
-                                                            <span style="font-size: 34px;">£81.76</span> 
-                                                            <br /> 
-                                                            per month
-                                                        </p>
-                                                    </td>
-                                                    <td style="vertical-align: bottom; width: 50%; text-align: center;">
-                                                        <p style="font-size: 20px;"> 24 month<br />contract </p>  
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div> --}}
-                    <div style="position: relative; font-size; 22px; font-weight: normal;">
+                    <div class="mobile-only-padding-30" style="position: relative; font-size; 22px; font-weight: normal;">
                         <div class="white-rounded-container-positioned"></div>
                         <div class="container rounded-container white-rounded-container">
                             <h1 style="margin: 0px 0px 20px 0px;">Switching to a new Tariff</h1>
@@ -640,21 +588,32 @@
                                 </div>
                             @endif
                             
-                            <button class="collapse-table" id="tariff-info-toggle" role="button">Information about the Selected Tariff</button>
-                            <table id="tariff-info" style="width: 100%;">
-                                <tr><td>Supplier</td><td>{{ $selected_tariff["supplierName"] }}</td></tr>
-                                <tr><td>Tariff Name</td><td>{{ $selected_tariff["tariffName"] }}</td></tr>
-                                <tr><td>Estimated Anuall Cost</td><td>{{ $selected_tariff["bill"] }}</td></tr>
-                                <tr><td>Estimated Anuall Saving</td><td>{{ $selected_tariff["saving"] }}</td></tr>
-                                @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "G")
-                                    <tr><td>Gas Unit Rate</td><td>{{ $selected_tariff["tariff_info"] -> price1Gas }}p</td></tr>
-                                    <tr><td>Gas Standing Charge</td><td>{{ number_format($selected_tariff["tariff_info"] -> standingChargeGas / 365, 2) }}p</td></tr>
-                                @endif
-                                @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "E")
-                                    <tr><td>Electricity Unit Rate</td><td>{{ $selected_tariff["tariff_info"] -> price1Elec }}p</td></tr>
-                                    <tr><td>Electricity Standing Charge</td><td>{{ number_format($selected_tariff["tariff_info"] -> standingChargeElec / 365, 2) }}p</td></tr>
-                                @endif
-                            </table>
+                            {{-- <button class="site-accordion">Why choose Swap My Energy?</button>
+                            <div class="site-accordion-panel">
+                                <p>Swap My Energy are dedicated to switching made simple. We allow you to see as much information regarding your deals as possible, allowing you to know exactly why your prices are the way they are.</p>
+                            </div>
+                            <button class="site-accordion">How long does it take to switch?</button>
+                            <div class="site-accordion-panel">
+                                <p>Once you have decided to switch, your information will be provided to the supplier of your choice and your switching will be underway. Typically, suppliers take around two weeks to switch you over, this gives you a chance to change your mind and stop switching.</p>
+                            </div> --}}
+                            {{-- <button class="collapse-table-button" id="tariff-info-toggle" role="button">Information about the Selected Tariff</button> --}}
+                            <button class="collapse-table-button site-accordion" role="button">Information about the Selected Tariff</button>
+                            <div class="site-accordion-panel">
+                                <table id="tariff-info" style="width: 100%;">
+                                    <tr><td>Supplier</td><td>{{ $selected_tariff["supplierName"] }}</td></tr>
+                                    <tr><td>Tariff Name</td><td>{{ $selected_tariff["tariffName"] }}</td></tr>
+                                    <tr><td>Estimated Anuall Cost</td><td>{{ $selected_tariff["bill"] }}</td></tr>
+                                    <tr><td>Estimated Anuall Saving</td><td>{{ $selected_tariff["saving"] }}</td></tr>
+                                    @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "G")
+                                        <tr><td>Gas Unit Rate</td><td>{{ $selected_tariff["tariff_info"] -> price1Gas }}p</td></tr>
+                                        <tr><td>Gas Standing Charge</td><td>{{ number_format($selected_tariff["tariff_info"] -> standingChargeGas / 365, 2) }}p</td></tr>
+                                    @endif
+                                    @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "E")
+                                        <tr><td>Electricity Unit Rate</td><td>{{ $selected_tariff["tariff_info"] -> price1Elec }}p</td></tr>
+                                        <tr><td>Electricity Standing Charge</td><td>{{ number_format($selected_tariff["tariff_info"] -> standingChargeElec / 365, 2) }}p</td></tr>
+                                    @endif
+                                </table>
+                            </div>
                             
                             <br />
                             <form id="main_form" action="{{ route('residential.energy-comparison.4-get-switching') }}" method="post">
@@ -866,16 +825,16 @@
                                     </div>
                                 </div>
 
-                                @if ($coolingOff > 0)
-                                    <button type="button" class="collapse-table" id="cancellation-rights-toggle" role="button" style="border: none;">Your Cancellation Rights</button>
-                                    <div id="cancellation-rights" style="display: none">If you change your mind and want to cancel the contract, you must tell {{ $selected_tariff["supplierName"] }} within the cooling off period, which ends 14 days from day after you sign up.</div>
+                                @if (true || $coolingOff > 0)
+                                    <button type="button" class="collapse-table-button site-accordion" role="button">Your Cancellation Rights</button>
+                                    <div class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell {{ $selected_tariff["supplierName"] }} within the cooling off period, which ends 14 days from day after you sign up.</div>
                                 @endif
                                 
                                 <br /><hr class="thin-line" /><br />
 
                                 <h2>Your Contact Details</h2>
                                 <div class="form-group">
-                                    <span id=title"_error" class="form-error-message text-danger"></span>
+                                    <span id="title_error" class="form-error-message text-danger"></span>
                                     <label for="title" class="font-weight-bold">Title<span class="text-danger">*</span></label> 
                                     <input type="text" id="title" name="title" value="{{ $title }}" required />
                                 </div>
@@ -1187,4 +1146,6 @@
             $('#cancellation-rights').fadeToggle(750);
         });
     </script>
+
+    <script src="{{ asset('js/accordion.js') }}" defer="true"></script>
 @endsection

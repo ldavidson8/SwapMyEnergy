@@ -1,0 +1,74 @@
+.faq .site-accordion
+{
+    background-color: #00c2cb;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border-width: 0;
+    margin-bottom: 10px;
+    font-size: 26px;
+    color: #f3f2f1;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.faq .site-accordion:after
+{
+    color: #f3f2f1;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.faq .site-accordion-active, .faq .site-accordion:hover
+{
+    background-color: #ffaa00;
+}
+
+.faq .site-accordion-panel
+{
+    padding: 0px 18px;
+    background-color: transparent;
+}
+.faq .site-accordion-active + .faq .faq-panel
+{
+    padding-top: 18px;
+}
+
+
+/* Style the buttons that are used to open and close the accordion panel */
+.site-accordion
+{
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.site-accordion-panel
+{
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.site-accordion:after
+{
+    content: '\25BE'; /* Unicode character for "plus" sign (+) */
+    font-size: 36px;
+    float: right;
+    margin-left: 5px;
+    padding: 0;
+    line-height: 1;
+}
+
+.site-accordion-active:after
+{
+    content: "\2212" !important; /* Unicode character for "minus" sign (-) */
+}
+
+
+@media (max-width: 767px)
+{
+    .faq .site-accordion:first-of-type
+    {
+        margin-top: 0px;
+    }
+}
