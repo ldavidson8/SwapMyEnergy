@@ -234,7 +234,7 @@
                         <p>Estimated Annual Saving: &pound;{{ number_format($row["saving"], 2) }}*</p>
                         <p class="no-padding">
                             @if ($row["contractLength"] > 0)
-                                {{ $current_tariffs -> G -> contractLength }} month contract
+                                {{ $row["contractLength"] }} month contract
                             @else
                                 variable length<br />contract
                             @endif
@@ -257,7 +257,7 @@
                                             <td>Unit Rate:</td>
                                             <td>
                                                 <div class="white-progress-bar-border">
-                                                    <div class="white-progress-bar-border-text">{{ $row["tariff_info"] -> price1Gas }}p</div>
+                                                    <div class="white-progress-bar-border-text">{{ number_format($row["tariff_info"] -> price1Gas, 2) }}p</div>
                                                     <div class="blue-progress-bar" style="width: {{ number_format($unit_rate_gas_percent, 2) }}%;"></div>  
                                                 </div> 
                                             </td>
@@ -276,7 +276,7 @@
                                             <td>Unit Rate:</td>
                                             <td>
                                                 <div class="white-progress-bar-border">
-                                                    <div class="white-progress-bar-border-text">{{ $row["tariff_info"] -> price1Elec }}p</div>
+                                                    <div class="white-progress-bar-border-text">{{ number_format($row["tariff_info"] -> price1Elec, 2) }}p</div>
                                                     <div class="blue-progress-bar" style="width: {{ number_format($unit_rate_elec_percent, 2) }}%;"></div>  
                                                 </div> 
                                             </td>
