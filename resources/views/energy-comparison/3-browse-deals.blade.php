@@ -376,9 +376,9 @@
                 <div class="container outer-rounded-container no-padding flex-row">
                     <span style="font-size: 20px;">
                         @if (Session::has('fail') && Session::get('fail') == 'session_expired')
-                            <div class="alert alert-danger post-error">
+                            {{-- <div class="alert alert-danger post-error">
                                 Sorry, your session expired. Please try again.
-                            </div>
+                            </div> --}}
                         @elseif (count($errors) > 0)
                             <div class="alert alert-danger">
                                 @foreach ($errors -> all() as $error)

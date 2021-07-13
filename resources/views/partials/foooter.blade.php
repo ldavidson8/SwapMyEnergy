@@ -5,19 +5,19 @@
 <style type="text/css">
     li.home
     {
-        background: url('img/footer/home-icon.png') center left/1.3em auto no-repeat;
+        background: url('{{ asset("img/footer/home-icon.png") }}') center left/1.3em auto no-repeat;
         padding-left: 1.8em;
         padding-top: 3px;
     }
     li.mail
     {
-        background: url('img/footer/email-icon.png') center left/1.3em auto no-repeat;
+        background: url('{{ asset("/img/footer/email-icon.png") }}') center left/1.3em auto no-repeat;
         padding-left: 1.8em;
         padding-top: 3px;
     }
     li.phone
     {
-        background: url('img/footer/phone-icon.png') center left/1.3em auto no-repeat;
+        background: url('{{ asset("/img/footer/phone-icon.png") }}') center left/1.3em auto no-repeat;
         padding-left: 1.8em;
         padding-top: 3px;
     }

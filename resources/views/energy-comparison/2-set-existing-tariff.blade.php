@@ -260,9 +260,9 @@
                 <input type="hidden" id="region_id" name="region_id" value="<?= $supplier_data["region"]["id"] ?>" />
                 <div>
                     @if (Session::has('fail') && Session::get('fail') == 'session_expired')
-                        <div class="alert alert-danger post-error">
+                        {{-- <div class="alert alert-danger post-error">
                             Sorry, your session expired. Please try again.
-                        </div>
+                        </div> --}}
                     @elseif (count($errors) > 0)
                         <div class="alert alert-danger">
                             @foreach ($errors -> all() as $error)
