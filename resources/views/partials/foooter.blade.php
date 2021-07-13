@@ -5,22 +5,20 @@
 <style type="text/css">
     li.home
     {
-        background: url('img/footer/home-icon.png') no-repeat top left;
-        height: 50px;
-        padding-left: 40px;
+        background: url('img/footer/home-icon.png') center left/1.3em auto no-repeat;
+        padding-left: 1.8em;
         padding-top: 3px;
     }
     li.mail
     {
-        background: url('img/footer/email-icon.png') no-repeat top left;
-        height: 50px;
-        padding-left: 40px;
+        background: url('img/footer/email-icon.png') center left/1.3em auto no-repeat;
+        padding-left: 1.8em;
+        padding-top: 3px;
     }
     li.phone
     {
-        background: url('img/footer/phone-icon.png') no-repeat top left;
-        height: 50px;
-        padding-left: 40px;
+        background: url('img/footer/phone-icon.png') center left/1.3em auto no-repeat;
+        padding-left: 1.8em;
         padding-top: 3px;
     }
     @media (max-width: 991px)
@@ -68,11 +66,11 @@
                     <p style="color: #f3f2f1; "> www.znergi.co.uk  </p>
                 </a>
                 </div>
-                <div class="col-12 mobile-no-padding">
+                <div class="col-12 mobile-no-padding text-left">
                     <ul class="list-unstyled" style="font-size: 18px; width: 100%;">
-                        <li class="home mb-3">Estate House, Fox St, Preston PR1 2AB</li>
-                        <li class="mail mb-3">contact@swapmyenergy.co.uk</li>
-                        <li class="phone mb-3">01772 584880</li>
+                        <li class="home my-3">Estate House, Fox St, Preston PR1 2AB</li>
+                        <li class="mail my-3">contact@swapmyenergy.co.uk</li>
+                        <li class="phone my-3">01772 584880</li>
                     </ul>
                 </div>
             </div>
