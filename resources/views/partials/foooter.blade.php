@@ -2,8 +2,27 @@
     if (!isset($navbar_page)) $navbar_page = "";
 ?>
 
-@section('stylesheets')
-<style>
+<style type="text/css">
+    li.home
+    {
+        background: url('img/footer/home-icon.png') no-repeat top left;
+        height: 50px;
+        padding-left: 40px;
+        padding-top: 3px;
+    }
+    li.mail
+    {
+        background: url('img/footer/email-icon.png') no-repeat top left;
+        height: 50px;
+        padding-left: 40px;
+    }
+    li.phone
+    {
+        background: url('img/footer/phone-icon.png') no-repeat top left;
+        height: 50px;
+        padding-left: 40px;
+        padding-top: 3px;
+    }
     @media (max-width: 991px)
     {
         .social-links-center-md
@@ -12,7 +31,6 @@
         }
     } 
 </style>
-@endsection
 <footer>
     <div class="container-fluid flex-column d-flex no-padding">
         <div class="col-12 no-padding">
@@ -46,35 +64,39 @@
             <div class="col-md-6 col-lg-4 order-4 order-lg-1 text-center text-lg-left">
                 <div class="col-12 col-lg-6">
                 <a href="https://www.znergi.co.uk/" rel="external" style="text-decoration: none;">
-                    <img alt="" class="img-fluid" src="{{ asset('img/Znergi_logo.png')}}">
+                    <img alt="" class="img-fluid" src="{{ asset('img/footer/Znergi_logo.png')}}">
                     <p style="color: #f3f2f1; "> www.znergi.co.uk  </p>
                 </a>
                 </div>
-                <div class="col-12 col-lg-6">
-                    <ul class="list-unstyled" style="font-size: 18px;">
-                        <li class="mb-3">Estate House, Fox St, Preston PR1 2AB</li>
-                        <li class="mb-3">contact@swapmyenergy.co.uk</li>
-                        <li class="mb-3">01772 584880</li>
+                <div class="col-12 mobile-no-padding">
+                    <ul class="list-unstyled" style="font-size: 18px; width: 100%;">
+                        <li class="home mb-3">Estate House, Fox St, Preston PR1 2AB</li>
+                        <li class="mail mb-3">contact@swapmyenergy.co.uk</li>
+                        <li class="phone mb-3">01772 584880</li>
                     </ul>
                 </div>
             </div>
-            <div class="col-6 col-md-6 col-lg-2 order-1 order-lg-2">
+            <div class="col-6 col-md-6 col-lg-2 text-right order-1 order-lg-2">
                 <ul class="list-unstyled">
                     <li class="mb-2"><a class="footer-link {{ ($navbar_page == "terms and conditions") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.t&c") }}">Terms & Conditions</a></li>
                     <li class="mb-2"><a class="footer-link {{ ($navbar_page == "privacy policy") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.privacy policy") }}">Privacy Policy</a></li>
-                    <li class="mb-2"><a class="footer-link {{ ($navbar_page == "contact") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.contact") }}#contact">Contact Us</a></li>
-                    <li class="mb-2"><a class="footer-link {{ ($navbar_page == "partners and affiliates") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.partners and affiliates") }}">Partners & Affiliates</a></li>
-                    <li class="mb-2">{{-- My Account Page
-                        <a class="footer-link {{ ($navbar_page == "my account") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.my account") }}">My Account</a> --}}</li>
-                    <li class="mb-2"><a class="footer-link {{ ($navbar_page == "contact") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.contact") }}#support">Support</a></li>
+                    <li class="mb-2"><a class="footer-link {{ ($navbar_page == "cookie policy") ? 'navigation-link-footer-current-page' : '' }}" href="{{route("$mode.cookie policy")}}">Cookie policy</a></li>
+                    <li class="mb-2"><a class="footer-link {{ ($navbar_page == "sitemap") ? 'navigation-link-footer-current-page' : '' }}" href="{{route("$mode.sitemap")}}">Sitemap</a></li>
                 </ul> 
             </div>
-            <div class="col-6 col-md-6 col-lg-2 text-right order-2 order-lg-3">
-                Swap My Energy is part of Znergi Limited Registered in England, Company Registration Number 12937329
+            <div class="col-6 col-md-6 col-lg-2 order-2 order-lg-3">
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a class="footer-link {{ ($navbar_page == "partners and affiliates") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.partners and affiliates") }}">Partners & Affiliates</a></li>
+                    <li class="mb-2"><a class="footer-link {{ ($navbar_page == "contact") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.contact") }}#contact">Contact Us</a></li>
+                    <li class="mb-2"><a class="footer-link {{ ($navbar_page == "contact") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.contact") }}#support">Support</a></li>
+                    <li class="mb-2"><a class="footer-link {{ ($navbar_page == "about") ? 'navigation-link-footer-current-page' : '' }}" href="{{ route("$mode.about") }}">About</a></li>
+                </ul>
+                
             </div>
             <div class="col-md-6 col-lg-4 text-center text-lg-left order-3 order-lg-4" style="font-size: 18px;">
-                <p>Swap My Energy is an energy intermediary and not a supplier.    The UK trading name follows the Utilities Intermediaries Association code of conduct and Ofgem policies. All suppliers logos are trademarks of their respective owners. Percentage energy savings quoted are against customers who let their last contract renew automatically.</p>
+                <p>Swap My Energy is an energy intermediary and not a supplier.    The UK trading name follows the Utilities Intermediaries Association code of conduct and Ofgem policies. Percentage energy savings quoted are against customers who let their last contract renew automatically.</p>
                 <p> All suppliers logos are trademarks of their respective owners </p>
+                <p>Swap My Energy is part of Znergi Limited Registered in England, Company Registration Number 12937329</p>
             </div>
         </div>
             {{-- <div class="col-12 col-lg-4 order-2 order-lg-1 mb-2 mb-lg-0">
@@ -138,5 +160,5 @@
                 </div>
             </div>
         </div> --}}
-    <span style="text-align: center;"> Copyright &copy; 2021 Znergi Limited All rights reserved. </span>
+    <span style="text-align: center; font-size: 16px;"> Copyright &copy; 2021 Znergi Limited All rights reserved. </span>
 </footer>
