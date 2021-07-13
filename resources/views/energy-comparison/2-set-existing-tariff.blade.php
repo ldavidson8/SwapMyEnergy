@@ -13,7 +13,7 @@
             background-color: #f3f2f1;
             border-radius: 35px;
             border: 2px solid #202020;
-            padding: 30px 30px 0px;
+            padding: 30px;
             margin: 50px auto;
         }
         
@@ -34,9 +34,16 @@
             font-size: 20px;
         }
 
-        .paragraph-margin
+        .question-heading
         {
+            padding-bottom: 5px;
             font-size: 28px;
+            border-bottom: 1px solid #00c2cb;
+        }
+
+        .question-heading:not(.first-question-heading)
+        {
+            margin-top: 30px;
         }
         
         input[type=radio]:checked + img
@@ -177,6 +184,34 @@
             max-width: 100%;
         }
 
+        .hr-blue-small
+        {
+            margin: 10px 0px;
+        }
+        
+
+        #section_your_usage
+        {
+            background-color: #202020;
+            border-radius: 20px;
+            padding: 20px;
+            color: #f3f2f1;
+            margin-top: 30px;
+        }
+
+        #section_your_usage .question-heading
+        {
+            margin-top: 0px;
+        }
+
+        #section_your_gas_usage,
+        #section_your_electric_usage,
+        #section_your_electric_e7
+        {
+            margin-bottom: 20px;
+        }
+
+
         @media (max-width: 1199px)
         {
             .swiper-slide
@@ -237,7 +272,7 @@
                     @endif
                     
                     <span id="fuel_type_error" class="form-error-message text-danger"></span>
-                    <p class="paragraph-margin"> What are you looking to compare? </p>
+                    <p class="question-heading first-question-heading"> What are you looking to compare? </p>
                     <div class="btn-group btn-group-3 flex-wrap" role="group">
                         <input type="radio" class="radio-hidden fuel_type_radio" name="fuel_type" value="dual" id="fuel_type_radio_dual" value="{{ old('gas-electric-radio') }}" autocomplete="off" />
                         <label for="fuel_type_radio_dual">Gas & Electricity </label>
@@ -246,18 +281,16 @@
                         <input type="radio" class="radio-hidden fuel_type_radio" name="fuel_type" value="electric" id="fuel_type_radio_electric" autocomplete="off" />
                         <label for="fuel_type_radio_electric"> Electricity </label>
                     </div>
-                    <br /><br />
                     
                     <div id="section_same_fuel_supplier" style="display: none;">
                         <span id="same_fuel_supplier_error" class="form-error-message text-danger"></span>
-                        <p class="paragraph-margin"> Do you have the same supplier for both gas and electricity? </p>
+                        <p class="question-heading"> Do you have the same supplier for both gas and electricity? </p>
                         <div class="btn-group btn-group-2 flex-wrap" role="group">
                             <input type="radio" class="radio-hidden same_fuel_supplier_radio" name="same_fuel_supplier" id="same_fuel_supplier_radio_yes" value="yes" autocomplete="off" />
                             <label for="same_fuel_supplier_radio_yes"> Yes </label>
                             <input type="radio" class="radio-hidden same_fuel_supplier_radio" name="same_fuel_supplier" id="same_fuel_supplier_radio_no" value="no" autocomplete="off" />
                             <label for="same_fuel_supplier_radio_no"> No </label>
                         </div>
-                        <br /><br />
                     </div>
                 </div>
                 
@@ -266,7 +299,7 @@
                 
                 <div id="section_dual_supplier" style="display: none;">
                     <span id="dual_supplier_error" class="form-error-message text-danger"></span>
-                    <p class="paragraph-margin p-clear-right-mobile">Who is your current gas/electric supplier?<span class="scroll-text">{{ $logo_drag_text }}</span></p>
+                    <p class="question-heading p-clear-right-mobile">Who is your current gas/electric supplier?<span class="scroll-text">{{ $logo_drag_text }}</span></p>
                     <!-- swiper -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
@@ -305,8 +338,6 @@
                             <option value="{{ $dual_supplier["id"] }}">{{ $dual_supplier["name"] }}</option>
                         @endforeach
                     </select>
-                    <br />
-                    <br />
                 </div>
                 
                 
@@ -314,7 +345,7 @@
                 
                 <div id="section_gas_supplier" style="display: none;">
                     <span id="gas_supplier_error" class="form-error-message text-danger"></span>
-                    <p class="paragraph-margin p-clear-right-mobile">Who is your current gas supplier?<span class="scroll-text">{{ $logo_drag_text }}</span></p>
+                    <p class="question-heading p-clear-right-mobile">Who is your current gas supplier?<span class="scroll-text">{{ $logo_drag_text }}</span></p>
                     <!-- swiper -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
@@ -353,7 +384,6 @@
                             <option value="{{ $gas_supplier["id"] }}">{{ $gas_supplier["name"] }}</option>
                         @endforeach
                     </select>
-                    <br /><br />
                 </div>
                 
                 
@@ -362,7 +392,7 @@
                 <div id="section_tariff_1" style="display: none;">
                     <div id="section_tariff_1_payment_method">
                         <span id="tariff_1_payment_method_error" class="form-error-message text-danger"></span>
-                        <p class="paragraph-margin"> How do you pay for your energy? </p>
+                        <p class="question-heading"> How do you pay for your energy? </p>
                         <div class="btn-group btn-group-4 flex-wrap" role="group">
                             <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_monthlyDirectDebit" name="tariff_1_payment_method" value="MDD" autocomplete="off" checked="true" />
                             <label for="tariff_1_payment_method_monthlyDirectDebit"> Monthly Direct Debit </label>
@@ -373,24 +403,22 @@
                             <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_prepayment" name="tariff_1_payment_method" value="PRE" autocomplete="off" />
                             <label for="tariff_1_payment_method_prepayment"> Prepayment Meter </label>
                         </div>
-                        <br /><br />
                     </div>
                     
                     <div id="section_tariff_1_e7" style="display: none;">
                         <span id="tariff_1_e7_error" class="form-error-message text-danger"></span>
-                        <p class="paragraph-margin"> Do you have Economy 7? </p>
+                        <p class="question-heading"> Do you have Economy 7? </p>
                         <div class="btn-group btn-group-2 flex-wrap" role="group">
                             <input type="radio" class="radio-hidden tariff_1_e7_radio" id="tariff_1_e7_radio_yes" name="tariff_1_e7" value="true" autocomplete="off" />
                             <label for="tariff_1_e7_radio_yes"> Yes </label>
                             <input type="radio" class="radio-hidden tariff_1_e7_radio" id="tariff_1_e7_radio_no" name="tariff_1_e7" value="false" autocomplete="off" checked="true" />
                             <label for="tariff_1_e7_radio_no"> No </label>
                         </div>
-                        <br /><br />
                     </div>
                     
                     <div id="section_tariff_1_current_tariff">
                         <span id="tariff_1_current_tariff_error" class="form-error-message text-danger"></span>
-                        <p class="paragraph-margin">What is the name of your current tariff?</p>
+                        <p class="question-heading">What is the name of your current tariff?</p>
                         <div class="form-group">
                             <select id="tariff_1_current_tariff" name="tariff_1_current_tariff" style="width: 100%; margin-bottom: 10px;" >
                                 <option class="initial-values" value="" disabled selected hidden></option>
@@ -402,7 +430,6 @@
                             <p id="tariff_1_current_tariff_no_content" style="display: none;">Sorry, but we could not find any tariffs from the data you provided. Please check your input above.</p>
                             <p id="tariff_1_current_tariff_error_message" style="display: none;">Sorry, but there was a problem processing your data. Please check your information above, or try again later.</p>
                         </div>
-                        <br /><br />
                     </div>
                 </div>
                 
@@ -411,7 +438,7 @@
                 
                 <div id="section_electric_supplier" style="display: none;">
                     <span id="electric_supplier_error" class="form-error-message text-danger"></span>
-                    <p class="paragraph-margin"> Who is your current electricity supplier? <span class="scroll-text">{{ $logo_drag_text }}</span></p>
+                    <p class="question-heading"> Who is your current electricity supplier? <span class="scroll-text">{{ $logo_drag_text }}</span></p>
                     <!-- swiper -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
@@ -450,7 +477,6 @@
                             <option value="{{ $electric_supplier["id"] }}">{{ $electric_supplier["name"] }}</option>
                         @endforeach
                     </select>
-                    <br /><br />
                 </div>
                 
                 
@@ -459,7 +485,7 @@
                 <div id="section_tariff_2" style="display: none;">
                     <div id="section_tariff_2_payment_method">
                         <span id="tariff_2_payment_method_error" class="form-error-message text-danger"></span>
-                        <p class="paragraph-margin"> How do you pay for your energy? </p>
+                        <p class="question-heading"> How do you pay for your energy? </p>
                         <div class="btn-group btn-group-4 flex-wrap" role="group">
                             <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_monthlyDirectDebit" name="tariff_2_payment_method" value="MDD" autocomplete="off" checked="true" />
                             <label for="tariff_2_payment_method_monthlyDirectDebit"> Monthly Direct Debit </label>
@@ -470,24 +496,22 @@
                             <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_prepayment" name="tariff_2_payment_method" value="PRE" autocomplete="off" />
                             <label for="tariff_2_payment_method_prepayment"> Prepayment Meter </label>
                         </div>
-                        <br /><br />
                     </div>
                     
                     <div id="section_tariff_2_e7">
                         <span id="tariff_2_e7_error" class="form-error-message text-danger"></span>
-                        <p class="paragraph-margin"> Do you have Economy 7? </p>
+                        <p class="question-heading"> Do you have Economy 7? </p>
                         <div class="btn-group btn-group-2 flex-wrap" role="group">
                             <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_yes" name="tariff_2_e7" value="true" autocomplete="off" />
                             <label for="tariff_2_e7_radio_yes"> Yes </label>
                             <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_no" name="tariff_2_e7" value="false" autocomplete="off" checked="true" />
                             <label for="tariff_2_e7_radio_no"> No </label>
                         </div>
-                        <br /><br />
                     </div>
                     
                     <div id="section_tariff_2_current_tariff">
                         <span id="tariff_2_current_tariff_error" class="form-error-message text-danger"></span>
-                        <p class="paragraph-margin">What is the name of your current tariff?</p>
+                        <p class="question-heading">What is the name of your current tariff?</p>
                         <div class="form-group">
                             <select id="tariff_2_current_tariff" name="tariff_2_current_tariff" style="width: 100%; margin-bottom: 10px;" >
                                 <option class="initial-values" value="" disabled selected hidden></option>
@@ -499,13 +523,12 @@
                             <p id="tariff_2_current_tariff_no_content" style="display: none;">Sorry, but we could not find any tariffs from the data you provided. Please check your input above.</p>
                             <p id="tariff_2_current_tariff_error_message" style="display: none;">Sorry, but there was a problem processing your data. Please check your information above, or try again later.</p>
                         </div>
-                        <br /><br />
                     </div>
                 </div>
                 
                 <div id="section_your_usage" style="display: none;">
                     <div id="section_your_gas_usage" style="display: none;">
-                        <p class="paragraph-margin"> Your Gas Usage </p>
+                        <p class="question-heading first-question-heading"> Your Gas Usage </p>
                         <div style="text-align: center;">
                             <table class="your-usage-table">
                                 <tr>
@@ -538,9 +561,9 @@
                             </table>
                         </div>
                     </div>
-                    <br />
+                    
                     <div id="section_your_electric_usage" style="display: none;">
-                        <p class="paragraph-margin"> Your Electricity Usage </p>
+                        <p class="question-heading"> Your Electricity Usage </p>
                         <div style="text-align: center;">
                             <table class="your-usage-table">
                                 <tr>
@@ -568,9 +591,9 @@
                             </table>
                         </div>
                     </div>
-                    <br />
+                    
                     <div id="section_your_electric_e7" style="display: none;">
-                        <p class="paragraph-margin">Your Economy 7 Usage</p>
+                        <p class="question-heading">Your Economy 7 Usage</p>
                         <div style="text-align: center;">
                             <table class="your-usage-table">
                                 <tr>
@@ -588,7 +611,6 @@
                     
                     <br />
                     <input type="submit" id="form_submit_button" class="big-blue-button" value="Submit" style="width: 100%; padding: 30px 0px;" />
-                    <br /><br />
                 </div>
             </form>
         </div>
