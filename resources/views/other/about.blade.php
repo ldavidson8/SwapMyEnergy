@@ -1,6 +1,3 @@
-<?php
-    $mode = (isset($request)) ? $request -> session() -> get('mode', 'business') : 'business';
-?>
 @extends('layouts.master')
 @section('stylesheets')
     <style>
@@ -116,7 +113,7 @@
                         <h3 style="padding-top: 15px; font-size: 30px; font-weight: 700; margin: 0; display:inline "> Find Us Online </h3>
                         <img alt="" src={{ asset('img/click-cursor.png')}}>
                         <p style="font-weight: 700;"> We're on your favourite social media sites! </p>
-                        <a href="https://linktr.ee/swapmyenergy" rel="external"><button class="rounded-blue-button" role="button"> FOLLOW US </button></a>
+                        <a href="https://linktr.ee/swapmyenergy" target="_blank" rel="external"><button class="rounded-blue-button" role="button"> FOLLOW US </button></a>
                     </div>
                 </div>
             </div>

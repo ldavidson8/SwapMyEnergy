@@ -49,17 +49,6 @@
             font-size: 28px;
         }
 
-        .rounded-blue-button
-        {
-            background-color: #00d2db;
-            border: none;
-            width: 300px;
-            border-radius: 18px;
-            padding: 12px;
-            font-size: 27px;
-            font-weight: bold;
-        }
-
         .logos-container
         {
             padding: 0;
@@ -93,6 +82,11 @@
             height: auto;
         }
 
+        .padding-bottom-20px
+        {
+            padding-bottom: 20px;
+        }
+
         @media (max-width: 991px)
         {
             .background-mobile-white { background-color: #f3f2f1; }
@@ -105,14 +99,6 @@
             .background-image-non-moblie::before { background-image: none !important; }
         }
         
-        @media (max-width: 761px)
-        {
-        }
-
-        @media (max-width: 515px)
-        {
-        }
-
     </style>
 @endsection
 
@@ -141,7 +127,7 @@
                                 <img src="{{ asset('img/business-homepage/signed-document.png')}}" style="width: 100px;" alt="signed document">
                             </td>
                             <td>
-                                <p class="white-text" style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simply select the option that is most appropriate for your company. We will (no contractions) always be on hand to help you understand your choices. </p>
+                                <p class="white-text" style="font-weight: normal; "><b>Step Two - Pick the Best Deal </b><br> Simply select the option that is most appropriate for your company. We will always be on hand to help you understand your choices. </p>
                             </td>
                         </tr>
                         <tr>
@@ -161,7 +147,6 @@
                 <div class="white-text" style="max-width: 100%; width: 600px;">
                     <form id="requestCallbackForm" class="form-black" action="{{ route('business.request-callback') }}" method="post" enctype="multipart/form-data">
                         @csrf
-
                         <div class="form-group">
                             <label for="full_name">Full Name/Business Name</label>
                             <input type="text" class="form-control tall-form-control" id="full_name" name="full_name" placeholder="Full Name/Business Name" required="required" />
@@ -221,7 +206,7 @@
             </div>
             <div class="col-sm-3 d-sm-block d-md-none"></div>
             <div class="col-md-2 col-sm-3 col-6">
-                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/sse.png') }}" alt="SSE logo">
+                    <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/SSE.png') }}" alt="SSE logo">
             </div>
             <div class="col-md-2 col-sm-3 col-6">
                     <img class="logos-item lazy" data-src="{{ asset('img/supplier-logos/crown-gas.png') }}" alt="Crown gas logo">
@@ -234,7 +219,7 @@
     </div>
     <hr />
     <div class="full-size-50 container-fluid d-flex flex-column background-image-preston-behind">
-        <div class="row flex-grow-1 padding-20px background-image-preston background-image-bottom preload">
+        <div class="row flex-grow-1 padding-bottom-20px background-image-preston background-image-bottom preload">
             <div class="col-12 col-lg-6 center-content">
                 <div style="max-width: 100%; text-align: center;">
                     <p class="white-text" style="font-size: 50px; font-weight: 700;">Let us help you navigate through the energy maze</p>
@@ -242,7 +227,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6 center-content" style="text-align: center;">
-                <a href="#requestCallback"><button class="rounded-blue-button">Lets do it!</button></a>
+                <a href="#requestCallback"><button class="rounded-blue-button" style="padding: 12px;">Lets do it!</button></a>
             </div>
         </div>
     </div>
@@ -250,7 +235,7 @@
         <div class="row flex-grow-1 padding-20px">
             <div class="col-12 col-lg-9 center-content">
                 <div style="max-width: 100%;">
-                    <p> At Swap My Energy, we pride ourselves on giving businesses of all sizes easy access to the best commerical energy tariffs on the market. With our leading energy calculator, you can quickly find the best energy prices to make maximum savings on your business' gas and electric bills. Our specialist advisors are committed to supporting you throughout the process, from finding the best deal for your business to negotiating with suppliers to ensure your switch runs smoothly.
+                    <p> At Swap My Energy, we pride ourselves on giving businesses of all sizes easy access to the best commercial energy tariffs on the market. With our leading energy calculator, you can quickly find the best energy prices to make maximum savings on your business' gas and electric bills. Our specialist advisors are committed to supporting you throughout the process, from finding the best deal for your business to negotiating with suppliers to ensure your switch runs smoothly.
                     </p>
                 </div>
             </div>

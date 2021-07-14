@@ -26,6 +26,29 @@
    </url>
    <url>
       <loc>http://www.swapmyenergy.co.uk/residential</loc>
-      <changefreq>monthly</changefreq>
+   </url>
+   <url>
+      <loc>http://www.swapmyenergy.co.uk/residential/about</loc>
+   </url>
+   <url>
+      <loc>http://www.swapmyenergy.co.uk/residential/terms-and-conditions</loc>
+   </url>
+   <url>
+      <loc>http://www.swapmyenergy.co.uk/residential/privacy-policy</loc>
+   </url>
+   <url>
+      <loc>http://www.swapmyenergy.co.uk/residential/contact</loc>
+   </url>
+   <url>
+      <loc>http://www.swapmyenergy.co.uk/residential/partners-and-affiliates</loc>
+   </url>
+    <url>
+      <loc>http://www.swapmyenergy.co.uk/residential/cookie-policy</loc>
+   </url>
+   <url>
+      <loc>http://www.swapmyenergy.co.uk/residential/sitemap</loc>
+   </url>
+   <url>
+      <loc>http://127.0.0.1:8000/residential/energy-comparison/address</loc>
    </url>
 </urlset>
