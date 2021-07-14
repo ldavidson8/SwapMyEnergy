@@ -131,7 +131,7 @@ class ResidentialApiRepository extends Controller
         return array_merge($liveObject, $preservedObject);
     }
     
-    public static function tariffs_current($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $gas_kwh, $elec_kwh, &$status)
+    public static function tariffs_current($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $consumption_figures, $gas, $elec, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> post(self::_apiUrl() . "tariffs/current", array(
             "currentGasTariff" => $gas_tariff,
@@ -140,15 +140,15 @@ class ResidentialApiRepository extends Controller
             "currentServiceType" => $fuel_type_str,
             "energyUsage" =>
             [
-                "consumptionFigures" => "kwh",
-                "annualGasConsumption" => $gas_kwh,
-                "annualElecConsumption" => $elec_kwh
+                "consumptionFigures" => $consumption_figures,
+                "annualGasConsumption" => $gas,
+                "annualElecConsumption" => $elec
             ]
         ));
         return self::getOneObject($response, $status);
     }
 
-    public static function tariffs_results($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $gas_kwh, $elec_kwh, $e7_usage, $home_mover, $preferred_payment_method, $show_only_apply_tariff, $features, $postcode, &$status)
+    public static function tariffs_results($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $consumption_figures, $gas, $elec, $e7_usage, $home_mover, $preferred_payment_method, $show_only_apply_tariff, $features, $postcode, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> post(self::_apiUrl() . "tariffs/results", array(
             "currentGasTariff" => $gas_tariff,
@@ -157,12 +157,12 @@ class ResidentialApiRepository extends Controller
             "currentServiceType" => $fuel_type_str,
             "energyUsage" =>
             [
-                "consumptionFigures" => "kwh",
-                "annualGasConsumption" => $gas_kwh,
-                "annualElecConsumption" => $elec_kwh,
+                "consumptionFigures" => $consumption_figures,
+                "annualGasConsumption" => $gas,
+                "annualElecConsumption" => $elec,
                 "e7Usage" => $e7_usage
             ],
-            "homeMover" => false,
+            "homeMover" => $home_mover,
             "preferredPaymentMethod" => $preferred_payment_method,
             "showOnlyApplyTariff" => $show_only_apply_tariff,
             "features" => $features,

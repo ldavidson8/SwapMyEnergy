@@ -1,6 +1,38 @@
 <?php
     $logo_drag_text = "Drag the logo banner sideways to see more options";
     $dmq = $supplier_data["mprn"] -> dmq;
+    
+    $old_fuel_type = old('fuel_type');
+    $old_same_fuel_supplier = old('same_fuel_supplier');
+    $old_dual_supplier_radio = old('dual_supplier_radio');
+    $old_gas_supplier_radio = old('gas_supplier_radio');
+    $old_tariff_1_payment_method = old('tariff_1_payment_method');
+    $old_tariff_1_e7 = old('tariff_1_e7');
+    $old_tariff_1_current_tariff = old('tariff_1_current_tariff');
+    $old_tariff_1_current_tariff_not_listed = old('tariff_1_current_tariff_not_listed');
+    $old_electric_supplier_radio = old('electric_supplier_radio');
+    $old_electric_supplier = old('electric_supplier');
+    $old_tariff_2_payment_method = old('tariff_2_payment_method');
+    $old_tariff_2_e7 = old('tariff_2_e7');
+    $old_tariff_2_current_tariff = old('tariff_2_current_tariff');
+    $old_tariff_2_current_tariff_not_listed = old('tariff_2_current_tariff_not_listed');
+    
+    $fuel_type = (isset($old_fuel_type)) ? $old_fuel_type : "";
+    $same_fuel_supplier = (isset($old_same_fuel_supplier)) ? $old_same_fuel_supplier : "";
+    $dual_supplier_radio = (isset($old_dual_supplier_radio)) ? $old_dual_supplier_radio : "";
+    $dual_supplier = (isset($old_dual_supplier)) ? $old_dual_supplier : "";
+    $gas_supplier_radio = (isset($old_gas_supplier_radio)) ? $old_gas_supplier_radio : "";
+    $gas_supplier = (isset($old_gas_supplier)) ? $old_gas_supplier : "";
+    $tariff_1_payment_method = (isset($old_tariff_1_payment_method)) ? $old_tariff_1_payment_method : "";
+    $tariff_1_e7 = (isset($old_tariff_1_e7)) ? $old_tariff_1_e7 : "false";
+    $tariff_1_current_tariff = (isset($old_tariff_1_current_tariff)) ? $old_tariff_1_current_tariff : "";
+    $tariff_1_current_tariff_not_listed = (isset($old_tariff_1_current_tariff_not_listed)) ? $old_tariff_1_current_tariff_not_listed : "";
+    $electric_supplier_radio = (isset($old_electric_supplier_radio)) ? $old_electric_supplier_radio : "";
+    $electric_supplier = (isset($old_electric_supplier)) ? $old_electric_supplier : "";
+    $tariff_2_payment_method = (isset($old_tariff_2_payment_method)) ? $old_tariff_2_payment_method : "";
+    $tariff_2_e7 = (isset($old_tariff_2_e7)) ? $old_tariff_2_e7 : "false";
+    $tariff_2_current_tariff = (isset($old_tariff_2_current_tariff)) ? $old_tariff_2_current_tariff : "";
+    $tariff_2_current_tariff_not_listed = (isset($old_tariff_2_current_tariff_not_listed)) ? $old_tariff_2_current_tariff_not_listed : "";
 ?>
 
 @extends('layouts.master')
@@ -210,7 +242,19 @@
         {
             margin-bottom: 20px;
         }
-
+        
+        #section_your_usage .btn-group label
+        {
+            width: 100%;
+            color: #202020;
+        }
+        
+        .your-usage-label
+        {
+            font-size: 26px;
+            text-transform: capitalize;
+        }
+        
 
         @media (max-width: 1199px)
         {
@@ -270,15 +314,15 @@
                             @endforeach
                         </div>
                     @endif
-                    
+
                     <span id="fuel_type_error" class="form-error-message text-danger"></span>
-                    <p class="question-heading first-question-heading"> What are you looking to compare? </p>
+                    <p class="question-heading first-question-heading">What are you looking to compare?</p>
                     <div class="btn-group btn-group-3 flex-wrap" role="group">
-                        <input type="radio" class="radio-hidden fuel_type_radio" name="fuel_type" value="dual" id="fuel_type_radio_dual" value="{{ old('gas-electric-radio') }}" autocomplete="off" />
+                        <input type="radio" class="radio-hidden fuel_type_radio" name="fuel_type" value="dual" id="fuel_type_radio_dual" {{ ($fuel_type == "dual") ? "checked" : "" }} />
                         <label for="fuel_type_radio_dual">Gas & Electricity </label>
-                        <input type="radio" class="radio-hidden fuel_type_radio" name="fuel_type" value="gas" id="fuel_type_radio_gas" autocomplete="off" />
+                        <input type="radio" class="radio-hidden fuel_type_radio" name="fuel_type" value="gas" id="fuel_type_radio_gas" {{ ($fuel_type == "gas") ? "checked" : "" }} />
                         <label for="fuel_type_radio_gas"> Gas </label>
-                        <input type="radio" class="radio-hidden fuel_type_radio" name="fuel_type" value="electric" id="fuel_type_radio_electric" autocomplete="off" />
+                        <input type="radio" class="radio-hidden fuel_type_radio" name="fuel_type" value="electric" id="fuel_type_radio_electric" {{ ($fuel_type == "electric") ? "checked" : "" }} />
                         <label for="fuel_type_radio_electric"> Electricity </label>
                     </div>
                     
@@ -286,9 +330,9 @@
                         <span id="same_fuel_supplier_error" class="form-error-message text-danger"></span>
                         <p class="question-heading"> Do you have the same supplier for both gas and electricity? </p>
                         <div class="btn-group btn-group-2 flex-wrap" role="group">
-                            <input type="radio" class="radio-hidden same_fuel_supplier_radio" name="same_fuel_supplier" id="same_fuel_supplier_radio_yes" value="yes" autocomplete="off" />
+                            <input type="radio" class="radio-hidden same_fuel_supplier_radio" name="same_fuel_supplier" id="same_fuel_supplier_radio_yes" value="yes" {{ ($same_fuel_supplier == "yes") ? "checked" : "" }} />
                             <label for="same_fuel_supplier_radio_yes"> Yes </label>
-                            <input type="radio" class="radio-hidden same_fuel_supplier_radio" name="same_fuel_supplier" id="same_fuel_supplier_radio_no" value="no" autocomplete="off" />
+                            <input type="radio" class="radio-hidden same_fuel_supplier_radio" name="same_fuel_supplier" id="same_fuel_supplier_radio_no" value="no" {{ ($same_fuel_supplier == "no") ? "checked" : "" }} />
                             <label for="same_fuel_supplier_radio_no"> No </label>
                         </div>
                     </div>
@@ -321,7 +365,7 @@
                                 ?>
                                 <div class="swiper-slide">
                                     <label>
-                                        <input type="radio" class="radio-hidden dual_supplier_radio" name="dual_supplier_radio" value="<?= $main_dual_supplier["id"] ?>" autocomplete="off">
+                                        <input type="radio" class="radio-hidden dual_supplier_radio" name="dual_supplier_radio" value="<?= $main_dual_supplier["id"] ?>" {{ ($dual_supplier_radio == $main_dual_supplier["id"]) ? "selected" : "" }} />
                                         <div class="img-outer">
                                             <img src='<?= asset("img/supplier-logos/$image_src") ?>' />
                                         </div>
@@ -332,7 +376,7 @@
                         <br />
                     </div>
                     <label for="dual_supplier_dropdown" style="margin-top: 5px;">If your supplier is not shown above, please search this dropdown list.</label><br />
-                    <select id="dual_supplier_dropdown" name="dual_supplier">
+                    <select id="dual_supplier_dropdown" name="dual_supplier" value="{{ $dual_supplier }}">
                         <option value=""></option>
                         @foreach ($supplier_data["dual_suppliers"] as $dual_supplier)
                             <option value="{{ $dual_supplier["id"] }}">{{ $dual_supplier["name"] }}</option>
@@ -367,7 +411,7 @@
                                 ?>
                                 <div class="swiper-slide">
                                     <label>
-                                        <input type="radio" class="radio-hidden gas_supplier_radio" name="gas_supplier_radio" value="<?= $main_gas_supplier["id"] ?>" autocomplete="off">
+                                        <input type="radio" class="radio-hidden gas_supplier_radio" name="gas_supplier_radio" value="<?= $main_gas_supplier["id"] ?>" {{ ($gas_supplier_radio == $main_gas_supplier["id"]) ? "selected" : "" }} />
                                         <div class="img-outer">
                                             <img src='<?= asset("img/supplier-logos/$image_src") ?>' />
                                         </div>
@@ -378,7 +422,7 @@
                     </div>
                     <br />
                     <label for="gas_supplier_dropdown" style="margin-top: 5px;">If your gas supplier is not shown above, please search this dropdown list.</label><br />
-                    <select id="gas_supplier_dropdown" name="gas_supplier">
+                    <select id="gas_supplier_dropdown" name="gas_supplier" value="{{ $gas_supplier }}">
                         <option value=""></option>
                         @foreach ($supplier_data["gas_suppliers"] as $gas_supplier)
                             <option value="{{ $gas_supplier["id"] }}">{{ $gas_supplier["name"] }}</option>
@@ -394,13 +438,13 @@
                         <span id="tariff_1_payment_method_error" class="form-error-message text-danger"></span>
                         <p class="question-heading"> How do you pay for your energy? </p>
                         <div class="btn-group btn-group-4 flex-wrap" role="group">
-                            <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_monthlyDirectDebit" name="tariff_1_payment_method" value="MDD" autocomplete="off" checked="true" />
+                            <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_monthlyDirectDebit" name="tariff_1_payment_method" value="MDD" {{ ($tariff_1_payment_method == "MDD" || $tariff_1_payment_method == "") ? "checked" : "" }} />
                             <label for="tariff_1_payment_method_monthlyDirectDebit"> Monthly Direct Debit </label>
-                            <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_quarterlyDirectDebit" name="tariff_1_payment_method" value="QDD" autocomplete="off" />
+                            <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_quarterlyDirectDebit" name="tariff_1_payment_method" value="QDD" {{ ($tariff_1_payment_method == "QDD") ? "checked" : "" }} />
                             <label for="tariff_1_payment_method_quarterlyDirectDebit"> Quarterly Direct Debit </label>
-                            <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_cashCheque" name="tariff_1_payment_method" value="CAC" autocomplete="off" />
+                            <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_cashCheque" name="tariff_1_payment_method" value="CAC" {{ ($tariff_1_payment_method == "CAC") ? "checked" : "" }} />
                             <label for="tariff_1_payment_method_cashCheque"> Cash / Cheque </label>
-                            <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_prepayment" name="tariff_1_payment_method" value="PRE" autocomplete="off" />
+                            <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_prepayment" name="tariff_1_payment_method" value="PRE" {{ ($tariff_1_payment_method == "PRE") ? "checked" : "" }} />
                             <label for="tariff_1_payment_method_prepayment"> Prepayment Meter </label>
                         </div>
                     </div>
@@ -409,9 +453,9 @@
                         <span id="tariff_1_e7_error" class="form-error-message text-danger"></span>
                         <p class="question-heading"> Do you have Economy 7? </p>
                         <div class="btn-group btn-group-2 flex-wrap" role="group">
-                            <input type="radio" class="radio-hidden tariff_1_e7_radio" id="tariff_1_e7_radio_yes" name="tariff_1_e7" value="true" autocomplete="off" />
+                            <input type="radio" class="radio-hidden tariff_1_e7_radio" id="tariff_1_e7_radio_yes" name="tariff_1_e7" value="true" {{ ($tariff_1_e7 == "true") ? "checked" : "" }} />
                             <label for="tariff_1_e7_radio_yes"> Yes </label>
-                            <input type="radio" class="radio-hidden tariff_1_e7_radio" id="tariff_1_e7_radio_no" name="tariff_1_e7" value="false" autocomplete="off" checked="true" />
+                            <input type="radio" class="radio-hidden tariff_1_e7_radio" id="tariff_1_e7_radio_no" name="tariff_1_e7" value="false" {{ ($tariff_1_e7 == "false") ? "checked" : "" }} />
                             <label for="tariff_1_e7_radio_no"> No </label>
                         </div>
                     </div>
@@ -420,15 +464,16 @@
                         <span id="tariff_1_current_tariff_error" class="form-error-message text-danger"></span>
                         <p class="question-heading">What is the name of your current tariff?</p>
                         <div class="form-group">
-                            <select id="tariff_1_current_tariff" name="tariff_1_current_tariff" style="width: 100%; margin-bottom: 10px;" >
+                            <select id="tariff_1_current_tariff" name="tariff_1_current_tariff" style="width: 100%; margin-bottom: 10px;" value="{{ $tariff_1_current_tariff }}" >
                                 <option class="initial-values" value="" disabled selected hidden></option>
                             </select>
-                            <input type="checkbox" id="tariff_1_current_tariff_not_listed" name="tariff_1_current_tariff_not_listed" class="initial-values" value="notListed" />
+                            <input type="checkbox" id="tariff_1_current_tariff_not_listed" name="tariff_1_current_tariff_not_listed" class="initial-values" value="notListed" {{ ($tariff_1_e7 == "notListed") ? "checked" : "" }} />
                             <label id="tariff_1_current_tariff_not_listed_label" for="tariff_1_current_tariff_not_listed">Not listed/Not sure</label>
                             <br />
                             <p id="tariff_1_current_tariff_not_listed_message" style="display: none;">That's okay. We will compare against your supplier's most popular default tariff to bring you the best deals.</p>
                             <p id="tariff_1_current_tariff_no_content" style="display: none;">Sorry, but we could not find any tariffs from the data you provided. Please check your input above.</p>
-                            <p id="tariff_1_current_tariff_error_message" style="display: none;">Sorry, but there was a problem processing your data. Please check your information above, or try again later.</p>
+                            <p id="tariff_1_current_tariff_error_message" style="display: none;">Sorry, but we could not find any tariffs from the data you provided. Please check your input above.</p>
+                            {{-- <p id="tariff_1_current_tariff_error_message" style="display: none;">Sorry, but there was a problem processing your data. Please check your information above, or try again later.</p> --}}
                         </div>
                     </div>
                 </div>
@@ -460,7 +505,7 @@
                                 ?>
                                 <div class="swiper-slide">
                                     <label>
-                                        <input type="radio" class="radio-hidden electric_supplier_radio" name="electric_supplier_radio" value="<?= $main_electric_supplier["id"] ?>" autocomplete="off">
+                                        <input type="radio" class="radio-hidden electric_supplier_radio" name="electric_supplier_radio" value="<?= $main_electric_supplier["id"] ?>" {{ ($electric_supplier_radio == $main_electric_supplier["id"]) ? "selected" : "" }} />
                                         <div class="img-outer">
                                             <img src="<?= asset("img/supplier-logos/$image_src") ?>"/>
                                         </div>
@@ -471,7 +516,7 @@
                     </div>
                     <br />
                     <label for="electric_supplier_dropdown" style="margin-top: 5px;">If your electricity supplier is not shown above, please search this dropdown list.</label><br />
-                    <select id="electric_supplier_dropdown" name="electric_supplier">
+                    <select id="electric_supplier_dropdown" name="electric_supplier" value="{{ $electric_supplier }}">
                         <option value=""></option>
                         @foreach ($supplier_data["electric_suppliers"] as $electric_supplier)
                             <option value="{{ $electric_supplier["id"] }}">{{ $electric_supplier["name"] }}</option>
@@ -487,13 +532,13 @@
                         <span id="tariff_2_payment_method_error" class="form-error-message text-danger"></span>
                         <p class="question-heading"> How do you pay for your energy? </p>
                         <div class="btn-group btn-group-4 flex-wrap" role="group">
-                            <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_monthlyDirectDebit" name="tariff_2_payment_method" value="MDD" autocomplete="off" checked="true" />
+                            <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_monthlyDirectDebit" name="tariff_2_payment_method" value="MDD" {{ ($tariff_2_payment_method == "MDD" || $tariff_2_payment_method == "") ? "checked" : "" }} />
                             <label for="tariff_2_payment_method_monthlyDirectDebit"> Monthly Direct Debit </label>
-                            <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_quarterlyDirectDebit" name="tariff_2_payment_method" value="QDD autocomplete="off" />
+                            <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_quarterlyDirectDebit" name="tariff_2_payment_method" value="QDD" {{ ($tariff_2_payment_method == "QDD") ? "checked" : "" }} />
                             <label for="tariff_2_payment_method_quarterlyDirectDebit"> Quarterly Direct Debit </label>
-                            <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_cashCheque" name="tariff_2_payment_method" value="CAC" autocomplete="off" />
+                            <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_cashCheque" name="tariff_2_payment_method" value="CAC" {{ ($tariff_2_payment_method == "CAC") ? "checked" : "" }} />
                             <label for="tariff_2_payment_method_cashCheque"> Cash / Cheque </label>
-                            <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_prepayment" name="tariff_2_payment_method" value="PRE" autocomplete="off" />
+                            <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_prepayment" name="tariff_2_payment_method" value="PRE" {{ ($tariff_2_payment_method == "PRE") ? "checked" : "" }} />
                             <label for="tariff_2_payment_method_prepayment"> Prepayment Meter </label>
                         </div>
                     </div>
@@ -502,9 +547,9 @@
                         <span id="tariff_2_e7_error" class="form-error-message text-danger"></span>
                         <p class="question-heading"> Do you have Economy 7? </p>
                         <div class="btn-group btn-group-2 flex-wrap" role="group">
-                            <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_yes" name="tariff_2_e7" value="true" autocomplete="off" />
+                            <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_yes" name="tariff_2_e7" value="true" {{ ($tariff_2_e7 == "true") ? "checked" : "" }} />
                             <label for="tariff_2_e7_radio_yes"> Yes </label>
-                            <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_no" name="tariff_2_e7" value="false" autocomplete="off" checked="true" />
+                            <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_no" name="tariff_2_e7" value="false" {{ ($tariff_2_e7 == "false") ? "checked" : "" }} />
                             <label for="tariff_2_e7_radio_no"> No </label>
                         </div>
                     </div>
@@ -513,82 +558,130 @@
                         <span id="tariff_2_current_tariff_error" class="form-error-message text-danger"></span>
                         <p class="question-heading">What is the name of your current tariff?</p>
                         <div class="form-group">
-                            <select id="tariff_2_current_tariff" name="tariff_2_current_tariff" style="width: 100%; margin-bottom: 10px;" >
+                            <select id="tariff_2_current_tariff" name="tariff_2_current_tariff" style="width: 100%; margin-bottom: 10px;" value="{{ $tariff_2_current_tariff }}">
                                 <option class="initial-values" value="" disabled selected hidden></option>
                             </select>
-                            <input type="checkbox" id="tariff_2_current_tariff_not_listed" name="tariff_2_current_tariff_not_listed" class="initial-values" value="notListed" />
+                            <input type="checkbox" id="tariff_2_current_tariff_not_listed" name="tariff_2_current_tariff_not_listed" class="initial-values" value="notListed" {{ ($tariff_2_current_tariff_not_listed == "notListed") ? "checked" : "" }} />
                             <label id="tariff_2_current_tariff_not_listed_label" for="tariff_2_current_tariff_not_listed">Not listed/Not sure</label>
                             <br />
                             <p id="tariff_2_current_tariff_not_listed_message" style="display: none;">That's okay. We will compare against your supplier's most popular default tariff to bring you the best deals.</p>
                             <p id="tariff_2_current_tariff_no_content" style="display: none;">Sorry, but we could not find any tariffs from the data you provided. Please check your input above.</p>
-                            <p id="tariff_2_current_tariff_error_message" style="display: none;">Sorry, but there was a problem processing your data. Please check your information above, or try again later.</p>
+                            <p id="tariff_2_current_tariff_error_message" style="display: none;">Sorry, but we could not find any tariffs from the data you provided. Please check your input above.</p>
+                            {{-- <p id="tariff_2_current_tariff_error_message" style="display: none;">Sorry, but there was a problem processing your data. Please check your information above, or try again later.</p> --}}
                         </div>
                     </div>
                 </div>
                 
                 <div id="section_your_usage" style="display: none;">
+                    <p class="question-heading">Your Usage</p>
+                    <div id="section_consumption_figures">
+                        <div class="row btn-group" style="text-align: center;">
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <input type="radio" class="radio-hidden consumption_figures_radio" name="consumption_figures" id="consumption_figures_radio_pounds" value="pound" />
+                                <label for="consumption_figures_radio_pounds">I Know How Much I Spend</label>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <input type="radio" class="radio-hidden consumption_figures_radio" name="consumption_figures" id="consumption_figures_radio_kwh" value="kwh" checked="true" />
+                                <label for="consumption_figures_radio_kwh">I Know How Much I Use</label>
+                            </div>
+                            <div class="col-3 d-none d-md-block d-lg-none"></div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <input type="radio" class="radio-hidden consumption_figures_radio" name="consumption_figures" id="consumption_figures_radio_estimate" value="estimate" />
+                                <label for="consumption_figures_radio_estimate">I Dont Know Either</label>
+                            </div>
+                            <div class="col-3 d-none d-md-block d-lg-none"></div>
+                        </div>
+                    </div>
                     <div id="section_your_gas_usage" style="display: none;">
-                        <p class="question-heading first-question-heading"> Your Gas Usage </p>
-                        <div style="text-align: center;">
-                            <table class="your-usage-table">
-                                <tr>
-                                    <td></td>
-                                    <td><span id="your_gas_usage_kwh_error" class="form-error-message text-danger"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="your_gas_usage_kwh"> I use </label></td>
-                                    <td><input class="form-control" type="number" pattern="[0-9]*" name="your_gas_usage_kwh" id="your_gas_usage_kwh" style="margin-bottom: 1em;" value="{{ (isset($dmq) && is_numeric($dmq) && $dmq > 0) ? $dmq : "" }}" /></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td><span id="your_gas_usage_length_error" class="form-error-message text-danger"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="your_gas_usage_length"> kWh per </label></td>
-                                    <td>
-                                        <select class="form-control" id="your_gas_usage_length" name="your_gas_usage_length">
-                                            <option value="Month"> Month </option>
-                                            <option value="Quarter"> Quarter </option>
-                                            <option value="Year" selected> Year </option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                @if (isset($dmq) && is_numeric($dmq) && $dmq > 0)
-                                    <tr>
-                                        <td colspan="2">Our systems tell us that your gas usage is {{ $dmq }} kwh per year. If this is wrong, please change the value above.</td>
-                                    </tr>
-                                @endif
-                            </table>
+                        <p class="question-heading">Your Gas Usage</p>
+                        <div class="row section_your_usage_pound" style="text-align: center; display: none;">
+                            <span id="your_gas_usage_pound_error" class="form-error-message text-danger" style="display: block;"></span>
+                            <div class="col-12 col-md-6 col-lg-4"><label class="your-usage-label" for="your_gas_usage_pound">Gas spend &pound;</label></div>
+                            <div class="col-12 col-md-6 col-lg-4"><input class="form-control" type="number" pattern="[0-9]*" name="your_gas_usage_pound" id="your_gas_usage_pound" style="margin-bottom: 1em;" /></div>
+                            <div class="col-6 d-none d-md-block d-lg-none"></div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <select class="form-control" id="your_gas_usage_pound_length" name="your_gas_usage_pound_length"></div>
+                                    <option value="Month">Per Month</option>
+                                    <option value="Quarter">Per Quarter</option>
+                                    <option value="Year" selected>Per Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row section_your_usage_kwh" style="text-align: center;">
+                            <span id="your_gas_usage_kwh_error" class="form-error-message text-danger" style="display: block;"></span>
+                            <div class="col-12 col-md-6 col-lg-4"><label class="your-usage-label" for="your_gas_usage_kwh">Gas spend kwh</label></div>
+                            <div class="col-12 col-md-6 col-lg-4"><input class="form-control" type="number" pattern="[0-9]*" name="your_gas_usage_kwh" id="your_gas_usage_kwh" style="margin-bottom: 1em;" value="{{ (isset($dmq) && is_numeric($dmq) && $dmq > 0) ? $dmq : "" }}" /></div>
+                            <div class="col-6 d-none d-md-block d-lg-none"></div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <select class="form-control" id="your_gas_usage_kwh_length" name="your_gas_usage_kwh_length"></div>
+                                    <option value="Month">Per Month</option>
+                                    <option value="Quarter">Per Quarter</option>
+                                    <option value="Year" selected>Per Year</option>
+                                </select>
+                            </div>
+                            @if (isset($dmq) && is_numeric($dmq) && $dmq > 0)
+                                <p>Our systems tell us that your gas usage is {{ $dmq }} kwh per year. If this is wrong, please change the value above.</p>
+                            @endif
+                        </div>
+                        <div class="row btn-group section_your_usage_estimate" style="text-align: center; display: none;">
+                            <span id="your_gas_usage_estimate_error" class="form-error-message text-danger" style="display: block;"></span>
+                            <div class="col-12 col-md-4">
+                                <input type="radio" class="radio-hidden your_gas_usage_estimate_radio" name="your_gas_usage_estimate" id="your_gas_usage_estimate_radio_low" value="8000" />
+                                <label for="your_gas_usage_estimate_radio_low">Low</label>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <input type="radio" class="radio-hidden your_gas_usage_estimate_radio" name="your_gas_usage_estimate" id="your_gas_usage_estimate_radio_medium" value="12000" />
+                                <label for="your_gas_usage_estimate_radio_medium">Medium</label>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <input type="radio" class="radio-hidden your_gas_usage_estimate_radio" name="your_gas_usage_estimate" id="your_gas_usage_estimate_radio_high" value="17000" />
+                                <label for="your_gas_usage_estimate_radio_high">High</label>
+                            </div>
                         </div>
                     </div>
                     
                     <div id="section_your_electric_usage" style="display: none;">
-                        <p class="question-heading"> Your Electricity Usage </p>
-                        <div style="text-align: center;">
-                            <table class="your-usage-table">
-                                <tr>
-                                    <td></td>
-                                    <td><span id="your_electric_usage_kwh_error" class="form-error-message text-danger"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="your_electric_usage_kwh"> I use </label></td>
-                                    <td><input class="form-control" type="number" pattern="[0-9]*" name="your_electric_usage_kwh" id="your_electric_usage_kwh" style="margin-bottom: 1em;" /></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td><span id="your_electric_usage_length_error" class="form-error-message text-danger"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><label for="your_electric_usage_length"> kWh per </label></td>
-                                    <td>
-                                        <select class="form-control" id="your_electric_usage_length" name="your_electric_usage_length" style="margin-bottom: 1em;">
-                                            <option value="Month"> Month </option>
-                                            <option value="Quarter"> Quarter </option>
-                                            <option value="Year" selected> Year </option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            </table>
+                        <p class="question-heading">Your Electricity Usage</p>
+                        <div class="row section_your_usage_pound" style="text-align: center; display: none;">
+                            <span id="your_electric_usage_pound_error" class="form-error-message text-danger" style="display: block;"></span>
+                            <div class="col-12 col-md-6 col-lg-4"><label class="your-usage-label" for="your_electric_usage_pound">Electricity spend &pound;</label></div>
+                            <div class="col-12 col-md-6 col-lg-4"><input class="form-control" type="number" pattern="[0-9]*" name="your_electric_usage_pound" id="your_electric_usage_pound" style="margin-bottom: 1em;" /></div>
+                            <div class="col-6 d-none d-md-block d-lg-none"></div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <select class="form-control" id="your_electric_usage_pound_length" name="your_electric_usage_pound_length"></div>
+                                    <option value="Month">Per Month</option>
+                                    <option value="Quarter">Per Quarter</option>
+                                    <option value="Year" selected>Per Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row section_your_usage_kwh" style="text-align: center;">
+                            <span id="your_electric_usage_kwh_error" class="form-error-message text-danger" style="display: block;"></span>
+                            <div class="col-12 col-md-6 col-lg-4"><label class="your-usage-label" for="your_electric_usage_kwh">Electricity spend kwh</label></div>
+                            <div class="col-12 col-md-6 col-lg-4"><input class="form-control" type="number" pattern="[0-9]*" name="your_electric_usage_kwh" id="your_electric_usage_kwh" style="margin-bottom: 1em;" /></div>
+                            <div class="col-6 d-none d-md-block d-lg-none"></div>
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <select class="form-control" id="your_electric_usage_kwh_length" name="your_electric_usage_kwh_length"></div>
+                                    <option value="Month">Per Month</option>
+                                    <option value="Quarter">Per Quarter</option>
+                                    <option value="Year" selected>Per Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <span id="your_electric_usage_estimate_error" class="form-error-message text-danger" style="display: block;"></span>
+                        <div class="row btn-group section_your_usage_estimate" style="text-align: center; display: none;">
+                            <div class="col-12 col-md-4">
+                                <input type="radio" class="radio-hidden your_electric_usage_estimate_radio" name="your_electric_usage_estimate" id="your_electric_usage_estimate_radio_low" value="1800" />
+                                <label for="your_electric_usage_estimate_radio_low">Low</label>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <input type="radio" class="radio-hidden your_electric_usage_estimate_radio" name="your_electric_usage_estimate" id="your_electric_usage_estimate_radio_medium" value="2900" />
+                                <label for="your_electric_usage_estimate_radio_medium">Medium</label>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <input type="radio" class="radio-hidden your_electric_usage_estimate_radio" name="your_electric_usage_estimate" id="your_electric_usage_estimate_radio_high" value="4300" />
+                                <label for="your_electric_usage_estimate_radio_high">High</label>
+                            </div>
                         </div>
                     </div>
                     
@@ -719,23 +812,71 @@
                 },
                 your_usage:
                 {
-                    "section": $("#section_your_usage")
+                    "section": $("#section_your_usage"),
+                    "poundSections": $(".section_your_usage_pound"),
+                    "kwhSections": $(".section_your_usage_kwh"),
+                    "estimateSections": $(".section_your_usage_estimate")
+                },
+                consumption_figures:
+                {
+                    "radio": $(".consumption_figures_radio"),
+                    "pound": $("#consumption_figures_radio_pounds"),
+                    "kwh": $("#consumption_figures_radio_kwh"),
+                    "estimate": $("#consumption_figures_radio_estimate"),
+                    sections:
+                    {
+                        "pound": $(".section_your_usage_pound"),
+                        "kwh": $(".section_your_usage_kwh"),
+                        "estimate": $(".section_your_usage_estimate")
+                    }
                 },
                 your_gas_usage:
                 {
                     "section": $("#section_your_gas_usage"),
-                    "kwh_error": $("#your_gas_usage_kwh_error"),
-                    "kwh": $("#your_gas_usage_kwh"),
-                    "length_error": $("#your_gas_usage_length_error"),
-                    "length": $("#your_gas_usage_length")
+                    pound:
+                    {
+                        "error": $("#your_gas_usage_pound_error"),
+                        "pound": $("#your_gas_usage_pound"),
+                        "length": $("#your_gas_usage_pound_length")
+                    },
+                    kwh:
+                    {
+                        "error": $("#your_gas_usage_kwh_error"),
+                        "kwh": $("#your_gas_usage_kwh"),
+                        "length": $("#your_gas_usage_kwh_length")
+                    },
+                    estimate:
+                    {
+                        "error": $("#your_gas_usage_estimate_error"),
+                        "radio": $(".your_gas_usage_estimate_radio"),
+                        "radioLow": $("#your_gas_usage_estimate_radio_low"),
+                        "radioMedium": $("#your_gas_usage_estimate_radio_medium"),
+                        "radioHigh": $("#your_gas_usage_estimate_radio_high")
+                    }
                 },
                 your_electric_usage:
                 {
                     "section": $("#section_your_electric_usage"),
-                    "kwh_error": $("#your_electric_usage_kwh_error"),
-                    "kwh": $("#your_electric_usage_kwh"),
-                    "length_error": $("#your_electric_usage_length_error"),
-                    "length": $("#your_electric_usage_length"),
+                    pound:
+                    {
+                        "error": $("#your_electric_usage_pound_error"),
+                        "pound": $("#your_electric_usage_pound"),
+                        "length": $("#your_electric_usage_pound_length")
+                    },
+                    kwh:
+                    {
+                        "error": $("#your_electric_usage_kwh_error"),
+                        "kwh": $("#your_electric_usage_kwh"),
+                        "length": $("#your_electric_usage_kwh_length")
+                    },
+                    estimate:
+                    {
+                        "error": $("#your_electric_usage_estimate_error"),
+                        "radio": $(".your_electric_usage_estimate_radio"),
+                        "radioLow": $("#your_electric_usage_estimate_radio_low"),
+                        "radioMedium": $("#your_electric_usage_estimate_radio_medium"),
+                        "radioHigh": $("#your_electric_usage_estimate_radio_high")
+                    },
                     e7:
                     {
                         "section": $("#section_your_electric_e7"),
@@ -944,26 +1085,29 @@
                 }
                 else sections.tariff_2.current_tariff.notListed_message.hide();
             });
-            
 
-            /// your usage ///
-            // gas
-            sections.your_gas_usage.kwh.change(function(e)
+            sections.consumption_figures.radio.change(function(e)
             {
-                sections.post_data.gas_usage_kwh = e.target.value;
-            });
-            sections.your_gas_usage.length.change(function(e)
-            {
-                sections.post_data.gas.usage_length = e.target.value;
-            });
-            // electric
-            sections.your_electric_usage.kwh.change(function(e)
-            {
-                sections.post_data.electric_usage_kwh = e.target.value;
-            });
-            sections.your_electric_usage.length.change(function(e)
-            {
-                sections.post_data.electric.usage_length = e.target.value;
+                sections.post_data.consumption_figures = e.target.value;
+
+                switch (e.target.value)
+                {
+                    case "pound":
+                        sections.consumption_figures.sections.pound.show();
+                        sections.consumption_figures.sections.kwh.hide();
+                        sections.consumption_figures.sections.estimate.hide();
+                        break;
+                    case "kwh":
+                        sections.consumption_figures.sections.pound.hide();
+                        sections.consumption_figures.sections.kwh.show();
+                        sections.consumption_figures.sections.estimate.hide();
+                        break;
+                    case "estimate":
+                        sections.consumption_figures.sections.pound.hide();
+                        sections.consumption_figures.sections.kwh.hide();
+                        sections.consumption_figures.sections.estimate.show();
+                        break;
+                }
             });
             
 
@@ -1058,7 +1202,7 @@
                 var payment_method = sections.tariff_1.payment_method.radio.filter(":checked").val();
                 if (!payment_method) return; // payment method is not set
                 var e7 = sections.tariff_1.e7.radio.filter(":checked").val();
-                if (!e7) return; // payment method is not set
+                if (!e7) e7 = "false";
 
                 var url = "{{ route('residential.energy-comparison.api.tariffs.for-a-suppllier', [ 'supplierId' => 'supplierId', 'regionId' => 'regionId', 'serviceType' => 'serviceType', 'paymentMethod' => 'paymentMethod', 'e7' => 'e7' ]) }}";
                 url = url.replace('/supplierId', '/' + sections.post_data.supplier_1);
@@ -1116,7 +1260,7 @@
                 var payment_method = sections.tariff_2.payment_method.radio.filter(":checked").val();
                 if (!payment_method) return; // payment method is not set
                 var e7 = sections.tariff_2.e7.radio.filter(":checked").val();
-                if (!e7) return; // payment method is not set
+                if (!e7) e7 = "false";
 
                 var url = "{{ route('residential.energy-comparison.api.tariffs.for-a-suppllier', [ 'supplierId' => 'supplierId', 'regionId' => 'regionId', 'serviceType' => 'serviceType', 'paymentMethod' => 'paymentMethod', 'e7' => 'e7' ]) }}";
                 url = url.replace('/supplierId', '/' + sections.post_data.supplier_2);
@@ -1219,14 +1363,11 @@
                 var tariff_2_current_tariff = sections.tariff_2.current_tariff.input.val();
                 var tariff_2_current_tariff_not_listed = sections.tariff_2.current_tariff.notListed.prop("checked");
                 
-                var your_gas_usage_kwh = sections.your_gas_usage.kwh.val();
-                var your_gas_usage_length = sections.your_gas_usage.length.val();
-                var your_electric_usage_kwh = sections.your_electric_usage.kwh.val();
-                var your_electric_usage_length = sections.your_electric_usage.length.val();
-                var your_electric_usage_e7_percent = sections.your_electric_usage.e7.input.val();
-
+                var consumption_figures = sections.consumption_figures.radio.filter(":checked").val();
+                var e7_percent = sections.your_electric_usage.e7.input.val();
+                
                 var checkDual = false; var checkGas = false; var checkElectric = false;
-
+                
                 if (!fuel_type) { ShowError("fuel_type", "Please select a fuel type to compare."); e.preventDefault(); return; }
                 switch (fuel_type)
                 {
@@ -1257,29 +1398,75 @@
                 if (checkDual || checkGas)
                 {
                     if (!tariff_1_payment_method) { ShowErrorSubsection("tariff_1", "payment_method", "Please select a payment method."); e.preventDefault(); return; }
-                    if (!tariff_1_e7) { ShowErrorSubsection("tariff_1", "e7", "Please select yes or no."); e.preventDefault(); return; }
                     if (!tariff_1_current_tariff && !tariff_1_current_tariff_not_listed) { ShowErrorSubsection("tariff_1", "current_tariff", "Please select a tariff."); e.preventDefault(); return; }
                 }
+                if (checkDual && same_fuel_supplier === "true")
+                {
+                    if (!tariff_1_e7) { ShowErrorSubsection("tariff_1", "e7", "Please select yes or no."); e.preventDefault(); return; }
+                }
+
                 if (checkElectric)
                 {
                     if (!tariff_2_payment_method) { ShowErrorSubsection("tariff_2", "payment_method", "Please select a payment method."); e.preventDefault(); return; }
                     if (!tariff_2_e7) { ShowErrorSubsection("tariff_2", "e7", "Please select yes or no."); e.preventDefault(); return; }
                     if (!tariff_2_current_tariff && !tariff_2_current_tariff_not_listed) { ShowErrorSubsection("tariff_2", "current_tariff", "Please select a tariff."); e.preventDefault(); return; }
                 }
-                if (checkDual || checkGas)
+                
+                var your_electric_usage_e7_percent = sections.your_electric_usage.e7.input.val();
+                if (!checkGas)
                 {
-                    if (!your_gas_usage_kwh) { sections.your_gas_usage.kwh_error.show().text("Please enter your kwh of gas usage."); e.preventDefault(); return; }
-                    if (!your_gas_usage_length) { sections.your_gas_usage.length_error.show().text("Please enter a length of time."); e.preventDefault(); return; }
-                }
-                if (checkDual || checkElectric)
-                {
-                    if (!your_electric_usage_kwh) { sections.your_electric_usage.kwh_error.show().text("Please enter your kwh of electricity usage."); e.preventDefault(); return; }
-                    if (!your_electric_usage_length) { sections.your_electric_usage.length_error.show().text("Please select a length of time."); e.preventDefault(); return; }
                     if (!your_electric_usage_e7_percent) { sections.your_electric_usage.e7.error.show().text("Please enter a % economy 7 usage. If you are not sure, use the leave it at the average, 42."); e.preventDefault(); return; }
                     if (!isFinite(your_electric_usage_e7_percent) && your_electric_usage_e7_percent < 0 && your_electric_usage_e7_percent > 99) { sections.your_electric_usage.e7.error.show().text("The % economy 7 usage must be a number between 0 and 99."); e.preventDefault(); return; }
                 }
+                
+                switch (consumption_figures)
+                {
+                    case "pound":
+                        if (checkDual || checkGas)
+                        {
+                            var your_gas_usage = sections.your_gas_usage.pound.pound.val();
+                            var your_gas_usage_length = sections.your_gas_usage.pound.length.val();
+                            if (!your_gas_usage) { sections.your_gas_usage.pound.error.show().html("Please enter your gas bill in &pound;."); e.preventDefault(); return; }
+                            if (!your_gas_usage_length) { sections.your_gas_usage.pound.error.show().text("Please select the term length of your gas bill."); e.preventDefault(); return; }
+                        }
+                        if (checkDual || checkElectric)
+                        {
+                            var your_electric_usage = sections.your_electric_usage.pound.pound.val();
+                            var your_electric_usage_length = sections.your_electric_usage.pound.length.val();
+                            if (!your_electric_usage) { sections.your_electric_usage.pound.error.show().html("Please enter your electricity bill in &pound;."); e.preventDefault(); return; }
+                            if (!your_electric_usage_length) { sections.your_electric_usage.pound.error.show().text("Please select the term length of your electricity bill."); e.preventDefault(); return; }
+                        }
+                        break;
+                    case "kwh":
+                        if (checkDual || checkGas)
+                        {
+                            var your_gas_usage = sections.your_gas_usage.kwh.pound.val();
+                            var your_gas_usage_length = sections.your_gas_usage.kwh.length.val();
+                            if (!your_gas_usage) { sections.your_gas_usage.kwh.error.show().text("Please enter your used gas units."); e.preventDefault(); return; }
+                            if (!your_gas_usage_length) { sections.your_gas_usage.kwh.error.show().text("Please select a length of time."); e.preventDefault(); return; }
+                        }
+                        if (checkDual || checkElectric)
+                        {
+                            var your_electric_usage = sections.your_electric_usage.kwh.pound.val();
+                            var your_electric_usage_length = sections.your_electric_usage.kwh.length.val();
+                            if (!your_electric_usage) { sections.your_electric_usage.kwh.error.show().text("Please enter your used electricity units."); e.preventDefault(); return; }
+                            if (!your_electric_usage_length) { sections.your_electric_usage.kwh.error.show().text("Please select a length of time."); e.preventDefault(); return; }
+                        }
+                        break;
+                    case "estimate":
+                        if (checkDual || checkGas)
+                        {
+                            var your_gas_usage = sections.your_gas_usage.estimate.radio.filter(":checked").val();
+                            if (!your_gas_usage) { sections.your_gas_usage.estimate.error.show().text("Please select an option."); e.preventDefault(); return; }
+                        }
+                        if (checkDual || checkElectric)
+                        {
+                            var your_electric_usage = sections.your_electric_usage.estimate.radio.filter(":checked").val();
+                            if (!your_electric_usage) { sections.your_electric_usage.estimate.error.show().text("Please select an option."); e.preventDefault(); return; }
+                        }
+                        break;
+                }
             });
-            
 
             var section_names =
             [

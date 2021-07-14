@@ -146,12 +146,13 @@ class ResidentialComparisonController extends Controller
                     return $this -> setExistingTariffGas($request, $user_address);
                 case "electric":
                     return $this -> setExistingTariffElec($request, $user_address);
+                default:
+                    return $this -> BackTo2ExistingTariff();
             }
-
-            return redirect() -> route("residential.energy-comparison.3-browse-deals");
         }
         catch (Throwable $th)
         {
+            throw($th);
             report($th);
             return $this -> BackTo2ExistingTariff();
         }
@@ -167,7 +168,7 @@ class ResidentialComparisonController extends Controller
             if ($existing_tariff -> current_tariff_not_listed == "notListed")
             {
                 $default_tariff = Repository::tariffs_defaultForASupplier($existing_tariff -> supplier, $existing_tariff -> fuel_type_char, $existing_tariff -> payment_method, $existing_tariff -> e7, $existing_tariff -> region_id, $status);
-                if (count($default_tariff) == 0) return $this -> BackTo2ExistingTariff();
+                if (count($default_tariff) == 0) return "moose"; // $this -> BackTo2ExistingTariff();
                 $tariff = Repository::tariffs_info_by_id($default_tariff[0] -> tariffId, $status);
             }
             else $tariff = Repository::tariffs_info_by_id($existing_tariff -> current_tariff, $status);
@@ -175,16 +176,16 @@ class ResidentialComparisonController extends Controller
             $current_tariffs = Repository::tariffs_current(
                 $tariff, null,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
-                $existing_tariff -> gas_kwh, 0,
+                $existing_tariff -> consumption_figures, $existing_tariff -> gas, 0,
                 $status);
             
             $tariff_results = Repository::tariffs_results(
                 $current_tariffs -> G, null,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
-                $existing_tariff -> gas_kwh, 0, 0.0,
+                $existing_tariff -> consumption_figures, $existing_tariff -> gas, 0, 0.0,
                 $user_address["movingHouse"], $existing_tariff -> payment_method, true, "", $user_address["postcode"],
                 $status);
-
+            
             $tariff_ids = [];
             $new_tariffs = [];
             foreach ($tariff_results["tariffs"] as $row)
@@ -206,6 +207,7 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
+            throw($th);
             report($th);
             return $this -> BackTo2ExistingTariff();
         }
@@ -229,13 +231,13 @@ class ResidentialComparisonController extends Controller
             $current_tariffs = Repository::tariffs_current(
                 null, $tariff,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
-                0, $existing_tariff -> elec_kwh,
+                $existing_tariff -> consumption_figures, 0, $existing_tariff -> elec,
                 $status);
             
             $tariff_results = Repository::tariffs_results(
                 null, $current_tariffs -> E,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
-                null, $existing_tariff -> elec_kwh, $existing_tariff -> e7_percent,
+                $existing_tariff -> consumption_figures, null, $existing_tariff -> elec, $existing_tariff -> e7_percent,
                 $user_address["movingHouse"], $existing_tariff -> payment_method, true, "", $user_address["postcode"],
                 $status);
 
@@ -283,16 +285,16 @@ class ResidentialComparisonController extends Controller
             $current_tariffs = Repository::tariffs_current(
                 $tariff, $tariff,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
-                $existing_tariff -> gas_kwh, $existing_tariff -> elec_kwh,
+                $existing_tariff -> consumption_figures, $existing_tariff -> gas, $existing_tariff -> elec,
                 $status);
             
             $tariff_results = Repository::tariffs_results(
                 $current_tariffs -> G, $current_tariffs -> E,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
-                $existing_tariff -> gas_kwh, $existing_tariff -> elec_kwh, $existing_tariff -> e7_percent,
+                $existing_tariff -> consumption_figures, $existing_tariff -> gas, $existing_tariff -> elec, $existing_tariff -> e7_percent,
                 $user_address["movingHouse"], $existing_tariff -> payment_method, true, "", $user_address["postcode"],
                 $status);
-
+            
             // $tariff_ids = [];
             $new_tariffs = [];
             foreach ($tariff_results["tariffs"] as $row)
@@ -321,7 +323,6 @@ class ResidentialComparisonController extends Controller
     
     public function setExistingTariffDualFuelTwo(Request $request, $user_address)
     {
-        // TODO: validation
         try
         {
             $existing_tariff = new ExistingTariffDualFuelTwoModel($request -> all());
@@ -343,13 +344,13 @@ class ResidentialComparisonController extends Controller
             $current_tariffs = Repository::tariffs_current(
                 $tariff_1, $tariff_2,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
-                $existing_tariff -> gas_kwh, $existing_tariff -> elec_kwh,
+                $existing_tariff -> consumption_figures, $existing_tariff -> gas, $existing_tariff -> elec,
                 $status);
             
             $tariff_results = Repository::tariffs_results(
                 $current_tariffs -> G, $current_tariffs -> E,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
-                $existing_tariff -> gas_kwh, $existing_tariff -> elec_kwh, $existing_tariff -> e7_percent,
+                $existing_tariff -> consumption_figures, $existing_tariff -> gas, $existing_tariff -> elec, $existing_tariff -> e7_percent,
                 $user_address["movingHouse"], $existing_tariff -> payment_method_1, true, "", $user_address["postcode"],
                 $status);
             
@@ -398,7 +399,7 @@ class ResidentialComparisonController extends Controller
         catch (Throwable $th)
         {
             report($th);
-            return redirect() -> route('residential.energy-comparison.2-existing-tariff') -> withErrors([ '' => "We were unable to process your data. Please check your input and try again later." ]) -> withInput();
+            return $this -> BackTo2ExistingTariff();
         }
     }
     
@@ -778,7 +779,6 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            throw($th);
             report($th);
             return $this -> BackTo4GetSwitching();
         }

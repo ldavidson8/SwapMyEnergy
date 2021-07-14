@@ -125,7 +125,7 @@
                                 <td>
                                     <div class="white-progress-bar">
                                         <div class="white-progress-bar-text" style="color: #202020;">{{ number_format($current_gas_standing_charge_daily, 2) }}p per day*</div>
-                                        <div class="blue-progress-bar" style="width: 100%"></div>  
+                                        <div class="blue-progress-bar" style="width: 100%"></div>
                                     </div>
                                 </td>
                             </tr>
@@ -263,7 +263,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Standing Charge: {{ $row["tariff_info"] -> standingChargeGas }}</td>
+                                            <td>Standing Charge:</td>
                                             <td>
                                                 <div class="white-progress-bar-border">
                                                     <div class="white-progress-bar-border-text">{{ number_format($row["tariff_info"] -> standingChargeGas / 365, 2) }}p per day</div>
