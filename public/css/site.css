@@ -386,6 +386,11 @@ h3, h5, h6
 }
 
 
+input:not([type=submit], [type=button], [type=reset]), select, textarea
+{
+    color: #202020 !important;
+}
+
 .form-black input, .form-black select, .form-black textarea
 {
     color: #202020 !important;
@@ -397,11 +402,13 @@ h3, h5, h6
     color: #f3f2f1 !important;
 }
 
-.form-black input:not([type=submit], [type=button], [type=reset])::placeholder, .form-black textarea::placeholder,
-.form-black input:not([type=submit], [type=button], [type=reset])::-moz-placeholder, .form-black textarea::-moz-placeholder,
-.form-black input:not([type=submit], [type=button], [type=reset])::-webkit-input-placeholder, .form-black textarea::-webkit-input-placeholder
+input:not([type=submit], [type=button], [type=reset])::placeholder, textarea::placeholder,
+input:not([type=submit], [type=button], [type=reset]):-moz-placeholder, textarea:-moz-placeholder,
+input:not([type=submit], [type=button], [type=reset])::-moz-placeholder, textarea::-moz-placeholder,
+input:not([type=submit], [type=button], [type=reset]):-ms-input-placeholder, textarea:-ms-input-placeholder,
+input:not([type=submit], [type=button], [type=reset])::-webkit-input-placeholder, textarea::-webkit-input-placeholder
 {
-    color: #f3f2f1 !important;
+    color: #a3a2a1 !important;
 }
 
 .form-black input:-webkit-autofill,
@@ -410,7 +417,7 @@ h3, h5, h6
 {
     -webkit-box-shadow: 0 0 0 50px #202020 inset;
     box-shadow: 0 0 0 50px #202020 inset;
-    -webkit-text-fill-color: #f3f2f1;
+    -webkit-text-fill-color: #a3a2a1;
 }
 
 .form-black input:-webkit-autofill:focus,
@@ -419,7 +426,7 @@ h3, h5, h6
 {
     -webkit-box-shadow: 0 0 0 50px #202020 inset;
     box-shadow: 0 0 0 50px #202020 inset;
-    -webkit-text-fill-color: #f3f2f1;
+    -webkit-text-fill-color: #a3a2a1;
 }
 
 .form-error-message
