@@ -31,10 +31,7 @@
                                     Estimated Monthly Usage:
                                 </td>
                                 <td>
-                                    <div class="white-progress-bar">
-                                        <div class="white-progress-bar-text" style="color: #202020;">{{ number_format($current_tariffs -> G -> units / 12) }}kwh*</div>
-                                        <div class="blue-progress-bar" style="width: 100%;"></div>
-                                    </div>
+                                    <div>{{ number_format($current_tariffs -> G -> units / 12) }}kwh*</div>
                                 </td>
                             </tr>
                             <tr>
@@ -42,10 +39,7 @@
                                     Unit Rate:
                                 </td>
                                 <td>
-                                    <div class="white-progress-bar">
-                                        <div class="white-progress-bar-text" style="color: #202020;">{{ number_format($current_price_per_unit, 2) }}p*</div>
-                                        <div class="blue-progress-bar" style="width: 100%;"></div>  
-                                    </div>
+                                    <div>{{ number_format($current_price_per_unit, 2) }}p*</div>
                                 </td>
                             </tr>
                             <tr>
@@ -53,41 +47,25 @@
                                     Standing Charge:
                                 </td>
                                 <td>
-                                    <div class="white-progress-bar">
-                                        <div class="white-progress-bar-text" style="color: #202020;">{{ number_format($current_standing_charge_daily, 2) }}p per day*</div>
-                                        <div class="blue-progress-bar" style="width: 100%"></div>  
-                                    </div>
+                                    <div>{{ number_format($current_standing_charge_daily, 2) }}p per day*</div>
                                 </td>
                             </tr>
                         </table>
                     </div>
-                    <div class="col-lg-4 col-12 no-padding">
-                        <table class="form-table pricing-text" style="width: 100%;"">
-                            {{-- <tr>
-                                <td colspan="2" style="vertical-align: bottom;">
-                                    <p style="font-size: 16px;">*compared to regional averages</p>
-                                </td>
-                            </tr> --}}
-                            <tr style="height: 100%;"></tr>
-                            <tr>
-                                <td style="vertical-align: middle;">
-                                    <p style="font-size: 20px; text-align: center; border-right: solid 2px #f3f2f1;">
-                                        <span style="font-size: 34px;">&pound;{{ number_format($current_tariffs -> G -> bill / 12, 2) }}</span> 
-                                        <br />
-                                        per month
-                                    </p>
-                                </td>
-                                <td style="vertical-align: middle; text-align: center;">
-                                    <p style="font-size: 20px;">
-                                        @if ($current_tariffs -> G -> contractLength > 0)
-                                            {{ $current_tariffs -> G -> contractLength }} month contract
-                                        @else
-                                            variable length<br />contract
-                                        @endif
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>
+                    <div class="col-lg-4 col-12 no-padding center-content">
+                        <p style="font-size: 20px;">
+                            <span style="font-size: 44px;">&pound;{{ number_format($current_tariffs -> G -> bill / 12, 2) }}</span> 
+                            <br />
+                            per month
+                        </p>
+                        <hr style="border: none; height: 3px; color: #f3f2f1; background-color: #f3f2f1; width: 50%; margin: 0.5em 0;">
+                        <p style="font-size: 20px;">
+                            @if ($current_tariffs -> G -> contractLength > 0)
+                                {{ $current_tariffs -> G -> contractLength }} month contract
+                            @else
+                                variable length<br />contract
+                            @endif
+                        </p>
                     </div>
                 </div>
             </td>
@@ -112,24 +90,40 @@
         ?>
         <div style="position: relative;">
             <div class="white-rounded-container-positioned"></div>
-            <div class="container rounded-container white-rounded-container">
+            <div class="container rounded-container white-rounded-container no-padding">
                 <div class="row">
-                    <div class="col-12 col-lg-3 no-padding" style="font-size: 16px; padding: 0px 10px 0px 0px !important;">
+                    <div class="col-12 col-lg-2" style="font-size: 16px; padding: 20px;">
                         <img class="new-supplier-logo" src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="auto" width="auto" /><br />
                         <p>{{ $row["tariffName"] }}</p>
-                        <p style="border-bottom: solid 2px black; padding: 5px;">
-                            <span style="font-size: 34px;">&pound;{{ number_format($row["bill"] / 12, 2) }}* </span><br />per month
-                        </p>
                         <p>Estimated Annual Saving: &pound;{{ number_format($row["saving"], 2) }}*</p>
                         <p class="no-padding">
                             @if ($row["contractLength"] > 0)
-                                {{ $row["contractLength"] }} month contract
+                                Fixed month contract: <br /> <span style="color: #00c2cb">{{ $row["contractLength"] }} months </span>
                             @else
                                 variable length<br />contract
                             @endif
                         </p>
+                        <p>
+                            Early exit fee: <span style="color: hsl(10, 100%, 40%)">&pound;{{ $row["exitPenaltyAmount"] }}</span>
+                        </p>
                     </div>
-                    <div class="col-12 col-lg-9 no-padding">
+                    <div class="col-12 col-lg-2">
+                        @if (strlen($row["tariff_info"] -> features) > 0)
+                            <p>
+                                @foreach (explode(",", $row["tariff_info"] -> features) as $feature)
+                                    <div class="tariff-feature">{{ $feature }}</div><br />
+                                @endforeach
+                            </p>
+                        @endif
+                    </div>
+                    <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center" style="background: #00c2cb; color: #f3f2f1;">
+                        <div class="text-center w-100">
+                            <div>Estimated cost:</div> 
+                            <div style="font-size: 40px;">&pound;{{ number_format($row["bill"] / 12, 2) }}* </div>
+                            <div>per month</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
                         <table class="form-table table-block-on-mobile">
                             <tr>
                                 <td colspan="2">
@@ -139,10 +133,7 @@
                                                 Unit Rate:
                                             </td>
                                             <td>
-                                                <div class="white-progress-bar-border">
-                                                    <div class="white-progress-bar-border-text">{{ number_format($row["tariff_info"] -> price1Gas, 2) }}p</div>
-                                                    <div class="blue-progress-bar" style="width: {{ number_format($unit_rate_1_percent, 2) }}%;"></div>  
-                                                </div> 
+                                                    <div>{{ number_format($row["tariff_info"] -> price1Gas, 2) }}p</div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -150,31 +141,13 @@
                                                 Standing Charge: 
                                             </td>
                                             <td>
-                                                <div class="white-progress-bar-border">
-                                                    <div class="white-progress-bar-border-text">{{ number_format($row["tariff_info"] -> standingChargeGas / 365, 2) }}p per day</div>
-                                                    <div class="blue-progress-bar" style="width: {{ number_format($new_standing_charge_daily_percent, 2) }}%;"></div>
-                                                </div> 
+                                                    <div>{{ number_format($row["tariff_info"] -> standingChargeGas / 365, 2) }}p per day</div>
                                             </td>
                                         </tr>
-                                        @if (strlen($row["tariff_info"] -> features) > 0)
-                                            <tr>
-                                                <td colspan="2">
-                                                    <p style="font-size: 16px; margin: 1em 0px;">
-                                                        @foreach (explode(",", $row["tariff_info"] -> features) as $feature)
-                                                            <span style="display: block; margin: 0px;">{{ $feature }}</span>
-                                                        @endforeach
-                                                    </p>
-                                                </td>
-                                            </tr>
-                                        @endif
                                     </table>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    &pound;{{ $row["exitPenaltyAmount"] }} early exit fee <br />
-                                    <span style="font-size: 16px">*calculated based on your existing usage </span>
-                                </td>
                                 <td style="text-align: right;">
                                     @include('energy-comparison.partials.switch-form')
                                 </td>

@@ -157,6 +157,22 @@
         padding-left: 15px;
     }
 
+    .tariff-feature
+    {
+        display:inline-block; 
+        background:#00c2cb; 
+        width: 100%; 
+        text-align: center; 
+        color: #f3f2f1; 
+        -webkit-appearance:button; 
+        padding:3px 8px 3px 8px; 
+        font-size:16px; 
+        position:relative; 
+        cursor:context-menu; 
+        margin: 0.5em 0; 
+        border-radius: 8px;
+    }
+
     .white-progress-bar
     {
         width: 350px;
