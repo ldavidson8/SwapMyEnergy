@@ -121,14 +121,9 @@ class ResidentialApiRepository extends Controller
 
     public static function tariffs_forASuppllier($supplierId, $regionId, $serviceType, $paymentMethod, $e7, &$statusLive, &$statusPreserved)
     {
-        $response1 = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "tariffs/suppliers/$supplierId?regionId=$regionId&serviceType=$serviceType&paymentMethod=$paymentMethod&e7=$e7&preservedTariff=L");
-        $response2 = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "tariffs/suppliers/$supplierId?regionId=$regionId&serviceType=$serviceType&paymentMethod=$paymentMethod&e7=$e7&preservedTariff=P");
-        
-        $liveObject = self::getManyObjects($response1, $statusLive);
-        $preservedObject = self::getManyObjects($response2, $statusPreserved);
-
-        if (isset($liveObject) && isset($preservedObject))
-        return array_merge($liveObject, $preservedObject);
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "tariffs/suppliers/$supplierId?regionId=$regionId&serviceType=$serviceType&paymentMethod=$paymentMethod&e7=$e7");
+        $object = self::getManyObjects($response, $statusLive);
+        return $object;
     }
     
     public static function tariffs_current($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $consumption_figures, $gas, $elec, &$status)

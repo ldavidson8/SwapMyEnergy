@@ -46,7 +46,7 @@ class ResidentialComparisonController extends Controller
                 'postcode' => 'required',
                 'mpan' => 'required'
             ]);
-            if ($validator -> fails()) { return redirect() -> route('residential.energy-comparison.1-address') -> withErrors($validator -> errors()) -> withInput(); }
+            if ($validator -> fails()) { return redirect() -> route('residential.energy-comparison.1-address') -> withErrors($validator -> errors()); }
             Log::channel('energy-comparison/find-address-post') -> info('ContactController -> raiseSupportRequest(), Form Validated Successfully');
             
             $status = 200;
@@ -152,7 +152,6 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            throw($th);
             report($th);
             return $this -> BackTo2ExistingTariff();
         }
@@ -168,7 +167,7 @@ class ResidentialComparisonController extends Controller
             if ($existing_tariff -> current_tariff_not_listed == "notListed")
             {
                 $default_tariff = Repository::tariffs_defaultForASupplier($existing_tariff -> supplier, $existing_tariff -> fuel_type_char, $existing_tariff -> payment_method, $existing_tariff -> e7, $existing_tariff -> region_id, $status);
-                if (count($default_tariff) == 0) return "moose"; // $this -> BackTo2ExistingTariff();
+                if (count($default_tariff) == 0) return $this -> BackTo2ExistingTariff();
                 $tariff = Repository::tariffs_info_by_id($default_tariff[0] -> tariffId, $status);
             }
             else $tariff = Repository::tariffs_info_by_id($existing_tariff -> current_tariff, $status);
@@ -207,7 +206,6 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            throw($th);
             report($th);
             return $this -> BackTo2ExistingTariff();
         }
