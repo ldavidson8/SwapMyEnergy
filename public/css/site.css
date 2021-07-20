@@ -55,6 +55,7 @@ body
 
 
 .background-image-contain::before { background-size: 100% auto; }
+.background-image-auto::before { background-size: auto; }
 
 .background-image-top::before { background-position: center top !important; }
 .background-image-bottom::before { background-position: center bottom !important; }
