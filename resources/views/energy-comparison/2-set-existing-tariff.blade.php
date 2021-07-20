@@ -1,5 +1,4 @@
 <?php
-    $logo_drag_text = "Drag the logo banner sideways to see more options";
     $dmq = $supplier_data["mprn"] -> dmq;
     
     $old_fuel_type = old('fuel_type');
@@ -58,20 +57,21 @@
         {
             position: relative;
             display: inline-block;
-            padding: 0.05em;
             border-radius: 100px;
             background-color: #00c2cb;
             border: none;
             color: #f3f2f1;
             line-height: 1.2;
-            width: 1.2em;
-            height: 1.2em;
+            width: 1.1em;
+            height: 1.1em;
             text-align: center;
             cursor: pointer;
+            font-size: 20px;
         }
 
         .info-icon-box { display: none; }
-        .info-icon:focus .info-icon-box
+        .info-icon:focus .info-icon-box,
+        .info-element:hover .info-icon-box
         {
             position: absolute;
             display: block;
@@ -88,9 +88,25 @@
             font-size: 15px;
             padding: 10px;
         }
-        
+
+        .info-element:hover .info-icon-box
+        {
+            left: 50%;
+            transform: translate(-50%, -100%);
+        }
+
         .info-icon-arrow { display: none; }
         .info-icon:focus .info-icon-arrow
+        {
+            position: absolute;
+            display: block;
+            top: 0px;
+            left: 50%;
+            transform: translate(-12px, -12px);
+            border-top: 12px solid #00c2cb;
+            border-left: 12px solid transparent;
+        }
+        .info-element:hover .info-icon-arrow
         {
             position: absolute;
             display: block;
@@ -114,21 +130,19 @@
         {
             padding-bottom: 5px;
             font-size: 28px;
-            border-bottom: 2px solid #00c2cb;
             font-weight: bold;
-        }
-        
-        .scroll-text
-        {
-            float: right;
-            font-size: 20px;
-            font-weight: normal;
-            padding: 6px 0px;
         }
 
         .question-heading:not(.first-question-heading)
         {
+            border-top: 3px solid #00c2cb;
+            padding-top: 8px;
             margin-top: 30px;
+        }
+        
+        .tariff-default-tariff-text
+        {
+            color: #0044cb;
         }
 
         .tariff-no-results-text
@@ -326,6 +340,11 @@
 
         @media (max-width: 991px)
         {
+            .info-icon
+            {
+                float: right;
+            }
+
             .btn-group.btn-group-4 > *
             {
                 width: 49%;
@@ -511,7 +530,7 @@
                 {{-- Dual Suppliers --}}
                 
                 <div id="section_dual_supplier" style="display: none;">
-                    <p class="question-heading p-clear-right-mobile">Who is your current gas/electric supplier?<span class="scroll-text">{{ $logo_drag_text }}</span></p>
+                    <p class="question-heading p-clear-right-mobile">Who is your current gas/electric supplier?</p>
                     <span id="dual_supplier_error" class="form-error-message text-danger"></span>
                     <!-- swiper -->
                     {{-- <div class="swiper-container">
@@ -585,7 +604,7 @@
                 {{-- Gas Suppliers --}}
                 
                 <div id="section_gas_supplier" style="display: none;">
-                    <p class="question-heading p-clear-right-mobile">Who is your current gas supplier?<span class="scroll-text">{{ $logo_drag_text }}</span></p>
+                    <p class="question-heading p-clear-right-mobile">Who is your current gas supplier?</p>
                     <span id="gas_supplier_error" class="form-error-message text-danger"></span>
                     <!-- swiper -->
                     {{-- <div class="swiper-container">
@@ -719,7 +738,17 @@
                     </div>
                     
                     <div id="section_tariff_1_current_tariff">
-                        <p class="question-heading">What is the name of your current tariff?</p>
+                        <p class="question-heading">
+                            What is the name of your current tariff?
+                            <button type="button" class="info-icon">
+                                i
+                                <div class="info-icon-box">
+                                    The name of your current energy tariff can be found on your most recent energy bill.<br />
+                                    If you don't know this, leave the pre-selected default option provided.
+                                </div>
+                                <div class="info-icon-arrow"></div>
+                            </button>
+                        </p>
                         <span id="tariff_1_current_tariff_error" class="form-error-message text-danger"></span>
                         <div class="form-group">
                             <select id="tariff_1_current_tariff" name="tariff_1_current_tariff" style="width: 100%; margin-bottom: 10px;" value="{{ $tariff_1_current_tariff }}" >
@@ -730,7 +759,7 @@
                                 Not listed/Not sure
                             </label>
                             <br />
-                            <p id="tariff_1_current_tariff_not_listed_message" style="display: none;">That's okay. We will compare against your supplier's most popular default tariff to bring you the best deals.</p>
+                            <p id="tariff_1_current_tariff_not_listed_message" class="tariff-default-tariff-text" style="display: none;">That's okay. We will compare against your supplier's most popular default tariff to bring you the best deals.</p>
                             <p id="tariff_1_current_tariff_no_content" class="tariff-no-results-text" style="display: none;">Sorry, but we could not find any tariffs from the data you provided. Please check your input above.</p>
                             <p id="tariff_1_current_tariff_error_message" class="tariff-no-results-text" style="display: none;">Sorry, but we could not find any tariffs from the data you provided. Please check your input above.</p>
                             {{-- <p id="tariff_1_current_tariff_error_message" style="display: none;">Sorry, but there was a problem processing your data. Please check your information above, or try again later.</p> --}}
@@ -742,7 +771,7 @@
                 {{-- Electric Suppliers --}}
                 
                 <div id="section_electric_supplier" style="display: none;">
-                    <p class="question-heading">Who is your current electricity supplier? <span class="scroll-text">{{ $logo_drag_text }}</span></p>
+                    <p class="question-heading">Who is your current electricity supplier?</p>
                     <span id="electric_supplier_error" class="form-error-message text-danger"></span>
                     <!-- swiper -->
                     {{-- <div class="swiper-container">
@@ -820,41 +849,73 @@
                         <span id="tariff_2_payment_method_error" class="form-error-message text-danger"></span>
                         <div class="btn-group btn-group-4 flex-wrap" role="group">
                             <div>
-                                <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_monthlyDirectDebit" name="tariff_2_payment_method" value="MDD" {{ ($tariff_2_payment_method == "MDD" || $tariff_2_payment_method == "") ? "checked" : "" }} />
-                                <label for="tariff_2_payment_method_monthlyDirectDebit"> Monthly Direct Debit </label>
+                                <label>
+                                    <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_monthlyDirectDebit" name="tariff_2_payment_method" value="MDD" {{ ($tariff_2_payment_method == "MDD" || $tariff_2_payment_method == "") ? "checked" : "" }} />
+                                    Monthly Direct Debit
+                                </label>
                             </div>
                             <div>
-                                <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_quarterlyDirectDebit" name="tariff_2_payment_method" value="QDD" {{ ($tariff_2_payment_method == "QDD") ? "checked" : "" }} />
-                                <label for="tariff_2_payment_method_quarterlyDirectDebit"> Quarterly Direct Debit </label>
+                                <label>
+                                    <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_quarterlyDirectDebit" name="tariff_2_payment_method" value="QDD" {{ ($tariff_2_payment_method == "QDD") ? "checked" : "" }} />
+                                    Quarterly Direct Debit
+                                </label>
                             </div>
                             <div>
-                                <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_cashCheque" name="tariff_2_payment_method" value="CAC" {{ ($tariff_2_payment_method == "CAC") ? "checked" : "" }} />
-                                <label for="tariff_2_payment_method_cashCheque"> Cash / Cheque </label>
+                                <label>
+                                    <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_cashCheque" name="tariff_2_payment_method" value="CAC" {{ ($tariff_2_payment_method == "CAC") ? "checked" : "" }} />
+                                    Cash / Cheque
+                                </label>
                             </div>
                             <div>
-                                <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_prepayment" name="tariff_2_payment_method" value="PRE" {{ ($tariff_2_payment_method == "PRE") ? "checked" : "" }} />
-                                <label for="tariff_2_payment_method_prepayment"> Prepayment Meter </label>
+                                <label>
+                                    <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_prepayment" name="tariff_2_payment_method" value="PRE" {{ ($tariff_2_payment_method == "PRE") ? "checked" : "" }} />
+                                    Prepayment Meter
+                                </label>
                             </div>
                         </div>
                     </div>
                     
                     <div id="section_tariff_2_e7">
-                        <p class="question-heading"> Do you have Economy 7? </p>
+                        <p class="question-heading">
+                            Do you have Economy 7?
+                            <button type="button" class="info-icon">
+                                i
+                                <div class="info-icon-box">
+                                    An Economy 7 meter means you pay a day and night price for the electricity you use.<br />
+                                    On your meter, you will see this split out and your meter point administration number on your energy bill will start with 02.
+                                </div>
+                                <div class="info-icon-arrow"></div>
+                            </button>
+                        </p>
                         <span id="tariff_2_e7_error" class="form-error-message text-danger"></span>
                         <div class="btn-group btn-group-2 flex-wrap" role="group">
                             <div>
-                                <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_yes" name="tariff_2_e7" value="true" {{ ($tariff_2_e7 == "true") ? "checked" : "" }} />
-                                <label for="tariff_2_e7_radio_yes"> Yes </label>
+                                <label>
+                                    <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_yes" name="tariff_2_e7" value="true" {{ ($tariff_2_e7 == "true") ? "checked" : "" }} />
+                                    Yes
+                                </label>
                             </div>
                             <div>
-                                <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_no" name="tariff_2_e7" value="false" {{ ($tariff_2_e7 == "false") ? "checked" : "" }} />
-                                <label for="tariff_2_e7_radio_no"> No </label>
+                                <label>
+                                    <input type="radio" class="radio-hidden tariff_2_e7_radio" id="tariff_2_e7_radio_no" name="tariff_2_e7" value="false" {{ ($tariff_2_e7 == "false") ? "checked" : "" }} />
+                                    No
+                                </label>
                             </div>
                         </div>
                     </div>
                     
                     <div id="section_tariff_2_current_tariff">
-                        <p class="question-heading">What is the name of your current tariff?</p>
+                        <p class="question-heading">
+                            What is the name of your current tariff?
+                            <button type="button" class="info-icon">
+                                i
+                                <div class="info-icon-box">
+                                    The name of your current energy tariff can be found on your most recent energy bill.<br />
+                                    If you don't know this, leave the pre-selected default option provided.
+                                </div>
+                                <div class="info-icon-arrow"></div>
+                            </button>
+                        </p>
                         <span id="tariff_2_current_tariff_error" class="form-error-message text-danger"></span>
                         <div class="form-group">
                             <select id="tariff_2_current_tariff" name="tariff_2_current_tariff" style="width: 100%; margin-bottom: 10px;" value="{{ $tariff_2_current_tariff }}">
@@ -865,7 +926,7 @@
                                 Not listed/Not sure
                             </label>
                             <br />
-                            <p id="tariff_2_current_tariff_not_listed_message" style="display: none;">That's okay. We will compare against your supplier's most popular default tariff to bring you the best deals.</p>
+                            <p id="tariff_2_current_tariff_not_listed_message" class="tariff-default-tariff-text" style="display: none;">That's okay. We will compare against your supplier's most popular default tariff to bring you the best deals.</p>
                             <p id="tariff_2_current_tariff_no_content" class="tariff-no-results-text" style="display: none;">Sorry, but we could not find any tariffs from the data you provided. Please check your input above.</p>
                             <p id="tariff_2_current_tariff_error_message" class="tariff-no-results-text" style="display: none;">Sorry, but we could not find any tariffs from the data you provided. Please check your input above.</p>
                             {{-- <p id="tariff_2_current_tariff_error_message" style="display: none;">Sorry, but there was a problem processing your data. Please check your information above, or try again later.</p> --}}
@@ -874,7 +935,7 @@
                 </div>
                 
                 <div id="section_your_usage" style="display: none;">
-                    <p class="question-heading">Your Usage</p>
+                    <p class="question-heading first-question-heading">Your Usage</p>
                     <div id="section_consumption_figures">
                         <div class="row btn-group" style="text-align: center;">
                             <div class="col-12 col-md-6 col-lg-4">
@@ -934,21 +995,27 @@
                         <div class="row btn-group section_your_usage_estimate" style="text-align: center; display: none;">
                             <span id="your_gas_usage_estimate_error" class="form-error-message text-danger" style="display: block;"></span>
                             <div class="col-12 col-md-4">
-                                <label>
+                                <label class="info-element">
                                     <input type="radio" class="radio-hidden your_gas_usage_estimate_radio" name="your_gas_usage_estimate" id="your_gas_usage_estimate_radio_low" value="8000" />
                                     Low
+                                    <div class="info-icon-box">This is generally an apartment/flat or small dwelling with 1-2 occupants.</div>
+                                    <div class="info-icon-arrow"></div>
                                 </label>
                             </div>
                             <div class="col-12 col-md-4">
-                                <label>
+                                <label class="info-element">
                                     <input type="radio" class="radio-hidden your_gas_usage_estimate_radio" name="your_gas_usage_estimate" id="your_gas_usage_estimate_radio_medium" value="12000" />
                                     Medium
+                                    <div class="info-icon-box">This is based on the UK average for a 3-bed semi-detached property with more than 4 occupants.</div>
+                                    <div class="info-icon-arrow"></div>
                                 </label>
                             </div>
                             <div class="col-12 col-md-4">
-                                <label>
+                                <label class="info-element">
                                     <input type="radio" class="radio-hidden your_gas_usage_estimate_radio" name="your_gas_usage_estimate" id="your_gas_usage_estimate_radio_high" value="17000" />
                                     High
+                                    <div class="info-icon-box">This is for a larger/detached property with +4 bedrooms.</div>
+                                    <div class="info-icon-arrow"></div>
                                 </label>
                             </div>
                         </div>
@@ -985,21 +1052,27 @@
                         <span id="your_electric_usage_estimate_error" class="form-error-message text-danger" style="display: block;"></span>
                         <div class="row btn-group section_your_usage_estimate" style="text-align: center; display: none;">
                             <div class="col-12 col-md-4">
-                                <label>
+                                <label class="info-element">
                                     <input type="radio" class="radio-hidden your_electric_usage_estimate_radio" name="your_electric_usage_estimate" id="your_electric_usage_estimate_radio_low" value="1800" />
                                     Low
+                                    <div class="info-icon-box">This is generally an apartment/flat or small dwelling with 1-2 occupants.</div>
+                                    <div class="info-icon-arrow"></div>
                                 </label>
                             </div>
                             <div class="col-12 col-md-4">
-                                <label>
+                                <label class="info-element">
                                     <input type="radio" class="radio-hidden your_electric_usage_estimate_radio" name="your_electric_usage_estimate" id="your_electric_usage_estimate_radio_medium" value="2900" />
                                     Medium
+                                    <div class="info-icon-box">This is based on the UK average for a 3-bed semi-detached property with more than 4 occupants.</div>
+                                    <div class="info-icon-arrow"></div>
                                 </label>
                             </div>
                             <div class="col-12 col-md-4">
-                                <label>
+                                <label class="info-element">
                                     <input type="radio" class="radio-hidden your_electric_usage_estimate_radio" name="your_electric_usage_estimate" id="your_electric_usage_estimate_radio_high" value="4300" />
                                     High
+                                    <div class="info-icon-box">This is for a larger/detached property with +4 bedrooms.</div>
+                                    <div class="info-icon-arrow"></div>
                                 </label>
                             </div>
                         </div>
