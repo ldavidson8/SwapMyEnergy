@@ -52,15 +52,16 @@
 
     .blue-rounded-container
     {
-        background-color: #00c2cb;
+        background-color: rgba(0, 226, 235, 0.3);
         z-index: 11;
-        color: #f3f2f1;
+        color: #202020;
         padding: 20px 30px;
+        border: solid 2px #202020;
     }
 
     .white-rounded-container
     {
-        background-color: #f3f2f1;
+        background-color: rgba(243, 242, 241, 0.3);
         z-index: 10;
         color: #202020;
         padding: 20px 30px;
@@ -78,7 +79,7 @@
         top: -50px;
         width: 100%;
         height: 50px;
-        background-color: #f3f2f1;
+        /* background-color: rgba(243, 242, 241, 0.3); */
         border-left: solid 2px #202020;
         border-right: solid 2px #202020;
     }
@@ -255,16 +256,18 @@
         padding: 20px 0;
     }
 
-    .pricing-text
-    {
-        width: auto;
-        float: right;
-    }
-
     .new-supplier-logo
     {
         max-width: 100%;
         max-height: 100px;
+    }
+
+    @media (min-width: 992px)
+    {
+        .blue-rounded-container
+        {
+            border-top: none;
+        }
     }
 
     @media (min-width: 768px) and (max-width: 991px)
@@ -276,7 +279,11 @@
 
         .form-top-img-border-md
         {
-            border-radius: 0 0 0 0;
+            border-radius: 0 0 0 35px;
+        }
+        .form-top-middle-heading
+        {
+            border-left: solid 2px #202020;
         }
     }
 
@@ -301,7 +308,13 @@
         {
             padding: 10px;
             padding-bottom: 20px;
+            border-bottom: solid 2px #202020;
         }
+        .blue-rounded-container
+        {
+            padding-top: 1em;
+        }
+
 
         .form-outer-box
         {

@@ -24,7 +24,7 @@
                     </p>
                 </div>
                 <div class="row no-padding">
-                    <div class="col-lg-8 col-12 no-padding">
+                    <div class="col-lg-6 col-12 no-padding">
                         <table class="table-tariff table-block-on-mobile" style=" vertical-align: bottom;">
                             <tr>
                                 <td>
@@ -52,14 +52,13 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-lg-4 col-12 no-padding center-content">
-                        <p style="font-size: 20px;">
+                    <div class="col-lg-6 col-12 no-padding d-flex align-items-center justify-content-center">
+                        <p style="font-size: 20px; border-right: solid 4px #f3f2f1; padding-right: 20px;">
                             <span style="font-size: 44px;">&pound;{{ number_format($current_tariffs -> G -> bill / 12, 2) }}</span> 
                             <br />
                             per month
                         </p>
-                        <hr style="border: none; height: 3px; color: #f3f2f1; background-color: #f3f2f1; width: 50%; margin: 0.5em 0;">
-                        <p style="font-size: 20px;">
+                        <p style="font-size: 20px; padding-left: 20px;">
                             @if ($current_tariffs -> G -> contractLength > 0)
                                 {{ $current_tariffs -> G -> contractLength }} month contract
                             @else
@@ -96,15 +95,15 @@
                         <img class="new-supplier-logo" src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="auto" width="auto" /><br />
                         <p>{{ $row["tariffName"] }}</p>
                         <p>Estimated Annual Saving: &pound;{{ number_format($row["saving"], 2) }}*</p>
-                        <p class="no-padding">
+                        <p class="no-padding font-weight-normal">
                             @if ($row["contractLength"] > 0)
-                                Fixed month contract: <br /> <span style="color: #00c2cb">{{ $row["contractLength"] }} months </span>
+                                Fixed month contract: <br /> <span style="color: #00c2cb; font-weight: 700;">{{ $row["contractLength"] }} months </span>
                             @else
                                 variable length<br />contract
                             @endif
                         </p>
                         <p>
-                            Early exit fee: <span style="color: hsl(10, 100%, 40%)">&pound;{{ $row["exitPenaltyAmount"] }}</span>
+                            Early exit fee: <span style="color: hsl(10, 100%, 40%) font-weight: 700;">&pound;{{ $row["exitPenaltyAmount"] }}</span>
                         </p>
                     </div>
                     <div class="col-12 col-lg-2">
