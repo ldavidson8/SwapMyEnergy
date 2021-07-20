@@ -2,6 +2,11 @@
 
 @section('stylesheets')
 <style>
+
+    body
+    {
+        background: #83aec8;
+    }
     h2
     {
         font-size: 26px;
@@ -52,7 +57,7 @@
 
     .blue-rounded-container
     {
-        background-color: rgba(0, 226, 235, 0.3);
+        background-color: rgba(0, 194, 203, 0.3);
         z-index: 11;
         color: #202020;
         padding: 20px 30px;
@@ -70,6 +75,22 @@
         border-right: solid 2px #202020;
     }
 
+    .switch-form-button
+    {
+        display:inline-block; 
+        background:#00c2cb; 
+        text-align: center;
+        color: #f3f2f1;
+        font-weight: 700; 
+        -webkit-appearance:button; 
+        padding:10px 20px; 
+        position:relative; 
+        cursor:context-menu; 
+        margin: 0.5em 0; 
+        border-radius: 8px;
+        border: none;
+    }
+
     .white-rounded-container-positioned
     {
         z-index: -1;
@@ -79,7 +100,7 @@
         top: -50px;
         width: 100%;
         height: 50px;
-        /* background-color: rgba(243, 242, 241, 0.3); */
+        background-color: rgba(243, 242, 241, 0.1);
         border-left: solid 2px #202020;
         border-right: solid 2px #202020;
     }
@@ -108,8 +129,7 @@
 
     .form-top-outer
     {
-        /* background: url('{{ asset('img/bottom-border-white.png') }}') bottom repeat-x; */
-        background-color: #00c2cb;
+        background-color: rgba(0, 194, 203, 0.3);
         border-radius: 35px 35px 0 0;
     }
 
@@ -173,84 +193,6 @@
         margin: 0.5em 0; 
         border-radius: 8px;
     }
-
-    .white-progress-bar
-    {
-        width: 350px;
-        max-width: 100%;
-        height: 40px;
-        background-color: #202020; 
-        border: 2px solid #f3f2f1;
-        border-radius: 10px;
-        color: #f3f2f1;
-        text-align: center;
-        z-index: 18;
-        position: relative;
-    }
-
-    .white-progress-bar-text
-    {
-        z-index: 22;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        padding: 3px;
-    }
-
-    .white-progress-bar-border
-    {
-        width: 350px;
-        height: 40px;
-        background-color: #202020; 
-        border-radius: 10px;
-        border: 2px solid #202020;
-        color: #f3f2f1;
-        text-align: center;
-        z-index: 18;
-        position: relative;
-    }
-
-    .white-progress-bar-border-text
-    {
-        z-index: 22;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        padding: 3px;
-    }
-
-    /* .black-progress-bar
-    {
-        height: 100%; 
-        background-color: #202020; 
-        border-radius: 7px;
-        text-align: center;
-        font-size: 24px;
-        color: #00c2cb;
-        padding: 5px 0;
-        position: absolute;
-        top: 0;
-        z-index: 20;
-    } */
-
-    .blue-progress-bar
-    {
-        height: 100%; 
-        background-color: #00c2cb; 
-        border-radius: 7px;
-        text-align: center;
-        font-size: 24px;
-        color: #00c2cb;
-        padding: 5px 0;
-        position: absolute;
-        top: 0;
-        z-index: 20;
-    }
-
     .form-outer-box
     {
         padding: 20px 0;
@@ -370,22 +312,6 @@
         .table-tariff td
         {
             display: block;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        .white-progress-bar
-        {
-            width: 100%;
-            max-width: 100%;
-        }
-        .white-progress-bar-border
-        {
-            width: 100%;
-            max-width: 100%;
-        }
-        .blue-progress-bar
-        {
             width: 100%;
             max-width: 100%;
         }

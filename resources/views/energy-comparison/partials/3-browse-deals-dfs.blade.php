@@ -61,7 +61,7 @@
 
     @media (max-width: 991px) and (min-width: 768px)
     {
-        
+
     }
 
     @media (max-width: 600px)
@@ -97,7 +97,7 @@
                     </p>
                 </div>
                 <div class="row no-padding">
-                    <div class="col-lg-9 col-12 no-padding">
+                    <div class="col-lg-8 col-12 no-padding">
                         <table id="currentTariffTable" class="form-table table-tariff table-block-on-mobile" style=" vertical-align: bottom;">
                             <tr>
                                 <th colspan="2">Gas</th>
@@ -166,7 +166,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-lg-3 col-12 no-padding d-flex align-items-center justify-content-center">
+                    <div class="col-lg-4 col-12 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
                         <p style="font-size: 20px; border-right: solid 4px #202020; padding-right: 20px;">
                             <span style="font-size: 44px;">&pound;{{ number_format($current_estimated_bill / 12, 2) }}</span> 
                             <br />
@@ -209,13 +209,13 @@
             <div class="white-rounded-container-positioned"></div>
             <div class="container rounded-container white-rounded-container no-padding">
                 <div class="row">
-                    <div class="col-12 col-lg-3" style="font-size: 16px; padding: 20px">
+                    <div class="col-12 col-lg-3" style="font-size: 17px; padding: 20px">
                         <img class="new-supplier-logo" src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="auto" width="auto" /><br />
                         <p>{{ $row["tariffName"] }}</p>
                         <p>Estimated Annual Saving: &pound;{{ number_format($row["saving"], 2) }}*</p>
                         <p class="no-padding font-weight-normal">
                             @if ($row["contractLength"] > 0)
-                                Fixed month contract: <br /><span style="color: #00c2cb; font-weight: 700;">{{ $row["contractLength"] }} months </span>
+                                Fixed month contract: <br /><span style="color: #cf0; font-weight: 700;">{{ $row["contractLength"] }} months </span>
                             @else
                                 variable length<br />contract
                             @endif
