@@ -57,7 +57,7 @@
 
     .blue-rounded-container
     {
-        background-color: rgba(0, 194, 203, 0.3);
+        background-color: rgba(0, 194, 203, 1);
         z-index: 11;
         color: #202020;
         padding: 20px 30px;
@@ -66,7 +66,7 @@
 
     .white-rounded-container
     {
-        background-color: rgba(243, 242, 241, 0.3);
+        background-color: rgba(243, 242, 241, 0.35);
         z-index: 10;
         color: #202020;
         padding: 20px 30px;
@@ -100,9 +100,32 @@
         top: -50px;
         width: 100%;
         height: 50px;
-        background-color: rgba(243, 242, 241, 0.1);
+        background-color: #f3f2f1;
         border-left: solid 2px #202020;
         border-right: solid 2px #202020;
+    }
+
+    .inverted-rounded-corner-1,
+    .inverted-rounded-corner-2
+    {
+        z-index: -1;
+        position: absolute;
+        top: -35px;
+        width: 35px;
+        height: 35px;
+        background-color: rgba(243, 242, 241, 0.35);
+        border-left: solid 2px #202020;
+        border-right: solid 2px #202020;
+    }
+    .inverted-rounded-corner-1
+    {
+        left: 0;
+        -webkit-mask-image: radial-gradient(circle 35px at top right, transparent 0, transparent 35px, black 35px);
+    }
+    .inverted-rounded-corner-2
+    {
+        right: 0;
+        -webkit-mask-image: radial-gradient(circle 35px at top left, transparent 0, transparent 35px, black 35px);
     }
 
     .form-top-heading
@@ -129,7 +152,7 @@
 
     .form-top-outer
     {
-        background-color: rgba(0, 194, 203, 0.3);
+        background-color: rgba(0, 194, 203, 1);
         border-radius: 35px 35px 0 0;
     }
 
@@ -202,6 +225,8 @@
     {
         max-width: 100%;
         max-height: 100px;
+        background-color: white;
+        border-radius: 3px;
     }
 
     @media (min-width: 992px)
