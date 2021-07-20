@@ -79,7 +79,7 @@
     }
 </style>
 
-<div class="row form-top-outer" style="border-right: 2px solid black;border-top: 2px solid black;">
+<div class="row form-top-outer" style="border-right: 2px solid #202020;border-top: 2px solid #202020;">
     <div class="col-12 col-lg-4 form-top-heading form-top-left-heading form-top-left-border-md">
         <table class="form-table"><tr><td>Step 3 | Browse Deals</td></tr></table>
     </div>
@@ -97,7 +97,7 @@
                     </p>
                 </div>
                 <div class="row no-padding">
-                    <div class="col-lg-8 col-12 no-padding">
+                    <div class="col-lg-7 col-12">
                         <table id="currentTariffTable" class="form-table table-tariff table-block-on-mobile" style=" vertical-align: bottom;">
                             <tr>
                                 <th colspan="2">Gas</th>
@@ -109,7 +109,9 @@
                             </tr>
                             </tr>
                             <tr>
-                                <td>Estimated Monthly Usage:</td>
+                                <td>
+                                    Estimated Monthly Usage:
+                                </td>
                                 <td>
                                     <div>
                                         <div>{{ number_format($current_tariffs -> G -> units / 12) }}kwh*</div>
@@ -117,7 +119,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Unit Rate:</td>
+                                <td>
+                                    Unit Rate:
+                                </td>
                                 <td>
                                     <div>
                                         <div>{{ number_format($current_gas_price_per_unit, 2) }}p*</div>
@@ -125,7 +129,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Standing Charge:</td>
+                                <td>
+                                    Standing Charge:
+                                </td>
                                 <td>
                                     <div>
                                         <div>{{ number_format($current_gas_standing_charge_daily, 2) }}p per day*</div>
@@ -166,7 +172,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-lg-4 col-12 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
+                    <div class="col-lg-5 col-12 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
                         <p style="font-size: 20px; border-right: solid 4px #202020; padding-right: 20px;">
                             <span style="font-size: 44px;">&pound;{{ number_format($current_estimated_bill / 12, 2) }}</span> 
                             <br />
@@ -184,6 +190,7 @@
             </td>
         </tr>
     </table>
+    <div class="inverted-rounded-corner"></div>
 </div>
 @if (count($new_tariffs) == 0)
     <div style="position: relative;">
@@ -192,6 +199,7 @@
             <table class="form-table"><tr><td>Sorry, but no matching tariffs were found.</td></tr></table>
         </div>
     </div>
+    
 @else
     @foreach($new_tariffs as $row)
         <?php
@@ -206,7 +214,8 @@
             if ($new_elec_standing_charge_daily_percent > 100) $new_elec_standing_charge_daily_percent = 100;
         ?>
         <div style="position: relative;">
-            <div class="white-rounded-container-positioned"></div>
+            <div class="inverted-rounded-corner-1"></div>
+            <div class="inverted-rounded-corner-2"></div>
             <div class="container rounded-container white-rounded-container no-padding">
                 <div class="row">
                     <div class="col-12 col-lg-3" style="font-size: 17px; padding: 20px">
