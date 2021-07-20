@@ -3,7 +3,7 @@
     $current_standing_charge_daily = $current_tariffs -> G -> standingChargeDaily;
 ?>
 
-<div class="row form-top-outer">
+<div class="row form-top-outer" style="border-right: 2px solid #202020; border-left: 2px solid #202020;">
     <div class="col-12 col-lg-4 form-top-heading form-top-left-heading form-top-left-border-md">
         <table class="form-table"><tr><td>Step 3 | Browse Deals</td></tr></table>
     </div>
@@ -24,7 +24,7 @@
                     </p>
                 </div>
                 <div class="row no-padding">
-                    <div class="col-lg-6 col-12 no-padding">
+                    <div class="col-lg-7 col-12">
                         <table class="table-tariff table-block-on-mobile" style=" vertical-align: bottom;">
                             <tr>
                                 <td>
@@ -52,8 +52,8 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="col-lg-6 col-12 no-padding d-flex align-items-center justify-content-center">
-                        <p style="font-size: 20px; border-right: solid 4px #f3f2f1; padding-right: 20px;">
+                    <div class="col-lg-5 col-12 no-padding d-flex align-items-center justify-content-center mt-5 mt-lg-0">
+                        <p style="font-size: 20px; border-right: solid 4px #202020; padding-right: 20px;">
                             <span style="font-size: 44px;">&pound;{{ number_format($current_tariffs -> G -> bill / 12, 2) }}</span> 
                             <br />
                             per month
@@ -62,7 +62,7 @@
                             @if ($current_tariffs -> G -> contractLength > 0)
                                 {{ $current_tariffs -> G -> contractLength }} month contract
                             @else
-                                variable length<br />contract
+                                Variable length<br />contract
                             @endif
                         </p>
                     </div>
@@ -88,22 +88,23 @@
             if ($new_standing_charge_daily_percent > 100) $new_standing_charge_daily_percent = 100;
         ?>
         <div style="position: relative;">
-            <div class="white-rounded-container-positioned"></div>
+            <div class="inverted-rounded-corner-1"></div>
+            <div class="inverted-rounded-corner-2"></div>
             <div class="container rounded-container white-rounded-container no-padding">
                 <div class="row">
-                    <div class="col-12 col-lg-2" style="font-size: 16px; padding: 20px;">
+                    <div class="col-12 col-lg-3" style="font-size: 17px; padding: 20px;">
                         <img class="new-supplier-logo" src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="auto" width="auto" /><br />
                         <p>{{ $row["tariffName"] }}</p>
                         <p>Estimated Annual Saving: &pound;{{ number_format($row["saving"], 2) }}*</p>
                         <p class="no-padding font-weight-normal">
                             @if ($row["contractLength"] > 0)
-                                Fixed month contract: <br /> <span style="color: #00c2cb; font-weight: 700;">{{ $row["contractLength"] }} months </span>
+                                Fixed month contract: <br /> <span style="color: #070; font-weight: 700;">{{ $row["contractLength"] }} months </span>
                             @else
                                 variable length<br />contract
                             @endif
                         </p>
                         <p>
-                            Early exit fee: <span style="color: hsl(10, 100%, 40%) font-weight: 700;">&pound;{{ $row["exitPenaltyAmount"] }}</span>
+                            Early exit fee: <span style="color: hsl(10, 100%, 40%); font-weight: 700;">&pound;{{ $row["exitPenaltyAmount"] }}</span>
                         </p>
                     </div>
                     <div class="col-12 col-lg-2">
@@ -115,7 +116,7 @@
                             </p>
                         @endif
                     </div>
-                    <div class="col-12 col-lg-4 d-flex justify-content-center align-items-center" style="background: #00c2cb; color: #f3f2f1;">
+                    <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center" style="border-left: 2px solid #202020; border-right: 2px solid #202020">
                         <div class="text-center w-100">
                             <div>Estimated cost:</div> 
                             <div style="font-size: 40px;">&pound;{{ number_format($row["bill"] / 12, 2) }}* </div>
