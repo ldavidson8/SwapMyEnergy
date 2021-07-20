@@ -19,12 +19,19 @@
         padding: 5px;
     }
 
-    #currentTariffTable td.current-supplier-monthly-cost-and-length
+    .existing-tariff-monthly-bill
     {
-        vertical-align: middle;
-        max-width: 100%;
-        font-size: 20px;
         text-align: center;
+        font-size: 20px;
+        border-bottom: solid 4px #202020;
+        padding: 0px;
+        padding-bottom: 1rem;
+    }
+
+    .existing-tariff-contract-length
+    {
+        font-size: 20px;
+        padding: 0px;
     }
     
     @media (min-width: 992px)
@@ -39,33 +46,36 @@
 
     @media (max-width: 991px)
     {
+        .existing-tariff-monthly-bill
+        {
+            border-bottom: none;
+            border-right: 2px solid #202020;
+            padding-right: 20px;
+            padding-bottom: 0px;
+        }
+        
+        .existing-tariff-contract-length
+        {
+            padding-left: 20px;
+        }
+
+        .desktop-only { display: none !important; }
+    }
+    
+    @media (max-width: 600px)
+    {
         #currentTariffTable
         {
             display: block;
             text-align: center;
         }
+        #currentTariffTable th,
         #currentTariffTable td
         {
             display: inline-block;
-            width: 49%;
+            width: 32%;
             text-align: center;
         }
-        #currentTariffTable td.current-supplier-monthly-cost-and-length
-        {
-            width: 100%;
-            text-align: center;
-        }
-
-        .desktop-only { display: none !important; }
-    }
-
-    @media (max-width: 991px) and (min-width: 768px)
-    {
-
-    }
-
-    @media (max-width: 600px)
-    {
         #currentTariffTable
         {
             display: block;
@@ -87,110 +97,98 @@
         <table class="form-table"><tr><td>Current Tariff</td></tr></table>
     </div>
 </div>
-<div class="container rounded-container blue-rounded-container">
-    <table class="form-table">
-        <tr>
-            <td>
-                <div style="text-align: center;">
-                    <p class="estimated-annual-energy-costs-banner">
-                        Your estimated annual energy costs for the past 12 months are &pound;{{ number_format($current_estimated_bill, 2) }}
-                    </p>
-                </div>
-                <div class="row no-padding">
-                    <div class="col-lg-7 col-12">
-                        <table id="currentTariffTable" class="form-table table-tariff table-block-on-mobile" style=" vertical-align: bottom;">
-                            <tr>
-                                <th colspan="2">Gas</th>
-                                <td rowspan="4" style="vertical-align: top; padding-bottom: 20px;">
-                                    <div class="current-supplier-logo">
-                                        <table class="form-table"><tr><td style="padding: 0px;"><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> G -> supplierName . '.png') }}" alt="{{ $current_tariffs -> G -> supplierName }}" height="auto" width="auto" /></td></tr></table>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Estimated Monthly Usage:
-                                </td>
-                                <td>
-                                    <div>
-                                        <div>{{ number_format($current_tariffs -> G -> units / 12) }}kwh*</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Unit Rate:
-                                </td>
-                                <td>
-                                    <div>
-                                        <div>{{ number_format($current_gas_price_per_unit, 2) }}p*</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Standing Charge:
-                                </td>
-                                <td>
-                                    <div>
-                                        <div>{{ number_format($current_gas_standing_charge_daily, 2) }}p per day*</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th colspan="2">Electricity</th>
-                                <td rowspan="4" style="vertical-align: bottom; padding-bottom: 20px;">
-                                    <div class="current-supplier-logo">
-                                        <table class="form-table"><tr><td style="padding: 0px;"><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> E -> supplierName . '.png') }}" alt="{{ $current_tariffs -> E -> supplierName }}" height="auto" width="auto" /></td></tr></table>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Estimated Monthly Usage:</td>
-                                <td>
-                                    <div>
-                                        <div>{{ number_format($current_tariffs -> E -> units / 12) }}kwh*</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Unit Rate:</td>
-                                <td>
-                                    <div>
-                                        <div>{{ number_format($current_elec_price_per_unit, 2) }}p*</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Standing Charge:</td>
-                                <td>
-                                    <div>
-                                        <div>{{ number_format($current_elec_standing_charge_daily, 2) }}p per day*</div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-lg-5 col-12 d-flex align-items-center justify-content-center mt-5 mt-lg-0">
-                        <p style="font-size: 20px; border-right: solid 4px #202020; padding-right: 20px;">
-                            <span style="font-size: 44px;">&pound;{{ number_format($current_estimated_bill / 12, 2) }}</span> 
-                            <br />
-                            per month
-                        </p>
-                        <p style="font-size: 20px; padding-left: 20px;">
-                            @if ($current_tariffs -> G -> contractLength > 0)
-                                {{ $current_tariffs -> G -> contractLength }} month contract
-                            @else
-                                Variable length<br />contract
-                            @endif
-                        </p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <div class="inverted-rounded-corner"></div>
+<div class="blue-rounded-container" style="text-align: center;">
+    <p class="estimated-annual-energy-costs-banner">
+        Your estimated annual energy costs for the past 12 months are &pound;{{ number_format($current_estimated_bill, 2) }}
+    </p>
+</div>
+<div class="container rounded-container blue-rounded-container sticky" style="padding-top: 0px;">
+    <div class="row no-padding">
+        <div class="col-lg-9 col-12">
+            <table id="currentTariffTable" class="form-table table-tariff table-block-on-mobile" style=" vertical-align: bottom;">
+                <tr>
+                    <th rowspan="3">Gas</th>
+                    <td>
+                        Estimated Monthly Usage:
+                    </td>
+                    <td>
+                        <div>
+                            <div>{{ number_format($current_tariffs -> G -> units / 12) }}kwh*</div>
+                        </div>
+                    </td>
+                    <td rowspan="3" class="desktop-only" style="vertical-align: top; padding-bottom: 20px;">
+                        <div class="current-supplier-logo">
+                            <table class="form-table"><tr><td style="padding: 0px;"><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> G -> supplierName . '.png') }}" alt="{{ $current_tariffs -> G -> supplierName }}" height="auto" width="auto" /></td></tr></table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Unit Rate:
+                    </td>
+                    <td>
+                        <div>
+                            <div>{{ number_format($current_gas_price_per_unit, 2) }}p*</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Standing Charge:
+                    </td>
+                    <td>
+                        <div>
+                            <div>{{ number_format($current_gas_standing_charge_daily, 2) }}p per day*</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th rowspan="3">Electricity</th>
+                    <td>Estimated Monthly Usage:</td>
+                    <td>
+                        <div>
+                            <div>{{ number_format($current_tariffs -> E -> units / 12) }}kwh*</div>
+                        </div>
+                    </td>
+                    <td rowspan="3" class="desktop-only" style="vertical-align: top; padding-bottom: 20px;">
+                        <div class="current-supplier-logo">
+                            <table class="form-table"><tr><td style="padding: 0px;"><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> E -> supplierName . '.png') }}" alt="{{ $current_tariffs -> E -> supplierName }}" height="auto" width="auto" /></td></tr></table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Unit Rate:</td>
+                    <td>
+                        <div>
+                            <div>{{ number_format($current_elec_price_per_unit, 2) }}p*</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Standing Charge:</td>
+                    <td>
+                        <div>
+                            <div>{{ number_format($current_elec_standing_charge_daily, 2) }}p per day*</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-3 col-12 d-flex flex-row flex-lg-column align-items-center justify-content-center mt-4 mt-lg-0">
+            <p class="existing-tariff-monthly-bill">
+                <span style="font-size: 44px;">&pound;{{ number_format($current_estimated_bill / 12, 2) }}</span> 
+                <br />
+                per month
+            </p>
+            <p class="existing-tariff-contract-length">
+                @if ($current_tariffs -> G -> contractLength > 0)
+                    {{ $current_tariffs -> G -> contractLength }} month contract
+                @else
+                    Variable length<br />contract
+                @endif
+            </p>
+        </div>
+    </div>
 </div>
 @if (count($new_tariffs) == 0)
     <div style="position: relative;">
@@ -224,7 +222,7 @@
                         <p>Estimated Annual Saving: &pound;{{ number_format($row["saving"], 2) }}*</p>
                         <p class="no-padding font-weight-normal">
                             @if ($row["contractLength"] > 0)
-                                Fixed month contract: <br /><span style="color: #cf0; font-weight: 700;">{{ $row["contractLength"] }} months </span>
+                                Fixed month contract: <br /><span style="color: #070; font-weight: 700;">{{ $row["contractLength"] }} months </span>
                             @else
                                 variable length<br />contract
                             @endif
@@ -242,7 +240,7 @@
                             </p>
                         @endif
                     </div>
-                    <div class="col-12 col-lg-3 d-flex justify-content-center align-items-center" style="border-left: 2px solid #202020; border-right: 2px solid #202020">
+                    <div class="col-12 col-lg-3 d-flex new-tariff-estimated-cost justify-content-center align-items-center">
                         <div class="text-center w-100">
                             <div>Estimated cost:</div> 
                             <div style="font-size: 40px;">&pound;{{ number_format($row["bill"] / 12, 2) }}* </div>
