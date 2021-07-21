@@ -306,7 +306,8 @@ footer p:last-child
 
 a:focus
 {
-    outline: 1px solid orange;
+    outline: 2px solid #00c2cb;
+    outline-offset: 0.3em;
 }
 
 
