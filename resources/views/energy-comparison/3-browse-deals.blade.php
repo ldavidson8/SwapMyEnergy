@@ -18,12 +18,6 @@
             padding: 0px;
         }
 
-        .sticky
-        {
-            position: sticky;
-            top: 0px;
-        }
-        
         .current-supplier-logo td
         {
             width: 100% !important;
@@ -33,12 +27,12 @@
         {
             font-size: 22px;
             font-weight: normal;
-            background-color: #f3f2f1;
+            margin: 0px;
+            /* background-color: #f3f2f1;
             color: #202020;
             border-radius: 100px;
             display: inline-block;
-            padding: 2px 25px;
-            marg-bottom: 15px;
+            padding: 2px 25px; */
         }
 
         .uppercase-white-text
@@ -98,7 +92,7 @@
             padding:10px 20px; 
             position:relative; 
             cursor:context-menu; 
-            margin: 0.5em 0; 
+            margin: 15px 0; 
             border-radius: 8px;
             border: none;
         }
@@ -165,7 +159,7 @@
         .form-top-outer
         {
             background-color: rgba(0, 194, 203, 1);
-            border-radius: 35px 35px 0 0;
+            border-radius: 37px 37px 0 0;
         }
 
         .form-top-img
@@ -253,6 +247,36 @@
             border-left: 2px solid #202020;
             border-right: 2px solid #202020;
         }
+        
+        .sticky
+        {
+            position: static;
+            top: 0px;
+        }
+        
+        
+        .existing-tariff-monthly-bill
+        {
+            text-align: center;
+            font-size: 20px;
+            border-bottom: solid 4px #202020;
+            padding: 0px;
+            padding-bottom: 1rem;
+        }
+
+        .existing-tariff-contract-length
+        {
+            font-size: 20px;
+            padding: 0px;
+        }
+        
+        @media (min-width: 768px) and (min-height: 768px)
+        {
+            .sticky
+            {
+                position: sticky;
+            }
+        }
 
         @media (min-width: 768px) and (max-width: 991px)
         {
@@ -277,14 +301,18 @@
             {
                 border: none;
             }
-        }
-
-        @media (max-width: 767px) or (max-height: 767px)
-        {
-            .sticky
+            
+            .existing-tariff-monthly-bill
             {
-                position: static;
-                top: auto;
+                border-bottom: none;
+                border-right: 2px solid #202020;
+                padding-right: 20px;
+                padding-bottom: 0px;
+            }
+            
+            .existing-tariff-contract-length
+            {
+                padding-left: 20px;
             }
         }
 
@@ -326,6 +354,7 @@
             {
                 border-width: 0px 0px 2px;
                 padding: 0px;
+                padding-top: 15px !important;
             }
 
             .form-outer-box
