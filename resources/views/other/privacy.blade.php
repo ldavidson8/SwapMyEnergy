@@ -46,6 +46,7 @@
 @endsection
 
 @section('main-content')
+<hr />
 <main class="col-md-12">
         <div class="container">
                 <h1 class="main-title">SwapMyEnergy.co.uk Privacy policy</h1>
