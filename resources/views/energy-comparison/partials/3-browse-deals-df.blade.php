@@ -22,7 +22,7 @@
         Your estimated annual energy costs for the past 12 months are &pound;{{ number_format($current_estimated_bill, 2) }}
     </p>
 </div>
-<div class="container rounded-container blue-rounded-container sticky">
+<div id="sticky-existing-tariff" class="container rounded-container blue-rounded-container sticky">
     <div class="row no-padding">
         <div class="col-lg-9 col-12">
             <table class="form-table table-tariff table-block-on-mobile" style="vertical-align: bottom;">
@@ -77,6 +77,7 @@
             </p>
         </div>
     </div>
+    {{-- <div id="sticky-toggle-tab"></div> --}}
 </div>
 @if (count($new_tariffs) == 0)
     <div style="position: relative;">

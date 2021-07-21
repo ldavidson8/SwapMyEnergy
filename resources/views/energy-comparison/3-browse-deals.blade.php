@@ -50,7 +50,7 @@
             font-size: 26px;
             color: #f3f2f1;
         }
-
+        
         .rounded-container
         {
             border-radius: 0 0 35px 35px !important;
@@ -453,5 +453,23 @@
             </div>
         </div>
     </div>
-    
 @endsection
+
+{{-- @section('script')
+    <script>
+        var stickyToggleTab = $("#sticky-toggle-tab");
+        var stickyExistingTariff = $("#sticky-existing-tariff");
+
+        stickyToggleTab.click(function()
+        {
+            if (stickyExistingTariff.css("position") == "sticky")
+            {
+                stickyExistingTariff.css("position", "static");
+            }
+            else
+            {
+                stickyExistingTariff.css("position", "sticky");
+            }
+        });
+    </script>
+@endsection --}}
