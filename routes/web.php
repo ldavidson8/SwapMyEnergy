@@ -190,6 +190,11 @@ Route::group([ 'prefix' => '/affiliate-apply'], function()
 //     return view('test.page-load');
 // }) -> name('test.page-load');
 
+Route::get('/test/testing-znergi-facebook-chat-thingy-majiggiery', function ()
+{
+    return view('test.facebook-chat-test');
+}) -> name('test.facebook-chat');
+
 
 // test pages
 
