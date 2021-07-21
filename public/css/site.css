@@ -3,6 +3,11 @@
     box-sizing: border-box;
 }
 
+html
+{
+    scroll-behavior: smooth;
+}
+
 body
 {
     background-color: #f3f2f1;
