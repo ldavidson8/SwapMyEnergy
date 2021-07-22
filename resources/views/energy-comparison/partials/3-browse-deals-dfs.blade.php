@@ -15,6 +15,11 @@
         padding: 5px;
     }
 
+    .existing-supplier-logo td
+    {
+        padding: 5px;
+    }
+
     .logo-heading
     {
         font-size: 20px;
@@ -35,6 +40,11 @@
     @media (max-width: 991px)
     {
         .desktop-only { display: none !important; }
+
+        .existing-supplier-logo table
+        {
+            height: auto;
+        }
         
         .existing-supplier-logo tr:not(.logo-heading) { display: inline; }
         .existing-supplier-logo td
