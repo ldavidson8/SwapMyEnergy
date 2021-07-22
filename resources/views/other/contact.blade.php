@@ -125,7 +125,7 @@
                                 </p>
                                 <button type="button" class="btn-lg big-white-button" style="width: auto; cursor: default;"> Webchat Coming Soon </button>
                             --}}
-                            <p style="font-size: 30px;">Webchat Coming Soon</p>
+                            <p>Click the blue messenger icon in the bottom right of your screen </p>
                         </div>
                     </div>
                 </div>
