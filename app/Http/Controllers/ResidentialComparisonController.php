@@ -392,7 +392,6 @@ class ResidentialComparisonController extends Controller
             
             /// Build the view model ///
             $params = [ "existing_tariff" => $existing_tariff, "current_tariffs" => $current_tariffs, "new_tariffs" => $new_tariffs, 'page_title' => 'Compare Energy Prices - Browse Deals' ];
-            // return response() -> json($params);
             return view('energy-comparison.3-browse-deals', $params);
         }
         catch (Throwable $th)

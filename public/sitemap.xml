@@ -49,6 +49,6 @@
       <loc>http://www.swapmyenergy.co.uk/residential/sitemap</loc>
    </url>
    <url>
-      <loc>http://127.0.0.1:8000/residential/energy-comparison/address</loc>
+      <loc>http://www.swapmyenergy.co.uk/residential/energy-comparison/address</loc>
    </url>
 </urlset>

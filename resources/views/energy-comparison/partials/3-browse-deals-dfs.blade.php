@@ -14,6 +14,12 @@
         display: inline-block;
         padding: 5px;
     }
+
+    .logo-heading
+    {
+        font-size: 20px;
+        text-align: center;
+    }
     
     @media (min-width: 992px)
     {
@@ -23,11 +29,24 @@
         }
 
         .mobile-only { display: none !important; }
+        .sm-mobile-logo-heading { display: none !important; }
     }
 
     @media (max-width: 991px)
     {
         .desktop-only { display: none !important; }
+        
+        .existing-supplier-logo tr:not(.logo-heading) { display: inline; }
+        .existing-supplier-logo td
+        {
+            display: inline-block;
+            width: 49%;
+        }
+        .existing-supplier-logo img
+        {
+            max-height: 70px !important;
+            border-radius: 0px !important;
+        }
     }
     
     @media (max-width: 600px)
@@ -55,6 +74,13 @@
             width: 100%;
         }
     }
+    
+    .xs-mobile-logo-heading { display: none; }
+    @media (max-width: 500px)
+    {
+        .sm-mobile-logo-heading { display: none; }
+        .xs-mobile-logo-heading { display: block; }
+    }
 </style>
 
 <div class="row form-top-outer" style="border-right: 2px solid #202020; border-left: 2px solid #202020; border-top: 2px solid #202020;">
@@ -67,25 +93,21 @@
 </div>
 <div class="blue-rounded-container" style="text-align: center;">
     @if (count($new_tariffs) > 0 && $new_tariffs[0]["saving"] > 0)
-        <p style="margin: 0px;">Switching with us today, you will save up to &pound;{{ number_format($new_tariffs[0]["saving"], 2) }} per year!</p>
+        <p class="estimated-annual-energy-costs-banner-white">Switching with us today, you will save up to &pound;{{ number_format($new_tariffs[0]["saving"], 2) }} per year!</p>
     @endif
     <p class="estimated-annual-energy-costs-banner">
         Your estimated annual energy costs for the past 12 months are &pound;{{ number_format($current_estimated_bill, 2) }}
     </p>
 </div>
-<div class="container rounded-container blue-rounded-container sticky">
+<div id="sticky-toggle-marker-close"></div>
+<div id="sticky-existing-tariff" class="container rounded-container blue-rounded-container" style="z-index: 10;">
     <div class="row no-padding">
-        <div class="col-lg-9 col-12">
+        <div class="col-lg-6 col-12">
             <table id="currentTariffTable" class="form-table table-tariff table-block-on-mobile" style="vertical-align: bottom;">
                 <tr>
                     <th rowspan="3">Gas</th>
                     <td>Estimated Monthly Usage:</td>
                     <td>{{ number_format($current_tariffs -> G -> units / 12) }}kwh</td>
-                    <td rowspan="3" class="desktop-only" style="vertical-align: top; padding-bottom: 20px;">
-                        <div class="current-supplier-logo">
-                            <table class="form-table"><tr><td style="padding: 0px;"><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> G -> supplierName . '.png') }}" alt="{{ $current_tariffs -> G -> supplierName }}" height="auto" width="auto" /></td></tr></table>
-                        </div>
-                    </td>
                 </tr>
                 <tr>
                     <td>Unit Rate:</td>
@@ -99,11 +121,6 @@
                     <th rowspan="4">Electricity</th>
                     <td>Estimated Monthly Usage:</td>
                     <td>{{ number_format($current_tariffs -> E -> units / 12) }}kwh</td>
-                    <td rowspan="4" class="desktop-only" style="vertical-align: top; padding-bottom: 20px;">
-                        <div class="current-supplier-logo">
-                            <table class="form-table"><tr><td style="padding: 0px;"><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> E -> supplierName . '.png') }}" alt="{{ $current_tariffs -> E -> supplierName }}" height="auto" width="auto" /></td></tr></table>
-                        </div>
-                    </td>
                 </tr>
                 <tr>
                     <td>Unit Rate:</td>
@@ -123,7 +140,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-lg-3 col-12 d-flex flex-row flex-lg-column align-items-center justify-content-center mt-4 mt-lg-0">
+        <div class="col-lg-4 col-12 d-flex flex-row flex-lg-column align-items-center justify-content-center mt-4 mt-lg-0">
             <p class="existing-tariff-monthly-bill">
                 <span style="font-size: 44px;">&pound;{{ number_format($current_estimated_bill / 12, 2) }}</span> 
                 <br />
@@ -137,8 +154,22 @@
                 @endif
             </p>
         </div>
+        <div class="col-lg-2 col-12 existing-supplier-logo no-padding">
+            <table class="form-table">
+                <tr class="sm-mobile-logo-heading logo-heading"><td>Your Gas Supplier</td><td>Your Electricity Supplier</td></tr>
+                <tr class="xs-mobile-logo-heading logo-heading"><td>Your Gas Supplier</td></tr>
+                <tr><td><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> G -> supplierName . '.png') }}" alt="{{ $current_tariffs -> G -> supplierName }}" style="border-radius: 0 0 20px 0; max-width: 100%; max-height: 100%;" width="auto" height="auto"></td></tr>
+                <tr class="xs-mobile-logo-heading logo-heading"><td>Your Electricity Supplier</td></tr>
+                <tr><td><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> E -> supplierName . '.png') }}" alt="{{ $current_tariffs -> E -> supplierName }}" style="border-radius: 0 0 20px 0; max-width: 100%; max-height: 100%;" width="auto" height="auto"></td></tr>
+            </table>
+        </div>
     </div>
+    <div id="sticky-toggle-tab-close" class="sticky-toggle-tab"><span class="fas fa-angle-up"></span></div>
 </div>
+<div id="sticky-none" style="z-index: 9; color: #202020;">
+    <div id="sticky-toggle-tab-open" class="sticky-toggle-tab"><span class="fas fa-angle-down"></span></div>
+</div>
+<div id="sticky-toggle-marker-open"></div>
 @if (count($new_tariffs) == 0)
     <div style="position: relative;">
         <div class="white-rounded-container-positioned"></div>

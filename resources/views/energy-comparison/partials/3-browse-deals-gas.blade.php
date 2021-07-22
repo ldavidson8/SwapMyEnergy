@@ -5,21 +5,19 @@
     <div class="flex-fill form-top-heading form-top-middle-heading" style="border-left: none;">
         <table class="form-table"><tr><td>Current Tariff</td></tr></table>
     </div>
-    <div class="no-padding form-top-img form-top-img-border-sm form-top-img-border-md" style="color: #202020;">
-        <table class="form-table"><tr><td><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> G -> supplierName . '.png') }}" alt="{{ $current_tariffs -> G -> supplierName }}" height="auto" width="auto" /></td></tr></table>
-    </div>
 </div>
 <div class="blue-rounded-container" style="text-align: center;">
     @if (count($new_tariffs) > 0 && $new_tariffs[0]["saving"] > 0)
-        <p style="margin: 0px;">Switching with us today, you will save up to &pound;{{ number_format($new_tariffs[0]["saving"], 2) }} per year!</p>
+        <p class="estimated-annual-energy-costs-banner-white">Switching with us today, you will save up to &pound;{{ number_format($new_tariffs[0]["saving"], 2) }} per year!</p>
     @endif
     <p class="estimated-annual-energy-costs-banner">
         Your estimated annual energy costs for the past 12 months are &pound;{{ number_format($current_tariffs -> G -> bill, 2) }}
     </p>
 </div>
-<div class="container rounded-container blue-rounded-container sticky">
+<div id="sticky-toggle-marker-close"></div>
+<div id="sticky-existing-tariff" class="container rounded-container blue-rounded-container" style="z-index: 10;">
     <div class="row no-padding">
-        <div class="col-lg-7 col-12">
+        <div class="col-lg-6 col-12">
             <table class="table-tariff table-block-on-mobile" style="vertical-align: bottom;">
                 <tr>
                     <td>Estimated Monthly Usage:</td>
@@ -35,13 +33,13 @@
                 </tr>
             </table>
         </div>
-        <div class="col-lg-5 col-12 no-padding d-flex align-items-center justify-content-center mt-5 mt-lg-0">
-            <p style="font-size: 20px; border-right: solid 4px #202020; padding-right: 20px;">
+        <div class="no-padding col-lg-4 col-12 no-padding d-flex align-items-center justify-content-center" style="padding: 0px 0px 20px 0px;">
+            <p class="m-lg-0" style="font-size: 20px; border-right: solid 4px #202020; padding-right: 20px;">
                 <span style="font-size: 44px;">&pound;{{ number_format($current_tariffs -> G -> bill / 12, 2) }}</span> 
                 <br />
                 per month
             </p>
-            <p style="font-size: 20px; padding-left: 20px;">
+            <p class="m-lg-0" style="font-size: 20px; padding-left: 20px;">
                 @if ($current_tariffs -> G -> contractLength > 0)
                     {{ $current_tariffs -> G -> contractLength }} month contract
                 @else
@@ -49,8 +47,16 @@
                 @endif
             </p>
         </div>
+        <div class="col-lg-2 col-12 existing-supplier-logo no-padding">
+            <table class="form-table"><tr><td><img src="{{ asset('img/supplier-logos/' . $current_tariffs -> G -> supplierName . '.png') }}" alt="{{ $current_tariffs -> G -> supplierName }}" style="border-radius: 0 0 20px 0; max-width: 100%; max-height: 100%;" width="auto" height="auto"></td></tr></table>
+        </div>
     </div>
+    <div id="sticky-toggle-tab-close" class="sticky-toggle-tab"><span class="fas fa-angle-up"></span></div>
 </div>
+<div id="sticky-none" style="z-index: 9; color: #202020;">
+    <div id="sticky-toggle-tab-open" class="sticky-toggle-tab"><span class="fas fa-angle-down"></span></div>
+</div>
+<div id="sticky-toggle-marker-open"></div>
 @if (count($new_tariffs) == 0)
     <div style="position: relative;">
         <div class="white-rounded-container-positioned"></div>

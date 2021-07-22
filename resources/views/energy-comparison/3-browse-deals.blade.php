@@ -28,11 +28,16 @@
             font-size: 22px;
             font-weight: normal;
             margin: 0px;
-            /* background-color: #f3f2f1;
+        }
+
+        .estimated-annual-energy-costs-banner-white
+        {
+            background-color: #f3f2f1;
             color: #202020;
             border-radius: 100px;
             display: inline-block;
-            padding: 2px 25px; */
+            padding: 2px 15px;
+            margin: 0px 0px 7px 0px;
         }
 
         .uppercase-white-text
@@ -68,6 +73,14 @@
         {
             border-bottom: 0px;
             padding-bottom: 0px;
+        }
+        .blue-rounded-container.rounded-container
+        {
+            padding: 15px 0px 0px;
+        }
+        .blue-rounded-container.sticky
+        {
+            padding: 0px;
         }
 
         .white-rounded-container
@@ -247,13 +260,53 @@
             border-left: 2px solid #202020;
             border-right: 2px solid #202020;
         }
-        
-        .sticky
+
+        .sticky:not(.sticky-hidden)
         {
-            position: static;
+            position: relative;
             top: 0px;
         }
+
+        .sticky.sticky-hidden
+        {
+            position: relative !important;
+        }
         
+        .sticky-toggle-tab
+        {
+            display: none !important;
+            border-radius: 
+        }
+
+        .sticky:not(.sticky-hidden) .sticky-toggle-tab
+        {
+            display: none !important;
+            z-index: 10;
+            position: absolute;
+            bottom: 0;
+            right: 35px;
+            width: 40px;
+            transform: translate(0, 100%);
+            background-color: #f3f2f1;
+            border: 2px solid #202020;
+            text-align: center;
+            padding: 3px;
+            border-radius: 0 0 8px 8px;
+        }
+
+        #sticky-none
+        {
+            color: #202020;
+        }
+        
+
+        .existing-supplier-logo
+        {
+            color: #202020;
+            border-radius: 0 0 33px 0;
+            background-color: #f3f2f1;
+            text-align: center;
+        }
         
         .existing-tariff-monthly-bill
         {
@@ -272,9 +325,14 @@
         
         @media (min-width: 768px) and (min-height: 768px)
         {
-            .sticky
+            .sticky:not(.sticky-hidden)
             {
                 position: sticky;
+            }
+
+            .sticky:not(.sticky-hidden) .sticky-toggle-tab
+            {
+                display: block !important;
             }
         }
 
@@ -297,6 +355,16 @@
 
         @media (max-width: 991px)
         {
+            .blue-rounded-container.rounded-container
+            {
+                padding-left: 0px;
+            }
+            
+            .existing-supplier-logo
+            {
+                border-radius: 0px 0px 33px 33px;
+            }
+            
             .new-tariff-estimated-cost
             {
                 border: none;
@@ -324,10 +392,9 @@
                 display: none;
             }
             
-            .estimated-annual-energy-costs-banner
+            .estimated-annual-energy-costs-banner-white
             {
                 border-radius: 0;
-                border: none;
             }
 
             .container, .container-fluid
@@ -356,7 +423,12 @@
                 padding: 0px;
                 padding-top: 15px !important;
             }
-
+            
+            .existing-supplier-logo
+            {
+                border-radius: 0px;
+            }
+            
             .form-outer-box
             {
                 padding: 0;
@@ -455,21 +527,48 @@
     </div>
 @endsection
 
-{{-- @section('script')
+@section('script')
     <script>
-        var stickyToggleTab = $("#sticky-toggle-tab");
+        var stickyToggleTabClose = $("#sticky-toggle-tab-close");
         var stickyExistingTariff = $("#sticky-existing-tariff");
-
-        stickyToggleTab.click(function()
+        
+        var stickyToggleTabOpen = $("#sticky-toggle-tab-open");
+        var stickyNone = $("#sticky-none");
+        
+        var markerOpen = document.getElementById("sticky-toggle-marker-open");
+        var markerClose = document.getElementById("sticky-toggle-marker-close");
+        
+        stickyToggleTabClose.click(function()
         {
-            if (stickyExistingTariff.css("position") == "sticky")
+            stickyExistingTariff.addClass("sticky-hidden");
+            stickyNone.removeClass("sticky-hidden");
+        });
+
+        stickyNone.click(function()
+        {
+            stickyExistingTariff.removeClass("sticky-hidden");
+            stickyNone.addClass("sticky-hidden");
+        });
+        
+        document.body.onscroll = function()
+        {
+            if (window.pageYOffset > markerClose.offsetTop)
             {
-                stickyExistingTariff.css("position", "static");
+                stickyExistingTariff.addClass("sticky");
             }
             else
             {
-                stickyExistingTariff.css("position", "sticky");
+                stickyExistingTariff.removeClass("sticky");
             }
-        });
+            
+            if (window.pageYOffset > markerOpen.offsetTop + 100)
+            {
+                stickyNone.addClass("sticky");
+            }
+            else
+            {
+                stickyNone.removeClass("sticky");
+            }
+        };
     </script>
-@endsection --}}
+@endsection
