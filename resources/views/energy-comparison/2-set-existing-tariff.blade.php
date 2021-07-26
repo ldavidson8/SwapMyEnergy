@@ -150,6 +150,11 @@
             color: #0044cb;
             font-weight: bold;
         }
+
+        input:disabled ~ *
+        {
+            color: gray !important;
+        }
         
         input[type=radio]:checked + img
         {
@@ -681,28 +686,29 @@
                         <p class="question-heading"> How do you pay for your energy? </p>
                         <span id="tariff_1_payment_method_error" class="form-error-message text-danger"></span>
                         <div class="btn-group btn-group-4 flex-wrap" role="group">
+                            <input type="hidden" id="tariff_1_payment_method_radio_empty" name="tariff_1_payment_method" value="" />
                             <div>
                                 <label>
                                     <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_monthlyDirectDebit" name="tariff_1_payment_method" value="MDD" {{ ($tariff_1_payment_method == "MDD" || $tariff_1_payment_method == "") ? "checked" : "" }} />
-                                    Monthly Direct Debit
+                                    <span>Monthly Direct Debit</span>
                                 </label>
                             </div>
                             <div>
                                 <label>
                                     <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_quarterlyDirectDebit" name="tariff_1_payment_method" value="QDD" {{ ($tariff_1_payment_method == "QDD") ? "checked" : "" }} />
-                                    Quarterly Direct Debit
+                                    <span>Quarterly Direct Debit</span>
                                 </label>
                             </div>
                             <div>
                                 <label>
                                     <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_cashCheque" name="tariff_1_payment_method" value="CAC" {{ ($tariff_1_payment_method == "CAC") ? "checked" : "" }} />
-                                    Cash / Cheque
+                                    <span>Cash / Cheque</span>
                                 </label>
                             </div>
                             <div>
                                 <label>
                                     <input type="radio" class="radio-hidden tariff_1_payment_method_radio" id="tariff_1_payment_method_prepayment" name="tariff_1_payment_method" value="PRE" {{ ($tariff_1_payment_method == "PRE") ? "checked" : "" }} />
-                                    Prepayment Meter
+                                    <span>Prepayment Meter</span>
                                 </label>
                             </div>
                         </div>
@@ -848,28 +854,29 @@
                         <p class="question-heading"> How do you pay for your energy? </p>
                         <span id="tariff_2_payment_method_error" class="form-error-message text-danger"></span>
                         <div class="btn-group btn-group-4 flex-wrap" role="group">
+                            <input type="hidden" class="tariff_2_payment_method_radio_empty" name="tariff_2_payment_method" value="" />
                             <div>
                                 <label>
                                     <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_monthlyDirectDebit" name="tariff_2_payment_method" value="MDD" {{ ($tariff_2_payment_method == "MDD" || $tariff_2_payment_method == "") ? "checked" : "" }} />
-                                    Monthly Direct Debit
+                                    <span>Monthly Direct Debit</span>
                                 </label>
                             </div>
                             <div>
                                 <label>
                                     <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_quarterlyDirectDebit" name="tariff_2_payment_method" value="QDD" {{ ($tariff_2_payment_method == "QDD") ? "checked" : "" }} />
-                                    Quarterly Direct Debit
+                                    <span>Quarterly Direct Debit</span>
                                 </label>
                             </div>
                             <div>
                                 <label>
                                     <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_cashCheque" name="tariff_2_payment_method" value="CAC" {{ ($tariff_2_payment_method == "CAC") ? "checked" : "" }} />
-                                    Cash / Cheque
+                                    <span>Cash / Cheque</span>
                                 </label>
                             </div>
                             <div>
                                 <label>
                                     <input type="radio" class="radio-hidden tariff_2_payment_method_radio" id="tariff_2_payment_method_prepayment" name="tariff_2_payment_method" value="PRE" {{ ($tariff_2_payment_method == "PRE") ? "checked" : "" }} />
-                                    Prepayment Meter
+                                    <span>Prepayment Meter</span>
                                 </label>
                             </div>
                         </div>
@@ -1156,7 +1163,8 @@
                     {
                         "section": $("#section_tariff_1_payment_method"),
                         "error": $("#tariff_1_payment_method_error"),
-                        "radio": $(".tariff_1_payment_method_radio")
+                        "radio": $(".tariff_1_payment_method_radio"),
+                        "radioEmpty": $("#tariff_1_payment_method_radio_empty")
                     },
                     e7:
                     {
@@ -1183,7 +1191,8 @@
                     {
                         "section": $("#section_tariff_2_payment_method"),
                         "error": $("#tariff_2_payment_method_error"),
-                        "radio": $(".tariff_2_payment_method_radio")
+                        "radio": $(".tariff_2_payment_method_radio"),
+                        "radioEmpty": $(".tariff_2_payment_method_radio_empty")
                     },
                     e7:
                     {
@@ -1519,20 +1528,33 @@
                     
                     try
                     {
-                        var result = result;
-                        radioItems.filter(":selected").next().hide();
+                        var paymentMethods = sections.tariff_1.payment_method.radio;
+                        paymentMethods.prop("disabled", "true");
+                        paymentMethods.hide();
+                        paymentMethods.next().hide();
                         for (index in result)
                         {
                             switch (result[index]["id"])
                             {
                                 case "MDD":
-                                    $(radioItems[0]).next().show();
+                                    $(paymentMethods[0]).removeAttr("disabled");
+                                    $(paymentMethods[0]).show();
+                                    $(paymentMethods[0]).next().show();
+                                    break;
                                 case "QDD":
-                                    $(radioItems[1]).next().show();
+                                    $(paymentMethods[1]).removeAttr("disabled");
+                                    $(paymentMethods[1]).show();
+                                    $(paymentMethods[1]).next().show();
+                                    break;
                                 case "CAC":
-                                    $(radioItems[2]).next().show();
+                                    $(paymentMethods[2]).removeAttr("disabled");
+                                    $(paymentMethods[2]).show();
+                                    $(paymentMethods[2]).next().show();
+                                    break;
                                 case "PRE":
-                                    $(radioItems[3]).next().show();
+                                    $(paymentMethods[3]).removeAttr("disabled");
+                                    $(paymentMethods[3]).show();
+                                    $(paymentMethods[3]).next().show();
                                     break;
                             }
                         }
@@ -1543,6 +1565,7 @@
                     }
                 }, function(xhr, status, error)
                 {
+                    console.log("GetTariff1PaymentMethods: " + error);
                     // the request failed
                 });
             }
@@ -1562,20 +1585,33 @@
                     
                     try
                     {
-                        var result = result;
-                        radioItems.filter(":selected").next().hide();
+                        var paymentMethods = sections.tariff_2.payment_method.radio;
+                        paymentMethods.prop("disabled", "true");
+                        paymentMethods.hide();
+                        paymentMethods.next().hide();
                         for (index in result)
                         {
                             switch (result[index]["id"])
                             {
                                 case "MDD":
-                                    $(radioItems[0]).next().show();
+                                    $(paymentMethods[0]).removeAttr("disabled");
+                                    $(paymentMethods[0]).show();
+                                    $(paymentMethods[0]).next().show();
+                                    break;
                                 case "QDD":
-                                    $(radioItems[1]).next().show();
+                                    $(paymentMethods[1]).removeAttr("disabled");
+                                    $(paymentMethods[1]).show();
+                                    $(paymentMethods[1]).next().show();
+                                    break;
                                 case "CAC":
-                                    $(radioItems[2]).next().show();
+                                    $(paymentMethods[2]).removeAttr("disabled");
+                                    $(paymentMethods[2]).show();
+                                    $(paymentMethods[2]).next().show();
+                                    break;
                                 case "PRE":
-                                    $(radioItems[3]).next().show();
+                                    $(paymentMethods[3]).removeAttr("disabled");
+                                    $(paymentMethods[3]).show();
+                                    $(paymentMethods[3]).next().show();
                                     break;
                             }
                         }
@@ -1586,6 +1622,7 @@
                     }
                 }, function(xhr, status, error)
                 {
+                    console.log("GetTariff2PaymentMethods: " + error);
                     // the request failed
                 });
             }
@@ -1594,8 +1631,16 @@
             {
                 var payment_method = sections.tariff_1.payment_method.radio.filter(":checked").val();
                 if (!payment_method) return; // payment method is not set
-                var e7 = sections.tariff_1.e7.radio.filter(":checked").val();
-                if (!e7) e7 = "false";
+                
+                if (sections.fuel_type.radio.filter(":checked").val() == "dual" && sections.same_fuel_supplier.radio.filter(":checked").val() == "yes")
+                {
+                    var e7 = sections.tariff_1.e7.radio.filter(":checked").val();
+                    if (!e7) e7 = "false";
+                }
+                else
+                {
+                    e7 = "false";
+                }
 
                 var url = "{{ route('residential.energy-comparison.api.tariffs.for-a-suppllier', [ 'supplierId' => 'supplierId', 'regionId' => 'regionId', 'serviceType' => 'serviceType', 'paymentMethod' => 'paymentMethod', 'e7' => 'e7' ]) }}";
                 url = url.replace('/supplierId', '/' + sections.post_data.supplier_1);
@@ -1631,6 +1676,8 @@
                             dropdown.append($("<option value='" + row.tariffId + "'>" + row.tariffName + "</option>"));
                         }
                         dropdown.val("");
+                        
+                        sections.tariff_1.current_tariff.notListed.prop("checked", false);
                     }
                     catch (ex)
                     {
@@ -1689,6 +1736,8 @@
                             dropdown.append($("<option value='" + row.tariffId + "'>" + row.tariffName + "</option>"));
                         }
                         dropdown.val("");
+                        
+                        sections.tariff_1.current_tariff.notListed.prop("checked", true);
                     }
                     catch (ex)
                     {
