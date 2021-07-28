@@ -60,18 +60,8 @@ class ResidentialApiRepository extends Controller
     
     public static function suppliers(&$status)
     {
-        // if (Session::has('suppliers'))
-        // {
-        //     $suppliers = Session::get('suppliers');
-        //     if (isset($suppliers) && count($suppliers) >= 0)
-        //     {
-        //         $status = 200;
-        //         return $suppliers;
-        //     }
-        // }
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "suppliers");
         $suppliers = self::getManyObjects($response, $status);
-        // Session::put('suppliers', $suppliers);
         return $suppliers;
     }
 
@@ -83,18 +73,8 @@ class ResidentialApiRepository extends Controller
 
     public static function suppliersByRegion($regionId, &$status)
     {
-        // if (Session::has('suppliersByRegion'))
-        // {
-        //     $suppliers = Session::get('suppliersByRegion');
-        //     if (isset($suppliers) && count($suppliers) >= 0)
-        //     {
-        //         $status = 200;
-        //         return $suppliers;
-        //     }
-        // }
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "suppliers/region/$regionId");
         $suppliers = self::getManyObjects($response, $status);
-        // Session::put('suppliersByRegion', $suppliers);
         return $suppliers;
     }
 

@@ -34,26 +34,26 @@
         <div class="col-12 no-padding">
             <div class="d-flex flex-wrap align-items-center justify-content-around py-1 py-xl-0" style="text-align: center; background-color: #00c2cb">
                 <div style="font-weight: 700; font-size: 20px">
-                Find us on your favourite social media. @swapmyenergyuk
+                    Find us on your favourite social media. @swapmyenergyuk
                 </div>
                 <div>
                     <a class="footer-social-link" href="https://www.facebook.com/swapmyenergyuk" rel="external">
-                    <img alt="facebook logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/facebook.svg') }}" width="25" height="auto"/>
+                        <img alt="facebook logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/facebook.svg') }}" width="25" height="auto"/>
                     </a>
                     <a class="footer-social-link" href="https://twitter.com/swapmyenergyuk" rel="external">
-                    <img alt="twitter-logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/twitter.svg') }}" width="25" height="auto"/>
+                        <img alt="twitter-logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/twitter.svg') }}" width="25" height="auto"/>
                     </a>
                     <a class="footer-social-link" href="https://www.instagram.com/swapmyenergyuk" rel="external">
-                    <img alt="instagram logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/instagram.svg') }}" width="25" height="auto"/>
+                        <img alt="instagram logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/instagram.svg') }}" width="25" height="auto"/>
                     </a>
                     <a class="footer-social-link" href="https://www.tiktok.com/@swapmyenergyuk" rel="external">
-                    <img alt="tiktok logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/tiktok.svg') }}" width="25" height="auto" />
+                        <img alt="tiktok logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/tiktok.svg') }}" width="25" height="auto" />
                     </a>
                     <a class="footer-social-link" href="https://www.linkedin.com/company/swapmyenergyuk/" rel="external">
-                    <img alt="linked in logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/linkedin.svg') }}" width="25" height="auto" />
+                        <img alt="linked in logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/linkedin.svg') }}" width="25" height="auto" />
                     </a>
                     <a class="footer-social-link" href="https://www.youtube.com/channel/UC7u_949FAQeV9FlZm4dH7lQ" rel="external">
-                    <img alt="youtube logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/youtube.svg') }}" width="25" height="auto" />
+                        <img alt="youtube logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/youtube.svg') }}" width="25" height="auto" />
                     </a>
                 </div>
             </div>
