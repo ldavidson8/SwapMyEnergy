@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Api\ResidentialApiController;
-use App\Http\Requests\Mode\ModeSession;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +33,7 @@ Route::group([ 'prefix' => '' ], function()
     Route::get('/sitemap', [ BusinessHomeController::class, 'siteMap' ]) -> name('business.sitemap');
     Route::get('/contact', [ BusinessHomeController::class, 'contact' ]) -> name('business.contact');
     Route::get('/partners-and-affiliates', [ BusinessHomeController::class, 'partnersAndAffiliates' ]) -> name('business.partners and affiliates');
+    Route::get('/our-team', [ BusinessHomeController::class, 'ourTeam' ]) -> name('business.our-team');
 
     Route::group([ 'prefix' => '/request-callback' ], function()
     {
@@ -68,7 +66,8 @@ Route::group([ 'prefix' => '/residential' ], function()
     Route::get('/sitemap', [ ResidentialHomeController::class, 'siteMap' ]) -> name('residential.sitemap');
     Route::get('/contact', [ ResidentialHomeController::class, 'contact' ]) -> name('residential.contact');
     Route::get('/partners-and-affiliates', [ ResidentialHomeController::class, 'partnersAndAffiliates' ]) -> name('residential.partners and affiliates');
-    
+    Route::get('/our-team', [ ResidentialHomeController::class, 'ourTeam' ]) -> name('residential.our-team');
+
     // Route::group([ 'prefix' => '/my-account', 'middleware' => 'residential' ], function()
     // {
     //     Route::get('/', [ ResidentialAccountController::class, 'myAccount' ]) -> name('residential.my account') -> middleware('password.confirm');

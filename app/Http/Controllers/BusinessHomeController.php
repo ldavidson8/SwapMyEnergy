@@ -77,4 +77,13 @@ class BusinessHomeController extends Controller
         $page_title = 'Sitemap';
         return view('other.sitemap', compact('navbar_page', 'page_title'));
     }
+
+    public function ourTeam()
+    {
+        ModeSession::setBusiness();
+
+        $navbar_page = 'our team';
+        $page_title = 'Our Team';
+        return view('other.our-team', compact('navbar_page', 'page_title'));
+    }
 }
