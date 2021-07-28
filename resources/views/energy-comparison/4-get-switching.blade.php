@@ -573,9 +573,9 @@
                             <p>We will send your application securely to the new energy supplier. They will contact your current supplier to arrange a 'Supply Start Date' usually within the next 21-days. Everything will be handled by the energy suppliers meaning you only need to do something if asked to do so e.g. provide a final meter reading. If you have any questions whatsoever, contact us on 0800 448 0205 or email help@theenergyshop.com and we will be happy to help.</p>
                             
                             @if (Session::has('fail') && Session::get('fail') == 'session_expired')
-                                <div class="alert alert-danger post-error">
+                                {{-- <div class="alert alert-danger post-error">
                                     Sorry, your session expired. Please try again.
-                                </div>
+                                </div> --}}
                             @elseif (count($errors) > 0)
                                 <div class="alert alert-danger">
                                     @foreach ($errors -> all() as $error)

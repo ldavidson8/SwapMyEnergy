@@ -42,9 +42,9 @@
         <div class="row flex-grow-1 no-padding background-image-preston center-content" style="color: #f3f2f1;">
             <div id="form-container">
                 @if (Session::has('fail') && Session::get('fail') == 'session_expired')
-                    <div class="alert alert-danger post-error">
+                    {{-- <div class="alert alert-danger post-error">
                         Sorry, your session expired. Please try again.
-                    </div>
+                    </div> --}}
                 @elseif (count($errors) > 0)
                     <div class="alert alert-danger post-error">
                         An error has ocurred. Please try again, or <a href='{{ route("$mode.contact") }}'>contact us here</a>.

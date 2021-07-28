@@ -5,19 +5,19 @@
 <style type="text/css">
     li.home
     {
-        background: url('img/footer/home-icon.png') center left/1.3em auto no-repeat;
+        background: url('{{ asset("img/footer/home-icon.png") }}') center left/1.3em auto no-repeat;
         padding-left: 1.8em;
         padding-top: 3px;
     }
     li.mail
     {
-        background: url('img/footer/email-icon.png') center left/1.3em auto no-repeat;
+        background: url('{{ asset("/img/footer/email-icon.png") }}') center left/1.3em auto no-repeat;
         padding-left: 1.8em;
         padding-top: 3px;
     }
     li.phone
     {
-        background: url('img/footer/phone-icon.png') center left/1.3em auto no-repeat;
+        background: url('{{ asset("/img/footer/phone-icon.png") }}') center left/1.3em auto no-repeat;
         padding-left: 1.8em;
         padding-top: 3px;
     }
@@ -32,45 +32,45 @@
 <footer>
     <div class="container-fluid flex-column d-flex no-padding">
         <div class="col-12 no-padding">
-            <div class="d-flex flex-wrap align-items-center justify-content-around py-3 py-xl-0" style="text-align: center; background-color: #00c2cb">
-                <div style="font-weight: 700; font-size: 26px">
+            <div class="d-flex flex-wrap align-items-center justify-content-around py-1 py-xl-0" style="text-align: center; background-color: #00c2cb">
+                <div style="font-weight: 700; font-size: 20px">
                 Find us on your favourite social media. @swapmyenergyuk
                 </div>
                 <div>
                     <a class="footer-social-link" href="https://www.facebook.com/swapmyenergyuk" rel="external">
-                    <img alt="facebook logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/facebook.svg') }}" width="50" height="auto"/>
+                    <img alt="facebook logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/facebook.svg') }}" width="25" height="auto"/>
                     </a>
                     <a class="footer-social-link" href="https://twitter.com/swapmyenergyuk" rel="external">
-                    <img alt="twitter-logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/twitter.svg') }}" width="50" height="auto"/>
+                    <img alt="twitter-logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/twitter.svg') }}" width="25" height="auto"/>
                     </a>
                     <a class="footer-social-link" href="https://www.instagram.com/swapmyenergyuk" rel="external">
-                    <img alt="instagram logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/instagram.svg') }}" width="50" height="auto"/>
+                    <img alt="instagram logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/instagram.svg') }}" width="25" height="auto"/>
                     </a>
                     <a class="footer-social-link" href="https://www.tiktok.com/@swapmyenergyuk" rel="external">
-                    <img alt="tiktok logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/tiktok.svg') }}" width="50" height="auto" />
+                    <img alt="tiktok logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/tiktok.svg') }}" width="25" height="auto" />
                     </a>
                     <a class="footer-social-link" href="https://www.linkedin.com/company/swapmyenergyuk/" rel="external">
-                    <img alt="linked in logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/linkedin.svg') }}" width="50" height="auto" />
+                    <img alt="linked in logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/linkedin.svg') }}" width="25" height="auto" />
                     </a>
                     <a class="footer-social-link" href="https://www.youtube.com/channel/UC7u_949FAQeV9FlZm4dH7lQ" rel="external">
-                    <img alt="youtube logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/youtube.svg') }}" width="50" height="auto" />
+                    <img alt="youtube logo" class="footer-social-link-image lazy" data-src="{{ asset('img/social-links/youtube.svg') }}" width="25" height="auto" />
                     </a>
                 </div>
             </div>
         </div>
-        <div class="row pt-5">
+        <div class="row pt-3">
             <div class="col-md-6 col-lg-4 order-4 order-lg-1 text-center text-lg-left">
                 <div class="col-12 col-lg-6">
                 <a href="https://www.znergi.co.uk/" rel="external" style="text-decoration: none;">
-                    <img alt="" class="img-fluid" src="{{ asset('img/footer/Znergi_logo.png')}}">
-                    <p style="color: #f3f2f1; "> www.znergi.co.uk  </p>
+                    <img alt="" src="{{ asset('img/footer/Znergi_logo.png')}}" width="auto" height="50px">
+                    <p style="color: #f3f2f1; font-size: 18px;"> www.znergi.co.uk  </p>
                 </a>
                 </div>
-                <div class="col-12 mobile-no-padding text-left">
-                    <ul class="list-unstyled" style="font-size: 18px; width: 100%;">
-                        <li class="home my-3">Estate House, Fox St, Preston PR1 2AB</li>
-                        <li class="mail my-3">contact@swapmyenergy.co.uk</li>
-                        <li class="phone my-3">01772 584880</li>
+                <div class="col-12 mobile-no-padding">
+                    <ul class="list-unstyled list-icons">
+                        <li class="home my-2">Estate House, Fox St, Preston PR1 2AB</li> <br />
+                        <li class="mail my-2">contact@swapmyenergy.co.uk</li> <br />
+                        <li class="phone my-2">01772 584880</li>
                     </ul>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                 </ul>
                 
             </div>
-            <div class="col-md-6 col-lg-4 text-center text-lg-left order-3 order-lg-4" style="font-size: 18px;">
+            <div class="col-md-6 col-lg-4 text-center text-lg-left order-3 order-lg-4" style="font-size: 16px;">
                 <p>Swap My Energy is an energy intermediary and not a supplier.    The UK trading name follows the Utilities Intermediaries Association code of conduct and Ofgem policies. Percentage energy savings quoted are against customers who let their last contract renew automatically.</p>
                 <p> All suppliers logos are trademarks of their respective owners </p>
                 <p>Swap My Energy is part of Znergi Limited Registered in England, Company Registration Number 12937329</p>

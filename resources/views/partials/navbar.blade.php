@@ -18,7 +18,7 @@
                 </li>
                 <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>
                 <li class="nav-item">
-                    <a class="nav-link navigation-link {{ ($navbar_page == "our team") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.our team") }}">Our Team</a>
+                    <a class="nav-link navigation-link {{ ($navbar_page == "our team") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.our-team") }}">Our Team</a>
                 </li>
                 {{-- My Account Page
                     <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>

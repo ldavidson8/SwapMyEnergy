@@ -262,13 +262,6 @@
         </div>
         <div class="col-lg-3 col-md-4 col-12 card-wrapper">
             <div class="card">
-                <img alt="" class="member-img" src="{{ asset('img/our-team/shaquilleg.png') }}">
-                <h3>Shaquille Gregory</h3>
-                <h4>Business Development Manager</h4>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
-            <div class="card">
                 <a href="#" data-toggle="modal" data-target="#jonathanf">
                     <img alt="" class="member-img" src="{{ asset('img/our-team/jonathanf.png') }}">
                     </a>

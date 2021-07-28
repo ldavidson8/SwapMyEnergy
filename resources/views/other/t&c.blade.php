@@ -34,6 +34,7 @@
 @endsection
 
 @section('main-content')
+<hr />
     <main class="col-md-12">
         <div class="container">
             <div class="title">

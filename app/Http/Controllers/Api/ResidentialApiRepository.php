@@ -121,17 +121,12 @@ class ResidentialApiRepository extends Controller
 
     public static function tariffs_forASuppllier($supplierId, $regionId, $serviceType, $paymentMethod, $e7, &$statusLive, &$statusPreserved)
     {
-        $response1 = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "tariffs/suppliers/$supplierId?regionId=$regionId&serviceType=$serviceType&paymentMethod=$paymentMethod&e7=$e7&preservedTariff=L");
-        $response2 = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "tariffs/suppliers/$supplierId?regionId=$regionId&serviceType=$serviceType&paymentMethod=$paymentMethod&e7=$e7&preservedTariff=P");
-        
-        $liveObject = self::getManyObjects($response1, $statusLive);
-        $preservedObject = self::getManyObjects($response2, $statusPreserved);
-
-        if (isset($liveObject) && isset($preservedObject))
-        return array_merge($liveObject, $preservedObject);
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "tariffs/suppliers/$supplierId?regionId=$regionId&serviceType=$serviceType&paymentMethod=$paymentMethod&e7=$e7");
+        $object = self::getManyObjects($response, $statusLive);
+        return $object;
     }
     
-    public static function tariffs_current($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $gas_kwh, $elec_kwh, &$status)
+    public static function tariffs_current($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $consumption_figures, $gas, $elec, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> post(self::_apiUrl() . "tariffs/current", array(
             "currentGasTariff" => $gas_tariff,
@@ -140,15 +135,15 @@ class ResidentialApiRepository extends Controller
             "currentServiceType" => $fuel_type_str,
             "energyUsage" =>
             [
-                "consumptionFigures" => "kwh",
-                "annualGasConsumption" => $gas_kwh,
-                "annualElecConsumption" => $elec_kwh
+                "consumptionFigures" => $consumption_figures,
+                "annualGasConsumption" => $gas,
+                "annualElecConsumption" => $elec
             ]
         ));
         return self::getOneObject($response, $status);
     }
 
-    public static function tariffs_results($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $gas_kwh, $elec_kwh, $e7_usage, $home_mover, $preferred_payment_method, $show_only_apply_tariff, $features, $postcode, &$status)
+    public static function tariffs_results($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $consumption_figures, $gas, $elec, $e7_usage, $home_mover, $preferred_payment_method, $show_only_apply_tariff, $features, $postcode, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> post(self::_apiUrl() . "tariffs/results", array(
             "currentGasTariff" => $gas_tariff,
@@ -157,12 +152,12 @@ class ResidentialApiRepository extends Controller
             "currentServiceType" => $fuel_type_str,
             "energyUsage" =>
             [
-                "consumptionFigures" => "kwh",
-                "annualGasConsumption" => $gas_kwh,
-                "annualElecConsumption" => $elec_kwh,
+                "consumptionFigures" => $consumption_figures,
+                "annualGasConsumption" => $gas,
+                "annualElecConsumption" => $elec,
                 "e7Usage" => $e7_usage
             ],
-            "homeMover" => false,
+            "homeMover" => $home_mover,
             "preferredPaymentMethod" => $preferred_payment_method,
             "showOnlyApplyTariff" => $show_only_apply_tariff,
             "features" => $features,
