@@ -81,7 +81,7 @@ class ResidentialHomeController extends Controller
 
     public function ourTeam()
     {
-        ModeSession::setBusiness();
+        ModeSession::setResidential();
 
         $navbar_page = 'our team';
         $page_title = 'Our Team - Residential';
