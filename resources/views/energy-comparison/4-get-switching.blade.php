@@ -65,7 +65,6 @@
     $old_mobile = old('mobile');
     $old_emailAddress = old('emailAddress');
     $old_dob = old('dob');
-    $old_supplier_opt_in = old('supplier_opt_in');
 
     $title = (isset($old_title)) ? $old_title : "";
     $firstName = (isset($old_firstName)) ? $old_firstName : "";
@@ -74,7 +73,6 @@
     $mobile = (isset($old_mobile)) ? $old_mobile : "";
     $emailAddress = (isset($old_emailAddress)) ? $old_emailAddress : "";
     $dob = (isset($old_dob)) ? $old_dob : "";
-    $supplier_opt_in = (isset($old_supplier_opt_in)) ? $old_supplier_opt_in : "";
 
     $coolingOff = 0;
     if (isset($selected_tariff["supplierCoolingOff"]) && is_numeric(isset($selected_tariff["supplierCoolingOff"])))
@@ -84,6 +82,14 @@
     if (isset($selected_tariff["tariff_info"] -> supplierCoolingOff) && is_numeric(isset($selected_tariff["tariff_info"] -> supplierCoolingOff)))
     {
         $coolingOff = isset($selected_tariff["tariff_info"] -> supplierCoolingOff);
+    }
+
+
+    /*  */
+    $legal_text_for_supplier = "";
+    if ($selected_tariff['supplierId'] == 68 || $selected_tariff['supplierName'] == "EDF Energy")
+    {
+        $legal_text_for_supplier = "EDF Energy";
     }
 ?>
 
@@ -424,20 +430,23 @@
         {
             padding: 7px;
         }
-
-        #billing_button
-        {
-            background-color: #00c2cb;
-            color: #202020;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-        }
-
+    
         .site-accordion-panel
         {
             padding-top: 20px;
         }
+
+        
+        .blue-text
+        {
+            color: #0044cb;
+        }
+
+        .grey-text
+        {
+            color: #555;
+        }
+
 
         @media (min-width: 768px) and (max-width: 991px)
         {
@@ -614,49 +623,207 @@
                                     @endif
                                 </table>
                             </div>
-                            
                             <br />
+                            
+                            <h2>Your Current Address</h2>
                             <form id="main_form" action="{{ route('residential.energy-comparison.4-get-switching') }}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <span id="postcode_error" class="form-error-message text-danger"></span>
                                     <label for="postcode">Postcode <span class="text-danger">*</span></label>
+                                    <span id="postcode_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="postcode" name="postcode" value="{{ $postcode }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <span id="address_line_1_error" class="form-error-message text-danger"></span>
                                     <label for="address_line_1">Address Line 1<span class="text-danger">*</span></label>
+                                    <span id="address_line_1_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="address_line_1" name="address_line_1" value="{{ $address_line_1 }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <span id="address_line_2_error" class="form-error-message text-danger"></span>
                                     <label for="address_line_2">Address Line 2</label>
+                                    <span id="address_line_2_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="address_line_2" name="address_line_2" value="{{ $address_line_2 }}" />
                                 </div>
                                 <div class="form-group">
-                                    <span id="town_error" class="form-error-message text-danger"></span>
                                     <label for="town">Town<span class="text-danger">*</span></label>
+                                    <span id="town_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="town" name="town" value="{{ $town }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <span id="county_error" class="form-error-message text-danger"></span>
                                     <label for="county">County</label>
+                                    <span id="county_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="county" name="county" value="{{ $county }}" />
                                 </div>
+                                
+                                @if ($get_previous_addresses)
+                                    {{-- How Long At Current Address --}}
+                                    <br /><br />
+                                    <label>How long have you been at this address?</label>
+                                    <div class="form-group">
+                                        <label for="address_length_years">Years</label>
+                                        <span id="address_length_years_error" class="form-error-message text-danger"></span>
+                                        <input type="number" min="0" id="address_length_years" name="address_length_years" value="{{ old('address_length_years') }}" required="required" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address_length_months">Months</label>
+                                        <span id="address_length_months_error" class="form-error-message text-danger"></span>
+                                        <input type="number" min="0" max="11" id="address_length_months" name="address_length_months" value="{{ old('address_length_months') }}" required="required" />
+                                    </div>
+                                    
+                                    {{-- Previous Address 1 --}}
+                                    <fieldset class="form-group" id="prev_addr_1_section" style="display: none;">
+                                        <br /><hr class="thin-line" /><br />
+                                        
+                                        <h2>Previous Address 1</h2>
+                                        
+                                        <div class="form-group">
+                                            <label for="prev_addr_1_postcode">Postcode <span class="text-danger">*</span></label>
+                                            <span id="prev_addr_1_postcode_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_1_postcode" name="prev_addr_1_postcode" value="{{ old('prev_addr_1_postcode') }}" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_1_address_line_1">Address Line 1 <span class="text-danger">*</span></label>
+                                            <span id="prev_addr_1_address_line_1_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_1_address_line_1" name="prev_addr_1_address_line_1" value="{{ old('prev_addr_1_address_line_1') }}" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_1_address_line_2">Address Line 2</label>
+                                            <span id="prev_addr_1_address_line_2_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_1_address_line_2" name="prev_addr_1_address_line_2" value="{{ old('prev_addr_1_address_line_2') }}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_1_town">Town <span class="text-danger">*</span></label>
+                                            <span id="prev_addr_1_town_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_1_town" name="prev_addr_1_town" value="{{ old('prev_addr_1_town') }}" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_1_county">County</label>
+                                            <span id="prev_addr_1_county_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_1_county" name="prev_addr_1_county" value="{{ old('prev_addr_1_county') }}" />
+                                        </div>
+                                        <br /><br />
+
+                                        <label>How long have you been at this address?</label>
+                                        <div class="form-group">
+                                            <label for="prev_addr_1_length_years">Years</label>
+                                            <span id="prev_addr_1_length_years_error" class="form-error-message text-danger"></span>
+                                            <input type="number" min="0" id="prev_addr_1_length_years" name="prev_addr_1_length_years" value="{{ old('prev_addr_1_length_years') }}" required="required" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_1_length_months">Months</label>
+                                            <span id="prev_addr_1_length_months_error" class="form-error-message text-danger"></span>
+                                            <input type="number" min="0" max="11" id="prev_addr_1_length_months" name="prev_addr_1_length_months" value="{{ old('prev_addr_1_length_months') }}" required="required" />
+                                        </div>
+                                    </fieldset>
+                                    
+                                    {{-- Previous Address 2 --}}
+                                    <fieldset class="form-group" id="prev_addr_2_section" style="display: none;">
+                                        <br /><hr class="thin-line" /><br />
+                                        
+                                        <h2>Previous Address 2</h2>
+                                        
+                                        <div class="form-group">
+                                            <label for="prev_addr_2_postcode">Postcode <span class="text-danger">*</span></label>
+                                            <span id="prev_addr_2_postcode_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_2_postcode" name="prev_addr_2_postcode" value="{{ old('prev_addr_2_postcode') }}" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_2_address_line_1">Address Line 1 <span class="text-danger">*</span></label>
+                                            <span id="prev_addr_2_address_line_1_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_2_address_line_1" name="prev_addr_2_address_line_1" value="{{ old('prev_addr_2_address_line_1') }}" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_2_address_line_2">Address Line 2</label>
+                                            <span id="prev_addr_2_address_line_2_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_2_address_line_2" name="prev_addr_2_address_line_2" value="{{ old('prev_addr_2_address_line_2') }}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_2_town">Town <span class="text-danger">*</span></label>
+                                            <span id="prev_addr_2_town_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_2_town" name="prev_addr_2_town" value="{{ old('prev_addr_2_town') }}" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_2_county">County</label>
+                                            <span id="prev_addr_2_county_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_2_county" name="prev_addr_2_county" value="{{ old('prev_addr_2_county') }}" />
+                                        </div>
+                                        <br /><br />
+                                        
+                                        <label>How long have you been at this address?</label>
+                                        <div class="form-group">
+                                            <label for="prev_addr_2_length_years">Years</label>
+                                            <span id="prev_addr_2_length_years_error" class="form-error-message text-danger"></span>
+                                            <input type="number" min="0" id="prev_addr_2_length_years" name="prev_addr_2_length_years" value="{{ old('prev_addr_2_length_years') }}" required="required" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_2_length_months">Months</label>
+                                            <span id="prev_addr_2_length_months_error" class="form-error-message text-danger"></span>
+                                            <input type="number" min="0" max="11" id="prev_addr_2_length_months" name="prev_addr_2_length_months" value="{{ old('prev_addr_2_length_months') }}" required="required" />
+                                        </div>
+                                    </fieldset>
+                                @endif
+                                
+                                <br /><hr class="thin-line" /><br />
+                                
                                 <div class="form-group">
-                                    <span id="smartMeter_error" class="form-error-message text-danger"></span>
+                                    <h2>Billing Address</h2>
+                                    <input type="checkbox" id="same_current_address" name="same_current_address" {{ ($same_current_address == true) ? "checked" : "" }} />
+                                    <span id="same_current_address_error" class="form-error-message text-danger"></span>        
+                                    <label for="same_current_address" style="font-weight: normal;">My billing address is the same as my supply address.</label>
+                                </div>
+                                <div class="form-group" id="billing_section" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="billing_postcode">Postcode <span class="text-danger">*</span></label>
+                                        <span id="billing_postcode_error" class="form-error-message text-danger"></span>
+                                        <input type="text" id="billing_postcode" name="billing_postcode" value="{{ $billing_postcode }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="billing_address_line_1">Address Line 1 <span class="text-danger">*</span></label>
+                                        <span id="billing_address_line_1_error" class="form-error-message text-danger"></span>
+                                        <input type="text" id="billing_address_line_1" name="billing_address_line_1" value="{{ $billing_address_line_1 }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="billing_address_line_2">Address Line 2</label>
+                                        <span id="billing_address_line_2_error" class="form-error-message text-danger"></span>
+                                        <input type="text" id="billing_address_line_2" name="billing_address_line_2" value="{{ $billing_address_line_2 }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="billing_town">Town <span class="text-danger">*</span></label>
+                                        <span id="billing_town_error" class="form-error-message text-danger"></span>
+                                        <input type="text" id="billing_town" name="billing_town" value="{{ $billing_town }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="billing_county">County</label>
+                                        <span id="billing_county_error" class="form-error-message text-danger"></span>
+                                        <input type="text" id="billing_county" name="billing_county" value="{{ $billing_county }}" />
+                                    </div>
+                                </div>
+                                
+                                <br /><hr class="thin-line" /><br />
+                                
+                                <h2>Meters</h2>
+                                <div class="form-group">
                                     <label for="smartMeter">Do you already have a smart meter installed at your home?<span class="text-danger">*</span></label>
+                                    <span id="smartMeter_error" class="form-error-message text-danger"></span>
                                     <select id="smartMeter" name="smartMeter" data-value="{{ $smartMeter }}" required>
                                         <option value="">Please Select</option>
                                         <option value="Y">Yes</option>
                                         <option value="N">No</option>
                                         <option value="DK">Don't Know</option>
                                     </select>
+                                    @switch($legal_text_for_supplier)
+                                        {{-- EDF Energy --}}
+                                        @case("EDF Energy")
+                                            {{-- Show only if "Yes" is selected --}}
+                                            <p id="smartMeter_yesText_section" class="grey-text" style="display: none;">Please note that by proceeding with this contract you may not be able to benefit from the meter functionality and any related services that are associated with your smart meter.</p>
+                                            {{-- Show only if "Don't Know" is selected --}}
+                                            <p id="smartMeter_dontKnowText_section" class="grey-text" style="display: none;">If you do have a smart meter and switch your supply, you may lose any non-standard smart metering functionality provided by your previous supplier and your meters will need to be read.</p>
+                                            @break
+                                    @endswitch
                                 </div>
                                 @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "G")
                                     <div class="form-group">
-                                        <span id="gas_meter_number_error" class="form-error-message text-danger"></span>
                                         <label for="gas_meter_number">Gas meter number<span class="text-danger">*</span></label>
+                                        <span id="gas_meter_number_error" class="form-error-message text-danger"></span>
                                         <p><input type="text" id="gas_meter_number" name="gas_meter_number" value="{{ $gas_meter_number }}" required /></p>
                                         <p>Your gas meter number is also known as a Meter Point Reference Number (MPRN). Please enter the number as you find it on your gas bill. If you are unable to find this information on your energy bill, you can get it by calling the National Grid on 0870 608 1524 (press 2 then 1).</p>
                                         <p>Or <a href="https://www.findmysupplier.energy/webapp/index.html">click here</a> to find this information online. Enter your postcode first and then your house number.</p>
@@ -664,64 +831,13 @@
                                 @endif
                                 @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "E")
                                     <div class="form-group">
-                                        <span id="elec_meter_number_error" class="form-error-message text-danger"></span>
                                         <label for="elec_meter_number">Electricity meter number<span class="text-danger">*</span></label>
+                                        <span id="elec_meter_number_error" class="form-error-message text-danger"></span>
                                         <p><input type="text" id="elec_meter_number" name="elec_meter_number" value="{{ $elec_meter_number }}" /></p>
                                         <p>Your electricity meter number is also known as a Supply (S) Number or MPAN. Please enter the bottom row of numbers as you find them on your electricity bill without spaces as highlighted in the example below.</p>
                                         <img alt="Example of an Electricity Number" src="" />
                                     </div>
                                 @endif
-                                <div class="form-group">
-                                    <span id="same_current_address_error" class="form-error-message text-danger"></span>
-                                    <p><label for="same_current_address">Billing Address</label></p>
-                                    <input type="checkbox" id="same_current_address" name="same_current_address" {{ ($same_current_address == true) ? "checked" : "" }} />
-                                    <label for="same_current_address" style="font-weight: normal;">My billing address is the same as my supply address.</label>
-                                </div>
-                                <div class="form-group" id="billing_section" style="display: none;">
-                                    {{-- <span id="billing_error" class="form-error-message text-danger"></span>
-                                    <table id="billing_table">
-                                        <tr>
-                                            <th><label for="billing_postcode">Postcode</label></th>
-                                            <th colspan="2"><label for="billing_houseNo">House Number</label></th>
-                                            <th><label for="billing_address">Billing Address</label></th>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="text" id="billing_postcode" name="billing_postcode" value="{{ $billing_postcode }}" style="width: 200px; max-width: 100%;" /></td>
-                                            <td><input type="text" id="billing_houseNo" value="{{ $billing_houseNo }}" style="width: 200px; max-width: 100%;" /></td>
-                                            <td><button id="billing_button" type="button">Look Up</button></td>
-                                            <td>
-                                                <select id="billing_address" name="billing_address" style="width: 200px; max-width: 100%;">
-                                                    <option class="initial-values" value="">Please Select</option>
-                                                </select>
-                                            </td>
-                                        </tr>
-                                    </table> --}}
-                                    <div class="form-group">
-                                        <span id="billing_postcode_error" class="form-error-message text-danger"></span>
-                                        <label for="billing_postcode">Postcode <span class="text-danger">*</span></label>
-                                        <input type="text" id="billing_postcode" name="billing_postcode" value="{{ $billing_postcode }}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <span id="billing_address_line_1_error" class="form-error-message text-danger"></span>
-                                        <label for="billing_address_line_1">Address Line 1 <span class="text-danger">*</span></label>
-                                        <input type="text" id="billing_address_line_1" name="billing_address_line_1" value="{{ $billing_address_line_1 }}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <span id="billing_address_line_2_error" class="form-error-message text-danger"></span>
-                                        <label for="billing_address_line_2">Address Line 2</label>
-                                        <input type="text" id="billing_address_line_2" name="billing_address_line_2" value="{{ $billing_address_line_2 }}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <span id="billing_town_error" class="form-error-message text-danger"></span>
-                                        <label for="billing_town">Town <span class="text-danger">*</span></label>
-                                        <input type="text" id="billing_town" name="billing_town" value="{{ $billing_town }}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <span id="billing_county_error" class="form-error-message text-danger"></span>
-                                        <label for="billing_county">County</label>
-                                        <input type="text" id="billing_county" name="billing_county" value="{{ $billing_county }}" />
-                                    </div>
-                                </div>
                                 
                                 <br /><hr class="thin-line" /><br />
                                 
@@ -731,9 +847,20 @@
                                     <p>Even after you have submitted this application you still have {{ $coolingOff }} days from today to cancel your contract if you change your mind.</p>
                                 @endif
                                 
+                                @switch($legal_text_for_supplier)
+                                    {{-- EDF Energy --}}
+                                    @case("EDF Energy")
+                                        <span class="grey-text">
+                                            <p>Direct Debit Instruction (if applicable)</p>
+                                            <p>If you have chosen to pay by Direct Debit, EDF Energy Customers Ltd will send written confirmation of your Direct Debit Instruction to you within 3 working days or no later than 10 working days before the first collection.</p>
+                                            <p>If you have chosen to pay by Direct Debit, the company name that will appear on your bank statement is EDF Energy.</p>
+                                            <p>The personal projections provided for your EDF Energy Customers Ltd products are based on the energy usage figures that you provided. If you provided us with either annual, quarterly or monthly spend figures then it is assumed that this spend figure does not include any debt re-payments. If this assumption is incorrect please re-enter your annual spend figure excluding any historic debt repayments you are currently making.</p>
+                                        </span>
+                                @endswitch
+                                
                                 <div class="form-group">
-                                    <span id="payment_method_error" class="form-error-message text-danger"></span>
                                     <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
+                                    <span id="payment_method_error" class="form-error-message text-danger"></span>
                                     <select type="text" id="payment_method" name="payment_method" data-value="{{ $payment_method }}" required>
                                         <option value="">Please Select</option>
                                         @foreach ($selected_payment_methods as $spm)
@@ -742,33 +869,33 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <span id="bankName_error" class="form-error-message text-danger"></span>
                                     <label for="bankName" class="font-weight-bold">Bank Name <span class="text-danger">*</span></label>
+                                    <span id="bankName_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="bankName" name="bankName" value="{{ $bankName }}" required="required" />
                                 </div>
                                 <div class="form-group">
-                                    <span id="accountName_error" class="form-error-message text-danger"></span>
                                     <label for="accountName" class="font-weight-bold">Account Holder Name<span class="text-danger">*</span></label> 
+                                    <span id="accountName_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="accountName" name="accountName" value="{{ $accountName }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <span id="sortCode_error" class="form-error-message text-danger"></span>
                                     <label for="sortCode1 sortCode2 sortCode3" class="font-weight-bold d-block">Sort Code<span class="text-danger">*</span></label>
+                                    <span id="sortCode_error" class="form-error-message text-danger"></span>
                                     <input id="sortCode1" name="sortCode1" inputmode="tel" minlength="2" maxlength="2" type="text" value="{{ $sortCode1 }}" required class="d-inline text-center" style="width: 150px; max-width: 100%;" />
                                     <input id="sortCode2" name="sortCode2" inputmode="tel" minlength="2" maxlength="2" type="text" value="{{ $sortCode2 }}" required class="d-inline text-center" style="width: 150px; max-width: 100%;" />
                                     <input id="sortCode3" name="sortCode3" inputmode="tel" minlength="2" maxlength="2" type="text" value="{{ $sortCode3 }}" required class="d-inline text-center" style="width: 150px; max-width: 100%;" />
                                 </div> 
                                 <div class="form-group">
-                                    <span id="accountNumber_error" class="form-error-message text-danger"></span>
                                     <label for="accountNumber" class="font-weight-bold">Account Number<span class="text-danger">*</span></label> 
+                                    <span id="accountNumber_error" class="form-error-message text-danger"></span>
                                     <input id="accountNumber" name="accountNumber" inputmode="tel" maxlength="8" type="text" value="{{ $accountNumber }}" required />
                                     <span class="small-input-text">If your account number is less than 8 digits, you should add zeros to the beginning of your account number until it is exactly 8 digits long.</span>
                                 </div>
                                 <div class="row no-margin">
                                     <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <span id="preferredDay_error" class="form-error-message text-danger"></span>
                                             <label for="preferredDay" class="font-weight-bold">Select your payment date <span class="text-danger">*</span></label>
+                                            <span id="preferredDay_error" class="form-error-message text-danger"></span>
                                             <select id="preferredDay" name="preferredDay" data-value="{{ $preferredDay }}" required>
                                                 <option value="" selected>Please Select</option> 
                                                 <option value="1">1</option> 
@@ -804,80 +931,104 @@
                                     </div>
                                 </div>
                                 <br />
-                                <div class="form-group">
-                                    <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
-                                    <p><label for="direct_debit_confirmation">Direct Debit Confirmation <span class="text-danger">*</span></label></p>
-                                    <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
-                                    <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
-                                </div>
-                                <div class="row no-margin mt-4">
-                                    <div class="col-md-12">
+                                @switch($legal_text_for_supplier)
+                                    {{-- EDF Energy --}}
+                                    @case("EDF Energy")
                                         <div class="form-group">
-                                            <span id="receiveBills_error" class="form-error-message text-danger"></span>
-                                            <label for="receiveBills" class="font-weight-bold">
-                                                How would you like to receive all communications from <!-- insert name of selected tariff here -->? An electronic preference means <!-- "they" will be name of selected tariff -->they will
-                                                communicate with you electronically wherever possible.<span class="text-danger">*</span>
-                                            </label> 
-                                            <select id="receiveBills" name="receiveBills" value="{{ $receiveBills }}" required>
-                                                <option value="Email">Email</option>
-                                            </select>
+                                            <p><label for="direct_debit_confirmation">Direct Debit Confirmation <span class="text-danger">*</span></label></p>
+                                            <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
+                                            <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
+                                            <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
                                         </div>
-                                    </div>
-                                </div>
-
-                                @if (true || $coolingOff > 0)
-                                    <button type="button" class="collapse-table-button site-accordion" role="button">Your Cancellation Rights</button>
-                                    <div class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell {{ $selected_tariff["supplierName"] }} within the cooling off period, which ends 14 days from day after you sign up.</div>
-                                @endif
+                                        <?php $features = explode(",", $selected_tariff["tariff_info"] -> features); ?>
+                                        @if (in_array(28, $features) || in_array(29, $features))
+                                            <div class="row no-margin mt-4">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="receiveBills" class="font-weight-bold">How would you like to receive all communications from EDF Energy Customers Ltd? An electronic preference means EDF Energy Customers Ltd communicate with you electronically wherever possible.</label> 
+                                                        <span id="receiveBills_error" class="form-error-message text-danger"></span>
+                                                        <select id="receiveBills" name="receiveBills" value="{{ $receiveBills }}">
+                                                            <option value="Paper"></option>
+                                                            <option value="Email">Electronically</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        <div class="form-group">
+                                            <input type="checkbox" id="supplier_opt_in" name="supplier_opt_in" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} />
+                                            <label for="supplier_opt_in" style="font-weight: normal;">EDF will email you offers from time to time. You can tick this box if you want to unsubscribe.</label>
+                                            <p class="grey-text">EDF will send you a confirmation email. If you don't wish to receive EDF email marketing, you can unsubscribe using the link at the bottom of their email.</p>
+                                        </div>
+                                        @if ($coolingOff > 0)
+                                            <button type="button" class="collapse-table-button site-accordion" role="button">Your Cancellation Rights</button>
+                                            <div class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell EDF Energy within the cooling off period, which ends {{ $coolingOff }} days from day after you sign up.</div>
+                                        @endif
+                                        <div class="form-group">
+                                            <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
+                                            <label for="supplier_opt_in" style="font-weight: normal;">I confirm that I have read and accepted the <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/EDF.pdf" target="_blank">terms and conditions</a> that apply for the tariff I have chosen and which include obligations to pay.</label>
+                                        </div>
+                                @endswitch
                                 
                                 <br /><hr class="thin-line" /><br />
 
                                 <h2>Your Contact Details</h2>
                                 <div class="form-group">
-                                    <span id="title_error" class="form-error-message text-danger"></span>
                                     <label for="title" class="font-weight-bold">Title<span class="text-danger">*</span></label> 
+                                    <span id="title_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="title" name="title" value="{{ $title }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <span id="firstName_error" class="form-error-message text-danger"></span>
                                     <label for="firstName" class="font-weight-bold">First Name<span class="text-danger">*</span></label> 
+                                    <span id="firstName_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="firstName" name="firstName" value="{{ $firstName }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <span id="lastName_error" class="form-error-message text-danger"></span>
                                     <label for="lastName" class="font-weight-bold">Last Name<span class="text-danger">*</span></label> 
+                                    <span id="lastName_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="lastName" name="lastName" value="{{ $lastName }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <span id="telephone_error" class="form-error-message text-danger"></span>
                                     <label for="telephone" class="font-weight-bold">Telephone<span class="text-danger">*</span></label> 
+                                    <span id="telephone_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="telephone" name="telephone" value="{{ $telephone }}" required />
                                     <span class="small-input-text">Please enter the number starting with 0 and not the dialling code.</span>
                                 </div>
                                 <div class="form-group">
-                                    <span id="mobile_error" class="form-error-message text-danger"></span>
                                     <label for="mobile" class="font-weight-bold">Mobile</label> 
+                                    <span id="mobile_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="mobile" name="mobile" value="{{ $mobile }}" />
                                     <span class="small-input-text">Please enter the number starting with 0 and not the dialling code.</span>
                                 </div>
                                 <div class="form-group">
-                                    <span id="emailAddress_error" class="form-error-message text-danger"></span>
                                     <label for="emailAddress" class="font-weight-bold">Email Address<span class="text-danger">*</span></label> 
+                                    <span id="emailAddress_error" class="form-error-message text-danger"></span>
                                     <input type="email" id="emailAddress" name="emailAddress" value="{{ $emailAddress }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <span id="dob_error" class="form-error-message text-danger"></span>
                                     <label for="dob" class="font-weight-bold">Date of Birth<span class="text-danger">*</span></label> 
+                                    <span id="dob_error" class="form-error-message text-danger"></span>
                                     <input type="date" id="dob" name="dob" value="{{ $dob }}" required />
                                 </div>
                                 
                                 <br /><br /><hr class="thin-line" /><br />
                                 
+                                @switch($legal_text_for_supplier)
+                                    {{-- EDF Energy --}}
+                                    @case("EDF Energy")
+                                        <div class="form-group">
+                                            <p><label for="special_needs_priority_services_register">Special needs / Priority Services Register (PSR)</label></p>
+                                            <span id="special_needs_priority_services_register" class="form-error-message text-danger"></span>
+                                            <input type="checkbox" id="special_needs_priority_services_register" name="special_needs_priority_services_register" {{ (old('special_needs_priority_services_register') != '') ? "checked" : " " }} />
+                                            <label for="special_needs_priority_services_register" style="font-weight: normal;">Would you like to receive information about EDF Energy Customers Ltd's Priority Services Register Scheme?</label>
+                                        </div>
+                                @endswitch
+
                                 <h2>Stay in touch</h2>
                                 <p>{{ $selected_tariff["supplierName"] }} would like to share information with you about any products, services on offer from {{ $selected_tariff["supplierName"] }} and its associated companies.</p>
                                 <div class="form-group">
-                                    <input type="checkbox" id="supplier_opt_in" name="supplier_opt_in" {{ ($supplier_opt_in == true) ? "checked" : "" }} />
-                                    <label for="supplier_opt_in" style="font-weight: normal;">Yes please, I would like to hear what {{ $selected_tariff["supplierName"] }} has to offer.</label>
+                                    <input type="checkbox" id="supplier_partners" name="supplier_partners" {{ (old('supplier_partners') == true) ? "checked" : "" }} />
+                                    <label for="supplier_partners" style="font-weight: normal;">Yes please, I would like to hear what {{ $selected_tariff["supplierName"] }} has to offer.</label>
                                 </div>
                                 
                                 <button type="submit" class="switchButton">Get Switching</button>
@@ -911,6 +1062,8 @@
             // var inputCounty = $("#county");
             var errorSmartMeter = $("#smartMeter_error");
             var inputSmartMeter = $("#smartMeter");
+            var yesTextSmartMeter = $("#smartMeter_yesText_section");
+            var dontKnowTextSmartMeter = $("#smartMeter_dontKnowText_section");
             // var errorGasMeterNumber = $("#gas_meter_number_error");
             // var inputGasMeterNumber = $("#gas_meter_number");
             // var errorElecMeterNumber = $("#elec_meter_number_error");
@@ -921,7 +1074,6 @@
             var errorBilling = $("#billing_error");
             var inputBillingPostcode = $("#billing_postcode");
             var inputBillingHouseNo = $("#billing_houseNo");
-            var inputBillingButton = $("#billing_button");
             var inputBillingAddress = $("#billing_address");
             var inputBillingStreetName = $("#billing_street_name");
             var inputBillingArea = $("#billing_area");
@@ -962,11 +1114,200 @@
             // var errorEmailAddress = $("#emailAddress_error");
             // var inputEmailAddress = $("#emailAddress");
             
+            var sections =
+            {
+                "addressLength":
+                {
+                    "years":
+                    {
+                        "error": $("#address_length_years_error"),
+                        "input": $("#address_length_years")
+                    },
+                    "months":
+                    {
+                        "error": $("#address_length_months_error"),
+                        "input": $("#address_length_months")
+                    }
+                },
+                "prevAddr1":
+                {
+                    "section": $("#prev_addr_1_section"),
+                    "postcode":
+                    {
+                        "error": $("#prev_addr_1_postcode_error"),
+                        "input": $("#prev_addr_1_postcode")
+                    },
+                    "addressLine1":
+                    {
+                        "error": $("#prev_addr_1_address_line_1_error"),
+                        "input": $("#prev_addr_1_address_line_1")
+                    },
+                    "addressLine2":
+                    {
+                        "error": $("#prev_addr_1_address_line_1_error"),
+                        "input": $("#prev_addr_1_address_line_1")
+                    },
+                    "town":
+                    {
+                        "error": $("#prev_addr_1_town_error"),
+                        "input": $("#prev_addr_1_town")
+                    },
+                    "county":
+                    {
+                        "error": $("#prev_addr_1_county_error"),
+                        "input": $("#prev_addr_1_county")
+                    },
+                    "addressLength":
+                    {
+                        "years":
+                        {
+                            "error": $("#prev_addr_1_length_years_error"),
+                            "input": $("#prev_addr_1_length_years")
+                        },
+                        "months":
+                        {
+                            "error": $("#prev_addr_1_length_months_error"),
+                            "input": $("#prev_addr_1_length_months")
+                        }
+                    }
+                },
+                "prevAddr2":
+                {
+                    "section": $("#prev_addr_2_section"),
+                    "postcode":
+                    {
+                        "error": $("#prev_addr_2_postcode_error"),
+                        "input": $("#prev_addr_2_postcode")
+                    },
+                    "addressLine1":
+                    {
+                        "error": $("#prev_addr_2_address_line_1_error"),
+                        "input": $("#prev_addr_2_address_line_1")
+                    },
+                    "addressLine2":
+                    {
+                        "error": $("#prev_addr_2_address_line_1_error"),
+                        "input": $("#prev_addr_2_address_line_1")
+                    },
+                    "town":
+                    {
+                        "error": $("#prev_addr_2_town_error"),
+                        "input": $("#prev_addr_2_town")
+                    },
+                    "county":
+                    {
+                        "error": $("#prev_addr_2_county_error"),
+                        "input": $("#prev_addr_2_county")
+                    },
+                    "addressLength":
+                    {
+                        "years":
+                        {
+                            "error": $("#prev_addr_2_length_years_error"),
+                            "input": $("#prev_addr_2_length_years")
+                        },
+                        "months":
+                        {
+                            "error": $("#prev_addr_2_length_months_error"),
+                            "input": $("#prev_addr_2_length_months")
+                        }
+                    }
+                }
+            }
+            
 
             // select previous input for dropdown lists
             try { if (inputSmartMeter != null) inputSmartMeter.find('[value=' + inputSmartMeter.attr('data-value') + ']').prop("selected", true); } catch {}
             try { if (inputPreferredDay != null) inputPreferredDay.find('[value=' + inputPreferredDay.attr('data-value') + ']').prop("selected", true); } catch {}
             try { if (inputPaymentMethod != null) inputPaymentMethod.find('[value=' + inputPaymentMethod.attr('data-value') + ']').prop("selected", true); } catch {}
+            
+
+            // current address length section
+            sections.addressLength.years.input.change(function(e)
+            {
+                sections.addressLength.years.error.text("");
+                if (!isFinite(e.target.value)) { sections.addressLength.years.error.text("The years field must be a number."); return; }
+                if (e.target.value < 0) { sections.addressLength.years.error.text("The years field must be greater than or equal to 0."); return; }
+                PreviousAddressesShowHide();
+            });
+            sections.addressLength.months.input.change(function(e)
+            {
+                sections.addressLength.months.error.text("");
+                if (!isFinite(e.target.value)) sections.addressLength.months.error.text("The months field must be a number.");
+                if (e.target.value < 0 || e.target.value > 11) sections.addressLength.months.error.text("The months field must be between 0 and 12.");
+            });
+
+            // previous address 1 length section
+            sections.prevAddr1.addressLength.years.input.change(function(e)
+            {
+                sections.prevAddr1.addressLength.years.error.text("");
+                if (!isFinite(e.target.value)) { sections.prevAddr1.addressLength.years.error.text("The years field must be a number."); return; }
+                if (e.target.value < 0) { sections.prevAddr1.addressLength.years.error.text("The years field must be greater than or equal to 0."); return; }
+                PreviousAddressesShowHide();
+            });
+            sections.prevAddr1.addressLength.months.input.change(function(e)
+            {
+                sections.prevAddr1.addressLength.months.error.text("");
+                if (!isFinite(e.target.value)) sections.prevAddr1.addressLength.months.error.text("The months field must be a number.");
+                if (e.target.value < 0 || e.target.value > 11) sections.prevAddr1.addressLength.months.error.text("The months field must be between 0 and 12.");
+            });
+
+            // previous address 2 length section
+            sections.prevAddr2.addressLength.years.input.change(function(e)
+            {
+                sections.prevAddr2.addressLength.years.error.text("");
+                if (!isFinite(e.target.value)) { sections.prevAddr2.addressLength.years.error.text("The years field must be a number."); }
+                if (e.target.value < 0) { sections.prevAddr2.addressLength.years.error.text("The years field must be greater than or equal to 0."); }
+            });
+            sections.prevAddr2.addressLength.months.input.change(function(e)
+            {
+                sections.prevAddr2.addressLength.months.error.text("");
+                if (!isFinite(e.target.value)) sections.prevAddr2.addressLength.months.error.text("The months field must be a number.");
+                if (e.target.value < 0 || e.target.value > 11) sections.prevAddr2.addressLength.months.error.text("The months field must be between 0 and 12.");
+            });
+            
+            PreviousAddressesShowHide();
+            function PreviousAddressesShowHide()
+            {
+                var currAddrLength = sections.addressLength.years.input.val();
+                if (!currAddrLength || currAddrLength >= 3)
+                {
+                    sections.prevAddr1.section.hide().attr("disabled", "disabled");
+                    sections.prevAddr2.section.hide().attr("disabled", "disabled");
+                }
+                else
+                {
+                    sections.prevAddr1.section.show().removeAttr("disabled");
+
+                    var prevAddr1Length = sections.prevAddr1.addressLength.years.input.val();
+                    if (!prevAddr1Length || parseInt(currAddrLength) + parseInt(prevAddr1Length) >= 3)
+                    {
+                        sections.prevAddr2.section.hide().attr("disabled", "disabled");
+                    }
+                    else
+                    {
+                        sections.prevAddr2.section.show().removeAttr("disabled");
+                    }
+                }
+            }
+            
+
+            inputSmartMeter.change(SmartMeterTextShowHide);
+            SmartMeterTextShowHide()
+            function SmartMeterTextShowHide()
+            {
+                yesTextSmartMeter.hide();
+                dontKnowTextSmartMeter.hide();
+                switch (inputSmartMeter.val())
+                {
+                    case "Y":
+                        yesTextSmartMeter.show();
+                        break;
+                    case "DK":
+                        dontKnowTextSmartMeter.show();
+                        break;
+                }
+            }
             
 
             // billing address section
@@ -988,93 +1329,16 @@
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 }
             });
-
-            inputBillingButton.click(function()
-            {
-                errorBilling.text('');
-
-                var postcode = inputBillingPostcode.val();
-                var houseNo = inputBillingHouseNo.val();
-                if (!postcode)
-                {
-                    errorBilling.text('The postcode field is required.');
-                }
-                if (!houseNo)
-                {
-                    houseNo = '';
-                }
-                
-                try
-                {
-                    if (houseNo)
-                    {
-                        var url = "{{ route('residential.energy-comparison.api.addresses-by-postcode', [ 'postcode' => 'postcode', 'houseNo' => 'houseNo' ]) }}";
-                        url = url.replace('/postcode', '/' + postcode);
-                        url = url.replace('/houseNo', '/' + houseNo);
-                    }
-                    else
-                    {
-                        var url = "{{ route('residential.energy-comparison.api.addresses', [ 'postcode' => 'postcode' ]) }}";
-                        url = url.replace('/postcode', '/' + postcode);
-                    }
-                    $.ajax(
-                    {
-                        type: 'POST',
-                        url: url,
-                        success: function(result, success, xhr)
-                        {
-                            // if nothing is returned
-                            if (xhr != null && xhr.status == 204)
-                            {
-                                errorBilling.text('That postcode is invalid.');
-                                return;
-                            }
-
-                            try
-                            {
-                                var rows = result;
-                                rows.sort((a, b) => (a.address.localeCompare(b.address, 'en', { numeric: true })));
-                                inputBillingAddress.find("option:not(.initial-values)").remove();
-                                for (i in rows)
-                                {
-                                    inputBillingAddress.append($('<option class="house-number-option" value="' + rows[i].houseNo + '" data-mpan="' + rows[i].mpan + '" data-houseName="' + rows[i].houseName + '">' + rows[i].address + '</option>'));
-                                }
-                                if (rows.length > 0)
-                                {
-                                    inputBillingStreetName.val(row[0].streetName);
-                                    inputBillingArea.val(row[0].area);
-                                    inputBillingTown.val(row[0].town);
-                                    inputBillingCounty.val(row[0].county);
-                                }
-                            }
-                            catch (ex)
-                            {
-                                ShowPostcodeError()
-                                HideAddressSection();
-                                console.log(ex.message);
-                            }
-                        },
-                        error: function(xhr, status, error)
-                        {
-                            ShowPostcodeError()
-                            HideAddressSection();
-                            console.log(error.message);
-                        }
-                    });
-                }
-                catch (ex)
-                {
-                    ShowPostcodeError()
-                    HideAddressSection();
-                    console.log(ex.message);
-                }
-            });
             
             // form submit code
             mainForm.onsubmit = function(e)
             {
                 $(".form-error-message").text('');
-
+                
+                @if ($get_previous_addresses)
+                    
+                @endif
+                
                 if (inputPaymentMethod.val().length == 0)
                 {
                     e.preventDefault();
