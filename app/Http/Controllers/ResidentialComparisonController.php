@@ -416,7 +416,16 @@ class ResidentialComparisonController extends Controller
             Session::forget('ResidentialAPI.reference');
             
             $tariff_position = $request -> input('tariffPosition');
-            $selected_tariff = $new_tariffs[$tariff_position - 1];
+            $selected_tariff = null;
+            foreach ($new_tariffs as $tariff)
+            {
+                if ($tariff["tariffPosition"] == $tariff_position)
+                {
+                    $selected_tariff = $tariff;
+                    continue;
+                }
+            }
+            if (!isset($selected_tariff)) return $this -> BackTo2ExistingTariff();
             Session::put('ResidentialAPI.selected_tariff', $selected_tariff);
             
             $selected_payment_methods = Repository::paymentMethods_suppliers($selected_tariff["supplierId"], $existing_tariff -> fuel_type_char, $existing_tariff -> e7);
@@ -426,10 +435,17 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
+            throw($th);
             report($th);
             return $this -> BackTo3BrowseDeals();
         }
     }
+
+    public function browseDealsFuncTariffHasPosition($tariff, $target_posistion)
+    {
+        return $tariff -> tariffPosition == $target_posistion;
+    }
+
     
     public function getSwitching()
     {
@@ -450,6 +466,7 @@ class ResidentialComparisonController extends Controller
             
             $page_title = "Get Switching - Energy Swap";
             $params = compact('page_title', 'user_address', 'mprn', 'region', 'existing_tariff', 'current_tariffs', 'selected_tariff', 'selected_payment_methods');
+            // return response() -> json($params);
             return view('energy-comparison.4-get-switching', $params);
         }
         catch (Throwable $th)
