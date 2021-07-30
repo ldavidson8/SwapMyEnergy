@@ -78,9 +78,9 @@ class ResidentialApiRepository extends Controller
         return $suppliers;
     }
 
-    public static function paymentMethods_suppliers($supplierId, $serviceType, &$status)
+    public static function paymentMethods_suppliers($supplierId, $serviceType, $e7, &$status)
     {
-        $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "paymentMethods/suppliers/$supplierId?serviceType=$serviceType");
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "paymentMethods/suppliers/$supplierId?serviceType=$serviceType&e7=$e7");
         return self::getManyObjects($response, $status);
     }
     

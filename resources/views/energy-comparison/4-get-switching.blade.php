@@ -85,11 +85,31 @@
     }
 
 
-    /*  */
+    /* variable for legal text switch statements */
     $legal_text_for_supplier = "";
+    if ($selected_tariff['supplierId'] == 100 || $selected_tariff['supplierName'] == "Bristol Energy")
+    {
+        $legal_text_for_supplier = "Bristol Energy";
+    }
     if ($selected_tariff['supplierId'] == 68 || $selected_tariff['supplierName'] == "EDF Energy")
     {
         $legal_text_for_supplier = "EDF Energy";
+    }
+    if ($selected_tariff['supplierId'] == 140 || $selected_tariff['supplierName'] == "Green")
+    {
+        $legal_text_for_supplier = "Green";
+    }
+    if ($selected_tariff['supplierId'] == 124 || $selected_tariff['supplierName'] == "Igloo Energy")
+    {
+        $legal_text_for_supplier = "Igloo Energy";
+    }
+    if ($selected_tariff['supplierId'] == 16 || $selected_tariff['supplierName'] == "ScottishPower")
+    {
+        $legal_text_for_supplier = "ScottishPower";
+    }
+    if ($selected_tariff['supplierId'] == 75 || $selected_tariff['supplierName'] == "Shell Energy")
+    {
+        $legal_text_for_supplier = "Shell Energy";
     }
 ?>
 
@@ -447,6 +467,38 @@
             color: #555;
         }
 
+        #direct_debit_guarantee_background
+        {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        #direct_debit_guarantee_popup_outer
+        {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 0;
+            text-align: center;
+        }
+        #direct_debit_guarantee_popup
+        {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f3f2f1;
+            border: 2px solid #202020;
+            color: #202020;
+            border-radius: 20px;
+            text-align: left;
+            display: inline-block;
+            width: 767px;
+            max-width: 90%;
+        }
+
 
         @media (min-width: 768px) and (max-width: 991px)
         {
@@ -464,7 +516,6 @@
 
         @media (max-width: 767px)
         {
-
             .container, .container-fluid
             {
                 max-width: 100% !important;
@@ -540,6 +591,15 @@
             .blue-progress-bar
             {
                 width: 100%;
+                max-width: 100%;
+            }
+            
+            #direct_debit_guarantee_popup
+            {
+                margin: 0px;
+                padding: 20px;
+                border: 2px solid #202020;
+                border-radius: 0px;
                 max-width: 100%;
             }
         }
@@ -811,12 +871,61 @@
                                         <option value="DK">Don't Know</option>
                                     </select>
                                     @switch($legal_text_for_supplier)
+                                        {{-- Bristol Energy --}}
+                                        @case("Bristol Energy")
+                                            <p id="smartMeter_yesText_section" class="grey-text" style="display: none;">
+                                                Please note that by proceeding with this contract you may not be able to benefit from the meter functionality and any related services that are associated with your smart meter.
+                                            </p>
+                                            <p id="smartMeter_dontKnowText_section" class="grey-text" style="display: none;">
+                                                If you do have a smart meter and switch your supply, you may lose any non-standard smart metering functionality provided by your previous supplier and your meters will need to be read.
+                                            </p>
+                                            @break
                                         {{-- EDF Energy --}}
                                         @case("EDF Energy")
-                                            {{-- Show only if "Yes" is selected --}}
-                                            <p id="smartMeter_yesText_section" class="grey-text" style="display: none;">Please note that by proceeding with this contract you may not be able to benefit from the meter functionality and any related services that are associated with your smart meter.</p>
-                                            {{-- Show only if "Don't Know" is selected --}}
-                                            <p id="smartMeter_dontKnowText_section" class="grey-text" style="display: none;">If you do have a smart meter and switch your supply, you may lose any non-standard smart metering functionality provided by your previous supplier and your meters will need to be read.</p>
+                                            <p id="smartMeter_yesText_section" class="grey-text" style="display: none;">
+                                                Please note that by proceeding with this contract you may not be able to benefit from the meter functionality and any related services that are associated with your smart meter.
+                                            </p>
+                                            <p id="smartMeter_dontKnowText_section" class="grey-text" style="display: none;">
+                                                If you do have a smart meter and switch your supply, you may lose any non-standard smart metering functionality provided by your previous supplier and your meters will need to be read.
+                                            </p>
+                                            @break
+                                        {{-- Green --}}
+                                        @case("Green")
+                                            <p id="smartMeter_yesText_section" class="grey-text" style="display: none;">
+                                                Please note that by proceeding with this contract you may not be able to benefit from the meter functionality and any related services that are associated with your smart meter.
+                                            </p>
+                                            <p id="smartMeter_dontKnowText_section" class="grey-text" style="display: none;">
+                                                If you do have a smart meter and switch your supply, you may lose any non-standard smart metering functionality provided by your previous supplier and your meters will need to be read.
+                                            </p>
+                                            @break
+                                        {{-- Igloo Energy --}}
+                                        @case("Igloo Energy")
+                                            <p id="smartMeter_yesText_section" class="grey-text" style="display: none;">
+                                                Please note that by proceeding with this contract you may not be able to benefit from the meter functionality and any related services that are associated with your smart meter.
+                                            </p>
+                                            <p id="smartMeter_dontKnowText_section" class="grey-text" style="display: none;">
+                                                If you do have a smart meter and switch your supply, you may lose any non-standard smart metering functionality provided by your previous supplier and your meters will need to be read.
+                                            </p>
+                                            @break
+                                        {{-- ScottishPower --}}
+                                        @case("ScottishPower")
+                                            <span id="smartMeter_yesText_section" class="grey-text" style="display: none;">
+                                                <p>If you currently have a smart meter you will lose some of its functionality by changing your supplier. As a guide, if your meter was installed or changed pre 2008, then it will not be a smart meter. From 2008 onwards, it could potentially be a smart meter which means that you will have some additional functionality, for example:</p>
+                                                <p>A Smart meter can provide the automatic sending of meter readings to your supplier without the need for a visit to your property. It can tell you how much energy you are using at your property, and, if you also have an energy monitor, you may be able to see the cost of that energy. There are several variations of Smart meters available, some of which may offer other functionalities.</p>
+                                                <p>By continuing you confirm that you understand you may lose some of your smart meter functionality.</p>
+                                            </span>
+                                            <p id="smartMeter_dontKnowText_section" class="grey-text" style="display: none;">
+                                                If you do have a smart meter and switch your supply, you may lose any non-standard smart metering functionality provided by your previous supplier and your meters will need to be read.
+                                            </p>
+                                            @break
+                                        {{-- Shell Energy --}}
+                                        @case("Shell Energy")
+                                            <p id="smartMeter_yesText_section" class="grey-text" style="display: none;">
+                                                Please note that if your property has a Smart Meter installed you may lose some or all of the functions of this meter by switching supplier.
+                                            </p>
+                                            <p id="smartMeter_dontKnowText_section" class="grey-text" style="display: none;">
+                                                If you do have a smart meter and switch your supply, you may lose any non-standard smart metering functionality provided by your previous supplier and your meters will need to be read.
+                                            </p>
                                             @break
                                     @endswitch
                                 </div>
@@ -856,6 +965,12 @@
                                             <p>If you have chosen to pay by Direct Debit, the company name that will appear on your bank statement is EDF Energy.</p>
                                             <p>The personal projections provided for your EDF Energy Customers Ltd products are based on the energy usage figures that you provided. If you provided us with either annual, quarterly or monthly spend figures then it is assumed that this spend figure does not include any debt re-payments. If this assumption is incorrect please re-enter your annual spend figure excluding any historic debt repayments you are currently making.</p>
                                         </span>
+                                        @break
+                                    {{-- ScottishPower --}}
+                                    @case("ScottishPower")
+                                        {{-- Direct Debit: for Monthly Direct Debit applications only --}}
+                                        <p class="direct_debit_instruction_text_mdd" style="display: none;">Your first direct debit will be taken shortly after you come on supply. There will be at least 21 days between your 1st and 2nd direct debits. The direct debit amount is calculated using your annual cost split over 12 monthly payments. We'll let you know the exact dates in your Welcome Pack. You can change your preferred payment date once you come on supply.</p>
+                                        @break
                                 @endswitch
                                 
                                 <div class="form-group">
@@ -930,44 +1045,327 @@
                                         </div>
                                     </div>
                                 </div>
-                                <br />
                                 @switch($legal_text_for_supplier)
-                                    {{-- EDF Energy --}}
-                                    @case("EDF Energy")
+                                    {{----------------------}}
+                                    {{--- Bristol Energy ---}}
+                                    {{----------------------}}
+                                    @case("Bristol Energy")
+                                        {{-- Billing --}}
+                                        <?php $features = explode(",", $selected_tariff["features"]); ?>
                                         <div class="form-group">
-                                            <p><label for="direct_debit_confirmation">Direct Debit Confirmation <span class="text-danger">*</span></label></p>
+                                            <label for="receiveBills" class="font-weight-bold">How would you like to receive all communications from Bristol Energy? An electronic preference means Bristol Energy communicate with you electronically wherever possible. <span class="text-danger">*</span></label>
+                                            <span id="receiveBills_error" class="form-error-message text-danger"></span>
+                                            <select id="receiveBills" name="receiveBills" value="{{ $receiveBills }}" required="required">
+                                                <option value=""></option>
+                                                <option value="Email">Electronically</option>
+                                                <option value="Paper">All communications by post</option>
+                                            </select>
+                                        </div>
+                                        {{-- Direct Debit Instructions --}}
+                                        {{-- Direct Debit Guarantee --}}
+                                        <button type="button" class="direct_debit_instruction_text collapse-table-button site-accordion" role="button" style="display: none;">Instructions to your Bank/Building Society</button>
+                                        <div class="direct_debit_instruction_text site-accordion-panel" style="display: none;">
+                                            <span class="grey-text">
+                                                <p>
+                                                    Please pay Bristol Energy Direct Debits from the account detailed in this instruction subject to the safeguards assured by the
+                                                    <a href="javascript: void;" id="direct_debit_guarantee_button">Direct Debit Guarantee.</a>
+                                                </p>
+                                                <p>Your Direct Debit Instruction will be confirmed to you within 3 working days either by email or post.</p>
+                                                <p>I understand that this instruction may remain with Bristol Energy and, if so, details will be passed electronically to my bank/building society.</p>
+                                                <p>Date: {{ date('d/m/Y') }}</p>
+                                                <p>Service User Number: {{ $selected_supplier -> ddOriginatorsNo }}</p>
+                                                <p>Banks and building societies may not accept Direct Debit Instructions for some types of account.</p>
+                                            </span>
+                                            <div id="direct_debit_guarantee_background" class="direct_debit_guarantee_close" style="display: none;"></div>
+                                            <div id="direct_debit_guarantee_popup_outer" style="display: none;">
+                                                <div id="direct_debit_guarantee_popup">
+                                                    <div class="direct_debit_guarantee_close" style="display: inline-block; padding: 10px; float: right;">
+                                                        <span class="far fa-window-close" aria-hidden="true" style="font-size: 30px; cursor: pointer;"></span>
+                                                    </div>
+                                                    <ul>
+                                                        <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
+                                                        <li>If there are any changes to the amount, date or frequency of your Direct Debit Bristol Energy will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request Bristol Energy to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
+                                                        <li>If an error is made in the payment of your Direct Debit, by Bristol Energy or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society.</li>
+                                                        <ul type="disc"><li>If you receive a refund you are not entitled to, you must pay it back when Bristol Energy asks you to.</li></ul>
+                                                        <li>You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify Bristol Energy.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- Cancellation Rights --}}
+                                        @if (true || $coolingOff > 0)
+                                            <button type="button" class="collapse-table-button site-accordion" role="button">Your Cancellation Rights</button>
+                                            <p class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell Bristol Energy within the cooling off period, which ends 14 days from day after you sign up.</p>
+                                        @endif
+                                        {{-- Direct Debit Authorisation --}}
+                                        <div class="direct_debit_instruction_text form-group" style="display: none;">
                                             <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
                                             <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
                                             <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
                                         </div>
-                                        <?php $features = explode(",", $selected_tariff["tariff_info"] -> features); ?>
-                                        @if (in_array(28, $features) || in_array(29, $features))
-                                            <div class="row no-margin mt-4">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label for="receiveBills" class="font-weight-bold">How would you like to receive all communications from EDF Energy Customers Ltd? An electronic preference means EDF Energy Customers Ltd communicate with you electronically wherever possible.</label> 
-                                                        <span id="receiveBills_error" class="form-error-message text-danger"></span>
-                                                        <select id="receiveBills" name="receiveBills" value="{{ $receiveBills }}">
-                                                            <option value="Paper"></option>
-                                                            <option value="Email">Electronically</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                        <div class="form-group">
-                                            <input type="checkbox" id="supplier_opt_in" name="supplier_opt_in" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} />
-                                            <label for="supplier_opt_in" style="font-weight: normal;">EDF will email you offers from time to time. You can tick this box if you want to unsubscribe.</label>
-                                            <p class="grey-text">EDF will send you a confirmation email. If you don't wish to receive EDF email marketing, you can unsubscribe using the link at the bottom of their email.</p>
-                                        </div>
-                                        @if ($coolingOff > 0)
-                                            <button type="button" class="collapse-table-button site-accordion" role="button">Your Cancellation Rights</button>
-                                            <div class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell EDF Energy within the cooling off period, which ends {{ $coolingOff }} days from day after you sign up.</div>
-                                        @endif
+                                        {{-- Terms and Conditions --}}
                                         <div class="form-group">
                                             <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
-                                            <label for="supplier_opt_in" style="font-weight: normal;">I confirm that I have read and accepted the <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/EDF.pdf" target="_blank">terms and conditions</a> that apply for the tariff I have chosen and which include obligations to pay.</label>
+                                            <label for="terms_and_conditions" style="font-weight: normal;">Read Bristol Energy's T&Cs <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/BRSTL.pdf" target="_blank">Here</a>.</label>
                                         </div>
+                                        @break
+                                    {{------------------}}
+                                    {{--- EDF Energy ---}}
+                                    {{------------------}}
+                                    @case("EDF Energy")
+                                        {{-- Billing --}}
+                                        <?php $features = explode(",", $selected_tariff["features"]); ?>
+                                        @if (in_array(28, $features) || in_array(29, $features))
+                                            <div class="form-group">
+                                                <label for="receiveBills" class="font-weight-bold">How would you like to receive all communications from EDF Energy Customers Ltd? An electronic preference means EDF Energy Customers Ltd communicate with you electronically wherever possible.</label> 
+                                                <span id="receiveBills_error" class="form-error-message text-danger"></span>
+                                                <select id="receiveBills" name="receiveBills" value="{{ $receiveBills }}" required="required">
+                                                    <option value="Paper"></option>
+                                                    <option value="Email">Electronically</option>
+                                                </select>
+                                            </div>
+                                        @endif
+                                        {{-- Cancellation Rights --}}
+                                        @if (true || $coolingOff > 0)
+                                            <button type="button" class="collapse-table-button site-accordion" role="button">Your Cancellation Rights</button>
+                                            <p class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell EDF Energy within the cooling off period, which ends 14 days from day after you sign up.</p>
+                                        @endif
+                                        {{-- Direct Debit Authorisation --}}
+                                        <div class="direct_debit_instruction_text form-group" style="display: none;">
+                                            <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
+                                            <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
+                                            <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
+                                        </div>
+                                        {{-- Terms and Conditions --}}
+                                        <div class="form-group">
+                                            <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
+                                            <label for="terms_and_conditions" style="font-weight: normal;">I confirm that I have read and accepted the <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/EDF.pdf" target="_blank">terms and conditions</a> that apply for the tariff I have chosen and which include obligations to pay.</label>
+                                        </div>
+                                        @break
+                                    {{-------------}}
+                                    {{--- Green ---}}
+                                    {{-------------}}
+                                    @case("Green")
+                                        {{-- Direct Debit Instructions --}}
+                                        {{-- Direct Debit Guarantee --}}
+                                        <button type="button" class="direct_debit_instruction_text collapse-table-button site-accordion" role="button" style="display: none;">Instructions to your Bank/Building Society</button>
+                                        <div class="direct_debit_instruction_text site-accordion-panel" style="display: none;">
+                                            <span class="grey-text">
+                                                <p>
+                                                    Please pay Green Supplier Limited Direct Debits from the account detailed in this instruction subject to the safeguards assured by the
+                                                    <a href="javascript: void;" id="direct_debit_guarantee_button">Direct Debit Guarantee</a>.
+                                                </p>
+                                                <p>Your Direct Debit Instruction will be confirmed to you within 3 working days either by email or post.</p>
+                                                <p>I understand that this instruction may remain with Green Supplier Limited and, if so, details will be passed electronically to my bank/building society.</p>
+                                                <p>Date: {{ date('d/m/Y') }}</p>
+                                                <p>Service User Number: {{ $selected_supplier -> ddOriginatorsNo }}</p>
+                                                <p>Banks and building societies may not accept Direct Debit Instructions for some types of account.</p>
+                                            </span>
+                                            <div id="direct_debit_guarantee_background" class="direct_debit_guarantee_close" style="display: none;"></div>
+                                            <div id="direct_debit_guarantee_popup_outer" style="display: none;">
+                                                <div id="direct_debit_guarantee_popup">
+                                                    <div class="direct_debit_guarantee_close" style="display: inline-block; padding: 10px; float: right;">
+                                                        <span class="far fa-window-close" aria-hidden="true" style="font-size: 30px; cursor: pointer;"></span>
+                                                    </div>
+                                                    <ul>
+                                                        <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
+                                                        <li>If there are any changes to the amount, date or frequency of your Direct Debit Green will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request Green to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
+                                                        <li>If an error is made in the payment of your Direct Debit, by Green or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society.</li>
+                                                        <ul><li type="disc">If you receive a refund you are not entitled to, you must pay it back when Green asks you to.</li></ul>
+                                                        <li>You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify Green.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- Cancellation Rights --}}
+                                        @if (true || $coolingOff > 0)
+                                            <button type="button" class="collapse-table-button site-accordion" role="button">Your Cancellation Rights</button>
+                                            <p class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell Green within the cooling off period, which ends 14 days from day after you sign up.</p>
+                                        @endif
+                                        {{-- Direct Debit Authorisation --}}
+                                        <div class="direct_debit_instruction_text form-group" style="display: none;">
+                                            <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
+                                            <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
+                                            <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
+                                        </div>
+                                        {{-- Terms and Conditions --}}
+                                        <div class="form-group">
+                                            <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
+                                            <label for="terms_and_conditions" style="font-weight: normal;">To complete your application please accept Green's <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/GREEN.pdf" target="_blank">Terms and Conditions</a>.</label>
+                                        </div>
+                                        @break
+                                    {{--------------------}}
+                                    {{--- Igloo Energy ---}}
+                                    {{--------------------}}
+                                    @case("Igloo Energy")
+                                        {{-- Billing --}}
+                                        <?php $features = explode(",", $selected_tariff["features"]); ?>
+                                        <div class="form-group">
+                                            <label for="receiveBills" class="font-weight-bold">How would you like to receive all communications from Igloo Energy Supply Limited? An electronic preference means Igloo Energy Supply Limited communicate with you electronically wherever possible. <span class="text-danger">*</span></label>
+                                            <span id="receiveBills_error" class="form-error-message text-danger"></span>
+                                            <select id="receiveBills" name="receiveBills" value="{{ $receiveBills }}" required="required">
+                                                <option value="Paper"></option>
+                                                <option value="Email">Electronically</option>
+                                            </select>
+                                        </div>
+                                        {{-- Direct Debit Instructions --}}
+                                        {{-- Direct Debit Guarantee --}}
+                                        <button type="button" class="direct_debit_instruction_text collapse-table-button site-accordion" role="button" style="display: none;">Instructions to your Bank/Building Society</button>
+                                        <div class="direct_debit_instruction_text site-accordion-panel" style="display: none;">
+                                            <span class="grey-text">
+                                                <p>
+                                                    Please pay Igloo Energy Supply Limited Direct Debits from the account detailed in this instruction subject to the safeguards assured by the
+                                                    <a href="javascript: void;" id="direct_debit_guarantee_button">Direct Debit Guarantee</a>.
+                                                </p>
+                                                <p>Your Direct Debit Instruction will be confirmed to you within 3 working days either by email or post.</p>
+                                                <p>I understand that this instruction may remain with Green Supplier Limited and, if so, details will be passed electronically to my bank/building society.</p>
+                                                <p>Date: {{ date('d/m/Y') }}</p>
+                                                <p>Service User Number: {{ $selected_supplier -> ddOriginatorsNo }}</p>
+                                                <p>Banks and building societies may not accept Direct Debit Instructions for some types of account.</p>
+                                            </span>
+                                            <div id="direct_debit_guarantee_background" class="direct_debit_guarantee_close" style="display: none;"></div>
+                                            <div id="direct_debit_guarantee_popup_outer" style="display: none;">
+                                                <div id="direct_debit_guarantee_popup">
+                                                    <div class="direct_debit_guarantee_close" style="display: inline-block; padding: 10px; float: right;">
+                                                        <span class="far fa-window-close" aria-hidden="true" style="font-size: 30px; cursor: pointer;"></span>
+                                                    </div>
+                                                    <ul>
+                                                        <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
+                                                        <li>If there are any changes to the amount, date or frequency of your Direct Debit Igloo Energy will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request Igloo Energy to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
+                                                        <li>If an error is made in the payment of your Direct Debit, by Igloo Energy or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society.</li>
+                                                        <ul><li type="disc">If you receive a refund you are not entitled to, you must pay it back when Igloo Energy asks you to.</li></ul>
+                                                        <li>You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify Igloo Energy.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- Cancellation Rights --}}
+                                        @if (true || $coolingOff > 0)
+                                            <button type="button" class="collapse-table-button site-accordion" role="button">Your Cancellation Rights</button>
+                                            <p class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell Igloo Energy within the cooling off period, which ends 14 days from day after you sign up.</p>
+                                        @endif
+                                        {{-- Direct Debit Authorisation --}}
+                                        <div class="direct_debit_instruction_text form-group" style="display: none;">
+                                            <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
+                                            <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
+                                            <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
+                                        </div>
+                                        {{-- Terms and Conditions --}}
+                                        <div class="form-group">
+                                            <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
+                                            <label for="terms_and_conditions" style="font-weight: normal;">Read Igloo Energy's T&Cs <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/IGLOO.pdf" target="_blank">Here</a>.</label>
+                                        </div>
+                                        @break
+                                    {{---------------------}}
+                                    {{--- ScottishPower ---}}
+                                    {{---------------------}}
+                                    @case("ScottishPower")
+                                        {{-- Direct Debit Instructions --}}
+                                        {{-- Direct Debit Guarantee --}}
+                                        <button type="button" class="direct_debit_instruction_text collapse-table-button site-accordion" role="button" style="display: none;">Instructions to your Bank/Building Society</button>
+                                        <div class="direct_debit_instruction_text site-accordion-panel" style="display: none;">
+                                            <span class="grey-text">
+                                                <p>
+                                                    Please pay ScottishPower Energy Retail Ltd Direct Debits from the account detailed in this instruction subject to the safeguards assured by the
+                                                    <a href="javascript: void;" id="direct_debit_guarantee_button">Direct Debit Guarantee</a>.
+                                                </p>
+                                                <p>Your Direct Debit Instruction will be confirmed to you within 3 working days either by email or post.</p>
+                                                <p>I understand that this instruction may remain with ScottishPower Energy Retail Ltd and, if so, details will be passed electronically to my bank/building society.</p>
+                                                <p>Date: {{ date('d/m/Y') }}</p>
+                                                <p>Service User Number: {{ $selected_supplier -> ddOriginatorsNo }}</p>
+                                                <p>Banks and building societies may not accept Direct Debit Instructions for some types of account.</p>
+                                            </span>
+                                            <div id="direct_debit_guarantee_background" class="direct_debit_guarantee_close" style="display: none;"></div>
+                                            <div id="direct_debit_guarantee_popup_outer" style="display: none;">
+                                                <div id="direct_debit_guarantee_popup">
+                                                    <div class="direct_debit_guarantee_close" style="display: inline-block; padding: 10px; float: right;">
+                                                        <span class="far fa-window-close" aria-hidden="true" style="font-size: 30px; cursor: pointer;"></span>
+                                                    </div>
+                                                    <ul>
+                                                        <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
+                                                        <li>If there are any changes to the amount, date or frequency of your Direct Debit ScottishPower will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request ScottishPower to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
+                                                        <li>If an error is made in the payment of your Direct Debit, by ScottishPower or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society.</li>
+                                                        <ul><li type="disc">If you receive a refund you are not entitled to, you must pay it back when ScottishPower asks you to.</li></ul>
+                                                        <li>You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify ScottishPower.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- Green Deal --}}
+                                        <button type="button" class="collapse-table-button site-accordion" role="button">Green Deal</button>
+                                        <p class="site-accordion-panel">If your property is subject to a Green Deal Plan, ScottishPower are required to collect the payments required under that plan from you and pass on those payments. Green Deal charges are not included within the gas and/or electricity prices quoted for this tariff.</p>
+                                        {{-- Cancellation Rights --}}
+                                        @if (true || $coolingOff > 0)
+                                            <button type="button" class="collapse-table-button site-accordion" role="button">Your Cancellation Rights</button>
+                                            <p class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell ScottishPower within the cooling off period, which ends 14 days from day after you sign up.</p>
+                                        @endif
+                                        {{-- Priority Services Register --}}
+                                        <button type="button" class="collapse-table-button site-accordion" role="button">Priority Services Register</button>
+                                        <p class="site-accordion-panel">ScottishPower have a Priority Services Register. Once Registered there are various free services you (or someone in your household) could be eligible for. For more information or to join their Priority Services Register please call their customer service team on 0800 027 0072. Alternatively you can apply on ScottishPower's website once you are on supply.</p>
+                                        {{-- Direct Debit Authorisation --}}
+                                        <div class="direct_debit_instruction_text form-group" style="display: none;">
+                                            <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
+                                            <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
+                                            <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
+                                        </div>
+                                        {{-- Terms and Conditions --}}
+                                        <div class="form-group">
+                                            <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
+                                            <label for="terms_and_conditions" style="font-weight: normal;">To complete your application please accept ScottishPower's <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/SPW.pdf" target="_blank">Terms and Conditions</a>.</label>
+                                        </div>
+                                        @break
+                                    {{--------------------}}
+                                    {{--- Shell Energy ---}}
+                                    {{--------------------}}
+                                    @case("Shell Energy")
+                                        {{-- Direct Debit Instructions --}}
+                                        {{-- Direct Debit Guarantee --}}
+                                        <button type="button" class="direct_debit_instruction_text collapse-table-button site-accordion" role="button" style="display: none;">Instructions to your Bank/Building Society</button>
+                                        <div class="direct_debit_instruction_text site-accordion-panel" style="display: none;">
+                                            <span class="grey-text">
+                                                <p>
+                                                    Please pay Shell Energy Retail Limited Direct Debits from the account detailed in this instruction subject to the safeguards assured by the
+                                                    <a href="javascript: void;" id="direct_debit_guarantee_button">Direct Debit Guarantee</a>.
+                                                </p>
+                                                <p>Your Direct Debit Instruction will be confirmed to you within 3 working days either by email or post.</p>
+                                                <p>I understand that this instruction may remain with Shell Energy Retail Limited and, if so, details will be passed electronically to my bank/building society.</p>
+                                                <p>Date: {{ date('d/m/Y') }}</p>
+                                                <p>Service User Number: {{ $selected_supplier -> ddOriginatorsNo }}</p>
+                                                <p>Banks and building societies may not accept Direct Debit Instructions for some types of account.</p>
+                                            </span>
+                                            <div id="direct_debit_guarantee_background" class="direct_debit_guarantee_close" style="display: none;"></div>
+                                            <div id="direct_debit_guarantee_popup_outer" style="display: none;">
+                                                <div id="direct_debit_guarantee_popup">
+                                                    <div class="direct_debit_guarantee_close" style="display: inline-block; padding: 10px; float: right;">
+                                                        <span class="far fa-window-close" aria-hidden="true" style="font-size: 30px; cursor: pointer;"></span>
+                                                    </div>
+                                                    <ul>
+                                                        <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
+                                                        <li>If there are any changes to the amount, date or frequency of your Direct Debit Shell Energy will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request Shell Energy to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
+                                                        <li>If an error is made in the payment of your Direct Debit, by Shell Energy or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society.</li>
+                                                        <ul><li type="disc">If you receive a refund you are not entitled to, you must pay it back when Shell Energy asks you to.</li></ul>
+                                                        <li>You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify Shell Energy.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- Cancellation Rights --}}
+                                        @if (true || $coolingOff > 0)
+                                            <button type="button" class="collapse-table-button site-accordion" role="button">Your Cancellation Rights</button>
+                                            <p class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell Shell Energy within the cooling off period, which ends 14 days from day after you sign up.</p>
+                                        @endif
+                                        {{-- Direct Debit Authorisation --}}
+                                        <div class="direct_debit_instruction_text form-group" style="display: none;">
+                                            <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
+                                            <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
+                                            <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
+                                        </div>
+                                        {{-- Terms and Conditions --}}
+                                        <div class="form-group">
+                                            <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
+                                            <label for="terms_and_conditions" style="font-weight: normal;">By clicking you agree to <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/FU.pdf" target="_blank">Shell Energy's terms and conditions</a>, <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/shell-energy-privacy-policy.pdf" target="_blank">privacy policy</a> and tariff terms & conditions.</label>
+                                        </div>
+                                        @break
                                 @endswitch
                                 
                                 <br /><hr class="thin-line" /><br />
@@ -1014,6 +1412,15 @@
                                 <br /><br /><hr class="thin-line" /><br />
                                 
                                 @switch($legal_text_for_supplier)
+                                    {{-- Bristol Energy --}}
+                                    @case("Bristol Energy")
+                                        {{-- Marketing Consent --}}
+                                        <div class="form-group">
+                                            <p class="grey-text">Bristol Energy would like to share information with you about any products, services on offer from Bristol Energy and its associated companies.</p>
+                                            <input type="checkbox" id="supplier_opt_in" name="supplier_opt_in" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} />
+                                            <label for="supplier_opt_in" style="font-weight: normal;">Yes please, I would like to hear what Bristol Energy has to offer.</label>
+                                        </div>
+                                        @break
                                     {{-- EDF Energy --}}
                                     @case("EDF Energy")
                                         <div class="form-group">
@@ -1022,14 +1429,72 @@
                                             <input type="checkbox" id="special_needs_priority_services_register" name="special_needs_priority_services_register" {{ (old('special_needs_priority_services_register') != '') ? "checked" : " " }} />
                                             <label for="special_needs_priority_services_register" style="font-weight: normal;">Would you like to receive information about EDF Energy Customers Ltd's Priority Services Register Scheme?</label>
                                         </div>
+                                        {{-- Marketing Consent --}}
+                                        <div class="form-group">
+                                            <input type="checkbox" id="supplier_opt_in" name="supplier_opt_in" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} />
+                                            <label for="supplier_opt_in" style="font-weight: normal;">EDF will email you offers from time to time. You can tick this box if you want to unsubscribe.</label>
+                                            <p class="grey-text">EDF will send you a confirmation email. If you don't wish to receive EDF email marketing, you can unsubscribe using the link at the bottom of their email.</p>
+                                        </div>
+                                        @break
+                                    {{-- Green --}}
+                                    @case("Green")
+                                        {{-- Marketing Consent --}}
+                                        <h2>Stay in touch</h2>
+                                        <p class="grey-text">Green Supplier Limited would like to share information with you about any products, services on offer from Green Supplier Limited and its associated companies.</p>
+                                        <div class="form-group">
+                                            <input type="checkbox" id="supplier_partners" name="supplier_partners" {{ (old('supplier_partners') == true) ? "checked" : "" }} />
+                                            <label for="supplier_partners" style="font-weight: normal;">Yes please, I would like to hear what {{ $selected_tariff["supplierName"] }} has to offer.</label>
+                                        </div>
+                                        @break
+                                    {{-- Igloo Energy --}}
+                                    @case("Igloo Energy")
+                                        {{-- Marketing Consent --}}
+                                        <h2>Stay in touch</h2>
+                                        <p class="grey-text">Igloo Energy would like to share information with you about any products, services on offer from Igloo Energy and its associated companies.</p>
+                                        <div class="form-group">
+                                            <input type="checkbox" id="supplier_partners" name="supplier_partners" {{ (old('supplier_partners') == true) ? "checked" : "" }} />
+                                            <label for="supplier_partners" style="font-weight: normal;">Yes please, I would like to hear what {{ $selected_tariff["supplierName"] }} has to offer.</label>
+                                        </div>
+                                        @break
+                                    {{-- ScottishPower --}}
+                                    @case("ScottishPower")
+                                        {{-- Marketing Consent --}}
+                                        <h2>Stay in touch</h2>
+                                        <div class="grey-text">
+                                            <p>At ScottishPower, we often have exclusive offers, new tariffs and updates to our services that we hope you'd like to hear about.</p>
+                                            <p>We'll always treat your details with care and will never sell them to any third party for their marketing purposes. You can find out more about how we handle your personal data in our Privacy Information Notice. Remember, you can opt out at any time.</p>
+                                            <p>If you're happy for us to contact you with relevant promotions and information now and again, please let us know your preferred contact methods:</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_email" name="supplier_partners_email" {{ (old('supplier_partners_email') == true) ? "checked" : "" }}             style="float: none;" /> Email</div>
+                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_sms" name="supplier_partners_sms" {{ (old('supplier_partners_sms') == true) ? "checked" : "" }}                   style="float: none; margin-left: 10px;" /> SMS Text</div>
+                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_telephone" name="supplier_partners_telephone" {{ (old('supplier_partners_telephone') == true) ? "checked" : "" }} style="float: none; margin-left: 10px;" /> Telephone</div>
+                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_letter" name="supplier_partners_letter" {{ (old('supplier_partners_letter') == true) ? "checked" : "" }}          style="float: none; margin-left: 10px; float: none;" /> Letter</div>
+                                        </div>
+                                        @break
+                                    {{-- Shell Energy --}}
+                                    @case("Shell Energy")
+                                        {{-- Marketing Consent --}}
+                                        <h2>Stay in touch</h2>
+                                        <div class="grey-text">
+                                            <p>Shell Energy are committed to helping you discover new ways of managing your energy and running your home more efficiently including smart home technology that can help make life that little bit easier. That is why they would like to keep you up to date with news and offers from Shell.</p>
+                                            <p>Be the first to hear about:</p>
+                                            <ul>
+                                                <li>New deals on renewable home energy, smart technology and tools, plus other home essentials</li>
+                                                <li>New products and services, competitions and news</li>
+                                                <li>Exclusive rewards through Shell Go+ loyalty programme</li>
+                                            </ul>
+                                        </div>
+                                        <p>If you are happy to receive this information from Shell Energy please tell us how you would like to hear from them. Tick those boxes that apply.</p>
+                                        <p>Once you have switched you can change your preferences anytime you want by logging into your account with Shell Energy. If you choose to opt out of all marketing communications that is fine, but Shell Energy will still need to contact you about your account occasionally (for billing. payments, account updates etc).</p>
+                                        <p>If you would like to find out more about how they handle your personal details, please read their <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/shell-energy-privacy-policy.pdf" target="_blank">Privacy Policy</a>.</p>
+                                        <div class="form-group">
+                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_email" name="supplier_partners_email" {{ (old('supplier_partners_email') == true) ? "checked" : "" }}             style="float: none;" /> Email</div>
+                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_sms" name="supplier_partners_sms" {{ (old('supplier_partners_sms') == true) ? "checked" : "" }}                   style="float: none; margin-left: 10px;" /> SMS Text</div>
+                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_telephone" name="supplier_partners_telephone" {{ (old('supplier_partners_telephone') == true) ? "checked" : "" }} style="float: none; margin-left: 10px;" /> Telephone</div>
+                                        </div>
+                                        @break
                                 @endswitch
-
-                                <h2>Stay in touch</h2>
-                                <p>{{ $selected_tariff["supplierName"] }} would like to share information with you about any products, services on offer from {{ $selected_tariff["supplierName"] }} and its associated companies.</p>
-                                <div class="form-group">
-                                    <input type="checkbox" id="supplier_partners" name="supplier_partners" {{ (old('supplier_partners') == true) ? "checked" : "" }} />
-                                    <label for="supplier_partners" style="font-weight: normal;">Yes please, I would like to hear what {{ $selected_tariff["supplierName"] }} has to offer.</label>
-                                </div>
                                 
                                 <button type="submit" class="switchButton">Get Switching</button>
                             </form>
@@ -1080,6 +1545,13 @@
             var inputBillingTown = $("#billing_town");
             var inputBillingCounty = $("#billing_county");
             
+            var directDebitInstructionText = $(".direct_debit_instruction_text");
+            var directDebitInstructionTextMDD = $(".direct_debit_instruction_text_mdd");
+            var directDebitGuaranteButton = $("#direct_debit_guarantee_button");
+            var directDebitGuaranteeBackground = $("#direct_debit_guarantee_background");
+            var directDebitGuaranteePopupOuter = $("#direct_debit_guarantee_popup_outer");
+            var directDebitGuaranteeClose = $(".direct_debit_guarantee_close");
+
             var errorPaymentMethod = $("#payment_method_error");
             var inputPaymentMethod = $("#payment_method");
             // var errorBankName = $("#bankName_error");
@@ -1308,6 +1780,35 @@
                         break;
                 }
             }
+
+            inputPaymentMethod.change(DirectDebitInstructionTextShowHide);
+            DirectDebitInstructionTextShowHide();
+            function DirectDebitInstructionTextShowHide()
+            {
+                directDebitInstructionText.hide();
+                directDebitInstructionTextMDD.hide();
+                switch (inputPaymentMethod.val())
+                {
+                    case "MDD":
+                        directDebitInstructionText.show();
+                        directDebitInstructionTextMDD.show();
+                        break;
+                    case "QDD":
+                        directDebitInstructionText.show();
+                        break;
+                }
+            }
+
+            directDebitGuaranteButton.click(function()
+            {
+                directDebitGuaranteePopupOuter.show();
+                directDebitGuaranteeBackground.show();
+            });
+            directDebitGuaranteeClose.click(function()
+            {
+                directDebitGuaranteePopupOuter.hide();
+                directDebitGuaranteeBackground.hide();
+            });
             
 
             // billing address section

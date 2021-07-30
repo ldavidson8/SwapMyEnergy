@@ -37,6 +37,7 @@ class ResidentialComparisonController extends Controller
             Session::forget('ResidentialAPI.current_tariffs');
             Session::forget('ResidentialAPI.new_tariffs');
             Session::forget('ResidentialAPI.selected_tariff');
+            Session::forget('ResidentialAPI.selected_supplier');
             Session::forget('ResidentialAPI.selected_payment_methods');
             Session::forget('ResidentialAPI.reference');
 
@@ -128,6 +129,7 @@ class ResidentialComparisonController extends Controller
             if (!isset($user_address)) return $this -> BackTo1FindAddress([], true);
 
             Session::forget('ResidentialAPI.selected_tariff');
+            Session::forget('ResidentialAPI.selected_supplier');
             Session::forget('ResidentialAPI.selected_payment_methods');
             Session::forget('ResidentialAPI.reference');
 
@@ -427,9 +429,12 @@ class ResidentialComparisonController extends Controller
                 }
             }
             if (!isset($selected_tariff)) return $this -> BackTo2ExistingTariff();
+
+            $selected_supplier = Repository::supplierById($selected_tariff["supplierId"], $status);
+            $selected_payment_methods = Repository::paymentMethods_suppliers($selected_tariff["supplierId"], $existing_tariff -> fuel_type_char, $selected_tariff["e7"], $status);
+
+            Session::put('ResidentialAPI.selected_supplier', $selected_supplier);
             Session::put('ResidentialAPI.selected_tariff', $selected_tariff);
-            
-            $selected_payment_methods = Repository::paymentMethods_suppliers($selected_tariff["supplierId"], $existing_tariff -> fuel_type_char, $existing_tariff -> e7);
             Session::put('ResidentialAPI.selected_payment_methods', $selected_payment_methods);
             
             return redirect() -> action([ self::class, 'getSwitching' ]);
@@ -457,13 +462,14 @@ class ResidentialComparisonController extends Controller
             $region = Session::get('ResidentialAPI.region');
             $existing_tariff = Session::get('ResidentialAPI.existing_tariff');
             $current_tariffs = Session::get('ResidentialAPI.current_tariffs');
+            $selected_supplier = Session::get('ResidentialAPI.selected_supplier');
             $selected_tariff = Session::get('ResidentialAPI.selected_tariff');
             $selected_payment_methods = Session::get('ResidentialAPI.selected_payment_methods');
             
             // check session variables
-            if (!isset($user_address) || !isset($mprn) || !isset($region) || !isset($existing_tariff) || !isset($current_tariffs) || !isset($selected_tariff) || !isset($selected_payment_methods))
+            if (!isset($user_address) || !isset($mprn) || !isset($region) || !isset($existing_tariff) || !isset($current_tariffs) || !isset($selected_supplier) || !isset($selected_tariff) || !isset($selected_payment_methods))
             {
-                return $this -> BackTo3BrowseDeals([], true);
+                // return $this -> BackTo3BrowseDeals([], true);
             }
             
             // check if previous addresses are required
@@ -474,7 +480,7 @@ class ResidentialComparisonController extends Controller
             }
             
             $page_title = "Get Switching - Energy Swap";
-            $params = compact('page_title', 'user_address', 'mprn', 'region', 'existing_tariff', 'current_tariffs', 'selected_tariff', 'selected_payment_methods', 'get_previous_addresses');
+            $params = compact('page_title', 'user_address', 'mprn', 'region', 'existing_tariff', 'current_tariffs', 'selected_tariff', 'selected_supplier', 'selected_payment_methods', 'get_previous_addresses');
             // return response() -> json($params);
             return view('energy-comparison.4-get-switching', $params);
         }
@@ -755,11 +761,11 @@ class ResidentialComparisonController extends Controller
                 "bankName" => $request -> input("bankName"),
                 "preferredDay" => (int)$request -> input("preferredDay"),
                 "ddAuthorisation" => $direct_debit_confirmation,
-                "receiveBills" => ($request -> has("receiveBills")) ? $request -> input("receiveBills") : "Email",
+                "receiveBills" => ($request -> has("receiveBills")) ? $request -> input("receiveBills") : "Paper",
                 "supplierOptIn" => $supplier_opt_in,
-                "supplierLetterOptIn" => false,
-                "supplierPhoneOptIn" => false,
-                "supplierTextOptIn" => false,
+                "supplierLetterOptIn" => $supplier_opt_in,
+                "supplierPhoneOptIn" => $supplier_opt_in,
+                "supplierTextOptIn" => $supplier_opt_in,
                 "specialNeeds" => $special_needs_priority_services_register
             ]);
             
@@ -770,16 +776,6 @@ class ResidentialComparisonController extends Controller
                 $requestObj["user"]["gasPayment"] = $current_tariffs -> G -> paymentMethod;
                 $requestObj["user"]["currentTariffGasConsumption"] = (double)$current_tariffs -> G -> units;
                 $requestObj["user"]["currentTariffGasBill"] = (double)$current_tariffs -> G -> bill;
-                
-                // if (!isset($requestObj["user"]["billGas"]) || $requestObj["user"]["billGas"] == 0)
-                // {
-                //     $requestObj["user"]["billGas"] = (double)(($selected_tariff["tariff_info"] -> price1Gas * $current_tariffs -> G -> units) + $selected_tariff["tariff_info"] -> standingChargeGas);
-                //     return response() -> json(
-                //         [
-                //         'gas_units' => $selected_tariff["tariff_info"] -> price1Gas * $current_tariffs -> G -> units,
-                //         'standingCharge' => $selected_tariff["tariff_info"] -> standingChargeGas
-                //     ]);
-                // }
             }
 
             if (in_array($existing_tariff -> fuel_type_char, [ "D", "E" ]))
@@ -789,20 +785,7 @@ class ResidentialComparisonController extends Controller
                 $requestObj["user"]["elecPayment"] = $current_tariffs -> E -> paymentMethod;
                 $requestObj["user"]["currentTariffElecConsumption"] = (double)$current_tariffs -> E -> units;
                 $requestObj["user"]["currentTariffElecBill"] = (double)$current_tariffs -> E -> bill;
-                
-                // if (!isset($requestObj["user"]["billElec"]) || $requestObj["user"]["billElec"] == 0)
-                // {
-                //     $requestObj["user"]["billElec"] = (double)(($selected_tariff["tariff_info"] -> price1Elec * $current_tariffs -> E -> units) + $selected_tariff["tariff_info"] -> standingChargeElec);
-                //     return response() -> json(
-                //     [
-                //         'bill' => $selected_tariff["bill"],
-                //         'info_bill' => $selected_tariff["tariff_info"] -> bill,
-                //         'elec_subtotal' => $selected_tariff["tariff_info"] -> price1Elec * $current_tariffs -> E -> units / 100,
-                //         'elec_price' => $selected_tariff["tariff_info"] -> price1Elec,
-                //         'elec_units' => $current_tariffs -> E -> units,
-                //         'standingCharge' => $selected_tariff["tariff_info"] -> standingChargeElec / 100
-                //     ]);
-                // }
+                $requestObj["user"]["e7Usage"] = ((double)$current_tariffs -> E -> units) * $selected_tariff["price1Elec"];
             }
             
             if ($previous_addresses_counter >= 1)
