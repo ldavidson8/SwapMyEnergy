@@ -6,6 +6,8 @@
 
 The reference is: {{ $result_str }}
 
+The Timestamp is: {{ $dateTime }}
+
 
 --- Customer Information ---
 
@@ -18,24 +20,49 @@ Email:      {{ $user["email"] }}
 Smart Meter: {{ $user["smartMeter"] }}
 
 --- Customer Address ---
-Postcode: {{ $user["currentAddress"]["postcode"] }}
+Postcode:       {{ $user["currentAddress"]["postcode"] }}
 Address Line 1: {{ $user["currentAddress"]["line1"] }}
 Address Line 2: {{ $user["currentAddress"]["line2"] }}
-City: {{ $user["currentAddress"]["town"] }}
-County: {{ $user["currentAddress"]["county"] }}
+City:           {{ $user["currentAddress"]["town"] }}
+County:         {{ $user["currentAddress"]["county"] }}
+Years at Residence:  {{ $user["currentAddress"]["yearsAtResidence"] }}
+Months at Residence: {{ $user["currentAddress"]["monthsAtResidence"] }}
+MPRN:        {{ $user["currentAddress"]["mprn"] }}
+MPAN Number: {{ $user["currentAddress"]["mpanNumber"] }}
 
 --- Billing Address ---
-Postcode: {{ $user["billingAddress"]["postcode"] }}
+Postcode:       {{ $user["billingAddress"]["postcode"] }}
 Address Line 1: {{ $user["billingAddress"]["line1"] }}
 Address Line 2: {{ $user["billingAddress"]["line2"] }}
-City: {{ $user["billingAddress"]["town"] }}
-County: {{ $user["billingAddress"]["county"] }}
+City:           {{ $user["billingAddress"]["town"] }}
+County:         {{ $user["billingAddress"]["county"] }}
+
+@if (isset($user["previousAddress"]) && $user["previousAddress"]["postcode"] != "")
+    --- Previous Address 1 ---
+    Postcode: {{ $user["previousAddress"]["postcode"] }}
+    Address Line 1: {{ $user["previousAddress"]["line1"] }}
+    Address Line 2: {{ $user["previousAddress"]["line2"] }}
+    City: {{ $user["previousAddress"]["town"] }}
+    County: {{ $user["previousAddress"]["county"] }}
+    Years at Residence: {{ $user["previousAddress"]["yearsAtResidence"] }}
+    Months at Residence: {{ $user["previousAddress"]["monthsAtResidence"] }}
+@endif
+
+@if (isset($user["previousAddressTwo"]) && $user["previousAddressTwo"]["postcode"] != "")
+    --- Previous Address 2 ---
+    Postcode: {{ $user["previousAddressTwo"]["postcode"] }}
+    Address Line 1: {{ $user["previousAddressTwo"]["line1"] }}
+    Address Line 2: {{ $user["previousAddressTwo"]["line2"] }}
+    City: {{ $user["previousAddressTwo"]["town"] }}
+    County: {{ $user["previousAddressTwo"]["county"] }}
+    Years at Residence: {{ $user["previousAddressTwo"]["yearsAtResidence"] }}
+    Months at Residence: {{ $user["previousAddressTwo"]["monthsAtResidence"] }}
+@endif
 
 
 --- Previous Tariff ---
 
 Service Type: {{ $user["serviceTypeToCompare"] }}
-
 
 Gas Supplier:          {{ (isset($user["gasSupplier"])) ? $user["gasSupplier"] : 'N/A' }}
 Gas Tariff Id:         {{ (isset($user["gasTariffId"])) ? $user["gasTariffId"] : 'N/A' }}
@@ -62,3 +89,11 @@ Gas Bill:      &pound;{{ $user["billGas"] }}
 Electric Bill: &pound;{{ $user["billElec"] }}
 Saving:        &pound;{{ $user["saving"] }} ({{ $user["savingPercentage"] }}%)
 
+--- Payment ---
+Payment Method: {{ $payment["paymentMethod"] }}
+Receive Bills: {{ $payment["receiveBills"] }}
+Supplier Email Opt In: {{ ($payment["supplierOptIn"]) ? "True" : "False" }}
+Supplier Letter Opt In: {{ ($payment["supplierLetterOptIn"]) ? "True" : "False" }}
+Supplier Phone Opt In: {{ ($payment["supplierPhoneOptIn"]) ? "True" : "False" }}
+Supplier Text Opt In: {{ ($payment["supplierTextOptIn"]) ? "True" : "False" }}
+Special Needs / Priority Services Register (PSR) Opt In: {{ ($payment["specialNeeds"]) ? "True" : "False" }}
