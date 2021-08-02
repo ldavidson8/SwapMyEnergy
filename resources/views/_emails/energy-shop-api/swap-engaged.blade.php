@@ -43,7 +43,7 @@
             </tr>
         </tbody>
     </table>
-    
+
     <h2>Customer Address</h2>
     <table>
         <tbody>
@@ -69,7 +69,7 @@
             </tr>
         </tbody>
     </table>
-    
+
     <h2>Billing Address</h2>
     <table>
         <tbody>
@@ -95,7 +95,15 @@
             </tr>
         </tbody>
     </table>
-    
+
+    {{-- previous address 1 --}}
+    @if (isset($user["previousAddress"]) && $user["previousAddress"]["postcode"] != "")
+    @endif
+
+    {{-- previous address 2 --}}
+    @if (isset($user["previousAddress"]) && $user["previousAddress"]["postcode"] != "")
+    @endif
+
     <h2>Previous Tariff</h2>
     <table>
         <tbody>
@@ -153,7 +161,7 @@
             </tr>
         </tbody>
     </table>
-    
+
     <h2>New Tariff</h2>
     <table>
         <tbody>
@@ -180,6 +188,40 @@
             <tr>
                 <th>Saving:</th>
                 <td>&pound;{{ $user["saving"] }} ({{ $user["savingPercentage"] }}%)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Payment</h2>
+    <table>
+        <tbody>
+            <tr>
+                <th>Payment Method:</th>
+                <td>{{ $payment["paymentMethod"] }}</td>
+            </tr>
+            <tr>
+                <th>Receive Bills:</th>
+                <td>{{ $payment["receiveBills"] }}</td>
+            </tr>
+            <tr>
+                <th>Supplier Email Opt In:</th>
+                <td>&pound;{{ ($payment["supplierOptIn"]) ? "True" : "False" }}</td>
+            </tr>
+            <tr>
+                <th>Supplier Letter Opt In:</th>
+                <td>&pound;{{ ($payment["supplierLetterOptIn"]) ? "True" : "False" }}</td>
+            </tr>
+            <tr>
+                <th>Supplier Phone Opt In:</th>
+                <td>&pound;{{ ($payment["supplierPhoneOptIn"]) ? "True" : "False" }}</td>
+            </tr>
+            <tr>
+                <th>Supplier Text Opt In:</th>
+                <td>&pound;{{ ($payment["supplierTextOptIn"]) ? "True" : "False" }}</td>
+            </tr>
+            <tr>
+                <th>Special Needs / Priority Services Register (PSR) Opt In:</th>
+                <td>&pound;{{ ($payment["specialNeeds"]) ? "True" : "False" }}</td>
             </tr>
         </tbody>
     </table>

@@ -500,7 +500,10 @@
             text-align: left;
             display: inline-block;
             width: 767px;
+            height: auto;
             max-width: 90%;
+            max-height: 90vh;
+            overflow-y: scroll;
         }
 
 
@@ -601,10 +604,9 @@
             #direct_debit_guarantee_popup
             {
                 margin: 0px;
-                padding: 20px;
+                padding: 10px;
                 border: 2px solid #202020;
                 border-radius: 0px;
-                max-width: 100%;
             }
         }
 
@@ -986,7 +988,8 @@
                                         @break
                                 @endswitch
 
-                                <div class="form-group">
+                                <input type="hidden" id="existing_payment_method" name="payment_method" value="{{ $existing_tariff -> payment_method }}" />
+                                {{-- <div class="form-group">
                                     <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
                                     <span id="payment_method_error" class="form-error-message text-danger"></span>
                                     <select type="text" id="payment_method" name="payment_method" data-value="{{ $payment_method }}" required>
@@ -995,7 +998,7 @@
                                             <option value="{{ $spm['id'] }}">{{ $spm['name'] }}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label for="bankName" class="font-weight-bold">Bank Name <span class="text-danger">*</span></label>
                                     <span id="bankName_error" class="form-error-message text-danger"></span>
@@ -1095,6 +1098,7 @@
                                                     <div class="direct_debit_guarantee_close" style="display: inline-block; padding: 10px; float: right;">
                                                         <span class="far fa-window-close" aria-hidden="true" style="font-size: 30px; cursor: pointer;"></span>
                                                     </div>
+                                                    <h3>Direct Debit Guarantee</h3>
                                                     <ul>
                                                         <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
                                                         <li>If there are any changes to the amount, date or frequency of your Direct Debit Bristol Energy will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request Bristol Energy to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
@@ -1180,6 +1184,7 @@
                                                     <div class="direct_debit_guarantee_close" style="display: inline-block; padding: 10px; float: right;">
                                                         <span class="far fa-window-close" aria-hidden="true" style="font-size: 30px; cursor: pointer;"></span>
                                                     </div>
+                                                    <h3>Direct Debit Guarantee</h3>
                                                     <ul>
                                                         <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
                                                         <li>If there are any changes to the amount, date or frequency of your Direct Debit Green will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request Green to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
@@ -1242,6 +1247,7 @@
                                                     <div class="direct_debit_guarantee_close" style="display: inline-block; padding: 10px; float: right;">
                                                         <span class="far fa-window-close" aria-hidden="true" style="font-size: 30px; cursor: pointer;"></span>
                                                     </div>
+                                                    <h3>Direct Debit Guarantee</h3>
                                                     <ul>
                                                         <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
                                                         <li>If there are any changes to the amount, date or frequency of your Direct Debit Igloo Energy will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request Igloo Energy to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
@@ -1294,6 +1300,7 @@
                                                     <div class="direct_debit_guarantee_close" style="display: inline-block; padding: 10px; float: right;">
                                                         <span class="far fa-window-close" aria-hidden="true" style="font-size: 30px; cursor: pointer;"></span>
                                                     </div>
+                                                    <h3>Direct Debit Guarantee</h3>
                                                     <ul>
                                                         <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
                                                         <li>If there are any changes to the amount, date or frequency of your Direct Debit ScottishPower will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request ScottishPower to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
@@ -1352,6 +1359,7 @@
                                                     <div class="direct_debit_guarantee_close" style="display: inline-block; padding: 10px; float: right;">
                                                         <span class="far fa-window-close" aria-hidden="true" style="font-size: 30px; cursor: pointer;"></span>
                                                     </div>
+                                                    <h3>Direct Debit Guarantee</h3>
                                                     <ul>
                                                         <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
                                                         <li>If there are any changes to the amount, date or frequency of your Direct Debit Shell Energy will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request Shell Energy to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
@@ -1413,6 +1421,7 @@
                                                     <div class="direct_debit_guarantee_close" style="display: inline-block; padding: 10px; float: right;">
                                                         <span class="far fa-window-close" aria-hidden="true" style="font-size: 30px; cursor: pointer;"></span>
                                                     </div>
+                                                    <h3>Direct Debit Guarantee</h3>
                                                     <ul>
                                                         <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
                                                         <li>If there are any changes to the amount, date or frequency of your Direct Debit Together Energy will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request Together Energy to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
@@ -1638,6 +1647,7 @@
             var directDebitGuaranteePopupOuter = $("#direct_debit_guarantee_popup_outer");
             var directDebitGuaranteeClose = $(".direct_debit_guarantee_close");
 
+            var existingPaymentMethod = $("#existing_payment_method");
             var errorPaymentMethod = $("#payment_method_error");
             var inputPaymentMethod = $("#payment_method");
             // var errorBankName = $("#bankName_error");
@@ -1777,7 +1787,7 @@
             // select previous input for dropdown lists
             try { if (inputSmartMeter != null) inputSmartMeter.find('[value=' + inputSmartMeter.attr('data-value') + ']').prop("selected", true); } catch {}
             try { if (inputPreferredDay != null) inputPreferredDay.find('[value=' + inputPreferredDay.attr('data-value') + ']').prop("selected", true); } catch {}
-            try { if (inputPaymentMethod != null) inputPaymentMethod.find('[value=' + inputPaymentMethod.attr('data-value') + ']').prop("selected", true); } catch {}
+            // try { if (inputPaymentMethod != null) inputPaymentMethod.find('[value=' + inputPaymentMethod.attr('data-value') + ']').prop("selected", true); } catch {}
 
 
             // current address length section
@@ -1867,19 +1877,20 @@
                 }
             }
 
-            inputPaymentMethod.change(DirectDebitInstructionTextShowHide);
+            existingPaymentMethod.change(DirectDebitInstructionTextShowHide);
             DirectDebitInstructionTextShowHide();
             function DirectDebitInstructionTextShowHide()
             {
                 directDebitInstructionText.hide().find("input").attr("disabled", "disabled");
                 directDebitInstructionTextMDD.hide().find("input").attr("disabled", "disabled");
-                switch (inputPaymentMethod.val())
+                switch (existingPaymentMethod.val())
                 {
                     case "MDD":
                         directDebitInstructionText.show().find("input").removeAttr("disabled");
                         directDebitInstructionTextMDD.show().find("input").removeAttr("disabled");
                         break;
                     case "QDD":
+                    case "CAC":
                         directDebitInstructionText.show().find("input").removeAttr("disabled");
                         break;
                 }
@@ -1926,14 +1937,14 @@
 
                 @endif
 
-                if (inputPaymentMethod.val().length == 0)
-                {
-                    e.preventDefault();
-                    errorPaymentMethod.text("The payment method is required.");
-                    try { $("html, body").animate({ "scrollTop": errorPaymentMethod.offset().top }, 0); }
-                    catch (ex) {}
-                    return;
-                }
+                // if (inputPaymentMethod.val().length == 0)
+                // {
+                //     e.preventDefault();
+                //     errorPaymentMethod.text("The payment method is required.");
+                //     try { $("html, body").animate({ "scrollTop": errorPaymentMethod.offset().top }, 0); }
+                //     catch (ex) {}
+                //     return;
+                // }
 
                 if (inputDirectDebitConfirmation.length > 0 && !inputDirectDebitConfirmation[0].hasAttribute("disabled") && !inputDirectDebitConfirmation.prop("checked"))
                 {

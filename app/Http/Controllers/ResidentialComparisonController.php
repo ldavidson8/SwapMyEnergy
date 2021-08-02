@@ -845,27 +845,26 @@ class ResidentialComparisonController extends Controller
                 ];
             }
             // return response() -> json($request -> all());
-            // return response() -> json($requestObj);
+            return response() -> json($requestObj);
 
             // if ($requestObj["user"]["email"] == "testingthefinalapicall@testing.co.uk")
             // {
-                $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
-                if (str_starts_with($result_str, "{"))
-                {
-                    // The api returned an error
-                    Log::channel("energy-comparison/get-switching-post") -> critical("The API returned an error.");
-                    return $this -> BackTo4GetSwitching();
-                }
-                Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
+                // $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
+                // if (str_starts_with($result_str, "{"))
+                // {
+                //     // The api returned an error
+                //     Log::channel("energy-comparison/get-switching-post") -> critical("The API returned an error.");
+                //     return $this -> BackTo4GetSwitching();
+                // }
+                // Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
             // }
-            //*else*/ $result_str = "Testing123Testing";
+            /*else*/ $result_str = "Testing123Testing";
 
             Session::put('ResidentialAPI.reference', $result_str);
 
             $to_email = env('MAIL_TO_ADDRESS');
             Mail::to($to_email) -> queue(new ResidentialAPINotificationEmail($requestObj, date("Y-m-d H:i:s"), "Test API Key", $result_str));
-
-            Mail::to($request -> input("emailAddress")) -> queue(new ResidentialAPINotificationCustomerConfirmationEmail($requestObj, $result_str), $result_str);
+            Mail::to($request -> input("emailAddress")) -> queue(new ResidentialAPINotificationCustomerConfirmationEmail($requestObj, $result_str));
 
             return redirect() -> route('residential.energy-comparison.success');
         }
