@@ -97,6 +97,7 @@ body
     .background-image-docks:not(.preload)::before { background-image: url('/img/background/docks_quarter.jpg'); }
 }
 
+
 img.default
 {
     max-width: 100%;
@@ -200,13 +201,21 @@ body.business .header-switch-2-shadow-right.animate { left: 27px; opacity: 1; }
     padding-left: 1rem;
 }
 
+.d-flex
+{
+    display: -webkit-flex;
+}
+
 .center-text
 {
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
-    margin: auto;
     align-items: center;
     justify-content: center;
+    -ms-flex-pack: center;
     padding-right: 15px;
+    margin: auto;
     text-align: right;
 }
 
@@ -215,6 +224,7 @@ body.business .header-switch-2-shadow-right.animate { left: 27px; opacity: 1; }
 {
     align-items: center;
     justify-content: center;
+    -ms-flex-pack: center;
     margin: auto;
 }
 
@@ -258,7 +268,7 @@ footer
     font-size: 20px;
 }
 
-footer p 
+footer p
 {
     margin: 0.5em;
 }
@@ -373,6 +383,18 @@ table#footer-links td
 {
     min-height: 30vh;
 }
+
+.table-center-content
+{
+    width: 100%;
+    height: 100%;
+}
+
+.table-center-content td
+{
+    vertical-align: middle;
+}
+
 
 
 .left-column-content
@@ -596,7 +618,7 @@ body.business .switch-text
         display: block;
         text-align: center !important;
     }
-    
+
     .background-image-no-mobile::before
     {
         background-image: none !important;

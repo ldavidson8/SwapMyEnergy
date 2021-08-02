@@ -49,7 +49,7 @@
             overflow: hidden;
         }
 
-        .clearfix:after 
+        .clearfix:after
         {
             content: " "; /* Older browser do not support empty content */
             visibility: hidden;
@@ -72,7 +72,7 @@
             border: 1px solid;
         }
 
-        .rounded-input-field::focus 
+        .rounded-input-field::focus
         {
             outline: none;
             border-color: #ffaa00;
@@ -89,11 +89,11 @@
 
         .flex-container-inner
         {
-            margin: auto; 
+            margin: auto;
             background: #f3f2f1;
             width: 100%;
             height: auto;
-            
+
         }
 
         .partner-wind-turbine
@@ -105,7 +105,7 @@
 
         .affiliate-program-inner
         {
-            margin: auto; 
+            margin: auto;
             width: 100%;
             height: auto;
         }
@@ -134,7 +134,7 @@
             padding: 10px;
         }
 
-        
+
         .border-right-sm
         {
             border-right: 3px solid #202020;
@@ -144,10 +144,10 @@
         {
             text-align: left;
         }
-        
+
         .img-float-right
         {
-            float:right;  
+            float:right;
             clear:both;
             width: 50% ;
             margin: 30px -50px 10px 10px ;
@@ -189,14 +189,14 @@
 
             .flex-container-inner
             {
-                margin: 10% auto; 
+                margin: 10% auto;
                 background: #f3f2f1;
                 width: 70%;
                 border-radius: 18px;
             }
             .affiliate-container-inner
             {
-                margin: 10% auto; 
+                margin: 10% auto;
                 width: 500px;
                 padding: 20px 0 0 20px;
                 border-radius: 18px;
@@ -207,7 +207,7 @@
             }
 
         }
-        
+
         @media (max-width: 991px)
         {
             .border-radius-none-md
@@ -215,7 +215,7 @@
                 border-radius: 0;
             }
         }
-        
+
         @media (max-width: 576px)
         {
             .border-right-sm
@@ -238,34 +238,34 @@
                 padding: 5px;
             }
         }
-
     </style>
 @endsection
 
 @section('before-header')
-    <div class="full-size container-fluid d-flex h-100 flex-column">
+    <div class="d-flex">
+        <div class="full-size container-fluid d-flex h-100 flex-column">
 @endsection
 
 @section('main-content')
-        <hr />
-        <div class="row flex-grow-1 no-padding background-image-hydropower-plant">
-            <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-4 col-lg-6 col-md-8 col-12 no-margin" style="padding-top: 150px; color: #f3f2f1;">
-                <h1>Help shape the future of energy</h1>
-                <p style="padding-top: 30px; width: 450px; max-width: 100%;">Join our Affiliate programme and help us shape the future of energy</p>    
-                <a href="#AffiliateApply"><button class="oval-button">Find out more </button></a>
+            <hr />
+            <div class="row flex-grow-1 no-padding background-image-hydropower-plant center-content">
+                <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
+                <div class="col-xl-4 col-lg-6 col-md-8 col-12" style="color: #f3f2f1;">
+                    <h1>Help shape the future of energy</h1>
+                    <p>Join our Affiliate programme and help us shape the future of energy</p>
+                    <a href="#AffiliateApply"><button class="oval-button">Find out more </button></a>
+                </div>
+                <div class="col-md-2 d-none d-lg-none d-md-block"></div>
+                <div class="col-md-2 d-none d-lg-none d-md-block"></div>
+                <div class="col-xl-6 col-lg-5 col-md-8 d-none d-md-block"></div>
+                <div class="col-md-2 d-none d-lg-none d-md-block"></div>
             </div>
-            <div class="col-md-2 d-none d-lg-none d-md-block"></div>
-            <div class="col-md-2 d-none d-lg-none d-md-block"></div>
-            <div class="col-xl-6 col-lg-5 col-md-8 d-none d-md-block center-content" style="text-align: center;">
-            </div>
-            <div class="col-md-2 d-none d-lg-none d-md-block"></div>
         </div>
     </div>
 
     <hr />
 
-    <div id="PartnerApply" class="row flex-grow-1 full-size-80 background-image-preston">
+    <div id="PartnerApply" class="row background-image-preston center-content">
         <div class="col-12 col-lg-6" style="color: #f3f2f1;">
             <div class="section-padding">
                 <h2 class="sub-header-size"> Become a partner with a ground-breaking energy broker: </h2>
@@ -297,34 +297,33 @@
             </div>
         </div>
         <div class="col-12 col-lg-6 no-padding">
-            <div class="flex-container">
-                <div class="flex-container-inner">
-                    <div style="padding: 0 20px 0 30px;">
-                        <p class="sub-header-size"> Reasons to work with Swap my Energy: </p>
-                        <ul class="no-padding-margin" style="list-style: square inside; font-weight: 700; ">
-                            <li>Adverts that are unique and adaptable to your requirements </li>
-                            <li>Prices and services that are unrivalled in the energy industry </li>
-                            <li>Leading energy pricing portal, CRM and reporting package for marketing </li>
-                            <li>Account managers with extensive experience (minimum of 8 years) </li>
-                            <li>Full administrative and sales assistance is offered, as well as full training from professional energy managers </li>
-                            <li>Marketing assistance is offered </li>
-                            <li>For all clients, a comprehensive care package is given </li>
-                        </ul>
-                    </div>
-                    <div class="partner-wind-turbine">
-                        <img alt="" class="lazy" data-src="{{ asset('img/partner-wind-turbine.png')}}" width="100%" height="100% " style="object-fit:contain;">
-                    </div>
+            <div class="flex-container-inner">
+                <div style="padding: 0 20px 0 30px;">
+                    <p class="sub-header-size"> Reasons to work with Swap my Energy: </p>
+                    <ul class="no-padding-margin" style="list-style: square inside; font-weight: 700; ">
+                        <li>Adverts that are unique and adaptable to your requirements </li>
+                        <li>Prices and services that are unrivalled in the energy industry </li>
+                        <li>Leading energy pricing portal, CRM and reporting package for marketing </li>
+                        <li>Account managers with extensive experience (minimum of 8 years) </li>
+                        <li>Full administrative and sales assistance is offered, as well as full training from professional energy managers </li>
+                        <li>Marketing assistance is offered </li>
+                        <li>For all clients, a comprehensive care package is given </li>
+                    </ul>
+                </div>
+                <div class="partner-wind-turbine">
+                    <img alt="" class="lazy" data-src="{{ asset('img/partner-wind-turbine.png')}}" width="100%" height="auto" style="object-fit: contain;">
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="AffiliateApply" class="full-size-50 container-fluid h-100">
-        <div class="row flex-grow-1 align-items-center">
-            <div class="col-12 col-lg-6 no-padding">
-                <div class="flex-container">
-                    <div class="affiliate-container-inner flex-container-shadow">
-                        <p class="sub-header-size"> Our Affiliate Program </p>
+    <div class="d-flex">
+        <div id="AffiliateApply" class="full-size-50 container-fluid h-100">
+            <div class="row flex-grow-1 align-items-center">
+                <div class="col-12 col-lg-6 no-padding">
+                    <div class="flex-container">
+                        <div class="affiliate-container-inner flex-container-shadow">
+                            <p class="sub-header-size"> Our Affiliate Program </p>
                             <ul class="no-padding-margin" style="list-style: square inside; font-weight: 700;">
                                 <li>Promotion opportunities across our social channels and website</li>
                                 <li>Earn for when you help switch customers with us</li>
@@ -335,121 +334,64 @@
                                 <img alt="" class="lazy" data-src="{{ asset('img/hipster.png') }}" max-width="25%" style="margin-top: auto; float: right; object-fit:contain; border-radius: 0 0 18px 0;">
                             </div>
                             <p style="margin-top: 30px;"> <span style="font-size: 2rem; font-weight: 700;"> Interested? </span> <br /> Fill in this form and we'll be back in touch </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div style="column-count: 2; column-width: 310px; padding: 20px;">
+                        @if ($errors -> hasBag('affiliate') > 0)
+                            <div class="alert alertinfo text-danger">
+                                @foreach ($errors -> getBag('affiliate') -> all() as $error)
+                                    {{ $error }}<br />
+                                @endforeach
+                            </div>
+                        @endif
+                        <form id="formAffiliateApply" class="form-black" action="{{ route('affiliate-apply') }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="full_name">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="rounded-input-field" id="full_name" name="full_name" value="{{ old('full_name') }}" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress">Email Address <span class="text-danger">*</span></label>
+                                <input type="email_address" class="rounded-input-field" id="email_address" name="email_address" value="{{ old('email_address') }}" placeholder="example@domain.com" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="phone_number">Phone Number <span class="text-danger">*</span></label>
+                                <p id="phone_number_error" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
+                                <input type="text" class="rounded-input-field" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="web_link">Link (If applicable)</label>
+                                <input type="url" class="rounded-input-field" id="web_link" name="web_link" value="{{ old('web_link') }}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address <span class="text-danger">*</span></label>
+                                <textarea id="address" class="rounded-input-field" name="address" required rows="4">{{ old('address') }}</textarea>
+                            </div>
+                            <?php $type_of_affiliate = old('type_of_affiliate') ?>
+                            <div class="form-group">
+                                <label for="type_of_affiliate">Type of Affiliate <span class="text-danger">*</span></label>
+                                <select id="type_of_affiliate" class="rounded-input-field" name="type_of_affiliate" required />
+                                    <option value="" disabled {{ (isset($type_of_affiliate)) ? '' : 'selected' }} hidden></option>
+                                    <option value="youtuber" {{ ($type_of_affiliate == 'youtuber') ? 'selected' : '' }}>Youtuber</option>
+                                    <option value="instagram_influencer" {{ ($type_of_affiliate == 'instagram_influencer') ? 'selected' : '' }}>Instagram Influencer</option>
+                                    <option value="blogger" {{ ($type_of_affiliate == 'blogger') ? 'selected' : '' }}>Blogger</option>
+                                    <option value="tiktoker" {{ ($type_of_affiliate == 'tiktoker') ? 'selected' : '' }}>Tiktoker</option>
+                                    <option value="podcaster" {{ ($type_of_affiliate == 'podcaster') ? 'selected' : '' }}>Podcaster</option>
+                                    <option value="other" {{ ($type_of_affiliate == 'other') ? 'selected' : '' }}>Other</option>
+
+                                </select>
+                            </div>
+                            <div class="text-center position-relative">
+                                <button type="submit" class="btn large-blue-button" style="width: 100%;">Submit</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="col-12  col-lg-6">
-                <div class="col" style="column-count: 2; column-width: 310px; padding: 20px;">
-                    @if ($errors -> hasBag('affiliate') > 0)
-                        <div class="alert alertinfo text-danger">
-                            @foreach ($errors -> getBag('affiliate') -> all() as $error)
-                                {{ $error }}<br />
-                            @endforeach
-                        </div>
-                    @endif
-                    <form id="formAffiliateApply" class="form-black" action="{{ route('affiliate-apply') }}" method="post">
-                        @csrf
-                        <div class="form-group">
-                            <label for="full_name">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" class="rounded-input-field" id="full_name" name="full_name" value="{{ old('full_name') }}" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress">Email Address <span class="text-danger">*</span></label>
-                            <input type="email_address" class="rounded-input-field" id="email_address" name="email_address" value="{{ old('email_address') }}" placeholder="example@domain.com" required />
-                        </div>  
-                        <div class="form-group">
-                            <label for="phone_number">Phone Number <span class="text-danger">*</span></label>
-                            <p id="phone_number_error" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
-                            <input type="text" class="rounded-input-field" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="web_link">Link (If applicable)</label>
-                            <input type="url" class="rounded-input-field" id="web_link" name="web_link" value="{{ old('web_link') }}" />
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address <span class="text-danger">*</span></label>
-                            <textarea id="address" class="rounded-input-field" name="address" required rows="4">{{ old('address') }}</textarea>
-                        </div>
-                        <?php $type_of_affiliate = old('type_of_affiliate') ?>
-                        <div class="form-group">
-                            <label for="type_of_affiliate">Type of Affiliate <span class="text-danger">*</span></label>
-                            <select id="type_of_affiliate" class="rounded-input-field" name="type_of_affiliate" required />
-                                <option value="" disabled {{ (isset($type_of_affiliate)) ? '' : 'selected' }} hidden></option>
-                                <option value="youtuber" {{ ($type_of_affiliate == 'youtuber') ? 'selected' : '' }}>Youtuber</option>
-                                <option value="instagram_influencer" {{ ($type_of_affiliate == 'instagram_influencer') ? 'selected' : '' }}>Instagram Influencer</option>
-                                <option value="blogger" {{ ($type_of_affiliate == 'blogger') ? 'selected' : '' }}>Blogger</option>
-                                <option value="tiktoker" {{ ($type_of_affiliate == 'tiktoker') ? 'selected' : '' }}>Tiktoker</option>
-                                <option value="podcaster" {{ ($type_of_affiliate == 'podcaster') ? 'selected' : '' }}>Podcaster</option>
-                                <option value="other" {{ ($type_of_affiliate == 'other') ? 'selected' : '' }}>Other</option>
-
-                            </select>
-                        </div>
-                        <div class="text-center position-relative">
-                            <button type="submit" class="btn large-blue-button" style="width: 100%;">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
-        {{-- <div class="row">
-            <div class="col-12 col-lg-4">
-                <p class="heading-text"> Interested in joining our affiliate programme? </p>
-                <p> Fill in this form and we'll be back in touch </p>
-            </div>
-            <div class="col-12 col-lg-8 no-padding">
-                <div class="col" style="column-count: 2; column-width: 310px; column-fill: auto; padding: 20px;">
-                    @if ($errors -> hasBag('affiliate') > 0)
-                        <div class="alert alertinfo text-danger">
-                            @foreach ($errors -> getBag('affiliate') -> all() as $error)
-                                {{ $error }}<br />
-                            @endforeach
-                        </div>
-                    @endif
-                    <form id="formAffiliateApply" class="form-black" action="{{ route('affiliate-apply') }}" method="post">
-                        @csrf
-                        <div class="form-group">
-                            <label for="full_name">Full Name <span class="text-danger">*</span></label>
-                            <input type="text" class="rounded-input-field" id="full_name" name="full_name" value="{{ old('full_name') }}" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress">Email Address <span class="text-danger">*</span></label>
-                            <input type="email_address" class="rounded-input-field" id="email_address" name="email_address" value="{{ old('email_address') }}" placeholder="example@domain.com" required />
-                        </div>  
-                        <div class="form-group">
-                            <label for="phone_number">Phone Number <span class="text-danger">*</span></label>
-                            <p id="phone_number_error" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
-                            <input type="text" class="rounded-input-field" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="web_link">Link (If applicable)</label>
-                            <input type="url" class="rounded-input-field" id="web_link" name="web_link" value="{{ old('web_link') }}" />
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address <span class="text-danger">*</span></label>
-                            <textarea id="address" class="rounded-input-field" name="address" required rows="4">{{ old('address') }}</textarea>
-                        </div>
-                        <?php $type_of_affiliate = old('type_of_affiliate') ?>
-                        <div class="form-group">
-                            <label for="type_of_affiliate">Type of Affiliate <span class="text-danger">*</span></label>
-                            <select id="type_of_affiliate" class="rounded-input-field" name="type_of_affiliate" required />
-                                <option value="" disabled {{ (isset($type_of_affiliate)) ? '' : 'selected' }} hidden></option>
-                                <option value="youtuber" {{ ($type_of_affiliate == 'youtuber') ? 'selected' : '' }}>Youtuber</option>
-                                <option value="instagram_influencer" {{ ($type_of_affiliate == 'instagram_influencer') ? 'selected' : '' }}>Instagram Influencer</option>
-                                <option value="blogger" {{ ($type_of_affiliate == 'blogger') ? 'selected' : '' }}>Blogger</option>
-                                <option value="tiktoker" {{ ($type_of_affiliate == 'tiktoker') ? 'selected' : '' }}>Tiktoker</option>
-                                <option value="podcaster" {{ ($type_of_affiliate == 'podcaster') ? 'selected' : '' }}>Podcaster</option>
-                                <option value="other" {{ ($type_of_affiliate == 'other') ? 'selected' : '' }}>Other</option>
-
-                            </select>
-                        </div>
-                        <div class="text-center position-relative">
-                            <button type="submit" class="btn large-blue-button" style="width: 100%;">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div> --}}
-        </div>
+    </div>
 @endsection()
 
 @section('script')

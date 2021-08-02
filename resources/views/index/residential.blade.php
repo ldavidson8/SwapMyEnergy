@@ -146,79 +146,85 @@
 @endsection
 
 @section('before-header')
-    <div id="section01" class="full-size container-fluid d-flex h-100 flex-column">
+    <div class="d-flex">
+        <div id="section01" class="full-size container-fluid d-flex h-100 flex-column">
 @endsection
 
 @section('main-content')
-        <hr/>
-        <div class="row flex-grow-1 no-padding background-image-wind-turbines background-image-left">
-            <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-3 col-lg-6 col-md-8 col-12 center-content" style="padding-bottom: 20px;">
-                <h1>Don't fall victim to rising energy prices</h1>
-                <p>Too many energy brokers promise savings that do not stick. These promises are made on estimates, which are not always accurate of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you need when it comes to your bills.</p>
-                <a href="{{ route('residential.energy-comparison.1-address') }}" class="btn big-blue-button" role="button" style="margin-top: 10px;">Get started</a>
-            </div>
-            <div class="col-xl-7 col-lg-5 col-md-2 d-none d-md-block">
-                <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
+            <hr/>
+            <div class="row flex-grow-1 no-padding background-image-wind-turbines background-image-left center-content">
+                <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
+                <div class="col-xl-3 col-lg-6 col-md-8 col-12" style="padding-bottom: 20px;">
+                    <h1>Don't fall victim to rising energy prices</h1>
+                    <p>Too many energy brokers promise savings that do not stick. These promises are made on estimates, which are not always accurate of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you need when it comes to your bills.</p>
+                    <a href="{{ route('residential.energy-comparison.1-address') }}" class="btn big-blue-button" role="button" style="margin-top: 10px;">Get started</a>
+                </div>
+                <div class="col-xl-7 col-lg-5 col-md-2 d-none d-md-block" style="height: 100%; margin: auto auto 0;">
+                    <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
+                </div>
             </div>
         </div>
     </div>
     <hr/>
-    <div class="full-size-60 container-fluid d-flex h-100 flex-column background-image-preston">
-        <div class="row flex-grow-1 font-color-white">
-            <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
-                <div class="white-box-infographics-inner">
-                    <div style="text-align: center;">
-                        <img src="{{ asset('img/infographic icons/signed-form.svg') }}"/>
-                        <p class="infographics-header"> Fill in our form </p>
-                        <p>It's easy to understand and will help you get the best deals you can.</p>
+    <div class="d-flex">
+        <div class="full-size-60 container-fluid d-flex flex-column background-image-preston">
+            <div class="row">
+                <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
+                    <div class="white-box-infographics-inner">
+                        <div style="text-align: center;">
+                            <img src="{{ asset('img/infographic icons/signed-form.svg') }}"/>
+                            <p class="infographics-header"> Fill in our form </p>
+                            <p>It's easy to understand and will help you get the best deals you can.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
-                <div class="white-box-infographics-inner">
-                    <div style="text-align: center;">
-                        <img src="{{ asset('img/infographic icons/search-icon.svg') }}"/>
-                        <p class="infographics-header"> Browse our deals </p>
-                        <p>We show you the best deals first, letting you see what you are saving per unit.</p>
+                <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
+                    <div class="white-box-infographics-inner">
+                        <div style="text-align: center;">
+                            <img src="{{ asset('img/infographic icons/search-icon.svg') }}"/>
+                            <p class="infographics-header"> Browse our deals </p>
+                            <p>We show you the best deals first, letting you see what you are saving per unit.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 d-lg-none"></div>
-            <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
-                <div class="white-box-infographics-inner">
-                    <div style="text-align: center;">
-                        <img src="{{ asset('img/infographic icons/switch-icon.svg') }}"/>
-                        <p class="infographics-header"> Get switching </p>
-                        <p>Once you have the best deal for you, click get switching.</p>
+                <div class="col-md-3 d-lg-none"></div>
+                <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
+                    <div class="white-box-infographics-inner">
+                        <div style="text-align: center;">
+                            <img src="{{ asset('img/infographic icons/switch-icon.svg') }}"/>
+                            <p class="infographics-header"> Get switching </p>
+                            <p>Once you have the best deal for you, click get switching.</p>
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-3 d-lg-none"></div>
             </div>
-            <div class="col-md-3 d-lg-none"></div>
         </div>
     </div>
-    <div id="HowItWorks" class="full-size-50 container-fluid d-flex flex-column">
-        <div class="row flex-grow-1 no-padding" style="background-color: #f3f2f1;">
-            <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-            <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left;">
-                <div>
+    <div class="d-flex">
+        <div id="HowItWorks" class="full-size-50 container-fluid d-flex flex-column">
+            <div class="row flex-grow-1 no-padding center-content" style="background-color: #f3f2f1;">
+                <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
+                <div class="col-xl-4 col-lg-5 col-md-8 col-12 left-column-content align-items-center mobile-only-padding-30" style="text-align: left;">
                     <h2 style="font-size: 44px"> How it works </h2>
                     <p style="padding-top: 15px">Other energy brokers promise false savings based on their estimates, which can fall short of your actual usage. This can result in steep final bills and hassle that you just don't need. Our savings are calculated based on the unit price, which means that a lower unit price plan will result in savings for you or some room for more brews or a new TV to binge-watch on. </p>
                 </div>
+                <div class="col-2 d-lg-none d-block"></div>
+                <div class="col-2 d-lg-none d-block"></div>
+                <div class="col-xl-6 col-lg-5 col-md-12 center-content text-center">
+                    <img class="default bottom-padding-image-md" src="{{ asset('img/How-it-works-graph.png') }}" style="width: auto; max-width: 100%; height: auto;" alt="Graph comparing your actual energy usage to the estimated usage from other energy brokers" />
+                </div>
+                <div class="col-2 col-lg-1 col-md-2 d-block"></div>
             </div>
-            <div class="col-2 d-lg-none d-block"></div>
-            <div class="col-2 d-lg-none d-block"></div>
-            <div class="col-xl-6 col-lg-5 col-md-12 center-content text-center">
-                <img class="bottom-padding-image-md" src="{{ asset('img/How-it-works-graph.png') }}" style="width: auto; max-width: 100%; height: auto;" alt="Graph comparing your actual energy usage to the estimated usage from other energy brokers" />
-            </div>
-            <div class="col-2 col-lg-1 col-md-2 d-block"></div>
         </div>
     </div>
-    <div class="full-size-50 container-fluid d-flex flex-column background-image-preston-behind">
-        <div class="row flex-grow-1 padding-20px background-image-preston background-image-bottom preload center-content">
-            <div class="align-items-center" style="width: 600px; max-width: 100%; text-align: center;">
-                <p style="color: #f3f2f1;">Geoff "saved" &pound;100 on his energy bill with another energy broker only to find out he had hidden fees to pay at the end of the year.</p>
-                <p style="font-weight: bold; font-size: 35px; color: #f3f2f1;">Sound familiar?</p>
+    <div class="d-flex">
+        <div class="full-size-50 container-fluid d-flex flex-column background-image-preston-behind">
+            <div class="row flex-grow-1 padding-20px background-image-preston background-image-bottom preload center-content">
+                <div class="align-items-center" style="width: 600px; max-width: 100%; text-align: center;">
+                    <p style="color: #f3f2f1;">Geoff "saved" &pound;100 on his energy bill with another energy broker only to find out he had hidden fees to pay at the end of the year.</p>
+                    <p style="font-weight: bold; font-size: 35px; color: #f3f2f1;">Sound familiar?</p>
+                </div>
             </div>
         </div>
     </div>

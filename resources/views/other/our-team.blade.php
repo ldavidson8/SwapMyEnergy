@@ -52,11 +52,11 @@
             max-height: 250px;
             height: auto;
         }
-        .modal 
+        .modal
         {
         padding: 0 !important; // override inline padding-right added from js
         }
-        .modal .modal-dialog 
+        .modal .modal-dialog
         {
         width: 100%;
         max-width: none;
@@ -72,13 +72,13 @@
         {
             text-align: left;
         }
-        .modal .modal-content 
+        .modal .modal-content
         {
         height: 100%;
         border: 0;
         border-radius: 0;
         }
-        .modal .modal-body 
+        .modal .modal-body
         {
         overflow-y: auto;
         text-align: left;
@@ -169,7 +169,7 @@
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#samis">
                     <img alt="" class="member-img" src="{{ asset('img/our-team/samis.png') }}">
-                </a>    
+                </a>
                 <h3>Sami Sattar</h3>
                 <h4>Business Development Manager</h4>
                 <div class="modal" id="samis" tabindex="-1" role="dialog" aria-labelledby="samis" aria-hidden="true">
@@ -193,14 +193,14 @@
                                 <li>- Started doing online coaching for sports fitness and diet</li>
                             </ul>
                             <p style="font-weight: bold">What are your hobbies and interests?</p>
-                            <ul class="list-unstyled"> 
+                            <ul class="list-unstyled">
                                 <li>My hobbies consist of playing sports- Football, Swimming, Weight training.</li>
                                 <li>- Helping people being confident within themselves by utilising a healthy Diet and training plan</li>
                                 <li>- My interest consists of being a successful entrepreneur.</li>
                                 <li>- Helping the local community</li>
                             </ul>
                             <p style="font-weight: bold">What are your goals and aspirations?</p>
-                            <ul class="list-unstyled"> 
+                            <ul class="list-unstyled">
                                 <li>- Exploiting niche markets</li>
                                 <li>- Growing a successful network</li>
                                 <li>- Improving on my current skill sets and acquiring new qualities.</li>
@@ -526,6 +526,7 @@
 @endsection
 
 @section('script')
-<script>
-    $('#andrewj').modal('show')
-</script>
+    <script>
+        $('#andrewj').modal('show');
+    </script>
+@endsection

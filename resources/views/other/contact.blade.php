@@ -51,7 +51,7 @@
             font-weight: bold;
             border: none;
         }
-        .bottom-aligner 
+        .bottom-aligner
         {
             display: inline-block;
             height: 100%;
@@ -61,7 +61,7 @@
     </style>
 @endsection
 @section('before-header')
-    <div class="background-image-preston-behind">
+    <div class="background-image-preston-behind d-flex">
         <div id="contact" class="full-size container-fluid d-flex h-100 flex-column background-image-preston background-image-top">
 @endsection
 
@@ -80,7 +80,7 @@
                             <h3 style="text-decoration: underline;"> Opening Hours </h3>
                             <p>
                                 10am - 4:30pm <br>
-                                Monday to Thursday 
+                                Monday to Thursday
                             </p>
                         </div>
                     </div>
@@ -96,8 +96,8 @@
                             <p> Email us and we will aim to get back to you within 24 hours </p>
                             <p style="overflow-wrap: break-word;">  {{ env('DATA_CONTACT_EMAIL') }} </p>
                             <div class="bottom-aligner"></div>
-                            <p> 
-                                Technical Issues? <br> 
+                            <p>
+                                Technical Issues? <br>
                                 Raise a support request
                             </p>
                         </div>
@@ -112,7 +112,7 @@
                         </div>
                         @include('media.dashed-white-line')
                         <div style="text-align: center; padding: 29px;">
-                            {{-- 
+                            {{--
                                 <p style="text-decoration: underline">
                                     Live Hours
                                 </p>
