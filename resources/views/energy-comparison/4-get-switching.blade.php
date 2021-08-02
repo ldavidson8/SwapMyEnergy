@@ -8,7 +8,7 @@
     $old_gas_meter_number = old('gas_meter_number');
     $old_elec_meter_number = old('elec_meter_number');
     $old_same_current_address = old('same_current_address');
-    
+
     $postcode = (isset($old_postcode)) ? $old_postcode : $mprn -> postcode;
     $address_line_1 = (isset($old_address_line_1)) ? $old_address_line_1 : trim($user_address["houseNo"] . " " . $user_address["houseName"]);
     $address_line_2 = (isset($old_address_line_2)) ? $old_address_line_2 : "";
@@ -19,22 +19,22 @@
     $elec_meter_number = (isset($old_elec_meter_number)) ? $old_elec_meter_number : $user_address["mpan"];
     $same_current_address = (isset($old_same_current_address)) ? $old_same_current_address : true;
 
-    
+
     $old_billing_address_line_1 = old('billing_address_line_1');
     $old_billing_address_line_2 = old('billing_address_line_2');
     $old_billing_town = old('billing_town');
     $old_billing_county = old('billing_county');
     $old_billing_postcode = old('billing_postcode');
     $old_billing_houseNo = old('billing_houseNo');
-    
+
     $billing_address_line_1 = (isset($old_billing_address_line_1)) ? $old_billing_address_line_1 : "";
     $billing_address_line_2 = (isset($old_billing_address_line_2)) ? $old_billing_address_line_2 : "";
     $billing_town = (isset($old_billing_town)) ? $old_billing_town : "";
     $billing_county = (isset($old_billing_county)) ? $old_billing_county : "";
     $billing_postcode = (isset($old_billing_postcode)) ? $old_billing_postcode : "";
     $billing_houseNo = (isset($old_billing_houseNo)) ? $old_billing_houseNo : "";
-    
-    
+
+
     $old_payment_method = old('payment_method');
     $old_bankName = old('bankName');
     $old_accountName = old('accountName');
@@ -45,7 +45,7 @@
     $old_preferredDay = old('preferredDay');
     $old_direct_debit_confirmation = old('direct_debit_confirmation');
     $old_receiveBills = old('receiveBills');
-    
+
     $payment_method = (isset($old_payment_method)) ? $old_payment_method : "";
     $bankName = (isset($old_bankName)) ? $old_bankName : "";
     $accountName = (isset($old_accountName)) ? $old_accountName : "";
@@ -110,6 +110,10 @@
     if ($selected_tariff['supplierId'] == 75 || $selected_tariff['supplierName'] == "Shell Energy")
     {
         $legal_text_for_supplier = "Shell Energy";
+    }
+    if ($selected_tariff['supplierId'] == 122 || $selected_tariff['supplierName'] == "Together Energy")
+    {
+        $legal_text_for_supplier = "Together Energy";
     }
 ?>
 
@@ -232,7 +236,7 @@
             z-index: 2;
             position: relative;
         }
-        
+
         .form-top-middle-heading
         {
             text-align: left;
@@ -293,8 +297,8 @@
         .white-progress-bar
         {
             width:350px;
-            height:50px; 
-            background-color: #202020; 
+            height:50px;
+            background-color: #202020;
             border: 3px solid #f3f2f1;
             border-radius: 10px;
             color: #f3f2f1;
@@ -317,8 +321,8 @@
         .white-progress-bar-border
         {
             width:350px;
-            height:50px; 
-            background-color: #202020; 
+            height:50px;
+            background-color: #202020;
             border-radius: 10px;
             border: 2px solid #202020;
             color: #f3f2f1;
@@ -340,8 +344,8 @@
 
         /* .black-progress-bar
         {
-            height: 100%; 
-            background-color: #202020; 
+            height: 100%;
+            background-color: #202020;
             border-radius: 7px;
             text-align: center;
             font-size: 24px;
@@ -354,8 +358,8 @@
 
         .blue-progress-bar
         {
-            height: 100%; 
-            background-color: #00c2cb; 
+            height: 100%;
+            background-color: #00c2cb;
             border-radius: 7px;
             text-align: center;
             font-size: 24px;
@@ -388,7 +392,7 @@
         {
             text-align: center;
         }
-        
+
         #tariff-info td
         {
             padding: 15px;
@@ -414,7 +418,7 @@
         {
         border-right: solid 2px #202020;
         }
-        
+
         label
         {
             font-weight: bold;
@@ -439,24 +443,24 @@
         {
             font-size: 18px;
         }
-        
+
         #billing_table th
         {
             padding: 7px;
             padding-bottom: 0px;
         }
-        
+
         #billing_table td
         {
             padding: 7px;
         }
-    
+
         .site-accordion-panel
         {
             padding-top: 20px;
         }
 
-        
+
         .blue-text
         {
             color: #0044cb;
@@ -538,7 +542,7 @@
             {
                 border-radius: 0;
             }
-            
+
             .form-top-img-border-sm
             {
                 border-radius: 0;
@@ -593,7 +597,7 @@
                 width: 100%;
                 max-width: 100%;
             }
-            
+
             #direct_debit_guarantee_popup
             {
                 margin: 0px;
@@ -637,10 +641,10 @@
                         <div class="white-rounded-container-positioned"></div>
                         <div class="container rounded-container white-rounded-container">
                             <h1 style="margin: 0px 0px 20px 0px;">Switching to a new Tariff</h1>
-                            
+
                             <h2>What happens next?</h2>
                             <p>We will send your application securely to the new energy supplier. They will contact your current supplier to arrange a 'Supply Start Date' usually within the next 21-days. Everything will be handled by the energy suppliers meaning you only need to do something if asked to do so e.g. provide a final meter reading. If you have any questions whatsoever, contact us on 0800 448 0205 or email help@theenergyshop.com and we will be happy to help.</p>
-                            
+
                             @if (Session::has('fail') && Session::get('fail') == 'session_expired')
                                 {{-- <div class="alert alert-danger post-error">
                                     Sorry, your session expired. Please try again.
@@ -656,7 +660,7 @@
                                     @endforeach
                                 </div>
                             @endif
-                            
+
                             {{-- <button class="site-accordion">Why choose Swap My Energy?</button>
                             <div class="site-accordion-panel">
                                 <p>Swap My Energy are dedicated to switching made simple. We allow you to see as much information regarding your deals as possible, allowing you to know exactly why your prices are the way they are.</p>
@@ -684,7 +688,7 @@
                                 </table>
                             </div>
                             <br />
-                            
+
                             <h2>Your Current Address</h2>
                             <form id="main_form" action="{{ route('residential.energy-comparison.4-get-switching') }}" method="post">
                                 @csrf
@@ -713,7 +717,7 @@
                                     <span id="county_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="county" name="county" value="{{ $county }}" />
                                 </div>
-                                
+
                                 @if ($get_previous_addresses)
                                     {{-- How Long At Current Address --}}
                                     <br /><br />
@@ -728,13 +732,13 @@
                                         <span id="address_length_months_error" class="form-error-message text-danger"></span>
                                         <input type="number" min="0" max="11" id="address_length_months" name="address_length_months" value="{{ old('address_length_months') }}" required="required" />
                                     </div>
-                                    
+
                                     {{-- Previous Address 1 --}}
                                     <fieldset class="form-group" id="prev_addr_1_section" style="display: none;">
                                         <br /><hr class="thin-line" /><br />
-                                        
+
                                         <h2>Previous Address 1</h2>
-                                        
+
                                         <div class="form-group">
                                             <label for="prev_addr_1_postcode">Postcode <span class="text-danger">*</span></label>
                                             <span id="prev_addr_1_postcode_error" class="form-error-message text-danger"></span>
@@ -774,13 +778,13 @@
                                             <input type="number" min="0" max="11" id="prev_addr_1_length_months" name="prev_addr_1_length_months" value="{{ old('prev_addr_1_length_months') }}" required="required" />
                                         </div>
                                     </fieldset>
-                                    
+
                                     {{-- Previous Address 2 --}}
                                     <fieldset class="form-group" id="prev_addr_2_section" style="display: none;">
                                         <br /><hr class="thin-line" /><br />
-                                        
+
                                         <h2>Previous Address 2</h2>
-                                        
+
                                         <div class="form-group">
                                             <label for="prev_addr_2_postcode">Postcode <span class="text-danger">*</span></label>
                                             <span id="prev_addr_2_postcode_error" class="form-error-message text-danger"></span>
@@ -807,7 +811,7 @@
                                             <input type="text" id="prev_addr_2_county" name="prev_addr_2_county" value="{{ old('prev_addr_2_county') }}" />
                                         </div>
                                         <br /><br />
-                                        
+
                                         <label>How long have you been at this address?</label>
                                         <div class="form-group">
                                             <label for="prev_addr_2_length_years">Years</label>
@@ -821,13 +825,13 @@
                                         </div>
                                     </fieldset>
                                 @endif
-                                
+
                                 <br /><hr class="thin-line" /><br />
-                                
+
                                 <div class="form-group">
                                     <h2>Billing Address</h2>
                                     <input type="checkbox" id="same_current_address" name="same_current_address" {{ ($same_current_address == true) ? "checked" : "" }} />
-                                    <span id="same_current_address_error" class="form-error-message text-danger"></span>        
+                                    <span id="same_current_address_error" class="form-error-message text-danger"></span>
                                     <label for="same_current_address" style="font-weight: normal;">My billing address is the same as my supply address.</label>
                                 </div>
                                 <div class="form-group" id="billing_section" style="display: none;">
@@ -857,9 +861,9 @@
                                         <input type="text" id="billing_county" name="billing_county" value="{{ $billing_county }}" />
                                     </div>
                                 </div>
-                                
+
                                 <br /><hr class="thin-line" /><br />
-                                
+
                                 <h2>Meters</h2>
                                 <div class="form-group">
                                     <label for="smartMeter">Do you already have a smart meter installed at your home?<span class="text-danger">*</span></label>
@@ -927,6 +931,15 @@
                                                 If you do have a smart meter and switch your supply, you may lose any non-standard smart metering functionality provided by your previous supplier and your meters will need to be read.
                                             </p>
                                             @break
+                                        {{-- Together Energy --}}
+                                        @case("Together Energy")
+                                        <p id="smartMeter_yesText_section" class="grey-text" style="display: none;">
+                                            Please note that by proceeding with this contract you may not be able to benefit from the meter functionality and any related services that are associated with your smart meter.
+                                        </p>
+                                        <p id="smartMeter_dontKnowText_section" class="grey-text" style="display: none;">
+                                            If you do have a smart meter and switch your supply, you may lose any non-standard smart metering functionality provided by your previous supplier and your meters will need to be read.
+                                        </p>
+                                        @break
                                     @endswitch
                                 </div>
                                 @if ($existing_tariff -> fuel_type_char == "D" || $existing_tariff -> fuel_type_char == "G")
@@ -947,19 +960,19 @@
                                         <img alt="Example of an Electricity Number" src="" />
                                     </div>
                                 @endif
-                                
+
                                 <br /><hr class="thin-line" /><br />
-                                
+
                                 <h2>Your Direct Debit Details</h2>
                                 <p>You will pay &pound;{{ number_format($selected_tariff["bill"] / 12, 2) }} per month to {{ $selected_tariff["supplierName"] }}.</p>
                                 @if ($coolingOff > 0)
                                     <p>Even after you have submitted this application you still have {{ $coolingOff }} days from today to cancel your contract if you change your mind.</p>
                                 @endif
-                                
+
                                 @switch($legal_text_for_supplier)
                                     {{-- EDF Energy --}}
                                     @case("EDF Energy")
-                                        <span class="grey-text">
+                                        <span class="direct_debit_instruction_text grey-text" style="display: none;">
                                             <p>Direct Debit Instruction (if applicable)</p>
                                             <p>If you have chosen to pay by Direct Debit, EDF Energy Customers Ltd will send written confirmation of your Direct Debit Instruction to you within 3 working days or no later than 10 working days before the first collection.</p>
                                             <p>If you have chosen to pay by Direct Debit, the company name that will appear on your bank statement is EDF Energy.</p>
@@ -972,7 +985,7 @@
                                         <p class="direct_debit_instruction_text_mdd" style="display: none;">Your first direct debit will be taken shortly after you come on supply. There will be at least 21 days between your 1st and 2nd direct debits. The direct debit amount is calculated using your annual cost split over 12 monthly payments. We'll let you know the exact dates in your Welcome Pack. You can change your preferred payment date once you come on supply.</p>
                                         @break
                                 @endswitch
-                                
+
                                 <div class="form-group">
                                     <label for="payment_method">Payment Method <span class="text-danger">*</span></label>
                                     <span id="payment_method_error" class="form-error-message text-danger"></span>
@@ -989,7 +1002,7 @@
                                     <input type="text" id="bankName" name="bankName" value="{{ $bankName }}" required="required" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="accountName" class="font-weight-bold">Account Holder Name<span class="text-danger">*</span></label> 
+                                    <label for="accountName" class="font-weight-bold">Account Holder Name<span class="text-danger">*</span></label>
                                     <span id="accountName_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="accountName" name="accountName" value="{{ $accountName }}" required />
                                 </div>
@@ -999,9 +1012,9 @@
                                     <input id="sortCode1" name="sortCode1" inputmode="tel" minlength="2" maxlength="2" type="text" value="{{ $sortCode1 }}" required class="d-inline text-center" style="width: 150px; max-width: 100%;" />
                                     <input id="sortCode2" name="sortCode2" inputmode="tel" minlength="2" maxlength="2" type="text" value="{{ $sortCode2 }}" required class="d-inline text-center" style="width: 150px; max-width: 100%;" />
                                     <input id="sortCode3" name="sortCode3" inputmode="tel" minlength="2" maxlength="2" type="text" value="{{ $sortCode3 }}" required class="d-inline text-center" style="width: 150px; max-width: 100%;" />
-                                </div> 
+                                </div>
                                 <div class="form-group">
-                                    <label for="accountNumber" class="font-weight-bold">Account Number<span class="text-danger">*</span></label> 
+                                    <label for="accountNumber" class="font-weight-bold">Account Number<span class="text-danger">*</span></label>
                                     <span id="accountNumber_error" class="form-error-message text-danger"></span>
                                     <input id="accountNumber" name="accountNumber" inputmode="tel" maxlength="8" type="text" value="{{ $accountNumber }}" required />
                                     <span class="small-input-text">If your account number is less than 8 digits, you should add zeros to the beginning of your account number until it is exactly 8 digits long.</span>
@@ -1012,34 +1025,34 @@
                                             <label for="preferredDay" class="font-weight-bold">Select your payment date <span class="text-danger">*</span></label>
                                             <span id="preferredDay_error" class="form-error-message text-danger"></span>
                                             <select id="preferredDay" name="preferredDay" data-value="{{ $preferredDay }}" required>
-                                                <option value="" selected>Please Select</option> 
-                                                <option value="1">1</option> 
-                                                <option value="2">2</option> 
-                                                <option value="3">3</option> 
-                                                <option value="4">4</option> 
-                                                <option value="5">5</option> 
-                                                <option value="6">6</option> 
-                                                <option value="7">7</option> 
-                                                <option value="8">8</option> 
-                                                <option value="9">9</option> 
-                                                <option value="10">10</option> 
-                                                <option value="11">11</option> 
-                                                <option value="12">12</option> 
-                                                <option value="13">13</option> 
-                                                <option value="14">14</option> 
-                                                <option value="15">15</option> 
-                                                <option value="16">16</option> 
-                                                <option value="17">17</option> 
-                                                <option value="18">18</option> 
-                                                <option value="19">19</option> 
-                                                <option value="20">20</option> 
-                                                <option value="21">21</option> 
-                                                <option value="22">22</option> 
-                                                <option value="23">23</option> 
-                                                <option value="24">24</option> 
-                                                <option value="25">25</option> 
-                                                <option value="26">26</option> 
-                                                <option value="27">27</option> 
+                                                <option value="" selected>Please Select</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
                                                 <option value="28">28</option>
                                             </select>
                                         </div>
@@ -1098,11 +1111,11 @@
                                             <p class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell Bristol Energy within the cooling off period, which ends 14 days from day after you sign up.</p>
                                         @endif
                                         {{-- Direct Debit Authorisation --}}
-                                        <div class="direct_debit_instruction_text form-group" style="display: none;">
+                                        <fieldset class="direct_debit_instruction_text form-group" style="display: none;">
                                             <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
                                             <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
                                             <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
-                                        </div>
+                                        </fieldset>
                                         {{-- Terms and Conditions --}}
                                         <div class="form-group">
                                             <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
@@ -1117,7 +1130,7 @@
                                         <?php $features = explode(",", $selected_tariff["features"]); ?>
                                         @if (in_array(28, $features) || in_array(29, $features))
                                             <div class="form-group">
-                                                <label for="receiveBills" class="font-weight-bold">How would you like to receive all communications from EDF Energy Customers Ltd? An electronic preference means EDF Energy Customers Ltd communicate with you electronically wherever possible.</label> 
+                                                <label for="receiveBills" class="font-weight-bold">How would you like to receive all communications from EDF Energy Customers Ltd? An electronic preference means EDF Energy Customers Ltd communicate with you electronically wherever possible.</label>
                                                 <span id="receiveBills_error" class="form-error-message text-danger"></span>
                                                 <select id="receiveBills" name="receiveBills" value="{{ $receiveBills }}" required="required">
                                                     <option value="Paper"></option>
@@ -1131,11 +1144,11 @@
                                             <p class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell EDF Energy within the cooling off period, which ends 14 days from day after you sign up.</p>
                                         @endif
                                         {{-- Direct Debit Authorisation --}}
-                                        <div class="direct_debit_instruction_text form-group" style="display: none;">
+                                        <fieldset class="direct_debit_instruction_text form-group" style="display: none;">
                                             <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
                                             <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
                                             <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
-                                        </div>
+                                        </fieldset>
                                         {{-- Terms and Conditions --}}
                                         <div class="form-group">
                                             <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
@@ -1183,11 +1196,11 @@
                                             <p class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell Green within the cooling off period, which ends 14 days from day after you sign up.</p>
                                         @endif
                                         {{-- Direct Debit Authorisation --}}
-                                        <div class="direct_debit_instruction_text form-group" style="display: none;">
+                                        <fieldset class="direct_debit_instruction_text form-group" style="display: none;">
                                             <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
                                             <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
                                             <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
-                                        </div>
+                                        </fieldset>
                                         {{-- Terms and Conditions --}}
                                         <div class="form-group">
                                             <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
@@ -1218,7 +1231,7 @@
                                                     <a href="javascript: void;" id="direct_debit_guarantee_button">Direct Debit Guarantee</a>.
                                                 </p>
                                                 <p>Your Direct Debit Instruction will be confirmed to you within 3 working days either by email or post.</p>
-                                                <p>I understand that this instruction may remain with Green Supplier Limited and, if so, details will be passed electronically to my bank/building society.</p>
+                                                <p>I understand that this instruction may remain with Igloo Energy Supply Limited and, if so, details will be passed electronically to my bank/building society.</p>
                                                 <p>Date: {{ date('d/m/Y') }}</p>
                                                 <p>Service User Number: {{ $selected_supplier -> ddOriginatorsNo }}</p>
                                                 <p>Banks and building societies may not accept Direct Debit Instructions for some types of account.</p>
@@ -1245,11 +1258,11 @@
                                             <p class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell Igloo Energy within the cooling off period, which ends 14 days from day after you sign up.</p>
                                         @endif
                                         {{-- Direct Debit Authorisation --}}
-                                        <div class="direct_debit_instruction_text form-group" style="display: none;">
+                                        <fieldset class="direct_debit_instruction_text form-group" style="display: none;">
                                             <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
                                             <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
                                             <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
-                                        </div>
+                                        </fieldset>
                                         {{-- Terms and Conditions --}}
                                         <div class="form-group">
                                             <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
@@ -1303,11 +1316,11 @@
                                         <button type="button" class="collapse-table-button site-accordion" role="button">Priority Services Register</button>
                                         <p class="site-accordion-panel">ScottishPower have a Priority Services Register. Once Registered there are various free services you (or someone in your household) could be eligible for. For more information or to join their Priority Services Register please call their customer service team on 0800 027 0072. Alternatively you can apply on ScottishPower's website once you are on supply.</p>
                                         {{-- Direct Debit Authorisation --}}
-                                        <div class="direct_debit_instruction_text form-group" style="display: none;">
+                                        <fieldset class="direct_debit_instruction_text form-group" style="display: none;">
                                             <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
                                             <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
                                             <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
-                                        </div>
+                                        </fieldset>
                                         {{-- Terms and Conditions --}}
                                         <div class="form-group">
                                             <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
@@ -1355,62 +1368,123 @@
                                             <p class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell Shell Energy within the cooling off period, which ends 14 days from day after you sign up.</p>
                                         @endif
                                         {{-- Direct Debit Authorisation --}}
-                                        <div class="direct_debit_instruction_text form-group" style="display: none;">
+                                        <fieldset class="direct_debit_instruction_text form-group" style="display: none;">
                                             <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
                                             <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
                                             <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account. <span class="text-danger">*</span></label>
-                                        </div>
+                                        </fieldset>
                                         {{-- Terms and Conditions --}}
                                         <div class="form-group">
                                             <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
                                             <label for="terms_and_conditions" style="font-weight: normal;">By clicking you agree to <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/FU.pdf" target="_blank">Shell Energy's terms and conditions</a>, <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/shell-energy-privacy-policy.pdf" target="_blank">privacy policy</a> and tariff terms & conditions.</label>
                                         </div>
                                         @break
+                                    {{-- Together Energy --}}
+                                    @case("Together Energy")
+                                    {{-- Billing --}}
+                                        <?php $features = explode(",", $selected_tariff["features"]); ?>
+                                        <div class="form-group">
+                                            <label for="receiveBills" class="font-weight-bold">How would you like to receive all communications from Together Energy (Retail) Limited? An electronic preference means Together Energy (Retail) Limited communicate with you electronically wherever possible. <span class="text-danger">*</span></label>
+                                            <span id="receiveBills_error" class="form-error-message text-danger"></span>
+                                            <select id="receiveBills" name="receiveBills" value="{{ $receiveBills }}" required="required">
+                                                <option value=""></option>
+                                                <option value="Email">Electronically</option>
+                                                <option value="Paper">All communications by post</option>
+                                            </select>
+                                        </div>
+                                        {{-- Direct Debit Instructions --}}
+                                        {{-- Direct Debit Guarantee --}}
+                                        <button type="button" class="direct_debit_instruction_text collapse-table-button site-accordion" role="button" style="display: none;">Instructions to your Bank/Building Society</button>
+                                        <div class="direct_debit_instruction_text site-accordion-panel" style="display: none;">
+                                            <span class="grey-text">
+                                                <p>
+                                                    Please pay Together Energy (Retail) Limited Direct Debits from the account detailed in this instruction subject to the safeguards assured by the
+                                                    <a href="javascript: void;" id="direct_debit_guarantee_button">Direct Debit Guarantee</a>.
+                                                </p>
+                                                <p>Your Direct Debit Instruction will be confirmed to you within 3 working days either by email or post.</p>
+                                                <p>I understand that this instruction may remain with Together Energy (Retail) Limited and, if so, details will be passed electronically to my bank/building society.</p>
+                                                <p>Date: {{ date('d/m/Y') }}</p>
+                                                <p>Service User Number: {{ $selected_supplier -> ddOriginatorsNo }}</p>
+                                                <p>Banks and building societies may not accept Direct Debit Instructions for some types of account.</p>
+                                            </span>
+                                            <div id="direct_debit_guarantee_background" class="direct_debit_guarantee_close" style="display: none;"></div>
+                                            <div id="direct_debit_guarantee_popup_outer" style="display: none;">
+                                                <div id="direct_debit_guarantee_popup">
+                                                    <div class="direct_debit_guarantee_close" style="display: inline-block; padding: 10px; float: right;">
+                                                        <span class="far fa-window-close" aria-hidden="true" style="font-size: 30px; cursor: pointer;"></span>
+                                                    </div>
+                                                    <ul>
+                                                        <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
+                                                        <li>If there are any changes to the amount, date or frequency of your Direct Debit Together Energy will notify you 10 working days in advance of your account being debited or as otherwise agreed. If you request Together Energy to collect a payment, confirmation of the amount and date will be given to you at the time of the request.</li>
+                                                        <li>If an error is made in the payment of your Direct Debit, by Together Energy or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society
+                                                        <ul><li type="disc">If you receive a refund you are not entitled to, you must pay it back when Together Energy asks you to.</li></ul>
+                                                        <li>You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify Together Energy.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- Cancellation Rights --}}
+                                        @if (true || $coolingOff > 0)
+                                            <button type="button" class="collapse-table-button site-accordion" role="button">Your Cancellation Rights</button>
+                                            <p class="site-accordion-panel">If you change your mind and want to cancel the contract, you must tell Together Energy within the cooling off period, which ends 14 days from day after you sign up.</p>
+                                        @endif
+                                        {{-- Direct Debit Authorisation --}}
+                                        <fieldset class="direct_debit_instruction_text form-group" style="display: none;">
+                                            <span id="direct_debit_confirmation_error" class="form-error-message text-danger"></span>
+                                            <input type="checkbox" id="direct_debit_confirmation" name="direct_debit_confirmation" {{ ($direct_debit_confirmation == true) ? "checked" : " " }} />
+                                            <label for="direct_debit_confirmation" style="font-weight: normal;">I confirm I am the account holder and am the only person required to authorise Direct Debits from my bank account.<span class="text-danger">*</span></label>
+                                        </fieldset>
+                                        {{-- Terms and Conditions --}}
+                                        <div class="form-group">
+                                            <input type="checkbox" id="terms_and_conditions" name="terms_and_conditions" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} required="required" />
+                                            <label for="terms_and_conditions" style="font-weight: normal;">Read Together Energy's T&Cs <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/TOG.pdf" target="_blank">Here</a>.</label>
+                                        </div>
+                                        @break
                                 @endswitch
-                                
+
                                 <br /><hr class="thin-line" /><br />
 
                                 <h2>Your Contact Details</h2>
                                 <div class="form-group">
-                                    <label for="title" class="font-weight-bold">Title<span class="text-danger">*</span></label> 
+                                    <label for="title" class="font-weight-bold">Title<span class="text-danger">*</span></label>
                                     <span id="title_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="title" name="title" value="{{ $title }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="firstName" class="font-weight-bold">First Name<span class="text-danger">*</span></label> 
+                                    <label for="firstName" class="font-weight-bold">First Name<span class="text-danger">*</span></label>
                                     <span id="firstName_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="firstName" name="firstName" value="{{ $firstName }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="lastName" class="font-weight-bold">Last Name<span class="text-danger">*</span></label> 
+                                    <label for="lastName" class="font-weight-bold">Last Name<span class="text-danger">*</span></label>
                                     <span id="lastName_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="lastName" name="lastName" value="{{ $lastName }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="telephone" class="font-weight-bold">Telephone<span class="text-danger">*</span></label> 
+                                    <label for="telephone" class="font-weight-bold">Telephone<span class="text-danger">*</span></label>
                                     <span id="telephone_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="telephone" name="telephone" value="{{ $telephone }}" required />
                                     <span class="small-input-text">Please enter the number starting with 0 and not the dialling code.</span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="mobile" class="font-weight-bold">Mobile</label> 
+                                    <label for="mobile" class="font-weight-bold">Mobile</label>
                                     <span id="mobile_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="mobile" name="mobile" value="{{ $mobile }}" />
                                     <span class="small-input-text">Please enter the number starting with 0 and not the dialling code.</span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="emailAddress" class="font-weight-bold">Email Address<span class="text-danger">*</span></label> 
+                                    <label for="emailAddress" class="font-weight-bold">Email Address<span class="text-danger">*</span></label>
                                     <span id="emailAddress_error" class="form-error-message text-danger"></span>
                                     <input type="email" id="emailAddress" name="emailAddress" value="{{ $emailAddress }}" required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="dob" class="font-weight-bold">Date of Birth<span class="text-danger">*</span></label> 
+                                    <label for="dob" class="font-weight-bold">Date of Birth<span class="text-danger">*</span></label>
                                     <span id="dob_error" class="form-error-message text-danger"></span>
                                     <input type="date" id="dob" name="dob" value="{{ $dob }}" required />
                                 </div>
-                                
+
                                 <br /><br /><hr class="thin-line" /><br />
-                                
+
                                 @switch($legal_text_for_supplier)
                                     {{-- Bristol Energy --}}
                                     @case("Bristol Energy")
@@ -1423,11 +1497,14 @@
                                         @break
                                     {{-- EDF Energy --}}
                                     @case("EDF Energy")
+                                        {{-- Priority Services Register --}}
                                         <div class="form-group">
                                             <p><label for="special_needs_priority_services_register">Special needs / Priority Services Register (PSR)</label></p>
                                             <span id="special_needs_priority_services_register" class="form-error-message text-danger"></span>
-                                            <input type="checkbox" id="special_needs_priority_services_register" name="special_needs_priority_services_register" {{ (old('special_needs_priority_services_register') != '') ? "checked" : " " }} />
-                                            <label for="special_needs_priority_services_register" style="font-weight: normal;">Would you like to receive information about EDF Energy Customers Ltd's Priority Services Register Scheme?</label>
+                                            <label style="font-weight: normal;">
+                                                <input type="checkbox" id="special_needs_priority_services_register" name="special_needs_priority_services_register" {{ (old('special_needs_priority_services_register') != '') ? "checked" : " " }} />
+                                                Would you like to receive information about EDF Energy Customers Ltd's Priority Services Register Scheme?
+                                            </label>
                                         </div>
                                         {{-- Marketing Consent --}}
                                         <div class="form-group">
@@ -1442,8 +1519,8 @@
                                         <h2>Stay in touch</h2>
                                         <p class="grey-text">Green Supplier Limited would like to share information with you about any products, services on offer from Green Supplier Limited and its associated companies.</p>
                                         <div class="form-group">
-                                            <input type="checkbox" id="supplier_partners" name="supplier_partners" {{ (old('supplier_partners') == true) ? "checked" : "" }} />
-                                            <label for="supplier_partners" style="font-weight: normal;">Yes please, I would like to hear what {{ $selected_tariff["supplierName"] }} has to offer.</label>
+                                            <input type="checkbox" id="supplier_opt_in" name="supplier_opt_in" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} />
+                                            <label for="supplier_opt_in" style="font-weight: normal;">Yes please, I would like to hear what {{ $selected_tariff["supplierName"] }} has to offer.</label>
                                         </div>
                                         @break
                                     {{-- Igloo Energy --}}
@@ -1452,8 +1529,8 @@
                                         <h2>Stay in touch</h2>
                                         <p class="grey-text">Igloo Energy would like to share information with you about any products, services on offer from Igloo Energy and its associated companies.</p>
                                         <div class="form-group">
-                                            <input type="checkbox" id="supplier_partners" name="supplier_partners" {{ (old('supplier_partners') == true) ? "checked" : "" }} />
-                                            <label for="supplier_partners" style="font-weight: normal;">Yes please, I would like to hear what {{ $selected_tariff["supplierName"] }} has to offer.</label>
+                                            <input type="checkbox" id="supplier_opt_in" name="supplier_opt_in" {{ (old('supplier_opt_in') == true) ? "checked" : "" }} />
+                                            <label for="supplier_opt_in" style="font-weight: normal;">Yes please, I would like to hear what {{ $selected_tariff["supplierName"] }} has to offer.</label>
                                         </div>
                                         @break
                                     {{-- ScottishPower --}}
@@ -1462,14 +1539,14 @@
                                         <h2>Stay in touch</h2>
                                         <div class="grey-text">
                                             <p>At ScottishPower, we often have exclusive offers, new tariffs and updates to our services that we hope you'd like to hear about.</p>
-                                            <p>We'll always treat your details with care and will never sell them to any third party for their marketing purposes. You can find out more about how we handle your personal data in our Privacy Information Notice. Remember, you can opt out at any time.</p>
+                                            <p>We'll always treat your details with care and will never sell them to any third party for their marketing purposes. You can find out more about how we handle your personal data in our <a href="https://www.scottishpower.co.uk/legal/privacy-policy" target="_blank">Privacy Information Notice</a>. Remember, you can opt out at any time.</p>
                                             <p>If you're happy for us to contact you with relevant promotions and information now and again, please let us know your preferred contact methods:</p>
                                         </div>
                                         <div class="form-group">
-                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_email" name="supplier_partners_email" {{ (old('supplier_partners_email') == true) ? "checked" : "" }}             style="float: none;" /> Email</div>
-                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_sms" name="supplier_partners_sms" {{ (old('supplier_partners_sms') == true) ? "checked" : "" }}                   style="float: none; margin-left: 10px;" /> SMS Text</div>
-                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_telephone" name="supplier_partners_telephone" {{ (old('supplier_partners_telephone') == true) ? "checked" : "" }} style="float: none; margin-left: 10px;" /> Telephone</div>
-                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_letter" name="supplier_partners_letter" {{ (old('supplier_partners_letter') == true) ? "checked" : "" }}          style="float: none; margin-left: 10px; float: none;" /> Letter</div>
+                                            <label style="display: inline-block; font-weight: normal;"><input type="checkbox" id="supplier_partners_email" name="supplier_partners_email" {{ (old('supplier_partners_email') == true) ? "checked" : "" }}             style="float: none;" /> Email</label>
+                                            <label style="display: inline-block; font-weight: normal;"><input type="checkbox" id="supplier_partners_sms" name="supplier_partners_sms" {{ (old('supplier_partners_sms') == true) ? "checked" : "" }}                   style="float: none; margin-left: 10px;" /> SMS Text</label>
+                                            <label style="display: inline-block; font-weight: normal;"><input type="checkbox" id="supplier_partners_telephone" name="supplier_partners_telephone" {{ (old('supplier_partners_telephone') == true) ? "checked" : "" }} style="float: none; margin-left: 10px;" /> Telephone</label>
+                                            <label style="display: inline-block; font-weight: normal;"><input type="checkbox" id="supplier_partners_letter" name="supplier_partners_letter" {{ (old('supplier_partners_letter') == true) ? "checked" : "" }}          style="float: none; margin-left: 10px; float: none;" /> Letter</label>
                                         </div>
                                         @break
                                     {{-- Shell Energy --}}
@@ -1489,20 +1566,29 @@
                                         <p>Once you have switched you can change your preferences anytime you want by logging into your account with Shell Energy. If you choose to opt out of all marketing communications that is fine, but Shell Energy will still need to contact you about your account occasionally (for billing. payments, account updates etc).</p>
                                         <p>If you would like to find out more about how they handle your personal details, please read their <a href="https://s3-eu-west-1.amazonaws.com/tes-resources/TCs/shell-energy-privacy-policy.pdf" target="_blank">Privacy Policy</a>.</p>
                                         <div class="form-group">
-                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_email" name="supplier_partners_email" {{ (old('supplier_partners_email') == true) ? "checked" : "" }}             style="float: none;" /> Email</div>
-                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_sms" name="supplier_partners_sms" {{ (old('supplier_partners_sms') == true) ? "checked" : "" }}                   style="float: none; margin-left: 10px;" /> SMS Text</div>
-                                            <div style="display: inline-block;"><input type="checkbox" id="supplier_partners_telephone" name="supplier_partners_telephone" {{ (old('supplier_partners_telephone') == true) ? "checked" : "" }} style="float: none; margin-left: 10px;" /> Telephone</div>
+                                            <label style="display: inline-block; font-weight: normal;"><input type="checkbox" id="supplier_partners_email" name="supplier_partners_email" {{ (old('supplier_partners_email') == true) ? "checked" : "" }}             style="float: none;" /> Email</label>
+                                            <label style="display: inline-block; font-weight: normal;"><input type="checkbox" id="supplier_partners_sms" name="supplier_partners_sms" {{ (old('supplier_partners_sms') == true) ? "checked" : "" }}                   style="float: none; margin-left: 10px;" /> SMS Text</label>
+                                            <label style="display: inline-block; font-weight: normal;"><input type="checkbox" id="supplier_partners_telephone" name="supplier_partners_telephone" {{ (old('supplier_partners_telephone') == true) ? "checked" : "" }} style="float: none; margin-left: 10px;" /> Telephone</label>
+                                        </div>
+                                        @break
+                                    {{-- Together Energy --}}
+                                    @case("Together Energy")
+                                        {{-- Priority Services Register --}}
+                                        <div>
+                                            <p><b>Special needs / Priority Services Register</b></p>
+                                            <input type="checkbox" id="special_needs_priority_services_register" name="special_needs_priority_services_register" {{ (old('special_needs_priority_services_register') == true) ? "checked" : "" }} style="float: none;" />
+                                            <label for="special_needs_priority_services_register" style="font-weight: normal;">Would you like to receive information about Together Energy's Priority Services Register Scheme?</label>
                                         </div>
                                         @break
                                 @endswitch
-                                
-                                <button type="submit" class="switchButton">Get Switching</button>
+
+                                <div><button type="submit" class="switchButton">Get Switching</button></div>
                             </form>
                             <div style="clear: both;"></div>
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 
@@ -1514,7 +1600,7 @@
         {
             // javascript validation
             var mainForm = document.getElementById("main_form");
-            
+
             // var errorPostcode = $("#postcode_error");
             // var inputPostcode = $("#postcode");
             // var errorAddressLine1 = $("#address_line_1_error");
@@ -1533,7 +1619,7 @@
             // var inputGasMeterNumber = $("#gas_meter_number");
             // var errorElecMeterNumber = $("#elec_meter_number_error");
             // var inputElecMeterNumber = $("#elec_meter_number");
-            
+
             var inputSameCurrentAddress = $("#same_current_address");
             var billingSection = $("#billing_section");
             var errorBilling = $("#billing_error");
@@ -1544,7 +1630,7 @@
             var inputBillingArea = $("#billing_area");
             var inputBillingTown = $("#billing_town");
             var inputBillingCounty = $("#billing_county");
-            
+
             var directDebitInstructionText = $(".direct_debit_instruction_text");
             var directDebitInstructionTextMDD = $(".direct_debit_instruction_text_mdd");
             var directDebitGuaranteButton = $("#direct_debit_guarantee_button");
@@ -1572,7 +1658,7 @@
             var inputDirectDebitConfirmation = $("#direct_debit_confirmation");
             // var errorReceiveBills = $("#receiveBills_error");
             // var inputReceiveBills = $("#receiveBills");
-            
+
             // var errorTitle = $("#title_error");
             // var inputTitle = $("#title");
             // var errorFirstName = $("#firstName_error");
@@ -1585,7 +1671,7 @@
             var inputMobile = $("#mobile");
             // var errorEmailAddress = $("#emailAddress_error");
             // var inputEmailAddress = $("#emailAddress");
-            
+
             var sections =
             {
                 "addressLength":
@@ -1686,13 +1772,13 @@
                     }
                 }
             }
-            
+
 
             // select previous input for dropdown lists
             try { if (inputSmartMeter != null) inputSmartMeter.find('[value=' + inputSmartMeter.attr('data-value') + ']').prop("selected", true); } catch {}
             try { if (inputPreferredDay != null) inputPreferredDay.find('[value=' + inputPreferredDay.attr('data-value') + ']').prop("selected", true); } catch {}
             try { if (inputPaymentMethod != null) inputPaymentMethod.find('[value=' + inputPaymentMethod.attr('data-value') + ']').prop("selected", true); } catch {}
-            
+
 
             // current address length section
             sections.addressLength.years.input.change(function(e)
@@ -1737,7 +1823,7 @@
                 if (!isFinite(e.target.value)) sections.prevAddr2.addressLength.months.error.text("The months field must be a number.");
                 if (e.target.value < 0 || e.target.value > 11) sections.prevAddr2.addressLength.months.error.text("The months field must be between 0 and 12.");
             });
-            
+
             PreviousAddressesShowHide();
             function PreviousAddressesShowHide()
             {
@@ -1762,7 +1848,7 @@
                     }
                 }
             }
-            
+
 
             inputSmartMeter.change(SmartMeterTextShowHide);
             SmartMeterTextShowHide()
@@ -1785,16 +1871,16 @@
             DirectDebitInstructionTextShowHide();
             function DirectDebitInstructionTextShowHide()
             {
-                directDebitInstructionText.hide();
-                directDebitInstructionTextMDD.hide();
+                directDebitInstructionText.hide().find("input").attr("disabled", "disabled");
+                directDebitInstructionTextMDD.hide().find("input").attr("disabled", "disabled");
                 switch (inputPaymentMethod.val())
                 {
                     case "MDD":
-                        directDebitInstructionText.show();
-                        directDebitInstructionTextMDD.show();
+                        directDebitInstructionText.show().find("input").removeAttr("disabled");
+                        directDebitInstructionTextMDD.show().find("input").removeAttr("disabled");
                         break;
                     case "QDD":
-                        directDebitInstructionText.show();
+                        directDebitInstructionText.show().find("input").removeAttr("disabled");
                         break;
                 }
             }
@@ -1809,7 +1895,7 @@
                 directDebitGuaranteePopupOuter.hide();
                 directDebitGuaranteeBackground.hide();
             });
-            
+
 
             // billing address section
             inputSameCurrentAddress.change(function() { BillingShowHideAddressSection(); });
@@ -1819,10 +1905,10 @@
                 if (inputSameCurrentAddress.prop("checked")) billingSection.hide();
                 else billingSection.show();
             }
-            
+
 
             // using ajax to find addresses
-            
+
             $.ajaxSetup(
             {
                 headers:
@@ -1830,16 +1916,16 @@
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 }
             });
-            
+
             // form submit code
             mainForm.onsubmit = function(e)
             {
                 $(".form-error-message").text('');
-                
+
                 @if ($get_previous_addresses)
-                    
+
                 @endif
-                
+
                 if (inputPaymentMethod.val().length == 0)
                 {
                     e.preventDefault();
@@ -1848,8 +1934,8 @@
                     catch (ex) {}
                     return;
                 }
-                
-                if (!inputDirectDebitConfirmation.prop("checked"))
+
+                if (inputDirectDebitConfirmation.length > 0 && !inputDirectDebitConfirmation[0].hasAttribute("disabled") && !inputDirectDebitConfirmation.prop("checked"))
                 {
                     e.preventDefault();
                     errorDirectDebitConfirmation.text("You must confirm to continue.");
@@ -1874,7 +1960,7 @@
                     catch(ex) {}
                     return;
                 }
-                
+
                 if (inputMobile.val().length > 0)
                 {
                     if (!inputMobile.val().startsWith('0'))
