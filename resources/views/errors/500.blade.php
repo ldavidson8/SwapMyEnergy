@@ -22,7 +22,7 @@
                             <h1 style="font-weight: bold; font-size: 40px; color: #000;  text-align: center; letter-spacing: -3px;"><span style="letter-spacing: 3px; font-size: 100px; color: #fff;">500</span><br />Something Went Wrong<br /> :(</h1>
                             <br />
                             <div style="color: #000; text-align: center; font-size: 18px; letter-spacing: 1px;">
-                                <p>The server encountered an <span style="color: #00C2CB;">internal error</span> and<br />was unable to complete your request<p>
+                                <p>The server encountered an <span style="color: #00C2CB;">internal error</span> and<br />was unable to complete your request</p>
                                 <br />
                                 <p>You can contact us using the details below.</p>
                                 <p>
