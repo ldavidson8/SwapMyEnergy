@@ -616,7 +616,7 @@ class ResidentialComparisonController extends Controller
                     "town" => $request -> input('billing_town'),
                     "county" => $request -> input('billing_county'),
                     "postcode" => $request -> input('billing_postcode'),
-                    "bldNumber" => "1",
+                    "bldNumber" => "",
                     "bldName" => "",
                     "subBld" => "",
                     "throughfare" => "",
@@ -701,7 +701,7 @@ class ResidentialComparisonController extends Controller
                     "town" => $request -> input("town"),
                     "county" => (isset($county)) ? $county : "",
                     "postcode" => $request -> input("postcode"),
-                    "bldNumber" => "1",
+                    "bldNumber" => "",
                     "bldName" => "",
                     "subBld" => "",
                     "throughfare" => "",
@@ -720,7 +720,7 @@ class ResidentialComparisonController extends Controller
                 //     "town" => "London",
                 //     "county" => "East London",
                 //     "postcode" => "E1 6AN",
-                //     "bldNumber" => "1",
+                //     "bldNumber" => "",
                 //     "bldName" => "",
                 //     "subBld" => "",
                 //     "throughfare" => "",
@@ -845,7 +845,7 @@ class ResidentialComparisonController extends Controller
                 ];
             }
             // return response() -> json($request -> all());
-            return response() -> json($requestObj);
+            // return response() -> json($requestObj);
 
             // if ($requestObj["user"]["email"] == "testingthefinalapicall@testing.co.uk")
             // {
