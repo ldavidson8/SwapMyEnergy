@@ -145,11 +145,11 @@
                             try
                             {
                                 // parse the returned json into an object
-                                //var rows = JSON.parse(result);
+                                // var rows = JSON.parse(result);
                                 var rows = result;
 
                                 // sort the rows by the address property
-                                //rows.sort((a, b) => (a.address.localeCompare(b.address, 'en', { numeric: true })));
+                                // rows.sort((a, b) => (a.address.localeCompare(b.address, 'en', { numeric: true })));
 
                                 // empty the dropdown list
                                 inputHouseNo.find("option:not(.initial-values)").remove();

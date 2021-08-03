@@ -849,14 +849,14 @@ class ResidentialComparisonController extends Controller
 
             // if ($requestObj["user"]["email"] == "testingthefinalapicall@testing.co.uk")
             // {
-                // $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
-                // if (str_starts_with($result_str, "{"))
-                // {
-                //     // The api returned an error
-                //     Log::channel("energy-comparison/get-switching-post") -> critical("The API returned an error.");
-                //     return $this -> BackTo4GetSwitching();
-                // }
-                // Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
+                $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
+                if (str_starts_with($result_str, "{"))
+                {
+                    // The api returned an error
+                    Log::channel("energy-comparison/get-switching-post") -> critical("The API returned an error.");
+                    return $this -> BackTo4GetSwitching();
+                }
+                Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
             // }
             /*else*/ $result_str = "Testing123Testing";
 

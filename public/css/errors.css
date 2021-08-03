@@ -17,6 +17,13 @@ table.table-center-contents
     height: 100%;
 }
 
+table.table-center-contents,
+table.table-center-contents tr,
+table.table-center-contents td
+{
+    max-width: 100%;
+}
+
 table.table-center-contents td
 {
     vertical-align: center;
