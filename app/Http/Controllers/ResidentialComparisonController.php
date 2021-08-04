@@ -393,8 +393,86 @@ class ResidentialComparisonController extends Controller
                 return $this -> BackTo2ExistingTariff([], true);
             }
 
+            date_default_timezone_set('Europe/London');
+            $showGasExitPenalty = false;
+            $gasExitPenalty = null;
+            try
+            {
+                if (in_array($existing_tariff -> fuel_type_str, [ "dfs", "df", "ne" ]))
+                {
+                    Log::channel('energy-comparison.existing-tariff.exit-penalties') -> log('info', 'Electricity Exit Penalty');
+                    $gasExitPenaltyAmount = $current_tariffs -> G -> exitPenaltyAmount;
+                    if ($gasExitPenaltyAmount > 0 && isset($current_tariffs -> G -> exitPenaltyEndDate))
+                    {
+                        $gasExitPenaltyEndDate = date_create($current_tariffs -> G -> exitPenaltyEndDate);
+                        if ($gasExitPenaltyEndDate >= date_create('today'))
+                        {
+                            $showGasExitPenalty = true;
+                            $gasExitPenalty = [ 'amount' => $gasExitPenaltyAmount, 'endDate' => date_format($gasExitPenaltyEndDate, 'jS M Y') ];
+                        }
+                    }
+                }
+            }
+            catch (Throwable $th)
+            {
+                report($th);
+            }
+
+            $showElecExitPenalty = false;
+            $elecExitPenalty = null;
+            try
+            {
+                if (in_array($existing_tariff -> fuel_type_str, [ "dfs", "df", "ng" ]))
+                {
+                    Log::channel('energy-comparison.existing-tariff.exit-penalties') -> log('info', 'Electricity Exit Penalty');
+
+                    $elecExitPenaltyAmount = $current_tariffs -> E -> exitPenaltyAmount;
+                    if ($elecExitPenaltyAmount > 0 && isset($current_tariffs -> E -> exitPenaltyEndDate))
+                    {
+                        $elecExitPenaltyEndDate = date_create($current_tariffs -> E -> exitPenaltyEndDate);
+                        if ($elecExitPenaltyEndDate >= date_create('today'))
+                        {
+                            $showElecExitPenalty = true;
+                            $elecExitPenalty = [ 'amount' => $elecExitPenaltyAmount, 'endDate' => date_format($elecExitPenaltyEndDate, 'jS M Y') ];
+                            Log::channel('energy-comparison.existing-tariff.exit-penalties') -> log('info', 'Electricity Exit Penalty :- Positive', $elecExitPenalty);
+                        }
+                    }
+                }
+            }
+            catch (Throwable $th)
+            {
+                report($th);
+            }
+
+            $showExitPenalty = false;
+            $exitPenalty = [ 'amount' => 0 ];
+            try
+            {
+                if (in_array($existing_tariff -> fuel_type_str, [ "dfs", "df" ]))
+                {
+                    if ($showGasExitPenalty)
+                    {
+                        $showExitPenalty = true;
+                        $exitPenalty["amount"] += $gasExitPenalty["amount"];
+                        $exitPenalty["gasEndDate"] = $gasExitPenalty["endDate"];
+                    }
+                    if ($showElecExitPenalty)
+                    {
+                        $showExitPenalty = true;
+                        $exitPenalty["amount"] += $elecExitPenalty["amount"];
+                        $exitPenalty["elecEndDate"] = $elecExitPenalty["endDate"];
+                    }
+                }
+            }
+            catch (Throwable $th)
+            {
+                report($th);
+            }
+
             /// Build the view model ///
-            $params = [ "existing_tariff" => $existing_tariff, "current_tariffs" => $current_tariffs, "new_tariffs" => $new_tariffs, 'page_title' => 'Compare Energy Prices - Browse Deals' ];
+            $page_title = 'Compare Energy Prices - Browse Deals';
+            $params = compact("existing_tariff", "current_tariffs", "new_tariffs", "page_title", "showGasExitPenalty", "gasExitPenalty", "showElecExitPenalty", "elecExitPenalty", "showExitPenalty", "exitPenalty");
+            // return response() -> json($params);
             return view('energy-comparison.3-browse-deals', $params);
         }
         catch (Throwable $th)
@@ -469,7 +547,7 @@ class ResidentialComparisonController extends Controller
             // check session variables
             if (!isset($user_address) || !isset($mprn) || !isset($region) || !isset($existing_tariff) || !isset($current_tariffs) || !isset($selected_supplier) || !isset($selected_tariff) || !isset($selected_payment_methods))
             {
-                // return $this -> BackTo3BrowseDeals([], true);
+                return $this -> BackTo3BrowseDeals([], true);
             }
 
             // check if previous addresses are required
@@ -527,8 +605,8 @@ class ResidentialComparisonController extends Controller
                 'sortCode2' => 'required|numeric|digits:2',
                 'sortCode3' => 'required|numeric|digits:2',
                 'accountNumber' => 'required|string',
-                'bankName' => 'required|string',
-                'preferredDay' => 'required|integer|min:1|max:28',
+                // 'bankName' => 'required|string',
+                'preferredDay' => 'nullable|integer|min:1|max:28',
                 'direct_debit_confirmation' => 'nullable',
                 'receiveBills' => 'nullable|string|in:Paper,Email',
                 'title' => 'required|string',
@@ -767,8 +845,8 @@ class ResidentialComparisonController extends Controller
                 "sortCodeTwo" => $request -> input("sortCode2"),
                 "sortCodeThree" => $request -> input("sortCode3"),
                 "accountNumber" => $request -> input("accountNumber"),
-                "bankName" => $request -> input("bankName"),
-                "preferredDay" => (int)$request -> input("preferredDay"),
+                // "bankName" => $request -> input("bankName"),
+                "preferredDay" => ($request -> has("preferredDay")) ? (int)$request -> input("preferredDay") : null,
                 "ddAuthorisation" => true,
                 "receiveBills" => ($request -> has("receiveBills")) ? $request -> input("receiveBills") : "Paper",
                 "supplierOptIn" => $supplier_opt_in_email,
@@ -858,7 +936,7 @@ class ResidentialComparisonController extends Controller
                 }
                 Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
             // }
-            /*else*/ $result_str = "Testing123Testing";
+            //*else*/ $result_str = "Testing123Testing";
 
             Session::put('ResidentialAPI.reference', $result_str);
 
@@ -870,7 +948,6 @@ class ResidentialComparisonController extends Controller
         }
         catch (Throwable $th)
         {
-            throw($th);
             report($th);
             return $this -> BackTo4GetSwitching();
         }

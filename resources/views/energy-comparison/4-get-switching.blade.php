@@ -36,7 +36,7 @@
 
 
     $old_payment_method = old('payment_method');
-    $old_bankName = old('bankName');
+    // $old_bankName = old('bankName');
     $old_accountName = old('accountName');
     $old_sortCode1 = old('sortCode1');
     $old_sortCode2 = old('sortCode2');
@@ -47,7 +47,7 @@
     $old_receiveBills = old('receiveBills');
 
     $payment_method = (isset($old_payment_method)) ? $old_payment_method : "";
-    $bankName = (isset($old_bankName)) ? $old_bankName : "";
+    // $bankName = (isset($old_bankName)) ? $old_bankName : "";
     $accountName = (isset($old_accountName)) ? $old_accountName : "";
     $sortCode1 = (isset($old_sortCode1)) ? $old_sortCode1 : "";
     $sortCode2 = (isset($old_sortCode2)) ? $old_sortCode2 : "";
@@ -85,35 +85,83 @@
     }
 
 
-    /* variable for legal text switch statements */
-    $legal_text_for_supplier = "";
+    $legal_text_for_supplier = "";   // variable for legal text switch statements
+    $preffered_payment_date = false; // whether to show the preffered payment date
+
+    // Legal Text
+    // Bristol Energy
     if ($selected_tariff['supplierId'] == 100 || $selected_tariff['supplierName'] == "Bristol Energy")
     {
         $legal_text_for_supplier = "Bristol Energy";
     }
+    // EDF Energy
     if ($selected_tariff['supplierId'] == 68 || $selected_tariff['supplierName'] == "EDF Energy")
     {
         $legal_text_for_supplier = "EDF Energy";
+        $preffered_payment_date = true;
     }
+    // Green
     if ($selected_tariff['supplierId'] == 140 || $selected_tariff['supplierName'] == "Green")
     {
         $legal_text_for_supplier = "Green";
     }
+    // Igloo Energy
     if ($selected_tariff['supplierId'] == 124 || $selected_tariff['supplierName'] == "Igloo Energy")
     {
         $legal_text_for_supplier = "Igloo Energy";
     }
+    // ScottishPower
     if ($selected_tariff['supplierId'] == 16 || $selected_tariff['supplierName'] == "ScottishPower")
     {
         $legal_text_for_supplier = "ScottishPower";
     }
+    // Shell Energy
     if ($selected_tariff['supplierId'] == 75 || $selected_tariff['supplierName'] == "Shell Energy")
     {
         $legal_text_for_supplier = "Shell Energy";
     }
+    // Together Energy
     if ($selected_tariff['supplierId'] == 122 || $selected_tariff['supplierName'] == "Together Energy")
     {
         $legal_text_for_supplier = "Together Energy";
+    }
+
+    // Preffered Payment Date Only
+    // PFP Energy
+    if ($selected_tariff['supplierId'] == 99 || $selected_tariff['supplierName'] == "PFP Energy")
+    {
+        $legal_text_for_supplier = "PFP Energy";
+        $preffered_payment_date = true;
+    }
+    // Spark Energy
+    if ($selected_tariff['supplierId'] == 73 || $selected_tariff['supplierName'] == "Spark Energy")
+    {
+        $legal_text_for_supplier = "Spark Energy";
+        $preffered_payment_date = true;
+    }
+    // Octopus Energy
+    if ($selected_tariff['supplierId'] == 104 || $selected_tariff['supplierName'] == "Octopus Energy")
+    {
+        $legal_text_for_supplier = "Octopus Energy";
+        $preffered_payment_date = true;
+    }
+    // Green Star Energy
+    if ($selected_tariff['supplierId'] == 88 || $selected_tariff['supplierName'] == "Green Star Energy")
+    {
+        $legal_text_for_supplier = "Green Star Energy";
+        $preffered_payment_date = true;
+    }
+    // OVO energy
+    if ($selected_tariff['supplierId'] == 76 || $selected_tariff['supplierName'] == "OVO energy")
+    {
+        $legal_text_for_supplier = "OVO energy";
+        $preffered_payment_date = true;
+    }
+    // E.ON
+    if ($selected_tariff['supplierId'] == 14 || $selected_tariff['supplierName'] == "E.ON" || $selected_tariff['supplierId'] == 150 || $selected_tariff['supplierName'] == "E.ON Next")
+    {
+        $legal_text_for_supplier = "E.ON";
+        $preffered_payment_date = true;
     }
 ?>
 
@@ -999,11 +1047,11 @@
                                         @endforeach
                                     </select>
                                 </div> --}}
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="bankName" class="font-weight-bold">Bank Name <span class="text-danger">*</span></label>
                                     <span id="bankName_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="bankName" name="bankName" value="{{ $bankName }}" required="required" />
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label for="accountName" class="font-weight-bold">Account Holder Name<span class="text-danger">*</span></label>
                                     <span id="accountName_error" class="form-error-message text-danger"></span>
@@ -1022,45 +1070,47 @@
                                     <input id="accountNumber" name="accountNumber" inputmode="tel" maxlength="8" type="text" value="{{ $accountNumber }}" required />
                                     <span class="small-input-text">If your account number is less than 8 digits, you should add zeros to the beginning of your account number until it is exactly 8 digits long.</span>
                                 </div>
-                                <div class="row no-margin">
-                                    <div class="col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="preferredDay" class="font-weight-bold">Select your payment date <span class="text-danger">*</span></label>
-                                            <span id="preferredDay_error" class="form-error-message text-danger"></span>
-                                            <select id="preferredDay" name="preferredDay" data-value="{{ $preferredDay }}" required>
-                                                <option value="" selected>Please Select</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
-                                                <option value="21">21</option>
-                                                <option value="22">22</option>
-                                                <option value="23">23</option>
-                                                <option value="24">24</option>
-                                                <option value="25">25</option>
-                                                <option value="26">26</option>
-                                                <option value="27">27</option>
-                                                <option value="28">28</option>
-                                            </select>
+                                @if ($preffered_payment_date == true)
+                                    <div class="row no-margin">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="preferredDay" class="font-weight-bold">Select your payment date <span class="text-danger">*</span></label>
+                                                <span id="preferredDay_error" class="form-error-message text-danger"></span>
+                                                <select id="preferredDay" name="preferredDay" data-value="{{ $preferredDay }}" required>
+                                                    <option value="" selected>Please Select</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                    <option value="13">13</option>
+                                                    <option value="14">14</option>
+                                                    <option value="15">15</option>
+                                                    <option value="16">16</option>
+                                                    <option value="17">17</option>
+                                                    <option value="18">18</option>
+                                                    <option value="19">19</option>
+                                                    <option value="20">20</option>
+                                                    <option value="21">21</option>
+                                                    <option value="22">22</option>
+                                                    <option value="23">23</option>
+                                                    <option value="24">24</option>
+                                                    <option value="25">25</option>
+                                                    <option value="26">26</option>
+                                                    <option value="27">27</option>
+                                                    <option value="28">28</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
                                 @switch($legal_text_for_supplier)
                                     {{----------------------}}
                                     {{--- Bristol Energy ---}}

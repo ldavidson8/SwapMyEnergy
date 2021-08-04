@@ -18,6 +18,12 @@
     <p class="estimated-annual-energy-costs-banner">
         Your estimated annual energy costs for the past 12 months are &pound;{{ number_format($current_estimated_bill, 2) }}
     </p>
+    @if ($showExitPenalty)
+        <p class="estimated-annual-energy-costs-banner-white" style="text-align: center; font-weight: normal;">
+            If you switch before {{ $gasExitPenalty["endDate"] }}, you will have to pay an early exit fee of
+            <span style="color: red;">&pound;{{ number_format($exitPenalty["amount"], 2) }}</span>
+        </p>
+    @endif
 </div>
 <div id="sticky-toggle-marker-close"></div>
 <div id="sticky-existing-tariff" class="container rounded-container blue-rounded-container" style="z-index: 10;">
@@ -62,7 +68,7 @@
         </div>
         <div class="col-lg-4 col-12 d-flex flex-row flex-lg-column align-items-center justify-content-center mt-4 mt-lg-0">
             <p class="existing-tariff-monthly-bill">
-                <span style="font-size: 44px;">&pound;{{ number_format($current_estimated_bill / 12, 2) }}</span> 
+                <span style="font-size: 44px;">&pound;{{ number_format($current_estimated_bill / 12, 2) }}</span>
                 <br />
                 per month
             </p>
@@ -101,11 +107,11 @@
                     <div class="col-12 col-lg-2" style="font-size: 17px; padding: 20px;">
                         <img class="new-supplier-logo" src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="auto" width="auto" /><br />
                         <p>{{ $row["tariffName"] }}</p>
-                        
+
                         @if ($row["saving"] > 0)
                             <p>Estimated Annual Saving: &pound;{{ number_format($row["saving"], 2) }}</p>
                         @endif
-                        
+
                         <p class="no-padding font-weight-normal">
                             @if ($row["contractLength"] > 0)
                                 Fixed month contract: <br /><span style="color: #070; font-weight: 700;">{{ $row["contractLength"] }} months</span>

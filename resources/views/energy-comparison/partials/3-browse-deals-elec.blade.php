@@ -13,6 +13,12 @@
     <p class="estimated-annual-energy-costs-banner">
         Your estimated annual energy costs for the past 12 months are &pound;{{ number_format($current_tariffs -> E -> bill, 2) }}
     </p>
+    @if ($showElecExitPenalty)
+        <p class="estimated-annual-energy-costs-banner-white" style="text-align: center; font-weight: normal;">
+            If you switch before {{ $elecExitPenalty["endDate"] }}, you will have to pay an early exit fee of
+            <span style="color: red;">&pound;{{ number_format($elecExitPenalty["amount"], 2) }}</span>
+        </p>
+    @endif
 </div>
 <div id="sticky-toggle-marker-close"></div>
 <div id="sticky-existing-tariff" class="container rounded-container blue-rounded-container" style="z-index: 10;">
@@ -41,7 +47,7 @@
         </div>
         <div class="no-padding col-lg-4 col-12 no-padding d-flex align-items-center justify-content-center" style="padding: 0px 0px 20px 0px;">
             <p class="m-lg-0" style="font-size: 20px; border-right: solid 4px #202020; padding-right: 20px;">
-                <span style="font-size: 44px;">&pound;{{ number_format($current_tariffs -> E -> bill / 12, 2) }}</span> 
+                <span style="font-size: 44px;">&pound;{{ number_format($current_tariffs -> E -> bill / 12, 2) }}</span>
                 <br />
                 per month
             </p>
@@ -80,11 +86,11 @@
                     <div class="col-12 col-lg-3" style="font-size: 17px; padding: 20px;">
                         <img class="new-supplier-logo" src="{{ asset('img/supplier-logos/' . $row['imageName']) }}" alt="{{ $row['supplierName'] }}" height="auto" width="auto" /><br />
                         <p>{{ $row["tariffName"] }}</p>
-                        
+
                         @if ($row["saving"] > 0)
                             <p>Estimated Annual Saving: &pound;{{ number_format($row["saving"], 2) }}</p>
                         @endif
-                        
+
                         <p class="no-padding font-weight-normal">
                             @if ($row["contractLength"] > 0)
                                 Fixed month contract: <br /><span style="color: #070; font-weight: 700;">{{ $row["contractLength"] }} months</span>
@@ -113,7 +119,7 @@
                                     For more accurate results, <a href="{{ url() -> previous() }}">go back</a> and enter your bill in pounds or your energy usage in kwh.
                                 </div>
                             @endif
-                            <div>Estimated cost:</div> 
+                            <div>Estimated cost:</div>
                             <div style="font-size: 40px;">&pound;{{ number_format($row["bill"] / 12, 2) }}* </div>
                             <div>per month</div>
                         </div>
