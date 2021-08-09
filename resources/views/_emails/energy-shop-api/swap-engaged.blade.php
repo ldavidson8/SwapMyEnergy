@@ -49,6 +49,10 @@
     <table>
         <tbody>
             <tr>
+                <th>Building Number:</th>
+                <td>{{ $user["currentAddress"]["bldNumber"] }}</td>
+            </tr>
+            <tr>
                 <th>Postcode:</th>
                 <td>{{ $user["currentAddress"]["postcode"] }}</td>
             </tr>
@@ -59,6 +63,10 @@
             <tr>
                 <th>Address Line 2:</th>
                 <td>{{ $user["currentAddress"]["line2"] }}</td>
+            </tr>
+            <tr>
+                <th>Road Name:</th>
+                <td>{{ $user["currentAddress"]["throughfare"] }}</td>
             </tr>
             <tr>
                 <th>City:</th>
@@ -96,6 +104,10 @@
     <table>
         <tbody>
             <tr>
+                <th>Building Number:</th>
+                <td>{{ $user["billingAddress"]["bldNumber"] }}</td>
+            </tr>
+            <tr>
                 <th>Postcode:</th>
                 <td>{{ $user["billingAddress"]["postcode"] }}</td>
             </tr>
@@ -106,6 +118,10 @@
             <tr>
                 <th>Address Line 2:</th>
                 <td>{{ $user["billingAddress"]["line2"] }}</td>
+            </tr>
+            <tr>
+                <th>Road Name:</th>
+                <td>{{ $user["billingAddress"]["throughfare"] }}</td>
             </tr>
             <tr>
                 <th>City:</th>
@@ -124,6 +140,10 @@
         <table>
             <tbody>
                 <tr>
+                    <th>Building Number:</th>
+                    <td>{{ $user["previousAddress"]["bldNumber"] }}</td>
+                </tr>
+                <tr>
                     <th>Postcode:</th>
                     <td>{{ $user["previousAddress"]["postcode"] }}</td>
                 </tr>
@@ -134,6 +154,10 @@
                 <tr>
                     <th>Address Line 2:</th>
                     <td>{{ $user["previousAddress"]["line2"] }}</td>
+                </tr>
+                <tr>
+                    <th>Road Name:</th>
+                    <td>{{ $user["previousAddress"]["throughfare"] }}</td>
                 </tr>
                 <tr>
                     <th>City:</th>
@@ -161,6 +185,10 @@
         <table>
             <tbody>
                 <tr>
+                    <th>Building Number:</th>
+                    <td>{{ $user["previousAddressTwo"]["bldNumber"] }}</td>
+                </tr>
+                <tr>
                     <th>Postcode:</th>
                     <td>{{ $user["previousAddressTwo"]["postcode"] }}</td>
                 </tr>
@@ -171,6 +199,10 @@
                 <tr>
                     <th>Address Line 2:</th>
                     <td>{{ $user["previousAddressTwo"]["line2"] }}</td>
+                </tr>
+                <tr>
+                    <th>Road Name:</th>
+                    <td>{{ $user["previousAddressTwo"]["throughfare"] }}</td>
                 </tr>
                 <tr>
                     <th>City:</th>
@@ -321,4 +353,6 @@
             </tr>
         </tbody>
     </table>
+
+    @include('_emails.footer')
 @endsection

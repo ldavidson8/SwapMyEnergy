@@ -30,4 +30,6 @@
             </tr>
         </tbody>
     </table>
+
+    @include('_emails.footer')
 @endsection

@@ -249,7 +249,7 @@
                     <button class="site-accordion">Will you always get me a better deal?</button>
                     <div class="site-accordion-panel">
                         <p>No. Some other energy switching companies will promise you a better deal, by "estimating" your usage for the next year. We let you know your unit price and standing charges, allowing you to understand how much it costs you per kW.</p>
-                        <p>Our aim is to get you a better deal based on unit price and standing charges, this means that if you get lower prices on these, then you'll end up paying less (assuming that your usage is the same). This works in a similar way to when you're putting fuel in your car. If one week you buy 50L of fuel at &pound;1.35 per litre and then the next week at &pound;1.25 per litre, you will save money. But if you buy 75L of fuel at £1.25, you'll end up spending more.</p>
+                        <p>Our aim is to get you a better deal based on unit price and standing charges, this means that if you get lower prices on these, then you'll end up paying less (assuming that your usage is the same). This works in a similar way to when you're putting fuel in your car. If one week you buy 50L of fuel at &pound;1.35 per litre and then the next week at &pound;1.25 per litre, you will save money. But if you buy 75L of fuel at &pound;1.25, you'll end up spending more.</p>
                     </div>
                     <button class="site-accordion">Can I opt-out of switching?</button>
                     <div class="site-accordion-panel">

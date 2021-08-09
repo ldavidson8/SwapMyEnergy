@@ -13,7 +13,7 @@ class ResidentialApiRepository extends Controller
     protected static function _apiUrl() { return env("API_URL"); }
     protected static function _apiKey() { return env("API_KEY"); }
 
-    
+
     /// Addresses ///
 
     public static function addresses($postcode, &$status)
@@ -27,26 +27,26 @@ class ResidentialApiRepository extends Controller
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . 'addresses?postcode=' . $postcode . '&houseNo=' . $houseNo);
         return self::getOneObject($response, $status);
     }
-    
+
     public static function addresses_mpandetails($mpan, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "addresses/mpandetails?mpan=$mpan");
         return self::getOneObject($response, $status);
     }
-    
+
     public static function addresses_mprn($postcode, $houseNo, $houseName = null, &$status = 200)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "addresses/mprn?postcode=$postcode&houseNo=$houseNo&houseName=$houseName");
         return self::getOneObject($response, $status);
     }
-    
+
     public static function addresses_mprndetails($mprn, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "addresses/mprndetails?mprn=$mprn");
         return self::getOneObject($response, $status);
     }
 
-    
+
     /// Regions ///
 
     public static function regionsByPostcode($postcode, $mpan, &$status)
@@ -55,9 +55,9 @@ class ResidentialApiRepository extends Controller
         return self::getManyObjects($response, $status);
     }
 
-    
+
     /// Suppliers ///
-    
+
     public static function suppliers(&$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "suppliers");
@@ -83,10 +83,10 @@ class ResidentialApiRepository extends Controller
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "paymentMethods/suppliers/$supplierId?serviceType=$serviceType&e7=$e7");
         return self::getManyObjects($response, $status);
     }
-    
+
 
     /// Tarrifs ///
-    
+
     public static function tariffs_info_by_id($tariffId, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "tariffs/$tariffId/info");
@@ -105,7 +105,7 @@ class ResidentialApiRepository extends Controller
         $object = self::getManyObjects($response, $statusLive);
         return $object;
     }
-    
+
     public static function tariffs_current($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $consumption_figures, $gas, $elec, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> post(self::_apiUrl() . "tariffs/current", array(
@@ -146,7 +146,7 @@ class ResidentialApiRepository extends Controller
         return self::getManyObjects($response, $status);
     }
 
-    
+
     /// Features ///
 
     public static function features(&$status)
@@ -168,7 +168,7 @@ class ResidentialApiRepository extends Controller
     }
 
 
-    
+
     /// Process an Application ///
 
     public static function applications_processapplication($data, &$status)
@@ -178,7 +178,7 @@ class ResidentialApiRepository extends Controller
         return self::getOneObject($response, $status);
     }
 
-    
+
     public static function getOneObject(Response $response, &$status)
     {
         $status = $response -> status();

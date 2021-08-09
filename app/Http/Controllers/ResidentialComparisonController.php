@@ -329,7 +329,7 @@ class ResidentialComparisonController extends Controller
 
             if ($existing_tariff -> current_tariff_1_not_listed == "notListed")
             {
-                $default_tariff = Repository::tariffs_defaultForASupplier($existing_tariff -> supplier_1, $existing_tariff -> fuel_type_char, $existing_tariff -> payment_method_1, "false", $existing_tariff -> region_id, $status);
+                $default_tariff = Repository::tariffs_defaultForASupplier($existing_tariff -> supplier_1, $existing_tariff -> fuel_type_char, $existing_tariff -> payment_method, "false", $existing_tariff -> region_id, $status);
                 if (count($default_tariff) == 0) return $this -> BackTo2ExistingTariff();
                 $tariff_1 = Repository::tariffs_info_by_id($default_tariff[0] -> tariffId, $status);
             }
@@ -351,7 +351,7 @@ class ResidentialComparisonController extends Controller
                 $current_tariffs -> G, $current_tariffs -> E,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
                 $existing_tariff -> consumption_figures, $existing_tariff -> gas, $existing_tariff -> elec, $existing_tariff -> e7_percent,
-                $user_address["movingHouse"], $existing_tariff -> payment_method_1, true, "", $user_address["postcode"],
+                $user_address["movingHouse"], $existing_tariff -> payment_method, true, "", $user_address["postcode"],
                 $status);
 
             // $tariff_ids = [];
@@ -401,7 +401,7 @@ class ResidentialComparisonController extends Controller
                 if (in_array($existing_tariff -> fuel_type_str, [ "dfs", "df", "ne" ]))
                 {
                     Log::channel('energy-comparison.existing-tariff.exit-penalties') -> log('info', 'Electricity Exit Penalty');
-                    $gasExitPenaltyAmount = $current_tariffs -> G -> exitPenaltyAmount;
+                    $gasExitPenaltyAmount = number_format($current_tariffs -> G -> exitPenaltyAmount / 100, 2);
                     if ($gasExitPenaltyAmount > 0 && isset($current_tariffs -> G -> exitPenaltyEndDate))
                     {
                         $gasExitPenaltyEndDate = date_create($current_tariffs -> G -> exitPenaltyEndDate);
@@ -426,7 +426,7 @@ class ResidentialComparisonController extends Controller
                 {
                     Log::channel('energy-comparison.existing-tariff.exit-penalties') -> log('info', 'Electricity Exit Penalty');
 
-                    $elecExitPenaltyAmount = $current_tariffs -> E -> exitPenaltyAmount;
+                    $elecExitPenaltyAmount = number_format($current_tariffs -> E -> exitPenaltyAmount, 2);
                     if ($elecExitPenaltyAmount > 0 && isset($current_tariffs -> E -> exitPenaltyEndDate))
                     {
                         $elecExitPenaltyEndDate = date_create($current_tariffs -> E -> exitPenaltyEndDate);
@@ -535,6 +535,7 @@ class ResidentialComparisonController extends Controller
         try
         {
             // get session variables
+            // TODO: Cleaned - uncomment
             $user_address = Session::get('ResidentialAPI.user_address');
             $mprn = Session::get('ResidentialAPI.mprn');
             $region = Session::get('ResidentialAPI.region');
@@ -544,19 +545,21 @@ class ResidentialComparisonController extends Controller
             $selected_tariff = Session::get('ResidentialAPI.selected_tariff');
             $selected_payment_methods = Session::get('ResidentialAPI.selected_payment_methods');
 
-            // check session variables
+            // TODO: Cleaned - uncomment
             if (!isset($user_address) || !isset($mprn) || !isset($region) || !isset($existing_tariff) || !isset($current_tariffs) || !isset($selected_supplier) || !isset($selected_tariff) || !isset($selected_payment_methods))
             {
                 return $this -> BackTo3BrowseDeals([], true);
             }
 
             // check if previous addresses are required
+            // TODO: Cleaned - uncomment
             $get_previous_addresses = false;
             if (in_array(strtolower($selected_tariff["supplierName"]), array('shell energy', 'goto.energy')))
             {
                 $get_previous_addresses = true;
             }
 
+            // TODO: Cleaned - uncomment
             $page_title = "Get Switching - Energy Swap";
             $params = compact('page_title', 'user_address', 'mprn', 'region', 'existing_tariff', 'current_tariffs', 'selected_tariff', 'selected_supplier', 'selected_payment_methods', 'get_previous_addresses');
             // return response() -> json($params);
@@ -592,9 +595,11 @@ class ResidentialComparisonController extends Controller
             // return response() -> json($formData);
             $validator = Validator::make($formData,
             [
+                'house_number' => 'nullable|integer',
                 'postcode' => 'required|string',
                 'address_line_1' => 'required|string',
                 'address_line_2' => 'nullable|string',
+                'road_name' => 'required|string',
                 'town' => 'required|string',
                 'county' => 'nullable|string',
                 'postcode' => 'required|string',
@@ -624,6 +629,7 @@ class ResidentialComparisonController extends Controller
             {
                 $previous_addresses_counter++;
                 $address_length_years = $formData['address_length_years'];
+                $address_length_months = $formData['address_length_months'];
                 Validator::validate($formData,
                 [
                     'address_length_years' => 'required|numeric|min:0',
@@ -634,25 +640,32 @@ class ResidentialComparisonController extends Controller
                 {
                     $previous_addresses_counter++;
                     $prev_address_length_years = $formData['prev_addr_1_length_years'];
+                    $prev_address_length_months = $formData['prev_addr_1_length_months'];
                     Validator::validate($formData,
                     [
+                        'prev_addr_1_house_number' => 'nullable|integer',
                         'prev_addr_1_postcode' => 'required|string',
                         'prev_addr_1_address_line_1' => 'required|string',
                         'prev_addr_1_address_line_2' => 'nullable|string',
+                        'prev_addr_1_road_name' => 'required|string',
                         'prev_addr_1_town' => 'required|string',
                         'prev_addr_1_county' => 'nullable|string',
                         'prev_addr_1_length_years' => 'required|numeric|min:0',
                         'prev_addr_1_length_months' => 'required|numeric|min:0|max:11'
                     ]);
 
-                    if ($address_length_years + $prev_address_length_years < 3)
+                    $total_length_months = $address_length_months + $prev_address_length_months;
+                    $total_length_years = $address_length_years + $prev_address_length_years + ($total_length_months / 12);
+                    if ($total_length_years < 3)
                     {
                         $previous_addresses_counter++;
                         Validator::validate($formData,
                         [
+                            'prev_addr_2_house_number' => 'nullable|integer',
                             'prev_addr_2_postcode' => 'required|string',
                             'prev_addr_2_address_line_1' => 'required|string',
                             'prev_addr_2_address_line_2' => 'nullable|string',
+                            'prev_addr_2_road_name' => 'required|string',
                             'prev_addr_2_town' => 'required|string',
                             'prev_addr_2_county' => 'nullable|string',
                             'prev_addr_2_length_years' => 'required|numeric|min:0',
@@ -678,9 +691,11 @@ class ResidentialComparisonController extends Controller
             {
                 $validator = Validator::make($formData,
                 [
+                    'billing_house_number' => 'nullable|integer',
                     'billing_postcode' => 'required|string',
                     'billing_address_line_1' => 'required|string',
                     'billing_address_line_2' => 'nullable|string',
+                    'billing_road_name' => 'required|string',
                     'billing_town' => 'required|string',
                     'billing_county' => 'nullable|string'
                 ]);
@@ -692,12 +707,12 @@ class ResidentialComparisonController extends Controller
                     "line2" => $request -> input('billing_address_line_2'),
                     "line3" => "",
                     "town" => $request -> input('billing_town'),
-                    "county" => $request -> input('billing_county'),
+                    "county" => $request -> has('billing_county') ? $request -> input('billing_county') : "",
                     "postcode" => $request -> input('billing_postcode'),
-                    "bldNumber" => "",
+                    "bldNumber" => $request -> input('billing_house_number'),
                     "bldName" => "",
                     "subBld" => "",
-                    "throughfare" => "",
+                    "throughfare" => $request -> input('billing_road_name'),
                     "dependantThroughFare" => ""
                 ];
             }
@@ -739,7 +754,8 @@ class ResidentialComparisonController extends Controller
             if ($request -> has("direct_debit_confirmation")) $direct_debit_confirmation = (bool)$request -> input("direct_debit_confirmation");
 
             $address_line_2 = $request -> input("address_line_2");
-            $county = $request -> input("county");
+            $county = $request -> has('county') ? $request -> input('county') : "";
+
             $requestObj = array("user" =>
             [
                 "saleType" => "A",
@@ -756,7 +772,7 @@ class ResidentialComparisonController extends Controller
                 "currentTariffElecConsumption" => null,
                 "currentTariffElecBill" => null,
                 "E7" => (bool)$selected_tariff["e7"],
-                "e7Usage" => 0,
+                "e7Usage" => (int)$existing_tariff -> e7_percent,
                 "newSupplierName" => $selected_tariff["supplierName"],
                 "tariffId" => (int)$selected_tariff["tariffId"],
                 "tariffPosition" => (int)$selected_tariff["tariffPosition"],
@@ -779,10 +795,10 @@ class ResidentialComparisonController extends Controller
                     "town" => $request -> input("town"),
                     "county" => (isset($county)) ? $county : "",
                     "postcode" => $request -> input("postcode"),
-                    "bldNumber" => "",
+                    "bldNumber" => $request -> input("house_number"),
                     "bldName" => "",
                     "subBld" => "",
-                    "throughfare" => "",
+                    "throughfare" => $request -> input("road_name"),
                     "dependantThroughFare" => "",
                     "yearsAtResidence" => 0,
                     "monthsAtResidence" => 0,
@@ -858,11 +874,23 @@ class ResidentialComparisonController extends Controller
 
             if (in_array($existing_tariff -> fuel_type_char, [ "D", "G" ]))
             {
+                $gas_unit_price = $selected_tariff["price1Gas"];
+                if ($gas_unit_price == 0) $gas_unit_price = $selected_tariff['price2Gas'];
+                if ($gas_unit_price == 0) $gas_unit_price = $selected_tariff['price3Gas'];
+                if ($gas_unit_price == 0) $gas_unit_price = $selected_tariff['price4Gas'];
+
                 $requestObj["user"]["gasSupplier"] = (int)$current_tariffs -> G -> supplierId;
                 $requestObj["user"]["gasTariffId"] = (int)$current_tariffs -> G -> tariffId;
                 $requestObj["user"]["gasPayment"] = $current_tariffs -> G -> paymentMethod;
                 $requestObj["user"]["currentTariffGasConsumption"] = (double)$current_tariffs -> G -> units;
                 $requestObj["user"]["currentTariffGasBill"] = (double)$current_tariffs -> G -> bill;
+
+                if ($requestObj["user"]["billGas"] == 0)
+                {
+                    $gas_price = $current_tariffs -> G -> units * $gas_unit_price / 100;
+                    $gas_price += $selected_tariff['standingChargeGas'] / 100;
+                    $requestObj["user"]["billGas"] = (float)number_format($gas_price, 2);
+                }
             }
 
             if (in_array($existing_tariff -> fuel_type_char, [ "D", "E" ]))
@@ -872,7 +900,31 @@ class ResidentialComparisonController extends Controller
                 $requestObj["user"]["elecPayment"] = $current_tariffs -> E -> paymentMethod;
                 $requestObj["user"]["currentTariffElecConsumption"] = (double)$current_tariffs -> E -> units;
                 $requestObj["user"]["currentTariffElecBill"] = (double)$current_tariffs -> E -> bill;
-                $requestObj["user"]["e7Usage"] = ((double)$current_tariffs -> E -> units) * $selected_tariff["price1Elec"];
+                if ($requestObj["user"]["billElec"] == 0)
+                {
+                    $elec_unit_price = $selected_tariff['price1Elec'];
+                    if ($elec_unit_price == 0) $elec_unit_price = $selected_tariff['price2Elec'];
+                    if ($elec_unit_price == 0) $elec_unit_price = $selected_tariff['price3Elec'];
+                    if ($elec_unit_price == 0) $elec_unit_price = $selected_tariff['price4Elec'];
+                    $elec_e7_unit_price = $selected_tariff['priceE7'];
+
+                    $elec_units = $current_tariffs -> E -> units;
+                    $elec_no_e7_price = $elec_units * $elec_unit_price;
+                    $elec_e7_price = $elec_units * $elec_e7_unit_price;
+                    if ($current_tariffs -> E -> e7)
+                    {
+                        $elec_price = $elec_e7_price * (100 - (int)$existing_tariff -> e7_percent) / 100;
+                        $elec_price += $elec_no_e7_price * ((int)$existing_tariff -> e7_percent) / 100;
+                    }
+                    else
+                    {
+                        $elec_price = $elec_no_e7_price;
+                    }
+
+                    $elec_price += $selected_tariff['standingChargeElec'];
+                    $requestObj["user"]["billElec"] = (float)number_format($elec_price / 100, 2);
+                    // return response() -> json(compact('elec_unit_price', 'elec_e7_unit_price', 'elec_units', 'elec_no_e7_price', 'elec_e7_price', 'elec_price'));
+                }
             }
 
             if ($previous_addresses_counter >= 1)
@@ -882,8 +934,11 @@ class ResidentialComparisonController extends Controller
 
                 if ($previous_addresses_counter >= 2)
                 {
+                    $requestObj["user"]["previousAddress"]["bldNumber"] = $formData['prev_addr_1_house_number'];
+                    $requestObj["user"]["previousAddress"]["postcode"] = $formData['prev_addr_1_postcode'];
                     $requestObj["user"]["previousAddress"]["line1"] = $formData['prev_addr_1_address_line_1'];
                     $requestObj["user"]["previousAddress"]["line2"] = $formData['prev_addr_1_address_line_2'];
+                    $requestObj["user"]["previousAddress"]["throughfare"] = $formData['prev_addr_1_road_name'];
                     $requestObj["user"]["previousAddress"]["town"] = $formData['prev_addr_1_town'];
                     $requestObj["user"]["previousAddress"]["county"] = $formData['prev_addr_1_county'];
                     $requestObj["user"]["previousAddress"]["yearsAtResidence"] = (int)$formData['prev_addr_1_length_years'];
@@ -891,8 +946,11 @@ class ResidentialComparisonController extends Controller
 
                     if ($previous_addresses_counter >= 3)
                     {
+                        $requestObj["user"]["previousAddressTwo"]["bldNumber"] = $formData['prev_addr_1_house_number'];
+                        $requestObj["user"]["previousAddressTwo"]["postcode"] = $formData['prev_addr_1_postcode'];
                         $requestObj["user"]["previousAddressTwo"]["line1"] = $formData['prev_addr_2_address_line_1'];
                         $requestObj["user"]["previousAddressTwo"]["line2"] = $formData['prev_addr_2_address_line_2'];
+                        $requestObj["user"]["previousAddressTwo"]["throughfare"] = $formData['prev_addr_1_road_name'];
                         $requestObj["user"]["previousAddressTwo"]["town"] = $formData['prev_addr_2_town'];
                         $requestObj["user"]["previousAddressTwo"]["county"] = $formData['prev_addr_2_county'];
                         $requestObj["user"]["previousAddressTwo"]["yearsAtResidence"] = (int)$formData['prev_addr_2_length_years'];
@@ -925,18 +983,17 @@ class ResidentialComparisonController extends Controller
             // return response() -> json($request -> all());
             // return response() -> json($requestObj);
 
-            // if ($requestObj["user"]["email"] == "testingthefinalapicall@testing.co.uk")
-            // {
-                $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
-                if (str_starts_with($result_str, "{"))
-                {
-                    // The api returned an error
-                    Log::channel("energy-comparison/get-switching-post") -> critical("The API returned an error.");
-                    return $this -> BackTo4GetSwitching();
-                }
-                Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
-            // }
-            //*else*/ $result_str = "Testing123Testing";
+            // TODO: Cleaned - uncomment
+            $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
+            if (str_starts_with($result_str, "{"))
+            {
+                // The api returned an error
+                Log::channel("energy-comparison/get-switching-post") -> critical("The API returned an error.");
+                return $this -> BackTo4GetSwitching();
+            }
+            Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
+            // TODO: Cleaned - comment
+            //**/$result_str = "Testing123Testing";
 
             Session::put('ResidentialAPI.reference', $result_str);
 
