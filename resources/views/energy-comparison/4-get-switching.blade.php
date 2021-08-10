@@ -1,5 +1,9 @@
 <?php
-    $street_name = (isset($mprn -> dependent_street) && $mprn -> dependent_street != "") ? $mprn -> dependent_street : $mprn -> street;
+    $street_name = "";
+    if (isset($mprn))
+    {
+        $street_name = (isset($mprn -> dependent_street) && $mprn -> dependent_street != "") ? $mprn -> dependent_street : $mprn -> street;
+    }
 
     $coolingOff = 0;
     if (isset($selected_tariff["supplierCoolingOff"]) && is_numeric(isset($selected_tariff["supplierCoolingOff"])))
@@ -411,7 +415,7 @@
         input[type="checkbox"]
         {
             float: left;
-            margin: 11px 11px 11px 0px;
+            margin: 0.37em 11px 0.37em 0;
         }
 
         .small-input-text
@@ -672,12 +676,12 @@
                                 <div class="form-group">
                                     <label for="house_number">House Number</label>
                                     <span id="house_number_error" class="form-error-message text-danger"></span>
-                                    <input type="text" id="house_number" name="house_number" value="{{ old('house_number', $mprn -> house_number) }}" />
+                                    <input type="text" id="house_number" name="house_number" value="{{ old('house_number', (isset($mprn)) ? $mprn -> house_number : "") }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="postcode">Postcode <span class="text-danger">*</span></label>
                                     <span id="postcode_error" class="form-error-message text-danger"></span>
-                                    <input type="text" id="postcode" name="postcode" value="{{ old('postcode', $mprn -> postcode) }}" required />
+                                    <input type="text" id="postcode" name="postcode" value="{{ old('postcode', (isset($mprn)) ? $mprn -> postcode : "") }}" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="address_line_1">Address Line 1<span class="text-danger">*</span></label>
@@ -697,7 +701,7 @@
                                 <div class="form-group">
                                     <label for="town">Town<span class="text-danger">*</span></label>
                                     <span id="town_error" class="form-error-message text-danger"></span>
-                                    <input type="text" id="town" name="town" value="{{ old('town', $mprn -> post_town) }}" required />
+                                    <input type="text" id="town" name="town" value="{{ old('town', (isset($mprn)) ? $mprn -> post_town : "") }}" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="county">County</label>
@@ -963,7 +967,7 @@
                                     <div class="form-group">
                                         <label for="gas_meter_number">Gas meter number<span class="text-danger">*</span></label>
                                         <span id="gas_meter_number_error" class="form-error-message text-danger"></span>
-                                        <p><input type="text" id="gas_meter_number" name="gas_meter_number" value="{{ old('gas_meter_number', $mprn -> mprn) }}" required /></p>
+                                        <p><input type="text" id="gas_meter_number" name="gas_meter_number" value="{{ old('gas_meter_number', (isset($mprn)) ? $mprn -> mprn : "") }}" required /></p>
                                         <p>Your gas meter number is also known as a Meter Point Reference Number (MPRN). Please enter the number as you find it on your gas bill. If you are unable to find this information on your energy bill, you can get it by calling the National Grid on 0870 608 1524 (press 2 then 1).</p>
                                         <p>Or <a href="https://www.findmysupplier.energy/webapp/index.html">click here</a> to find this information online. Enter your postcode first and then your house number.</p>
                                     </div>
@@ -1511,6 +1515,11 @@
 
                                 <br /><br /><hr class="thin-line" /><br />
 
+                                <h2>Stay in touch</h2>
+                                <div style="padding: 10px 0 25px;">
+                                    <input type="checkbox" id="swapmyenergy_opt_in" name="swapmyenergy_opt_in" />
+                                    <label for="swapmyenergy_opt_in" style="font-weight: normal">Would you like to recieve news from SwapMyEnergy?</label>
+                                </div>
                                 @switch($legal_text_for_supplier)
                                     {{-- Bristol Energy --}}
                                     @case("Bristol Energy")
@@ -1542,7 +1551,6 @@
                                     {{-- Green --}}
                                     @case("Green")
                                         {{-- Marketing Consent --}}
-                                        <h2>Stay in touch</h2>
                                         <p class="grey-text">Green Supplier Limited would like to share information with you about any products, services on offer from Green Supplier Limited and its associated companies.</p>
                                         <div class="form-group">
                                             <input type="checkbox" id="supplier_opt_in" name="supplier_opt_in" {{ (old('supplier_opt_in', "") == true) ? "checked" : "" }} />
@@ -1552,7 +1560,6 @@
                                     {{-- Igloo Energy --}}
                                     @case("Igloo Energy")
                                         {{-- Marketing Consent --}}
-                                        <h2>Stay in touch</h2>
                                         <p class="grey-text">Igloo Energy would like to share information with you about any products, services on offer from Igloo Energy and its associated companies.</p>
                                         <div class="form-group">
                                             <input type="checkbox" id="supplier_opt_in" name="supplier_opt_in" {{ (old('supplier_opt_in', "") == true) ? "checked" : "" }} />
@@ -1562,7 +1569,6 @@
                                     {{-- ScottishPower --}}
                                     @case("ScottishPower")
                                         {{-- Marketing Consent --}}
-                                        <h2>Stay in touch</h2>
                                         <div class="grey-text">
                                             <p>At ScottishPower, we often have exclusive offers, new tariffs and updates to our services that we hope you'd like to hear about.</p>
                                             <p>We'll always treat your details with care and will never sell them to any third party for their marketing purposes. You can find out more about how we handle your personal data in our <a href="https://www.scottishpower.co.uk/legal/privacy-policy" target="_blank">Privacy Information Notice</a>. Remember, you can opt out at any time.</p>
@@ -1578,7 +1584,6 @@
                                     {{-- Shell Energy --}}
                                     @case("Shell Energy")
                                         {{-- Marketing Consent --}}
-                                        <h2>Stay in touch</h2>
                                         <div class="grey-text">
                                             <p>Shell Energy are committed to helping you discover new ways of managing your energy and running your home more efficiently including smart home technology that can help make life that little bit easier. That is why they would like to keep you up to date with news and offers from Shell.</p>
                                             <p>Be the first to hear about:</p>
@@ -1627,24 +1632,10 @@
             // javascript validation
             var mainForm = document.getElementById("main_form");
 
-            // var errorPostcode = $("#postcode_error");
-            // var inputPostcode = $("#postcode");
-            // var errorAddressLine1 = $("#address_line_1_error");
-            // var inputAddressLine1 = $("#address_line_1");
-            // var errorAddressLine2 = $("#address_line_2_error");
-            // var inputAddressLine2 = $("#address_line_2");
-            // var errorTown = $("#town_error");
-            // var inputTown = $("#town");
-            // var errorCounty = $("#county_error");
-            // var inputCounty = $("#county");
             var errorSmartMeter = $("#smartMeter_error");
             var inputSmartMeter = $("#smartMeter");
             var yesTextSmartMeter = $("#smartMeter_yesText_section");
             var dontKnowTextSmartMeter = $("#smartMeter_dontKnowText_section");
-            // var errorGasMeterNumber = $("#gas_meter_number_error");
-            // var inputGasMeterNumber = $("#gas_meter_number");
-            // var errorElecMeterNumber = $("#elec_meter_number_error");
-            // var inputElecMeterNumber = $("#elec_meter_number");
 
             var inputSameCurrentAddress = $("#same_current_address");
             var billingSection = $("#billing_section");
@@ -1667,37 +1658,15 @@
             var existingPaymentMethod = $("#existing_payment_method");
             var errorPaymentMethod = $("#payment_method_error");
             var inputPaymentMethod = $("#payment_method");
-            // var errorBankName = $("#bankName_error");
-            // var inputBankName = $("#bankName");
-            // var errorAccountName = $("#accountName_error");
-            // var inputAccountName = $("#accountName");
-            // var errorSortCode1 = $("#sortCode1_error");
-            // var inputSortCode1 = $("#sortCode1");
-            // var errorSortCode2 = $("#sortCode2_error");
-            // var inputSortCode2 = $("#sortCode2");
-            // var errorSortCode3 = $("#sortCode3_error");
-            // var inputSortCode3 = $("#sortCode3");
-            // var errorAccountNumber = $("#accountNumber_error");
-            // var inputAccountNumber = $("#accountNumber");
             var errorPreferredDay = $("#preferredDay_error");
             var inputPreferredDay = $("#preferredDay");
             var errorDirectDebitConfirmation = $("#direct_debit_confirmation_error");
             var inputDirectDebitConfirmation = $("#direct_debit_confirmation");
-            // var errorReceiveBills = $("#receiveBills_error");
-            // var inputReceiveBills = $("#receiveBills");
 
-            // var errorTitle = $("#title_error");
-            // var inputTitle = $("#title");
-            // var errorFirstName = $("#firstName_error");
-            // var inputFirstName = $("#firstName");
-            // var errorLastName = $("#lastName_error");
-            // var inputLastName = $("#lastName");
             var errorTelephone = $("#telephone_error");
             var inputTelephone = $("#telephone");
             var errorMobile = $("#mobile_error");
             var inputMobile = $("#mobile");
-            // var errorEmailAddress = $("#emailAddress_error");
-            // var inputEmailAddress = $("#emailAddress");
 
             var sections =
             {

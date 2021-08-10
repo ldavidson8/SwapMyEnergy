@@ -50,19 +50,27 @@ class ResidentialComparisonController extends Controller
             if ($validator -> fails()) { return redirect() -> route('residential.energy-comparison.1-address') -> withErrors($validator -> errors()); }
             Log::channel('energy-comparison/find-address-post') -> info('ContactController -> raiseSupportRequest(), Form Validated Successfully');
 
-            $status = 200;
-            $mprn = Repository::addresses_mprn($fields['postcode'], $fields['houseNo'], $fields['houseName'], $status);
-
-            $region = Repository::regionsByPostcode($request -> input("postcode"), $request -> input("mpan"), $region_status);
+            $mprn = null;
+            if ($fields["mpan"] == "notListed")
+            {
+                $region = Repository::regionsByPostcode($request -> input("postcode"), $region_status);
+            }
+            else
+            {
+                // $mpan = Repository::addresses_mpandetails($fields["mpan"], $status);
+                $mprn = Repository::addresses_mprn($fields['postcode'], $fields['houseNo'], $fields['houseName'], $status);
+                $region = Repository::regionsByPostcodeAndMpan($request -> input("postcode"), $request -> input("mpan"), $region_status);
+            }
             if (!isset($region))
             {
                 // api request returned no data
-                Log::channel('energy-comparison/find-address-post') -> info('ContactController -> raiseSupportRequest(), Repository::regionsByPostcode(), status: $region_status');
-                return redirect() -> route('residential.energy-comparison.1-address') -> withErrors([ 'error' => 'An error occured, please try again later.' ]) -> withInput();
+                Log::channel('energy-comparison/find-address-post') -> info("ContactController -> raiseSupportRequest(), Repository::regionsByPostcode(), status: $region_status");
+                return $this -> BackTo1FindAddress();
             }
 
             if (!isset($fields["movingHouse"])) $fields["movingHouse"] = false;
             Session::put('ResidentialAPI.user_address', $fields);
+            // Session::put('ResidentialAPI.mpan', $mpan);
             Session::put('ResidentialAPI.mprn', $mprn);
             Session::put('ResidentialAPI.region', $region);
 
@@ -580,12 +588,11 @@ class ResidentialComparisonController extends Controller
         try
         {
             $user_address = Session::get('ResidentialAPI.user_address');
-            $mprn = Session::get('ResidentialAPI.mprn');
             $existing_tariff = Session::get('ResidentialAPI.existing_tariff');
             $current_tariffs = Session::get('ResidentialAPI.current_tariffs');
             $selected_tariff = Session::get('ResidentialAPI.selected_tariff');
 
-            if (!isset($user_address) || !isset($mprn) || !isset($existing_tariff) || !isset($current_tariffs) || !isset($selected_tariff))
+            if (!isset($user_address) || !isset($existing_tariff) || !isset($current_tariffs) || !isset($selected_tariff))
             {
                 return $this -> BackTo4GetSwitching([], true);
             }
@@ -741,14 +748,6 @@ class ResidentialComparisonController extends Controller
                     return $this -> BackTo4GetSwitching([ '' => 'The electricity meter number is required.' ]);
                 }
             }
-
-            // $addresses_mprn = Repository::addresses_mprn($mprn -> postcode, $mprn -> house_number);
-            // return response() -> json($addresses_mprn);
-
-            // return response() -> json(compact('user_address', 'mprn', 'existing_tariff', 'current_tariffs', 'selected_tariff'));
-
-            // $mpandetails = Repository::addresses_mpandetails($user_address["mpan"], $status);
-            // return response() -> json($mpandetails, $status);
 
             $direct_debit_confirmation = false;
             if ($request -> has("direct_debit_confirmation")) $direct_debit_confirmation = (bool)$request -> input("direct_debit_confirmation");
@@ -995,10 +994,17 @@ class ResidentialComparisonController extends Controller
             // TODO: Cleaned - comment
             //**/$result_str = "Testing123Testing";
 
+            $swapmyenergy_opt_in = false;
+            if ($request -> has("swapmyenergy_opt_in"))
+            {
+                $swapmyenergy_opt_in = $request -> has('swapmyenergy_opt_in') && (in_array($request -> input('swapmyenergy_opt_in'), [ true, 1, '1' ], true) || strtolower($request -> input('swapmyenergy_opt_in')) == 'on');
+            }
+
             Session::put('ResidentialAPI.reference', $result_str);
 
             $to_email = env('MAIL_TO_ADDRESS');
-            Mail::to($to_email) -> queue(new ResidentialAPINotificationEmail($requestObj, date("Y-m-d H:i:s"), "Test API Key", $result_str));
+            // TODO: Finish change "Test API Key" to "Real API Key"
+            Mail::to($to_email) -> queue(new ResidentialAPINotificationEmail($requestObj, date("Y-m-d H:i:s"), "Test API Key", $result_str, $swapmyenergy_opt_in));
             Mail::to($request -> input("emailAddress")) -> queue(new ResidentialAPINotificationCustomerConfirmationEmail($requestObj, $result_str));
 
             return redirect() -> route('residential.energy-comparison.success');

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class ResidentialApiRepository extends Controller
 {
+    // TODO: Cleaned uncomment
     protected static function _apiUrl() { return env("API_URL"); }
     protected static function _apiKey() { return env("API_KEY"); }
 
@@ -49,7 +50,13 @@ class ResidentialApiRepository extends Controller
 
     /// Regions ///
 
-    public static function regionsByPostcode($postcode, $mpan, &$status)
+    public static function regionsByPostcode($postcode, &$status)
+    {
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "regions/postcode?postcode=$postcode");
+        return self::getManyObjects($response, $status);
+    }
+
+    public static function regionsByPostcodeAndMpan($postcode, $mpan, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "regions/postcode?postcode=$postcode&mpan=$mpan");
         return self::getManyObjects($response, $status);
