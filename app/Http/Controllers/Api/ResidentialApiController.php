@@ -118,10 +118,6 @@ class ResidentialApiController extends Controller
         return response() -> json($responseArray, $status);
     }
 
-    public static function address($postcode, $houseNo)
-    {
-    }
-
     public static function addresses_mprn($postcode, $houseNo, $houseName = null)
     {
         $result = Repository::addresses_mprn($postcode, $houseNo, $houseName, $status);
