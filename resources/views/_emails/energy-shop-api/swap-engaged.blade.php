@@ -7,6 +7,9 @@
     </style>
 
     <h1>The Energy Shop API - Energy Swap Engaged</h1>
+    @auth
+        <p>Staff Member: {{ Auth::user() -> name }}</p>
+    @endauth
     <p>{{ $api_key_used }}</p>
     <p>The reference is: {{ $result_str }}</p>
     <p>The Timestamp is: {{ $dateTime }}</p>

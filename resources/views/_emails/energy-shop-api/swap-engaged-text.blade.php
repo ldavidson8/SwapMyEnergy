@@ -1,6 +1,10 @@
 -------------------------------------------------
 --- The Energy Shop API - Energy Swap Engaged ---
 -------------------------------------------------
+@auth
+
+Staff Member: {{ Auth::user() -> name }}
+@endauth
 
 {{ $api_key_used }}
 
