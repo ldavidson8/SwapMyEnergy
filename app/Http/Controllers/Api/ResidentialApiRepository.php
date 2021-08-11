@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class ResidentialApiRepository extends Controller
 {
-    // TODO: Cleaned uncomment
+    // TODO: Cleaned - uncomment
     protected static function _apiUrl() { return env("API_URL"); }
     protected static function _apiKey() { return env("API_KEY"); }
 

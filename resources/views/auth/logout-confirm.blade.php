@@ -33,7 +33,7 @@
 
                     <p style="margin-bottom: 40px;">
                         <a href="{{ url() -> previous() }}" id="link-back">
-                            <button class="btn btn-lg rounded-blue-button logout-button" style="background-color: rgb(41, 172, 41); color: white;">No</button>
+                            <button class="btn btn-lg rounded-blue-button logout-button" style="background-color: rgb(41, 172, 41);">No</button>
                         </a>
                         <a href="{{ route('logout') }}">
                             <button class="btn btn-lg rounded-blue-button logout-button">Yes</button>

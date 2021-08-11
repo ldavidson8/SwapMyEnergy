@@ -4,6 +4,7 @@
 @auth
 
 Staff Member: {{ Auth::user() -> name }}
+Staff Email:  {{ Auth::user() -> email }}
 @endauth
 
 {{ $api_key_used }}

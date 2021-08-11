@@ -44,7 +44,7 @@
     @yield('before-header')
 
     @auth
-        <div style="text-align: center; background-color: #202020; color: white;">Hello {{ Auth::user() -> name }}. You are logged in.</div>
+        <div style="text-align: center; background-color: #202020; color: white; position: sticky; top: 0; z-index: 20;">Hello {{ Auth::user() -> name }}. You are logged in.</div>
     @endauth
 
     <header>

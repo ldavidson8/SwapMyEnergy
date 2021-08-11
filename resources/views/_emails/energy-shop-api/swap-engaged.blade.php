@@ -8,7 +8,8 @@
 
     <h1>The Energy Shop API - Energy Swap Engaged</h1>
     @auth
-        <p>Staff Member: {{ Auth::user() -> name }}</p>
+        <p>Staff Name: {{ Auth::user() -> name }}</p>
+        <p>Staff Email: {{ Auth::user() -> email }}</p>
     @endauth
     <p>{{ $api_key_used }}</p>
     <p>The reference is: {{ $result_str }}</p>
