@@ -17,14 +17,16 @@ class ResidentialAPINotificationEmail extends Mailable
     private $api_key_used;
     private $result_str;
     private $swapmyenergy_opt_in;
+    private $affiliateToken;
 
-    public function __construct($formData, $dateTime, $api_key_used, $result_str, $swapmyenergy_opt_in)
+    public function __construct($formData, $dateTime, $api_key_used, $result_str, $swapmyenergy_opt_in, $affiliateToken)
     {
         $this -> formData = $formData;
         $this -> dateTime = $dateTime;
         $this -> api_key_used = $api_key_used;
         $this -> result_str = $result_str;
         $this -> swapmyenergy_opt_in = $swapmyenergy_opt_in;
+        $this -> affiliateToken = $affiliateToken;
     }
 
 
@@ -38,7 +40,8 @@ class ResidentialAPINotificationEmail extends Mailable
             $api_key_used = $this -> api_key_used;
             $result_str = $this -> result_str;
             $swapmyenergy_opt_in = $this -> swapmyenergy_opt_in;
-            $params = compact([ 'user', 'payment', 'dateTime', 'api_key_used', 'result_str', 'swapmyenergy_opt_in' ]);
+            $affiliateToken = $this -> affiliateToken;
+            $params = compact([ 'user', 'payment', 'dateTime', 'api_key_used', 'result_str', 'swapmyenergy_opt_in', 'affiliateToken' ]);
 
             $view = $this -> subject('The Energy Shop API - Energy Swap Engaged')
                 -> view('_emails.energy-shop-api.swap-engaged', $params)

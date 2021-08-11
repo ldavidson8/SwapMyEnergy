@@ -1023,9 +1023,21 @@ class ResidentialComparisonController extends Controller
 
             Session::put('ResidentialAPI.reference', $result_str);
 
+            $affiliateToken = null;
+            if (Session::has('swapMyEnergyAffiliateToken'))
+            {
+                $session = session() -> get('swapMyEnergyAffiliateToken');
+                if (isset($session) && is_string($session) && $session != "") $affiliateToken = $session;
+            }
+            if (!isset($affiliateToken))
+            {
+                $cookie = $request -> cookie('swapMyEnergyAffiliateToken');
+                if (isset($cookie) && is_string($cookie) && $cookie != "") $affiliateToken = $cookie;
+            }
+
             $to_email = env('MAIL_TO_ADDRESS');
             // TODO: Finish change "Test API Key" to "Real API Key"
-            Mail::to($to_email) -> queue(new ResidentialAPINotificationEmail($requestObj, date("Y-m-d H:i:s"), $result_mode, $result_str, $swapmyenergy_opt_in));
+            Mail::to($to_email) -> queue(new ResidentialAPINotificationEmail($requestObj, date("Y-m-d H:i:s"), $result_mode, $result_str, $swapmyenergy_opt_in, $affiliateToken));
             Mail::to($request -> input("emailAddress")) -> queue(new ResidentialAPINotificationCustomerConfirmationEmail($requestObj, $result_str));
 
             return redirect() -> route('residential.energy-comparison.success');

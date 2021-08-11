@@ -7,6 +7,9 @@
     </style>
 
     <h1>The Energy Shop API - Energy Swap Engaged</h1>
+    @if (isset($affiliateToken))
+        <p>Affiliate Company Token: {{ $affiliateToken }}</p>
+    @endif
     @auth
         <p>Staff Name: {{ Auth::user() -> name }}</p>
         <p>Staff Email: {{ Auth::user() -> email }}</p>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ResidentialApiController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -91,14 +92,14 @@ Route::group([ 'prefix' => '/residential' ], function()
         Route::get('/success', 'ResidentialComparisonController@success') -> name('residential.energy-comparison.success');
 
         // api
-        Route::post('/addresses/{postcode}', 'ResidentialApiController@addresses') -> name('residential.energy-comparison.api.addresses');
-        Route::post('/addresses/{postcode}/{houseNo}', 'ResidentialApiController@addresses_byHouseNo') -> name('residential.energy-comparison.api.addresses-by-postcode');
-        Route::post('/addresses/mprn/{postcode}/{houseNo}', 'ResidentialApiController@addresses_mprn') -> name('residential.energy-comparison.api.addresses.mprn');
-        Route::post('/addresses/mprndetails/{mprn}', 'ResidentialApiController@addresses_mprndetails') -> name('residential.energy-comparison.api.addresses.mprndetails');
-        Route::post('/suppliers', 'ResidentialApiController@suppliers') -> name('residential.energy-comparison.api.suppliers');
-        Route::post('/suppliers/{supplierId}', 'ResidentialApiController@supplierById') -> name('residential.energy-comparison.api.suppliers.by-id');
-        Route::post('/paymentMethods/suppliers/{supplierId}/{serviceType}', 'ResidentialApiController@paymentMethods_suppliers') -> name('residential.energy-comparison.api.paymentMethods.by-supplier-id');
-        Route::post('/tariffs/suppliers/{supplierId}/{regionId}/{serviceType}/{paymentMethod}/{e7}', 'ResidentialApiController@tariffs_forASuppllier') -> name('residential.energy-comparison.api.tariffs.for-a-suppllier');
+        Route::post('/addresses/{postcode}', [ ResidentialApiController::class, 'addresses' ]) -> name('residential.energy-comparison.api.addresses');
+        Route::post('/addresses/{postcode}/{houseNo}', [ ResidentialApiController::class, 'addresses_byHouseNo' ]) -> name('residential.energy-comparison.api.addresses-by-postcode');
+        Route::post('/addresses/mprn/{postcode}/{houseNo}', [ ResidentialApiController::class, 'addresses_mprn' ]) -> name('residential.energy-comparison.api.addresses.mprn');
+        Route::post('/addresses/mprndetails/{mprn}', [ ResidentialApiController::class, 'addresses_mprndetails' ]) -> name('residential.energy-comparison.api.addresses.mprndetails');
+        Route::post('/suppliers', [ ResidentialApiController::class, 'suppliers' ]) -> name('residential.energy-comparison.api.suppliers');
+        Route::post('/suppliers/{supplierId}', [ ResidentialApiController::class, 'supplierById' ]) -> name('residential.energy-comparison.api.suppliers.by-id');
+        Route::post('/paymentMethods/suppliers/{supplierId}/{serviceType}', [ ResidentialApiController::class, 'paymentMethods_suppliers' ]) -> name('residential.energy-comparison.api.paymentMethods.by-supplier-id');
+        Route::post('/tariffs/suppliers/{supplierId}/{regionId}/{serviceType}/{paymentMethod}/{e7}', [ ResidentialApiController::class, 'tariffs_forASuppllier' ]) -> name('residential.energy-comparison.api.tariffs.for-a-suppllier');
     });
 });
 
@@ -151,6 +152,13 @@ Route::get('/test/testing-znergi-facebook-chat-thingy-majiggiery', function ()
 {
     return view('test.facebook-chat-test');
 }) -> name('test.facebook-chat');
+
+Route::get('/testing/affiliateLinks/sessions-and-cookies/', function(Request $request)
+{
+    $session = session() -> get('swapMyEnergyAffiliateToken');
+    $cookie = $request -> cookie('swapMyEnergyAffiliateToken');
+    return response() -> json(compact('session', 'cookie'));
+});
 
 
 /*

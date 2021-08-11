@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 
 class ResidentialApiRepository extends Controller
 {

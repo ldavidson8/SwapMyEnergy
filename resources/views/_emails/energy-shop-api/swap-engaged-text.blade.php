@@ -1,10 +1,14 @@
 -------------------------------------------------
 --- The Energy Shop API - Energy Swap Engaged ---
 -------------------------------------------------
+@if (isset($affiliateToken))
+
+    Affiliate Company Token: {{ $affiliateToken }}
+@endif
 @auth
 
-Staff Member: {{ Auth::user() -> name }}
-Staff Email:  {{ Auth::user() -> email }}
+Staff Name:  {{ Auth::user() -> name }}
+Staff Email: {{ Auth::user() -> email }}
 @endauth
 
 {{ $api_key_used }}
