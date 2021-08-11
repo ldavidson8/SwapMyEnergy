@@ -6,7 +6,7 @@
             <tr>
                 <td width="125" rowspan="2" valign="top" style="width:93.75pt;border:none;border-right:solid #26B7DB 1.0pt;padding:0cm 7.5pt 0cm 0cm">
                     <p class="MsoNormal">
-                        <a href="http://www.swapmyenergy.co.uk/" target="_blank">
+                        <a href="https://www.swapmyenergy.co.uk/" target="_blank">
                             <span style="font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#337AB7;text-decoration:none">
                                 <img width="105" height="105" style="width:1.0937in;height:1.0937in" id="_x0000_i1037" src="{{ asset('img/email/swapmyenergy.png') }}" alt="Logo"/>
                             </span>
@@ -37,7 +37,7 @@
                                     </p>
                                     <p class="MsoNormal" style="line-height:12.75pt">
                                         <b>w:</b>&nbsp;
-                                        <a href="http://www.swapmyenergy.co.uk/" target="_blank">www.swapmyenergy.co.uk</a>
+                                        <a href="https://www.swapmyenergy.co.uk/" target="_blank">www.swapmyenergy.co.uk</a>
                                     </p>
                                 </td>
                             </tr>
