@@ -991,7 +991,7 @@
                                         <span id="elec_meter_number_error" class="form-error-message text-danger"></span>
                                         <p><input type="text" id="elec_meter_number" name="elec_meter_number" value="{{ old('elec_meter_number', $user_address["mpan"]) }}" /></p>
                                         <p>Your electricity meter number is also known as a Supply (S) Number or MPAN. Please enter the bottom row of numbers as you find them on your electricity bill without spaces as highlighted in the example below.</p>
-                                        <img alt="Example of an Electricity Number" src="" />
+                                        <img alt="Example of an Electricity Number" src="{{ asset('img/energy-comparison/snumber.png') }}" style="width: 350px; max-width: 100%;" />
                                     </div>
                                 @endif
 
