@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Api\ResidentialApiController;
-use App\Http\Requests\Mode\ModeSession;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +39,7 @@ Route::group([ 'prefix' => '' ], function()
         Route::get('/success', [ BusinessContactController::class, 'requestCallbackSuccess' ]) -> name('business.request-callback.success');
         Route::get('/error', [ BusinessContactController::class, 'requestCallbackError' ]) -> name('business.request-callback.error');
     });
-    
+
     // my-account section
     // Route::group([ 'prefix' => 'my-account', 'middleware' => 'business' ], function()
     // {
@@ -68,7 +64,7 @@ Route::group([ 'prefix' => '/residential' ], function()
     Route::get('/sitemap', [ ResidentialHomeController::class, 'siteMap' ]) -> name('residential.sitemap');
     Route::get('/contact', [ ResidentialHomeController::class, 'contact' ]) -> name('residential.contact');
     Route::get('/partners-and-affiliates', [ ResidentialHomeController::class, 'partnersAndAffiliates' ]) -> name('residential.partners and affiliates');
-    
+
     // Route::group([ 'prefix' => '/my-account', 'middleware' => 'residential' ], function()
     // {
     //     Route::get('/', [ ResidentialAccountController::class, 'myAccount' ]) -> name('residential.my account') -> middleware('password.confirm');
@@ -84,24 +80,24 @@ Route::group([ 'prefix' => '/residential' ], function()
     {
         // pages
         Route::get('/address', [ ResidentialComparisonController::class, 'findAddress' ]) -> name('residential.energy-comparison.1-address');
-        Route::post('/address', [ ResidentialComparisonController::class, 'findAddressPost' ]) -> name('residential.energy-comparison.1-address');
-        Route::get('/existing-tariff', [ ResidentialComparisonController::class, 'setExistingTariff' ]) -> name('residential.energy-comparison.2-existing-tariff');
-        Route::post('/existing-tariff', [ ResidentialComparisonController::class, 'setExistingTariffPost' ]) -> name('residential.energy-comparison.2-existing-tariff');
-        Route::get('/browse-deals', [ ResidentialComparisonController::class, 'browseDeals' ]) -> name('residential.energy-comparison.3-browse-deals');
-        Route::post('/browse-deals', [ ResidentialComparisonController::class, 'browseDealsPost' ]) -> name('residential.energy-comparison.3-browse-deals');
-        Route::get('/get-switching', [ ResidentialComparisonController::class, 'getSwitching' ]) -> name('residential.energy-comparison.4-get-switching');
-        Route::post('/get-switching', [ ResidentialComparisonController::class, 'getSwitchingPost' ]) -> name('residential.energy-comparison.4-get-switching');
-        Route::get('/success', [ ResidentialComparisonController::class, 'success' ]) -> name('residential.energy-comparison.success');
-        
+        // Route::post('/address', [ ResidentialComparisonController::class, 'findAddressPost' ]) -> name('residential.energy-comparison.1-address');
+        // Route::get('/existing-tariff', [ ResidentialComparisonController::class, 'setExistingTariff' ]) -> name('residential.energy-comparison.2-existing-tariff');
+        // Route::post('/existing-tariff', [ ResidentialComparisonController::class, 'setExistingTariffPost' ]) -> name('residential.energy-comparison.2-existing-tariff');
+        // Route::get('/browse-deals', [ ResidentialComparisonController::class, 'browseDeals' ]) -> name('residential.energy-comparison.3-browse-deals');
+        // Route::post('/browse-deals', [ ResidentialComparisonController::class, 'browseDealsPost' ]) -> name('residential.energy-comparison.3-browse-deals');
+        // Route::get('/get-switching', [ ResidentialComparisonController::class, 'getSwitching' ]) -> name('residential.energy-comparison.4-get-switching');
+        // Route::post('/get-switching', [ ResidentialComparisonController::class, 'getSwitchingPost' ]) -> name('residential.energy-comparison.4-get-switching');
+        // Route::get('/success', [ ResidentialComparisonController::class, 'success' ]) -> name('residential.energy-comparison.success');
+
         // api
-        Route::post('/addresses/{postcode}', [ ResidentialApiController::class, 'addresses' ]) -> name('residential.energy-comparison.api.addresses');
-        Route::post('/addresses/{postcode}/{houseNo}', [ ResidentialApiController::class, 'addresses_byHouseNo' ]) -> name('residential.energy-comparison.api.addresses-by-postcode');
-        Route::post('/addresses/mprn/{postcode}/{houseNo}', [ ResidentialApiController::class, 'addresses_mprn' ]) -> name('residential.energy-comparison.api.addresses.mprn');
-        Route::post('/addresses/mprndetails/{mprn}', [ ResidentialApiController::class, 'addresses_mprndetails' ]) -> name('residential.energy-comparison.api.addresses.mprndetails');
-        Route::post('/suppliers', [ ResidentialApiController::class, 'suppliers' ]) -> name('residential.energy-comparison.api.suppliers');
-        Route::post('/suppliers/{supplierId}', [ ResidentialApiController::class, 'supplierById' ]) -> name('residential.energy-comparison.api.suppliers.by-id');
-        Route::post('/paymentMethods/suppliers/{supplierId}/{serviceType}', [ ResidentialApiController::class, 'paymentMethods_suppliers']) -> name('residential.energy-comparison.api.paymentMethods.by-supplier-id');
-        Route::post('/tariffs/suppliers/{supplierId}/{regionId}/{serviceType}/{paymentMethod}/{e7}', [ ResidentialApiController::class, 'tariffs_forASuppllier']) -> name('residential.energy-comparison.api.tariffs.for-a-suppllier');
+        // Route::post('/addresses/{postcode}', [ ResidentialApiController::class, 'addresses' ]) -> name('residential.energy-comparison.api.addresses');
+        // Route::post('/addresses/{postcode}/{houseNo}', [ ResidentialApiController::class, 'addresses_byHouseNo' ]) -> name('residential.energy-comparison.api.addresses-by-postcode');
+        // Route::post('/addresses/mprn/{postcode}/{houseNo}', [ ResidentialApiController::class, 'addresses_mprn' ]) -> name('residential.energy-comparison.api.addresses.mprn');
+        // Route::post('/addresses/mprndetails/{mprn}', [ ResidentialApiController::class, 'addresses_mprndetails' ]) -> name('residential.energy-comparison.api.addresses.mprndetails');
+        // Route::post('/suppliers', [ ResidentialApiController::class, 'suppliers' ]) -> name('residential.energy-comparison.api.suppliers');
+        // Route::post('/suppliers/{supplierId}', [ ResidentialApiController::class, 'supplierById' ]) -> name('residential.energy-comparison.api.suppliers.by-id');
+        // Route::post('/paymentMethods/suppliers/{supplierId}/{serviceType}', [ ResidentialApiController::class, 'paymentMethods_suppliers']) -> name('residential.energy-comparison.api.paymentMethods.by-supplier-id');
+        // Route::post('/tariffs/suppliers/{supplierId}/{regionId}/{serviceType}/{paymentMethod}/{e7}', [ ResidentialApiController::class, 'tariffs_forASuppllier']) -> name('residential.energy-comparison.api.tariffs.for-a-suppllier');
     });
 });
 
@@ -134,50 +130,6 @@ Route::group([ 'prefix' => '/affiliate-apply'], function()
 });
 
 
-
-/*
-|--------------------------------------------------------------------------
-| Authentication Routes
-|--------------------------------------------------------------------------
-*/
-
-// use App\Http\Controllers\Auth\AuthenticatedSessionController;
-// use App\Http\Controllers\Auth\ConfirmablePasswordController;
-// use App\Http\Controllers\Auth\EmailVerificationNotificationController;
-// use App\Http\Controllers\Auth\EmailVerificationPromptController;
-// use App\Http\Controllers\Auth\NewPasswordController;
-// use App\Http\Controllers\Auth\PasswordResetLinkController;
-// use App\Http\Controllers\Auth\RegisteredUserController;
-// use App\Http\Controllers\Auth\VerifyEmailController;
-
-// Route::post('/register', [RegisteredUserController::class, 'store']) -> middleware('guest');
-// Route::get('/login', [AuthenticatedSessionController::class, 'create']) -> middleware('guest') -> name('login');
-// Route::post('/login', [AuthenticatedSessionController::class, 'store']) -> middleware('guest');
-// Route::get('/logout', [AuthenticatedSessionController::class, 'destroy']) -> middleware('auth') -> name('logout');
-
-// // forgot password get
-// Route::get('/forgot-password', [PasswordResetLinkController::class, 'create']) -> middleware('guest') -> name('password.request');
-// // forgot password post
-// Route::post('/forgot-password', [PasswordResetLinkController::class, 'store']) -> middleware('guest') -> name('password.email');
-// // forgot password email sent get
-// Route::get('/forgot-password-email-sent', [PasswordResetLinkController::class, 'sent' ]) -> middleware('guest') -> name('password.emailsent');
-
-// // TODO: integrate
-// Route::get('/reset-password/{token}/{email}', [NewPasswordController::class, 'create']) -> middleware('guest') -> name('password.reset');
-// // TODO: integrate
-// Route::post('/reset-password', [NewPasswordController::class, 'store']) -> middleware('guest') -> name('password.update');
-
-// // TODO: integrate
-// Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke']) -> middleware('auth') -> name('verification.notice');
-// // TODO: integrate
-// Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke']) -> middleware(['auth', 'signed', 'throttle:6,1']) -> name('verification.verify');
-// // TODO: integrate
-// Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store']) -> middleware(['auth', 'throttle:6,1']) -> name('verification.send');
-
-// Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show']) -> middleware('auth') -> name('password.confirm');
-// Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']) -> middleware('auth') -> name('password.confirm');
-
-
 // test pages
 
 // Route::get('/test/observer', function ()
@@ -192,11 +144,6 @@ Route::group([ 'prefix' => '/affiliate-apply'], function()
 
 
 // test pages
-
-// Route::get('/testing/qwerty-keyboard/sonic-the-hedgehog/sql', function()
-// {
-//     return response() -> json(DB::select('select * from users'));
-// });
 
 // Route::group([ 'prefix' => '/testing/errors' ], function()
 // {

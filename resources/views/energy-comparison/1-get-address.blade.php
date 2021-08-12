@@ -10,7 +10,7 @@
             max-width: 100%;
             margin: auto;
         }
-        
+
         .white-search-button
         {
             width: 150px;
@@ -100,7 +100,7 @@
             var inputHouseNo = $("#houseNo");
             var inputHouseNoValues = $("#houseNo_values");
             var inputMpan = $("#mpan");
-            
+
             $.ajaxSetup(
             {
                 headers:
@@ -113,7 +113,7 @@
             btnPostcode.click(function()
             {
                 HidePostcodeError();
-                
+
                 if (inputPostcodeSearch.val() == "")
                 {
                     ShowPostcodeError('The postcode field is required.');
@@ -146,19 +146,19 @@
                                 // parse the returned json into an object
                                 //var rows = JSON.parse(result);
                                 var rows = result;
-                                
+
                                 // sort the rows by the address property
                                 rows.sort((a, b) => (a.address.localeCompare(b.address, 'en', { numeric: true })));
-                                
+
                                 // empty the dropdown list
                                 inputHouseNo.find("option:not(.initial-values)").remove();
-                                
+
                                 // add each row to the dropdown list
                                 for (i in rows)
                                 {
                                     inputHouseNo.append($('<option class="house-number-option" value="' + rows[i].houseNo + '" data-mpan="' + rows[i].mpan + '" data-houseName="' + rows[i].houseName + '">' + rows[i].address + '</option>'));
                                 }
-                                
+
                                 ShowAddressSection();
                             }
                             catch (ex)
