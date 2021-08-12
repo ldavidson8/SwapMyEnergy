@@ -1529,10 +1529,10 @@
                                 <br /><br /><hr class="thin-line" /><br />
 
                                 <h2>Stay in touch</h2>
-                                <div style="padding: 10px 0 25px;">
+                                {{-- <div style="padding: 10px 0 25px;">
                                     <input type="checkbox" id="swapmyenergy_opt_in" name="swapmyenergy_opt_in" {{ (old('swapmyenergy_opt_in', '') == true) ? "checked" : "" }} />
                                     <label for="swapmyenergy_opt_in" style="font-weight: normal">Would you like to recieve news from SwapMyEnergy?</label>
-                                </div>
+                                </div> --}}
                                 @switch($legal_text_for_supplier)
                                     {{-- Bristol Energy --}}
                                     @case("Bristol Energy")

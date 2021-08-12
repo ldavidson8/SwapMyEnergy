@@ -17,11 +17,11 @@
     <p>{{ $api_key_used }}</p>
     <p>The reference is: {{ $result_str }}</p>
     <p>The Timestamp is: {{ $dateTime }}</p>
-    @if ($swapmyenergy_opt_in)
+    {{-- @if ($swapmyenergy_opt_in)
         <p>The user opted into SwapMyEnergy marketing.</p>
     @else
         <p>The user did NOT opt into SwapMyEnergy marketing.</p>
-    @endif
+    @endif --}}
 
     <h2>Customer Info</h2>
     <table>

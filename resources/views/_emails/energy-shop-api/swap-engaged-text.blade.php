@@ -16,6 +16,13 @@ Staff Email: {{ Auth::user() -> email }}
 The reference is: {{ $result_str }}
 
 The Timestamp is: {{ $dateTime }}
+{{-- @if ($swapmyenergy_opt_in)
+
+The user opted into SwapMyEnergy marketing.
+@else
+
+The user did NOT opt into SwapMyEnergy marketing.
+@endif --}}
 
 
 --- Customer Information ---
