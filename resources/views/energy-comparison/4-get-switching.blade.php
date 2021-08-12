@@ -1,19 +1,32 @@
 <?php
-    $street_name = "";
+    $coolingOff = 0;
+    if (isset($selected_tariff["supplierCoolingOff"]) && is_numeric(isset($selected_tariff["supplierCoolingOff"]))) $coolingOff = isset($selected_tariff["supplierCoolingOff"]);
+    if (isset($selected_tariff["tariff_info"] -> supplierCoolingOff) && is_numeric(isset($selected_tariff["tariff_info"] -> supplierCoolingOff))) $coolingOff = isset($selected_tariff["tariff_info"] -> supplierCoolingOff);
+
+    $house_number = "";
+    $postcode = "";
+    $road_name = "";
+    $town = "";
+    $county = "";
+
     if (isset($mprn))
     {
-        $street_name = (isset($mprn -> dependent_street) && $mprn -> dependent_street != "") ? $mprn -> dependent_street : $mprn -> street;
+        $house_number = $mprn -> house_number;
+        $postcode = $mprn -> postcode;
+        $road_name = (isset($mprn -> dependent_street) && $mprn -> dependent_street != "") ? $mprn -> dependent_street : $mprn -> street;
+        $town = $mprn -> post_town;
+    }
+    else if (isset($mpan_details))
+    {
+        $house_number = $mpan_details -> line3;
+        $road_name = $mpan_details -> line5;
+        $town = $mpan_details -> line8;
+    }
+    if (isset($mpan_details))
+    {
+        $county = $mpan_details -> line9;
     }
 
-    $coolingOff = 0;
-    if (isset($selected_tariff["supplierCoolingOff"]) && is_numeric(isset($selected_tariff["supplierCoolingOff"])))
-    {
-        $coolingOff = isset($selected_tariff["supplierCoolingOff"]);
-    }
-    if (isset($selected_tariff["tariff_info"] -> supplierCoolingOff) && is_numeric(isset($selected_tariff["tariff_info"] -> supplierCoolingOff)))
-    {
-        $coolingOff = isset($selected_tariff["tariff_info"] -> supplierCoolingOff);
-    }
 
 
     $legal_text_for_supplier = "";   // variable for legal text switch statements
@@ -676,12 +689,12 @@
                                 <div class="form-group">
                                     <label for="house_number">House Number</label>
                                     <span id="house_number_error" class="form-error-message text-danger"></span>
-                                    <input type="text" id="house_number" name="house_number" value="{{ old('house_number', (isset($mprn)) ? $mprn -> house_number : "") }}" />
+                                    <input type="text" id="house_number" name="house_number" value="{{ old('house_number', $house_number) }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="postcode">Postcode <span class="text-danger">*</span></label>
                                     <span id="postcode_error" class="form-error-message text-danger"></span>
-                                    <input type="text" id="postcode" name="postcode" value="{{ old('postcode', (isset($mprn)) ? $mprn -> postcode : "") }}" required />
+                                    <input type="text" id="postcode" name="postcode" value="{{ old('postcode', $postcode) }}" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="address_line_1">Address Line 1<span class="text-danger">*</span></label>
@@ -696,17 +709,17 @@
                                 <div class="form-group">
                                     <label for="road_name">Road Name <span class="text-danger">*</span></label>
                                     <span id="road_name_error" class="form-error-message text-danger"></span>
-                                    <input type="text" id="road_name" name="road_name" value="{{ old('road_name', $street_name) }}" required />
+                                    <input type="text" id="road_name" name="road_name" value="{{ old('road_name', $road_name) }}" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="town">Town<span class="text-danger">*</span></label>
                                     <span id="town_error" class="form-error-message text-danger"></span>
-                                    <input type="text" id="town" name="town" value="{{ old('town', (isset($mprn)) ? $mprn -> post_town : "") }}" required />
+                                    <input type="text" id="town" name="town" value="{{ old('town', $town) }}" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="county">County</label>
                                     <span id="county_error" class="form-error-message text-danger"></span>
-                                    <input type="text" id="county" name="county" value="{{ old('county', '') }}" />
+                                    <input type="text" id="county" name="county" value="{{ old('county', $county) }}" />
                                 </div>
 
                                 @if ($get_previous_addresses)
@@ -1643,7 +1656,7 @@
             var inputBillingPostcode = $("#billing_postcode");
             var inputBillingHouseNo = $("#billing_houseNo");
             var inputBillingAddress = $("#billing_address");
-            var inputBillingStreetName = $("#billing_street_name");
+            var inputBillingStreetName = $("#billing_road_name");
             var inputBillingArea = $("#billing_area");
             var inputBillingTown = $("#billing_town");
             var inputBillingCounty = $("#billing_county");

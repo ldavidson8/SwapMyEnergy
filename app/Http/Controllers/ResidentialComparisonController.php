@@ -41,6 +41,7 @@ class ResidentialComparisonController extends Controller
             Session::forget('ResidentialAPI.selected_payment_methods');
             Session::forget('ResidentialAPI.reference');
 
+            // server side validation
             $fields = $request -> all();
             $validator = Validator::make($fields,
             [
@@ -50,16 +51,35 @@ class ResidentialComparisonController extends Controller
             if ($validator -> fails()) { return redirect() -> route('residential.energy-comparison.1-address') -> withErrors($validator -> errors()); }
             Log::channel('energy-comparison/find-address-post') -> info('ContactController -> raiseSupportRequest(), Form Validated Successfully');
 
+
+            // retrieve more data using the postcode and mpan
             $mprn = null;
+            $mpan_details = null;
             if ($fields["mpan"] == "notListed")
             {
+                // TODO: Cleaned - uncomment
                 $region = Repository::regionsByPostcode($request -> input("postcode"), $region_status);
+                // TODO: Cleaned - comment
+                // $region_status = 200;
+                // $region = [ "id" => 7,"name" => "Norweb","defaultSupplier" => 14,"defaultSupplierName" => "E.ON","coreElecRegion" => null,"mpanDistributorId" => 0,"phoneNumber" => "0800 048 1820" ];
             }
             else
             {
-                // $mpan = Repository::addresses_mpandetails($fields["mpan"], $status);
+                // TODO: Cleaned - uncomment
+                $mpan_details = Repository::addresses_mpandetails($fields["mpan"], $status);
+                // TODO: Cleaned - comment
+                // $mpan_details = json_decode('{"line1":null,"line2":null,"line3":"8","line4":null,"line5":"TOWER GREEN","line6":null,"line7":"FULWOOD","line8":"PRESTON","line9":"LANCASHIRE","profileClass":"01","supplierMpid":"MRCY","meteredIndicator":"T","meteredIndicatorEfd":"20190323","supplierId":104,"supplierName":"Octopus Energy","consumerType":"Domestic","mpanMeterDetails":{"meterSerialNumber":"A05N025958","meterType":"N"}}');
+
+                // TODO: Cleaned - uncomment
                 $mprn = Repository::addresses_mprn($fields['postcode'], $fields['houseNo'], $fields['houseName'], $status);
+                // TODO: Cleaned - comment
+                // $mprn = json_decode('{"address_id":"6005872369","house_name":"","house_number":"8","country":"GB","county":"LA","current_supplier_id":"OCT","delivery_point_alias":"","dependent_street":"","dmq":10715,"double_dependent_locality":"","gas_transport_id":"Cadent Gas Limited","ldz_id":"NW","meter_capacity":"2","meter_mechanism_code":"CR","meter_serial_number":"200844S","mpaq":"10715","mprn":"1558777101","ndmq":"10715","po_box_number":"","post_town":"PRESTON","postcode":"PR2 9UU","smart_equipment_technical_code":"","street":"TOWER GREEN","sub_building_name":"","supplierId":5,"supplierName":"British Gas"}');
+
+                // TODO: Cleaned - uncomment
                 $region = Repository::regionsByPostcodeAndMpan($request -> input("postcode"), $request -> input("mpan"), $region_status);
+                // TODO: Cleaned - comment
+                // $region_status = 200;
+                // $region = [ "id" => 7,"name" => "Norweb","defaultSupplier" => 14,"defaultSupplierName" => "E.ON","coreElecRegion" => null,"mpanDistributorId" => 0,"phoneNumber" => "0800 048 1820" ];
             }
             if (!isset($region))
             {
@@ -70,11 +90,25 @@ class ResidentialComparisonController extends Controller
 
             if (!isset($fields["movingHouse"])) $fields["movingHouse"] = false;
             Session::put('ResidentialAPI.user_address', $fields);
-            // Session::put('ResidentialAPI.mpan', $mpan);
+            Session::put('ResidentialAPI.mpan_details', $mpan_details);
             Session::put('ResidentialAPI.mprn', $mprn);
             Session::put('ResidentialAPI.region', $region);
 
+
+            // Retrieve and generate lists of suppliers for the region
+            // TODO: uncomment
             $suppliers = Repository::suppliersByRegion($region["id"], $status);
+            // TODO: comment
+            // $suppliers =
+            // [
+            //     ["id" => 107,"name" => "Affect Energy","nameRegistered" => null,"nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "","telephone" => "","address" => null,"coolingOff" => 14,"ddOriginatorsNo" => "","supplyGas" => true,"supplyElec" => true,"supplyDf" => true,"active" => true],
+            //     ["id" => 131,"name" => "Angelic Energy","nameRegistered" => null,"nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "","telephone" => "","address" => null,"coolingOff" => 14,"ddOriginatorsNo" => "","supplyGas" => true,"supplyElec" => true,"supplyDf" => true,"active" => true],
+            //     ["id" => 3,"name" => "Atlantic","nameRegistered" => null,"nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "customerservice@atlanticeg.co.uk","telephone" => "0800 980 9042","address" => null,"coolingOff" => 7,"ddOriginatorsNo" => "809434","supplyGas" => true,"supplyElec" => true,"supplyDf" => true,"active" => true],
+            //     ["id" => 101,"name" => "Avro Energy","nameRegistered" => null,"nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "","telephone" => "","address" => null,"coolingOff" => 14,"ddOriginatorsNo" => "","supplyGas" => false,"supplyElec" => true,"supplyDf" => true,"active" => true],
+            //     ["id" => 100,"name" => "Bristol Energy","nameRegistered" => "Bristol Energy","nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "","telephone" => "","address" => null,"coolingOff" => 14,"ddOriginatorsNo" => "","supplyGas" => true,"supplyElec" => true,"supplyDf" => true,"active" => true],
+            //     ["id" => 5,"name" => "British Gas","nameRegistered" => "British Gas Trading Ltd","nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "","telephone" => "","address" => null,"coolingOff" => 14,"ddOriginatorsNo" => "948555","supplyGas" => true,"supplyElec" => true,"supplyDf" => true,"active" => true],
+            //     ["id" => 104,"name" => "Octopus Energy","nameRegistered" => "Octopus Energy Limited","nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "","telephone" => "","address" => null,"coolingOff" => 14,"ddOriginatorsNo" => "","supplyGas" => false,"supplyElec" => true,"supplyDf" => true,"active" => true]
+            // ];
             if (!isset($suppliers) || count($suppliers) == 0) return $this -> BackTo1FindAddress();
 
             $dual_suppliers = []; $gas_suppliers = []; $electric_suppliers = [];
@@ -96,7 +130,7 @@ class ResidentialComparisonController extends Controller
                 foreach ($electric_suppliers as $electric_supplier) if ($electric_supplier["name"] == $main_supplier) $main_electric_suppliers[] = $electric_supplier;
             }
 
-            $supplier_data = compact('dual_suppliers', 'gas_suppliers', 'electric_suppliers', 'main_dual_suppliers', 'main_gas_suppliers', 'main_electric_suppliers', 'region', 'mprn');
+            $supplier_data = compact('dual_suppliers', 'gas_suppliers', 'electric_suppliers', 'main_dual_suppliers', 'main_gas_suppliers', 'main_electric_suppliers', 'region', 'mprn', 'mpan_details');
             Session::put('ResidentialAPI.supplier_data', $supplier_data);
 
             return redirect() -> route('residential.energy-comparison.2-existing-tariff');
@@ -547,6 +581,7 @@ class ResidentialComparisonController extends Controller
             // [
             //     "page_title" => "Get Switching - Energy Swap",
             //     "user_address" => [ "_token" => "ul8U2GbQ0z2DIrmJjxY8A0gKU4pzpduqO1lmjFVl", "postcode" => "PR2 9UU", "mpan" => "1610013330437", "houseName" => "TOWER GREEN", "houseNo" => "8", "movingHouse" => false ],
+            //     "mpan_details" => json_decode('{"line1":null,"line2":null,"line3":"8","line4":null,"line5":"TOWER GREEN","line6":null,"line7":"FULWOOD","line8":"PRESTON","line9":"LANCASHIRE","profileClass":"01","supplierMpid":"MRCY","meteredIndicator":"T","meteredIndicatorEfd":"20190323","supplierId":104,"supplierName":"Octopus Energy","consumerType":"Domestic","mpanMeterDetails":{"meterSerialNumber":"A05N025958","meterType":"N"}}'),
             //     "mprn" => json_decode('{"address_id":"6005872369","house_name":"","house_number":"8","country":"GB","county":"LA","current_supplier_id":"OCT","delivery_point_alias":"","dependent_street":"","dmq":10715,"double_dependent_locality":"","gas_transport_id":"Cadent Gas Limited","ldz_id":"NW","meter_capacity":"2","meter_mechanism_code":"CR","meter_serial_number":"200844S","mpaq":"10715","mprn":"1558777101","ndmq":"10715","po_box_number":"","post_town":"PRESTON","postcode":"PR2 9UU","smart_equipment_technical_code":"","street":"TOWER GREEN","sub_building_name":"","supplierId":104,"supplierName":"Octopus Energy"}'),
             //     "region" => json_decode('{"id":7,"name":"Norweb","defaultSupplier":14,"defaultSupplierName":"E.ON","coreElecRegion":null,"mpanDistributorId":0,"phoneNumber":"0800 048 1820"}'),
             //     "existing_tariff" => json_decode('{"fuel_type_char":"D","fuel_type_str":"df","fuel_type":"dual","same_fuel_supplier":"yes","region_id":7,"supplier":104,"payment_method":"MDD","e7":200,"current_tariff":null,"current_tariff_not_listed":"notListed","consumption_figures":"kwh","gas":10715,"gas_length":"Year","elec":2000,"elec_length":"Year","e7_percent":0}'),
@@ -560,6 +595,7 @@ class ResidentialComparisonController extends Controller
             // get session variables
             // TODO: Cleaned - uncomment
             $user_address = Session::get('ResidentialAPI.user_address');
+            $mpan_details = Session::get('ResidentialAPI.mpan_details');
             $mprn = Session::get('ResidentialAPI.mprn');
             $region = Session::get('ResidentialAPI.region');
             $existing_tariff = Session::get('ResidentialAPI.existing_tariff');
@@ -584,7 +620,7 @@ class ResidentialComparisonController extends Controller
 
             // TODO: Cleaned - uncomment
             $page_title = "Get Switching - Energy Swap";
-            $params = compact('page_title', 'user_address', 'mprn', 'region', 'existing_tariff', 'current_tariffs', 'selected_tariff', 'selected_supplier', 'selected_payment_methods', 'get_previous_addresses');
+            $params = compact('page_title', 'user_address', 'mprn', 'region', 'existing_tariff', 'current_tariffs', 'selected_tariff', 'selected_supplier', 'selected_payment_methods', 'get_previous_addresses', 'mpan_details');
             return view('energy-comparison.4-get-switching', $params);
         }
         catch (Throwable $th)

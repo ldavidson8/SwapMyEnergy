@@ -167,11 +167,6 @@ Route::get('/testing/affiliateLinks/sessions-and-cookies/', function(Request $re
 |--------------------------------------------------------------------------
 */
 
-// Route::get('/testing/qwerty-keyboard/sonic-the-hedgehog/sql', function()
-// {
-//     return response() -> json(DB::select('select * from users'));
-// });
-
 Route::group([ 'prefix' => '/testing/errors/http/error-pages/' ], function()
 {
     Route::get('401', function() { abort(401); });
