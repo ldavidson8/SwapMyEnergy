@@ -33,6 +33,7 @@ Route::group([ 'prefix' => '' ], function()
     Route::get('/contact', 'BusinessHomeController@contact') -> name('business.contact');
     Route::get('/partners-and-affiliates', 'BusinessHomeController@partnersAndAffiliates') -> name('business.partners and affiliates');
     Route::get('/our-team', 'BusinessHomeController@ourTeam') -> name('business.our-team');
+    Route::get('/connections', 'BusinessHomeController@connections') -> name('business.connections');
 
     Route::group([ 'prefix' => '/request-callback' ], function()
     {
@@ -66,6 +67,7 @@ Route::group([ 'prefix' => '/residential' ], function()
     Route::get('/contact', 'ResidentialHomeController@contact') -> name('residential.contact');
     Route::get('/partners-and-affiliates', 'ResidentialHomeController@partnersAndAffiliates') -> name('residential.partners and affiliates');
     Route::get('/our-team', 'ResidentialHomeController@ourTeam') -> name('residential.our-team');
+    Route::get('/connections', 'ResidentialHomeController@connections') -> name('residential.connections');
 
     // Route::group([ 'prefix' => '/my-account', 'middleware' => 'residential' ], function()
     // {

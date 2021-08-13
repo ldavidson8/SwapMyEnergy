@@ -13,7 +13,7 @@
 
         .white-box-infographics-inner
         {
-            background-color: white;;
+            background-color: #f3f2f1;
             border-radius: 20px;
             width: 325px;
             height: 425px;

@@ -87,4 +87,13 @@ class ResidentialHomeController extends Controller
         $page_title = 'Our Team - Residential';
         return view('other.our-team', compact('navbar_page', 'page_title'));
     }
+
+    public function connections()
+    {
+        ModeSession::setResidential();
+
+        $navbar_page = 'connections';
+        $page_title = 'Connections';
+        return view('index.connections', compact('navbar_page', 'page_title'));
+    }
 }
