@@ -50,7 +50,7 @@
         {
             background-color: #f3f2f1;
             border-radius: 20px;
-            width: 325px;
+            width: 400px;
             height: 450px;
             padding: 20px;
             margin: auto;
@@ -161,32 +161,36 @@
                             <div class="form-group">
                                 <label for="new_customer">New Customer<span class="text-danger">*</span></label>
                                 <select id="new_customer" class="rounded-input-field" id="new_customer" name="new_customer" required />
-                                    <option value="" disabled hidden></option>
+                                    <option value="" disabled selected hidden></option>
                                     <option value="Lorem">Lorem</option>
+                                    <option value="Ipsum">Ipsum</option>
                                 </select>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label for="property_type">Property Type<span class="text-danger">*</span></label>
-                                    <select id="property_type" class="rounded-input-field" id="new_customer" name="property_type" required />
-                                        <option value="" disabled hidden></option>
+                                    <select id="property_type" class="rounded-input-field" name="property_type" required />
+                                        <option value="" disabled selected hidden></option>
                                         <option value="Lorem">Lorem</option>
+                                        <option value="Ipsum">Ipsum</option>
                                     </select>
                                 </div>
                                 <div class="form-group col">
-                                    <label for="connection">Connection<span class="text-danger">*</span></label>
-                                    <select id="connection" class="rounded-input-field" id="connection" name="connection" required />
-                                        <option value="" disabled hidden></option>
+                                    <label for="connection_type">Connection<span class="text-danger">*</span></label>
+                                    <select id="connection_type" class="rounded-input-field" name="connection_type" required />
+                                        <option value="" disabled selected hidden></option>
                                         <option value="Lorem">Lorem</option>
+                                        <option value="Ipsum">Ipsum</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-12 col-md">
-                                    <label for="callback_time">Call Back Time <span class="text-danger">*</span></label>
-                                    <select id="callback_time" class="rounded-input-field" id="callback_time" name="callback_time" required />
-                                        <option value="" disabled hidden></option>
+                                    <label for="call_back_time">Call Back Time <span class="text-danger">*</span></label>
+                                    <select id="call_back_time" class="rounded-input-field" name="call_back_time" required />
+                                        <option value="" disabled selected hidden></option>
                                         <option value="Lorem">Lorem</option>
+                                        <option value="Ipsum">Ipsum</option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-md my-3 m-md-0 align-items-end d-flex">

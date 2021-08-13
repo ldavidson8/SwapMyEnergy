@@ -297,44 +297,44 @@ class ContactController extends Controller
     /// ------------------------------------
     /// Method: Post
     /// Description: Processes an application to the connections service
-    // public function connectionsPost()
-    // {
-    //     try
-    //     {
-    //         // form validation
-    //         $form_data = Request::all();
-    //         $validator = Validator::make($form_data,
-    //         [
-    //             'full_name' => 'required|string',
-    //             'email' => 'required|email',
-    //             'phone' => 'nullable|numeric',
-    //             'message' => 'required|string',
-    //             'services' => 'nullable|array'
-    //         ]);
-    //         if ($validator -> fails()) return back() -> withErrors($validator) -> withInput();
+    public function connectionsPost()
+    {
+        try
+        {
+            // form validation
+            $form_data = Request::all();
+            $validator = Validator::make($form_data,
+            [
+                'full_name' => 'required|string',
+                'email' => 'required|email',
+                'phone' => 'nullable|numeric',
+                'message' => 'required|string',
+                'services' => 'nullable|array'
+            ]);
+            if ($validator -> fails()) return back() -> withErrors($validator) -> withInput();
             
-    //         // send an email to our support email address
-    //         Mail::to(env('MAIL_TO_ADDRESS')) -> queue(new ServiceSelectionEmail($form_data), $ticket);
+            // send an email to our support email address
+            Mail::to(env('MAIL_TO_ADDRESS')) -> queue(new connectionsEmail($form_data), $ticket);
 
-    //         // redirect to the success page
-    //         return redirect() -> route('post.service-selection.success', [ "ticket" => $ticket ]);
-    //     }
-    //     catch (Throwable $th)
-    //     {
-    //         report($th);
-    //         return redirect() -> route('post.service-selection.error');
-    //     }
-    // }
+            // redirect to the success page
+            return redirect() -> route('post.connections-request.success', [ "ticket" => $ticket ]);
+        }
+        catch (Throwable $th)
+        {
+            report($th);
+            return redirect() -> route('post.connections-request.error');
+        }
+    }
 
-    // public function serviceSelectionSuccess($ticket)
-    // {
-    //     $page_title = 'Success | Gigawaffle Service Request';
-    //     return view('contact-forms.service-selection.success', compact('page_title', 'ticket'));
-    // }
+    public function connectionsSuccess($ticket)
+    {
+        $page_title = 'Success | Connections Request Made';
+        return view('contact-forms.connections-request.success', compact('page_title', 'ticket'));
+    }
 
-    // public function serviceSelectionError()
-    // {
-    //     $page_title = 'Error | Gigawaffle Service Request';
-    //     return view('contact-forms.service-selection.error', compact('page_title'));
-    // }
+    public function connectionsError()
+    {
+        $page_title = 'Error | Connections Request Failed';
+        return view('contact-forms.connections-request.error', compact('page_title'));
+    }
 }
