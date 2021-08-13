@@ -160,7 +160,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="new_customer">New Customer<span class="text-danger">*</span></label>
-                                <select id="new_customer" class="rounded-input-field" name="new_customer" required />
+                                <select id="new_customer" class="rounded-input-field" id="new_customer" name="new_customer" required />
                                     <option value="" disabled hidden></option>
                                     <option value="Lorem">Lorem</option>
                                 </select>
@@ -168,14 +168,14 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label for="property_type">Property Type<span class="text-danger">*</span></label>
-                                    <select id="property_type" class="rounded-input-field" name="property_type" required />
+                                    <select id="property_type" class="rounded-input-field" id="new_customer" name="property_type" required />
                                         <option value="" disabled hidden></option>
                                         <option value="Lorem">Lorem</option>
                                     </select>
                                 </div>
                                 <div class="form-group col">
                                     <label for="connection">Connection<span class="text-danger">*</span></label>
-                                    <select id="connection" class="rounded-input-field" name="connection" required />
+                                    <select id="connection" class="rounded-input-field" id="connection" name="connection" required />
                                         <option value="" disabled hidden></option>
                                         <option value="Lorem">Lorem</option>
                                     </select>
@@ -184,7 +184,7 @@
                             <div class="form-row">
                                 <div class="col-12 col-md">
                                     <label for="callback_time">Call Back Time <span class="text-danger">*</span></label>
-                                    <select id="callback_time" class="rounded-input-field" name="callback_time" required />
+                                    <select id="callback_time" class="rounded-input-field" id="callback_time" name="callback_time" required />
                                         <option value="" disabled hidden></option>
                                         <option value="Lorem">Lorem</option>
                                     </select>
