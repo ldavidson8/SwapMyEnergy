@@ -89,12 +89,6 @@
             font-weight: 700;
         }
 
-        .infographics-image
-        {
-            height: 150px;
-            width: 140px;
-        }
-
         .infographic-info-banner
         {
             border-radius: 20px;
@@ -220,7 +214,7 @@
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
-                            <img class="infographics-image" src="{{ asset('img/infographic icons/signed-form.svg') }}"/>
+                            <img class="infographics-image" src="{{ asset('img/connections-page/paper.png') }}"/>
                             <p class="infographics-header"> Get a quote </p>
                             <p>Typically this will take around 2-4 weeks to get back to you</p>
                         </div>
@@ -229,7 +223,7 @@
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
-                            <img class="infographics-image" src="{{ asset('img/infographic icons/search-icon.svg') }}"/>
+                            <img class="infographics-image" src="{{ asset('img/connections-page/flame.png') }}"/>
                             <p class="infographics-header"> Gas implementation </p>
                             <p>This will normally take around 6-8 weeks to complete, depending on the scale of the work needed</p>
                         </div>
@@ -239,7 +233,7 @@
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
-                            <img class="infographics-image" src="{{ asset('img/infographic icons/switch-icon.svg') }}"/>
+                            <img class="infographics-image" src="{{ asset('img/connections-page/flash.png') }}"/>
                             <p class="infographics-header"> Electricity implementation </p>
                             <p>This will normally take around 6-12 weeks to complete, depending on the scale of the work needed</p>
                         </div>
@@ -267,7 +261,7 @@
                 <div class="col-12 col-lg-4 col-md-6 service-infographic mb-5 mb-lg-0" style="text-align: center;">
                     <div class="service-infographics-inner center-content">
                         <div style="text-align: center;">
-                            <img src="{{ asset('img/infographic icons/signed-form.svg') }}"/>
+                            <img src="{{ asset('img/connections-page/home.png') }}"/>
                             <p class="infographics-header"> Home Energy Switching </p>
                         </div>
                     </div>
@@ -275,7 +269,7 @@
                 <div class="col-12 col-lg-4 col-md-6 service-infographic mb-5 mb-lg-0">
                     <div class="service-infographics-inner center-content" style="background-color: #00c2cb">
                         <div style="text-align: center;">
-                            <img src="{{ asset('img/infographic icons/search-icon.svg') }}"/>
+                            <img src="{{ asset('img/connections-page/suitcase.png') }}"/>
                             <p class="infographics-header"> Business Energy Switching </p>
                         </div>
                     </div>
@@ -284,8 +278,8 @@
                 <div class="col-12 col-lg-4 col-md-6 service-infographic mb-5 mb-lg-0">
                     <div class="service-infographics-inner center-content" style="background-color: #ffaa00">
                         <div style="text-align: center;">
-                            <img src="{{ asset('img/infographic icons/switch-icon.svg') }}"/>
-                            <p class="infographics-header"> Gas & Electricty Connections </p>
+                            <img src="{{ asset('img/connections-page/wrench.png') }}"/>
+                            <p class="infographics-header"> Gas & Electricity Connections </p>
                         </div>
                     </div>
                 </div>
