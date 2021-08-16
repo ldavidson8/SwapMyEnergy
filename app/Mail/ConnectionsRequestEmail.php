@@ -28,7 +28,7 @@ class ConnectionsRequestEmail extends Mailable
 
             Log::channel('connections') -> info('ConnectionsRequestEmail -> build(), Sending Request for Connections Request');
 
-            $view = $this -> subject('Connections') -> view('_emails.contact-forms.connections-request', $params) -> text('_emails.contact-forms.connections-request-text', $params);
+            $view = $this -> subject('Connection Request') -> view('_emails.contact-forms.connections-request', $params) -> text('_emails.contact-forms.connections-request-text', $params);
             return $view;
         }
         catch (Throwable $ex)
