@@ -306,18 +306,20 @@ class ContactController extends Controller
             $validator = Validator::make($form_data,
             [
                 'full_name' => 'required|string',
+                'phone_number' => 'required|numeric',
                 'email' => 'required|email',
-                'phone' => 'nullable|numeric',
-                'message' => 'required|string',
-                'services' => 'nullable|array'
+                'new_customer' => 'required|boolean',
+                'property_type' => 'required|string',
+                'connection_type' => 'required|string',
+                'call_back_time' => 'required|string'
             ]);
             if ($validator -> fails()) return back() -> withErrors($validator) -> withInput();
             
             // send an email to our support email address
-            Mail::to(env('MAIL_TO_ADDRESS')) -> queue(new connectionsEmail($form_data), $ticket);
+            Mail::to(env('MAIL_TO_ADDRESS')) -> queue(new ConnectionsRequestEmail($form_data));
 
             // redirect to the success page
-            return redirect() -> route('post.connections-request.success', [ "ticket" => $ticket ]);
+            return redirect() -> route('post.connections-request.success', compact('page_title'));
         }
         catch (Throwable $th)
         {
@@ -326,10 +328,10 @@ class ContactController extends Controller
         }
     }
 
-    public function connectionsSuccess($ticket)
+    public function connectionsSuccess()
     {
         $page_title = 'Success | Connections Request Made';
-        return view('contact-forms.connections-request.success', compact('page_title', 'ticket'));
+        return view('contact-forms.connections-request.success', compact('page_title'));
     }
 
     public function connectionsError()

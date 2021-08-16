@@ -146,51 +146,52 @@
                         <form id="connectionsForm" class="form-black" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="full_name">Full Name</label>
+                                <label for="full_name">Full Name<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control tall-form-control" id="full_name" name="full_name" placeholder="Full Name" required="required" />
                             </div>
                             <div class="form-group">
                                 <span class="form-error-message" id="phoneNumberError"></span>
-                                <div><label for="phone_number">Phone Number</label></div>
+                                <div><label for="phone_number">Phone Number<span class="text-danger">*</span></label></div>
                                 <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number" placeholder="Contact Number" required="required"" />
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Address</label>
+                                <label for="email">Email Address<span class="text-danger">*</span></label>
                                 <input type="email" class="form-control tall-form-control" id="email" name="email_address" placeholder="Email" required="required" />
                             </div>
                             <div class="form-group">
                                 <label for="new_customer">New Customer<span class="text-danger">*</span></label>
-                                <select id="new_customer" class="rounded-input-field" id="new_customer" name="new_customer" required />
+                                <select id="new_customer" class="rounded-input-field" id="new_customer" name="new_customer" required="required" />
                                     <option value="" disabled selected hidden></option>
-                                    <option value="Lorem">Lorem</option>
-                                    <option value="Ipsum">Ipsum</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
                                 </select>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label for="property_type">Property Type<span class="text-danger">*</span></label>
-                                    <select id="property_type" class="rounded-input-field" name="property_type" required />
+                                    <select id="property_type" class="rounded-input-field" name="property_type" required="required" />
                                         <option value="" disabled selected hidden></option>
-                                        <option value="Lorem">Lorem</option>
-                                        <option value="Ipsum">Ipsum</option>
+                                        <option value="Domestic/Home">Domestic/Home</option>
+                                        <option value="Commercial">Commercial</option>
                                     </select>
                                 </div>
                                 <div class="form-group col">
                                     <label for="connection_type">Connection<span class="text-danger">*</span></label>
-                                    <select id="connection_type" class="rounded-input-field" name="connection_type" required />
+                                    <select id="connection_type" class="rounded-input-field" name="connection_type" required="required" />
                                         <option value="" disabled selected hidden></option>
-                                        <option value="Lorem">Lorem</option>
-                                        <option value="Ipsum">Ipsum</option>
+                                        <option value="Gas">Gas</option>
+                                        <option value="Electricity">Electricity</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-12 col-md">
                                     <label for="call_back_time">Call Back Time <span class="text-danger">*</span></label>
-                                    <select id="call_back_time" class="rounded-input-field" name="call_back_time" required />
+                                    <select id="call_back_time" class="rounded-input-field" name="call_back_time" required="required" />
                                         <option value="" disabled selected hidden></option>
-                                        <option value="Lorem">Lorem</option>
-                                        <option value="Ipsum">Ipsum</option>
+                                        <option value="Morning">Morning</option>
+                                        <option value="Between 12-3pm">Between 12-3pm</option>
+                                        <option value="Between 3-5pm">Between 3-5pm</option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-md my-3 m-md-0 align-items-end d-flex">

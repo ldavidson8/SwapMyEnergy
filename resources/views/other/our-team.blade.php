@@ -123,6 +123,7 @@
 @endsection
 
 @section('main-content')
+<hr />
 <div class="wrapper">
     <div class="team-header">
         <h1 style="font-family: Nothing You Could Do; text-align:center"> Our Team </h1>

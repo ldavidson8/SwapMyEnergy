@@ -71,6 +71,12 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
+        'connections' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/connections.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],

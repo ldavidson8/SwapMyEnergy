@@ -1,27 +1,25 @@
 -----------------------
---- Support Request ---
+--- Connection Request ---
 -----------------------
 
-Full Name:
-    {{ $formData["full_name"] }}
 
-Phone Number:
-    {{ $formData["phone_number"] }}
+Full Name/Company Name
+{{ $formData["full_name"] }}
 
-Email Address:
-    {{ $formData["email_address"] }}
+Phone Number
+{{ $formData["phone_number"] }}
 
-New Customer:
-    {{ $formData["new_customer"] }}
+Email Address
+{{ $formData["email_address"] }}
 
-Property Type:
-    {{ $formData["property_type"] }}
+New Customer
+{{ $formData["new_customer"] }}
 
-Connection:
-    {{ $formData["connection_type"] }}
+Property Type
+{{ $formData["property_type"] }}
 
-Call Back Time:
-    {{ $formData["call_back_time"] }}    
+Connection Type
+{{ $formData["connection_type"] }}
 
-Reference Number:
-    {{ $ticket }}
+Call Back Time
+{{ $formData["call_back_time"] }}
