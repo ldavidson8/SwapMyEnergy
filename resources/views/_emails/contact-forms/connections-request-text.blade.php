@@ -10,7 +10,7 @@ Phone Number
 {{ $formData["phone_number"] }}
 
 Email Address
-{{ $formData["email_address"] }}
+{{ $formData["email"] }}
 
 New Customer
 {{ $formData["new_customer"] }}

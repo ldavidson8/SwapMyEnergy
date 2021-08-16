@@ -1,7 +1,7 @@
 @extends('_emails.layouts.master')
 
 @section('main-content')
-    <h1>Connect Request</h1>
+    <h1>Connection Request</h1>
     <table>
         <tbody>
             <tr>
@@ -14,7 +14,7 @@
             </tr>
             <tr>
                 <th>Email Address</th>
-                <td>{{ $formData["email_address"] }}</td>
+                <td>{{ $formData["email"] }}</td>
             </tr>
             <tr>
                 <th>New Customer</th>

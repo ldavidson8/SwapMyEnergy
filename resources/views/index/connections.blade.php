@@ -143,27 +143,34 @@
                 <div class="col-md-2 d-none d-lg-none d-md-block"></div>
                 <div class="col-xl-5 col-lg-5 col-md-8 col-12 d-md-flex">
                     <div class="white-text" style="max-width: 100%; width: 600px;">
-                        <form id="connectionsForm" class="form-black" method="post" enctype="multipart/form-data">
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger post-error">
+                                @foreach ($errors -> all() as $error)
+                                    {{ $error }}<br />
+                                @endforeach
+                            </div>
+                        @endif
+                        <form id="connectionsForm" class="form-black" method="post" action="{{ route("connections") }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="full_name">Full Name<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control tall-form-control" id="full_name" name="full_name" placeholder="Full Name" required="required" />
+                                <input type="text" class="form-control tall-form-control" id="full_name" name="full_name" placeholder="Full Name" required="required" value="{{ old('full_name') }}" />
                             </div>
                             <div class="form-group">
                                 <span class="form-error-message" id="phoneNumberError"></span>
                                 <div><label for="phone_number">Phone Number<span class="text-danger">*</span></label></div>
-                                <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number" placeholder="Contact Number" required="required"" />
+                                <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number" placeholder="Contact Number" required="required" value="{{ old('phone_number') }}" />
                             </div>
                             <div class="form-group">
                                 <label for="email">Email Address<span class="text-danger">*</span></label>
-                                <input type="email" class="form-control tall-form-control" id="email" name="email_address" placeholder="Email" required="required" />
+                                <input type="email" class="form-control tall-form-control" id="email" name="email" placeholder="Email" required="required" value="{{ old('email') }}" />
                             </div>
                             <div class="form-group">
                                 <label for="new_customer">New Customer<span class="text-danger">*</span></label>
                                 <select id="new_customer" class="rounded-input-field" id="new_customer" name="new_customer" required="required" />
                                     <option value="" disabled selected hidden></option>
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                    <option value="Y">Yes</option>
+                                    <option value="N">No</option>
                                 </select>
                             </div>
                             <div class="form-row">

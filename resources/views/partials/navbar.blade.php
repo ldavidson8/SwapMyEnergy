@@ -22,7 +22,7 @@
                 </li>
                 <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>
                 <li class="nav-item">
-                    <a class="nav-link navigation-link {{ ($navbar_page == "connections") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.connections") }}">Connections</a>
+                    <a class="nav-link navigation-link {{ ($navbar_page == "connections") ? 'navigation-link-current-page' : '' }}" href="{{ route("connections") }}">Connections</a>
                 </li>
                 {{-- My Account Page
                     <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\RaiseSupportRequestEmail;
 use App\Mail\PartnerApplyEmail;
 use App\Mail\AffiliateApplyEmail;
+use App\Mail\ConnectionsRequestEmail;
 use App\Models\SupportRequests;
 use Throwable;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class ContactController extends Controller
 {
@@ -292,23 +294,27 @@ class ContactController extends Controller
         return view('contact-forms.affiliate-apply.error', compact('page_title'));
     }
 
+    
     /// ------------------------------------
     /// --- connectionsPost ---
     /// ------------------------------------
     /// Method: Post
     /// Description: Processes an application to the connections service
-    public function connectionsPost()
+    public function connectionsPost(Request $request)
     {
         try
         {
             // form validation
-            $form_data = Request::all();
+            $form_data = $request -> all();
             $validator = Validator::make($form_data,
             [
                 'full_name' => 'required|string',
-                'phone_number' => 'required|numeric',
+                'phone_number' => 'required',
                 'email' => 'required|email',
-                'new_customer' => 'required|boolean',
+                'new_customer' => [
+                    'required',
+                    Rule::in(['Y', 'N']),
+                ],
                 'property_type' => 'required|string',
                 'connection_type' => 'required|string',
                 'call_back_time' => 'required|string'
@@ -319,12 +325,13 @@ class ContactController extends Controller
             Mail::to(env('MAIL_TO_ADDRESS')) -> queue(new ConnectionsRequestEmail($form_data));
 
             // redirect to the success page
-            return redirect() -> route('post.connections-request.success', compact('page_title'));
+            return redirect() -> route('connections.success');
         }
         catch (Throwable $th)
         {
+            throw($th);
             report($th);
-            return redirect() -> route('post.connections-request.error');
+            return redirect() -> route('connections.error');
         }
     }
 
