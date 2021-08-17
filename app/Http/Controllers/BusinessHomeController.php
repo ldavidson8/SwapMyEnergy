@@ -14,16 +14,16 @@ class BusinessHomeController extends Controller
         $page_title = 'Swap My Energy - Home';
         return view('index.business', compact('navbar_page', 'page_title'));
     }
-    
+
     public function about()
     {
         ModeSession::setBusiness();
-        
+
         $navbar_page = 'about';
         $page_title = 'About Swap My Energy';
         return view('other.about', compact('navbar_page', 'page_title'));
     }
-    
+
     public function privacyPolicy()
     {
         ModeSession::setBusiness();
@@ -32,7 +32,7 @@ class BusinessHomeController extends Controller
         $page_title = 'Privacy Policy';
         return view('other.privacy', compact('navbar_page', 'page_title'));
     }
-    
+
     public function termsAndConditions()
     {
         ModeSession::setBusiness();
@@ -41,7 +41,7 @@ class BusinessHomeController extends Controller
         $page_title = 'Terms and Conditions';
         return view('other.t&c', compact('navbar_page', 'page_title'));
     }
-    
+
     public function contact()
     {
         ModeSession::setBusiness();
@@ -50,7 +50,7 @@ class BusinessHomeController extends Controller
         $page_title = 'Contact Us';
         return view('other.contact', compact('navbar_page', 'page_title'));
     }
-    
+
     public function partnersAndAffiliates()
     {
         ModeSession::setBusiness();
@@ -68,7 +68,7 @@ class BusinessHomeController extends Controller
         $page_title = 'Cookie Policy';
         return view('other.cookie-policy', compact('navbar_page', 'page_title'));
     }
-    
+
     public function siteMap()
     {
         ModeSession::setBusiness();
@@ -89,8 +89,6 @@ class BusinessHomeController extends Controller
 
     public function connections()
     {
-        ModeSession::setBusiness();
-
         $navbar_page = 'connections';
         $page_title = 'Connections';
         return view('index.connections', compact('navbar_page', 'page_title'));
