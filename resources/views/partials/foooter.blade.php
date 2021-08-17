@@ -155,5 +155,5 @@
         </div>
     </div>
     --}}
-    <span style="text-align: center; font-size: 16px;"> Copyright &copy; 2021 Znergi Limited All rights reserved. </span>
+    <span style="text-align: center; font-size: 16px; margin: 0 0 10px 10px;"> Copyright &copy; 2021 Znergi Limited All rights reserved. </span>
 </footer>
