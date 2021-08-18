@@ -1,10 +1,10 @@
 <ul class="navbar-nav mr-auto">
     @auth
         <li class="nav-item">
-            <a class="nav-link navigation-link" href="{{ route('logout') }}">Logout</a>
+            <a class="nav-link navigation-link" href="{{ route('logout-confirm') }}">Logout</a>
         </li>
     @endauth
-    @guest
+    {{-- @guest
         <li class="nav-item"><a class="navigation-link {{ ($navbar_page == "login") ? 'navigation-link-current-page' : '' }}" href="{{ route('login') }}">Login/Register</a></li>
-    @endguest
+    @endguest --}}
 </ul>

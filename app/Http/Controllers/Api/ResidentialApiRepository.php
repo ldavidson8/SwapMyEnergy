@@ -6,14 +6,14 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 
 class ResidentialApiRepository extends Controller
 {
+    // TODO: Cleaned - uncomment
     protected static function _apiUrl() { return env("API_URL"); }
     protected static function _apiKey() { return env("API_KEY"); }
 
-    
+
     /// Addresses ///
 
     public static function addresses($postcode, &$status)
@@ -27,51 +27,47 @@ class ResidentialApiRepository extends Controller
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . 'addresses?postcode=' . $postcode . '&houseNo=' . $houseNo);
         return self::getOneObject($response, $status);
     }
-    
+
     public static function addresses_mpandetails($mpan, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "addresses/mpandetails?mpan=$mpan");
         return self::getOneObject($response, $status);
     }
-    
+
     public static function addresses_mprn($postcode, $houseNo, $houseName = null, &$status = 200)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "addresses/mprn?postcode=$postcode&houseNo=$houseNo&houseName=$houseName");
         return self::getOneObject($response, $status);
     }
-    
+
     public static function addresses_mprndetails($mprn, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "addresses/mprndetails?mprn=$mprn");
         return self::getOneObject($response, $status);
     }
 
-    
+
     /// Regions ///
 
-    public static function regionsByPostcode($postcode, $mpan, &$status)
+    public static function regionsByPostcode($postcode, &$status)
+    {
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "regions/postcode?postcode=$postcode");
+        return self::getManyObjects($response, $status);
+    }
+
+    public static function regionsByPostcodeAndMpan($postcode, $mpan, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "regions/postcode?postcode=$postcode&mpan=$mpan");
         return self::getManyObjects($response, $status);
     }
 
-    
+
     /// Suppliers ///
-    
+
     public static function suppliers(&$status)
     {
-        // if (Session::has('suppliers'))
-        // {
-        //     $suppliers = Session::get('suppliers');
-        //     if (isset($suppliers) && count($suppliers) >= 0)
-        //     {
-        //         $status = 200;
-        //         return $suppliers;
-        //     }
-        // }
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "suppliers");
         $suppliers = self::getManyObjects($response, $status);
-        // Session::put('suppliers', $suppliers);
         return $suppliers;
     }
 
@@ -83,30 +79,20 @@ class ResidentialApiRepository extends Controller
 
     public static function suppliersByRegion($regionId, &$status)
     {
-        // if (Session::has('suppliersByRegion'))
-        // {
-        //     $suppliers = Session::get('suppliersByRegion');
-        //     if (isset($suppliers) && count($suppliers) >= 0)
-        //     {
-        //         $status = 200;
-        //         return $suppliers;
-        //     }
-        // }
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "suppliers/region/$regionId");
         $suppliers = self::getManyObjects($response, $status);
-        // Session::put('suppliersByRegion', $suppliers);
         return $suppliers;
     }
 
-    public static function paymentMethods_suppliers($supplierId, $serviceType, &$status)
+    public static function paymentMethods_suppliers($supplierId, $serviceType, $e7, &$status)
     {
-        $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "paymentMethods/suppliers/$supplierId?serviceType=$serviceType");
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "paymentMethods/suppliers/$supplierId?serviceType=$serviceType&e7=$e7");
         return self::getManyObjects($response, $status);
     }
-    
+
 
     /// Tarrifs ///
-    
+
     public static function tariffs_info_by_id($tariffId, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "tariffs/$tariffId/info");
@@ -121,17 +107,12 @@ class ResidentialApiRepository extends Controller
 
     public static function tariffs_forASuppllier($supplierId, $regionId, $serviceType, $paymentMethod, $e7, &$statusLive, &$statusPreserved)
     {
-        $response1 = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "tariffs/suppliers/$supplierId?regionId=$regionId&serviceType=$serviceType&paymentMethod=$paymentMethod&e7=$e7&preservedTariff=L");
-        $response2 = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "tariffs/suppliers/$supplierId?regionId=$regionId&serviceType=$serviceType&paymentMethod=$paymentMethod&e7=$e7&preservedTariff=P");
-        
-        $liveObject = self::getManyObjects($response1, $statusLive);
-        $preservedObject = self::getManyObjects($response2, $statusPreserved);
-
-        if (isset($liveObject) && isset($preservedObject))
-        return array_merge($liveObject, $preservedObject);
+        $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> get(self::_apiUrl() . "tariffs/suppliers/$supplierId?regionId=$regionId&serviceType=$serviceType&paymentMethod=$paymentMethod&e7=$e7");
+        $object = self::getManyObjects($response, $statusLive);
+        return $object;
     }
-    
-    public static function tariffs_current($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $gas_kwh, $elec_kwh, &$status)
+
+    public static function tariffs_current($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $consumption_figures, $gas, $elec, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> post(self::_apiUrl() . "tariffs/current", array(
             "currentGasTariff" => $gas_tariff,
@@ -140,15 +121,15 @@ class ResidentialApiRepository extends Controller
             "currentServiceType" => $fuel_type_str,
             "energyUsage" =>
             [
-                "consumptionFigures" => "kwh",
-                "annualGasConsumption" => $gas_kwh,
-                "annualElecConsumption" => $elec_kwh
+                "consumptionFigures" => $consumption_figures,
+                "annualGasConsumption" => $gas,
+                "annualElecConsumption" => $elec
             ]
         ));
         return self::getOneObject($response, $status);
     }
 
-    public static function tariffs_results($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $gas_kwh, $elec_kwh, $e7_usage, $home_mover, $preferred_payment_method, $show_only_apply_tariff, $features, $postcode, &$status)
+    public static function tariffs_results($gas_tariff, $electricity_tariff, $fuel_type_char, $fuel_type_str, $consumption_figures, $gas, $elec, $e7_usage, $home_mover, $preferred_payment_method, $show_only_apply_tariff, $features, $postcode, &$status)
     {
         $response = Http::withHeaders([ 'Authorization' => self::_apiKey() ]) -> post(self::_apiUrl() . "tariffs/results", array(
             "currentGasTariff" => $gas_tariff,
@@ -157,12 +138,12 @@ class ResidentialApiRepository extends Controller
             "currentServiceType" => $fuel_type_str,
             "energyUsage" =>
             [
-                "consumptionFigures" => "kwh",
-                "annualGasConsumption" => $gas_kwh,
-                "annualElecConsumption" => $elec_kwh,
+                "consumptionFigures" => $consumption_figures,
+                "annualGasConsumption" => $gas,
+                "annualElecConsumption" => $elec,
                 "e7Usage" => $e7_usage
             ],
-            "homeMover" => false,
+            "homeMover" => $home_mover,
             "preferredPaymentMethod" => $preferred_payment_method,
             "showOnlyApplyTariff" => $show_only_apply_tariff,
             "features" => $features,
@@ -171,7 +152,7 @@ class ResidentialApiRepository extends Controller
         return self::getManyObjects($response, $status);
     }
 
-    
+
     /// Features ///
 
     public static function features(&$status)
@@ -193,7 +174,7 @@ class ResidentialApiRepository extends Controller
     }
 
 
-    
+
     /// Process an Application ///
 
     public static function applications_processapplication($data, &$status)
@@ -203,7 +184,7 @@ class ResidentialApiRepository extends Controller
         return self::getOneObject($response, $status);
     }
 
-    
+
     public static function getOneObject(Response $response, &$status)
     {
         $status = $response -> status();

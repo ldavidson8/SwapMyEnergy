@@ -6,6 +6,25 @@
     }
 }
 
-button:hover{
-    color: #ffc46c; 
+button:hover
+{
+    color: #ffc46c;
+}
+
+table.table-center-contents
+{
+    width: 100%;
+    height: 100%;
+}
+
+table.table-center-contents,
+table.table-center-contents tr,
+table.table-center-contents td
+{
+    max-width: 100%;
+}
+
+table.table-center-contents td
+{
+    vertical-align: center;
 }

@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+use App\Http\Controllers\Api\ResidentialApiController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,26 +24,27 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([ 'prefix' => '' ], function()
 {
-    Route::get('/', [ BusinessHomeController::class, 'index' ]) -> name('business.home');
-    Route::get('/about', [ BusinessHomeController::class, 'about' ]) -> name('business.about');
-    Route::get('/privacy-policy', [ BusinessHomeController::class, 'privacyPolicy' ]) -> name('business.privacy policy');
-    Route::get('/terms-and-conditions', [ BusinessHomeController::class, 'termsAndConditions' ]) -> name('business.t&c');
-    Route::get('/cookie-policy', [ BusinessHomeController::class, 'cookiePolicy' ]) -> name('business.cookie policy');
-    Route::get('/sitemap', [ BusinessHomeController::class, 'siteMap' ]) -> name('business.sitemap');
-    Route::get('/contact', [ BusinessHomeController::class, 'contact' ]) -> name('business.contact');
-    Route::get('/partners-and-affiliates', [ BusinessHomeController::class, 'partnersAndAffiliates' ]) -> name('business.partners and affiliates');
+    Route::get('/', 'BusinessHomeController@index') -> name('business.home');
+    Route::get('/about', 'BusinessHomeController@about') -> name('business.about');
+    Route::get('/privacy-policy', 'BusinessHomeController@privacyPolicy') -> name('business.privacy policy');
+    Route::get('/terms-and-conditions', 'BusinessHomeController@termsAndConditions') -> name('business.t&c');
+    Route::get('/cookie-policy', 'BusinessHomeController@cookiePolicy') -> name('business.cookie policy');
+    Route::get('/sitemap', 'BusinessHomeController@siteMap') -> name('business.sitemap');
+    Route::get('/contact', 'BusinessHomeController@contact') -> name('business.contact');
+    Route::get('/partners-and-affiliates', 'BusinessHomeController@partnersAndAffiliates') -> name('business.partners and affiliates');
+    Route::get('/our-team', 'BusinessHomeController@ourTeam') -> name('business.our-team');
 
     Route::group([ 'prefix' => '/request-callback' ], function()
     {
-        Route::post('/', [ BusinessContactController::class, 'requestCallbackPost' ]) -> name('business.request-callback');
-        Route::get('/success', [ BusinessContactController::class, 'requestCallbackSuccess' ]) -> name('business.request-callback.success');
-        Route::get('/error', [ BusinessContactController::class, 'requestCallbackError' ]) -> name('business.request-callback.error');
+        Route::post('/', 'BusinessContactController@requestCallbackPost') -> name('business.request-callback');
+        Route::get('/success', 'BusinessContactController@requestCallbackSuccess') -> name('business.request-callback.success');
+        Route::get('/error', 'BusinessContactController@requestCallbackError') -> name('business.request-callback.error');
     });
 
     // my-account section
     // Route::group([ 'prefix' => 'my-account', 'middleware' => 'business' ], function()
     // {
-    //     Route::get('/', [ BusinessAccountController::class, 'myAccount' ]) -> name('business.my account') -> middleware('password.confirm');
+    //     Route::get('/', 'BusinessAccountController@myAccount') -> name('business.my account') -> middleware('password.confirm');
     // });
 });
 
@@ -56,24 +57,25 @@ Route::group([ 'prefix' => '' ], function()
 
 Route::group([ 'prefix' => '/residential' ], function()
 {
-    Route::get('/', [ ResidentialHomeController::class, 'index' ]) -> name('residential.home');
-    Route::get('/about', [ ResidentialHomeController::class, 'about' ]) -> name('residential.about');
-    Route::get('/privacy-policy', [ ResidentialHomeController::class, 'privacyPolicy' ]) -> name('residential.privacy policy');
-    Route::get('/terms-and-conditions', [ ResidentialHomeController::class, 'termsAndConditions' ]) -> name('residential.t&c');
-    Route::get('/cookie-policy', [ ResidentialHomeController::class, 'cookiePolicy' ]) -> name('residential.cookie policy');
-    Route::get('/sitemap', [ ResidentialHomeController::class, 'siteMap' ]) -> name('residential.sitemap');
-    Route::get('/contact', [ ResidentialHomeController::class, 'contact' ]) -> name('residential.contact');
-    Route::get('/partners-and-affiliates', [ ResidentialHomeController::class, 'partnersAndAffiliates' ]) -> name('residential.partners and affiliates');
+    Route::get('/', 'ResidentialHomeController@index') -> name('residential.home');
+    Route::get('/about', 'ResidentialHomeController@about') -> name('residential.about');
+    Route::get('/privacy-policy', 'ResidentialHomeController@privacyPolicy') -> name('residential.privacy policy');
+    Route::get('/terms-and-conditions', 'ResidentialHomeController@termsAndConditions') -> name('residential.t&c');
+    Route::get('/cookie-policy', 'ResidentialHomeController@cookiePolicy') -> name('residential.cookie policy');
+    Route::get('/sitemap', 'ResidentialHomeController@siteMap') -> name('residential.sitemap');
+    Route::get('/contact', 'ResidentialHomeController@contact') -> name('residential.contact');
+    Route::get('/partners-and-affiliates', 'ResidentialHomeController@partnersAndAffiliates') -> name('residential.partners and affiliates');
+    Route::get('/our-team', 'ResidentialHomeController@ourTeam') -> name('residential.our-team');
 
     // Route::group([ 'prefix' => '/my-account', 'middleware' => 'residential' ], function()
     // {
-    //     Route::get('/', [ ResidentialAccountController::class, 'myAccount' ]) -> name('residential.my account') -> middleware('password.confirm');
-    //     Route::get('/plan', [ ResidentialAccountController::class, 'yourPlan' ]) -> name('residential.my account.plan') -> middleware('password.confirm');
-    //     Route::post('/plan', [ ResidentialAccountController::class, 'yourPlanPost' ]) -> name('residential.my account.plan') -> middleware('password.confirm');
-    //     Route::get('/details', [ ResidentialAccountController::class, 'yourDetails' ]) -> name('residential.my account.details') -> middleware('password.confirm');
-    //     Route::post('/details', [ ResidentialAccountController::class, 'yourDetailsPost' ]) -> name('residential.my account.details') -> middleware('password.confirm');
-    //     Route::get('/options', [ ResidentialAccountController::class, 'yourOptions' ]) -> name('residential.my account.options') -> middleware('password.confirm');
-    //     Route::post('/options', [ ResidentialAccountController::class, 'yourOptionsPost' ]) -> name('residential.my account.options') -> middleware('password.confirm');
+    //     Route::get('/', 'ResidentialAccountController@myAccount') -> name('residential.my account') -> middleware('password.confirm');
+    //     Route::get('/plan', 'ResidentialAccountController@yourPlan') -> name('residential.my account.plan') -> middleware('password.confirm');
+    //     Route::post('/plan', 'ResidentialAccountController@yourPlanPost') -> name('residential.my account.plan') -> middleware('password.confirm');
+    //     Route::get('/details', 'ResidentialAccountController@yourDetails') -> name('residential.my account.details') -> middleware('password.confirm');
+    //     Route::post('/details', 'ResidentialAccountController@yourDetailsPost') -> name('residential.my account.details') -> middleware('password.confirm');
+    //     Route::get('/options', 'ResidentialAccountController@yourOptions') -> name('residential.my account.options') -> middleware('password.confirm');
+    //     Route::post('/options', 'ResidentialAccountController@yourOptionsPost') -> name('residential.my account.options') -> middleware('password.confirm');
     // });
 
     Route::group([ 'prefix' => '/energy-comparison' ], function()
@@ -104,33 +106,45 @@ Route::group([ 'prefix' => '/residential' ], function()
 
 /*
 |--------------------------------------------------------------------------
-| Contact Form Routes
+| Other Routes
 |--------------------------------------------------------------------------
 */
 
+Route::group([ 'prefix' => '/connections'], function()
+{
+    Route::get('/', 'ConnectionsController@index') -> name('connections');
+    Route::post('/', 'ContactController@connectionsPost') -> name('connections');
+    Route::get('/success', 'ContactController@connectionsSuccess') -> name('connections.success');
+    Route::get('/error', 'ContactController@connectionsError') -> name('connections.error');
+});
+
 Route::group([ 'prefix' => '/partner-apply'], function()
 {
-    Route::post('/', [ ContactController::class, 'partnerApplyPost' ]) -> name('partner-apply');
-    Route::get('/success', [ ContactController::class, 'partnerApplySuccess' ]) -> name('partner-apply.success');
-    Route::get('/error', [ ContactController::class, 'partnerApplyError' ]) -> name('partner-apply.error');
+    Route::post('/', 'ContactController@partnerApplyPost') -> name('partner-apply');
+    Route::get('/success', 'ContactController@partnerApplySuccess') -> name('partner-apply.success');
+    Route::get('/error', 'ContactController@partnerApplyError') -> name('partner-apply.error');
 });
 
 Route::group([ 'prefix' => '/raise-support-request' ], function()
 {
-    Route::post('/', [ ContactController::class, 'raiseSupportRequestPost' ]) -> name('raise-support-request');
-    Route::get('/success/{ticket}', [ ContactController::class, 'raiseSupportRequestSuccess' ]) -> name('raise-support-request.success');
-    Route::get('/error', [ ContactController::class, 'raiseSupportRequestError' ]) -> name('raise-support-request.error');
+    Route::post('/', 'ContactController@raiseSupportRequestPost') -> name('raise-support-request');
+    Route::get('/success/{ticket}', 'ContactController@raiseSupportRequestSuccess') -> name('raise-support-request.success');
+    Route::get('/error', 'ContactController@raiseSupportRequestError') -> name('raise-support-request.error');
 });
 
 Route::group([ 'prefix' => '/affiliate-apply'], function()
 {
-    Route::post('/', [ ContactController::class, 'affiliateApplyPost' ]) -> name('affiliate-apply');
-    Route::get('/success', [ ContactController::class, 'affiliateApplySuccess' ]) -> name('affiliate-apply.success');
-    Route::get('/error', [ ContactController::class, 'affiliateApplyError' ]) -> name('affiliate-apply.error');
+    Route::post('/', 'ContactController@affiliateApplyPost') -> name('affiliate-apply');
+    Route::get('/success', 'ContactController@affiliateApplySuccess') -> name('affiliate-apply.success');
+    Route::get('/error', 'ContactController@affiliateApplyError') -> name('affiliate-apply.error');
 });
 
 
-// test pages
+/*
+|--------------------------------------------------------------------------
+| Test Pages
+|--------------------------------------------------------------------------
+*/
 
 // Route::get('/test/observer', function ()
 // {
@@ -142,16 +156,32 @@ Route::group([ 'prefix' => '/affiliate-apply'], function()
 //     return view('test.page-load');
 // }) -> name('test.page-load');
 
+Route::get('/test/testing-znergi-facebook-chat-thingy-majiggiery', function ()
+{
+    return view('test.facebook-chat-test');
+}) -> name('test.facebook-chat');
 
-// test pages
+Route::get('/testing/affiliateLinks/sessions-and-cookies/', function(Request $request)
+{
+    $session = session() -> get('swapMyEnergyAffiliateToken');
+    $cookie = $request -> cookie('swapMyEnergyAffiliateToken');
+    return response() -> json(compact('session', 'cookie'));
+});
 
-// Route::group([ 'prefix' => '/testing/errors' ], function()
-// {
-//     Route::get('401', function() { abort(401); });
-//     Route::get('403', function() { abort(403); });
-//     Route::get('404', function() { abort(404); });
-//     Route::get('419', function() { abort(419); });
-//     Route::get('429', function() { abort(429); });
-//     Route::get('500', function() { abort(500); });
-//     Route::get('503', function() { abort(503); });
-// });
+
+/*
+|--------------------------------------------------------------------------
+| Error Pages
+|--------------------------------------------------------------------------
+*/
+
+Route::group([ 'prefix' => '/testing/errors/http/error-pages/' ], function()
+{
+    Route::get('401', function() { abort(401); });
+    Route::get('403', function() { abort(403); });
+    Route::get('404', function() { abort(404); });
+    Route::get('419', function() { abort(419); });
+    Route::get('429', function() { abort(429); });
+    Route::get('500', function() { abort(500); });
+    Route::get('503', function() { abort(503); });
+});

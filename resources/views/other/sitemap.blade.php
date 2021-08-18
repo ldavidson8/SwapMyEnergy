@@ -50,6 +50,7 @@
 @endsection
 
 @section('main-content')
+<hr />
     <main class="col-md-12">
         <div class="container">
             <div class="title">
@@ -57,7 +58,7 @@
                 <h1 class="section-title"> SwapMyEnergy.co.uk Sitemap</h1>
                 <br />
                 <div>
-                    <p>Welcome to our Sitemap page. For easy access you can find a list of visitable pages on our website below.<br /> <br />Don't fall victim to rising energy prices. Swap My Energy aims to bring you great deals by giving you easy access to the best commerical energy tariffs on the market. With our market leading commerical energy calculator, you can quickly find the best energy prices available to you. </p>
+                    <p>Welcome to our Sitemap page. For easy access you can find a list of visitable pages on our website below.<br /> <br />Don't fall victim to rising energy prices. Swap My Energy aims to bring you great deals by giving you easy access to the best commercial energy tariffs on the market. With our market leading commerical energy calculator, you can quickly find the best energy prices available to you. </p>
                     <br />
                 </div>
             </div>   

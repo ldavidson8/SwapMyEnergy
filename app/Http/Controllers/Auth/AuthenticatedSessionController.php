@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(Request $request)
     {
-        return view('auth.login', [ 'request' => $request, 'navbar_page' => 'login', 'page_title' => 'Login/Register' ]);
+        return view('auth.login', [ 'request' => $request, 'navbar_page' => 'login', 'page_title' => 'Login' ]);
     }
 
     /**
@@ -30,11 +30,11 @@ class AuthenticatedSessionController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials, $request->input('remember')))
+        if (Auth::attempt($credentials, true))
         {
             $request->session()->regenerate();
 
-            return redirect()->intended(ModeSession::getHomeUrl());
+            return redirect()->intended(route('login-success'));
         }
 
         $request->session()->flash('message-login', 'The login credentials are incorrect.');
@@ -55,6 +55,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect(route('home'));
+        return redirect(ModeSession::getHomeUrl());
     }
 }

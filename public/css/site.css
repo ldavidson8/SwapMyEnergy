@@ -3,6 +3,11 @@
     box-sizing: border-box;
 }
 
+html
+{
+    scroll-behavior: smooth;
+}
+
 body
 {
     background-color: #f3f2f1;
@@ -55,10 +60,13 @@ body
 
 
 .background-image-contain::before { background-size: 100% auto; }
+.background-image-auto::before { background-size: auto; }
 
 .background-image-top::before { background-position: center top !important; }
 .background-image-bottom::before { background-position: center bottom !important; }
 .background-image-right::before { background-position: center right !important; }
+.background-image-left::before { background-position: center left !important; }
+
 
 .background-image-opacity-35::before { opacity: 0.35 !important; }
 
@@ -88,6 +96,7 @@ body
     .background-image-hydropower-plant:not(.preload)::before { background-image: url('/img/background/hydropower-plant_quarter.png'); }
     .background-image-docks:not(.preload)::before { background-image: url('/img/background/docks_quarter.jpg'); }
 }
+
 
 img.default
 {
@@ -192,13 +201,21 @@ body.business .header-switch-2-shadow-right.animate { left: 27px; opacity: 1; }
     padding-left: 1rem;
 }
 
+.d-flex
+{
+    display: -webkit-flex;
+}
+
 .center-text
 {
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
-    margin: auto;
     align-items: center;
     justify-content: center;
+    -ms-flex-pack: center;
     padding-right: 15px;
+    margin: auto;
     text-align: right;
 }
 
@@ -207,6 +224,7 @@ body.business .header-switch-2-shadow-right.animate { left: 27px; opacity: 1; }
 {
     align-items: center;
     justify-content: center;
+    -ms-flex-pack: center;
     margin: auto;
 }
 
@@ -244,11 +262,36 @@ nav .navigation-link:active
 
 footer
 {
-    padding-top: 15px;
     background-color: #202020;
     color: #f3f2f1;
     font-weight: 100;
-    font-size: 22px;
+    font-size: 20px;
+}
+
+footer p
+{
+    margin: 0.5em;
+}
+
+footer p:first-child
+{
+    margin-top: 0;
+}
+
+footer p:last-child
+{
+    margin-bottom: 0;
+}
+
+.list-icons
+{
+    font-size: 16px;
+    width: 100%
+}
+
+.list-icons li
+{
+    display: inline-block;
 }
 
 .footer-link
@@ -278,7 +321,9 @@ footer
 
 a:focus
 {
-    outline: 1px solid orange;
+    outline: 2px solid #00c2cb;
+    outline-offset: 0.2em;
+    border-radius: 2px;
 }
 
 
@@ -339,6 +384,18 @@ table#footer-links td
     min-height: 30vh;
 }
 
+.table-center-content
+{
+    width: 100%;
+    height: 100%;
+}
+
+.table-center-content td
+{
+    vertical-align: middle;
+}
+
+
 
 .left-column-content
 {
@@ -385,6 +442,11 @@ h3, h5, h6
 }
 
 
+input:not([type=submit], [type=button], [type=reset]), select, textarea
+{
+    color: #202020 !important;
+}
+
 .form-black input, .form-black select, .form-black textarea
 {
     color: #202020 !important;
@@ -396,11 +458,13 @@ h3, h5, h6
     color: #f3f2f1 !important;
 }
 
-.form-black input:not([type=submit], [type=button], [type=reset])::placeholder, .form-black textarea::placeholder,
-.form-black input:not([type=submit], [type=button], [type=reset])::-moz-placeholder, .form-black textarea::-moz-placeholder,
-.form-black input:not([type=submit], [type=button], [type=reset])::-webkit-input-placeholder, .form-black textarea::-webkit-input-placeholder
+input:not([type=submit], [type=button], [type=reset])::placeholder, textarea::placeholder,
+input:not([type=submit], [type=button], [type=reset]):-moz-placeholder, textarea:-moz-placeholder,
+input:not([type=submit], [type=button], [type=reset])::-moz-placeholder, textarea::-moz-placeholder,
+input:not([type=submit], [type=button], [type=reset]):-ms-input-placeholder, textarea:-ms-input-placeholder,
+input:not([type=submit], [type=button], [type=reset])::-webkit-input-placeholder, textarea::-webkit-input-placeholder
 {
-    color: #f3f2f1 !important;
+    color: #a3a2a1 !important;
 }
 
 .form-black input:-webkit-autofill,
@@ -409,7 +473,7 @@ h3, h5, h6
 {
     -webkit-box-shadow: 0 0 0 50px #202020 inset;
     box-shadow: 0 0 0 50px #202020 inset;
-    -webkit-text-fill-color: #f3f2f1;
+    -webkit-text-fill-color: #a3a2a1;
 }
 
 .form-black input:-webkit-autofill:focus,
@@ -418,7 +482,7 @@ h3, h5, h6
 {
     -webkit-box-shadow: 0 0 0 50px #202020 inset;
     box-shadow: 0 0 0 50px #202020 inset;
-    -webkit-text-fill-color: #f3f2f1;
+    -webkit-text-fill-color: #a3a2a1;
 }
 
 .form-error-message
@@ -481,61 +545,6 @@ h3, h5, h6
 }
 
 
-/* Style the buttons that are used to open and close the accordion panel */
-.faq-accordion
-{
-    background-color: #00c2cb;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    transition: 0.4s;
-    border-width: 0;
-    margin-bottom: 10px;
-    font-size: 26px;
-    color: #f3f2f1;
-    font-weight: 700;
-    border-radius: 10px;
-}
-
-.faq-accordion:first-of-type
-{
-    margin-top: 100px;
-}
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.faq-active, .faq-accordion:hover
-{
-    background-color: #ffaa00;
-}
-
-/* Style the accordion panel. Note: hidden by default */
-.faq-panel
-{
-    padding: 0px 18px;
-    background-color: transparent;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
-}
-.faq-active + .faq-panel
-{
-    padding-top: 18px;
-}
-
-.faq-accordion:after
-{
-    content: '\25BE'; /* Unicode character for "plus" sign (+) */
-    font-size: 36px;
-    color: #f3f2f1;
-    float: right;
-    margin-left: 5px;
-    padding: 0;
-}
-.faq-active:after
-{
-    content: "\2212"; /* Unicode character for "minus" sign (-) */
-}
-
 /* ------------------------- */
 /* -----  Residential  ----- */
 /* ------------------------- */
@@ -578,14 +587,6 @@ body.business .switch-text
 }
 
 
-@media (min-width: 768px)
-{
-    .faq
-    {
-        padding-top: 80px !important;
-    }
-}
-
 @media (max-width: 767px)
 {
     .left-column-content
@@ -597,6 +598,16 @@ body.business .switch-text
     {
         padding: 30px;
     }
+
+    .mobile-no-padding
+    {
+        padding: 0px !important;
+    }
+
+    .background-image-no-mobile-2::before
+    {
+        background-image: none !important;
+    }
 }
 
 @media (max-width: 575px)
@@ -606,5 +617,10 @@ body.business .switch-text
         width: 100%;
         display: block;
         text-align: center !important;
+    }
+
+    .background-image-no-mobile::before
+    {
+        background-image: none !important;
     }
 }

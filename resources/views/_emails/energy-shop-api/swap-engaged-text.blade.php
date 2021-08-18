@@ -1,10 +1,28 @@
 -------------------------------------------------
 --- The Energy Shop API - Energy Swap Engaged ---
 -------------------------------------------------
+@if (isset($affiliateToken))
+
+    Affiliate Company Token: {{ $affiliateToken }}
+@endif
+@auth
+
+Staff Name:  {{ Auth::user() -> name }}
+Staff Email: {{ Auth::user() -> email }}
+@endauth
 
 {{ $api_key_used }}
 
 The reference is: {{ $result_str }}
+
+The Timestamp is: {{ $dateTime }}
+{{-- @if ($swapmyenergy_opt_in)
+
+The user opted into SwapMyEnergy marketing.
+@else
+
+The user did NOT opt into SwapMyEnergy marketing.
+@endif --}}
 
 
 --- Customer Information ---
@@ -18,24 +36,57 @@ Email:      {{ $user["email"] }}
 Smart Meter: {{ $user["smartMeter"] }}
 
 --- Customer Address ---
-Postcode: {{ $user["currentAddress"]["postcode"] }}
-Address Line 1: {{ $user["currentAddress"]["line1"] }}
-Address Line 2: {{ $user["currentAddress"]["line2"] }}
-City: {{ $user["currentAddress"]["town"] }}
-County: {{ $user["currentAddress"]["county"] }}
+Building Number: {{ $user["currentAddress"]["bldNumber"] }}
+Postcode:        {{ $user["currentAddress"]["postcode"] }}
+Address Line 1:  {{ $user["currentAddress"]["line1"] }}
+Address Line 2:  {{ $user["currentAddress"]["line2"] }}
+Road Name:       {{ $user["currentAddress"]["throughfare"] }}
+City:            {{ $user["currentAddress"]["town"] }}
+County:          {{ $user["currentAddress"]["county"] }}
+Years at Residence:  {{ $user["currentAddress"]["yearsAtResidence"] }}
+Months at Residence: {{ $user["currentAddress"]["monthsAtResidence"] }}
+MPRN:        {{ $user["currentAddress"]["mprn"] }}
+MPAN Number: {{ $user["currentAddress"]["mpanNumber"] }}
 
 --- Billing Address ---
-Postcode: {{ $user["billingAddress"]["postcode"] }}
-Address Line 1: {{ $user["billingAddress"]["line1"] }}
-Address Line 2: {{ $user["billingAddress"]["line2"] }}
-City: {{ $user["billingAddress"]["town"] }}
-County: {{ $user["billingAddress"]["county"] }}
+Building Number: {{ $user["billingAddress"]["bldNumber"] }}
+Postcode:        {{ $user["billingAddress"]["postcode"] }}
+Address Line 1:  {{ $user["billingAddress"]["line1"] }}
+Address Line 2:  {{ $user["billingAddress"]["line2"] }}
+Road Name:       {{ $user["billingAddress"]["throughfare"] }}
+City:            {{ $user["billingAddress"]["town"] }}
+County:          {{ $user["billingAddress"]["county"] }}
+
+@if (isset($user["previousAddress"]) && $user["previousAddress"]["postcode"] != "")
+    --- Previous Address 1 ---
+    Building Number: {{ $user["previousAddress"]["bldNumber"] }}
+    Postcode:        {{ $user["previousAddress"]["postcode"] }}
+    Address Line 1:  {{ $user["previousAddress"]["line1"] }}
+    Address Line 2:  {{ $user["previousAddress"]["line2"] }}
+    Road Name:       {{ $user["previousAddress"]["throughfare"] }}
+    City:            {{ $user["previousAddress"]["town"] }}
+    County:          {{ $user["previousAddress"]["county"] }}
+    Years at Residence:  {{ $user["previousAddress"]["yearsAtResidence"] }}
+    Months at Residence: {{ $user["previousAddress"]["monthsAtResidence"] }}
+@endif
+
+@if (isset($user["previousAddressTwo"]) && $user["previousAddressTwo"]["postcode"] != "")
+    --- Previous Address 2 ---
+    Building Number: {{ $user["previousAddressTwo"]["bldNumber"] }}
+    Postcode: {{ $user["previousAddressTwo"]["postcode"] }}
+    Address Line 1: {{ $user["previousAddressTwo"]["line1"] }}
+    Address Line 2: {{ $user["previousAddressTwo"]["line2"] }}
+    Road Name:       {{ $user["previousAddressTwo"]["throughfare"] }}
+    City: {{ $user["previousAddressTwo"]["town"] }}
+    County: {{ $user["previousAddressTwo"]["county"] }}
+    Years at Residence: {{ $user["previousAddressTwo"]["yearsAtResidence"] }}
+    Months at Residence: {{ $user["previousAddressTwo"]["monthsAtResidence"] }}
+@endif
 
 
 --- Previous Tariff ---
 
 Service Type: {{ $user["serviceTypeToCompare"] }}
-
 
 Gas Supplier:          {{ (isset($user["gasSupplier"])) ? $user["gasSupplier"] : 'N/A' }}
 Gas Tariff Id:         {{ (isset($user["gasTariffId"])) ? $user["gasTariffId"] : 'N/A' }}
@@ -57,8 +108,16 @@ E7 Usage (kwh): {{ $user["e7Usage"] }}
 
 Supplier Name: {{ $user["newSupplierName"] }}
 Tariff Id:     {{ $user["tariffId"] }}
-Total Bill:    &pound;{{ $user["bill"] }}
-Gas Bill:      &pound;{{ $user["billGas"] }}
-Electric Bill: &pound;{{ $user["billElec"] }}
-Saving:        &pound;{{ $user["saving"] }} ({{ $user["savingPercentage"] }}%)
+Total Bill:    £{{ $user["bill"] }}
+Gas Bill:      £{{ $user["billGas"] }}
+Electric Bill: £{{ $user["billElec"] }}
+Saving:        £{{ $user["saving"] }} ({{ $user["savingPercentage"] }}%)
 
+--- Payment ---
+Payment Method: {{ $payment["paymentMethod"] }}
+Receive Bills: {{ $payment["receiveBills"] }}
+Supplier Email Opt In: {{ ($payment["supplierOptIn"]) ? "True" : "False" }}
+Supplier Letter Opt In: {{ ($payment["supplierLetterOptIn"]) ? "True" : "False" }}
+Supplier Phone Opt In: {{ ($payment["supplierPhoneOptIn"]) ? "True" : "False" }}
+Supplier Text Opt In: {{ ($payment["supplierTextOptIn"]) ? "True" : "False" }}
+Special Needs / Priority Services Register (PSR) Opt In: {{ ($payment["specialNeeds"]) ? "True" : "False" }}

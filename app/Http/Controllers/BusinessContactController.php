@@ -102,12 +102,13 @@ class BusinessContactController extends Controller
             report($th);
             Log::channel('request-callback') -> error('BusinessContactController -> requestCallbackPost(), try catch 3, Error sending email containing the callback request  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
         }
-
-
-        // TODO: redirect based on $successFlags
+        
         switch ($successFlags)
         {
             case 7:
+            case 6:
+            case 5:
+            case 4:
                 // try catch 4 delete files
                 try
                 {
@@ -122,38 +123,10 @@ class BusinessContactController extends Controller
                     report($th);
                     Log::channel('request-callback') -> error('BusinessContactController -> requestCallbackPost(), try catch 4, Error deleting uploaded bills  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
                 }
-
                 Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request Success with attachments', [ 'successFlags' => $successFlags ]);
                 return redirect() -> route('business.request-callback.success');
-            case 6:
-                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request Success with attachments, database query 1 fail', [ 'successFlags' => $successFlags ]);
-                return redirect() -> route('business.request-callback.success');
-            case 5:
-                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request Success no attachments', [ 'successFlags' => $successFlags ]);
-                return redirect() -> route('business.request-callback.success');
-            case 4:
-                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request Success no attachments, database query fails', [ 'successFlags' => $successFlags ]);
-                return redirect() -> route('business.request-callback.success');
-            case 3:
-                // TODO: send backup email
-
-                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request database only', [ 'successFlags' => $successFlags ]);
-                return redirect() -> route('business.request-callback.error');
-            case 2:
-                // TODO: send backup email
-
-                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request database query 2 only', [ 'successFlags' => $successFlags ]);
-                return redirect() -> route('business.request-callback.error');
-            case 1:
-                // TODO: send backup email
-
-                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request database query 1 only', [ 'successFlags' => $successFlags ]);
-                return redirect() -> route('business.request-callback.error');
-            case 0:
             default:
-                //TODO: send backup email
-                
-                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request full fail', [ 'successFlags' => $successFlags ]);
+                Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Callback Request failed', [ 'successFlags' => $successFlags ]);
                 return redirect() -> route('business.request-callback.error');
         }
 
