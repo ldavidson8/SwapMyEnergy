@@ -35,6 +35,8 @@
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap-4.5.2.min.js') }}" defer="true"></script>
+    <!-- Google AdSense Script -->
+    <script data-ad-client="ca-pub-7935793974309189" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <!-- Our Scripts -->
     <script type="text/javascript" src="{{ URL::asset('js/intersection-observer-api.js') }}"></script>
