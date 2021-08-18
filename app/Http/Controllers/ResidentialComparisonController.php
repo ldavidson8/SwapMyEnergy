@@ -26,7 +26,8 @@ class ResidentialComparisonController extends Controller
         ModeSession::setResidential();
 
         $page_title = 'Compare Energy Prices - Find Address';
-        return view('energy-comparison.1-get-address', compact('page_title'));
+        return view('energy-comparison.1-coming-soon', compact('page_title'));
+        // return view('energy-comparison.1-get-address', compact('page_title'));
     }
 
     public function findAddressPost(Request $request)
