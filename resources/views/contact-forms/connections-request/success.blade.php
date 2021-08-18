@@ -1,5 +1,7 @@
 @extends('layouts.master')
+
 @section('stylesheets')
+    <link rel="stylesheet" href="{{ asset('css/connections.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/result-page.css') }}" />
 @endsection
 

@@ -41,7 +41,7 @@ class ContactController extends Controller
         ]);
         if ($validator -> fails()) { return redirect() -> back() -> withErrors($validator) -> withInput(); }
         Log::channel('raise-support-request') -> info('ContactController -> raiseSupportRequest(), Form Validated Successfully', [ 'successFlags' => $successFlags ]);
-        
+
 
         // try catch 1 - save form details to the database
         $ticket = date("dHis");
@@ -65,8 +65,8 @@ class ContactController extends Controller
             report($th);
             Log::channel('raise-support-request') -> error('ContactController -> raiseSupportRequest(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
         }
-        
-        
+
+
         // try catch 2 - send email
         try
         {
@@ -78,7 +78,7 @@ class ContactController extends Controller
 
             $successFlags |= 2;
             Log::channel('raise-support-request') -> info('ContactController -> raiseSupportRequest(), Sent email containing the support request', [ 'successFlags' => $successFlags ]);
-            
+
             return redirect() -> route('raise-support-request.success', [ 'ticket' => $ticket ]);
         }
         catch (Throwable $th)
@@ -99,7 +99,7 @@ class ContactController extends Controller
         $page_title = 'Raise Support Request - Swap My Energy';
         return view('contact-forms.raise-support-request.success', compact('page_title', 'ticket'));
     }
-    
+
     /// -------------------------------------------
     /// --- raiseSupportRequestError() ---
     /// -------------------------------------------
@@ -136,12 +136,12 @@ class ContactController extends Controller
         $validator = Validator::make($formData, $validatorArray);
         if ($validator -> fails()) { return redirect() -> to(url() -> previous() . "#PartnerApply") -> withInput() -> withErrors($validator, 'partner'); }
         Log::channel('partner-apply') -> info('ContactController -> partnerApplyPost(), Form Validated Successfully', [ 'successFlags' => $successFlags ]);
-        
+
 
         // try catch 1 - save form details to the database
         // try
         // {
-        //     $data = 
+        //     $data =
         //     [
         //         'full_name' => $request -> input('full_name'),
         //         'phone_number' => $request -> input('phone_number')
@@ -158,8 +158,8 @@ class ContactController extends Controller
         //     report($th);
         //     Log::channel('partner-apply') -> error('ContactController -> partnerApplyPost(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
         // }
-        
-        
+
+
         // try catch 2 - send email
         try
         {
@@ -168,7 +168,7 @@ class ContactController extends Controller
 
             $successFlags |= 2;
             Log::channel('partner-apply') -> info('ContactController -> partnerApplyPost(), Sent email containing the application to be a partner', [ 'successFlags' => $successFlags ]);
-            
+
             return redirect() -> route('partner-apply.success');
         }
         catch (Throwable $th)
@@ -189,7 +189,7 @@ class ContactController extends Controller
         $page_title = 'Partner Application Request - Swap My Energy';
         return view('contact-forms.partner-apply.success', compact('page_title'));
     }
-    
+
     /// ----------------------------------
     /// --- raiseSupportRequestError() ---
     /// ----------------------------------
@@ -229,12 +229,12 @@ class ContactController extends Controller
         $validator = Validator::make($formData, $validatorArray);
         if ($validator -> fails()) { return redirect() -> to(url() -> previous() . "#AffiliateApply") -> withInput() -> withErrors($validator, 'affiliate'); }
         Log::channel('affiliate-apply') -> info('ContactController -> affiliateApplyPost(), Form Validated Successfully', [ 'successFlags' => $successFlags ]);
-        
+
 
         // try catch 1 - save form details to the database
         // try
         // {
-        //     $data = 
+        //     $data =
         //     [
         //         'full_name' => $request -> input('full_name'),
         //         'phone_number' => $request -> input('phone_number')
@@ -251,8 +251,8 @@ class ContactController extends Controller
         //     report($th);
         //     Log::channel('affiliate-apply') -> error('ContactController -> affiliateApplyPost(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
         // }
-        
-        
+
+
         // try catch 2 - send email
         try
         {
@@ -261,7 +261,7 @@ class ContactController extends Controller
 
             $successFlags |= 2;
             Log::channel('affiliate-apply') -> info('ContactController -> affiliateApplyPost(), Sent email containing the application to be an affiliate', [ 'successFlags' => $successFlags ]);
-            
+
             return redirect() -> route('affiliate-apply.success');
         }
         catch (Throwable $th)
@@ -282,7 +282,7 @@ class ContactController extends Controller
         $page_title = 'Affiliate Application Request - Swap My Energy';
         return view('contact-forms.affiliate-apply.success', compact('page_title'));
     }
-    
+
     /// ----------------------------------
     /// --- raiseSupportRequestError() ---
     /// ----------------------------------
@@ -294,7 +294,7 @@ class ContactController extends Controller
         return view('contact-forms.affiliate-apply.error', compact('page_title'));
     }
 
-    
+
     /// ------------------------------------
     /// --- connectionsPost ---
     /// ------------------------------------
@@ -320,7 +320,7 @@ class ContactController extends Controller
                 'call_back_time' => 'required|string'
             ]);
             if ($validator -> fails()) return back() -> withErrors($validator) -> withInput();
-            
+
             // send an email to our support email address
             Mail::to(env('MAIL_TO_ADDRESS')) -> queue(new ConnectionsRequestEmail($form_data));
 
@@ -337,13 +337,15 @@ class ContactController extends Controller
 
     public function connectionsSuccess()
     {
+        $navbar_page = 'connections';
         $page_title = 'Success | Connections Request Made';
-        return view('contact-forms.connections-request.success', compact('page_title'));
+        return view('contact-forms.connections-request.success', compact('page_title', 'navbar_page'));
     }
 
     public function connectionsError()
     {
+        $navbar_page = 'connections';
         $page_title = 'Error | Connections Request Failed';
-        return view('contact-forms.connections-request.error', compact('page_title'));
+        return view('contact-forms.connections-request.error', compact('page_title', 'navbar_page'));
     }
 }

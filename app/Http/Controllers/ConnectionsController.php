@@ -8,6 +8,6 @@ class ConnectionsController extends Controller
     {
         $navbar_page = 'connections';
         $page_title = 'Swap My Energy - Connections';
-        return view('index.connections', compact('navbar_page', 'page_title'));
+        return view('other.connections', compact('navbar_page', 'page_title'));
     }
 }
