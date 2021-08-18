@@ -10,7 +10,7 @@ class ModeSession
     {
         Session::put('mode', 'business');
     }
-    
+
     public static function setResidential()
     {
         Session::put('mode', 'residential');
@@ -18,12 +18,12 @@ class ModeSession
 
     public static function isBusiness()
     {
-        return Session::get('mode') != 'residential';
+        return Session::get('mode') == 'business';
     }
 
     public static function getMode()
     {
-        return Session::get('mode', 'business');
+        return Session::get('mode', 'residential');
     }
 
     public static function getHomeUrl()
