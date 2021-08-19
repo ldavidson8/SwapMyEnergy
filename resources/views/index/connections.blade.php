@@ -151,8 +151,8 @@
                                 <input type="text" class="form-control tall-form-control" id="full_name" name="full_name" placeholder="Full Name" required="required" value="{{ old('full_name') }}" />
                             </div>
                             <div class="form-group">
-                                <span class="form-error-message" id="phoneNumberError"></span>
                                 <div><label for="phone_number">Phone Number<span class="text-danger">*</span></label></div>
+                                <p id="phone_number_error" class="text-danger" style="font-size: 15px; margin-bottom: 0px;"></p>
                                 <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number" placeholder="Contact Number" required="required" value="{{ old('phone_number') }}" />
                             </div>
                             <div class="form-group">
@@ -214,7 +214,7 @@
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
-                            <img class="infographics-image" src="{{ asset('img/connections-page/paper.png') }}"/>
+                            <img class="infographics-image" src="{{ asset('img/connections-page/paper.png') }}" alt=""/>
                             <p class="infographics-header"> Get a quote </p>
                             <p>Typically this will take around 2-4 weeks to get back to you</p>
                         </div>
@@ -223,7 +223,7 @@
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
-                            <img class="infographics-image" src="{{ asset('img/connections-page/flame.png') }}"/>
+                            <img class="infographics-image" src="{{ asset('img/connections-page/flame.png') }}" alt=""/>
                             <p class="infographics-header"> Gas implementation </p>
                             <p>This will normally take around 6-8 weeks to complete, depending on the scale of the work needed</p>
                         </div>
@@ -233,7 +233,7 @@
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
-                            <img class="infographics-image" src="{{ asset('img/connections-page/flash.png') }}"/>
+                            <img class="infographics-image" src="{{ asset('img/connections-page/flash.png') }}" alt=""/>
                             <p class="infographics-header"> Electricity implementation </p>
                             <p>This will normally take around 6-12 weeks to complete, depending on the scale of the work needed</p>
                         </div>
@@ -261,7 +261,7 @@
                 <div class="col-12 col-lg-4 col-md-6 service-infographic mb-5 mb-lg-0" style="text-align: center;">
                     <div class="service-infographics-inner center-content">
                         <div style="text-align: center;">
-                            <img src="{{ asset('img/connections-page/home.png') }}"/>
+                            <img src="{{ asset('img/connections-page/home.png') }}" alt=""/>
                             <p class="infographics-header"> Home Energy Switching </p>
                         </div>
                     </div>
@@ -269,7 +269,7 @@
                 <div class="col-12 col-lg-4 col-md-6 service-infographic mb-5 mb-lg-0">
                     <div class="service-infographics-inner center-content" style="background-color: #00c2cb">
                         <div style="text-align: center;">
-                            <img src="{{ asset('img/connections-page/suitcase.png') }}"/>
+                            <img src="{{ asset('img/connections-page/suitcase.png') }}" alt=""/>
                             <p class="infographics-header"> Business Energy Switching </p>
                         </div>
                     </div>
@@ -278,7 +278,7 @@
                 <div class="col-12 col-lg-4 col-md-6 service-infographic mb-5 mb-lg-0">
                     <div class="service-infographics-inner center-content" style="background-color: #ffaa00">
                         <div style="text-align: center;">
-                            <img src="{{ asset('img/connections-page/wrench.png') }}"/>
+                            <img src="{{ asset('img/connections-page/wrench.png') }}" alt=""/>
                             <p class="infographics-header"> Gas & Electricity Connections </p>
                         </div>
                     </div>
@@ -293,19 +293,19 @@
     <script>
         document.body.onload = function()
         {
-            var phoneNumberError = document.getElementById("phoneNumberError");
-            document.getElementById("requestCallbackForm").onsubmit = function (e)
+            var phone_number_error = document.getElementById("phone_number_error");
+            document.getElementById("connectionsForm").onsubmit = function (e)
             {
                 var phoneNumber = document.getElementById("phone_number").value;
 
                 if (phoneNumber.replace(/[^0-9]/g, "").length < 7)
                 {
                     e.preventDefault();
-                    phoneNumberError.innerHTML = "Please enter a valid phone number with at least 7 digits.";
+                    phone_number_error.innerHTML = "Please enter a valid phone number with at least 7 digits.";
                 }
                 else
                 {
-                    phoneNumberError.innerHTML = "";
+                    phone_number_error.innerHTML = "";
                 }
             }
         };
