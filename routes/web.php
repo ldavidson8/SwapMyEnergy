@@ -185,3 +185,25 @@ Route::group([ 'prefix' => '/testing/errors/http/error-pages/' ], function()
     Route::get('500', function() { abort(500); });
     Route::get('503', function() { abort(503); });
 });
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Permanant Redirects
+|--------------------------------------------------------------------------
+*/
+
+Route::group([ 'prefix' => '/residential' ], function()
+{
+    Route::get('/', function() { return redirect('/', 301); });
+    Route::get('/about', function() { return redirect('/about', 301); });
+    Route::get('/terms-and-conditions', function() { return redirect('/terms-and-conditions', 301); });
+    Route::get('/privacy-policy', function() { return redirect('/privacy-policy', 301); });
+    Route::get('/contact', function() { return redirect('/contact', 301); });
+    Route::get('/partners-and-affiliates', function() { return redirect('/partners-and-affiliates', 301); });
+    Route::get('/cookie-policy', function() { return redirect('/cookie-policy', 301); });
+    Route::get('/sitemap', function() { return redirect('/sitemap', 301); });
+    Route::get('/energy-comparison/address', function() { return redirect('/energy-comparison/address', 301); });
+});
+Route::get('/business/energy-comparison/address', function() { return redirect('/energy-comparison/address', 301); });

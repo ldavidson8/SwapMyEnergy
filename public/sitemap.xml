@@ -25,6 +25,9 @@
       <loc>https://www.swapmyenergy.co.uk/sitemap</loc>
    </url>
    <url>
+      <loc>https://www.swapmyenergy.co.uk/energy-comparison/address</loc>
+   </url>
+   <url>
       <loc>https://www.swapmyenergy.co.uk/business</loc>
    </url>
    <url>
@@ -47,8 +50,5 @@
    </url>
    <url>
       <loc>https://www.swapmyenergy.co.uk/business/sitemap</loc>
-   </url>
-   <url>
-      <loc>https://www.swapmyenergy.co.uk/business/energy-comparison/address</loc>
    </url>
 </urlset>
