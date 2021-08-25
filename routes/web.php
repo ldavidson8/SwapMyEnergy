@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ResidentialApiController;
+use App\Http\Controllers\Utility\BusinessWaterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,14 @@ Route::group([ 'prefix' => 'business' ], function()
     Route::get('/contact', 'BusinessHomeController@contact') -> name('business.contact');
     Route::get('/partners-and-affiliates', 'BusinessHomeController@partnersAndAffiliates') -> name('business.partners and affiliates');
     Route::get('/our-team', 'BusinessHomeController@ourTeam') -> name('business.our-team');
+
+    Route::group([ 'prefix' => '/water' ], function()
+    {
+        Route::get('/', [ BusinessWaterController::class, 'get' ]) -> name('business.water');
+        Route::post('/', [ BusinessWaterController::class, 'post' ]) -> name('business.water');
+        Route::get('/success', [ BusinessWaterController::class, 'success' ]) -> name('business.water.success');
+        Route::get('/error', [ BusinessWaterController::class, 'error' ]) -> name('business.water.error');
+    });
 
     Route::group([ 'prefix' => '/request-callback' ], function()
     {
@@ -109,14 +118,6 @@ Route::group([ 'prefix' => '/' ], function()
 | Other Routes
 |--------------------------------------------------------------------------
 */
-
-Route::group([ 'prefix' => '/connections'], function()
-{
-    Route::get('/', 'ConnectionsController@index') -> name('connections');
-    Route::post('/', 'ContactController@connectionsPost') -> name('connections');
-    Route::get('/success', 'ContactController@connectionsSuccess') -> name('connections.success');
-    Route::get('/error', 'ContactController@connectionsError') -> name('connections.error');
-});
 
 Route::group([ 'prefix' => '/partner-apply'], function()
 {

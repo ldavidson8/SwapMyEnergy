@@ -1,28 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Utility;
 
-use App\Mail\ConnectionsRequestEmail;
+use App\Http\Controllers\Controller;
+use App\Mail\BusinessWaterEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
 
-class ConnectionsController extends Controller
+class BusinessWaterController extends Controller
 {
-    public function index()
+    public function get()
     {
-        $navbar_page = 'connections';
-        $page_title = 'Swap My Energy - Connections';
-        return view('other.connections', compact('navbar_page', 'page_title'));
+        $navbar_page = 'utility-water';
+        $page_title = 'Business Water Comparison - Swap My Energy';
+        return view('utility.business-water', compact('navbar_page', 'page_title'));
     }
 
-    /// ---------------------------
-    /// ----- connectionsPost -----
-    /// ---------------------------
-    /// Method: Post
-    /// Description: Processes an application to the connections service
-    public function connectionsPost(Request $request)
+    public function post(Request $request)
     {
         try
         {
@@ -31,17 +27,15 @@ class ConnectionsController extends Controller
             $validator = Validator::make($form_data,
             [
                 'full_name' => 'required|string',
-                'phone_number' => 'required',
+                'business_name' => 'required|string',
                 'email' => 'required|email',
-                'new_customer' => 'required|in:Y,N',
-                'property_type' => 'required|string',
-                'connection_type' => 'required|string',
+                'phone_number' => 'required|string',
                 'call_back_time' => 'required|string'
             ]);
             if ($validator -> fails()) return back() -> withErrors($validator) -> withInput();
 
             // send an email to our support email address
-            Mail::to(env('MAIL_TO_ADDRESS')) -> queue(new ConnectionsRequestEmail($form_data));
+            Mail::to(env('MAIL_TO_ADDRESS')) -> queue(new BusinessWaterEmail($form_data));
 
             // redirect to the success page
             return redirect() -> route('connections.success');
@@ -54,14 +48,14 @@ class ConnectionsController extends Controller
         }
     }
 
-    public function connectionsSuccess()
+    public function success()
     {
         $navbar_page = 'connections';
         $page_title = 'Success | Connections Request Made';
         return view('contact-forms.connections-request.success', compact('page_title', 'navbar_page'));
     }
 
-    public function connectionsError()
+    public function error()
     {
         $navbar_page = 'connections';
         $page_title = 'Error | Connections Request Failed';

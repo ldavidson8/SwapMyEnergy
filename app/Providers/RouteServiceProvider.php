@@ -51,6 +51,10 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('/staff-members/authentication')
                 ->namespace('App\\Http\\Controllers\\Auth')
                 ->group(base_path('routes/auth.php'));
+
+            Route::middleware('web')
+                ->namespace('App\\Http\\Controllers')
+                ->group(base_path('routes/utilites.php'));
         });
     }
 
