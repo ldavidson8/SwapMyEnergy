@@ -41,7 +41,7 @@ class ContactController extends Controller
 
 
         // try catch 1 - save form details to the database
-        $ticket = date("dHis");
+        $ticket = date("dis");
         try
         {
             $data =
