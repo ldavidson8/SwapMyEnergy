@@ -80,12 +80,15 @@
             <hr />
             <div class="row flex-grow-1 no-padding background-image-powerline center-content">
                 <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
-                <div class="col-xl-4 col-lg-6 col-md-8 col-12 center-content no-margin" style="padding: 30px; color: #f3f2f1;">
-                    <h1>What We Do</h1>
-                    <p style="padding-top: 30px; width: 450px; max-width: 100%;">We provide businesses and people like YOU with the opportunity to save on their energy bills. With our no-nonsense approach, what you see is what you get.
-                    At Swap My Energy, we give you savings based on facts, not estimates.
-                    By finding you a unique deal you will have the opportunity to save money and the peace of mind that your energy bill switching is in good hands.
-                    </p>
+                <div class="col-xl-4 col-lg-6 col-md-8 col-12 center-content no-margin">
+                    <div style="padding: 30px; background-color: rgba(243, 242, 241, 1); border-radius: 35px; display: inline-block;">
+                        <h1 style="margin-top: 0px;">What We Do</h1>
+                        <p style="padding-top: 30px; width: 450px; max-width: 100%; margin-bottom: 0px;">
+                            We provide businesses and people like YOU with the opportunity to save on their energy bills. With our no-nonsense approach, what you see is what you get.
+                            At Swap My Energy, we give you savings based on facts, not estimates.
+                            By finding you a unique deal you will have the opportunity to save money and the peace of mind that your energy bill switching is in good hands.
+                        </p>
+                    </div>
                 </div>
                 <div class="col-md-2 d-none d-lg-none d-md-block"></div>
                 <div class="col-md-2 d-none d-lg-none d-md-block"></div>

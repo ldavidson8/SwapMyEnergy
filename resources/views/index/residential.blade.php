@@ -1,33 +1,8 @@
 @extends('layouts.master')
 
 @section('stylesheets')
+    <link rel="stylesheet" href="{{ asset('css/white-box-infographics.css') }}" />
     <style>
-        .white-box-infographics
-        {
-            align-items: center;
-            justify-content: center;
-            margin: auto;
-            height: auto;
-            padding: 20px 0;
-        }
-
-        .white-box-infographics-inner
-        {
-            background-color: #f3f2f1;
-            border-radius: 20px;
-            width: 325px;
-            height: 425px;
-            padding: 20px;
-            margin: auto;
-            max-width: 100%;
-        }
-
-        .infographics-header
-        {
-            margin-top: 50px;
-            font-size: 26px;
-            font-weight: 700;
-        }
         #section01
         {
             position: relative;
@@ -132,14 +107,6 @@
                 margin-top: 0px !important;
             }
         }
-
-        @media (max-width: 330px)
-        {
-            .white-box-infographics-inner
-            {
-                border-radius: 0;
-            }
-        }
     </style>
 
     <link rel="stylesheet" href="{{ asset('css/accordion.css') }}" />
@@ -167,8 +134,8 @@
     </div>
     <hr/>
     <div class="d-flex">
-        <div class="full-size-60 container-fluid d-flex flex-column background-image-preston">
-            <div class="row">
+        <div class="full-size-60 container-fluid d-flex flex-column background-image-preston center-content">
+            <div class="row" style="width: 1300px; max-width: 100%;">
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">

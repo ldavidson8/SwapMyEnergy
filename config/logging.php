@@ -35,6 +35,18 @@ return [
     */
 
     'channels' => [
+        'connections' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/connections.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
+        'business-water' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/business-water.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
         'energy-comparison/find-address-post' => [
             'driver' => 'single',
             'path' => storage_path('logs/energy-comparison/find-address-post.log'),

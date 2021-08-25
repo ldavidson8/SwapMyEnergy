@@ -1,4 +1,3 @@
-Sitemap: https://www.swapmyenergy.co.uk/sitemap.xml
 User-agent: *
 Disallow:
 Sitemap: https://www.swapmyenergy.co.uk/sitemap.xml
