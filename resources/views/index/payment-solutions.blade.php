@@ -28,20 +28,59 @@
             color: #f3f2f1;
         }
 
+        img 
+        {
+            max-width: 100%;
+        }
+
         .card-terminal-category
         {
 
         }
 
-        .card-terminal-category:nth-child(n+2)
+        .card-terminal-category:not(:last-child)
         {
-            border-left: 2px solid #787878;
+            background: linear-gradient(#787878,#787878) bottom/ 25% 2px no-repeat
         }
 
         .card-terminal-heading
         {
             font-weight: 700;
             font-size: 1.5em;
+        }
+
+        .card-machine-image
+        {
+            min-width: 250px;
+            margin: 10px auto;
+        }
+
+        ul.green-tick-list
+        {
+            list-style-type: none;
+        }
+
+        ul.green-tick-list li:before
+        {
+            font-family: 'FontAwesome';
+            content: '\f00c';
+            margin:0 10px 0 -15px;
+            color: #279d7d;
+            font-size: 1.5em;
+            vertical-align: middle;
+        }
+
+        @media (min-width: 1200px)
+        {
+            .card-terminal-category:nth-child(n+2)
+            {
+                border-left: 2px solid #787878;
+            }
+
+            .card-terminal-category:not(:last-child)
+            {
+                background: none;
+            }
         }
 
     </style>
@@ -64,40 +103,93 @@
         </div>
     </div>
     <div class="full-size container-fluid">
-        <div class="row col-12" style="padding: 20px;">
-            <h2 style="margin: 0 auto 1.5em auto; font-size: 2em;"> Card Terminals </h2>
+        <div class="col-12" style="padding: 20px;">
+            <h2 style="font-size: 2em; text-align: center;"> Card Terminals </h2>
             <div class="row">
                 <div class="col-xl-4 col-12 text-center card-terminal-category">
                     <p class="card-terminal-heading"> Fixed </p>
-                    <p> Perfect for accepting payments from a fixed location, i.e. a desk, till, etc. Great for a wide-range of retailers. </p>
+                    <p> Accept card payments from a fixed location, directly from the till or sales counter. Great for all types of shops and retailers. </p>
 
                 </div>
                 <div class="col-xl-4 col-12 text-center card-terminal-category">
                     <p class="card-terminal-heading"> Portable </p>
-                    <p> Perfect for accepting payments away from the till, i.e. at a customers table in a bar or restaurant. </p>
+                    <p> Connect via bluetooth or wi-fi, a portable machine is great for restaurants, bars and pubs where you need to take payments away from the till. </p>
 
                 </div>
                 <div class="col-xl-4 col-12 text-center card-terminal-category">
                     <p class="card-terminal-heading"> Mobile </p>
-                    <p> Perfect for remote payments. Accept payments from anywhere, i.e. festivals, exhibitions, trade fares, etc. </p>
+                    <p> Using a roaming sim card, our mobile card machines can be taken anywhere. Great for farmers markets, exhibitions, festivals and trades people, you can take payments wherever you are. </p>
 
                 </div>
             </div>
-            <div class="row center-content">
-                <div class="col-xl-2 col-lg-6 col-12"><img class="card-machine-image" src="{{ asset('img/payment-solutions/card-machines/card-machine-1.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12"><img class="card-machine-image" src="{{ asset('img/payment-solutions/card-machines/card-machine-2.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12"><img class="card-machine-image" src="{{ asset('img/payment-solutions/card-machines/card-machine-3.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12"><img class="card-machine-image" src="{{ asset('img/payment-solutions/card-machines/card-machine-4.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12"><img class="card-machine-image" src="{{ asset('img/payment-solutions/card-machines/card-machine-5.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12"><img class="card-machine-image" src="{{ asset('img/payment-solutions/card-machines/card-machine-6.png') }}"></div>
+            <div class="row no-margin mt-5">
+                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-1.png') }}"></div>
+                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-2.png') }}"></div>
+                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-3.png') }}"></div>
+                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-4.png') }}"></div>
+                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-5.png') }}"></div>
+                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-6.png') }}"></div>
             </div>
+        </div>
+        <div class="d-none d-lg-block text-center mt-5 mb-5 mb-xl-0">
+            <img style="" src="{{ asset('img/payment-solutions-homepage/icons/platform-logos.png') }}">
         </div>
     </div>
     <div class="full-size-60 container-fluid background-image-preston">
-        <h3 class="white-text"> Mobile Payments </h3>
+        <h2 class="white-text" style="font-size: 2em; text-align: center;"> Go Mobile </h2>
+        <div class="row">
+            <div class="d-none d-xl-block    col-xl-2"></div>
+            <div class="col-12 col-xl-4 text-center">
+                <img src="{{ asset('img/payment-solutions-homepage/go-mobile-image.png') }}">
+            </div>
+            <div class="col-12 col-xl-4 justify-content-center d-flex justify-content-xl-start align-items-xl-center">
+                <p class="white-text text-center text-xl-left" style="width: 400px; font-size: 1.2em"> Go Mobile, we supply your Mobile Payment Terminal and Smart Phone App. This simple to use payment solution is the perfect fit for all types of businesses. With attractive rates and in app analytics', this keeps everything at your fingertips no matter where your business takes you. </p>
+            </div>
+            <div class="d-none d-xl-block col-xl-2"></div>
+        </div>
+            
     </div>
     <div class="container-fluid">
-        <h3> Over-the-phone Transactions </h3>
+        <h2 style="font-size: 2em; text-align: center;"> E-commerce & Virtual Terminal </h2>
+        <div class="row">
+            <div class="d-none d-xl-block col-xl-1"></div>
+            <div class="col-12 col-xl-5 text-center"><img src="{{ asset('img/payment-solutions-homepage/virtual-terminal.png') }}"></div>
+            <div class="col-12 col-xl-5 d-flex justify-content-center justify-content-xl-start align-items-xl-center">
+                <p class=" text-center text-xl-left" style="font-size: 1.2em; width: 600px;"> A virtual terminal is a web-based payment system for processing over-the-phone transactions. It's basically a virtual card machine and you don't even need a company website to get one. Set up is quick and easy and you will be taking payments over the phone on any smartphone, tablet or PC in no time. Perfect for call centres or mail order businessess. No technical integration needed. </p>  
+            </div>
+            <div class="d-none d-xl-block col-xl-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-xl-3 d-flex center-content flex-column">
+                <img src="{{ asset('img/payment-solutions-homepage/icons/pie-chart.png') }}" height="auto" width="80">
+                <p style="font-weight: 700;"> Instant Reporting </p>
+            </div>
+            <div class="col-12 col-md-6 col-xl-3 d-flex center-content flex-column">
+                <img src="{{ asset('img/payment-solutions-homepage/icons/user.png') }}" height="auto" width="80">
+                <p style="font-weight: 700;"> Access for up to 20 users </p>
+            </div>
+            <div class="col-12 col-md-6 col-xl-3 d-flex center-content flex-column">
+                <img src="{{ asset('img/payment-solutions-homepage/icons/invoice.png') }}" height="auto" width="80">
+                <p style="font-weight: 700;"> Send email receipts </p>
+            </div>
+            <div class="col-12 col-md-6 col-xl-3 d-flex center-content flex-column">
+                <img src="{{ asset('img/payment-solutions-homepage/icons/placeholder.png') }}" height="auto" width="80">
+                <p style="font-weight: 700;"> Accept payments remotely </p>
+            </div>
+        </div>
+        <p> Whether you are have retail store, a digital business or something in between, we can help to get you trading online using our payment gateways. For new business and start-ups a brilliant option is the hosted payment page offering fast and secure transactions. At the point of purchase clients are taken from your website to the secure payment page to complete the transaction. We can also provide a tailored, branded integrated payment page that sits in your website. </p>
+
+        <p> Interested </p>
+        <ul class="green-tick-list">
+            <li>Simple to setup</li>
+            <li>Secure and reliable</li>
+            <li>Competitive pricing</li>
+            <li>Ability to serve customers 24/7</li>
+            <li>Reach customers anywhere</li>
+            <li>Real-time transactional reporting</li>
+            <li>Real-time payment autorisation</li>
+            <li>Low operational costs</li>
+        </ul>
     </div>
     <hr />
 @endsection
