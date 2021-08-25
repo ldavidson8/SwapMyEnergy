@@ -28,37 +28,37 @@
 
 @section('main-content')
             <hr/>
-            <div class="flex-grow-1 no-padding background-image-water d-flex center-content">
+            <div class="flex-grow-1 container-fluid no-padding background-image-water d-flex center-content">
                 <div class="row">
-                    <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
-                    <div class="col-xl-5 col-lg-6 col-md-8 col-12 row no-margin">
+                    <div class="col-2 d-none d-xl-block"></div>
+                    <div class="col-xl-4 col-lg-6 col-12 row no-margin">
                         <div style="max-width: 100%;">
                             <h1>Business Water Comparison</h1>
                             <p>Since 2017, businesses have been allowed to change their water supplier. This allows you to have the freedom you deserve for your business. Find your business a supplier you can trust within your area by getting in touch today!</p>
                         </div>
                     </div>
-                    <div class="col-md-2 d-none d-lg-none d-md-block"></div>
-                    <div class="col-md-2 d-none d-lg-none d-md-block"></div>
-                    <div class="col-xl-5 col-lg-5 col-md-8 col-12 d-md-flex">
-                        <div style="max-width: 100%; width: 600px;">
+                    <div class="col-2 d-none d-lg-none d-md-block"></div>
+                    <div class="col-2 d-none d-lg-none d-md-block"></div>
+                    <div class="col-xl-4 col-lg-6 col-12 d-md-flex">
+                        <div style="width: 600px; max-width: 100%;">
                             <form id="requestCallbackForm" class="form-black" action="{{ route('business.water') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="full_name">Full Name</label>
+                                    <label for="full_name">Full Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control tall-form-control" id="full_name" name="full_name" placeholder="Full Name" required="required" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="business_name">Business Name</label>
+                                    <label for="business_name">Business Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control tall-form-control" id="business_name" name="business_name" placeholder="Business Name" required="required" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email Address</label>
+                                    <label for="email">Email Address <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control tall-form-control" id="email" name="email" placeholder="Email (optional)" required="required" />
                                 </div>
                                 <div class="form-group">
                                     <span class="form-error-message" id="phoneNumberError"></span>
                                     <div><label for="phone_number">Telephone Number</label></div>
-                                    <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number" placeholder="Contact Number" required="required" />
+                                    <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number" placeholder="Contact Number" />
                                 </div>
                                 <div class="form-row">
                                     <div class="col-12 col-md">
@@ -77,7 +77,8 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-2 d-none d-lg-none d-md-block"></div>
+                    <div class="col-2 d-none d-lg-none d-md-block"></div>
+                    <div class="col-2 d-none d-xl-block"></div>
                 </div>
             </div>
         </div>
@@ -99,7 +100,7 @@
 
         <h3>How do I find who my current supplier is?</h3>
         <p>The quickest and easiest way to find out who your water supplier is, is to find a bill.</p>
-        <p> If you can't find a recent bill, it might be the case that your supplier is a regional water supplier for the area that your business is situated in. The Water Services Regulation Authority (Ofwat) have a <a href="javascript: void();">supplier map</a> that might help you work out who your current supplier is.</p>
+        <p> If you can't find a recent bill, it might be the case that your supplier is a regional water supplier for the area that your business is situated in. The Water Services Regulation Authority (Ofwat) have a <a href="https://www.ofwat.gov.uk/wp-content/uploads/2015/10/water_supply_map.jpg" target="_blank">supplier map</a> that might help you work out who your current supplier is.</p>
 
         <h3>How is my business charged for water?</h3>
         <p>Typically, there are two different ways you can be charged for your water supply. Either, you'll be charged based on the amount of water that your business uses, including a set charge if you're on a meter, or you'll pay a set amount based on the value of your businesses property.</p>
@@ -152,7 +153,7 @@
             {
                 var phoneNumber = document.getElementById("phone_number").value;
 
-                if (phoneNumber.replace(/[^0-9]/g, "").length < 7)
+                if (phoneNumber.value && phoneNumber.replace(/[^0-9]/g, "").length < 7)
                 {
                     e.preventDefault();
                     phoneNumberError.innerHTML = "Please enter a valid phone number with at least 7 digits.";

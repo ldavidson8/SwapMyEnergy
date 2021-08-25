@@ -35,14 +35,6 @@ Route::group([ 'prefix' => 'business' ], function()
     Route::get('/partners-and-affiliates', 'BusinessHomeController@partnersAndAffiliates') -> name('business.partners and affiliates');
     Route::get('/our-team', 'BusinessHomeController@ourTeam') -> name('business.our-team');
 
-    Route::group([ 'prefix' => '/water' ], function()
-    {
-        Route::get('/', [ BusinessWaterController::class, 'get' ]) -> name('business.water');
-        Route::post('/', [ BusinessWaterController::class, 'post' ]) -> name('business.water');
-        Route::get('/success', [ BusinessWaterController::class, 'success' ]) -> name('business.water.success');
-        Route::get('/error', [ BusinessWaterController::class, 'error' ]) -> name('business.water.error');
-    });
-
     Route::group([ 'prefix' => '/request-callback' ], function()
     {
         Route::post('/', 'BusinessContactController@requestCallbackPost') -> name('business.request-callback');

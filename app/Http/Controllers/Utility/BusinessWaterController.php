@@ -14,8 +14,6 @@ class BusinessWaterController extends Controller
 {
     public function get()
     {
-        ModeSession::setBusiness();
-
         $navbar_page = 'utility-water';
         $page_title = 'Business Water Comparison - Swap My Energy';
         return view('utility.business-water', compact('navbar_page', 'page_title'));
@@ -32,7 +30,7 @@ class BusinessWaterController extends Controller
                 'full_name' => 'required|string',
                 'business_name' => 'required|string',
                 'email' => 'required|email',
-                'phone_number' => 'required|string',
+                'phone_number' => 'nullable|string',
                 'call_back_time' => 'required|string'
             ]);
             if ($validator -> fails()) return back() -> withErrors($validator) -> withInput();

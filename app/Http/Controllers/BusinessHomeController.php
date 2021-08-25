@@ -86,11 +86,4 @@ class BusinessHomeController extends Controller
         $page_title = 'Our Team';
         return view('other.our-team', compact('navbar_page', 'page_title'));
     }
-
-    public function connections()
-    {
-        $navbar_page = 'connections';
-        $page_title = 'Connections';
-        return view('index.connections', compact('navbar_page', 'page_title'));
-    }
 }

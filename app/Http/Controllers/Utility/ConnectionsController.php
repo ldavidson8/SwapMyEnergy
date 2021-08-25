@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Utility;
 
+use App\Http\Controllers\Controller;
 use App\Mail\ConnectionsRequestEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -14,7 +15,7 @@ class ConnectionsController extends Controller
     {
         $navbar_page = 'connections';
         $page_title = 'Swap My Energy - Connections';
-        return view('other.connections', compact('navbar_page', 'page_title'));
+        return view('utility.connections', compact('navbar_page', 'page_title'));
     }
 
     /// ---------------------------

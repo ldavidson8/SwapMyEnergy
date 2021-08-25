@@ -18,7 +18,7 @@
             </tr>
             <tr>
                 <th>Phone Number</th>
-                <td>{{ $formData["phone_number"] }}</td>
+                <td>{{ (isset($formData["phone_number"])) ? $formData["phone_number"] : "" }}</td>
             </tr>
             <tr>
                 <th>Call Back Time</th>

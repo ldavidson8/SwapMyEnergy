@@ -12,7 +12,7 @@ Email Address
 {{ $formData["email"] }}
 
 Phone Number
-{{ $formData["phone_number"] }}
+{{ (isset($formData["phone_number"])) ? $formData["phone_number"] : "" }}
 
 Call Back Time
 {{ $formData["call_back_time"] }}

@@ -30,7 +30,7 @@
                 </li>
                 <div class="d-xl-inline d-none" style="font-weight: 700;">|</div>
                 <li class="nav-item d-none d-xl-inline">
-                    <a class="nav-link navigation-link {{ ($navbar_page == "connections") ? 'navigation-link-current-page' : '' }}" href="{{ route("connections") }}">Water</a>
+                    <a class="nav-link navigation-link {{ ($navbar_page == "business-water") ? 'navigation-link-current-page' : '' }}" href="{{ route("business.water") }}">Water</a>
                 </li>
                 {{-- My Account Page
                     <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>
