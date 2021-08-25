@@ -3,7 +3,6 @@
 @section('stylesheets')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
 
     <style>
         .card-wrapper
@@ -24,13 +23,11 @@
 
         h3
         {
-            font-family: 'Nothing You Could Do', cursive;
             font-weight: 700;
         }
 
         h4
         {
-            font-family: 'Nothing You Could Do', cursive;
             font-weight: 400;
         }
 
@@ -49,8 +46,7 @@
         .member-img
         {
             max-width: 100%;
-            max-height: 250px;
-            height: auto;
+            margin-bottom: 30px;
         }
         .modal
         {
@@ -129,10 +125,10 @@
         <h1 style="font-family: Nothing You Could Do; text-align:center"> Our Team </h1>
     </div>
     <div class="team-wrapper row center-content">
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#andrewj">
-                    <img alt="" class="member-img" src="{{ asset('img/our-team/andrewj.png') }}">
+                    {{-- <img alt="" class="member-img" src="{{ asset('img/our-team/andrewj.png') }}"> --}}
                 </a>
                 <h3>Andrew Jaeger</h3>
                 <h4>Business Development Manager</h4>
@@ -166,13 +162,72 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Corey-Brooks.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Harry-Yeoman.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Jack-Moore.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <a href="#" data-toggle="modal" data-target="#karols">
+                    <img alt="" class="member-img" src="{{ asset('img/our-team1/Karol-Szaro.png') }}">
+                    </a>
+                    <div class="modal" id="karols" tabindex="-1" role="dialog" aria-labelledby="karols" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <img alt="" src="{{ asset('img/our-team/karols.png') }}" width="120" height="120">
+                                <div class="member-info">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Karol Szarro</h5><br>
+                                    <h6> Business Development Manager </h6>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body business-dev">
+                                <p style="font-weight: bold">What were you doing before you joined Znergi Ltd? E.g. university previous jobs etc.</p>
+                                <p>Cardinal Newman college</p>
+                                <p style="font-weight: bold">What are your hobbies and interests?</p>
+                                <p>Fishing, Woodworking, Exotic Animals, Travelling, Metal working.</p>
+                                <p style="font-weight: bold">What are your goals and aspirations?</p>
+                                <p>Own a pet crocodile, proceed with the career, travel around the world, fish in amazon river.</p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Maggie-Gavin.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Mohammed-Yub.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Morgan-Anderson.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#samis">
-                    <img alt="" class="member-img" src="{{ asset('img/our-team/samis.png') }}">
+                    <img alt="" class="member-img" src="{{ asset('img/our-team1/Sami-Sattar.png') }}">
                 </a>
-                <h3>Sami Sattar</h3>
-                <h4>Business Development Manager</h4>
                 <div class="modal" id="samis" tabindex="-1" role="dialog" aria-labelledby="samis" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                         <div class="modal-content">
@@ -214,60 +269,38 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
-            <div class="card">
-                <a href="#" data-toggle="modal" data-target="#karols">
-                    <img alt="" class="member-img" src="{{ asset('img/our-team/karols.png') }}">
-                    </a>
-                    <h3>Karol Szaro</h3>
-                    <h4>Business Development Manager</h4>
-                    <div class="modal" id="karols" tabindex="-1" role="dialog" aria-labelledby="karols" aria-hidden="true">
-                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                                <img alt="" src="{{ asset('img/our-team/karols.png') }}" width="120" height="120">
-                                <div class="member-info">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Karol Szarro</h5><br>
-                                    <h6> Business Development Manager </h6>
-                                </div>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <div class="modal-body business-dev">
-                                <p style="font-weight: bold">What were you doing before you joined Znergi Ltd? E.g. university previous jobs etc.</p>
-                                <p>Cardinal Newman college</p>
-                                <p style="font-weight: bold">What are your hobbies and interests?</p>
-                                <p>Fishing, Woodworking, Exotic Animals, Travelling, Metal working.</p>
-                                <p style="font-weight: bold">What are your goals and aspirations?</p>
-                                <p>Own a pet crocodile, proceed with the career, travel around the world, fish in amazon river.</p>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        {{-- <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/tamarad.png') }}">
                 <h3>Tamara De Lima</h3>
                 <h4>Business Development Manager</h4>
             </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        </div> --}}
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
-                <img alt="" class="member-img" src="{{ asset('img/our-team/matthewa.png') }}">
-                <h3>Matt Ainsworth</h3>
-                <h4>Business Development Manager</h4>
+                <img alt="" class="member-img" src="{{ asset("img/our-team1/A'ishah-Vorajee.png") }}">
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Alex-Cottam.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Demi-Taylor.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Jasmine-Grime.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#jonathanf">
-                    <img alt="" class="member-img" src="{{ asset('img/our-team/jonathanf.png') }}">
+                    <img alt="" class="member-img" src="{{ asset('img/our-team1/Jonathan-Finn.png') }}">
                     </a>
-                    <h3>Jonathan Finn</h3>
-                    <h4>Customer Sales Advisor</h4>
                     <div class="modal" id="jonathanf" tabindex="-1" role="dialog" aria-labelledby="jonathanf" aria-hidden="true">
                         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                           <div class="modal-content">
@@ -297,34 +330,28 @@
                     </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
-                <img alt="" class="member-img" src="{{ asset('img/our-team/maggieg.png') }}">
-                <h3>Maggie Gavin</h3>
-                <h4>Customer Sales Advisor</h4>
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Mohammad-Waheed.png') }}">
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
-                <img alt="" class="member-img" src="{{ asset('img/our-team/jackm.png') }}">
-                <h3>Jack Moore</h3>
-                <h4>Customer Sales Advisor</h4>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
-            <div class="card">
-                <img alt="" class="member-img" src="{{ asset('img/our-team/michaelr.png') }}">
+                <img alt="" class="member-img" src="{{ asset('') }}">
                 <h3>Michael Ranstead</h3>
                 <h4>Data Officer</h4>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Atiya-Hussain.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#ollyp">
-                    <img alt="" class="member-img" src="{{ asset('img/our-team/ollyp.png') }}">
+                    <img alt="" class="member-img" src="{{ asset('img/our-team1/Olly-Potter.png') }}">
                 </a>
-                <h3>Olly Potter</h3>
-                <h4>Administrator</h4>
                 <div class="modal" id="ollyp" tabindex="-1" role="dialog" aria-labelledby="olly" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -355,13 +382,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Shannon-Balshaw.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#lewisd">
-                    <img alt="" class="member-img" src="{{ asset('img/our-team/lewisd.png') }}">
+                    <img alt="" class="member-img" src="{{ asset('img/our-team1/Lewis-Davidson.png') }}">
                 </a>
-                <h3>Lewis Davidson</h3>
-                <h4>Developer</h4>
                 <div class="modal" id="lewisd" tabindex="-1" role="dialog" aria-labelledby="lewisd" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -392,27 +422,26 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
-                <img alt="" class="member-img" src="{{ asset('img/our-team/markg.png') }}">
-                <h3>Mark Graham</h3>
-                <h4>Developer</h4>
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Mark-Graham.png') }}">
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
-                <img alt="" class="member-img" src="{{ asset('img/our-team/cryshaet.png') }}">
-                <h3>Cryshae Tucker</h3>
-                <h4>Developer</h4>
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Cryshae-Tucker.png') }}">
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Adam-Casooji.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#alexb">
-                    <img alt="" class="member-img" src="{{ asset('img/our-team/alexb.png') }}">
+                    <img alt="" class="member-img" src="{{ asset('img/our-team1/Alex-Burton.png') }}">
                 </a>
-                <h3>Alex Burton</h3>
-                <h4>Digital Marketer</h4>
                 <div class="modal" id="alexb" tabindex="-1" role="dialog" aria-labelledby="alexb" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -448,13 +477,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <img alt="" class="member-img" src="{{ asset('img/our-team1/Andrew-Furness.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#robg">
-                    <img alt="" class="member-img" src="{{ asset('img/our-team/robg.png') }}">
+                    <img alt="" class="member-img" src="{{ asset('img/our-team1/Robert-Graham.png') }}">
                 </a>
-                <h3>Rob Graham</h3>
-                <h4>Digital Marketer</h4>
                 <div class="modal" id="robg" tabindex="-1" role="dialog" aria-labelledby="robg" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                       <div class="modal-content">
@@ -486,13 +518,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-12 card-wrapper">
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a href="#" data-toggle="modal" data-target="#samc">
-                    <img alt="" class="member-img" src="{{ asset('img/our-team/samc.png') }}">
+                    <img alt="" class="member-img" src="{{ asset('img/our-team1/Sam-Coltman.png') }}">
                 </a>
-                <h3>Sam Coltman</h3>
-                <h4>Social Media Analyst</h4>
                 <div class="modal" id="samc" tabindex="-1" role="dialog" aria-labelledby="samc" aria-hidden="true">
                     <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                       <div class="modal-content">
