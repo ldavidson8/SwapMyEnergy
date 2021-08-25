@@ -112,7 +112,7 @@
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
-                            <img src="{{ asset('img/infographic icons/signed-form.svg') }}"/>
+                            <img src="{{ asset('img/infographic icons/signed-form.svg') }}" alt="Image of a signed form" />
                             <p class="infographics-header">Fill in our form</p>
                             <p>Request a quote using our form at the top of the page.</p>
                         </div>
@@ -121,7 +121,7 @@
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
-                            <img src="{{ asset('img/infographic icons/search-icon.svg') }}"/>
+                            <img src="{{ asset('img/connections-page/paper.png') }}" alt="Image of paper" />
                             <p class="infographics-header">Get a quote</p>
                             <p>We'll be back in touch with a list of prices for your business.</p>
                         </div>
@@ -131,7 +131,7 @@
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
-                            <img src="{{ asset('img/infographic icons/switch-icon.svg') }}"/>
+                            <img src="{{ asset('img/infographic icons/switch-icon.svg') }}" alt="Image of a switch" />
                             <p class="infographics-header">Get switching</p>
                             <p>Once you've picked the deal that best suits your business, then we'll begin the switching process.</p>
                         </div>
