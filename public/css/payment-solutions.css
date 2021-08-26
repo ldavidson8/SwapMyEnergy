@@ -1,0 +1,113 @@
+body.business header, body.business nav, body.business #navbarSupportedContent
+{
+    background-color: #279d7d;
+}
+
+body.residential header, body.residential nav, body.residential #navbarSupportedContent 
+{
+    background-color: #279d7d;
+}
+
+body.business .header-switch-switch 
+{
+    fill: #f3f2f1;
+}
+
+.dropdown-menu
+{
+    background-color: #279d7d;
+}
+
+.full-width-button
+{
+    width: 100%;
+    padding: 20px;
+    font-size: 28px;
+}
+
+.rounded-green-button
+{
+    background-color: #279d7d;
+    border: none;
+    color: #f3f2f1;
+    border-radius: 18px;
+    font-weight: bold;
+}
+
+.white-text
+{
+    color: #f3f2f1;
+}
+
+.section-heading
+{
+    text-align: center;
+    font-size: 2em;
+}
+
+img 
+{
+    max-width: 100%;
+}
+
+.card-terminal-category:not(:last-child)
+{
+    background: linear-gradient(#787878,#787878) bottom/ 25% 2px no-repeat
+}
+
+.card-terminal-heading
+{
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.card-machine-image
+{
+    min-width: 250px;
+    margin: 10px auto;
+}
+
+ul.green-tick-list
+{
+    list-style-type: none;
+    font-weight: 500;
+    padding: 0 0 0 5px;
+}
+
+ul.green-tick-list li:before
+{
+    font-family: 'FontAwesome';
+    content: '\f00c';
+    margin:0 10px 0 -15px;
+    color: #279d7d;
+    font-size: 1.5em;
+    vertical-align: middle;
+}
+
+@media (min-width: 768px)
+{
+    .full-width-button
+    {
+        width: 250px;
+        padding: 20px;
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 1200px)
+{
+    .card-terminal-category:nth-child(n+2)
+    {
+        border-left: 2px solid #787878;
+    }
+
+    .card-terminal-category:not(:last-child)
+    {
+        background: none;
+    }
+
+    ul.green-tick-list
+    {
+        text-align: center;
+    }
+}

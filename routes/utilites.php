@@ -24,10 +24,10 @@ Route::group([ 'prefix' => '/connections' ], function()
     Route::get('/error', 'ConnectionsController@connectionsError') -> name('connections.error');
 });
 
-Route::group([ 'prefix' => '/payments'], function()
+Route::group([ 'prefix' => '/payment-solutions'], function()
 {
-    Route::get('/', 'PaymentsController@index') -> name('payments');
-    // Route::post('/', 'ContactController@connectionsPost') -> name('connections');
-    // Route::get('/success', 'ContactController@connectionsSuccess') -> name('connections.success');
-    // Route::get('/error', 'ContactController@connectionsError') -> name('connections.error');
+    Route::get('/', 'PaymentsController@index') -> name('payment-solutions');
+    Route::post('/', 'PaymentsController@Post') -> name('payment-solutions');
+    Route::get('/success', 'PaymentsController@Success') -> name('payment-solutions.success');
+    Route::get('/error', 'PaymentsController@Error') -> name('payment-solution.error');
 });

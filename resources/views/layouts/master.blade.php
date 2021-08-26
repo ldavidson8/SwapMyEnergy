@@ -29,7 +29,7 @@
     <link rel="preload" href="{{ asset('css/site.preload.css') }}" as="style" onload="this.onload = null; this.rel = 'stylesheet';" />
     <noscript><link rel="stylesheet" href="{{ asset('css/site.preload.css') }}"></noscript>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/6e2d0444fe.js" crossorigin="anonymous"></script>
     @yield('stylesheets')
 
     <!-- Scripts -->

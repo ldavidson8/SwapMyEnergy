@@ -47,6 +47,12 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
+        'payment-solutions' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/payment-solutions.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+
         'energy-comparison/find-address-post' => [
             'driver' => 'single',
             'path' => storage_path('logs/energy-comparison/find-address-post.log'),
