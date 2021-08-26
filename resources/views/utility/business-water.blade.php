@@ -92,7 +92,7 @@
         <h3>How long does it take to switch?</h3>
         <p>Once your've decided on a new supplier, you can relax; we'll handle the rest. You will receive a confirmation once the switch has taken place, plus a final bill from your old supplier and your first from your new one. It will take around 28 days to switch water supplier, but this does depend on how many sites your business has.</p>
 
-        <h3>Does it cose to switch supplier?</h3>
+        <h3>Does it cost to switch supplier?</h3>
         <p>Unless it costs you to exit your previous contract, then switching supplier won't cost you anything.</p>
 
         <h3>Will my service be interrupted during the switching process?</h3>
