@@ -20,7 +20,7 @@
                 <li class="nav-item">
                     <a class="nav-link navigation-link {{ ($navbar_page == "our team") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.our-team") }}">Our Team</a>
                 </li>
-                <div class="d-xl-inline d-none" style="font-weight: 700;">|</div>
+                {{-- <div class="d-xl-inline d-none" style="font-weight: 700;">|</div>
                 <li class="nav-item d-none d-xl-inline">
                     <a class="nav-link navigation-link {{ ($navbar_page == "connections") ? 'navigation-link-current-page' : '' }}" href="{{ route("connections") }}">Connections</a>
                 </li>
@@ -31,23 +31,23 @@
                 <div class="d-xl-inline d-none" style="font-weight: 700;">|</div>
                 <li class="nav-item d-none d-xl-inline">
                     <a class="nav-link navigation-link {{ ($navbar_page == "business-water") ? 'navigation-link-current-page' : '' }}" href="{{ route("business.water") }}">Water</a>
-                </li>
+                </li> --}}
                 {{-- My Account Page
                     <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>
                     <li class="nav-item">
                         <a class="nav-link navigation-link {{ ($navbar_page == "my account") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.my account") }}">My Account</a>
                     </li>
                 --}}
-                <li class="nav-item dropdown d-xl-none">
-                <a class="nav-link navigation-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Services
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="nav-link navigation-link {{ ($navbar_page == "connections") ? 'navigation-link-current-page' : '' }}" href="{{ route("connections") }}">Connections</a>
-                    <a class="nav-link navigation-link {{ ($navbar_page == "payment-solutions") ? 'navigation-link-current-page' : '' }}" href="{{ route("payment-solutions") }}">Payment Solutions</a>
-                    <a class="nav-link navigation-link {{ ($navbar_page == "business-water") ? 'navigation-link-current-page' : '' }}" href="{{ route("business.water") }}">Water</a>
-                </div>
-                </li>
+                {{-- <li class="nav-item dropdown d-xl-none">
+                    <a class="nav-link navigation-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Services
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="nav-link navigation-link {{ ($navbar_page == "connections") ? 'navigation-link-current-page' : '' }}" href="{{ route("connections") }}">Connections</a>
+                        <a class="nav-link navigation-link {{ ($navbar_page == "payment-solutions") ? 'navigation-link-current-page' : '' }}" href="{{ route("payment-solutions") }}">Payment Solutions</a>
+                        <a class="nav-link navigation-link {{ ($navbar_page == "business-water") ? 'navigation-link-current-page' : '' }}" href="{{ route("business.water") }}">Water</a>
+                    </div>
+                </li> --}}
                 <div class="d-xs-block d-lg-none">
                     @include('partials.navbar-account')
                 </div>
