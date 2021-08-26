@@ -135,26 +135,25 @@ class ContactController extends Controller
         Log::channel('partner-apply') -> info('ContactController -> partnerApplyPost(), Form Validated Successfully', [ 'successFlags' => $successFlags ]);
 
 
-        // try catch 1 - save form details to the database
-        // try
-        // {
-        //     $data =
-        //     [
-        //         'full_name' => $request -> input('full_name'),
-        //         'phone_number' => $request -> input('phone_number')
-        //     ];
-        //     if ($request -> has('email_address')) $data['email_address'] = $request -> input('email_address');
-        //     $callbackRequest = new CallbackRequests($data);
-        //     $callbackRequest -> save();
+        // try catch 2 - save file uploads to the database
+        try
+        {
+            DB::select('call Insert_RequestToBePartner(?, ?, ?, ?)',
+            [
+                $request -> input('full_name'),
+                $request -> input('email_address'),
+                $request -> input('message'),
+                now()
+            ]);
 
-        //     $successFlags |= 1;
-        //     Log::channel('partner-apply') -> info('ContactController -> partnerApplyPost(), Saved form fields to the database', [ 'successFlags' => $successFlags ]);
-        // }
-        // catch (Throwable $th)
-        // {
-        //     report($th);
-        //     Log::channel('partner-apply') -> error('ContactController -> partnerApplyPost(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
-        // }
+            Log::channel('partner-apply') -> info('ConnectionsController -> connectionsPost(), Saved file upload details to the database', [ '$request -> all()' => $request -> all() ]);
+        }
+        catch (Throwable $th)
+        {
+            throw($th);
+            report($th);
+            Log::channel('partner-apply') -> error('ConnectionsController -> connectionsPost(), try catch 2, Error saving file upload details to the database  -:-  ' . $th -> getMessage(), [ '$request -> all()' => $request -> all() ]);
+        }
 
 
         // try catch 2 - send email
@@ -228,26 +227,28 @@ class ContactController extends Controller
         Log::channel('affiliate-apply') -> info('ContactController -> affiliateApplyPost(), Form Validated Successfully', [ 'successFlags' => $successFlags ]);
 
 
-        // try catch 1 - save form details to the database
-        // try
-        // {
-        //     $data =
-        //     [
-        //         'full_name' => $request -> input('full_name'),
-        //         'phone_number' => $request -> input('phone_number')
-        //     ];
-        //     if ($request -> has('email_address')) $data['email_address'] = $request -> input('email_address');
-        //     $callbackRequest = new CallbackRequests($data);
-        //     $callbackRequest -> save();
+        // try catch 2 - save file uploads to the database
+        try
+        {
+            DB::select('call Insert_RequestToBeAffiliate(?, ?, ?, ?, ?, ?, ?)',
+            [
+                $request -> input('full_name'),
+                $request -> input('email_address'),
+                $request -> input('phone_number'),
+                $request -> input('web_link'),
+                $request -> input('address'),
+                $request -> input('type_of_affiliate'),
+                now()
+            ]);
 
-        //     $successFlags |= 1;
-        //     Log::channel('affiliate-apply') -> info('ContactController -> affiliateApplyPost(), Saved form fields to the database', [ 'successFlags' => $successFlags ]);
-        // }
-        // catch (Throwable $th)
-        // {
-        //     report($th);
-        //     Log::channel('affiliate-apply') -> error('ContactController -> affiliateApplyPost(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
-        // }
+            Log::channel('affiliate-apply') -> info('ConnectionsController -> connectionsPost(), Saved file upload details to the database', [ '$request -> all()' => $request -> all() ]);
+        }
+        catch (Throwable $th)
+        {
+            throw($th);
+            report($th);
+            Log::channel('affiliate-apply') -> error('ConnectionsController -> connectionsPost(), try catch 2, Error saving file upload details to the database  -:-  ' . $th -> getMessage(), [ '$request -> all()' => $request -> all() ]);
+        }
 
 
         // try catch 2 - send email

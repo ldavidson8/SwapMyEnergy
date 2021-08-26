@@ -153,7 +153,7 @@
             {
                 var phoneNumber = document.getElementById("phone_number").value;
 
-                if (phoneNumber.value && phoneNumber.replace(/[^0-9]/g, "").length < 7)
+                if (phoneNumber && phoneNumber.replace(/[^0-9]/g, "").length < 7)
                 {
                     e.preventDefault();
                     phoneNumberError.innerHTML = "Please enter a valid phone number with at least 7 digits.";

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Mode\ModeSession;
 use App\Mail\BusinessWaterEmail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
@@ -29,11 +31,33 @@ class BusinessWaterController extends Controller
             [
                 'full_name' => 'required|string',
                 'business_name' => 'required|string',
-                'email' => 'required|email',
                 'phone_number' => 'nullable|string',
+                'email' => 'required|email',
                 'call_back_time' => 'required|string'
             ]);
             if ($validator -> fails()) return back() -> withErrors($validator) -> withInput();
+
+            // try catch 2 - save file uploads to the database
+            try
+            {
+                DB::select('call Insert_RequestBusinessWater(?, ?, ?, ?, ?, ?)',
+                [
+                    $request -> input('full_name'),
+                    $request -> input('business_name'),
+                    $request -> input('phone_number'),
+                    $request -> input('email'),
+                    $request -> input('call_back_time'),
+                    now()
+                ]);
+
+                Log::channel('business-water') -> info('ConnectionsController -> connectionsPost(), Saved file upload details to the database', [ '$request -> all()' => $request -> all() ]);
+            }
+            catch (Throwable $th)
+            {
+                throw($th);
+                report($th);
+                Log::channel('business-water') -> error('ConnectionsController -> connectionsPost(), try catch 2, Error saving file upload details to the database  -:-  ' . $th -> getMessage(), [ '$request -> all()' => $request -> all() ]);
+            }
 
             // send an email to our support email address
             Mail::to(env('MAIL_TO_ADDRESS')) -> queue(new BusinessWaterEmail($form_data));

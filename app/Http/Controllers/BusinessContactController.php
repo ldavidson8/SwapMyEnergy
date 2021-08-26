@@ -29,18 +29,18 @@ class BusinessContactController extends Controller
             'full_name' => 'required',
             'phone_number' => 'required'
         ]);
-        
+
         if ($request -> has('email_address') && $request -> input('email_address') != "")
         {
             Validator::validate($request -> only(['email_address']), ['email_address' => 'email']);
         }
         Log::channel('request-callback') -> info('BusinessContactController -> requestCallbackPost(), Validated Successfully', [ 'successFlags' => $successFlags ]);
-        
+
 
         // try catch 1 - save form details to the database
         try
         {
-            $data = 
+            $data =
             [
                 'full_name' => $request -> input('full_name'),
                 'phone_number' => $request -> input('phone_number')
@@ -57,8 +57,7 @@ class BusinessContactController extends Controller
             report($th);
             Log::channel('request-callback') -> error('BusinessContactController -> requestCallbackPost(), try catch 1, Error saving form fields to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
         }
-        
-        
+
         // try catch 2 - save file uploads to the database
         $fileUploads = [];
         if ($request -> hasFile('billsUpload'))
@@ -87,7 +86,7 @@ class BusinessContactController extends Controller
                 Log::channel('request-callback') -> error('BusinessContactController -> requestCallbackPost(), try catch 2, Error saving file upload details to the database  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
             }
         }
-        
+
         // try catch 3 - send email
         try
         {
@@ -102,7 +101,7 @@ class BusinessContactController extends Controller
             report($th);
             Log::channel('request-callback') -> error('BusinessContactController -> requestCallbackPost(), try catch 3, Error sending email containing the callback request  -:-  ' . $th -> getMessage(), [ 'successFlags' => $successFlags ]);
         }
-        
+
         switch ($successFlags)
         {
             case 7:
@@ -162,3 +161,4 @@ class BusinessContactController extends Controller
     //     return request()->ip(); // it will return server ip when no client ip found
     // }
 }
+

@@ -66,7 +66,7 @@
             </div>
             <div class="d-none d-xl-block col-xl-2"></div>
         </div>
-            
+
     </div>
     <div class="container-fluid">
         <h2 class="section-heading"> E-commerce & Virtual Terminal </h2>
@@ -74,7 +74,7 @@
             <div class="d-none d-xl-block col-xl-1"></div>
             <div class="col-12 col-xl-5 text-center"><img src="{{ asset('img/payment-solutions-homepage/virtual-terminal.png') }}"></div>
             <div class="col-12 col-xl-5 d-flex justify-content-center justify-content-xl-start align-items-xl-center">
-                <p class=" text-center text-xl-left" style="font-size: 1.2em; width: 600px;"> A virtual terminal is a web-based payment system for processing over-the-phone transactions. It's basically a virtual card machine and you don't even need a company website to get one. Set up is quick and easy and you will be taking payments over the phone on any smartphone, tablet or PC in no time. Perfect for call centres or mail order businessess. No technical integration needed. </p>  
+                <p class=" text-center text-xl-left" style="font-size: 1.2em; width: 600px;"> A virtual terminal is a web-based payment system for processing over-the-phone transactions. It's basically a virtual card machine and you don't even need a company website to get one. Set up is quick and easy and you will be taking payments over the phone on any smartphone, tablet or PC in no time. Perfect for call centres or mail order businessess. No technical integration needed. </p>
             </div>
             <div class="d-none d-xl-block col-xl-1"></div>
         </div>
@@ -120,7 +120,7 @@
                         <input type="text" class="form-control tall-form-control" id="full_name" name="full_name"required="required" />
                     </div>
                     <div class="form-group">
-                        <span class="form-error-message" id="phoneNumberError"></span>
+                        <span class="form-error-message" id="phone_number_error"></span>
                         <div><label for="phone_number">Phone Number</label></div>
                         <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number"/>
                     </div>
@@ -141,19 +141,19 @@
     <script>
         document.body.onload = function()
         {
-            var phone_number_error = document.getElementById("phone_number_error");
+            var phoneNumberError = document.getElementById("phone_number_error");
             document.getElementById("paymentsForm").onsubmit = function (e)
             {
                 var phoneNumber = document.getElementById("phone_number").value;
 
-                if (phoneNumber.replace(/[^0-9]/g, "").length < 7)
+                if (phoneNumber && phoneNumber.replace(/[^0-9]/g, "").length < 7)
                 {
                     e.preventDefault();
-                    phone_number_error.innerHTML = "Please enter a valid phone number with at least 7 digits.";
+                    phoneNumberError.innerHTML = "Please enter a valid phone number with at least 7 digits.";
                 }
                 else
                 {
-                    phone_number_error.innerHTML = "";
+                    phoneNumberError.innerHTML = "";
                 }
             }
         };
