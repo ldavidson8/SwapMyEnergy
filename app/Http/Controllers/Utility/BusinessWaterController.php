@@ -44,8 +44,8 @@ class BusinessWaterController extends Controller
                 [
                     $request -> input('full_name'),
                     $request -> input('business_name'),
-                    $request -> input('phone_number'),
                     $request -> input('email'),
+                    $request -> input('phone_number'),
                     $request -> input('call_back_time'),
                     now()
                 ]);
