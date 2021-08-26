@@ -1,89 +1,7 @@
 @extends('layouts.master')
 
 @section('stylesheets')
-    <style>
-
-        body.business header, body.business nav, body.business #navbarSupportedContent
-        {
-            background-color: #279d7d;
-        }
-
-        body.residential header, body.residential nav, body.residential #navbarSupportedContent 
-        {
-            background-color: #279d7d;
-        }
-
-        body.business .header-switch-switch 
-        {
-            fill: #f3f2f1;
-        }
-
-        td
-        {
-            padding: 10px;
-        }
-        
-        .white-text
-        {
-            color: #f3f2f1;
-        }
-
-        img 
-        {
-            max-width: 100%;
-        }
-
-        .card-terminal-category
-        {
-
-        }
-
-        .card-terminal-category:not(:last-child)
-        {
-            background: linear-gradient(#787878,#787878) bottom/ 25% 2px no-repeat
-        }
-
-        .card-terminal-heading
-        {
-            font-weight: 700;
-            font-size: 1.5em;
-        }
-
-        .card-machine-image
-        {
-            min-width: 250px;
-            margin: 10px auto;
-        }
-
-        ul.green-tick-list
-        {
-            list-style-type: none;
-        }
-
-        ul.green-tick-list li:before
-        {
-            font-family: 'FontAwesome';
-            content: '\f00c';
-            margin:0 10px 0 -15px;
-            color: #279d7d;
-            font-size: 1.5em;
-            vertical-align: middle;
-        }
-
-        @media (min-width: 1200px)
-        {
-            .card-terminal-category:nth-child(n+2)
-            {
-                border-left: 2px solid #787878;
-            }
-
-            .card-terminal-category:not(:last-child)
-            {
-                background: none;
-            }
-        }
-
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/payment-solutions.css') }}" />
 @endsection
 
 @section('before-header')
@@ -96,7 +14,7 @@
             <div class="row flex-grow-1 no-padding center-content" style="background-image: url('{{ asset('img/background/payment-solutions-background.png') }}'); background-position: center bottom; ">
                 <div class="col-12 no-margin">
                     <div style="max-width: 100%; max-height: 100%;">
-                        <h1 class="white-text text-center" style="text-shadow: 0px 2px 8px #000000;">Payment solutions, <br> perfect for your business</h1>
+                        <h1 class="white-text text-center" style="text-shadow: 0px 2px 12px #000000; margin: 0;">Payment solutions, <br> perfect for your business</h1>
                     </div>
                 </div>
             </div>
@@ -104,7 +22,7 @@
     </div>
     <div class="full-size container-fluid">
         <div class="col-12" style="padding: 20px;">
-            <h2 style="font-size: 2em; text-align: center;"> Card Terminals </h2>
+            <h2 class="section-heading"> Card Terminals </h2>
             <div class="row">
                 <div class="col-xl-4 col-12 text-center card-terminal-category">
                     <p class="card-terminal-heading"> Fixed </p>
@@ -136,7 +54,7 @@
         </div>
     </div>
     <div class="full-size-60 container-fluid background-image-preston">
-        <h2 class="white-text" style="font-size: 2em; text-align: center;"> Go Mobile </h2>
+        <h2 class="white-text section-heading"> Go Mobile </h2>
         <div class="row">
             <div class="d-none d-xl-block    col-xl-2"></div>
             <div class="col-12 col-xl-4 text-center">
@@ -150,7 +68,7 @@
             
     </div>
     <div class="container-fluid">
-        <h2 style="font-size: 2em; text-align: center;"> E-commerce & Virtual Terminal </h2>
+        <h2 class="section-heading"> E-commerce & Virtual Terminal </h2>
         <div class="row">
             <div class="d-none d-xl-block col-xl-1"></div>
             <div class="col-12 col-xl-5 text-center"><img src="{{ asset('img/payment-solutions-homepage/virtual-terminal.png') }}"></div>
@@ -177,21 +95,45 @@
                 <p style="font-weight: 700;"> Accept payments remotely </p>
             </div>
         </div>
-        <p> Whether you are have retail store, a digital business or something in between, we can help to get you trading online using our payment gateways. For new business and start-ups a brilliant option is the hosted payment page offering fast and secure transactions. At the point of purchase clients are taken from your website to the secure payment page to complete the transaction. We can also provide a tailored, branded integrated payment page that sits in your website. </p>
+        <p> Whether you have a retail store, a digital business or something in between, we can help to get you trading online using our payment gateways. For new business and start-ups a brilliant option is the hosted payment page offering fast and secure transactions. At the point of purchase clients are taken from your website to the secure payment page to complete the transaction. We can also provide a tailored, branded integrated payment page that sits in your website. </p>
 
-        <p> Interested </p>
-        <ul class="green-tick-list">
-            <li>Simple to setup</li>
-            <li>Secure and reliable</li>
-            <li>Competitive pricing</li>
-            <li>Ability to serve customers 24/7</li>
-            <li>Reach customers anywhere</li>
-            <li>Real-time transactional reporting</li>
-            <li>Real-time payment autorisation</li>
-            <li>Low operational costs</li>
-        </ul>
+        <p class="section-heading" style="font-weight: bold"> Interested? </p>
+        <div class="row no-margin mb-5">
+            <div class="col-12 col-xl-6">
+                <ul class="green-tick-list">
+                    <li>Simple to setup</li>
+                    <li>Secure and reliable</li>
+                    <li>Competitive pricing</li>
+                    <li>Ability to serve customers 24/7</li>
+                    <li>Reach customers anywhere</li>
+                    <li>Real-time transactional reporting</li>
+                    <li>Real-time payment autorisation</li>
+                    <li>Low operational costs</li>
+                </ul>
+            </div>
+            <div class="col-12 col-xl-6">
+                <form id="paymentsForm" action="{{ route('payment-solutions') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="full_name">Full Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control tall-form-control" id="full_name" name="full_name"required="required" />
+                    </div>
+                    <div class="form-group">
+                        <span class="form-error-message" id="phoneNumberError"></span>
+                        <div><label for="phone_number">Phone Number</label></div>
+                        <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control tall-form-control" id="email" name="email" required="required" />
+                    </div>
+                    <div class="text-md-right text-center">
+                    <button type="submit" class="rounded-green-button full-width-button">Call Me</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <hr />
 @endsection
 
 @section('script')

@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class ConnectionsRequestEmail extends Mailable
+class PaymentSolutionsEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -26,15 +26,15 @@ class ConnectionsRequestEmail extends Mailable
             $formData = $this -> formData;
             $params = compact([ 'formData' ]);
 
-            Log::channel('connections') -> info('ConnectionsRequestEmail -> build(), Sending Request for Connections Request');
+            Log::channel('payment-solutions') -> info('PaymentSolutionsEmail -> build(), Sending Request for Payment Solutions Request');
 
-            $view = $this -> subject('Connections Request') -> view('_emails.contact-forms.connections-request', $params) -> text('_emails.contact-forms.connections-request-text', $params);
+            $view = $this -> subject('Payment Solutions Request') -> view('_emails.contact-forms.payment-solutions', $params) -> text('_emails.contact-forms.payment-solutions-text', $params);
             return $view;
         }
         catch (Throwable $ex)
         {
             report($ex);
-            Log::channel('connections') -> error('ConnectionsRequestEmail -> build(), Error Sending Request for Connections Request -:-  ' . $ex -> getMessage());
+            Log::channel('payment-solutions') -> error('PaymentSolutionsEmail -> build(), Error Sending Request for Payment Solutions Request -:-  ' . $ex -> getMessage());
             abort(500);
         }
     }

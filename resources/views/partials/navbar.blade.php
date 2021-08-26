@@ -26,7 +26,7 @@
                 </li>
                 <div class="d-xl-inline d-none" style="font-weight: 700;">|</div>
                 <li class="nav-item d-none d-xl-inline">
-                    <a class="nav-link navigation-link {{ ($navbar_page == "payments") ? 'navigation-link-current-page' : '' }}" href="{{ route("payments") }}">Payments</a>
+                    <a class="nav-link navigation-link {{ ($navbar_page == "payment-solutions") ? 'navigation-link-current-page' : '' }}" href="{{ route("payment-solutions") }}">Payment Solutions</a>
                 </li>
                 <div class="d-xl-inline d-none" style="font-weight: 700;">|</div>
                 <li class="nav-item d-none d-xl-inline">
@@ -44,9 +44,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="nav-link navigation-link {{ ($navbar_page == "connections") ? 'navigation-link-current-page' : '' }}" href="{{ route("connections") }}">Connections</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="nav-link navigation-link {{ ($navbar_page == "payments") ? 'navigation-link-current-page' : '' }}" href="{{ route("payments") }}">Payments</a>
-                    <a class="nav-link navigation-link {{ ($navbar_page == "connections") ? 'navigation-link-current-page' : '' }}" href="{{ route("connections") }}">Water</a>
+                    <a class="nav-link navigation-link {{ ($navbar_page == "payment-solutions") ? 'navigation-link-current-page' : '' }}" href="{{ route("payment-solutions") }}">Payment Solutions</a>
+                    <a class="nav-link navigation-link {{ ($navbar_page == "business-water") ? 'navigation-link-current-page' : '' }}" href="{{ route("business.water") }}">Water</a>
                 </div>
                 </li>
                 <div class="d-xs-block d-lg-none">

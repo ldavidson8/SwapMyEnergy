@@ -13,6 +13,11 @@ body.business .header-switch-switch
     fill: #f3f2f1;
 }
 
+.dropdown-menu
+{
+    background-color: #ffaa00;
+}
+
 td
 {
     padding: 10px;
