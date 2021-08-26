@@ -6,7 +6,7 @@
 
 @section('before-header')
     <div class="d-flex">
-        <div id="requestCallback" class="full-size container-fluid d-flex h-100 flex-column">
+        <div id="section01" class="full-size container-fluid d-flex h-100 flex-column">
 @endsection
 
 @section('main-content')
@@ -17,10 +17,11 @@
                         <h1 class="white-text text-center" style="text-shadow: 0px 2px 12px #000000; margin: 0;">Payment solutions, <br> perfect for your business</h1>
                     </div>
                 </div>
+                <a id="sdb01" class="d-md-block d-none" href="#CardTerminals"><span></span></a>
             </div>
         </div>
     </div>
-    <div class="full-size container-fluid">
+    <div id="CardTerminals" class="full-size container-fluid">
         <div class="col-12" style="padding: 20px;">
             <h2 class="section-heading"> Card Terminals </h2>
             <div class="row">

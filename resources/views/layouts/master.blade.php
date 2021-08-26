@@ -42,7 +42,7 @@
     <script type="text/javascript" src="{{ URL::asset('js/intersection-observer-api.js') }}"></script>
 
 </head>
-<body class="{{ (isset($navbar_page) && in_array($navbar_page, [ 'connections', 'payments' ])) ? 'business' : $mode }}">
+<body class="{{ (isset($navbar_page) && in_array($navbar_page, [ 'connections', 'payment-solutions', 'business-water' ])) ? 'business' : $mode }}">
     @yield('before-header')
 
     @auth
