@@ -3,6 +3,68 @@
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/white-box-infographics.css') }}" />
     <style>
+        body.business header, body.business nav, body.business #navbarSupportedContent
+        {
+            background-color: skyblue;
+        }
+
+        body.residential header, body.residential nav, body.residential #navbarSupportedContent
+        {
+            background-color: skyblue;
+        }
+
+        body.business .header-switch-switch
+        {
+            fill: #f3f2f1;
+        }
+
+        .dropdown-menu
+        {
+            background-color: skyblue;
+        }
+        #section01
+        {
+            position: relative;
+        }
+
+        #section01 #sdb01 span
+        {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: -12px;
+            border-left: 3px solid #f3f2f1;
+            border-bottom: 3px solid #f3f2f1;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            -webkit-animation: sdb04 2s infinite;
+            animation: sdb04 2s infinite;
+            box-sizing: border-box;
+        }
+        @-webkit-keyframes sdb04 {
+            0% {
+            -webkit-transform: rotate(-45deg) translate(0, 0);
+            }
+            20% {
+            -webkit-transform: rotate(-45deg) translate(-10px, 10px);
+            }
+            40% {
+            -webkit-transform: rotate(-45deg) translate(0, 0);
+            }
+        }
+        @keyframes sdb04 {
+            0% {
+            transform: rotate(-45deg) translate(0, 0);
+            }
+            20% {
+            transform: rotate(-45deg) translate(-10px, 10px);
+            }
+            40% {
+            transform: rotate(-45deg) translate(0, 0);
+            }
+        }
         h2
         {
             margin-top: 1rem;
@@ -23,13 +85,13 @@
 
 @section('before-header')
     <div class="d-flex">
-        <div id="requestCallback" class="full-size container-fluid d-flex h-100 flex-column">
+        <div id="section01" class="full-size container-fluid d-flex h-100 flex-column">
 @endsection
 
 @section('main-content')
             <hr/>
-            <div class="flex-grow-1 container-fluid no-padding background-image-water d-flex center-content">
-                <div class="row">
+            <div class="flex-grow-1 container-fluid no-padding background-image-water d-flex center-content" style="background-image: url('{{ asset('img/background/business-water-background.png') }}'); background-position: center bottom; ">
+                <div class="row" style="color: #f3f2f1;">
                     <div class="col-2 d-none d-xl-block"></div>
                     <div class="col-xl-4 col-lg-6 col-12 row no-margin">
                         <div style="max-width: 100%;">
@@ -71,7 +133,7 @@
                                         </select>
                                     </div>
                                     <div class="col-12 col-md my-3 m-md-0 align-items-end d-flex">
-                                        <button type="submit" class="rounded-blue-button" style="padding: 8px; width: 250px;">Call Me</button>
+                                        <button type="submit" class="rounded-blue-button" style="padding: 8px; width: 250px; background-color: skyblue;">Call Me</button>
                                     </div>
                                 </div>
                             </form>
@@ -81,9 +143,10 @@
                     <div class="col-2 d-none d-xl-block"></div>
                 </div>
             </div>
+            <a id="sdb01" class="d-md-block d-none" href="#WaterQuestions"><span></span></a>
         </div>
     </div>
-    <div class="container-xl" style="padding: 30px;">
+    <div id="WaterQuestions" class="container-xl" style="padding: 30px;">
         <h2>Common Water Switching Questions</h2>
 
         <h3>Is my business eligible to switch water supplier?</h3>
