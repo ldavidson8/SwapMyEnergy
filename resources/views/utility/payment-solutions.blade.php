@@ -50,8 +50,14 @@
                 <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-6.png') }}"></div>
             </div>
         </div>
-        <div class="d-none d-lg-block text-center mt-5 mb-5 mb-xl-0">
-            <img style="" src="{{ asset('img/payment-solutions-homepage/icons/platform-logos.png') }}">
+        <div class="d-none d-lg-block mt-5 mb-5 mb-xl-0">
+            <div class="row d-flex justify-content-around align-items-center">
+                <img class="platform-logo" src="{{ asset('img/payment-solutions-homepage/icons/pax-logo.png') }}" alt="" height="100px" width="200px">
+                <img class="platform-logo" src="{{ asset('img/payment-solutions-homepage/icons/ingenico-logo.png') }}" alt="" height="50px" width="200px">
+                <img class="platform-logo" src="{{ asset('img/payment-solutions-homepage/icons/spire-logo.png') }}" alt="" height="100px" width="200px">
+                <img class="platform-logo" src="{{ asset('img/payment-solutions-homepage/icons/ios-logo.png') }}" alt="" height="50px" width="100px">
+                <img class="platform-logo" src="{{ asset('img/payment-solutions-homepage/icons/android-logo.png') }}" alt="" height="100px" width="100px">
+            </div>
         </div>
     </div>
     <div class="full-size-60 container-fluid background-image-preston">
