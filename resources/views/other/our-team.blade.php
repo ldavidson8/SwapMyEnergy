@@ -54,7 +54,7 @@
         }
         .modal .modal-dialog
         {
-            width: 50%;
+            width: 100%;
             max-width: none;
             height: auto;
             margin: 0 auto;
@@ -122,6 +122,19 @@
         {
             transform: scale(1.1); /* (150% zoom)*/
         }
+
+        @media (min-width: 991px)
+        {
+            .modal .modal-dialog
+        {
+            width: 50%;
+            max-width: none;
+            height: auto;
+            margin: 0 auto;
+        }
+        }
+
+        
 
     </style>
 @endsection
