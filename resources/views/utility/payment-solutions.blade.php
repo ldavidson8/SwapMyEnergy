@@ -26,7 +26,7 @@
             <h2 class="section-heading"> Card Terminals </h2>
             <div class="row">
                 <div class="col-xl-4 col-12 text-center card-terminal-category">
-                    <p class="card-terminal-heading"> Fixed </p>
+                    <p class="card-terminal-heading"> Countertop </p>
                     <p> Accept card payments from a fixed location, directly from the till or sales counter. Great for all types of shops and retailers. </p>
 
                 </div>
