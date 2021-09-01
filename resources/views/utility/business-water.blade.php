@@ -80,6 +80,30 @@
             padding: 8px 12px;
             height: auto;
         }
+
+
+        .round-box-left
+        {
+            border-radius: 20px 0px 0px 20px;
+            background-color: white;
+            padding: 20px 20px 20px 10px;
+        }
+
+        .round-box-right
+        {
+            border-radius: 0px 20px 20px 0px;
+            background-color: white;
+            padding: 20px 20px 20px 10px;
+        }
+
+        @media (max-width: 1199px)
+        {
+            .round-box-left,
+            .round-box-right
+            {
+                border-radius: 0px;
+            }
+        }
     </style>
 @endsection
 
@@ -91,18 +115,18 @@
 @section('main-content')
             <hr/>
             <div class="flex-grow-1 container-fluid no-padding background-image-water d-flex center-content" style="background-image: url('{{ asset('img/background/business-water-background.png') }}'); background-position: center bottom; ">
-                <div class="row" style="color: #f3f2f1;">
+                <div class="row" style="text-shadow: 0px 0px 2px #f3f2f1;">
                     <div class="col-2 d-none d-xl-block"></div>
-                    <div class="col-xl-4 col-lg-6 col-12 row no-margin">
-                        <div style="max-width: 100%;">
+                    <div class="col-xl-4 col-lg-6 col-12 row no-padding" style="margin: auto 0px auto auto;">
+                        <div class="round-box-left" style="max-width: 100%; background-color: white; padding: 20px 10px 20px 20px;">
                             <h1>Business Water Comparison</h1>
                             <p>Since 2017, businesses have been allowed to change their water supplier. This allows you to have the freedom you deserve for your business. Find your business a supplier you can trust within your area by getting in touch today!</p>
                         </div>
                     </div>
                     <div class="col-2 d-none d-lg-none d-md-block"></div>
                     <div class="col-2 d-none d-lg-none d-md-block"></div>
-                    <div class="col-xl-4 col-lg-6 col-12 d-md-flex">
-                        <div style="width: 600px; max-width: 100%;">
+                    <div class="col-xl-4 col-lg-6 col-12 d-md-flex no-padding">
+                        <div class="round-box-right" style="">
                             <form id="requestCallbackForm" class="form-black" action="{{ route('business.water') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
@@ -163,7 +187,7 @@
 
         <h3>How do I find who my current supplier is?</h3>
         <p>The quickest and easiest way to find out who your water supplier is, is to find a bill.</p>
-        <p> If you can't find a recent bill, it might be the case that your supplier is a regional water supplier for the area that your business is situated in. The Water Services Regulation Authority (Ofwat) have a <a href="https://www.ofwat.gov.uk/wp-content/uploads/2015/10/water_supply_map.jpg" target="_blank">supplier map</a> that might help you work out who your current supplier is.</p>
+        <p>If you can't find a recent bill, it might be the case that your supplier is a regional water supplier for the area that your business is situated in. The Water Services Regulation Authority (Ofwat) have a <a href="https://www.ofwat.gov.uk/households/your-water-company/" target="_blank">supplier map</a> that might help you work out who your current supplier is.</p>
 
         <h3>How is my business charged for water?</h3>
         <p>Typically, there are two different ways you can be charged for your water supply. Either, you'll be charged based on the amount of water that your business uses, including a set charge if you're on a meter, or you'll pay a set amount based on the value of your businesses property.</p>
