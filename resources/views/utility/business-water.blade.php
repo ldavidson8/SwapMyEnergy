@@ -3,6 +3,68 @@
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/white-box-infographics.css') }}" />
     <style>
+        body.business header, body.business nav, body.business #navbarSupportedContent
+        {
+            background-color: skyblue;
+        }
+
+        body.residential header, body.residential nav, body.residential #navbarSupportedContent
+        {
+            background-color: skyblue;
+        }
+
+        body.business .header-switch-switch
+        {
+            fill: #f3f2f1;
+        }
+
+        .dropdown-menu
+        {
+            background-color: skyblue;
+        }
+        #section01
+        {
+            position: relative;
+        }
+
+        #section01 #sdb01 span
+        {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: -12px;
+            border-left: 3px solid #f3f2f1;
+            border-bottom: 3px solid #f3f2f1;
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            -webkit-animation: sdb04 2s infinite;
+            animation: sdb04 2s infinite;
+            box-sizing: border-box;
+        }
+        @-webkit-keyframes sdb04 {
+            0% {
+            -webkit-transform: rotate(-45deg) translate(0, 0);
+            }
+            20% {
+            -webkit-transform: rotate(-45deg) translate(-10px, 10px);
+            }
+            40% {
+            -webkit-transform: rotate(-45deg) translate(0, 0);
+            }
+        }
+        @keyframes sdb04 {
+            0% {
+            transform: rotate(-45deg) translate(0, 0);
+            }
+            20% {
+            transform: rotate(-45deg) translate(-10px, 10px);
+            }
+            40% {
+            transform: rotate(-45deg) translate(0, 0);
+            }
+        }
         h2
         {
             margin-top: 1rem;
@@ -18,29 +80,106 @@
             padding: 8px 12px;
             height: auto;
         }
+
+
+        .round-box-left
+        {
+            border-radius: 20px 0px 0px 20px;
+            background-color: white;
+            padding: 20px 10px 20px 20px;
+        }
+
+        .round-box-right
+        {
+            border-radius: 0px 20px 20px 20px;
+            background-color: white;
+            padding: 20px 20px 20px 20px;
+        }
+
+        .curved-corner-top-right
+        {
+            display: none;
+        }
+
+        @media (max-width: 1199px)
+        {
+            .round-box-left
+            {
+                border-radius: 0px;
+            }
+
+            .round-box-right
+            {
+                border-radius: 0px;
+                border-bottom-left-radius: 20px;
+            }
+        }
+
+        @media (min-width: 992px)
+        {
+            .curved-corner-top-right
+            {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                overflow: hidden;
+                position: absolute;
+                right: 0;
+                top: 100%;
+            }
+
+            .curved-corner-top-right:before
+            {
+                content: "";
+                display: block;
+                position: absolute;
+                right: 0;
+                width: 200%;
+                height: 200%;
+                border-radius: 50%;
+                top: 0;
+                box-shadow: 20px -20px 0 0 #f3f2f1;
+            }
+        }
+
+        @media (max-width: 991px)
+        {
+            .round-box-left
+            {
+                border-radius: 0px;
+            }
+
+            .round-box-right
+            {
+                border-radius: 0px;
+            }
+        }
     </style>
 @endsection
 
 @section('before-header')
     <div class="d-flex">
-        <div id="requestCallback" class="full-size container-fluid d-flex h-100 flex-column">
+        <div id="section01" class="full-size container-fluid d-flex h-100 flex-column">
 @endsection
 
 @section('main-content')
             <hr/>
-            <div class="flex-grow-1 container-fluid no-padding background-image-water d-flex center-content">
-                <div class="row">
+            <div class="flex-grow-1 container-fluid no-padding background-image-water d-flex center-content" style="background-image: url('{{ asset('img/background/business-water-background.png') }}'); background-position: center bottom; ">
+                <div class="row" style="text-shadow: 0px 0px 2px #f3f2f1;">
                     <div class="col-2 d-none d-xl-block"></div>
-                    <div class="col-xl-4 col-lg-6 col-12 row no-margin">
-                        <div style="max-width: 100%;">
-                            <h1>Business Water Comparison</h1>
-                            <p>Since 2017, businesses have been allowed to change their water supplier. This allows you to have the freedom you deserve for your business. Find your business a supplier you can trust within your area by getting in touch today!</p>
+                    <div class="col-xl-4 col-lg-6 col-12 row no-padding" style="margin: auto 0px auto auto;">
+                        <div>
+                            <div class="round-box-left" style="position: relative;">
+                                <div class="curved-corner curved-corner-top-right"></div>
+                                <h1 style="margin-top: 0px;">Business Water Comparison</h1>
+                                <p style="margin-bottom: 0px;">Since 2017, businesses have been allowed to change their water supplier. This allows you to have the freedom you deserve for your business. Find your business a supplier you can trust within your area by getting in touch today!</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-2 d-none d-lg-none d-md-block"></div>
                     <div class="col-2 d-none d-lg-none d-md-block"></div>
-                    <div class="col-xl-4 col-lg-6 col-12 d-md-flex">
-                        <div style="width: 600px; max-width: 100%;">
+                    <div class="col-xl-4 col-lg-6 col-12 d-md-flex no-padding">
+                        <div class="round-box-right">
                             <form id="requestCallbackForm" class="form-black" action="{{ route('business.water') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
@@ -71,7 +210,7 @@
                                         </select>
                                     </div>
                                     <div class="col-12 col-md my-3 m-md-0 align-items-end d-flex">
-                                        <button type="submit" class="rounded-blue-button" style="padding: 8px; width: 250px;">Call Me</button>
+                                        <button type="submit" class="rounded-blue-button" style="padding: 8px; width: 250px; background-color: skyblue;">Call Me</button>
                                     </div>
                                 </div>
                             </form>
@@ -81,9 +220,10 @@
                     <div class="col-2 d-none d-xl-block"></div>
                 </div>
             </div>
+            <a id="sdb01" class="d-md-block d-none" href="#WaterQuestions"><span></span></a>
         </div>
     </div>
-    <div class="container-xl" style="padding: 30px;">
+    <div id="WaterQuestions" class="container-xl" style="padding: 30px;">
         <h2>Common Water Switching Questions</h2>
 
         <h3>Is my business eligible to switch water supplier?</h3>
@@ -100,7 +240,7 @@
 
         <h3>How do I find who my current supplier is?</h3>
         <p>The quickest and easiest way to find out who your water supplier is, is to find a bill.</p>
-        <p> If you can't find a recent bill, it might be the case that your supplier is a regional water supplier for the area that your business is situated in. The Water Services Regulation Authority (Ofwat) have a <a href="https://www.ofwat.gov.uk/wp-content/uploads/2015/10/water_supply_map.jpg" target="_blank">supplier map</a> that might help you work out who your current supplier is.</p>
+        <p>If you can't find a recent bill, it might be the case that your supplier is a regional water supplier for the area that your business is situated in. The Water Services Regulation Authority (Ofwat) have a <a href="https://www.ofwat.gov.uk/households/your-water-company/" target="_blank">supplier map</a> that might help you work out who your current supplier is.</p>
 
         <h3>How is my business charged for water?</h3>
         <p>Typically, there are two different ways you can be charged for your water supply. Either, you'll be charged based on the amount of water that your business uses, including a set charge if you're on a meter, or you'll pay a set amount based on the value of your businesses property.</p>

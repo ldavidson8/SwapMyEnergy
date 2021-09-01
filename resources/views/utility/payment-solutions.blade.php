@@ -50,11 +50,17 @@
                 <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-6.png') }}"></div>
             </div>
         </div>
-        <div class="d-none d-lg-block text-center mt-5 mb-5 mb-xl-0">
-            <img style="" src="{{ asset('img/payment-solutions-homepage/icons/platform-logos.png') }}">
+        <div class="d-none d-lg-block mt-5 mb-5 mb-xl-0">
+            <div class="row d-flex justify-content-around align-items-center">
+                <img class="platform-logo" src="{{ asset('img/payment-solutions-homepage/icons/pax-logo.png') }}" alt="" height="100px" width="200px">
+                <img class="platform-logo" src="{{ asset('img/payment-solutions-homepage/icons/ingenico-logo.png') }}" alt="" height="50px" width="200px">
+                <img class="platform-logo" src="{{ asset('img/payment-solutions-homepage/icons/spire-logo.png') }}" alt="" height="100px" width="200px">
+                <img class="platform-logo" src="{{ asset('img/payment-solutions-homepage/icons/ios-logo.png') }}" alt="" height="50px" width="100px">
+                <img class="platform-logo" src="{{ asset('img/payment-solutions-homepage/icons/android-logo.png') }}" alt="" height="100px" width="100px">
+            </div>
         </div>
     </div>
-    <div class="full-size-60 container-fluid background-image-preston">
+    <div class="full-size-60 container-fluid background-image-preston" style="padding: 20px;">
         <h2 class="white-text section-heading"> Go Mobile </h2>
         <div class="row">
             <div class="d-none d-xl-block    col-xl-2"></div>
@@ -68,7 +74,7 @@
         </div>
 
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding: 20px;">
         <h2 class="section-heading"> E-commerce & Virtual Terminal </h2>
         <div class="row">
             <div class="d-none d-xl-block col-xl-1"></div>
@@ -98,40 +104,42 @@
         </div>
         <p> Whether you have a retail store, a digital business or something in between, we can help to get you trading online using our payment gateways. For new business and start-ups a brilliant option is the hosted payment page offering fast and secure transactions. At the point of purchase clients are taken from your website to the secure payment page to complete the transaction. We can also provide a tailored, branded integrated payment page that sits in your website. </p>
 
-        <p class="section-heading" style="font-weight: bold"> Interested? </p>
-        <div class="row no-margin mb-5">
-            <div class="col-12 col-xl-6">
-                <ul class="green-tick-list">
-                    <li>Simple to setup</li>
-                    <li>Secure and reliable</li>
-                    <li>Competitive pricing</li>
-                    <li>Ability to serve customers 24/7</li>
-                    <li>Reach customers anywhere</li>
-                    <li>Real-time transactional reporting</li>
-                    <li>Real-time payment autorisation</li>
-                    <li>Low operational costs</li>
-                </ul>
-            </div>
-            <div class="col-12 col-xl-6">
-                <form id="paymentsForm" action="{{ route('payment-solutions') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <label for="full_name">Full Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control tall-form-control" id="full_name" name="full_name"required="required" />
-                    </div>
-                    <div class="form-group">
-                        <span class="form-error-message" id="phone_number_error"></span>
-                        <div><label for="phone_number">Phone Number</label></div>
-                        <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control tall-form-control" id="email" name="email" required="required" />
-                    </div>
-                    <div class="text-md-right text-center">
-                    <button type="submit" class="rounded-green-button full-width-button">Call Me</button>
-                    </div>
-                </form>
+        <div style="padding: 20px;">
+            <p class="section-heading" style="font-weight: bold"> Interested? </p>
+            <div class="row no-margin">
+                <div class="col-12 col-xl-6">
+                    <ul class="green-tick-list">
+                        <li>Simple to setup</li>
+                        <li>Secure and reliable</li>
+                        <li>Competitive pricing</li>
+                        <li>Ability to serve customers 24/7</li>
+                        <li>Reach customers anywhere</li>
+                        <li>Real-time transactional reporting</li>
+                        <li>Real-time payment autorisation</li>
+                        <li>Low operational costs</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <form id="paymentsForm" action="{{ route('payment-solutions') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="full_name">Full Name <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control tall-form-control" id="full_name" name="full_name"required="required" />
+                        </div>
+                        <div class="form-group">
+                            <span class="form-error-message" id="phone_number_error"></span>
+                            <div><label for="phone_number">Phone Number</label></div>
+                            <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control tall-form-control" id="email" name="email" required="required" />
+                        </div>
+                        <div class="text-md-right text-center">
+                        <button type="submit" class="rounded-green-button full-width-button">Call Me</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

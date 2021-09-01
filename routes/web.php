@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::group([ 'prefix' => 'business' ], function()
+Route::group([ 'prefix' => '' ], function()
 {
     Route::get('/', 'BusinessHomeController@index') -> name('business.home');
     Route::get('/about', 'BusinessHomeController@about') -> name('business.about');
@@ -56,7 +56,7 @@ Route::group([ 'prefix' => 'business' ], function()
 |--------------------------------------------------------------------------
 */
 
-Route::group([ 'prefix' => '/' ], function()
+Route::group([ 'prefix' => '/residential' ], function()
 {
     Route::get('/', 'ResidentialHomeController@index') -> name('residential.home');
     Route::get('/about', 'ResidentialHomeController@about') -> name('residential.about');
@@ -183,20 +183,43 @@ Route::group([ 'prefix' => '/testing/errors/http/error-pages/' ], function()
 
 /*
 |--------------------------------------------------------------------------
+| Temporary Redirects
+|--------------------------------------------------------------------------
+*/
+
+Route::group([ 'prefix' => '/business' ], function()
+{
+    Route::get('/', function() { return redirect('/', 307); });
+    Route::get('/about', function() { return redirect('/about', 307); });
+    Route::get('/terms-and-conditions', function() { return redirect('/terms-and-conditions', 307); });
+    Route::get('/privacy-policy', function() { return redirect('/privacy-policy', 307); });
+    Route::get('/contact', function() { return redirect('/contact', 307); });
+    Route::get('/partners-and-affiliates', function() { return redirect('/partners-and-affiliates', 307); });
+    Route::get('/cookie-policy', function() { return redirect('/cookie-policy', 307); });
+    Route::get('/sitemap', function() { return redirect('/sitemap', 307); });
+    Route::get('/our-team', function() { return redirect('/our-team', 307); });
+});
+Route::get('/energy-comparison/address', function() { return redirect('/residential/energy-comparison/address', 307); });
+Route::get('/business/energy-comparison/address', function() { return redirect('/residential/energy-comparison/address', 307); });
+
+
+
+/*
+|--------------------------------------------------------------------------
 | Permanant Redirects
 |--------------------------------------------------------------------------
 */
 
-Route::group([ 'prefix' => '/residential' ], function()
-{
-    Route::get('/', function() { return redirect('/', 301); });
-    Route::get('/about', function() { return redirect('/about', 301); });
-    Route::get('/terms-and-conditions', function() { return redirect('/terms-and-conditions', 301); });
-    Route::get('/privacy-policy', function() { return redirect('/privacy-policy', 301); });
-    Route::get('/contact', function() { return redirect('/contact', 301); });
-    Route::get('/partners-and-affiliates', function() { return redirect('/partners-and-affiliates', 301); });
-    Route::get('/cookie-policy', function() { return redirect('/cookie-policy', 301); });
-    Route::get('/sitemap', function() { return redirect('/sitemap', 301); });
-    Route::get('/energy-comparison/address', function() { return redirect('/energy-comparison/address', 301); });
-});
-Route::get('/business/energy-comparison/address', function() { return redirect('/energy-comparison/address', 301); });
+// Route::group([ 'prefix' => '/residential' ], function()
+// {
+//     Route::get('/', function() { return redirect('/', 301); });
+//     Route::get('/about', function() { return redirect('/about', 301); });
+//     Route::get('/terms-and-conditions', function() { return redirect('/terms-and-conditions', 301); });
+//     Route::get('/privacy-policy', function() { return redirect('/privacy-policy', 301); });
+//     Route::get('/contact', function() { return redirect('/contact', 301); });
+//     Route::get('/partners-and-affiliates', function() { return redirect('/partners-and-affiliates', 301); });
+//     Route::get('/cookie-policy', function() { return redirect('/cookie-policy', 301); });
+//     Route::get('/sitemap', function() { return redirect('/sitemap', 301); });
+//     Route::get('/energy-comparison/address', function() { return redirect('/energy-comparison/address', 301); });
+// });
+// Route::get('/business/energy-comparison/address', function() { return redirect('/energy-comparison/address', 301); });
