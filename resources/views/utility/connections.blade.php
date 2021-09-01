@@ -96,7 +96,7 @@
     <hr />
     <div class="d-flex">
         <div class="full-size container-fluid d-flex flex-column background-image-preston">
-            <div class="container-xl"><h2 class="section-headers ml-0 ml-md-3" style="color: #f3f2f1;"> How long will it take? </h2></div>
+            <div class="container-xl no-padding"><h2 class="section-headers ml-0 ml-md-3" style="color: #f3f2f1;"> How long will it take? </h2></div>
             <div class="row">
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
                     <div class="white-box-infographics-inner">
@@ -128,7 +128,7 @@
                 </div>
                 <div class="col-md-3 d-lg-none"></div>
             </div>
-            <div class="container-xl">
+            <div class="container-xl no-padding">
                 <div class="infographic-info-banner">
                     <p> As soon as you get a call back from us, you will be in the best possible hands. We want to make the new connections
                         process as simple for you as possible. Sometimes things can slow down the process, such as:
