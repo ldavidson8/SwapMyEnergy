@@ -93,7 +93,7 @@
         {
             border-radius: 0px 20px 20px 20px;
             background-color: white;
-            padding: 20px 20px 20px 10px;
+            padding: 20px 20px 20px 20px;
         }
 
         .curved-corner-top-right
