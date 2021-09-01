@@ -119,7 +119,7 @@
                     <div class="col-2 d-none d-xl-block"></div>
                     <div class="col-xl-4 col-lg-6 col-12 row no-padding" style="margin: auto 0px auto auto;">
                         <div class="round-box-left" style="max-width: 100%; background-color: white; padding: 20px 10px 20px 20px;">
-                            <h1>Business Water Comparison</h1>
+                            <h1 style="margin-top: 0px;">Business Water Comparison</h1>
                             <p>Since 2017, businesses have been allowed to change their water supplier. This allows you to have the freedom you deserve for your business. Find your business a supplier you can trust within your area by getting in touch today!</p>
                         </div>
                     </div>
