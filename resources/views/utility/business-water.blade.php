@@ -86,19 +86,69 @@
         {
             border-radius: 20px 0px 0px 20px;
             background-color: white;
-            padding: 20px 20px 20px 10px;
+            padding: 20px 10px 20px 20px;
         }
 
         .round-box-right
         {
-            border-radius: 0px 20px 20px 0px;
+            border-radius: 0px 20px 20px 20px;
             background-color: white;
             padding: 20px 20px 20px 10px;
         }
 
+        .curved-corner-top-right
+        {
+            display: none;
+        }
+
         @media (max-width: 1199px)
         {
-            .round-box-left,
+            .round-box-left
+            {
+                border-radius: 0px;
+            }
+
+            .round-box-right
+            {
+                border-radius: 0px;
+                border-bottom-left-radius: 20px;
+            }
+        }
+
+        @media (min-width: 992px)
+        {
+            .curved-corner-top-right
+            {
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                overflow: hidden;
+                position: absolute;
+                right: 0;
+                top: 100%;
+            }
+
+            .curved-corner-top-right:before
+            {
+                content: "";
+                display: block;
+                position: absolute;
+                right: 0;
+                width: 200%;
+                height: 200%;
+                border-radius: 50%;
+                top: 0;
+                box-shadow: 20px -20px 0 0 #f3f2f1;
+            }
+        }
+
+        @media (max-width: 991px)
+        {
+            .round-box-left
+            {
+                border-radius: 0px;
+            }
+
             .round-box-right
             {
                 border-radius: 0px;
@@ -118,15 +168,18 @@
                 <div class="row" style="text-shadow: 0px 0px 2px #f3f2f1;">
                     <div class="col-2 d-none d-xl-block"></div>
                     <div class="col-xl-4 col-lg-6 col-12 row no-padding" style="margin: auto 0px auto auto;">
-                        <div class="round-box-left" style="max-width: 100%; background-color: white; padding: 20px 10px 20px 20px;">
-                            <h1 style="margin-top: 0px;">Business Water Comparison</h1>
-                            <p>Since 2017, businesses have been allowed to change their water supplier. This allows you to have the freedom you deserve for your business. Find your business a supplier you can trust within your area by getting in touch today!</p>
+                        <div>
+                            <div class="round-box-left" style="position: relative;">
+                                <div class="curved-corner curved-corner-top-right"></div>
+                                <h1 style="margin-top: 0px;">Business Water Comparison</h1>
+                                <p style="margin-bottom: 0px;">Since 2017, businesses have been allowed to change their water supplier. This allows you to have the freedom you deserve for your business. Find your business a supplier you can trust within your area by getting in touch today!</p>
+                            </div>
                         </div>
                     </div>
                     <div class="col-2 d-none d-lg-none d-md-block"></div>
                     <div class="col-2 d-none d-lg-none d-md-block"></div>
                     <div class="col-xl-4 col-lg-6 col-12 d-md-flex no-padding">
-                        <div class="round-box-right" style="">
+                        <div class="round-box-right">
                             <form id="requestCallbackForm" class="form-black" action="{{ route('business.water') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
