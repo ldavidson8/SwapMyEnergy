@@ -220,7 +220,7 @@
                     <div class="col-2 d-none d-xl-block"></div>
                 </div>
             </div>
-            <a id="sdb01" class="d-md-block d-none" href="#WaterQuestions"><span></span></a>
+            <a id="sdb01" class="d-lg-block d-none" href="#WaterQuestions"><span></span></a>
         </div>
     </div>
     <div id="WaterQuestions" class="container-xl" style="padding: 30px;">
