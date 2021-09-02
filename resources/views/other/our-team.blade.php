@@ -455,17 +455,17 @@
                             <p style="font-weight: bold">What were you doing before you joined Znergi Ltd? E.g. university previous jobs etc.</p>
                             <p>Before working at Znergi Ltd I was a volunteer teaching assistant in two local primary schools and before that I was studying Computing at University.</p>
                             <p style="font-weight: bold">What are your hobbies and interests?</p>
-                            <p>I spend most of my spare time writing stories and poetry related to my fictional setting Terror Firma as well as creating videos for the Terror Firma YouTube channel. Additionally I have a few other YouTube channels and a website.</p>
+                            <p>I spend most of my spare time writing stories and poetry related to my fictional setting Harrowed World as well as creating videos for the Harrowed World YouTube channel. Additionally I have a few other YouTube channels and a website.</p>
                             <p style="font-weight: bold">What are your goals and aspirations?</p>
                             <p>I hope to gain proficiency in digital marketing and gain interest for my writing in the hopes of selling books.</p>
                             <p style="font-weight: bold">What is your best joke?</p>
                             <p>What does a vampire have after a hard day at work? A bloodbath.</p>
                             <p style="font-weight: bold">What else would you like people to know about you?</p>
                             <ul>
-                                <li>You can find my website here: <a href="https://www.abterrorfirma.com/" target="_blank" rel="external">https://www.abterrorfirma.com/</a></li>
-                                <li>You can find my main YouTube channel here: <a href="https://www.youtube.com/c/TerrorFirma" target="_blank" rel="external">https://www.youtube.com/c/TerrorFirma</a></li>
-                                <li>You can find my main Twitter here: <a href="https://twitter.com/abterrorfirma" target="_blank" rel="external">https://twitter.com/abterrorfirma</a></li>
-                                <li>You can find my main Instagram here: <a href="https://www.instagram.com/abterrorfirma/" target="_blank" rel="external">https://www.instagram.com/abterrorfirma/</a></li>
+                                <li>You can find my website here: <a href="https://www.harrowedworld.com/" target="_blank" rel="external">https://www.harrowedworld.com/</a></li>
+                                <li>You can find my main YouTube channel here: <a href="https://youtube.com/channel/UCY3KOM1tFnZHY6TfAinGS2w" target="_blank" rel="external">https://www.youtube.com/c/harrowedworld</a></li>
+                                <li>You can find my main Twitter here: <a href="https://twitter.com/harrowedworld" target="_blank" rel="external">https://twitter.com/harrowedworld</a></li>
+                                <li>You can find my main Instagram here: <a href="https://www.instagram.com/harrowedworld/" target="_blank" rel="external">https://www.instagram.com/harrowedworld/</a></li>
                             </ul>
                         </div>
                       </div>
