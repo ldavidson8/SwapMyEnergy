@@ -68,7 +68,6 @@ class ResidentialApiController extends Controller
         catch (Throwable $th)
         {
             report($th);
-            throw($th);
         }
     }
 

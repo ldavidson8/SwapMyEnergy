@@ -692,21 +692,6 @@
                                     <input type="text" id="house_number" name="house_number" value="{{ old('house_number', $house_number) }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="postcode">Postcode <span class="text-danger">*</span></label>
-                                    <span id="postcode_error" class="form-error-message text-danger"></span>
-                                    <input type="text" id="postcode" name="postcode" value="{{ old('postcode', $postcode) }}" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="address_line_1">Address Line 1<span class="text-danger">*</span></label>
-                                    <span id="address_line_1_error" class="form-error-message text-danger"></span>
-                                    <input type="text" id="address_line_1" name="address_line_1" value="{{ old('address_line_1', trim($user_address["houseNo"] . " " . $user_address["houseName"])) }}" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="address_line_2">Address Line 2</label>
-                                    <span id="address_line_2_error" class="form-error-message text-danger"></span>
-                                    <input type="text" id="address_line_2" name="address_line_2" value="{{ old('address_line_2', '') }}" />
-                                </div>
-                                <div class="form-group">
                                     <label for="road_name">Road Name <span class="text-danger">*</span></label>
                                     <span id="road_name_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="road_name" name="road_name" value="{{ old('road_name', $road_name) }}" required />
@@ -720,6 +705,21 @@
                                     <label for="county">County</label>
                                     <span id="county_error" class="form-error-message text-danger"></span>
                                     <input type="text" id="county" name="county" value="{{ old('county', $county) }}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="postcode">Postcode <span class="text-danger">*</span></label>
+                                    <span id="postcode_error" class="form-error-message text-danger"></span>
+                                    <input type="text" id="postcode" name="postcode" value="{{ old('postcode', $postcode) }}" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="address_line_1">Address Line 1<span class="text-danger">*</span></label>
+                                    <span id="address_line_1_error" class="form-error-message text-danger"></span>
+                                    <input type="text" id="address_line_1" name="address_line_1" value="{{ old('address_line_1', trim($user_address["houseNo"] . " " . $user_address["houseName"])) }}" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="address_line_2">Address Line 2</label>
+                                    <span id="address_line_2_error" class="form-error-message text-danger"></span>
+                                    <input type="text" id="address_line_2" name="address_line_2" value="{{ old('address_line_2', '') }}" />
                                 </div>
 
                                 @if ($get_previous_addresses)
@@ -749,21 +749,6 @@
                                             <input type="text" id="prev_addr_1_house_number" name="prev_addr_1_house_number" value="{{ old('prev_addr_1_house_number', "") }}" required />
                                         </div>
                                         <div class="form-group">
-                                            <label for="prev_addr_1_postcode">Postcode <span class="text-danger">*</span></label>
-                                            <span id="prev_addr_1_postcode_error" class="form-error-message text-danger"></span>
-                                            <input type="text" id="prev_addr_1_postcode" name="prev_addr_1_postcode" value="{{ old('prev_addr_1_postcode', "") }}" required />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="prev_addr_1_address_line_1">Address Line 1 <span class="text-danger">*</span></label>
-                                            <span id="prev_addr_1_address_line_1_error" class="form-error-message text-danger"></span>
-                                            <input type="text" id="prev_addr_1_address_line_1" name="prev_addr_1_address_line_1" value="{{ old('prev_addr_1_address_line_1', "") }}" required />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="prev_addr_1_address_line_2">Address Line 2</label>
-                                            <span id="prev_addr_1_address_line_2_error" class="form-error-message text-danger"></span>
-                                            <input type="text" id="prev_addr_1_address_line_2" name="prev_addr_1_address_line_2" value="{{ old('prev_addr_1_address_line_2', "") }}" />
-                                        </div>
-                                        <div class="form-group">
                                             <label for="prev_addr_1_road_name">Road Name <span class="text-danger">*</span></label>
                                             <span id="prev_addr_1_road_name_error" class="form-error-message text-danger"></span>
                                             <input type="text" id="prev_addr_1_road_name" name="prev_addr_1_road_name" value="{{ old('prev_addr_1_road_name', "") }}" required />
@@ -777,6 +762,21 @@
                                             <label for="prev_addr_1_county">County</label>
                                             <span id="prev_addr_1_county_error" class="form-error-message text-danger"></span>
                                             <input type="text" id="prev_addr_1_county" name="prev_addr_1_county" value="{{ old('prev_addr_1_county', "") }}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_1_postcode">Postcode <span class="text-danger">*</span></label>
+                                            <span id="prev_addr_1_postcode_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_1_postcode" name="prev_addr_1_postcode" value="{{ old('prev_addr_1_postcode', "") }}" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_1_address_line_1">Address Line 1 <span class="text-danger">*</span></label>
+                                            <span id="prev_addr_1_address_line_1_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_1_address_line_1" name="prev_addr_1_address_line_1" value="{{ old('prev_addr_1_address_line_1', "") }}" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_1_address_line_2">Address Line 2</label>
+                                            <span id="prev_addr_1_address_line_2_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_1_address_line_2" name="prev_addr_1_address_line_2" value="{{ old('prev_addr_1_address_line_2', "") }}" />
                                         </div>
                                         <br /><br />
 
@@ -805,21 +805,6 @@
                                             <input type="text" id="prev_addr_2_house_number" name="prev_addr_2_house_number" value="{{ old('prev_addr_2_house_number', "") }}" required />
                                         </div>
                                         <div class="form-group">
-                                            <label for="prev_addr_2_postcode">Postcode <span class="text-danger">*</span></label>
-                                            <span id="prev_addr_2_postcode_error" class="form-error-message text-danger"></span>
-                                            <input type="text" id="prev_addr_2_postcode" name="prev_addr_2_postcode" value="{{ old('prev_addr_2_postcode', "") }}" required />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="prev_addr_2_address_line_1">Address Line 1 <span class="text-danger">*</span></label>
-                                            <span id="prev_addr_2_address_line_1_error" class="form-error-message text-danger"></span>
-                                            <input type="text" id="prev_addr_2_address_line_1" name="prev_addr_2_address_line_1" value="{{ old('prev_addr_2_address_line_1', "") }}" required />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="prev_addr_2_address_line_2">Address Line 2</label>
-                                            <span id="prev_addr_2_address_line_2_error" class="form-error-message text-danger"></span>
-                                            <input type="text" id="prev_addr_2_address_line_2" name="prev_addr_2_address_line_2" value="{{ old('prev_addr_2_address_line_2', "") }}" />
-                                        </div>
-                                        <div class="form-group">
                                             <label for="prev_addr_2_road_name">Road Name <span class="text-danger">*</span></label>
                                             <span id="prev_addr_2_road_name_error" class="form-error-message text-danger"></span>
                                             <input type="text" id="prev_addr_2_road_name" name="prev_addr_2_road_name" value="{{ old('prev_addr_2_road_name', "") }}" required />
@@ -833,6 +818,21 @@
                                             <label for="prev_addr_2_county">County</label>
                                             <span id="prev_addr_2_county_error" class="form-error-message text-danger"></span>
                                             <input type="text" id="prev_addr_2_county" name="prev_addr_2_county" value="{{ old('prev_addr_2_county', "") }}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_2_postcode">Postcode <span class="text-danger">*</span></label>
+                                            <span id="prev_addr_2_postcode_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_2_postcode" name="prev_addr_2_postcode" value="{{ old('prev_addr_2_postcode', "") }}" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_2_address_line_1">Address Line 1 <span class="text-danger">*</span></label>
+                                            <span id="prev_addr_2_address_line_1_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_2_address_line_1" name="prev_addr_2_address_line_1" value="{{ old('prev_addr_2_address_line_1', "") }}" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prev_addr_2_address_line_2">Address Line 2</label>
+                                            <span id="prev_addr_2_address_line_2_error" class="form-error-message text-danger"></span>
+                                            <input type="text" id="prev_addr_2_address_line_2" name="prev_addr_2_address_line_2" value="{{ old('prev_addr_2_address_line_2', "") }}" />
                                         </div>
                                         <br /><br />
 
@@ -865,21 +865,6 @@
                                         <input type="text" id="billing_house_number" name="billing_house_number" value="{{ old('billing_house_number', "") }}" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="billing_postcode">Postcode <span class="text-danger">*</span></label>
-                                        <span id="billing_postcode_error" class="form-error-message text-danger"></span>
-                                        <input type="text" id="billing_postcode" name="billing_postcode" value="{{ old('billing_postcode', '') }}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="billing_address_line_1">Address Line 1 <span class="text-danger">*</span></label>
-                                        <span id="billing_address_line_1_error" class="form-error-message text-danger"></span>
-                                        <input type="text" id="billing_address_line_1" name="billing_address_line_1" value="{{ old('billing_address_line_1', '') }}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="billing_address_line_2">Address Line 2</label>
-                                        <span id="billing_address_line_2_error" class="form-error-message text-danger"></span>
-                                        <input type="text" id="billing_address_line_2" name="billing_address_line_2" value="{{ old('billing_address_line_2', '') }}" />
-                                    </div>
-                                    <div class="form-group">
                                         <label for="billing_road_name">Road Name <span class="text-danger">*</span></label>
                                         <span id="billing_road_name_error" class="form-error-message text-danger"></span>
                                         <input type="text" id="billing_road_name" name="billing_road_name" value="{{ old('billing_road_name', "") }}" required />
@@ -893,6 +878,21 @@
                                         <label for="billing_county">County</label>
                                         <span id="billing_county_error" class="form-error-message text-danger"></span>
                                         <input type="text" id="billing_county" name="billing_county" value="{{ old('billing_county', "") }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="billing_postcode">Postcode <span class="text-danger">*</span></label>
+                                        <span id="billing_postcode_error" class="form-error-message text-danger"></span>
+                                        <input type="text" id="billing_postcode" name="billing_postcode" value="{{ old('billing_postcode', '') }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="billing_address_line_1">Address Line 1 <span class="text-danger">*</span></label>
+                                        <span id="billing_address_line_1_error" class="form-error-message text-danger"></span>
+                                        <input type="text" id="billing_address_line_1" name="billing_address_line_1" value="{{ old('billing_address_line_1', '') }}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="billing_address_line_2">Address Line 2</label>
+                                        <span id="billing_address_line_2_error" class="form-error-message text-danger"></span>
+                                        <input type="text" id="billing_address_line_2" name="billing_address_line_2" value="{{ old('billing_address_line_2', '') }}" />
                                     </div>
                                 </fieldset>
 
@@ -1939,10 +1939,6 @@
             mainForm.onsubmit = function(e)
             {
                 $(".form-error-message").text('');
-
-                @if ($get_previous_addresses)
-
-                @endif
 
                 // if (inputPaymentMethod.val().length == 0)
                 // {
