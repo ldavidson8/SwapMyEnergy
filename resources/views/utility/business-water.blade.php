@@ -18,9 +18,9 @@
             fill: #f3f2f1;
         }
 
-        .dropdown-menu
+        #nav-dropdown
         {
-            background-color: skyblue;
+            background-color: skyblue !important;
         }
         #section01
         {
