@@ -150,7 +150,7 @@
     </div>
     <div class="team-wrapper row center-content">
         <!-- Business Development Managers -->
-        <div class="col-lg-2 d-none d-lg-block"></div>
+        <div class="col-lg-1 d-none d-lg-block"></div>
         <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Corey-Brooks.png') }}">
@@ -164,6 +164,40 @@
         <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Jack-Moore.png') }}">
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+            <div class="card">
+                <a class="hover-zoom" href="#" data-toggle="modal" data-target="#jonathanf">
+                    <img alt="" class="member-img" src="{{ asset('img/our-team/Jonathan-Finn.png') }}">
+                    </a>
+                    <div class="modal" id="jonathanf" tabindex="-1" role="dialog" aria-labelledby="jonathanf" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <img alt="" src="{{ asset('img/our-team-avatars/johnathan-finn.png') }}" width="120" height="120">
+                                <div class="member-info">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Jonathan Finn</h5><br>
+                                    <h6> Customer Sales Advisor </h6>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="fas fa-window-close"></i>
+                              </button>
+                            </div>
+                            <div class="modal-body business-dev">
+                                <p style="font-weight: bold">What are your hobbies and interests?</p>
+                                <p>I love street art, painting murals and keeping animals.</p>
+                                <p style="font-weight: bold">What is your best joke?</p>
+                                <p>What do you call a fake noodle?<br/>
+                                    an impasta...<br/>
+                                    I’ll be here all night.
+                                </p>
+                                <p style="font-weight: bold">What else would you like people to know about you?</p>
+                                <p>I was born and raised in the middle east.</p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
             </div>
         </div>
         <div class="col-lg-2 col-md-4 col-12 card-wrapper">
@@ -197,7 +231,7 @@
                     </div>
             </div>
         </div>
-        <div class="col-lg-2 d-none d-lg-block"></div>
+        <div class="col-lg-1 d-none d-lg-block"></div>
         <div class="col-lg-2 d-none d-lg-block"></div>
         <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
@@ -287,52 +321,16 @@
         </div>
         <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
-                <a class="hover-zoom" href="#" data-toggle="modal" data-target="#jonathanf">
-                    <img alt="" class="member-img" src="{{ asset('img/our-team/Jonathan-Finn.png') }}">
-                    </a>
-                    <div class="modal" id="jonathanf" tabindex="-1" role="dialog" aria-labelledby="jonathanf" aria-hidden="true">
-                        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                                <img alt="" src="{{ asset('img/our-team-avatars/johnathan-finn.png') }}" width="120" height="120">
-                                <div class="member-info">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Jonathan Finn</h5><br>
-                                    <h6> Customer Sales Advisor </h6>
-                                </div>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <i class="fas fa-window-close"></i>
-                              </button>
-                            </div>
-                            <div class="modal-body customer-sales">
-                                <p style="font-weight: bold">What are your hobbies and interests?</p>
-                                <p>I love street art, painting murals and keeping animals.</p>
-                                <p style="font-weight: bold">What is your best joke?</p>
-                                <p>What do you call a fake noodle?<br/>
-                                    an impasta...<br/>
-                                    I’ll be here all night.
-                                </p>
-                                <p style="font-weight: bold">What else would you like people to know about you?</p>
-                                <p>I was born and raised in the middle east.</p>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
-            <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Mohammad-Waheed.png') }}">
             </div>
         </div>
-        <div class="col-lg-3 d-none d-lg-block"></div>
         <!-- Data Officers -->
-        <div class="col-lg-5 d-none d-lg-block"></div>
         <div class="col-lg-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Michael-Ranstead.png') }}">
             </div>
         </div>
-        <div class="col-lg-5 d-none d-lg-block"></div>
+        <div class="col-lg-3 d-none d-lg-block"></div>
         <!-- Administrators -->
         <div class="col-lg-2 d-none d-lg-block"></div>
         <div class="col-lg-2 col-md-4 col-12 card-wrapper">

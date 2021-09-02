@@ -551,7 +551,8 @@ input:not([type=submit], [type=button], [type=reset])::-webkit-input-placeholder
 
 body.residential header,
 body.residential nav,
-body.residential #navbarSupportedContent
+body.residential #navbarSupportedContent,
+body.residential #nav-dropdown
 {
     background-color: #f3f2f1;
 }
@@ -574,7 +575,8 @@ body.residential .navigation-link-current-page
 
 body.business header,
 body.business nav,
-body.business #navbarSupportedContent
+body.business #navbarSupportedContent,
+body.business #nav-dropdown
 {
     background-color: #00c2cb;
 }
