@@ -110,7 +110,18 @@
             });
 
 
-            btnPostcode.click(function()
+            btnPostcode.click(PostcodeSearch);
+            document.getElementById("form_postcode").onkeydown = function(e)
+            {
+                e = e || window.event;
+
+                if (event.keyCode == "Enter" || event.keyCode == 13 || event.which == "Enter" || event.which == 13 || event.char == "Enter" || event.char == 13 || event.key == "Enter" || event.key == 13 || event.char == "Enter" || event.char == 13)
+                {
+                    PostcodeSearch();
+                }
+            };
+
+            function PostcodeSearch()
             {
                 HidePostcodeError();
 
@@ -180,7 +191,7 @@
                     HideAddressSection();
                     console.log(ex.message);
                 }
-            });
+            };
 
             inputHouseNo.change(function(e)
             {
