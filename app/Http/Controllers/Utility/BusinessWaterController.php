@@ -54,7 +54,6 @@ class BusinessWaterController extends Controller
             }
             catch (Throwable $th)
             {
-                throw($th);
                 report($th);
                 Log::channel('business-water') -> error('ConnectionsController -> connectionsPost(), try catch 2, Error saving file upload details to the database  -:-  ' . $th -> getMessage(), [ '$request -> all()' => $request -> all() ]);
             }
@@ -67,7 +66,6 @@ class BusinessWaterController extends Controller
         }
         catch (Throwable $th)
         {
-            throw($th);
             report($th);
             return redirect() -> route('business.water.error');
         }

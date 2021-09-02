@@ -150,7 +150,6 @@ class ContactController extends Controller
         }
         catch (Throwable $th)
         {
-            throw($th);
             report($th);
             Log::channel('partner-apply') -> error('ConnectionsController -> connectionsPost(), try catch 2, Error saving file upload details to the database  -:-  ' . $th -> getMessage(), [ '$request -> all()' => $request -> all() ]);
         }
@@ -245,7 +244,6 @@ class ContactController extends Controller
         }
         catch (Throwable $th)
         {
-            throw($th);
             report($th);
             Log::channel('affiliate-apply') -> error('ConnectionsController -> connectionsPost(), try catch 2, Error saving file upload details to the database  -:-  ' . $th -> getMessage(), [ '$request -> all()' => $request -> all() ]);
         }
