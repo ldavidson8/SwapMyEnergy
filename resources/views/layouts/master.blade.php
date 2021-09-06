@@ -41,6 +41,9 @@
     <!-- Our Scripts -->
     <script type="text/javascript" src="{{ URL::asset('js/intersection-observer-api.js') }}"></script>
 
+    <!-- Cookie consent banner -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
 </head>
 <body class="{{ (isset($navbar_page) && in_array($navbar_page, [ 'connections', 'payment-solutions', 'business-water' ])) ? 'business' : $mode }}">
     @yield('before-header')
@@ -88,6 +91,29 @@
     <!-- Scripts -->
     @yield('script')
     <script src="{{ asset('js/site.js') }}" defer="true"></script>
+    <script src="{{ asset('js/site.js') }}" defer="true"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+    <script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#202020",
+        "text": "#f3f2f1"
+        },
+        "button": {
+        "background": "#00d2db",
+        "text": "#202020"
+        }
+    },
+    "theme": "classic",
+    "position": "bottom-right",
+    "content": {
+        "message": "This website uses cookies. We use cookies to personalise content and ads, to provide social media features and to analyse our traffic ",
+        "href": "https://swapmyenergy.co.uk/cookie-policy"
+    }
+    });
+    </script>
 
 </body>
 </html>
