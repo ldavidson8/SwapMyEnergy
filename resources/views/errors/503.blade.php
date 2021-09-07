@@ -19,18 +19,30 @@
                 <table class="table-center-contents">
                     <tr>
                         <td>
-                            <h1 style="font-weight: bold; font-size: 40px; color: #000;  text-align: center; letter-spacing: -3px;"><span style="letter-spacing: 3px; font-size: 100px; color: #00C2CB;">503</span><br />This Service Is Unavailable</h1>
+                            <h1 class="numbers" style="color: #000;">
+                                <?= 5?>@include('errors.partials.random_doughnut')3
+                            </h1>
+                                
+                            <h1 class="error-title" style="color: #000;"> This Service Is Unavailable
+                            </h1>
+
                             <br />
-                            <div style="color: #000; text-align: center; font-size: 18px; letter-spacing: 1px;">
-                                <p>The server is  <span style="color: #00C2CB;">temporarily unable to <br /> handle your request,</span>  Please try again later</p>
+
+                            <div class="error-text" style="color: #000;">
+                                <p>The server is  <span style="color: #00C2CB;">temporarily unable to <br /> handle your request,</span>  Please try again later.</p>
+
                                 <br />
+
                                 <p>You can contact us using the details below.</p>
+
                                 <p>
                                     Telephone: {{ env('DATA_CONTACT_PHONE_NUMBER') }}<br />
-                                    Email: {{ env('DATA_CONTACT_EMAIL') }}.
+                                    Email: {{ env('DATA_CONTACT_EMAIL') }}
                                 </p>
+
                                 <br />
-                                <div style="display: flex; justify-content: center; align-items: center;">
+
+                                <div class="error-button">
                                     <p><a href="{{ url() -> previous()}}" onclick="history.back()"><button class="big-blue-button" style="width: 300px; font-size: 23px;">Go Back</button></a></p>
                                 </div>
                             </div>

@@ -19,18 +19,29 @@
                 <table class="table-center-contents">
                     <tr>
                         <td>
-                            <h1 style="font-weight: bold; font-size: 40px; color: #000;  text-align: center; letter-spacing: -3px;"><span style="letter-spacing: 3px; font-size: 100px; color: #fff;">500</span><br />Something Went Wrong<br /> :(</h1>
+                            <h1 class="numbers" style="color: #fff;">
+                                <?= 5?>@include('errors.partials.random_doughnut')@include('errors.partials.random_doughnut')
+                            </h1>
+                                
+                            <h1 class="error-title" style="color: #000;">Something Went Wrong<br /> :(</h1>
+
                             <br />
-                            <div style="color: #000; text-align: center; font-size: 18px; letter-spacing: 1px;">
+
+                            <div class="error-text" style="color: #000;">
                                 <p>The server encountered an <span style="color: #00C2CB;">internal error</span> and<br />was unable to complete your request</p>
+
                                 <br />
+
                                 <p>You can contact us using the details below.</p>
+
                                 <p>
                                     Telephone: {{ env('DATA_CONTACT_PHONE_NUMBER') }}<br />
-                                    Email: {{ env('DATA_CONTACT_EMAIL') }}.
+                                    Email: {{ env('DATA_CONTACT_EMAIL') }}
                                 </p>
+
                                 <br />
-                                <div style="display: flex; justify-content: center; align-items: center;">
+
+                                <div class="error-button">
                                     <p><a href="{{ url() -> previous()}}" onclick="history.back()"><button class="big-blue-button" style="width: 300px; font-size: 23px;">Go Back</button></a></p>
                                 </div>
                             </div>

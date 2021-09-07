@@ -37,6 +37,9 @@
     <script src="{{ asset('js/bootstrap-4.5.2.min.js') }}" defer="true"></script>
     <!-- Google AdSense Script -->
     <script data-ad-client="ca-pub-7935793974309189" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- Google Analytics Script -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5P3KQE148V"></script>
+    <script src="{{ URL::asset('js/google-analytics.js') }}"></script>
 
     <!-- Our Scripts -->
     <script type="text/javascript" src="{{ URL::asset('js/intersection-observer-api.js') }}"></script>
