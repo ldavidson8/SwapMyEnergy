@@ -15,7 +15,7 @@
                 <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
                 <div class="col-xl-4 col-lg-6 col-md-8 col-12 row no-margin">
                     <div style="max-width: 100%; max-height: 100%;">
-                        <h1 class="white-text">Get your home or business connected with peace of mind</h1>
+                        <h1 class="white-text">Get Your Home Or Business Connected With Peace Of Mind</h1>
                         <p class="white-text"> We can assist you in connecting your home or business to the mains gas or electricity supply. We go above and beyond to make the process of establishing a connection to your property straightforward and stress-free, leaving you with peace of mind. </p>
                     </div>
                 </div>
@@ -96,10 +96,10 @@
     <hr />
     <div class="d-flex">
         <div class="full-size container-fluid d-flex flex-column background-image-preston">
-            <div class="container-xl no-padding"><h2 class="section-headers ml-0 ml-md-3" style="color: #f3f2f1;"> How long will it take? </h2></div>
+            <div class="container-xl no-padding"><h2 class="section-headers ml-0 ml-md-3" style="color: #f3f2f1; text-align: center;"> How long will it take? </h2></div>
             <div class="row">
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
-                    <div class="white-box-infographics-inner">
+                    <div class="white-box-infographics-inner" style="background-color: #ffafdd;">
                         <div style="text-align: center;">
                             <img class="infographics-image" src="{{ asset('img/connections-page/paper.png') }}" alt=""/>
                             <p class="infographics-header"> Get a quote </p>
@@ -108,21 +108,21 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
-                    <div class="white-box-infographics-inner">
+                    <div class="white-box-infographics-inner" style="background-color: #00c2cb;">
                         <div style="text-align: center;">
-                            <img class="infographics-image" src="{{ asset('img/connections-page/flame.png') }}" alt=""/>
-                            <p class="infographics-header"> Gas implementation </p>
-                            <p>This will normally take around 6-8 weeks to complete, depending on the scale of the work needed</p>
+                            <img class="infographics-image" src="{{ asset('img/connections-page/flash.png') }}" alt=""/>
+                            <p class="infographics-header"> Electricity implementation </p>
+                            <p>This will normally take around 6-12 weeks to complete, depending on the scale of the work needed</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 d-lg-none"></div>
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
-                    <div class="white-box-infographics-inner">
+                    <div class="white-box-infographics-inner" style="background-color: #ffff00;">
                         <div style="text-align: center;">
-                            <img class="infographics-image" src="{{ asset('img/connections-page/flash.png') }}" alt=""/>
-                            <p class="infographics-header"> Electricity implementation </p>
-                            <p>This will normally take around 6-12 weeks to complete, depending on the scale of the work needed</p>
+                            <img class="infographics-image" src="{{ asset('img/connections-page/flame.png') }}" alt=""/>
+                            <p class="infographics-header"> Gas implementation </p>
+                            <p>This will normally take around 6-8 weeks to complete, depending on the scale of the work needed</p>
                         </div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@
             <h2 class="section-headers"> Our Services </h2>
             <div class="row">
                 <div class="col-12 col-lg-4 col-md-6 service-infographic mb-5 mb-lg-0" style="text-align: center;">
-                    <div class="service-infographics-inner center-content">
+                    <div class="service-infographics-inner center-content" style="background-color: #ffafdd;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/connections-page/home.png') }}" alt=""/>
                             <p class="infographics-header"> Home Energy Switching </p>
@@ -156,7 +156,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 col-md-6 service-infographic mb-5 mb-lg-0">
-                    <div class="service-infographics-inner center-content" style="background-color: #00c2cb">
+                    <div class="service-infographics-inner center-content" style="background-color: #00c2cb;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/connections-page/suitcase.png') }}" alt=""/>
                             <p class="infographics-header"> Business Energy Switching </p>
@@ -165,7 +165,7 @@
                 </div>
                 <div class="col-md-3 d-lg-none"></div>
                 <div class="col-12 col-lg-4 col-md-6 service-infographic mb-5 mb-lg-0">
-                    <div class="service-infographics-inner center-content" style="background-color: #ffaa00">
+                    <div class="service-infographics-inner center-content" style="background-color: #ffaa00;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/connections-page/wrench.png') }}" alt=""/>
                             <p class="infographics-header"> Gas & Electricity Connections </p>

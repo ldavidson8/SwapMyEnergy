@@ -11,10 +11,10 @@
 
 @section('main-content')
             <hr/>
-            <div class="row flex-grow-1 no-padding center-content" style="background-image: url('{{ asset('img/background/payment-solutions-background.png') }}'); background-position: center bottom; ">
+            <div class="row flex-grow-1 no-padding" style="background-image: url('{{ asset('img/background/payment-solutions-background.png') }}'); background-position: center bottom; align-items: top; justify-content: top; -ms-flex-pack: center; margin: auto;">
                 <div class="col-12 no-margin">
                     <div style="max-width: 100%; max-height: 100%;">
-                        <h1 class="white-text text-center" style="text-shadow: 0px 2px 12px #000000; margin: 0;">Payment solutions, <br> perfect for your business</h1>
+                        <h1 class="white-text text-center" style="text-shadow: 0px 2px 12px #000000; margin: 230px 0 50px;">Payment Solutions, <br> Perfect For Your Business</h1>
                     </div>
                 </div>
                 <a id="sdb01" class="d-md-block d-none" href="#CardTerminals"><span></span></a>
@@ -23,31 +23,28 @@
     </div>
     <div id="CardTerminals" class="full-size container-fluid">
         <div class="col-12" style="padding: 20px;">
-            <h2 class="section-heading"> Card Terminals </h2>
+            <h2 class="section-heading" style="margin-bottom: 30px;"> Card Terminals </h2>
             <div class="row">
                 <div class="col-xl-4 col-12 text-center card-terminal-category">
                     <p class="card-terminal-heading"> Countertop </p>
                     <p> Accept card payments from a fixed location, directly from the till or sales counter. Great for all types of shops and retailers. </p>
-
                 </div>
                 <div class="col-xl-4 col-12 text-center card-terminal-category">
                     <p class="card-terminal-heading"> Portable </p>
                     <p> Connect via bluetooth or wi-fi, a portable machine is great for restaurants, bars and pubs where you need to take payments away from the till. </p>
-
                 </div>
                 <div class="col-xl-4 col-12 text-center card-terminal-category">
                     <p class="card-terminal-heading"> Mobile </p>
                     <p> Using a roaming sim card, our mobile card machines can be taken anywhere. Great for farmers markets, exhibitions, festivals and trades people, you can take payments wherever you are. </p>
-
                 </div>
             </div>
-            <div class="row no-margin mt-5">
-                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-1.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-2.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-3.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-4.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-5.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-6.png') }}"></div>
+            <div class="row no-margin mt-5 no-padding">
+                <div class="col-xl-2 col-lg-4 col-6 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-1.png') }}"></div>
+                <div class="col-xl-2 col-lg-4 col-6 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-2.png') }}"></div>
+                <div class="col-xl-2 col-lg-4 col-6 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-3.png') }}"></div>
+                <div class="col-xl-2 col-lg-4 col-6 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-4.png') }}"></div>
+                <div class="col-xl-2 col-lg-4 col-6 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-5.png') }}"></div>
+                <div class="col-xl-2 col-lg-4 col-6 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-6.png') }}"></div>
             </div>
         </div>
         <div class="d-none d-lg-block mt-5 mb-5 mb-xl-0">
@@ -61,7 +58,7 @@
         </div>
     </div>
     <div class="full-size-60 container-fluid background-image-preston" style="padding: 20px;">
-        <h2 class="white-text section-heading"> Go Mobile </h2>
+        <h2 class="white-text section-heading" style="margin-bottom: 30px;"> Go Mobile </h2>
         <div class="row">
             <div class="d-none d-xl-block    col-xl-2"></div>
             <div class="col-12 col-xl-4 text-center">
@@ -75,7 +72,7 @@
 
     </div>
     <div class="container-fluid" style="padding: 20px;">
-        <h2 class="section-heading"> E-commerce & Virtual Terminal </h2>
+        <h2 class="section-heading" style="margin-bottom: 30px;"> E-commerce & Virtual Terminal </h2>
         <div class="row">
             <div class="d-none d-xl-block col-xl-1"></div>
             <div class="col-12 col-xl-5 text-center"><img src="{{ asset('img/payment-solutions-homepage/virtual-terminal.png') }}"></div>

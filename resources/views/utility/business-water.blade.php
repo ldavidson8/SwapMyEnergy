@@ -224,7 +224,7 @@
         </div>
     </div>
     <div id="WaterQuestions" class="container-xl" style="padding: 30px;">
-        <h2>Common Water Switching Questions</h2>
+        <h2 style="font-size: 39px;">Common Water Switching Questions</h2>
 
         <h3>Is my business eligible to switch water supplier?</h3>
         <p>Any businesses based in England of Scotland are eligible to switch their supplier. It's a bit different if your business is located in Wales or Northern Ireland. In Wales, if your business uses over 50 megalitres of water a year, then it's eligible. Unfortunately, businesses within Northern Ireland don't have the option to switch their water supplier.</p>
@@ -251,7 +251,7 @@
             <h2 style="color: #f3f2f1;">The Process</h2>
             <div class="row" style="width: 1300px; max-width: 100%;">
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
-                    <div class="white-box-infographics-inner">
+                    <div class="white-box-infographics-inner" style="background-color: #ffafdd;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/infographic icons/signed-form.svg') }}" alt="Image of a signed form" />
                             <p class="infographics-header">Fill in our form</p>
@@ -260,7 +260,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
-                    <div class="white-box-infographics-inner">
+                    <div class="white-box-infographics-inner" style="background-color: #00c2cb;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/connections-page/paper.png') }}" alt="Image of paper" />
                             <p class="infographics-header">Get a quote</p>
@@ -270,7 +270,7 @@
                 </div>
                 <div class="col-md-3 d-lg-none"></div>
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
-                    <div class="white-box-infographics-inner">
+                    <div class="white-box-infographics-inner" style="background-color: #ffff00;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/infographic icons/switch-icon.svg') }}" alt="Image of a switch" />
                             <p class="infographics-header">Get switching</p>

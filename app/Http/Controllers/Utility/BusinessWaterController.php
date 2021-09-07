@@ -16,6 +16,8 @@ class BusinessWaterController extends Controller
 {
     public function get()
     {
+        ModeSession::setBusiness();
+
         $navbar_page = 'business-water';
         $page_title = 'Business Water Comparison - Swap My Energy';
         return view('utility.business-water', compact('navbar_page', 'page_title'));
