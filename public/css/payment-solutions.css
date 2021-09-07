@@ -1,0 +1,158 @@
+body.business header, body.business nav, body.business #navbarSupportedContent
+{
+    background-color: #279d7d;
+}
+
+body.residential header, body.residential nav, body.residential #navbarSupportedContent 
+{
+    background-color: #279d7d;
+}
+
+body.business .header-switch-switch 
+{
+    fill: #f3f2f1;
+}
+
+#nav-dropdown
+{
+    background-color: #279d7d !important;
+}
+
+#section01
+{
+    position: relative;
+}
+
+#section01 #sdb01 span
+{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin-left: -12px;
+    border-left: 3px solid #f3f2f1;
+    border-bottom: 3px solid #f3f2f1;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-animation: sdb04 2s infinite;
+    animation: sdb04 2s infinite;
+    box-sizing: border-box;
+}
+  @-webkit-keyframes sdb04 {
+    0% {
+      -webkit-transform: rotate(-45deg) translate(0, 0);
+    }
+    20% {
+      -webkit-transform: rotate(-45deg) translate(-10px, 10px);
+    }
+    40% {
+      -webkit-transform: rotate(-45deg) translate(0, 0);
+    }
+  }
+  @keyframes sdb04 {
+    0% {
+      transform: rotate(-45deg) translate(0, 0);
+    }
+    20% {
+      transform: rotate(-45deg) translate(-10px, 10px);
+    }
+    40% {
+      transform: rotate(-45deg) translate(0, 0);
+    }
+  }
+
+.full-width-button
+{
+    width: 100%;
+    padding: 20px;
+    font-size: 28px;
+}
+
+.rounded-green-button
+{
+    background-color: #279d7d;
+    border: none;
+    color: #f3f2f1;
+    border-radius: 18px;
+    font-weight: bold;
+}
+
+.white-text
+{
+    color: #f3f2f1;
+}
+
+.section-heading
+{
+    text-align: center;
+    font-size: 2em;
+}
+
+img 
+{
+    max-width: 100%;
+}
+
+.card-terminal-category:not(:last-child)
+{
+    background: linear-gradient(#787878,#787878) bottom/ 25% 2px no-repeat
+}
+
+.card-terminal-heading
+{
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.card-machine-image
+{
+    min-width: 250px;
+    margin: 10px auto;
+}
+
+ul.green-tick-list
+{
+    list-style-type: none;
+    font-weight: 500;
+    padding: 0 0 0 5px;
+}
+
+ul.green-tick-list li:before
+{
+    font-family: 'FontAwesome';
+    content: '\f00c';
+    margin:0 10px 0 -15px;
+    color: #279d7d;
+    font-size: 1.5em;
+    vertical-align: middle;
+}
+
+
+@media (min-width: 768px)
+{
+    .full-width-button
+    {
+        width: 250px;
+        padding: 20px;
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 1200px)
+{
+    .card-terminal-category:nth-child(n+2)
+    {
+        border-left: 2px solid #787878;
+    }
+
+    .card-terminal-category:not(:last-child)
+    {
+        background: none;
+    }
+
+    ul.green-tick-list
+    {
+        text-align: center;
+    }
+}

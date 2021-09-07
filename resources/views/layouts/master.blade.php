@@ -9,9 +9,9 @@
     @if (isset($description))
         <meta name="description" content="{{ $description }}" />
     @endif
-    
+
     <link rel="shortcut icon" type="image/jpg" href="{{ asset('favicon.png') }}"/>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet" />
@@ -21,31 +21,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet" />
 
     <!-- Bootstrap Stylesheet -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-4.5.2.min.css') }}" />
 
     <!-- Our Stylesheets -->
     <link rel="stylesheet" href="{{ asset('css/site.css') }}" />
-    
+
     <link rel="preload" href="{{ asset('css/site.preload.css') }}" as="style" onload="this.onload = null; this.rel = 'stylesheet';" />
     <noscript><link rel="stylesheet" href="{{ asset('css/site.preload.css') }}"></noscript>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/6e2d0444fe.js" crossorigin="anonymous"></script>
     @yield('stylesheets')
-    
+
     <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer="true"></script>
+    <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-4.5.2.min.js') }}" defer="true"></script>
+    <!-- Google AdSense Script -->
+    <script data-ad-client="ca-pub-7935793974309189" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <!-- Our Scripts -->
     <script type="text/javascript" src="{{ URL::asset('js/intersection-observer-api.js') }}"></script>
 
+    <!-- Cookie consent banner -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
 </head>
-<body class="{{ $mode }}">
+<body class="{{ (isset($navbar_page) && in_array($navbar_page, [ 'connections', 'payment-solutions', 'business-water' ])) ? 'business' : $mode }}">
     @yield('before-header')
+
+    @auth
+        <div style="text-align: center; background-color: #202020; color: white; position: sticky; top: 0; z-index: 20;">Hello {{ Auth::user() -> name }}. You are logged in.</div>
+    @endauth
 
     <header>
         <a aria-hidden="false" tabindex="-1" href="{{ ($mode == 'business') ? route('residential.home') : route('business.home') }}" class="mode-switch"></a>
-        
+
         <div class="logo-svg" width="auto" style="position: relative;">
             <a href="{{ route("$mode.home") }}">
                 <img alt="Swap My Energy Logo" src="{{ asset('img/header/logo_text.svg') }}" style="position: absolute; left: 8px; top: 0px; width: 85px;" />
@@ -78,10 +87,33 @@
     @include('partials.foooter')
 
     @yield('after-footer')
-    
+
     <!-- Scripts -->
     @yield('script')
     <script src="{{ asset('js/site.js') }}" defer="true"></script>
+    <script src="{{ asset('js/site.js') }}" defer="true"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+    <script>
+    window.cookieconsent.initialise({
+    "palette": {
+        "popup": {
+        "background": "#202020",
+        "text": "#f3f2f1"
+        },
+        "button": {
+        "background": "#00d2db",
+        "text": "#202020"
+        }
+    },
+    "theme": "classic",
+    "position": "bottom-right",
+    "content": {
+        "message": "This website uses cookies. We use cookies to personalise content and ads, to provide social media features and to analyse our traffic ",
+        "href": "https://swapmyenergy.co.uk/cookie-policy"
+    }
+    });
+    </script>
 
 </body>
 </html>

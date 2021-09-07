@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Hash;
 class RegisteredUserController extends Controller
 {
     /**
+     * Display the register view.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create(Request $request)
+    {
+        return view('auth.register', [ 'request' => $request, 'navbar_page' => 'login', 'page_title' => 'Register' ]);
+    }
+
+    /**
      * Handle an incoming registration request.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -31,17 +41,13 @@ class RegisteredUserController extends Controller
             'password' => 'required|string|confirmed|min:8'
         ]);
 
-        $user = User::create([
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'api_token' => Str::random(60)
         ]);
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(ModeSession::getHomeUrl());
+        return redirect(route('register-success'));
     }
 }

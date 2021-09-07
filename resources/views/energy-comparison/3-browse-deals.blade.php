@@ -32,6 +32,7 @@
 
         .estimated-annual-energy-costs-banner-white
         {
+            font-size: 22px;
             background-color: #f3f2f1;
             color: #202020;
             border-radius: 100px;
@@ -45,8 +46,8 @@
             text-transform: uppercase;
             color: #f3f2f1;
             font-size: 24px;
-        } 
-        
+        }
+
         .outer-rounded-container
         {
             border-radius: 35px;
@@ -55,7 +56,7 @@
             font-size: 26px;
             color: #f3f2f1;
         }
-        
+
         .rounded-container
         {
             border-radius: 0 0 35px 35px !important;
@@ -96,16 +97,16 @@
 
         .switch-form-button
         {
-            display:inline-block; 
-            background:#00c2cb; 
+            display:inline-block;
+            background:#00c2cb;
             text-align: center;
             color: #f3f2f1;
-            font-weight: 700; 
-            -webkit-appearance:button; 
-            padding:10px 20px; 
-            position:relative; 
-            cursor:context-menu; 
-            margin: 15px 0; 
+            font-weight: 700;
+            -webkit-appearance:button;
+            padding:10px 20px;
+            position:relative;
+            cursor:context-menu;
+            margin: 15px 0;
             border-radius: 8px;
             border: none;
         }
@@ -163,7 +164,7 @@
             z-index: 2;
             position: relative;
         }
-        
+
         .form-top-middle-heading
         {
             text-align: left;
@@ -177,7 +178,7 @@
 
         .form-top-img
         {
-            background-color: #f3f2f1; 
+            background-color: #f3f2f1;
             padding: 35px;
             /* border-radius: 0 35px 0 0; */
             border-radius: 0 35px 0 35px;
@@ -226,20 +227,20 @@
             padding-left: 15px;
             font-weight: normal;
         }
-        
+
         .tariff-feature
         {
-            display:inline-block; 
-            background:#00c2cb; 
-            width: 100%; 
-            text-align: center; 
-            color: #f3f2f1; 
-            -webkit-appearance:button; 
-            padding:3px 8px 3px 8px; 
-            font-size:16px; 
-            position:relative; 
-            cursor:context-menu; 
-            margin: 0.5em 0; 
+            display:inline-block;
+            background:#00c2cb;
+            width: 100%;
+            text-align: center;
+            color: #f3f2f1;
+            -webkit-appearance:button;
+            padding:3px 8px 3px 8px;
+            font-size:16px;
+            position:relative;
+            cursor:context-menu;
+            margin: 0.5em 0;
             border-radius: 8px;
         }
         .form-outer-box
@@ -271,11 +272,11 @@
         {
             position: relative !important;
         }
-        
+
         .sticky-toggle-tab
         {
             display: none !important;
-            border-radius: 
+            border-radius:
         }
 
         .sticky:not(.sticky-hidden) .sticky-toggle-tab
@@ -298,7 +299,7 @@
         {
             color: #202020;
         }
-        
+
 
         .existing-supplier-logo
         {
@@ -307,7 +308,7 @@
             background-color: #f3f2f1;
             text-align: center;
         }
-        
+
         .existing-tariff-monthly-bill
         {
             text-align: center;
@@ -322,7 +323,7 @@
             font-size: 20px;
             padding: 0px;
         }
-        
+
         @media (min-width: 768px) and (min-height: 768px)
         {
             .sticky:not(.sticky-hidden)
@@ -359,17 +360,17 @@
             {
                 padding-left: 0px;
             }
-            
+
             .existing-supplier-logo
             {
                 border-radius: 0px 0px 33px 33px;
             }
-            
+
             .new-tariff-estimated-cost
             {
                 border: none;
             }
-            
+
             .existing-tariff-monthly-bill
             {
                 border-bottom: none;
@@ -377,7 +378,7 @@
                 padding-right: 20px;
                 padding-bottom: 0px;
             }
-            
+
             .existing-tariff-contract-length
             {
                 padding-left: 20px;
@@ -391,7 +392,7 @@
             {
                 display: none;
             }
-            
+
             .estimated-annual-energy-costs-banner-white
             {
                 border-radius: 0;
@@ -423,12 +424,12 @@
                 padding: 0px;
                 padding-top: 15px !important;
             }
-            
+
             .existing-supplier-logo
             {
                 border-radius: 0px;
             }
-            
+
             .form-outer-box
             {
                 padding: 0;
@@ -438,7 +439,7 @@
             {
                 border-radius: 0;
             }
-            
+
             .form-top-img-border-sm
             {
                 border-radius: 0;
@@ -449,7 +450,7 @@
             {
                 text-align: center;
             }
-            
+
             .pricing-text
             {
                 float: none;
@@ -465,7 +466,7 @@
             {
                 width: 100%;
             }
-            
+
             .table-block-on-mobile tbody,
             .table-block-on-mobile tr,
             .table-block-on-mobile td
@@ -474,12 +475,12 @@
                 width: 100%;
                 max-width: 100%;
             }
-            
+
             .table-tariff
             {
                 width: 100%;
             }
-            
+
             .table-tariff tbody,
             .table-tariff tr,
             .table-tariff th,
@@ -531,13 +532,13 @@
     <script>
         var stickyToggleTabClose = $("#sticky-toggle-tab-close");
         var stickyExistingTariff = $("#sticky-existing-tariff");
-        
+
         var stickyToggleTabOpen = $("#sticky-toggle-tab-open");
         var stickyNone = $("#sticky-none");
-        
+
         var markerOpen = document.getElementById("sticky-toggle-marker-open");
         var markerClose = document.getElementById("sticky-toggle-marker-close");
-        
+
         stickyToggleTabClose.click(function()
         {
             stickyExistingTariff.addClass("sticky-hidden");
@@ -549,7 +550,7 @@
             stickyExistingTariff.removeClass("sticky-hidden");
             stickyNone.addClass("sticky-hidden");
         });
-        
+
         document.body.onscroll = function()
         {
             if (window.pageYOffset > markerClose.offsetTop)
@@ -560,7 +561,7 @@
             {
                 stickyExistingTariff.removeClass("sticky");
             }
-            
+
             if (window.pageYOffset > markerOpen.offsetTop + 100)
             {
                 stickyNone.addClass("sticky");

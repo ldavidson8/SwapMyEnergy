@@ -99,7 +99,6 @@
             var inputPostcode = $("#postcode");
             var inputHouseName = $("#houseName");
             var inputHouseNo = $("#houseNo");
-            var inputHouseNoValues = $("#houseNo_values");
             var inputMpan = $("#mpan");
 
             $.ajaxSetup(
@@ -111,7 +110,18 @@
             });
 
 
-            btnPostcode.click(function()
+            btnPostcode.click(PostcodeSearch);
+            document.getElementById("form_postcode").onkeydown = function(e)
+            {
+                e = e || window.event;
+
+                if (event.keyCode == "Enter" || event.keyCode == 13 || event.which == "Enter" || event.which == 13 || event.char == "Enter" || event.char == 13 || event.key == "Enter" || event.key == 13 || event.char == "Enter" || event.char == 13)
+                {
+                    PostcodeSearch();
+                }
+            };
+
+            function PostcodeSearch()
             {
                 HidePostcodeError();
 
@@ -148,9 +158,6 @@
                                 // var rows = JSON.parse(result);
                                 var rows = result;
 
-                                // sort the rows by the address property
-                                // rows.sort((a, b) => (a.address.localeCompare(b.address, 'en', { numeric: true })));
-
                                 // empty the dropdown list
                                 inputHouseNo.find("option:not(.initial-values)").remove();
 
@@ -159,6 +166,7 @@
                                 {
                                     inputHouseNo.append($('<option class="house-number-option" value="' + rows[i].houseNo + '" data-mpan="' + rows[i].mpan + '" data-houseName="' + rows[i].houseName + '">' + rows[i].address + '</option>'));
                                 }
+                                inputHouseNo.append($('<option class="house-number-option" value="notListed" data-mpan="notListed" data-houseName="notListed">My address is not listed</option>'));
 
                                 ShowAddressSection();
                             }
@@ -183,7 +191,7 @@
                     HideAddressSection();
                     console.log(ex.message);
                 }
-            });
+            };
 
             inputHouseNo.change(function(e)
             {

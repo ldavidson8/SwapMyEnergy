@@ -12,9 +12,12 @@ class ResidentialApiController extends Controller
     {
         try
         {
-            //$result = Repository::addresses($postcode, $status);
-            $status = 200;
-            $result = json_decode('[{"line1":"","line2":"","line3":"3","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":12345678},{"line1":"","line2":"","line3":"5","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":12345678},{"line1":"","line2":"","line3":"6","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":12345678},{"line1":"","line2":"","line3":"7","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":12345678},{"line1":"","line2":"","line3":"8","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":12345678},{"line1":"","line2":"","line3":"2","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":12345678},{"line1":"","line2":"","line3":"20","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":12345678},{"line1":"","line2":"","line3":"10","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":12345678},{"line1":"","line2":"","line3":"56","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":12345678},{"line1":"","line2":"","line3":"64","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":12345678}]');
+            // TODO: Cleaned - uncomment
+            $result = Repository::addresses($postcode, $status);
+
+            // TODO: Cleaned - comment
+            // $status = 200;
+            // $result = json_decode('[{"line1":"","line2":"","line3":"3","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":1610013330437},{"line1":"","line2":"","line3":"5","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":1610013330437},{"line1":"","line2":"","line3":"6","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":1610013330437},{"line1":"","line2":"","line3":"7","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":1610013330437},{"line1":"","line2":"","line3":"8","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":1610013330437},{"line1":"","line2":"","line3":"2","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":1610013330437},{"line1":"","line2":"","line3":"20","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":1610013330437},{"line1":"","line2":"","line3":"10","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":1610013330437},{"line1":"","line2":"","line3":"56","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":1610013330437},{"line1":"","line2":"","line3":"64","line4":"","line5":"TOWER GREEN","line6":"","line6":"FULWOOD","line7":"PRESTON","line8":"","line9":"LANCASHIRE","mpan":1610013330437}]');
 
             if (!isset($result)) return response() -> json([ 'error' => 'An Error Occured' ], $status);
 
@@ -65,7 +68,6 @@ class ResidentialApiController extends Controller
         catch (Throwable $th)
         {
             report($th);
-            throw($th);
         }
     }
 
@@ -113,10 +115,6 @@ class ResidentialApiController extends Controller
         }
 
         return response() -> json($responseArray, $status);
-    }
-
-    public static function address($postcode, $houseNo)
-    {
     }
 
     public static function addresses_mprn($postcode, $houseNo, $houseName = null)

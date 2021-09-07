@@ -136,7 +136,7 @@
     <hr style="border-color: #00c2cb;" />
     <div class="background-image-preston-behind">
         <div id="support" class="full-size container-fluid d-flex h-100 flex-column font-color-white background-image-preston background-image-bottom preload">
-            <h1 style="text-align: center"> Support </h1>
+            <h2 style="text-align: center; font-size: 2.5rem; margin-top: 30px;">Support</h2>
             <div class="row flex-grow-1 align-items-center padding-20px">
                 <div class="center-content" style="width: 600px; max-width: 100%;">
                     <div class="contact-us-blue-box-inner" style='content: ""; clear: both; display: table;'>

@@ -12,7 +12,7 @@ use App\Models\TheEnergyShopAPI\ExistingTariffGasModel;use App\Models\TheEnergyS
 use App\Models\TheEnergyShopAPI\ExistingTariffDualFuelOneModel;
 use App\Models\TheEnergyShopAPI\ExistingTariffDualFuelTwoModel;
 use App\Models\TheEnergyShopAPI\ExistingTariffElecModel;
-
+use App\Repository\ResidentialAPICompletedDataRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -26,7 +26,8 @@ class ResidentialComparisonController extends Controller
         ModeSession::setResidential();
 
         $page_title = 'Compare Energy Prices - Find Address';
-        return view('energy-comparison.1-get-address', compact('page_title'));
+        return view('energy-comparison.1-coming-soon', compact('page_title'));
+        // return view('energy-comparison.1-get-address', compact('page_title'));
     }
 
     public function findAddressPost(Request $request)
@@ -41,6 +42,7 @@ class ResidentialComparisonController extends Controller
             Session::forget('ResidentialAPI.selected_payment_methods');
             Session::forget('ResidentialAPI.reference');
 
+            // server side validation
             $fields = $request -> all();
             $validator = Validator::make($fields,
             [
@@ -50,23 +52,64 @@ class ResidentialComparisonController extends Controller
             if ($validator -> fails()) { return redirect() -> route('residential.energy-comparison.1-address') -> withErrors($validator -> errors()); }
             Log::channel('energy-comparison/find-address-post') -> info('ContactController -> raiseSupportRequest(), Form Validated Successfully');
 
-            $status = 200;
-            $mprn = Repository::addresses_mprn($fields['postcode'], $fields['houseNo'], $fields['houseName'], $status);
 
-            $region = Repository::regionsByPostcode($request -> input("postcode"), $request -> input("mpan"), $region_status);
+            // retrieve more data using the postcode and mpan
+            $mprn = null;
+            $mpan_details = null;
+            if ($fields["mpan"] == "notListed")
+            {
+                // TODO: Cleaned - uncomment
+                $region = Repository::regionsByPostcode($request -> input("postcode"), $region_status);
+                // TODO: Cleaned - comment
+                // $region_status = 200;
+                // $region = [ "id" => 7,"name" => "Norweb","defaultSupplier" => 14,"defaultSupplierName" => "E.ON","coreElecRegion" => null,"mpanDistributorId" => 0,"phoneNumber" => "0800 048 1820" ];
+            }
+            else
+            {
+                // TODO: Cleaned - uncomment
+                $mpan_details = Repository::addresses_mpandetails($fields["mpan"], $status);
+                // TODO: Cleaned - comment
+                // $mpan_details = json_decode('{"line1":null,"line2":null,"line3":"8","line4":null,"line5":"TOWER GREEN","line6":null,"line7":"FULWOOD","line8":"PRESTON","line9":"LANCASHIRE","profileClass":"01","supplierMpid":"MRCY","meteredIndicator":"T","meteredIndicatorEfd":"20190323","supplierId":104,"supplierName":"Octopus Energy","consumerType":"Domestic","mpanMeterDetails":{"meterSerialNumber":"A05N025958","meterType":"N"}}');
+
+                // TODO: Cleaned - uncomment
+                $mprn = Repository::addresses_mprn($fields['postcode'], $fields['houseNo'], $fields['houseName'], $status);
+                // TODO: Cleaned - comment
+                // $mprn = json_decode('{"address_id":"6005872369","house_name":"","house_number":"8","country":"GB","county":"LA","current_supplier_id":"OCT","delivery_point_alias":"","dependent_street":"","dmq":10715,"double_dependent_locality":"","gas_transport_id":"Cadent Gas Limited","ldz_id":"NW","meter_capacity":"2","meter_mechanism_code":"CR","meter_serial_number":"200844S","mpaq":"10715","mprn":"1558777101","ndmq":"10715","po_box_number":"","post_town":"PRESTON","postcode":"PR2 9UU","smart_equipment_technical_code":"","street":"TOWER GREEN","sub_building_name":"","supplierId":5,"supplierName":"British Gas"}');
+
+                // TODO: Cleaned - uncomment
+                $region = Repository::regionsByPostcodeAndMpan($request -> input("postcode"), $request -> input("mpan"), $region_status);
+                // TODO: Cleaned - comment
+                // $region_status = 200;
+                // $region = [ "id" => 7,"name" => "Norweb","defaultSupplier" => 14,"defaultSupplierName" => "E.ON","coreElecRegion" => null,"mpanDistributorId" => 0,"phoneNumber" => "0800 048 1820" ];
+            }
             if (!isset($region))
             {
                 // api request returned no data
-                Log::channel('energy-comparison/find-address-post') -> info('ContactController -> raiseSupportRequest(), Repository::regionsByPostcode(), status: $region_status');
-                return redirect() -> route('residential.energy-comparison.1-address') -> withErrors([ 'error' => 'An error occured, please try again later.' ]) -> withInput();
+                Log::channel('energy-comparison/find-address-post') -> info("ContactController -> raiseSupportRequest(), Repository::regionsByPostcode(), status: $region_status");
+                return $this -> BackTo1FindAddress();
             }
 
             if (!isset($fields["movingHouse"])) $fields["movingHouse"] = false;
             Session::put('ResidentialAPI.user_address', $fields);
+            Session::put('ResidentialAPI.mpan_details', $mpan_details);
             Session::put('ResidentialAPI.mprn', $mprn);
             Session::put('ResidentialAPI.region', $region);
 
+
+            // Retrieve and generate lists of suppliers for the region
+            // TODO: uncomment
             $suppliers = Repository::suppliersByRegion($region["id"], $status);
+            // TODO: comment
+            // $suppliers =
+            // [
+            //     ["id" => 107,"name" => "Affect Energy","nameRegistered" => null,"nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "","telephone" => "","address" => null,"coolingOff" => 14,"ddOriginatorsNo" => "","supplyGas" => true,"supplyElec" => true,"supplyDf" => true,"active" => true],
+            //     ["id" => 131,"name" => "Angelic Energy","nameRegistered" => null,"nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "","telephone" => "","address" => null,"coolingOff" => 14,"ddOriginatorsNo" => "","supplyGas" => true,"supplyElec" => true,"supplyDf" => true,"active" => true],
+            //     ["id" => 3,"name" => "Atlantic","nameRegistered" => null,"nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "customerservice@atlanticeg.co.uk","telephone" => "0800 980 9042","address" => null,"coolingOff" => 7,"ddOriginatorsNo" => "809434","supplyGas" => true,"supplyElec" => true,"supplyDf" => true,"active" => true],
+            //     ["id" => 101,"name" => "Avro Energy","nameRegistered" => null,"nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "","telephone" => "","address" => null,"coolingOff" => 14,"ddOriginatorsNo" => "","supplyGas" => false,"supplyElec" => true,"supplyDf" => true,"active" => true],
+            //     ["id" => 100,"name" => "Bristol Energy","nameRegistered" => "Bristol Energy","nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "","telephone" => "","address" => null,"coolingOff" => 14,"ddOriginatorsNo" => "","supplyGas" => true,"supplyElec" => true,"supplyDf" => true,"active" => true],
+            //     ["id" => 5,"name" => "British Gas","nameRegistered" => "British Gas Trading Ltd","nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "","telephone" => "","address" => null,"coolingOff" => 14,"ddOriginatorsNo" => "948555","supplyGas" => true,"supplyElec" => true,"supplyDf" => true,"active" => true],
+            //     ["id" => 104,"name" => "Octopus Energy","nameRegistered" => "Octopus Energy Limited","nameRegisteredGas" => null,"nameRegisteredElec" => null,"supplierCode" => null,"email" => "","telephone" => "","address" => null,"coolingOff" => 14,"ddOriginatorsNo" => "","supplyGas" => false,"supplyElec" => true,"supplyDf" => true,"active" => true]
+            // ];
             if (!isset($suppliers) || count($suppliers) == 0) return $this -> BackTo1FindAddress();
 
             $dual_suppliers = []; $gas_suppliers = []; $electric_suppliers = [];
@@ -88,7 +131,7 @@ class ResidentialComparisonController extends Controller
                 foreach ($electric_suppliers as $electric_supplier) if ($electric_supplier["name"] == $main_supplier) $main_electric_suppliers[] = $electric_supplier;
             }
 
-            $supplier_data = compact('dual_suppliers', 'gas_suppliers', 'electric_suppliers', 'main_dual_suppliers', 'main_gas_suppliers', 'main_electric_suppliers', 'region', 'mprn');
+            $supplier_data = compact('dual_suppliers', 'gas_suppliers', 'electric_suppliers', 'main_dual_suppliers', 'main_gas_suppliers', 'main_electric_suppliers', 'region', 'mprn', 'mpan_details');
             Session::put('ResidentialAPI.supplier_data', $supplier_data);
 
             return redirect() -> route('residential.energy-comparison.2-existing-tariff');
@@ -329,7 +372,7 @@ class ResidentialComparisonController extends Controller
 
             if ($existing_tariff -> current_tariff_1_not_listed == "notListed")
             {
-                $default_tariff = Repository::tariffs_defaultForASupplier($existing_tariff -> supplier_1, $existing_tariff -> fuel_type_char, $existing_tariff -> payment_method_1, "false", $existing_tariff -> region_id, $status);
+                $default_tariff = Repository::tariffs_defaultForASupplier($existing_tariff -> supplier_1, $existing_tariff -> fuel_type_char, $existing_tariff -> payment_method, "false", $existing_tariff -> region_id, $status);
                 if (count($default_tariff) == 0) return $this -> BackTo2ExistingTariff();
                 $tariff_1 = Repository::tariffs_info_by_id($default_tariff[0] -> tariffId, $status);
             }
@@ -351,7 +394,7 @@ class ResidentialComparisonController extends Controller
                 $current_tariffs -> G, $current_tariffs -> E,
                 $existing_tariff -> fuel_type_char, $existing_tariff -> fuel_type_str,
                 $existing_tariff -> consumption_figures, $existing_tariff -> gas, $existing_tariff -> elec, $existing_tariff -> e7_percent,
-                $user_address["movingHouse"], $existing_tariff -> payment_method_1, true, "", $user_address["postcode"],
+                $user_address["movingHouse"], $existing_tariff -> payment_method, true, "", $user_address["postcode"],
                 $status);
 
             // $tariff_ids = [];
@@ -393,8 +436,86 @@ class ResidentialComparisonController extends Controller
                 return $this -> BackTo2ExistingTariff([], true);
             }
 
+            date_default_timezone_set('Europe/London');
+            $showGasExitPenalty = false;
+            $gasExitPenalty = null;
+            try
+            {
+                if (in_array($existing_tariff -> fuel_type_str, [ "dfs", "df", "ne" ]))
+                {
+                    Log::channel('energy-comparison.existing-tariff.exit-penalties') -> log('info', 'Electricity Exit Penalty');
+                    $gasExitPenaltyAmount = number_format($current_tariffs -> G -> exitPenaltyAmount / 100, 2);
+                    if ($gasExitPenaltyAmount > 0 && isset($current_tariffs -> G -> exitPenaltyEndDate))
+                    {
+                        $gasExitPenaltyEndDate = date_create($current_tariffs -> G -> exitPenaltyEndDate);
+                        if ($gasExitPenaltyEndDate >= date_create('today'))
+                        {
+                            $showGasExitPenalty = true;
+                            $gasExitPenalty = [ 'amount' => $gasExitPenaltyAmount, 'endDate' => date_format($gasExitPenaltyEndDate, 'jS M Y') ];
+                        }
+                    }
+                }
+            }
+            catch (Throwable $th)
+            {
+                report($th);
+            }
+
+            $showElecExitPenalty = false;
+            $elecExitPenalty = null;
+            try
+            {
+                if (in_array($existing_tariff -> fuel_type_str, [ "dfs", "df", "ng" ]))
+                {
+                    Log::channel('energy-comparison.existing-tariff.exit-penalties') -> log('info', 'Electricity Exit Penalty');
+
+                    $elecExitPenaltyAmount = number_format($current_tariffs -> E -> exitPenaltyAmount, 2);
+                    if ($elecExitPenaltyAmount > 0 && isset($current_tariffs -> E -> exitPenaltyEndDate))
+                    {
+                        $elecExitPenaltyEndDate = date_create($current_tariffs -> E -> exitPenaltyEndDate);
+                        if ($elecExitPenaltyEndDate >= date_create('today'))
+                        {
+                            $showElecExitPenalty = true;
+                            $elecExitPenalty = [ 'amount' => $elecExitPenaltyAmount, 'endDate' => date_format($elecExitPenaltyEndDate, 'jS M Y') ];
+                            Log::channel('energy-comparison.existing-tariff.exit-penalties') -> log('info', 'Electricity Exit Penalty :- Positive', $elecExitPenalty);
+                        }
+                    }
+                }
+            }
+            catch (Throwable $th)
+            {
+                report($th);
+            }
+
+            $showExitPenalty = false;
+            $exitPenalty = [ 'amount' => 0 ];
+            try
+            {
+                if (in_array($existing_tariff -> fuel_type_str, [ "dfs", "df" ]))
+                {
+                    if ($showGasExitPenalty)
+                    {
+                        $showExitPenalty = true;
+                        $exitPenalty["amount"] += $gasExitPenalty["amount"];
+                        $exitPenalty["gasEndDate"] = $gasExitPenalty["endDate"];
+                    }
+                    if ($showElecExitPenalty)
+                    {
+                        $showExitPenalty = true;
+                        $exitPenalty["amount"] += $elecExitPenalty["amount"];
+                        $exitPenalty["elecEndDate"] = $elecExitPenalty["endDate"];
+                    }
+                }
+            }
+            catch (Throwable $th)
+            {
+                report($th);
+            }
+
             /// Build the view model ///
-            $params = [ "existing_tariff" => $existing_tariff, "current_tariffs" => $current_tariffs, "new_tariffs" => $new_tariffs, 'page_title' => 'Compare Energy Prices - Browse Deals' ];
+            $page_title = 'Compare Energy Prices - Browse Deals';
+            $params = compact("existing_tariff", "current_tariffs", "new_tariffs", "page_title", "showGasExitPenalty", "gasExitPenalty", "showElecExitPenalty", "elecExitPenalty", "showExitPenalty", "exitPenalty");
+            // return response() -> json($params);
             return view('energy-comparison.3-browse-deals', $params);
         }
         catch (Throwable $th)
@@ -446,18 +567,31 @@ class ResidentialComparisonController extends Controller
         }
     }
 
-    public function browseDealsFuncTariffHasPosition($tariff, $target_posistion)
-    {
-        return $tariff -> tariffPosition == $target_posistion;
-    }
-
 
     public function getSwitching()
     {
         try
         {
+            // TODO: Cleaned - comment
+            // $params =
+            // [
+            //     "page_title" => "Get Switching - Energy Swap",
+            //     "user_address" => [ "_token" => "ul8U2GbQ0z2DIrmJjxY8A0gKU4pzpduqO1lmjFVl", "postcode" => "PR2 9UU", "mpan" => "1610013330437", "houseName" => "TOWER GREEN", "houseNo" => "8", "movingHouse" => false ],
+            //     "mpan_details" => json_decode('{"line1":null,"line2":null,"line3":"8","line4":null,"line5":"TOWER GREEN","line6":null,"line7":"FULWOOD","line8":"PRESTON","line9":"LANCASHIRE","profileClass":"01","supplierMpid":"MRCY","meteredIndicator":"T","meteredIndicatorEfd":"20190323","supplierId":104,"supplierName":"Octopus Energy","consumerType":"Domestic","mpanMeterDetails":{"meterSerialNumber":"A05N025958","meterType":"N"}}'),
+            //     "mprn" => json_decode('{"address_id":"6005872369","house_name":"","house_number":"8","country":"GB","county":"LA","current_supplier_id":"OCT","delivery_point_alias":"","dependent_street":"","dmq":10715,"double_dependent_locality":"","gas_transport_id":"Cadent Gas Limited","ldz_id":"NW","meter_capacity":"2","meter_mechanism_code":"CR","meter_serial_number":"200844S","mpaq":"10715","mprn":"1558777101","ndmq":"10715","po_box_number":"","post_town":"PRESTON","postcode":"PR2 9UU","smart_equipment_technical_code":"","street":"TOWER GREEN","sub_building_name":"","supplierId":104,"supplierName":"Octopus Energy"}'),
+            //     "region" => json_decode('{"id":7,"name":"Norweb","defaultSupplier":14,"defaultSupplierName":"E.ON","coreElecRegion":null,"mpanDistributorId":0,"phoneNumber":"0800 048 1820"}'),
+            //     "existing_tariff" => json_decode('{"fuel_type_char":"D","fuel_type_str":"df","fuel_type":"dual","same_fuel_supplier":"yes","region_id":7,"supplier":104,"payment_method":"MDD","e7":200,"current_tariff":null,"current_tariff_not_listed":"notListed","consumption_figures":"kwh","gas":10715,"gas_length":"Year","elec":2000,"elec_length":"Year","e7_percent":0}'),
+            //     "current_tariffs" => json_decode('{"E":{"servicePart":"E","serviceType":"D","regionId":7,"tariffId":1481901,"tariffName":"Flexible Octopus","tariffType":"Variable","supplierId":104,"supplierName":"Octopus Energy","supplierTilName":"Octopus Energy Limited","paymentMethod":"MDD","paymentMethodName":"Monthly Direct Debit","e7":false,"bill":373.33,"units":2000,"tariffEndDateType":null,"tariffEndDatePeriodRolling":0,"tariffEndDatePeriodFixed":null,"contractLength":0,"exitPenaltyAmount":0,"exitPenaltyEndDate":null,"pricePerUnit":15.351,"priceE7PerUnit":0,"standingCharge":6630.75,"standingChargeDaily":18.17,"tariffEndDate":"Not applicable","discountAmount":0,"discountAmountDualFuel":0,"tcr":0,"errorCode":"OK"},"G":{"servicePart":"G","serviceType":"D","regionId":7,"tariffId":1481901,"tariffName":"Flexible Octopus","tariffType":"Variable","supplierId":104,"supplierName":"Octopus Energy","supplierTilName":"Octopus Energy Limited","paymentMethod":"MDD","paymentMethodName":"Monthly Direct Debit","e7":false,"bill":417.97,"units":10715,"tariffEndDateType":null,"tariffEndDatePeriodRolling":0,"tariffEndDatePeriodFixed":null,"contractLength":0,"exitPenaltyAmount":0,"exitPenaltyEndDate":null,"pricePerUnit":3.329,"priceE7PerUnit":0,"standingCharge":6132,"standingChargeDaily":16.8,"tariffEndDate":"Not applicable","discountAmount":0,"discountAmountDualFuel":0,"tcr":0,"errorCode":"OK"}}'),
+            //     "selected_tariff" => [ "imageName" => "Green.png", "tariffId" => 1989871, "tariffName" => "Seebeck", "supplierId" => 140, "supplierName" => "Green", "supplierCode" => "GREEN", "supplierTelephone" => null, "supplierCoolingOff" => null, "regionId" => 0, "regionName" => null, "paymentMethod" => "MDD", "paymentMethodName" => null, "e7" => false, "bill" => 938.2, "saving" => -146.9, "savingPercentage" => -18.6, "units" => 0, "serviceType" => "D", "serviceTypeName" => null, "action" => true, "tlcAction" => false, "isPreservedTariff" => null, "leadTelephoneNumber" => "0330 100 5487", "tariffPosition" => 2, "tariffValidFromDate" => null, "tariffEffectiveDate" => null,                     "tariffValidToDate" => null, "tariffEndDateType" => "R", "tariffEndDatePeriodRolling" => 24, "tariffEndDatePeriodFixed" => null, "contractLength" => 24, "exitPenaltyAmount" => 144, "exitPenaltyEndDate" => null, "campaignName" => null, "sortCashback" => 0, "cashback" => 0, "supplierRating" => 5, "supplierConversionRateMsg" => "With this supplier 95% or more of applications are expected to complete successfully first time", "contentId" => 113, "contentDescription" => "<P ALIGN=\"LEFT\">Seebeck</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">This tariff is fixed for 24 months from supply start date.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">With this tariff you agree to paperless billing and to manage your account online.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Electricity for this tariff is sourced from 100% renewable resources.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Please note that there is an exit penalty of £72 per fuel if you leave this tariff early.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">This tariff <strong>DOES NOT</strong> come with a smart meter. </P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\"><strong>NOTICE</strong></P><P ALIGN=\"LEFT\">When this tariff ends you will be moved to a different tariff which may possibly be more expensive.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">The total cost provided in our comparison is an annualised cost for the next 12 months. </P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Green are members of the Energy Switch Guarantee.</P>", "summaryContent" => "<ul><LI>Online paperless billing</LI><LI>100% renewable electricity</LI><LI>Fixed for 24-months from supply start date</LI><LI>First payment taken on/around supply start date</LI><LI>Exit fee of £72 per fuel </LI><LI>This tariff does NOT come with a Smart Meter</LI><LI><strong>NOTE => </strong>The full name of this supplier is Green Supplier Limited. Not to be confused with Green Energy or Green Network Energy. </LI></ul>", "standingChargeGas" => 8029.35, "yearlyStandingChargeGas" => null, "price1Gas" => 3.81, "threshold1Gas" => 0, "price2Gas" => 0, "threshold2Gas" => 0, "price3Gas" => 0, "threshold3Gas" => 0, "price4Gas" => 0, "standingChargeElec" => 8029.35, "yearlyStandingChargeElec" => null, "price1Elec" => 18.466, "threshold1Elec" => 0, "price2Elec" => 0, "threshold2Elec" => 0, "price3Elec" => 0, "threshold3Elec" => 0, "price4Elec" => 0, "priceE7" => 0, "thresholdsGas" => 0, "thresholdsElec" => 0, "discountTypeGas" => null, "discountAmountGas" => 0, "discountTypeElec" => null, "discountAmountElec" => 0, "discountTypeDf" => null, "discountAmountDf" => 0, "surchargeAmountGas" => 0, "surchargeAmountElec" => 0, "surchargeAmountDf" => 0, "additionalDiscountGas" => 0, "additionalDiscountElec" => 0, "features" => "30", "errorCode" => null, "supplierNameRegisteredGas" => null, "supplierNameRegisteredElec" => null, "tariffType" => null, "tariffEndDate" => null, "exitPenaltyGas" => 0, "exitPenaltyElec" => 0, "additionalProducts" => null, "tcrGas" => null, "tcrElec" => null, "billGas" => 0, "unitsGas" => 0, "billElec" => 0, "unitsElec" => 0, "wayOutFlag" => false, "energySwitchGuarantee" => true, "warmHomeDiscount" => false, "tariff_info" => json_decode('{"imageName":null,"tariffId":1989871,"tariffName":"Seebeck","supplierId":140,"supplierName":"Green","supplierCode":"GREEN","supplierTelephone":"","supplierCoolingOff":"14","regionId":7,"regionName":"Norweb","paymentMethod":"MDD","paymentMethodName":"Monthly Direct Debit","e7":false,"bill":0,"saving":0,"savingPercentage":0,"units":0,"serviceType":"D","serviceTypeName":"Dual Fuel","action":true,"tlcAction":false,"isPreservedTariff":null,"leadTelephoneNumber":null,"tariffPosition":0,"tariffValidFromDate":"2021-07-27","tariffEffectiveDate":"2021-07-27","tariffValidToDate":null,"tariffEndDateType":"R","tariffEndDatePeriodRolling":24,"tariffEndDatePeriodFixed":null,"contractLength":24,"exitPenaltyAmount":0,"exitPenaltyEndDate":null,"campaignName":null,"sortCashback":0,"cashback":0,"supplierRating":0,"supplierConversionRateMsg":null,"contentId":0,"contentDescription":"<P ALIGN=\"LEFT\">Seebeck</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">This tariff is fixed for 24 months from supply start date.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">With this tariff you agree to paperless billing and to manage your account online.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Electricity for this tariff is sourced from 100% renewable resources.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Please note that there is an exit penalty of £72 per fuel if you leave this tariff early.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">This tariff <strong>DOES NOT</strong> come with a smart meter. </P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\"><strong>NOTICE</strong></P><P ALIGN=\"LEFT\">When this tariff ends you will be moved to a different tariff which may possibly be more expensive.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">The total cost provided in our comparison is an annualised cost for the next 12 months. </P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Green are members of the Energy Switch Guarantee.</P>","summaryContent":"<ul><LI>Online paperless billing</LI><LI>100% renewable electricity</LI><LI>Fixed for 24-months from supply start date</LI><LI>First payment taken on/around supply start date</LI><LI>Exit fee of £72 per fuel </LI><LI>This tariff does NOT come with a Smart Meter</LI><LI><strong>NOTE: </strong>The full name of this supplier is Green Supplier Limited. Not to be confused with Green Energy or Green Network Energy. </LI></ul>","standingChargeGas":8029.35,"yearlyStandingChargeGas":null,"price1Gas":3.81,"threshold1Gas":0,"price2Gas":0,"threshold2Gas":0,"price3Gas":0,"threshold3Gas":0,"price4Gas":4.46,"standingChargeElec":8029.35,"yearlyStandingChargeElec":null,"price1Elec":18.466,"threshold1Elec":0,"price2Elec":0,"threshold2Elec":0,"price3Elec":0,"threshold3Elec":0,"price4Elec":21.06,"priceE7":0,"thresholdsGas":0,"thresholdsElec":0,"discountTypeGas":"No discount","discountAmountGas":0,"discountTypeElec":"No discount","discountAmountElec":0,"discountTypeDf":"No discount","discountAmountDf":0,"surchargeAmountGas":0,"surchargeAmountElec":0,"surchargeAmountDf":0,"additionalDiscountGas":0,"additionalDiscountElec":0,"features":"No back-ended discounts","errorCode":null,"supplierNameRegisteredGas":"Green Supplier Limited","supplierNameRegisteredElec":"Green Supplier Limited","tariffType":"Variable","tariffEndDate":"24 Months","exitPenaltyGas":72,"exitPenaltyElec":72,"additionalProducts":null,"tcrGas":"4.46","tcrElec":"21.06","billGas":0,"unitsGas":0,"billElec":0,"unitsElec":0,"wayOutFlag":false,"energySwitchGuarantee":false,"warmHomeDiscount":false}') ],
+            //     "selected_supplier" => json_decode('{"id":140,"name":"Green","nameRegistered":"Green Supplier Limited","nameRegisteredGas":null,"nameRegisteredElec":null,"supplierCode":"GREEN","email":"","telephone":"","address":null,"coolingOff":14,"ddOriginatorsNo":"171945","supplyGas":false,"supplyElec":true,"supplyDf":true,"active":true}'),
+            //     "selected_payment_methods" => null,
+            //     "get_previous_addresses" => true
+            // ];
+
             // get session variables
+            // TODO: Cleaned - uncomment
             $user_address = Session::get('ResidentialAPI.user_address');
+            $mpan_details = Session::get('ResidentialAPI.mpan_details');
             $mprn = Session::get('ResidentialAPI.mprn');
             $region = Session::get('ResidentialAPI.region');
             $existing_tariff = Session::get('ResidentialAPI.existing_tariff');
@@ -466,22 +600,24 @@ class ResidentialComparisonController extends Controller
             $selected_tariff = Session::get('ResidentialAPI.selected_tariff');
             $selected_payment_methods = Session::get('ResidentialAPI.selected_payment_methods');
 
-            // check session variables
+            // TODO: Cleaned - uncomment
             if (!isset($user_address) || !isset($mprn) || !isset($region) || !isset($existing_tariff) || !isset($current_tariffs) || !isset($selected_supplier) || !isset($selected_tariff) || !isset($selected_payment_methods))
             {
-                // return $this -> BackTo3BrowseDeals([], true);
+                return $this -> BackTo3BrowseDeals([], true);
             }
 
             // check if previous addresses are required
+            // TODO: Cleaned - uncomment
             $get_previous_addresses = false;
             if (in_array(strtolower($selected_tariff["supplierName"]), array('shell energy', 'goto.energy')))
             {
                 $get_previous_addresses = true;
             }
 
+            // TODO: Cleaned - uncomment
             $page_title = "Get Switching - Energy Swap";
-            $params = compact('page_title', 'user_address', 'mprn', 'region', 'existing_tariff', 'current_tariffs', 'selected_tariff', 'selected_supplier', 'selected_payment_methods', 'get_previous_addresses');
-            // return response() -> json($params);
+            $params = compact('page_title', 'user_address', 'mprn', 'region', 'existing_tariff', 'current_tariffs', 'selected_tariff', 'selected_supplier', 'selected_payment_methods', 'get_previous_addresses', 'mpan_details');
+
             return view('energy-comparison.4-get-switching', $params);
         }
         catch (Throwable $th)
@@ -498,13 +634,17 @@ class ResidentialComparisonController extends Controller
     {
         try
         {
-            $user_address = Session::get('ResidentialAPI.user_address');
-            $mprn = Session::get('ResidentialAPI.mprn');
             $existing_tariff = Session::get('ResidentialAPI.existing_tariff');
             $current_tariffs = Session::get('ResidentialAPI.current_tariffs');
             $selected_tariff = Session::get('ResidentialAPI.selected_tariff');
 
-            if (!isset($user_address) || !isset($mprn) || !isset($existing_tariff) || !isset($current_tariffs) || !isset($selected_tariff))
+            // TODO: Cleaned - comment
+            // $existing_tariff = json_decode('{"fuel_type_char":"D","fuel_type_str":"df","fuel_type":"dual","same_fuel_supplier":"yes","region_id":7,"supplier":104,"payment_method":"MDD","e7":200,"current_tariff":null,"current_tariff_not_listed":"notListed","consumption_figures":"kwh","gas":10715,"gas_length":"Year","elec":2000,"elec_length":"Year","e7_percent":0}');
+            // $current_tariffs = json_decode('{"E":{"servicePart":"E","serviceType":"D","regionId":7,"tariffId":1481901,"tariffName":"Flexible Octopus","tariffType":"Variable","supplierId":104,"supplierName":"Octopus Energy","supplierTilName":"Octopus Energy Limited","paymentMethod":"MDD","paymentMethodName":"Monthly Direct Debit","e7":false,"bill":373.33,"units":2000,"tariffEndDateType":null,"tariffEndDatePeriodRolling":0,"tariffEndDatePeriodFixed":null,"contractLength":0,"exitPenaltyAmount":0,"exitPenaltyEndDate":null,"pricePerUnit":15.351,"priceE7PerUnit":0,"standingCharge":6630.75,"standingChargeDaily":18.17,"tariffEndDate":"Not applicable","discountAmount":0,"discountAmountDualFuel":0,"tcr":0,"errorCode":"OK"},"G":{"servicePart":"G","serviceType":"D","regionId":7,"tariffId":1481901,"tariffName":"Flexible Octopus","tariffType":"Variable","supplierId":104,"supplierName":"Octopus Energy","supplierTilName":"Octopus Energy Limited","paymentMethod":"MDD","paymentMethodName":"Monthly Direct Debit","e7":false,"bill":417.97,"units":10715,"tariffEndDateType":null,"tariffEndDatePeriodRolling":0,"tariffEndDatePeriodFixed":null,"contractLength":0,"exitPenaltyAmount":0,"exitPenaltyEndDate":null,"pricePerUnit":3.329,"priceE7PerUnit":0,"standingCharge":6132,"standingChargeDaily":16.8,"tariffEndDate":"Not applicable","discountAmount":0,"discountAmountDualFuel":0,"tcr":0,"errorCode":"OK"}}');
+            // $selected_tariff = [ "imageName" => "Green.png", "tariffId" => 1989871, "tariffName" => "Seebeck", "supplierId" => 140, "supplierName" => "Green", "supplierCode" => "GREEN", "supplierTelephone" => null,"supplierCoolingOff" => null, "regionId" => 0, "regionName" => null, "paymentMethod" => "MDD", "paymentMethodName" => null, "e7" => false, "bill" => 938.2, "saving" => -146.9, "savingPercentage" => -18.6,"units" => 0, "serviceType" => "D", "serviceTypeName" => null, "action" => true, "tlcAction" => false,"isPreservedTariff" => null, "leadTelephoneNumber" => "0330 100 5487", "tariffPosition" => 2, "tariffValidFromDate" => null, "tariffEffectiveDate" => null, "tariffValidToDate" => null, "tariffEndDateType" => "R", "tariffEndDatePeriodRolling" => 24, "tariffEndDatePeriodFixed" => null, "contractLength" => 24, "exitPenaltyAmount" => 144, "exitPenaltyEndDate" => null, "campaignName" => null, "sortCashback" => 0, "cashback" => 0, "supplierRating" => 5, "supplierConversionRateMsg" => "With this supplier 95% or more of applications are expected to complete successfully first time", "contentId" => 113, "contentDescription" => "<P ALIGN=\"LEFT\">Seebeck</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">This tariff is fixed for 24 months from supply start date.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">With this tariff you agree to paperless billing and to manage your account online.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Electricity for this tariff is sourced from 100% renewable resources.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Please note that there is an exit penalty of £72 per fuel if you leave this tariff early.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">This tariff <strong>DOES NOT</strong> come with a smart meter. </P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\"><strong>NOTICE</strong></P><P ALIGN=\"LEFT\">When this tariff ends you will be moved to a different tariff which may possibly be more expensive.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">The total cost provided in our comparison is an annualised cost for the next 12 months. </P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Green are members of the Energy Switch Guarantee.</P>", "summaryContent" => "<ul><LI>Online paperless billing</LI><LI>100% renewable electricity</LI><LI>Fixed for 24-months from supply start date</LI><LI>First payment taken on/around supply start date</LI><LI>Exit fee of £72 per fuel </LI><LI>This tariff does NOT come with a Smart Meter</LI><LI><strong>NOTE => </strong>The full name of this supplier is Green Supplier Limited. Not to be confused with Green Energy or Green Network Energy. </LI></ul>", "standingChargeGas" => 8029.35, "yearlyStandingChargeGas" => null, "price1Gas" => 3.81, "threshold1Gas" => 0, "price2Gas" => 0, "threshold2Gas" => 0, "price3Gas" => 0, "threshold3Gas" => 0, "price4Gas" => 0, "standingChargeElec" => 8029.35, "yearlyStandingChargeElec" => null, "price1Elec" => 18.466, "threshold1Elec" => 0, "price2Elec" => 0, "threshold2Elec" => 0, "price3Elec" => 0,                 "threshold3Elec" => 0, "price4Elec" => 0, "priceE7" => 0, "thresholdsGas" => 0, "thresholdsElec" => 0, "discountTypeGas" => null, "discountAmountGas" => 0, "discountTypeElec" => null, "discountAmountElec" => 0, "discountTypeDf" => null, "discountAmountDf" => 0, "surchargeAmountGas" => 0, "surchargeAmountElec" => 0, "surchargeAmountDf" => 0, "additionalDiscountGas" => 0, "additionalDiscountElec" => 0, "features" => "30", "errorCode" => null, "supplierNameRegisteredGas" => null, "supplierNameRegisteredElec" => null, "tariffType" => null, "tariffEndDate" => null, "exitPenaltyGas" => 0, "exitPenaltyElec" => 0, "additionalProducts" => null, "tcrGas" => null, "tcrElec" => null, "billGas" => 0, "unitsGas" => 0, "billElec" => 0, "unitsElec" => 0, "wayOutFlag" => false, "energySwitchGuarantee" => true, "warmHomeDiscount" => false, "tariff_info" => json_decode('{"imageName":null,"tariffId":1989871,"tariffName":"Seebeck","supplierId":140,"supplierName":"Green","supplierCode":"GREEN","supplierTelephone":"","supplierCoolingOff":"14","regionId":7,"regionName":"Norweb","paymentMethod":"MDD","paymentMethodName":"Monthly Direct Debit","e7":false,"bill":0,"saving":0,"savingPercentage":0,"units":0,"serviceType":"D","serviceTypeName":"Dual Fuel","action":true,"tlcAction":false,"isPreservedTariff":null,"leadTelephoneNumber":null,"tariffPosition":0,"tariffValidFromDate":"2021-07-27","tariffEffectiveDate":"2021-07-27","tariffValidToDate":null,"tariffEndDateType":"R","tariffEndDatePeriodRolling":24,"tariffEndDatePeriodFixed":null,"contractLength":24,"exitPenaltyAmount":0,"exitPenaltyEndDate":null,"campaignName":null,"sortCashback":0,"cashback":0,"supplierRating":0,"supplierConversionRateMsg":null,"contentId":0,"contentDescription":"<P ALIGN=\"LEFT\">Seebeck</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">This tariff is fixed for 24 months from supply start date.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">With this tariff you agree to paperless billing and to manage your account online.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Electricity for this tariff is sourced from 100% renewable resources.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Please note that there is an exit penalty of £72 per fuel if you leave this tariff early.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">This tariff <strong>DOES NOT</strong> come with a smart meter. </P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\"><strong>NOTICE</strong></P><P ALIGN=\"LEFT\">When this tariff ends you will be moved to a different tariff which may possibly be more expensive.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">The total cost provided in our comparison is an annualised cost for the next 12 months. </P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Green are members of the Energy Switch Guarantee.</P>","summaryContent":"<ul><LI>Online paperless billing</LI><LI>100% renewable electricity</LI><LI>Fixed for 24-months from supply start date</LI><LI>First payment taken on/around supply start date</LI><LI>Exit fee of £72 per fuel </LI><LI>This tariff does NOT come with a Smart Meter</LI><LI><strong>NOTE: </strong>The full name of this supplier is Green Supplier Limited. Not to be confused with Green Energy or Green Network Energy. </LI></ul>","standingChargeGas":8029.35,"yearlyStandingChargeGas":null,"price1Gas":3.81,"threshold1Gas":0,"price2Gas":0,"threshold2Gas":0,"price3Gas":0,"threshold3Gas":0,"price4Gas":4.46,"standingChargeElec":8029.35,"yearlyStandingChargeElec":null,"price1Elec":18.466,"threshold1Elec":0,"price2Elec":0,"threshold2Elec":0,"price3Elec":0,"threshold3Elec":0,"price4Elec":21.06,"priceE7":0,"thresholdsGas":0,"thresholdsElec":0,"discountTypeGas":"No discount","discountAmountGas":0,"discountTypeElec":"No discount","discountAmountElec":0,"discountTypeDf":"No discount","discountAmountDf":0,"surchargeAmountGas":0,"surchargeAmountElec":0,"surchargeAmountDf":0,"additionalDiscountGas":0,"additionalDiscountElec":0,"features":"No back-ended discounts","errorCode":null,"supplierNameRegisteredGas":"Green Supplier Limited","supplierNameRegisteredElec":"Green Supplier Limited","tariffType":"Variable","tariffEndDate":"24 Months","exitPenaltyGas":72,"exitPenaltyElec":72,"additionalProducts":null,"tcrGas":"4.46","tcrElec":"21.06","billGas":0,"unitsGas":0,"billElec":0,"unitsElec":0,"wayOutFlag":false,"energySwitchGuarantee":false,"warmHomeDiscount":false}') ];
+
+            // TODO: Cleaned - uncomment
+            if (!isset($existing_tariff) || !isset($current_tariffs) || !isset($selected_tariff))
             {
                 return $this -> BackTo4GetSwitching([], true);
             }
@@ -514,9 +654,11 @@ class ResidentialComparisonController extends Controller
             // return response() -> json($formData);
             $validator = Validator::make($formData,
             [
+                'house_number' => 'nullable|integer',
                 'postcode' => 'required|string',
                 'address_line_1' => 'required|string',
                 'address_line_2' => 'nullable|string',
+                'road_name' => 'required|string',
                 'town' => 'required|string',
                 'county' => 'nullable|string',
                 'postcode' => 'required|string',
@@ -527,8 +669,8 @@ class ResidentialComparisonController extends Controller
                 'sortCode2' => 'required|numeric|digits:2',
                 'sortCode3' => 'required|numeric|digits:2',
                 'accountNumber' => 'required|string',
-                'bankName' => 'required|string',
-                'preferredDay' => 'required|integer|min:1|max:28',
+                // 'bankName' => 'required|string',
+                'preferredDay' => 'nullable|integer|min:1|max:28',
                 'direct_debit_confirmation' => 'nullable',
                 'receiveBills' => 'nullable|string|in:Paper,Email',
                 'title' => 'required|string',
@@ -546,6 +688,7 @@ class ResidentialComparisonController extends Controller
             {
                 $previous_addresses_counter++;
                 $address_length_years = $formData['address_length_years'];
+                $address_length_months = $formData['address_length_months'];
                 Validator::validate($formData,
                 [
                     'address_length_years' => 'required|numeric|min:0',
@@ -556,25 +699,32 @@ class ResidentialComparisonController extends Controller
                 {
                     $previous_addresses_counter++;
                     $prev_address_length_years = $formData['prev_addr_1_length_years'];
+                    $prev_address_length_months = $formData['prev_addr_1_length_months'];
                     Validator::validate($formData,
                     [
+                        'prev_addr_1_house_number' => 'nullable|integer',
                         'prev_addr_1_postcode' => 'required|string',
                         'prev_addr_1_address_line_1' => 'required|string',
                         'prev_addr_1_address_line_2' => 'nullable|string',
+                        'prev_addr_1_road_name' => 'required|string',
                         'prev_addr_1_town' => 'required|string',
                         'prev_addr_1_county' => 'nullable|string',
                         'prev_addr_1_length_years' => 'required|numeric|min:0',
                         'prev_addr_1_length_months' => 'required|numeric|min:0|max:11'
                     ]);
 
-                    if ($address_length_years + $prev_address_length_years < 3)
+                    $total_length_months = $address_length_months + $prev_address_length_months;
+                    $total_length_years = $address_length_years + $prev_address_length_years + ($total_length_months / 12);
+                    if ($total_length_years < 3)
                     {
                         $previous_addresses_counter++;
                         Validator::validate($formData,
                         [
+                            'prev_addr_2_house_number' => 'nullable|integer',
                             'prev_addr_2_postcode' => 'required|string',
                             'prev_addr_2_address_line_1' => 'required|string',
                             'prev_addr_2_address_line_2' => 'nullable|string',
+                            'prev_addr_2_road_name' => 'required|string',
                             'prev_addr_2_town' => 'required|string',
                             'prev_addr_2_county' => 'nullable|string',
                             'prev_addr_2_length_years' => 'required|numeric|min:0',
@@ -600,9 +750,11 @@ class ResidentialComparisonController extends Controller
             {
                 $validator = Validator::make($formData,
                 [
+                    'billing_house_number' => 'nullable|integer',
                     'billing_postcode' => 'required|string',
                     'billing_address_line_1' => 'required|string',
                     'billing_address_line_2' => 'nullable|string',
+                    'billing_road_name' => 'required|string',
                     'billing_town' => 'required|string',
                     'billing_county' => 'nullable|string'
                 ]);
@@ -614,12 +766,12 @@ class ResidentialComparisonController extends Controller
                     "line2" => $request -> input('billing_address_line_2'),
                     "line3" => "",
                     "town" => $request -> input('billing_town'),
-                    "county" => $request -> input('billing_county'),
+                    "county" => $request -> has('billing_county') ? $request -> input('billing_county') : "",
                     "postcode" => $request -> input('billing_postcode'),
-                    "bldNumber" => "",
+                    "bldNumber" => $request -> input('billing_house_number'),
                     "bldName" => "",
                     "subBld" => "",
-                    "throughfare" => "",
+                    "throughfare" => $request -> input('billing_road_name'),
                     "dependantThroughFare" => ""
                 ];
             }
@@ -649,19 +801,12 @@ class ResidentialComparisonController extends Controller
                 }
             }
 
-            // $addresses_mprn = Repository::addresses_mprn($mprn -> postcode, $mprn -> house_number);
-            // return response() -> json($addresses_mprn);
-
-            // return response() -> json(compact('user_address', 'mprn', 'existing_tariff', 'current_tariffs', 'selected_tariff'));
-
-            // $mpandetails = Repository::addresses_mpandetails($user_address["mpan"], $status);
-            // return response() -> json($mpandetails, $status);
-
             $direct_debit_confirmation = false;
             if ($request -> has("direct_debit_confirmation")) $direct_debit_confirmation = (bool)$request -> input("direct_debit_confirmation");
 
             $address_line_2 = $request -> input("address_line_2");
-            $county = $request -> input("county");
+            $county = $request -> has('county') ? $request -> input('county') : "";
+
             $requestObj = array("user" =>
             [
                 "saleType" => "A",
@@ -678,7 +823,7 @@ class ResidentialComparisonController extends Controller
                 "currentTariffElecConsumption" => null,
                 "currentTariffElecBill" => null,
                 "E7" => (bool)$selected_tariff["e7"],
-                "e7Usage" => 0,
+                "e7Usage" => (int)$existing_tariff -> e7_percent,
                 "newSupplierName" => $selected_tariff["supplierName"],
                 "tariffId" => (int)$selected_tariff["tariffId"],
                 "tariffPosition" => (int)$selected_tariff["tariffPosition"],
@@ -701,10 +846,10 @@ class ResidentialComparisonController extends Controller
                     "town" => $request -> input("town"),
                     "county" => (isset($county)) ? $county : "",
                     "postcode" => $request -> input("postcode"),
-                    "bldNumber" => "",
+                    "bldNumber" => $request -> input("house_number"),
                     "bldName" => "",
                     "subBld" => "",
-                    "throughfare" => "",
+                    "throughfare" => $request -> input("road_name"),
                     "dependantThroughFare" => "",
                     "yearsAtResidence" => 0,
                     "monthsAtResidence" => 0,
@@ -767,8 +912,8 @@ class ResidentialComparisonController extends Controller
                 "sortCodeTwo" => $request -> input("sortCode2"),
                 "sortCodeThree" => $request -> input("sortCode3"),
                 "accountNumber" => $request -> input("accountNumber"),
-                "bankName" => $request -> input("bankName"),
-                "preferredDay" => (int)$request -> input("preferredDay"),
+                // "bankName" => $request -> input("bankName"),
+                "preferredDay" => ($request -> has("preferredDay")) ? (int)$request -> input("preferredDay") : null,
                 "ddAuthorisation" => true,
                 "receiveBills" => ($request -> has("receiveBills")) ? $request -> input("receiveBills") : "Paper",
                 "supplierOptIn" => $supplier_opt_in_email,
@@ -780,11 +925,23 @@ class ResidentialComparisonController extends Controller
 
             if (in_array($existing_tariff -> fuel_type_char, [ "D", "G" ]))
             {
+                $gas_unit_price = $selected_tariff["price1Gas"];
+                if ($gas_unit_price == 0) $gas_unit_price = $selected_tariff['price2Gas'];
+                if ($gas_unit_price == 0) $gas_unit_price = $selected_tariff['price3Gas'];
+                if ($gas_unit_price == 0) $gas_unit_price = $selected_tariff['price4Gas'];
+
                 $requestObj["user"]["gasSupplier"] = (int)$current_tariffs -> G -> supplierId;
                 $requestObj["user"]["gasTariffId"] = (int)$current_tariffs -> G -> tariffId;
                 $requestObj["user"]["gasPayment"] = $current_tariffs -> G -> paymentMethod;
                 $requestObj["user"]["currentTariffGasConsumption"] = (double)$current_tariffs -> G -> units;
                 $requestObj["user"]["currentTariffGasBill"] = (double)$current_tariffs -> G -> bill;
+
+                if ($requestObj["user"]["billGas"] == 0)
+                {
+                    $gas_price = $current_tariffs -> G -> units * $gas_unit_price / 100;
+                    $gas_price += $selected_tariff['standingChargeGas'] / 100;
+                    $requestObj["user"]["billGas"] = (float)number_format($gas_price, 2);
+                }
             }
 
             if (in_array($existing_tariff -> fuel_type_char, [ "D", "E" ]))
@@ -794,7 +951,31 @@ class ResidentialComparisonController extends Controller
                 $requestObj["user"]["elecPayment"] = $current_tariffs -> E -> paymentMethod;
                 $requestObj["user"]["currentTariffElecConsumption"] = (double)$current_tariffs -> E -> units;
                 $requestObj["user"]["currentTariffElecBill"] = (double)$current_tariffs -> E -> bill;
-                $requestObj["user"]["e7Usage"] = ((double)$current_tariffs -> E -> units) * $selected_tariff["price1Elec"];
+                if ($requestObj["user"]["billElec"] == 0)
+                {
+                    $elec_unit_price = $selected_tariff['price1Elec'];
+                    if ($elec_unit_price == 0) $elec_unit_price = $selected_tariff['price2Elec'];
+                    if ($elec_unit_price == 0) $elec_unit_price = $selected_tariff['price3Elec'];
+                    if ($elec_unit_price == 0) $elec_unit_price = $selected_tariff['price4Elec'];
+                    $elec_e7_unit_price = $selected_tariff['priceE7'];
+
+                    $elec_units = $current_tariffs -> E -> units;
+                    $elec_no_e7_price = $elec_units * $elec_unit_price;
+                    $elec_e7_price = $elec_units * $elec_e7_unit_price;
+                    if ($current_tariffs -> E -> e7)
+                    {
+                        $elec_price = $elec_e7_price * (100 - (int)$existing_tariff -> e7_percent) / 100;
+                        $elec_price += $elec_no_e7_price * ((int)$existing_tariff -> e7_percent) / 100;
+                    }
+                    else
+                    {
+                        $elec_price = $elec_no_e7_price;
+                    }
+
+                    $elec_price += $selected_tariff['standingChargeElec'];
+                    $requestObj["user"]["billElec"] = (float)number_format($elec_price / 100, 2);
+                    // return response() -> json(compact('elec_unit_price', 'elec_e7_unit_price', 'elec_units', 'elec_no_e7_price', 'elec_e7_price', 'elec_price'));
+                }
             }
 
             if ($previous_addresses_counter >= 1)
@@ -804,8 +985,11 @@ class ResidentialComparisonController extends Controller
 
                 if ($previous_addresses_counter >= 2)
                 {
+                    $requestObj["user"]["previousAddress"]["bldNumber"] = $formData['prev_addr_1_house_number'];
+                    $requestObj["user"]["previousAddress"]["postcode"] = $formData['prev_addr_1_postcode'];
                     $requestObj["user"]["previousAddress"]["line1"] = $formData['prev_addr_1_address_line_1'];
                     $requestObj["user"]["previousAddress"]["line2"] = $formData['prev_addr_1_address_line_2'];
+                    $requestObj["user"]["previousAddress"]["throughfare"] = $formData['prev_addr_1_road_name'];
                     $requestObj["user"]["previousAddress"]["town"] = $formData['prev_addr_1_town'];
                     $requestObj["user"]["previousAddress"]["county"] = $formData['prev_addr_1_county'];
                     $requestObj["user"]["previousAddress"]["yearsAtResidence"] = (int)$formData['prev_addr_1_length_years'];
@@ -813,8 +997,11 @@ class ResidentialComparisonController extends Controller
 
                     if ($previous_addresses_counter >= 3)
                     {
+                        $requestObj["user"]["previousAddressTwo"]["bldNumber"] = $formData['prev_addr_2_house_number'];
+                        $requestObj["user"]["previousAddressTwo"]["postcode"] = $formData['prev_addr_2_postcode'];
                         $requestObj["user"]["previousAddressTwo"]["line1"] = $formData['prev_addr_2_address_line_1'];
                         $requestObj["user"]["previousAddressTwo"]["line2"] = $formData['prev_addr_2_address_line_2'];
+                        $requestObj["user"]["previousAddressTwo"]["throughfare"] = $formData['prev_addr_2_road_name'];
                         $requestObj["user"]["previousAddressTwo"]["town"] = $formData['prev_addr_2_town'];
                         $requestObj["user"]["previousAddressTwo"]["county"] = $formData['prev_addr_2_county'];
                         $requestObj["user"]["previousAddressTwo"]["yearsAtResidence"] = (int)$formData['prev_addr_2_length_years'];
@@ -847,30 +1034,63 @@ class ResidentialComparisonController extends Controller
             // return response() -> json($request -> all());
             // return response() -> json($requestObj);
 
-            // if ($requestObj["user"]["email"] == "testingthefinalapicall@testing.co.uk")
-            // {
-                $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
-                if (str_starts_with($result_str, "{"))
-                {
-                    // The api returned an error
-                    Log::channel("energy-comparison/get-switching-post") -> critical("The API returned an error.");
-                    return $this -> BackTo4GetSwitching();
-                }
-                Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
-            // }
-            /*else*/ $result_str = "Testing123Testing";
+            // TODO: Cleaned - uncomment
+            $result_str = Repository::applications_processapplication($requestObj, $status) -> body();
+            $result_mode = "Live Mode";
+            if (str_starts_with($result_str, "{"))
+            {
+                // The api returned an error
+                Log::channel("energy-comparison/get-switching-post") -> critical("The API returned an error.");
+                return $this -> BackTo4GetSwitching();
+            }
+            Log::channel("energy-comparison/get-switching-post") -> info("The API succeeded.");
+            // TODO: Cleaned - comment
+            //**/$result_str = "Testing123Testing";
+            //**/$result_mode = "Testing Mode";
+
+            $swapmyenergy_opt_in = false;
+            if ($request -> has("swapmyenergy_opt_in"))
+            {
+                $swapmyenergy_opt_in = $request -> has('swapmyenergy_opt_in') && (in_array($request -> input('swapmyenergy_opt_in'), [ true, 1, '1' ], true) || strtolower($request -> input('swapmyenergy_opt_in')) == 'on');
+            }
 
             Session::put('ResidentialAPI.reference', $result_str);
 
+            $affiliateToken = null;
+            if (Session::has('swapMyEnergyAffiliateToken'))
+            {
+                $session = session() -> get('swapMyEnergyAffiliateToken');
+                if (isset($session) && is_string($session) && $session != "") $affiliateToken = $session;
+            }
+            if (!isset($affiliateToken))
+            {
+                $cookie = $request -> cookie('swapMyEnergyAffiliateToken');
+                if (isset($cookie) && is_string($cookie) && $cookie != "") $affiliateToken = $cookie;
+            }
+
+            $current_timestamp = date("Y-m-d H:i:s");
             $to_email = env('MAIL_TO_ADDRESS');
-            Mail::to($to_email) -> queue(new ResidentialAPINotificationEmail($requestObj, date("Y-m-d H:i:s"), "Test API Key", $result_str));
+            // TODO: Finish change "Test API Key" to "Real API Key"
+            Mail::to($to_email) -> queue(new ResidentialAPINotificationEmail($requestObj, $current_timestamp, $result_mode, $result_str, $swapmyenergy_opt_in, $affiliateToken));
             Mail::to($request -> input("emailAddress")) -> queue(new ResidentialAPINotificationCustomerConfirmationEmail($requestObj, $result_str));
+
+            // try catch DB
+            try
+            {
+                ResidentialAPICompletedDataRepository::Insert($requestObj, $current_timestamp, $result_mode, $result_str, $swapmyenergy_opt_in, $affiliateToken);
+                Log::channel('energy-comparison/get-switching-post') -> info('ResidentialComparisonController -> getSwitchingPost(), Saved file the data to the database', compact('requestObj', 'current_timestamp', 'result_mode', 'result_str', 'swapmyenergy_opt_in', 'affiliateToken'));
+            }
+            catch (Throwable $th)
+            {
+                report($th);
+                $error_message = $th -> getMessage();
+                Log::channel('energy-comparison/get-switching-post') -> error('ResidentialComparisonController -> getSwitchingPost(), try catch DB, Error saving the data to the database  -:-  ' . $th -> getMessage(), compact('requestObj', 'current_timestamp', 'result_mode', 'result_str', 'swapmyenergy_opt_in', 'affiliateToken', 'th', 'error_message'));
+            }
 
             return redirect() -> route('residential.energy-comparison.success');
         }
         catch (Throwable $th)
         {
-            throw($th);
             report($th);
             return $this -> BackTo4GetSwitching();
         }
@@ -880,6 +1100,10 @@ class ResidentialComparisonController extends Controller
     {
         $selected_tariff = Session::get('ResidentialAPI.selected_tariff');
         $reference = Session::get('ResidentialAPI.reference');
+
+        // TODO: Cleaned - comment
+        // $selected_tariff = [ "imageName" => "Green.png", "tariffId" => 1989871, "tariffName" => "Seebeck", "supplierId" => 140, "supplierName" => "Green", "supplierCode" => "GREEN", "supplierTelephone" => null, "supplierCoolingOff" => null, "regionId" => 0, "regionName" => null, "paymentMethod" => "MDD", "paymentMethodName" => null, "e7" => false, "bill" => 938.2, "saving" => -146.9, "savingPercentage" => -18.6, "units" => 0, "serviceType" => "D", "serviceTypeName" => null, "action" => true, "tlcAction" => false, "isPreservedTariff" => null, "leadTelephoneNumber" => "0330 100 5487", "tariffPosition" => 2, "tariffValidFromDate" => null, "tariffEffectiveDate" => null,                     "tariffValidToDate" => null, "tariffEndDateType" => "R", "tariffEndDatePeriodRolling" => 24, "tariffEndDatePeriodFixed" => null, "contractLength" => 24, "exitPenaltyAmount" => 144, "exitPenaltyEndDate" => null, "campaignName" => null, "sortCashback" => 0, "cashback" => 0, "supplierRating" => 5, "supplierConversionRateMsg" => "With this supplier 95% or more of applications are expected to complete successfully first time", "contentId" => 113, "contentDescription" => "<P ALIGN=\"LEFT\">Seebeck</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">This tariff is fixed for 24 months from supply start date.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">With this tariff you agree to paperless billing and to manage your account online.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Electricity for this tariff is sourced from 100% renewable resources.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Please note that there is an exit penalty of £72 per fuel if you leave this tariff early.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">This tariff <strong>DOES NOT</strong> come with a smart meter. </P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\"><strong>NOTICE</strong></P><P ALIGN=\"LEFT\">When this tariff ends you will be moved to a different tariff which may possibly be more expensive.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">The total cost provided in our comparison is an annualised cost for the next 12 months. </P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Green are members of the Energy Switch Guarantee.</P>", "summaryContent" => "<ul><LI>Online paperless billing</LI><LI>100% renewable electricity</LI><LI>Fixed for 24-months from supply start date</LI><LI>First payment taken on/around supply start date</LI><LI>Exit fee of £72 per fuel </LI><LI>This tariff does NOT come with a Smart Meter</LI><LI><strong>NOTE => </strong>The full name of this supplier is Green Supplier Limited. Not to be confused with Green Energy or Green Network Energy. </LI></ul>", "standingChargeGas" => 8029.35, "yearlyStandingChargeGas" => null, "price1Gas" => 3.81, "threshold1Gas" => 0, "price2Gas" => 0, "threshold2Gas" => 0, "price3Gas" => 0, "threshold3Gas" => 0, "price4Gas" => 0, "standingChargeElec" => 8029.35, "yearlyStandingChargeElec" => null, "price1Elec" => 18.466, "threshold1Elec" => 0, "price2Elec" => 0, "threshold2Elec" => 0, "price3Elec" => 0, "threshold3Elec" => 0, "price4Elec" => 0, "priceE7" => 0, "thresholdsGas" => 0, "thresholdsElec" => 0, "discountTypeGas" => null, "discountAmountGas" => 0, "discountTypeElec" => null, "discountAmountElec" => 0, "discountTypeDf" => null, "discountAmountDf" => 0, "surchargeAmountGas" => 0, "surchargeAmountElec" => 0, "surchargeAmountDf" => 0, "additionalDiscountGas" => 0, "additionalDiscountElec" => 0, "features" => "30", "errorCode" => null, "supplierNameRegisteredGas" => null, "supplierNameRegisteredElec" => null, "tariffType" => null, "tariffEndDate" => null, "exitPenaltyGas" => 0, "exitPenaltyElec" => 0, "additionalProducts" => null, "tcrGas" => null, "tcrElec" => null, "billGas" => 0, "unitsGas" => 0, "billElec" => 0, "unitsElec" => 0, "wayOutFlag" => false, "energySwitchGuarantee" => true, "warmHomeDiscount" => false, "tariff_info" => json_decode('{"imageName":null,"tariffId":1989871,"tariffName":"Seebeck","supplierId":140,"supplierName":"Green","supplierCode":"GREEN","supplierTelephone":"","supplierCoolingOff":"14","regionId":7,"regionName":"Norweb","paymentMethod":"MDD","paymentMethodName":"Monthly Direct Debit","e7":false,"bill":0,"saving":0,"savingPercentage":0,"units":0,"serviceType":"D","serviceTypeName":"Dual Fuel","action":true,"tlcAction":false,"isPreservedTariff":null,"leadTelephoneNumber":null,"tariffPosition":0,"tariffValidFromDate":"2021-07-27","tariffEffectiveDate":"2021-07-27","tariffValidToDate":null,"tariffEndDateType":"R","tariffEndDatePeriodRolling":24,"tariffEndDatePeriodFixed":null,"contractLength":24,"exitPenaltyAmount":0,"exitPenaltyEndDate":null,"campaignName":null,"sortCashback":0,"cashback":0,"supplierRating":0,"supplierConversionRateMsg":null,"contentId":0,"contentDescription":"<P ALIGN=\"LEFT\">Seebeck</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">This tariff is fixed for 24 months from supply start date.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">With this tariff you agree to paperless billing and to manage your account online.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Electricity for this tariff is sourced from 100% renewable resources.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Please note that there is an exit penalty of £72 per fuel if you leave this tariff early.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">This tariff <strong>DOES NOT</strong> come with a smart meter. </P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\"><strong>NOTICE</strong></P><P ALIGN=\"LEFT\">When this tariff ends you will be moved to a different tariff which may possibly be more expensive.</P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">The total cost provided in our comparison is an annualised cost for the next 12 months. </P><P ALIGN=\"LEFT\"></P><P ALIGN=\"LEFT\">Green are members of the Energy Switch Guarantee.</P>","summaryContent":"<ul><LI>Online paperless billing</LI><LI>100% renewable electricity</LI><LI>Fixed for 24-months from supply start date</LI><LI>First payment taken on/around supply start date</LI><LI>Exit fee of £72 per fuel </LI><LI>This tariff does NOT come with a Smart Meter</LI><LI><strong>NOTE: </strong>The full name of this supplier is Green Supplier Limited. Not to be confused with Green Energy or Green Network Energy. </LI></ul>","standingChargeGas":8029.35,"yearlyStandingChargeGas":null,"price1Gas":3.81,"threshold1Gas":0,"price2Gas":0,"threshold2Gas":0,"price3Gas":0,"threshold3Gas":0,"price4Gas":4.46,"standingChargeElec":8029.35,"yearlyStandingChargeElec":null,"price1Elec":18.466,"threshold1Elec":0,"price2Elec":0,"threshold2Elec":0,"price3Elec":0,"threshold3Elec":0,"price4Elec":21.06,"priceE7":0,"thresholdsGas":0,"thresholdsElec":0,"discountTypeGas":"No discount","discountAmountGas":0,"discountTypeElec":"No discount","discountAmountElec":0,"discountTypeDf":"No discount","discountAmountDf":0,"surchargeAmountGas":0,"surchargeAmountElec":0,"surchargeAmountDf":0,"additionalDiscountGas":0,"additionalDiscountElec":0,"features":"No back-ended discounts","errorCode":null,"supplierNameRegisteredGas":"Green Supplier Limited","supplierNameRegisteredElec":"Green Supplier Limited","tariffType":"Variable","tariffEndDate":"24 Months","exitPenaltyGas":72,"exitPenaltyElec":72,"additionalProducts":null,"tcrGas":"4.46","tcrElec":"21.06","billGas":0,"unitsGas":0,"billElec":0,"unitsElec":0,"wayOutFlag":false,"energySwitchGuarantee":false,"warmHomeDiscount":false}') ];
+
         if (!isset($selected_tariff) || !isset($reference)) return $this -> BackTo4GetSwitching([], true);
 
         $page_title = "Compare Energy Prices - Success";

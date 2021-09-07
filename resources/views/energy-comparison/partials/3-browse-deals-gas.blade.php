@@ -13,6 +13,12 @@
     <p class="estimated-annual-energy-costs-banner">
         Your estimated annual energy costs for the past 12 months are &pound;{{ number_format($current_tariffs -> G -> bill, 2) }}
     </p>
+    @if ($showGasExitPenalty)
+        <p class="estimated-annual-energy-costs-banner-white" style="text-align: center; font-weight: normal;">
+            If you switch before {{ $gasExitPenalty["endDate"] }}, you will have to pay an early exit fee of
+            <span style="color: red;">&pound;{{ number_format($gasExitPenalty["amount"], 2) }}</span>
+        </p>
+    @endif
 </div>
 <div id="sticky-toggle-marker-close"></div>
 <div id="sticky-existing-tariff" class="container rounded-container blue-rounded-container" style="z-index: 10;">
@@ -35,7 +41,7 @@
         </div>
         <div class="no-padding col-lg-4 col-12 no-padding d-flex align-items-center justify-content-center" style="padding: 0px 0px 20px 0px;">
             <p class="m-lg-0" style="font-size: 20px; border-right: solid 4px #202020; padding-right: 20px;">
-                <span style="font-size: 44px;">&pound;{{ number_format($current_tariffs -> G -> bill / 12, 2) }}</span> 
+                <span style="font-size: 44px;">&pound;{{ number_format($current_tariffs -> G -> bill / 12, 2) }}</span>
                 <br />
                 per month
             </p>
@@ -78,7 +84,7 @@
                         @if ($row["saving"] > 0)
                             <p>Estimated Annual Saving: &pound;{{ number_format($row["saving"], 2) }}</p>
                         @endif
-                        
+
                         <p class="no-padding font-weight-normal">
                             @if ($row["contractLength"] > 0)
                                 Fixed month contract: <br /><span style="color: #070; font-weight: 700;">{{ $row["contractLength"] }} months</span>

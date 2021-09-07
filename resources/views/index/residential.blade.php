@@ -1,33 +1,8 @@
 @extends('layouts.master')
 
 @section('stylesheets')
+    <link rel="stylesheet" href="{{ asset('css/white-box-infographics.css') }}" />
     <style>
-        .white-box-infographics
-        {
-            align-items: center;
-            justify-content: center;
-            margin: auto;
-            height: auto;
-            padding: 20px 0;
-        }
-
-        .white-box-infographics-inner
-        {
-            background-color: white;;
-            border-radius: 20px;
-            width: 325px;
-            height: 425px;
-            padding: 20px;
-            margin: auto;
-            max-width: 100%;
-        }
-
-        .infographics-header
-        {
-            margin-top: 50px;
-            font-size: 26px;
-            font-weight: 700;
-        }
         #section01
         {
             position: relative;
@@ -132,14 +107,6 @@
                 margin-top: 0px !important;
             }
         }
-
-        @media (max-width: 330px)
-        {
-            .white-box-infographics-inner
-            {
-                border-radius: 0;
-            }
-        }
     </style>
 
     <link rel="stylesheet" href="{{ asset('css/accordion.css') }}" />
@@ -157,7 +124,7 @@
                 <div class="col-xl-3 col-lg-6 col-md-8 col-12" style="padding-bottom: 20px;">
                     <h1>Don't fall victim to rising energy prices</h1>
                     <p>Too many energy brokers promise savings that do not stick. These promises are made on estimates, which are not always accurate of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you need when it comes to your bills.</p>
-                    <a href="{{ route('residential.energy-comparison.1-address') }}" class="btn big-blue-button" role="button" style="margin-top: 10px;">Get started</a>
+                    <a href="https://www.theenergyshop.com/wayInForm?agentID=333-7TDfpTnZOo" rel="external" class="btn big-blue-button" role="button" style="margin-top: 10px;">Get started</a>
                 </div>
                 <div class="col-xl-7 col-lg-5 col-md-2 d-none d-md-block" style="height: 100%; margin: auto auto 0;">
                     <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
@@ -167,8 +134,8 @@
     </div>
     <hr/>
     <div class="d-flex">
-        <div class="full-size-60 container-fluid d-flex flex-column background-image-preston">
-            <div class="row">
+        <div class="full-size-60 container-fluid d-flex flex-column background-image-preston center-content">
+            <div class="row" style="width: 1300px; max-width: 100%;">
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
@@ -249,7 +216,7 @@
                     <button class="site-accordion">Will you always get me a better deal?</button>
                     <div class="site-accordion-panel">
                         <p>No. Some other energy switching companies will promise you a better deal, by "estimating" your usage for the next year. We let you know your unit price and standing charges, allowing you to understand how much it costs you per kW.</p>
-                        <p>Our aim is to get you a better deal based on unit price and standing charges, this means that if you get lower prices on these, then you'll end up paying less (assuming that your usage is the same). This works in a similar way to when you're putting fuel in your car. If one week you buy 50L of fuel at &pound;1.35 per litre and then the next week at &pound;1.25 per litre, you will save money. But if you buy 75L of fuel at £1.25, you'll end up spending more.</p>
+                        <p>Our aim is to get you a better deal based on unit price and standing charges, this means that if you get lower prices on these, then you'll end up paying less (assuming that your usage is the same). This works in a similar way to when you're putting fuel in your car. If one week you buy 50L of fuel at &pound;1.35 per litre and then the next week at &pound;1.25 per litre, you will save money. But if you buy 75L of fuel at &pound;1.25, you'll end up spending more.</p>
                     </div>
                     <button class="site-accordion">Can I opt-out of switching?</button>
                     <div class="site-accordion-panel">
@@ -259,6 +226,16 @@
             </div>
         </div>
     </div>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7935793974309189"
+     crossorigin="anonymous"></script>
+    <!-- faq section -->
+    <ins class="adsbygoogle"
+        style="display:inline-block;width:728px;height:90px"
+        data-ad-client="ca-pub-7935793974309189"
+        data-ad-slot="4815113020"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 @endsection
 
 @section('script')

@@ -1,0 +1,115 @@
+body.business header, body.business nav, body.business #navbarSupportedContent
+{
+    background-color: #ffaa00;
+}
+
+body.residential header, body.residential nav, body.residential #navbarSupportedContent
+{
+    background-color: #ffaa00;
+}
+
+body.business .header-switch-switch
+{
+    fill: #f3f2f1;
+}
+
+#nav-dropdown
+{
+    background-color: #ffaa00 !important;
+}
+
+td
+{
+    padding: 10px;
+}
+
+.rounded-input-field
+{
+    width: 100%;
+    border-radius: 15px;
+    padding: 10px;
+    border: none;
+    border: 1px solid;
+}
+
+.white-text
+{
+    color: #f3f2f1;
+}
+
+.white-box-infographics
+{
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: auto;
+    padding: 20px 0;
+}
+
+.white-box-infographics-inner
+{
+    background-color: #f3f2f1;
+    border-radius: 20px;
+    width: 400px;
+    height: 450px;
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+}
+
+.service-infographics
+{
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: auto;
+    padding: 20px 0;
+}
+
+.service-infographics-inner
+{
+    background-color: #f3f2f1;
+    border-radius: 20px;
+    width: 500px;
+    height: 350px;
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    box-shadow: #0000003d 0px 3px 8px;
+}
+
+.infographics-header
+{
+    margin-top: 50px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.infographic-info-banner
+{
+    border-radius: 20px;
+    background-color: #f3f2f1;
+    padding: 20px;
+    margin: auto;
+}
+
+.section-headers
+{
+    font-size: 40px;
+    padding: 20px;
+}
+@media (max-width: 991px)
+{
+    .background-mobile-white { background-color: #f3f2f1; }
+    .plus-many-font-medium { font-size: 22px;}
+}
+
+@media (max-width: 767px)
+{
+    .background-image-non-moblie { background-color: #f3f2f1; }
+    .background-image-non-moblie::before { background-image: none !important; }
+}
