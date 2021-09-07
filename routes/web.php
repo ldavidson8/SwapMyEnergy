@@ -81,8 +81,11 @@ Route::group([ 'prefix' => '/residential' ], function()
 
     Route::group([ 'prefix' => '/energy-comparison' ], function()
     {
+        // white label redirect
+        Route::get('/address', function() { return redirect('https://www.theenergyshop.com/wayInForm?agentID=333-7TDfpTnZOo'); }) -> name('residential.energy-comparison.1-address');
+
         // pages
-        Route::get('/address', 'ResidentialComparisonController@findAddress') -> name('residential.energy-comparison.1-address');
+        // Route::get('/address', 'ResidentialComparisonController@findAddress') -> name('residential.energy-comparison.1-address');
         // Route::post('/address', 'ResidentialComparisonController@findAddressPost') -> name('residential.energy-comparison.1-address');
         // Route::get('/existing-tariff', 'ResidentialComparisonController@setExistingTariff') -> name('residential.energy-comparison.2-existing-tariff');
         // Route::post('/existing-tariff', 'ResidentialComparisonController@setExistingTariffPost') -> name('residential.energy-comparison.2-existing-tariff');
