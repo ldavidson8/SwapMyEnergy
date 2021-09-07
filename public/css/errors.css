@@ -1,30 +1,68 @@
-@media (max-width: 991px)
-{
-    .background-image-display-none
-    {
-        display: none; /* for hiding background image on below large desktop sizes */
-    }
-}
+.numbers{
 
-button:hover
-{
-    color: #ffc46c;
-}
-
-table.table-center-contents
-{
-    width: 100%;
-    height: 100%;
-}
-
-table.table-center-contents,
-table.table-center-contents tr,
-table.table-center-contents td
-{
-    max-width: 100%;
-}
-
-table.table-center-contents td
-{
-    vertical-align: center;
-}
+    letter-spacing: 3px; 
+    font-size: 100px;
+    text-align: center;
+    margin: 0px;
+    
+  }
+  .error-title{
+  
+    font-weight: bold; 
+    font-size: 40px;  
+    text-align: center; 
+    letter-spacing: -3px;
+    
+  }
+  .error-text{
+  
+    text-align: center; 
+    font-size: 18px; 
+    letter-spacing: 1px;
+    
+  }
+  .error-button{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+  }
+  .doughnut-image-outer{
+      width: 1.05em;
+      height: 1.05em;
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 0.075em;
+  }
+  .doughnut-image{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: auto;
+      height: 0.85em;
+  }
+  button:hover{
+      color: #ffc46c;
+  }
+  table.table-center-contents{
+      width: 100%;
+      height: 100%;
+  }
+  table.table-center-contents,
+  table.table-center-contents tr,
+  table.table-center-contents td{
+      max-width: 100%;
+  }
+  table.table-center-contents td{
+      vertical-align: center;
+  }
+  
+  
+  
+  @media (max-width: 991px)
+  {
+      .background-image-display-none
+      {
+          display: none; /* for hiding background image on below large desktop sizes */
+      }
+  }

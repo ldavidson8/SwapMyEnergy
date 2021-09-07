@@ -19,13 +19,21 @@
                 <table class="table-center-contents">
                     <tr>
                         <td>
-                            <h1 style="font-weight: bold; font-size: 40px; color: #000; text-align: center; letter-spacing: -3px;"><span style="letter-spacing: 3px; font-size: 100px; color: #000;">401</span><br />Your Access Has Been Denied</h1>
-                            <br />
-                            <div style="color: #000; text-align: center; font-size: 18px; letter-spacing: 1px;">
-                                <p>Your <span style=" color: #00C2CB;"> authorization failed </span><br />Please fill in the correct credentials and try again</p>
-                                <br /><br />
+                            <h1 class="numbers" style="color: #00C2CB;">
+                                <?= 4?>@include('errors.partials.random_doughnut')1
+                            </h1>
                                 
-                                <div style="display: flex; justify-content: center; align-items: center;">
+                            <h1 class="error-title" style="color: #000;"> Your Access Has Been Denied
+                            </h1>
+
+                            <br />
+
+                            <div class="error-text" style="color: #000;">
+                                <p>Your <span style=" color: #00C2CB;"> authorization failed </span><br />Please fill in the correct credentials and try again</p>
+
+                                <br />
+                                
+                                <div class="error-button">
                                     <p><a href="{{ url() -> previous()}}" onclick="history.back()"><button class="big-blue-button" style="width: 300px; font-size: 23px;">Go Back</button></a></p>
                                 </div>
                             </div>

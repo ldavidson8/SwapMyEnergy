@@ -19,13 +19,21 @@
                 <table class="table-center-contents">
                     <tr>
                         <td>
-                            <h1 style="font-weight: bold; font-size: 40px; color: #f0f0f0; text-align: center; letter-spacing: -3px;"><span style="letter-spacing: 3px; font-size: 100px; color: #00C2CB;">404</span><br />Uh-oh! Looks Like The Lights Went Out</h1>
-                            <br />
-                            <div style="color: #f0f0f0; text-align: center; font-size: 18px; letter-spacing: 1px;">
-                                <p>~There's nothing to see here~<br />This page does not or no longer exists</p>
-                                <br /><br />
+                            <h1 class="numbers" style="color: #00C2CB;">
+                                <?= 4?>@include('errors.partials.random_doughnut')4
+                            </h1>
+                                
+                            <h1 class="error-title" style="color: #00C2CB;"> Uh-oh! Looks Like The Lights Went Out
+                            </h1>
 
-                                <div style="display: flex; justify-content: center; align-items: center;">
+                            <br />
+
+                            <div class="error-text" style="color: #f0f0f0;">
+                                <p>~There's nothing to see here~<br />This page does not or no longer exists</p>
+
+                                <br />
+
+                                <div class="error-button">
                                     <p><a href="{{ url() -> previous()}}" onclick="history.back()"><button class="big-blue-button" style="width: 300px; font-size: 23px;">Turn on the lights</button></a></p>
                                 </div>
                             </div>
