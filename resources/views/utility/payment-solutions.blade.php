@@ -23,7 +23,7 @@
     </div>
     <div id="CardTerminals" class="full-size container-fluid">
         <div class="col-12" style="padding: 20px;">
-            <h2 class="section-heading"> Card Terminals </h2>
+            <h2 class="section-heading mb-3 mb-lg-5"> Card Terminals </h2>
             <div class="row">
                 <div class="col-xl-4 col-12 text-center card-terminal-category">
                     <p class="card-terminal-heading"> Countertop </p>
@@ -63,12 +63,12 @@
     <div class="full-size-60 container-fluid background-image-preston" style="padding: 20px;">
         <h2 class="white-text section-heading"> Go Mobile </h2>
         <div class="row">
-            <div class="d-none d-xl-block    col-xl-2"></div>
+            <div class="d-none d-xl-block col-xl-2"></div>
             <div class="col-12 col-xl-4 text-center">
                 <img src="{{ asset('img/payment-solutions-homepage/go-mobile-image.png') }}">
             </div>
             <div class="col-12 col-xl-4 justify-content-center d-flex justify-content-xl-start align-items-xl-center">
-                <p class="white-text text-center text-xl-left" style="width: 400px; font-size: 1.2em"> Go Mobile, we supply your Mobile Payment Terminal and Smart Phone App. This simple to use payment solution is the perfect fit for all types of businesses. With attractive rates and in app analytics', this keeps everything at your fingertips no matter where your business takes you. </p>
+                <p class="white-text text-center text-xl-left" style="width: 400px; font-size: 1.2em"> We supply you with your own Mobile Payment Terminal and Smart Phone App. This simple to use payment solution is the perfect fit for all types of businesses. With attractive rates and in app analytics', this keeps everything at your fingertips no matter where your business takes you. </p>
             </div>
             <div class="d-none d-xl-block col-xl-2"></div>
         </div>
@@ -105,7 +105,7 @@
         <p> Whether you have a retail store, a digital business or something in between, we can help to get you trading online using our payment gateways. For new business and start-ups a brilliant option is the hosted payment page offering fast and secure transactions. At the point of purchase clients are taken from your website to the secure payment page to complete the transaction. We can also provide a tailored, branded integrated payment page that sits in your website. </p>
 
         <div style="padding: 20px;">
-            <p class="section-heading" style="font-weight: bold"> Interested? </p>
+            <p class="section-heading" style="font-weight: bold; font-size: 2.5em;"> Interested? </p>
             <div class="row no-margin">
                 <div class="col-12 col-xl-6">
                     <ul class="green-tick-list">
