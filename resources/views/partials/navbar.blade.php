@@ -40,16 +40,18 @@
                         <a class="nav-link navigation-link {{ ($navbar_page == "my account") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.my account") }}">My Account</a>
                     </li>
                 --}}
-                <li class="nav-item dropdown d-xl-none">
-                    <a class="nav-link navigation-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Services
-                    </a>
-                    <div id="nav-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="nav-link navigation-link {{ ($navbar_page == "connections") ? 'navigation-link-current-page' : '' }}" href="{{ route("connections") }}">Connections</a>
-                        <a class="nav-link navigation-link {{ ($navbar_page == "payment-solutions") ? 'navigation-link-current-page' : '' }}" href="{{ route("payment-solutions") }}">Payment Solutions</a>
-                        <a class="nav-link navigation-link {{ ($navbar_page == "business-water") ? 'navigation-link-current-page' : '' }}" href="{{ route("business.water") }}">Water</a>
-                    </div>
-                </li>
+                @if ($mode == "business")
+                    <li class="nav-item dropdown d-xl-none">
+                        <a class="nav-link navigation-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div id="nav-dropdown" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="nav-link navigation-link {{ ($navbar_page == "connections") ? 'navigation-link-current-page' : '' }}" href="{{ route("connections") }}">Connections</a>
+                            <a class="nav-link navigation-link {{ ($navbar_page == "payment-solutions") ? 'navigation-link-current-page' : '' }}" href="{{ route("payment-solutions") }}">Payment Solutions</a>
+                            <a class="nav-link navigation-link {{ ($navbar_page == "business-water") ? 'navigation-link-current-page' : '' }}" href="{{ route("business.water") }}">Water</a>
+                        </div>
+                    </li>
+                @endif
                 <div class="d-xs-block d-lg-none">
                     @include('partials.navbar-account')
                 </div>

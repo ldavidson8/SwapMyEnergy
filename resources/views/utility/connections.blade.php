@@ -2,6 +2,7 @@
 
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/connections.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/infographics.css') }}" />
 @endsection
 
 @section('before-header')
@@ -11,11 +12,11 @@
 
 @section('main-content')
             <hr/>
-            <div class="row flex-grow-1 no-padding background-image-coffee-shop center-content">
+            <div class="row flex-grow-1 no-padding background-image-coffee-shop center-content" style="padding: 30px 0 !important;">
                 <div class="col-xl-1 col-lg-1 col-md-2 d-none d-md-block"></div>
                 <div class="col-xl-4 col-lg-6 col-md-8 col-12 row no-margin">
                     <div style="max-width: 100%; max-height: 100%;">
-                        <h1 class="white-text">Get Your Home Or Business Connected With Peace Of Mind</h1>
+                        <h1 class="white-text" style="margin-top: 0px;">Get Your Home Or Business Connected With Peace Of Mind</h1>
                         <p class="white-text"> We can assist you in connecting your home or business to the mains gas or electricity supply. We go above and beyond to make the process of establishing a connection to your property straightforward and stress-free, leaving you with peace of mind. </p>
                     </div>
                 </div>
@@ -95,10 +96,10 @@
     </div>
     <hr />
     <div class="d-flex">
-        <div class="full-size container-fluid d-flex flex-column background-image-preston">
-            <div class="container-xl no-padding"><h2 class="section-headers ml-0 ml-md-3" style="color: #f3f2f1; text-align: center;"> How long will it take? </h2></div>
+        <div class="container-fluid d-flex flex-column background-image-preston no-padding">
+            <h2 id="how-long-will-it-take-section" class="section-headers3" style="text-align: center; margin: 0px;">How long will it take?</h2>
             <div class="row">
-                <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
+                <div class="col-12 col-sm-6 col-lg-4 white-box-infographics" style="text-align: center;">
                     <div class="white-box-infographics-inner" style="background-color: #ffafdd;">
                         <div style="text-align: center;">
                             <img class="infographics-image" src="{{ asset('img/connections-page/paper.png') }}" alt=""/>
@@ -107,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
+                <div class="col-12 col-sm-6 col-lg-4 white-box-infographics">
                     <div class="white-box-infographics-inner" style="background-color: #00c2cb;">
                         <div style="text-align: center;">
                             <img class="infographics-image" src="{{ asset('img/connections-page/flash.png') }}" alt=""/>
@@ -116,9 +117,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 d-lg-none"></div>
-                <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
-                    <div class="white-box-infographics-inner" style="background-color: #ffff00;">
+                <div class="col-sm-3 d-lg-none"></div>
+                <div class="col-12 col-sm-6 col-lg-4 white-box-infographics">
+                    <div class="white-box-infographics-inner" style="background-color: #ffaa00;">
                         <div style="text-align: center;">
                             <img class="infographics-image" src="{{ asset('img/connections-page/flame.png') }}" alt=""/>
                             <p class="infographics-header"> Gas implementation </p>
@@ -126,7 +127,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 d-lg-none"></div>
+                <div class="col-sm-3 d-lg-none"></div>
             </div>
             <div class="container-xl no-padding">
                 <div class="infographic-info-banner">
@@ -147,7 +148,7 @@
         <div class="full-size-60 container-lg d-flex flex-column">
             <h2 class="section-headers"> Our Services </h2>
             <div class="row">
-                <div class="col-12 col-lg-4 col-md-6 service-infographic mb-5 mb-lg-0" style="text-align: center;">
+                <div class="col-12 col-sm-6 col-lg-4 service-infographic mb-5 mb-lg-0" style="text-align: center;">
                     <div class="service-infographics-inner center-content" style="background-color: #ffafdd;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/connections-page/home.png') }}" alt=""/>
@@ -155,7 +156,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 col-md-6 service-infographic mb-5 mb-lg-0">
+                <div class="col-12 col-sm-6 col-lg-4 service-infographic mb-5 mb-lg-0">
                     <div class="service-infographics-inner center-content" style="background-color: #00c2cb;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/connections-page/suitcase.png') }}" alt=""/>
@@ -163,8 +164,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 d-lg-none"></div>
-                <div class="col-12 col-lg-4 col-md-6 service-infographic mb-5 mb-lg-0">
+                <div class="col-sm-3 d-lg-none"></div>
+                <div class="col-12 col-sm-6 col-lg-4 service-infographic mb-5 mb-lg-0">
                     <div class="service-infographics-inner center-content" style="background-color: #ffaa00;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/connections-page/wrench.png') }}" alt=""/>
@@ -172,7 +173,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 d-lg-none"></div>
+                <div class="col-sm-3 d-lg-none"></div>
             </div>
         </div>
     </div>

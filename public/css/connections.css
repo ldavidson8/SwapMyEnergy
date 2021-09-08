@@ -37,28 +37,6 @@ td
     color: #f3f2f1;
 }
 
-.white-box-infographics
-{
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    height: auto;
-    padding: 20px 0;
-}
-
-.white-box-infographics-inner
-{
-    background-color: #f3f2f1;
-    border-radius: 20px;
-    width: 400px;
-    height: 450px;
-    padding: 20px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    max-width: 100%;
-}
-
 .service-infographics
 {
     align-items: center;
@@ -102,6 +80,14 @@ td
     font-size: 40px;
     padding: 20px;
 }
+
+#how-long-will-it-take-section
+{
+    padding: 30px;
+    color: #f3f2f1;
+}
+
+
 @media (max-width: 991px)
 {
     .background-mobile-white { background-color: #f3f2f1; }

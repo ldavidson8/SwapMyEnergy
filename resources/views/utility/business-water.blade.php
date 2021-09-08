@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('stylesheets')
-    <link rel="stylesheet" href="{{ asset('css/white-box-infographics.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/infographics.css') }}" />
     <style>
         body.business header, body.business nav, body.business #navbarSupportedContent
         {
@@ -101,6 +101,15 @@
             display: none;
         }
 
+        @media (max-width: 1199px) and (min-width: 992px)
+        {
+            #how-long-will-it-take-section
+            {
+                background-color: #f3f2f1;
+                color: #202020;
+            }
+        }
+
         @media (max-width: 1199px)
         {
             .round-box-left
@@ -152,6 +161,15 @@
             .round-box-right
             {
                 border-radius: 0px;
+            }
+        }
+
+        @media (max-width: 767px)
+        {
+            #how-long-will-it-take-section
+            {
+                background-color: #f3f2f1;
+                color: #202020;
             }
         }
     </style>
@@ -247,10 +265,10 @@
     </div>
 
     <div class="d-flex">
-        <div class="container-fluid background-image-preston center-content d-flex flex-column" style="padding: 50px 0 30px;">
-            <h2 style="color: #f3f2f1; margin: 0 auto 30px; font-size: 38px;">The Process</h2>
-            <div class="row" style="width: 1300px; max-width: 100%;">
-                <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
+        <div class="container-fluid d-flex flex-column background-image-preston no-padding">
+            <h2 id="how-long-will-it-take-section" class="section-headers3" style="text-align: center; margin: 0px;">The Process</h2>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-lg-4 white-box-infographics" style="text-align: center;">
                     <div class="white-box-infographics-inner" style="background-color: #ffafdd;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/infographic icons/signed-form.svg') }}" alt="Image of a signed form" />
@@ -259,7 +277,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
+                <div class="col-12 col-sm-6 col-lg-4 white-box-infographics">
                     <div class="white-box-infographics-inner" style="background-color: #00c2cb;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/connections-page/paper.png') }}" alt="Image of paper" />
@@ -268,9 +286,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 d-lg-none"></div>
-                <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
-                    <div class="white-box-infographics-inner" style="background-color: #ffff00;">
+                <div class="col-sm-3 d-lg-none"></div>
+                <div class="col-12 col-sm-6 col-lg-4 white-box-infographics">
+                    <div class="white-box-infographics-inner" style="background-color: #ffaa00;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/infographic icons/switch-icon.svg') }}" alt="Image of a switch" />
                             <p class="infographics-header">Get switching</p>
@@ -278,7 +296,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 d-lg-none"></div>
+                <div class="col-sm-3 d-lg-none"></div>
             </div>
         </div>
     </div>

@@ -1,0 +1,120 @@
+.white-box-infographics
+{
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: auto;
+    padding: 20px 0;
+}
+
+.white-box-infographics-inner
+{
+    background-color: #f3f2f1;
+    border-radius: 20px;
+    width: 100%;
+    height: 450px;
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+}
+
+.white-box-infographics
+{
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: auto;
+    padding: 20px 0;
+}
+
+.white-box-infographics-inner
+{
+    background-color: #f3f2f1;
+    border-radius: 20px;
+    width: 100%;
+    height: 450px;
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+}
+
+.infographics-header
+{
+    margin-top: 50px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.infographic-info-banner
+{
+    border-radius: 20px;
+    background-color: #f3f2f1;
+    padding: 20px;
+    margin: auto;
+}
+
+#how-long-will-it-take-section
+{
+    padding: 30px;
+    color: #f3f2f1;
+}
+
+
+@media (max-width: 1199px)
+{
+    .infographic-info-banner
+    {
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px)
+{
+    #how-long-will-it-take-section
+    {
+        background-color: #f3f2f1;
+        color: #202020;
+    }
+
+    .white-box-infographics
+    {
+        padding: 0;
+    }
+
+    .white-box-infographics-inner
+    {
+        border-radius: 0px;
+    }
+}
+
+@media (max-width: 799px)
+{
+    #how-long-will-it-take-section
+    {
+        background-color: #f3f2f1;
+        color: #202020;
+    }
+
+    .white-box-infographics
+    {
+        padding: 0;
+    }
+
+    .white-box-infographics-inner
+    {
+        border-radius: 0px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 575px)
+{
+    .white-box-infographics-inner
+    {
+        height: auto;
+    }
+}
