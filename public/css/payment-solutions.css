@@ -86,7 +86,7 @@ body.business .header-switch-switch
 .section-heading
 {
     text-align: center;
-    font-size: 2em;
+    font-size: 2.25em;
 }
 
 img
@@ -103,9 +103,15 @@ img
 
 .card-machine-image
 {
+    min-width: 200px;
     margin: 10px auto;
     width: 250px;
     max-width: 100%;
+}
+
+.pax-machine
+{
+    width: 150px;
 }
 
 ul.green-tick-list
@@ -151,5 +157,12 @@ ul.green-tick-list li:before
     ul.green-tick-list
     {
         text-align: center;
+    }
+
+    .pax-machine
+    {
+        max-width: 150px;
+        max-height: 300px;
+        margin: 10px auto;
     }
 }
