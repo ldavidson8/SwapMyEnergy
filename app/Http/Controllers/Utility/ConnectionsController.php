@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Utility;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Mode\ModeSession;
 use App\Mail\ConnectionsRequestEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,8 @@ class ConnectionsController extends Controller
 {
     public function index()
     {
+        ModeSession::setBusiness();
+
         $navbar_page = 'connections';
         $page_title = 'Swap My Energy - Connections';
         return view('utility.connections', compact('navbar_page', 'page_title'));

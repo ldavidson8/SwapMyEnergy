@@ -3,12 +3,12 @@ body.business header, body.business nav, body.business #navbarSupportedContent
     background-color: #279d7d;
 }
 
-body.residential header, body.residential nav, body.residential #navbarSupportedContent 
+body.residential header, body.residential nav, body.residential #navbarSupportedContent
 {
     background-color: #279d7d;
 }
 
-body.business .header-switch-switch 
+body.business .header-switch-switch
 {
     fill: #f3f2f1;
 }
@@ -89,26 +89,23 @@ body.business .header-switch-switch
     font-size: 2em;
 }
 
-img 
+img
 {
     max-width: 100%;
 }
 
-.card-terminal-category:not(:last-child)
-{
-    background: linear-gradient(#787878,#787878) bottom/ 25% 2px no-repeat
-}
-
 .card-terminal-heading
 {
+    background: linear-gradient(#787878,#787878) top/ 25% 2px no-repeat;
     font-weight: 700;
     font-size: 1.5em;
 }
 
 .card-machine-image
 {
-    min-width: 250px;
     margin: 10px auto;
+    width: 250px;
+    max-width: 100%;
 }
 
 ul.green-tick-list
@@ -146,7 +143,7 @@ ul.green-tick-list li:before
         border-left: 2px solid #787878;
     }
 
-    .card-terminal-category:not(:last-child)
+    .card-terminal-heading
     {
         background: none;
     }

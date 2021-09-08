@@ -1,5 +1,5 @@
 <?php
-    $page_title = 'Forbidden';
+    if (!isset($page_title)) $page_title = 'Forbidden';
 ?>
 @extends('layouts.master')
 
@@ -29,10 +29,9 @@
 
                             <div class="error-text" style="color: #000;">
                                 <p>You do not have <span style=" color: #00C2CB;">permission</span> to continue</p>
+                                <br /><br />
 
-                                <br />
-
-                                <div class="error-button">
+                                <div style="display: flex; justify-content: center; align-items: center;">
                                     <p><a href="{{ url() -> previous()}}" onclick="history.back()"><button class="big-blue-button" style="width: 300px; font-size: 23px;">Go Back</button></a></p>
                                 </div>
                             </div>

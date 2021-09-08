@@ -1,5 +1,5 @@
 <?php
-    $page_title = 'Service Unavailable';
+    if (!isset($page_title)) $page_title = 'Service Unavailable';
 ?>
 @extends('layouts.master')
 

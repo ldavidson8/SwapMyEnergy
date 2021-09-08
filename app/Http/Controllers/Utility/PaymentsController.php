@@ -16,6 +16,8 @@ class PaymentsController extends Controller
 {
     public function index()
     {
+        ModeSession::setBusiness();
+
         $navbar_page = 'payment-solutions';
         $page_title = 'Swap My Energy - Payment Solutions';
         return view('utility.payment-solutions', compact('navbar_page', 'page_title'));

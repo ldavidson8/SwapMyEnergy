@@ -53,8 +53,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/auth.php'));
 
             Route::middleware('web')
-                ->namespace('App\\Http\\Controllers\\Utility')
-                ->group(base_path('routes/utilites.php'));
+                ->namespace('App\\Http\\Controllers')
+                ->group(base_path('routes/testing-redirects-and-other.php'));
         });
     }
 

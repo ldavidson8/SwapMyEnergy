@@ -134,7 +134,7 @@
         }
         }
 
-        
+
 
     </style>
 @endsection
@@ -146,7 +146,7 @@
 <hr />
 <div class="wrapper">
     <div class="team-header">
-        <h1 style="font-family: Nothing You Could Do; text-align:center"> Our Team </h1>
+        <h1 style="text-align: center; margin: 30px;"> Our Team </h1>
     </div>
     <div class="team-wrapper row center-content">
         <!-- Business Development Managers -->

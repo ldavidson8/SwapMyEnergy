@@ -1,5 +1,5 @@
 <?php
-    $page_title = 'Too Many Requests';
+    if (!isset($page_title)) $page_title = 'Too Many Requests';
 ?>
 @extends('layouts.master')
 
