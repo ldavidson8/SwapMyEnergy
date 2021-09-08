@@ -1,5 +1,5 @@
 <?php
-    $page_title = 'Server Error';
+    if (!isset($page_title)) $page_title = 'Server Error';
 ?>
 @extends('layouts.master')
 

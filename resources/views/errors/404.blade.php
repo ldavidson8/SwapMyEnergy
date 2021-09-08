@@ -1,5 +1,5 @@
 <?php
-    $page_title = 'Not Found';
+    if (!isset($page_title)) $page_title = 'Not Found';
 ?>
 @extends('layouts.master')
 

@@ -1,5 +1,5 @@
 <?php
-    $page_title = 'Unauthorized';
+    if (!isset($page_title)) $page_title = 'Unauthorized';
 ?>
 @extends('layouts.master')
 
@@ -24,7 +24,7 @@
                             <div style="color: #000; text-align: center; font-size: 18px; letter-spacing: 1px;">
                                 <p>Your <span style=" color: #00C2CB;"> authorization failed </span><br />Please fill in the correct credentials and try again</p>
                                 <br /><br />
-                                
+
                                 <div style="display: flex; justify-content: center; align-items: center;">
                                     <p><a href="{{ url() -> previous()}}" onclick="history.back()"><button class="big-blue-button" style="width: 300px; font-size: 23px;">Go Back</button></a></p>
                                 </div>

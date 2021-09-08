@@ -41,13 +41,13 @@ Route::get('/testing/affiliateLinks/sessions-and-cookies/', function(Request $re
 
 Route::group([ 'prefix' => '/testing/errors/http/error-pages/' ], function()
 {
-    Route::get('401', function() { abort(401); });
-    Route::get('403', function() { abort(403); });
-    Route::get('404', function() { abort(404); });
-    Route::get('419', function() { abort(419); });
-    Route::get('429', function() { abort(429); });
-    Route::get('500', function() { abort(500); });
-    Route::get('503', function() { abort(503); });
+    Route::view('401', 'errors/401', [ 'page_title' => 'Testing - Unauthorized']);
+    Route::view('403', 'errors/403', [ 'page_title' => 'Testing - Forbidden']);
+    Route::view('404', 'errors/404', [ 'page_title' => 'Testing - Not Found']);
+    Route::view('419', 'errors/419', [ 'page_title' => 'Testing - Page Expired']);
+    Route::view('429', 'errors/429', [ 'page_title' => 'Testing - Too Many Requests']);
+    Route::view('500', 'errors/500', [ 'page_title' => 'Testing - Server Error']);
+    Route::view('503', 'errors/503', [ 'page_title' => 'Testing - Service Unavailable']);
 });
 
 

@@ -100,9 +100,10 @@
             </div>
         </div>
         <p> Whether you have a retail store, a digital business or something in between, we can help to get you trading online using our payment gateways. For new business and start-ups a brilliant option is the hosted payment page offering fast and secure transactions. At the point of purchase clients are taken from your website to the secure payment page to complete the transaction. We can also provide a tailored, branded integrated payment page that sits in your website. </p>
-
-        <div style="padding: 20px;">
-            <p class="section-heading" style="font-weight: bold"> Interested? </p>
+    </div>
+    <div class="full-size-60 container-fluid background-image-preston" style="padding: 20px; color: #f3f2f1;">
+        <div class="container-xl">
+            <h2 class="white-text section-heading" style="margin: 30px auto;"> Go Mobile </h2>
             <div class="row no-margin">
                 <div class="col-12 col-xl-6">
                     <ul class="green-tick-list">
@@ -133,7 +134,7 @@
                             <input type="email" class="form-control tall-form-control" id="email" name="email" required="required" />
                         </div>
                         <div class="text-md-right text-center">
-                        <button type="submit" class="rounded-green-button full-width-button">Call Me</button>
+                            <button type="submit" class="rounded-green-button full-width-button">Call Me</button>
                         </div>
                     </form>
                 </div>

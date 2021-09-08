@@ -247,8 +247,8 @@
     </div>
 
     <div class="d-flex">
-        <div class="full-size-80 container-fluid d-flex flex-column background-image-preston center-content">
-            <h2 style="color: #f3f2f1;">The Process</h2>
+        <div class="container-fluid background-image-preston center-content d-flex flex-column" style="padding: 50px 0 30px;">
+            <h2 style="color: #f3f2f1; margin: 0 auto 30px; font-size: 38px;">The Process</h2>
             <div class="row" style="width: 1300px; max-width: 100%;">
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
                     <div class="white-box-infographics-inner" style="background-color: #ffafdd;">
