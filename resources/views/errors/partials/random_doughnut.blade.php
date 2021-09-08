@@ -2,7 +2,8 @@
     $random_image_number = rand(0, 6);
     $random_rotation = rand(0, 360);
     $random_image_string = "";
-
+    
+//Replace Waffle images with Doughnut images//
     switch($random_image_number)
     {
         case 0:
