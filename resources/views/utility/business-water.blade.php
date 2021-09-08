@@ -270,7 +270,7 @@
                 </div>
                 <div class="col-md-3 d-lg-none"></div>
                 <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
-                    <div class="white-box-infographics-inner" style="background-color: #ffff00;">
+                    <div class="white-box-infographics-inner" style="background-color: #ffaa00;">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/infographic icons/switch-icon.svg') }}" alt="Image of a switch" />
                             <p class="infographics-header">Get switching</p>
