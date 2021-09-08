@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-xl-4 col-12 text-center card-terminal-category">
                     <p class="card-terminal-heading"> Portable </p>
-                    <p> Connect via bluetooth or wi-fi, a portable machine is great for restaurants, bars and pubs where you need to take payments away from the till. </p>
+                    <p> Connect via Bluetooth or Wi-Fi, a portable machine is great for restaurants, bars and pubs where you need to take payments away from the till. </p>
 
                 </div>
                 <div class="col-xl-4 col-12 text-center card-terminal-category">
@@ -41,13 +41,16 @@
 
                 </div>
             </div>
-            <div class="row no-margin mt-5">
-                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-1.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-2.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-3.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-4.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-5.png') }}"></div>
-                <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-6.png') }}"></div>
+            <div class="d-flex justify-content-between no-margin mt-5">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-2.png') }}"></div>
+                    <div class="col-xl-2 col-lg-6 col-12 text-center d-none d-lg-block"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-3.png') }}"></div>
+                    <div class="col-xl-2 col-lg-6 col-12 text-center d-none d-lg-block"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-1.png') }}"></div>
+                    <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-4.png') }}"></div>
+                    <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="pax-machine" src="{{ asset('img/payment-solutions-homepage/card-machines/pax-a920.png') }}"></div>
+                    <div class="col-xl-2 col-lg-6 col-12 text-center d-none d-lg-block"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-5.png') }}"></div>
+                    {{-- <div class="col-xl-2 col-lg-6 col-12 text-center"><img class="card-machine-image" src="{{ asset('img/payment-solutions-homepage/card-machines/card-machine-6.png') }}"></div> --}}
+                </div>
             </div>
         </div>
         <div class="d-none d-lg-block mt-5 mb-5 mb-xl-0">
@@ -65,12 +68,12 @@
         <div class="row">
             <div class="d-none d-xl-block col-xl-2"></div>
             <div class="col-12 col-xl-4 text-center">
-                <img src="{{ asset('img/payment-solutions-homepage/go-mobile-image.png') }}">
+                <img src="{{ asset('img/payment-solutions-homepage/go-mobile-image.png') }}" height="auto" width="350">
             </div>
-            <div class="col-12 col-xl-4 justify-content-center d-flex justify-content-xl-start align-items-xl-center">
-                <p class="white-text text-center text-xl-left" style="width: 400px; font-size: 1.2em"> We supply you with your own Mobile Payment Terminal and Smart Phone App. This simple to use payment solution is the perfect fit for all types of businesses. With attractive rates and in app analytics', this keeps everything at your fingertips no matter where your business takes you. </p>
+            <div class="col-12 col-xl-6 justify-content-center d-flex justify-content-xl-start align-items-xl-center">
+                <p class="white-text text-center text-xl-left" style="width: 500px; font-size: 1.2em"> We supply you with your own Mobile Payment Terminal and Smart Phone App. This simple to use payment solution is the perfect fit for all types of businesses. With attractive rates and in app analytics', this keeps everything at your fingertips no matter where your business takes you. </p>
             </div>
-            <div class="d-none d-xl-block col-xl-2"></div>
+            {{-- <div class="d-none d-xl-block col-xl-2"></div> --}}
         </div>
 
     </div>
@@ -115,7 +118,7 @@
                         <li>Ability to serve customers 24/7</li>
                         <li>Reach customers anywhere</li>
                         <li>Real-time transactional reporting</li>
-                        <li>Real-time payment autorisation</li>
+                        <li>Real-time payment authorisation</li>
                         <li>Low operational costs</li>
                     </ul>
                 </div>

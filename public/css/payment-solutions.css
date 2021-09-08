@@ -107,8 +107,13 @@ img
 
 .card-machine-image
 {
-    min-width: 250px;
+    min-width: 200px;
     margin: 10px auto;
+}
+
+.pax-machine
+{
+    width: 150px;
 }
 
 ul.green-tick-list
@@ -154,5 +159,12 @@ ul.green-tick-list li:before
     ul.green-tick-list
     {
         text-align: center;
+    }
+
+    .pax-machine
+    {
+        max-width: 150px;
+        max-height: 300px;
+        margin: 10px auto;
     }
 }
