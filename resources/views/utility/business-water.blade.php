@@ -266,7 +266,7 @@
 
     <div class="d-flex">
         <div class="container-fluid d-flex flex-column background-image-preston no-padding">
-            <h2 id="how-long-will-it-take-section" class="section-headers3" style="text-align: center; margin: 0px;">The Process</h2>
+            <h2 id="how-long-will-it-take-section" class="section-headers3" style="text-align: center; margin: 0px; font-size: 40px;">The Process</h2>
             <div class="row">
                 <div class="col-12 col-sm-6 col-lg-4 white-box-infographics" style="text-align: center;">
                     <div class="white-box-infographics-inner" style="background-color: #ffafdd;">
