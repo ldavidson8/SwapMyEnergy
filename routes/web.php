@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::group([ 'prefix' => '' ], function()
+Route::group([ 'prefix' => 'business' ], function()
 {
     Route::get('/', 'BusinessHomeController@index') -> name('business.home');
     Route::get('/about', 'BusinessHomeController@about') -> name('business.about');
@@ -81,7 +81,7 @@ Route::group([ 'prefix' => '' ], function()
 |--------------------------------------------------------------------------
 */
 
-Route::group([ 'prefix' => '/residential' ], function()
+Route::group([ 'prefix' => '/' ], function()
 {
     Route::get('/', 'ResidentialHomeController@index') -> name('residential.home');
     Route::get('/about', 'ResidentialHomeController@about') -> name('residential.about');

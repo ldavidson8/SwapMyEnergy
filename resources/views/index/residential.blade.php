@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('stylesheets')
-    <link rel="stylesheet" href="{{ asset('css/white-box-infographics.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/infographics.css') }}" />
     <style>
         #section01
         {
@@ -136,7 +136,7 @@
     <div class="d-flex">
         <div class="full-size-60 container-fluid d-flex flex-column background-image-preston center-content">
             <div class="row" style="width: 1300px; max-width: 100%;">
-                <div class="col-12 col-lg-4 col-md-6 white-box-infographics" style="text-align: center;">
+                <div class="col-12 col-lg-4 col-sm-6 white-box-infographics" style="text-align: center;">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/infographic icons/signed-form.svg') }}"/>
@@ -145,7 +145,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
+                <div class="col-12 col-lg-4 col-sm-6 white-box-infographics">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/infographic icons/search-icon.svg') }}"/>
@@ -154,8 +154,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 d-lg-none"></div>
-                <div class="col-12 col-lg-4 col-md-6 white-box-infographics">
+                <div class="col-sm-3 d-lg-none"></div>
+                <div class="col-12 col-lg-4 col-sm-6 white-box-infographics">
                     <div class="white-box-infographics-inner">
                         <div style="text-align: center;">
                             <img src="{{ asset('img/infographic icons/switch-icon.svg') }}"/>
@@ -164,7 +164,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 d-lg-none"></div>
+                <div class="col-sm-3 d-lg-none"></div>
             </div>
         </div>
     </div>
