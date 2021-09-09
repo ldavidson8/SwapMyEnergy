@@ -22,7 +22,7 @@
             </a>
         @endif
     </div>
-    <div class="order-2 navbar-toggler-button-outer" style="flex-grow: 100;">
+    <div class="order-2 navbar-toggler-button-outer">
         <div style="width: 100%; text-align: left;">
             <span>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

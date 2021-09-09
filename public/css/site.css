@@ -673,7 +673,7 @@ body.business .switch-text
 }
 
 
-@media (min-width: 450px)
+@media (min-width: 991px)
 {
     .navbar-switch-mobile-small
     {
@@ -681,7 +681,7 @@ body.business .switch-text
     }
 }
 
-@media (max-width: 449px)
+@media (max-width: 990px)
 {
     .navbar-switch-mobile-large-to-desktop
     {
