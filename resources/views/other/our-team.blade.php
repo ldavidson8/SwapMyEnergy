@@ -134,6 +134,12 @@
         }
         }
 
+        @media (prefers-reduced-motion) {
+        .hover-zoom:hover {
+            transform: none;
+        }
+  }
+
 
 
     </style>

@@ -39,18 +39,18 @@
             border-bottom: 3px solid #f3f2f1;
             -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
-            -webkit-animation: sdb04 2s infinite;
-            animation: sdb04 2s infinite;
+            -webkit-animation: sdb04 5s infinite;
+            animation: sdb04 5s infinite;
             box-sizing: border-box;
         }
         @-webkit-keyframes sdb04 {
             0% {
             -webkit-transform: rotate(-45deg) translate(0, 0);
             }
-            20% {
+            8% {
             -webkit-transform: rotate(-45deg) translate(-10px, 10px);
             }
-            40% {
+            16% {
             -webkit-transform: rotate(-45deg) translate(0, 0);
             }
         }
@@ -58,10 +58,10 @@
             0% {
             transform: rotate(-45deg) translate(0, 0);
             }
-            20% {
+            8% {
             transform: rotate(-45deg) translate(-10px, 10px);
             }
-            40% {
+            16% {
             transform: rotate(-45deg) translate(0, 0);
             }
         }
@@ -170,6 +170,14 @@
             {
                 background-color: #f3f2f1;
                 color: #202020;
+            }
+        }
+
+        @media (prefers-reduced-motion)
+        {
+            #section01 #sdb01 span
+            {
+                animation: none;
             }
         }
     </style>
