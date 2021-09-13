@@ -11,7 +11,7 @@
 
 @section('main-content')
             <hr/>
-            <div class="row flex-grow-1 no-padding" style="background-image: url('{{ asset('img/background/payment-solutions-background.png') }}'); background-position: center bottom; align-items: top; justify-content: top; -ms-flex-pack: center; margin: auto;">
+            <div class="row flex-grow-1 no-padding" style="background-image: url('{{ asset('img/background/payments.jpg') }}'); background-position: center bottom; align-items: top; justify-content: top; -ms-flex-pack: center; margin: auto;">
                 <div class="col-12 no-margin">
                     <div style="max-width: 100%; max-height: 100%;">
                         <h1 class="white-text text-center" style="text-shadow: 0px 2px 12px #000000; margin: 230px 0 50px;">Payment Solutions, <br> Perfect For Your Business</h1>
