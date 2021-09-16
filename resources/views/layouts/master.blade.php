@@ -41,6 +41,18 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5P3KQE148V"></script>
     <script src="{{ URL::asset('js/google-analytics.js') }}"></script>
 
+    <!-- Hotjar Tracking Code for https://swapmyenergy.co.uk/ -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:2515642,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+
     <!-- Our Scripts -->
     <script type="text/javascript" src="{{ URL::asset('js/intersection-observer-api.js') }}"></script>
 
