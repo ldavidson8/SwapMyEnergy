@@ -134,6 +134,12 @@
         }
         }
 
+        @media (prefers-reduced-motion) {
+        .hover-zoom:hover {
+            transform: none;
+        }
+  }
+
 
 
     </style>
@@ -150,23 +156,23 @@
     </div>
     <div class="team-wrapper row center-content">
         <!-- Business Development Managers -->
-        <div class="col-lg-1 d-none d-lg-block"></div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-1 d-none d-xl-block"></div>
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Corey-Brooks.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Harry-Yeoman.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Jack-Moore.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a class="hover-zoom" href="#" data-toggle="modal" data-target="#jonathanf">
                     <img alt="" class="member-img" src="{{ asset('img/our-team/Jonathan-Finn.png') }}">
@@ -200,7 +206,7 @@
                     </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a class="hover-zoom" href="#" data-toggle="modal" data-target="#karols">
                     <img alt="" class="member-img" src="{{ asset('img/our-team/Karol-Szaro.png') }}">
@@ -231,24 +237,24 @@
                     </div>
             </div>
         </div>
-        <div class="col-lg-1 d-none d-lg-block"></div>
-        <div class="col-lg-2 d-none d-lg-block"></div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-1 d-none d-xl-block"></div>
+        <div class="col-xl-2 d-none d-xl-block"></div>
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Maggie-Gavin.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Mohammed-Yub.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Morgan-Anderson.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a class="hover-zoom" href="#" data-toggle="modal" data-target="#samis">
                     <img alt="" class="member-img" src="{{ asset('img/our-team/Sami-Sattar.png') }}">
@@ -294,51 +300,51 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 d-none d-lg-block"></div>
+        <div class="col-xl-2 d-none d-xl-block"></div>
         <!-- Sales Team -->
-        <div class="col-lg-3 d-none d-lg-block"></div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-3 d-none d-xl-block"></div>
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset("img/our-team/A'ishah-Vorajee.png") }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Alex-Cottam.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Demi-Taylor.png') }}">
             </div>
         </div>
-        <div class="col-lg-3 d-none d-lg-block"></div>
-        <div class="col-lg-3 d-none d-lg-block"></div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-3 d-none d-xl-block"></div>
+        <div class="col-xl-3 d-none d-xl-block"></div>
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Jasmine-Grime.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Mohammad-Waheed.png') }}">
             </div>
         </div>
         <!-- Data Officers -->
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Michael-Ranstead.png') }}">
             </div>
         </div>
-        <div class="col-lg-3 d-none d-lg-block"></div>
+        <div class="col-xl-3 d-none d-xl-block"></div>
         <!-- Administrators -->
-        <div class="col-lg-2 d-none d-lg-block"></div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 d-none d-xl-block"></div>
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Atiya-Hussain.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a class="hover-zoom" href="#" data-toggle="modal" data-target="#ollyp">
                     <img alt="" class="member-img" src="{{ asset('img/our-team/Olly-Potter.png') }}">
@@ -373,15 +379,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Shannon-Balshaw.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 d-none d-lg-block"></div>
+        <div class="col-xl-2 d-none d-xl-block"></div>
         <!-- Web Developers -->
-        <div class="col-lg-3 d-none d-lg-block"></div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-3 d-none d-xl-block"></div>
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a class="hover-zoom" href="#" data-toggle="modal" data-target="#lewisd">
                     <img alt="" class="member-img" src="{{ asset('img/our-team/Lewis-Davidson.png') }}">
@@ -416,24 +422,24 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Mark-Graham.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Cryshae-Tucker.png') }}">
             </div>
         </div>
-        <div class="col-lg-3 d-none d-lg-block"></div>
+        <div class="col-xl-3 d-none d-xl-block"></div>
         <!-- Marketing team -->
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Adam-Casooji.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a class="hover-zoom" href="#" data-toggle="modal" data-target="#alexb">
                     <img alt="" class="member-img" src="{{ asset('img/our-team/Alex-Burton.png') }}">
@@ -473,12 +479,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <img alt="" class="member-img" src="{{ asset('img/our-team/Andrew-Furness.png') }}">
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a class="hover-zoom" href="#" data-toggle="modal" data-target="#robg">
                     <img alt="" class="member-img" src="{{ asset('img/our-team/Robert-Graham.png') }}">
@@ -514,7 +520,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-4 col-12 card-wrapper">
+        <div class="col-xl-2 col-md-4 col-12 card-wrapper">
             <div class="card">
                 <a class="hover-zoom" href="#" data-toggle="modal" data-target="#samc">
                     <img alt="" class="member-img" src="{{ asset('img/our-team/Sam-Coltman.png') }}">

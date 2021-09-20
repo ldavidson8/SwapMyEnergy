@@ -39,18 +39,18 @@
             border-bottom: 3px solid #f3f2f1;
             -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
-            -webkit-animation: sdb04 2s infinite;
-            animation: sdb04 2s infinite;
+            -webkit-animation: sdb04 5s infinite;
+            animation: sdb04 5s infinite;
             box-sizing: border-box;
         }
         @-webkit-keyframes sdb04 {
             0% {
             -webkit-transform: rotate(-45deg) translate(0, 0);
             }
-            20% {
+            8% {
             -webkit-transform: rotate(-45deg) translate(-10px, 10px);
             }
-            40% {
+            16% {
             -webkit-transform: rotate(-45deg) translate(0, 0);
             }
         }
@@ -58,10 +58,10 @@
             0% {
             transform: rotate(-45deg) translate(0, 0);
             }
-            20% {
+            8% {
             transform: rotate(-45deg) translate(-10px, 10px);
             }
-            40% {
+            16% {
             transform: rotate(-45deg) translate(0, 0);
             }
         }
@@ -172,6 +172,14 @@
                 color: #202020;
             }
         }
+
+        @media (prefers-reduced-motion)
+        {
+            #section01 #sdb01 span
+            {
+                animation: none;
+            }
+        }
     </style>
 @endsection
 
@@ -182,7 +190,7 @@
 
 @section('main-content')
             <hr/>
-            <div class="flex-grow-1 container-fluid no-padding background-image-water d-flex center-content" style="background-image: url('{{ asset('img/background/business-water-background.png') }}'); background-position: center bottom; ">
+            <div class="flex-grow-1 container-fluid no-padding background-image-water d-flex center-content" style="background-image: url('{{ asset('img/background/business-water.jpg') }}'); background-position: center bottom; ">
                 <div class="row" style="text-shadow: 0px 0px 2px #f3f2f1;">
                     <div class="col-2 d-none d-xl-block"></div>
                     <div class="col-xl-4 col-lg-6 col-12 row no-padding" style="margin: auto 0px auto auto;">

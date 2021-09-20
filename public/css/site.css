@@ -8,6 +8,12 @@ html
     scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion) {
+  html {
+      scroll-behavior: auto;
+  }
+  }
+
 body
 {
     background-color: #f3f2f1;
@@ -71,29 +77,29 @@ body
 .background-image-opacity-35::before { opacity: 0.35 !important; }
 
 .background-image-preston:not(.preload)::before { background-image: url('/img/background/preston_full.jpg'); }
-.background-image-powerline:not(.preload)::before { background-image: url('/img/background/powerline_full.png'); }
-.background-image-coffee-shop:not(.preload)::before { background-image: url('/img/background/coffee-shop_full.png'); }
-.background-image-wind-turbines:not(.preload)::before { background-image: url('/img/background/wind-turbines_full.png'); }
-.background-image-hydropower-plant:not(.preload)::before { background-image: url('/img/background/hydropower-plant_full.png'); }
+.background-image-powerline:not(.preload)::before { background-image: url('/img/background/powerline_full.jpg'); }
+.background-image-coffee-shop:not(.preload)::before { background-image: url('/img/background/coffee-shop_full.jpg'); }
+.background-image-wind-turbines:not(.preload)::before { background-image: url('/img/background/wind-turbines_full.jpg'); }
+.background-image-hydropower-plant:not(.preload)::before { background-image: url('/img/background/hydropower-plant_full.jpg'); }
 .background-image-docks:not(.preload)::before { background-image: url('/img/background/docks_full.jpg'); }
 
 @media (max-width: 1000px) and (max-height: 563px)
 {
     .background-image-preston:not(.preload)::before { background-image: url('/img/background/preston_half.jpg'); }
-    .background-image-powerline:not(.preload)::before { background-image: url('/img/background/powerline_half.png'); }
-    .background-image-coffee-shop:not(.preload)::before { background-image: url('/img/background/coffee-shop_half.png'); }
-    .background-image-wind-turbines:not(.preload)::before { background-image: url('/img/background/wind-turbines_half.png'); }
-    .background-image-hydropower-plant:not(.preload)::before { background-image: url('/img/background/hydropower-plant_half.png'); }
+    .background-image-powerline:not(.preload)::before { background-image: url('/img/background/powerline_half.jpg'); }
+    .background-image-coffee-shop:not(.preload)::before { background-image: url('/img/background/coffee-shop_half.jpg'); }
+    .background-image-wind-turbines:not(.preload)::before { background-image: url('/img/background/wind-turbines_half.jpg'); }
+    .background-image-hydropower-plant:not(.preload)::before { background-image: url('/img/background/hydropower-plant_half.jpg'); }
     .background-image-docks:not(.preload)::before { background-image: url('/img/background/docks_half.jpg'); }
 }
 
 @media (max-width: 500px) and (max-height: 281px)
 {
     .background-image-preston:not(.preload)::before { background-image: url('/img/background/preston_quarter.jpg'); }
-    .background-image-powerline:not(.preload)::before { background-image: url('/img/background/powerline_quarter.png'); }
-    .background-image-coffee-shop:not(.preload)::before { background-image: url('/img/background/coffee-shop_quarter.png'); }
-    .background-image-wind-turbines:not(.preload)::before { background-image: url('/img/background/wind-turbines_quarter.png'); }
-    .background-image-hydropower-plant:not(.preload)::before { background-image: url('/img/background/hydropower-plant_quarter.png'); }
+    .background-image-powerline:not(.preload)::before { background-image: url('/img/background/powerline_quarter.jpg'); }
+    .background-image-coffee-shop:not(.preload)::before { background-image: url('/img/background/coffee-shop_quarter.jpg'); }
+    .background-image-wind-turbines:not(.preload)::before { background-image: url('/img/background/wind-turbines_quarter.jpg'); }
+    .background-image-hydropower-plant:not(.preload)::before { background-image: url('/img/background/hydropower-plant_quarter.jpg'); }
     .background-image-docks:not(.preload)::before { background-image: url('/img/background/docks_quarter.jpg'); }
 }
 
@@ -235,7 +241,7 @@ nav
     z-index: 10;
 }
 
-nav .navigation-link
+header .navigation-link
 {
     margin: 12px 5px;
     vertical-align: middle;
@@ -243,8 +249,8 @@ nav .navigation-link
     font-weight: 700;
 }
 
-nav .navigation-link:link,
-nav .navigation-link:visited
+header .navigation-link:link,
+header .navigation-link:visited
 {
     color: #202020 !important;
     padding: 5px 7px;
@@ -252,8 +258,8 @@ nav .navigation-link:visited
     border: 2px solid transparent;
 }
 
-nav .navigation-link:hover,
-nav .navigation-link:active
+header .navigation-link:hover,
+header .navigation-link:active
 {
     color: #202020 !important;
     text-decoration: underline !important;
@@ -589,6 +595,45 @@ body.business .switch-text
 }
 
 
+@media (min-width: 1350px)
+{
+    .utilities-mobile
+    {
+        display: none;
+    }
+}
+
+@media (max-width: 1349px)
+{
+    .utilities-desktop
+    {
+        display: none !important;
+    }
+}
+
+@media (min-width: 992px)
+{
+    .navbar-toggler-button-outer
+    {
+        display: none;
+    }
+}
+
+@media (max-width: 991px)
+{
+    .navbar-toggler-button-outer
+    {
+        display: -webkit-inline-flex;
+        display: inline-flex;
+        height: 84px;
+        width: auto;
+        align-items: center;
+        justify-content: center;
+        -ms-flex-pack: center;
+        padding: 0px 20px;
+    }
+}
+
 @media (max-width: 767px)
 {
     .left-column-content
@@ -624,5 +669,22 @@ body.business .switch-text
     .background-image-no-mobile::before
     {
         background-image: none !important;
+    }
+}
+
+
+@media (min-width: 991px)
+{
+    .navbar-switch-mobile-small
+    {
+        display: none;
+    }
+}
+
+@media (max-width: 990px)
+{
+    .navbar-switch-mobile-large-to-desktop
+    {
+        display: none;
     }
 }
