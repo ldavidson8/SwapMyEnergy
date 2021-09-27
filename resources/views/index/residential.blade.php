@@ -124,7 +124,7 @@
                 <div class="col-xl-3 col-lg-6 col-md-8 col-12" style="padding-bottom: 20px;">
                     <h1>Don't fall victim to rising energy prices</h1>
                     <p>Too many energy brokers promise savings that do not stick. These promises are made on estimates, which are not always accurate of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you need when it comes to your bills.</p>
-                    <a href="https://www.theenergyshop.com/wayInForm?agentID=333-7TDfpTnZOo" rel="external" class="btn big-blue-button" role="button" style="margin-top: 10px;">Get started</a>
+                    <a class="btn big-blue-button" role="button" style="margin-top: 10px; background-color: orange !important;">Coming Soon</a>
                 </div>
                 <div class="col-xl-7 col-lg-5 col-md-2 d-none d-md-block" style="height: 100%; margin: auto auto 0;">
                     <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
