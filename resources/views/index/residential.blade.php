@@ -17,6 +17,13 @@
             height: 100px;
             width: 100px;
         }
+
+        .round-box
+        {
+            border-radius: 0px 20px 20px 20px;
+            background-color: white;
+            padding: 20px 20px 20px 20px;
+        }
         #section01
         {
             position: relative;
@@ -136,7 +143,7 @@
             <div class="row flex-grow-1 no-padding background-image-wind-turbines background-image-left center-content">
                 <div class="col-xl-5 col-lg-6 col-md-8 col-12 row no-margin">
                     <h1> The UK Energy Crisis </h1>
-                    <h3> If you're on or were on these suppliers: </h3>
+                    <h3> Are you currently with any of the following suppliers? </h3>
                     <div class="row">
                         <div class="logo-wrapper col-6 col-lg-4 col-sm-3 col-md-3">
                             <img src="{{asset('img/Energy-suppliers-gone-bust/avro-energy.png')}}" alt="Avro Energy">
@@ -167,8 +174,10 @@
                         </div>
                     </div>
                     <p style="width: 600px"> 
-                        As a result of the current energy crisis, you may be getting moved to a tariff (or supplier) that you don't want to be on. <br>
-                        Even though we've currently suspended our online switching service, if you fill in the form to the right, we can still help get you switched. 
+                        As a result of the <span style="font-weight: 700;"> current energy crisis </span>, you are almost certain to be moved over to an alternative supplier and on a much <span style="font-weight: 700;"> higher deemed/variable </span> tariff.
+                    </p>
+                    <p style="width: 600px">
+                        We've currently suspended our online switching services. <span style="font-weight: 700;"> But, we can still help you save</span>. Please fill in the form to your right and start saving today.
                     </p>
                     {{-- <h1>Don't fall victim to rising energy prices</h1>
                     <p>Too many energy brokers promise savings that do not stick. These promises are made on estimates, which are not always accurate of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you need when it comes to your bills.</p>
