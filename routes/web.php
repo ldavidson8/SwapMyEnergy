@@ -129,7 +129,14 @@ Route::group([ 'prefix' => '/' ], function()
         // Route::post('/suppliers/{supplierId}', 'ResidentialApiController@supplierById') -> name('residential.energy-comparison.api.suppliers.by-id');
         // Route::post('/paymentMethods/suppliers/{supplierId}/{serviceType}', 'ResidentialApiController@paymentMethods_suppliers']) -> name('residential.energy-comparison.api.paymentMethods.by-supplier-id');
         // Route::post('/tariffs/suppliers/{supplierId}/{regionId}/{serviceType}/{paymentMethod}/{e7}', 'ResidentialApiController@tariffs_forASuppllier']) -> name('residential.energy-comparison.api.tariffs.for-a-suppllier');
-    });
+
+        Route::group([ 'prefix' => '/request-callback' ], function()
+        {
+            Route::post('/', 'ResidentialCallbackController@requestCallbackPost') -> name('residential.request-callback');
+            Route::get('/success', 'ResidentialCallbackController@requestCallbackSuccess') -> name('residential.request-callback.success');
+            Route::get('/error', 'ResidentialCallbackController@requestCallbackError') -> name('residential.request-callback.error');
+        });
+        });
 });
 
 

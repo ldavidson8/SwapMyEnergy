@@ -16,7 +16,7 @@
                         <p>Please contact us using the details below.</p>
                         <p>
                             Telephone: {{ env('DATA_CONTACT_PHONE_NUMBER') }}<br />
-                            Email: {{ env('DATA_CONTACT_EMAIL') }}.
+                            Email: {{ env('DATA_CONTACT_EMAIL') }}
                         </p>
                         <a href="{{ route("$mode.home") }}"><button class="big-blue-button" style="width: auto; padding: 8px 15px;">Back to the homepage</button></a>
                     </div>

@@ -3,6 +3,20 @@
 @section('stylesheets')
     <link rel="stylesheet" href="{{ asset('css/infographics.css') }}" />
     <style>
+
+        .logos-flex-container 
+        {
+            height:200px;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            text-align:center;
+        }
+
+        .logo-wrapper img {
+            height: 100px;
+            width: 100px;
+        }
         #section01
         {
             position: relative;
@@ -120,15 +134,74 @@
 @section('main-content')
             <hr/>
             <div class="row flex-grow-1 no-padding background-image-wind-turbines background-image-left center-content">
-                <div class="col-xl-2 col-lg-1 col-md-2 d-none d-md-block"></div>
-                <div class="col-xl-3 col-lg-6 col-md-8 col-12" style="padding-bottom: 20px;">
-                    <h1>Don't fall victim to rising energy prices</h1>
+                <div class="col-xl-5 col-lg-6 col-md-8 col-12 row no-margin">
+                    <h1> The UK Energy Crisis </h1>
+                    <h3> If you're on or were on these suppliers: </h3>
+                    <div class="row">
+                        <div class="logo-wrapper col-6 col-lg-4 col-sm-3 col-md-3">
+                            <img src="{{asset('img/Energy-suppliers-gone-bust/avro-energy.png')}}" alt="Avro Energy">
+                        </div>
+                        <div class="logo-wrapper col-6 col-lg-4 col-sm-3 col-md-3">
+                            <img src="{{asset('img/Energy-suppliers-gone-bust/bulb-energy.png')}}" alt="Bulb Energy">
+                        </div>
+                        <div class="logo-wrapper col-6 col-lg-4 col-sm-3 col-md-3">
+                            <img src="{{asset('img/Energy-suppliers-gone-bust/green-energy.png')}}" alt="Green Energy">
+                        </div>
+                        <div class="logo-wrapper col-6 col-lg-4 col-sm-3 col-md-3">
+                            <img src="{{asset('img/Energy-suppliers-gone-bust/hub-energy.png')}}" alt="Hub Energy">
+                        </div>
+                        <div class="logo-wrapper col-6 col-lg-4 col-sm-3 col-md-3">
+                            <img src="{{asset('img/Energy-suppliers-gone-bust/igloo-energy.png')}}" alt="Igloo Energy">
+                        </div>
+                        <div class="logo-wrapper col-6 col-lg-4 col-sm-3 col-md-3">
+                            <img src="{{asset('img/Energy-suppliers-gone-bust/moneyplus-energy.png')}}" alt="Money Plus Energy">
+                        </div>
+                        <div class="logo-wrapper col-6 col-lg-4 col-sm-3 col-md-3">
+                            <img src="{{asset('img/Energy-suppliers-gone-bust/people-energy.png')}}" alt="People Energy">
+                        </div>
+                        <div class="logo-wrapper col-6 col-lg-4 col-sm-3 col-md-3">
+                            <img src="{{asset('img/Energy-suppliers-gone-bust/pfp-energy.png')}}" alt="PFP Energy">
+                        </div>
+                        <div class="logo-wrapper col-6 col-lg-4 col-sm-3 col-md-3">
+                            <img src="{{asset('img/Energy-suppliers-gone-bust/utlity-point.png')}}" alt="Utility Point">
+                        </div>
+                    </div>
+                    <p style="width: 600px"> 
+                        As a result of the current energy crisis, you may be getting moved to a tariff (or supplier) that you don't want to be on. <br>
+                        Even though we've currently suspended our online switching service, if you fill in the form to the right, we can still help get you switched. 
+                    </p>
+                    {{-- <h1>Don't fall victim to rising energy prices</h1>
                     <p>Too many energy brokers promise savings that do not stick. These promises are made on estimates, which are not always accurate of the energy that you use. At Swap My Energy, we give you savings based on facts, not estimates, providing you with the transparency you need when it comes to your bills.</p>
-                    <a class="btn big-blue-button" role="button" style="margin-top: 10px; background-color: orange !important;">Coming Soon</a>
+                    <a class="btn big-blue-button" role="button" style="margin-top: 10px; background-color: orange !important;">Coming Soon</a> --}}
                 </div>
-                <div class="col-xl-7 col-lg-5 col-md-2 d-none d-md-block" style="height: 100%; margin: auto auto 0;">
+                <div class="col-xl-5 col-lg-5 col-md-8 col-12 d-md-flex">
+                    <div class="white-text" style="max-width: 100%; width: 600px;">
+                        <form id="residentialCallbackForm" class="" action="{{ route('residential.request-callback') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="full_name">Full Name</label>
+                                <input type="text" class="form-control tall-form-control" id="full_name" name="full_name" placeholder="Full Name" required="required" />
+                            </div>
+                            <div class="form-group">
+                                <span class="form-error-message" id="phoneNumberError"></span>
+                                <div><label for="phone_number">Phone Number</label></div>
+                                <input type="text" class="form-control tall-form-control" id="phone_number" name="phone_number" placeholder="Contact Number" required="required"" />
+                            </div>
+                            <div class="form-group">
+                                <label for="billsUpload">Upload Your Bills (optional)</label>
+                                <input type="file" class="form-control" id="billsUpload" name="billsUpload[]" multiple style="padding: 7px 10px; height: auto;" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address (optional)</label>
+                                <input type="email" class="form-control tall-form-control" id="email" name="email_address" placeholder="Email (optional)" />
+                            </div>
+                            <button type="submit" class="rounded-blue-button" style="padding: 8px; width: 250px;">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                {{-- <div class="col-xl-7 col-lg-5 col-md-2 d-none d-md-block" style="height: 100%; margin: auto auto 0;">
                     <a id="scroll-down-link" class="d-md-inline d-none" href="#HowItWorks"><span></span>How It Works</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
