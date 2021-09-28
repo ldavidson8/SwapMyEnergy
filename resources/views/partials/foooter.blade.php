@@ -66,8 +66,8 @@
             <div class="col-12 mobile-no-padding">
                 <ul class="list-unstyled list-icons">
                     <li class="home my-2">Estate House, Fox St, Preston PR1 2AB</li> <br />
-                    <li class="mail my-2">contact@swapmyenergy.co.uk</li> <br />
-                    <li class="phone my-2">01772 584880</li>
+                    <li class="mail my-2">{{ env('DATA_CONTACT_EMAIL') }}</li> <br />
+                    <li class="phone my-2">{{ env('DATA_CONTACT_PHONE_NUMBER')}}</li>
                 </ul>
             </div>
         </div>

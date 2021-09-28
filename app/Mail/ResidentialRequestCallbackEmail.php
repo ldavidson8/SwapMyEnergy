@@ -32,7 +32,7 @@ class ResidentialRequestCallbackEmail extends Mailable
             $callbackRequest = $this -> callbackRequest;
             $params = compact([ 'callbackRequest' ]);
 
-            $view = $this -> subject('SwapMyEnergy - Residential Callback Request') -> view('_emails.contact-forms.Residential-request-callback', $params) -> text('_emails.contact-forms.Residential-request-callback-text', $params);
+            $view = $this -> subject('SwapMyEnergy - Residential Callback Request') -> view('_emails.contact-forms.residential-request-callback', $params) -> text('_emails.contact-forms.residential-request-callback-text', $params);
             foreach ($this -> fileUploads as $file)
             {
                 $view = $view -> attach(storage_path('app/' . $file -> filename));

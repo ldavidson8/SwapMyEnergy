@@ -91,7 +91,7 @@ class ResidentialCallbackController extends Controller
         try
         {
             $to_email = [ env('MAIL2_TO_ADDRESS') ];
-            Mail::to($to_email) -> queue(new ResidentialRequestCallbackEmail($data, $fileUploads));
+            Mail::to('energyhelp@swapmyenergy.co.uk') -> queue(new ResidentialRequestCallbackEmail($data, $fileUploads));
 
             $successFlags |= 4;
             Log::channel('request-callback') -> info('ResidentialCallbackController -> requestCallbackPost(), Sent email containing the callback request', [ 'successFlags' => $successFlags ]);

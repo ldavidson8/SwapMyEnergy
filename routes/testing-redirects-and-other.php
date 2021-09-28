@@ -60,46 +60,39 @@ Route::group([ 'prefix' => '/testing/errors/http/error-pages/' ], function()
 
 Route::group([ 'prefix' => '' ], function()
 {
-    Route::group([ 'prefix' => '/request-callback' ], function()
-    {
-        Route::redirect('/', '/business/request-callback', 308);
-        Route::redirect('/success', '/business/request-callback/success', 301);
-        Route::redirect('/error', '/business/request-callback/error', 301);
-    });
-
     Route::group([ 'prefix' => '/water' ], function()
     {
-        Route::redirect('/', '/business/water', 308);
-        Route::redirect('/success', '/business/water/success', 301);
-        Route::redirect('/error', '/business/water/error', 301);
+        Route::redirect('/', '/business/water', 307);
+        Route::redirect('/success', '/business/water/success', 302);
+        Route::redirect('/error', '/business/water/error', 302);
     });
 
     Route::group([ 'prefix' => '/connections' ], function()
     {
-        Route::redirect('/', '/business/connections', 308);
-        Route::redirect('/success', '/business/connections/success', 301);
-        Route::redirect('/error', '/business/connections/error', 301);
+        Route::redirect('/', '/business/connections', 307);
+        Route::redirect('/success', '/business/connections/success', 302);
+        Route::redirect('/error', '/business/connections/error', 302);
     });
 
     Route::group([ 'prefix' => '/payment-solutions'], function()
     {
-        Route::redirect('/', '/business/payment-solutions', 308);
-        Route::redirect('/success', '/business/payment-solutions/success', 301);
-        Route::redirect('/error', '/business/payment-solutions/error', 301);
+        Route::redirect('/', '/business/payment-solutions', 307);
+        Route::redirect('/success', '/business/payment-solutions/success', 302);
+        Route::redirect('/error', '/business/payment-solutions/error', 302);
     });
 });
 
 Route::group([ 'prefix' => '/residential' ], function()
 {
-    Route::get('/', function() { return redirect('/', 301); });
-    Route::get('/about', function() { return redirect('/about', 301); });
-    Route::get('/terms-and-conditions', function() { return redirect('/terms-and-conditions', 301); });
-    Route::get('/privacy-policy', function() { return redirect('/privacy-policy', 301); });
-    Route::get('/contact', function() { return redirect('/contact', 301); });
-    Route::get('/partners-and-affiliates', function() { return redirect('/partners-and-affiliates', 301); });
-    Route::get('/cookie-policy', function() { return redirect('/cookie-policy', 301); });
-    Route::get('/sitemap', function() { return redirect('/sitemap', 301); });
-    Route::get('/our-team', function() { return redirect('/our-team', 301); });
+    Route::get('/', function() { return redirect('/', 302); });
+    Route::get('/about', function() { return redirect('/about', 302); });
+    Route::get('/terms-and-conditions', function() { return redirect('/terms-and-conditions', 302); });
+    Route::get('/privacy-policy', function() { return redirect('/privacy-policy', 302); });
+    Route::get('/contact', function() { return redirect('/contact', 302); });
+    Route::get('/partners-and-affiliates', function() { return redirect('/partners-and-affiliates', 302); });
+    Route::get('/cookie-policy', function() { return redirect('/cookie-policy', 302); });
+    Route::get('/sitemap', function() { return redirect('/sitemap', 302); });
+    Route::get('/our-team', function() { return redirect('/our-team', 302); });
 });
-Route::get('/residential/energy-comparison/address', function() { return redirect('/energy-comparison/address', 301); });
-Route::get('/business/energy-comparison/address', function() { return redirect('/energy-comparison/address', 301); });
+Route::get('/residential/energy-comparison/address', function() { return redirect('/energy-comparison/address', 302); });
+Route::get('/business/energy-comparison/address', function() { return redirect('/energy-comparison/address', 302); });
