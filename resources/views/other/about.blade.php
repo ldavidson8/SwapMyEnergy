@@ -83,7 +83,7 @@
                 <div class="col-xl-4 col-lg-6 col-md-8 col-12 center-content no-margin">
                     <div style="padding: 30px; border-radius: 35px; display: inline-block; color: #f3f2f1">
                         <h1 style="text-shadow: -1px 1px 2px black; margin-top: 0px;">What We Do</h1>
-                        <p style="text-shadow: -1px 1px 2px black; padding-top: 30px; width: 450px; max-width: 100%; margin-bottom: 0px;">
+                        <p style="text-shadow: -1px 1px 2px black; padding-top: 30px; margin-bottom: 0px;">
                             We provide businesses and people like YOU with the opportunity to save on their energy bills. With our no-nonsense approach, what you see is what you get.
                             At Swap My Energy, we give you savings based on facts, not estimates.
                             By finding you a unique deal you will have the opportunity to save money and the peace of mind that your energy bill switching is in good hands.
