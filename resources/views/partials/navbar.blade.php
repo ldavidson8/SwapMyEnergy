@@ -40,10 +40,10 @@
             <li class="nav-item">
                 <a class="nav-link navigation-link {{ ($navbar_page == "about") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.about") }}">About</a>
             </li>
-            <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>
+            {{-- <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>
             <li class="nav-item">
                 <a class="nav-link navigation-link {{ ($navbar_page == "our team") ? 'navigation-link-current-page' : '' }}" href="{{ route("$mode.our-team") }}">Our Team</a>
-            </li>
+            </li> --}}
             @if ($mode == "business")
                 <div class="d-lg-inline d-none" style="font-weight: 700;">|</div>
                 <li class="utilities-desktop nav-item">

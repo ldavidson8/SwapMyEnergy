@@ -91,7 +91,7 @@ Route::group([ 'prefix' => '/' ], function()
     Route::get('/sitemap', 'ResidentialHomeController@siteMap') -> name('residential.sitemap');
     Route::get('/contact', 'ResidentialHomeController@contact') -> name('residential.contact');
     Route::get('/partners-and-affiliates', 'ResidentialHomeController@partnersAndAffiliates') -> name('residential.partners and affiliates');
-    Route::get('/our-team', 'ResidentialHomeController@ourTeam') -> name('residential.our-team');
+    // Route::get('/our-team', 'ResidentialHomeController@ourTeam') -> name('residential.our-team');
 
     // Route::group([ 'prefix' => '/my-account', 'middleware' => 'residential' ], function()
     // {
