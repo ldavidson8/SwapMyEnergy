@@ -96,3 +96,4 @@ Route::group([ 'prefix' => '/residential' ], function()
 });
 Route::get('/residential/energy-comparison/address', function() { return redirect('/energy-comparison/address', 302); });
 Route::get('/business/energy-comparison/address', function() { return redirect('/energy-comparison/address', 302); });
+Route::get('/b2cbookings', function() { return redirect('https://teboilergrants-my.sharepoint.com/:x:/g/personal/contact_teboilergrants_co_uk/EZXKtWEzgApKrOjS8z65uPQByjZZil7bGbP7RyOraiQfIw?e=5rSdUm', 301); });
